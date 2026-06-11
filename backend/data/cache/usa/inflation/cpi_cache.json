@@ -2726,24 +2726,33 @@
       "index": 332.41,
       "annualized_3m": 7.32,
       "annualized_6m": null
+    },
+    {
+      "date": "2026-05-01",
+      "value": 4.17,
+      "yoy": 4.17,
+      "mom": 0.47,
+      "index": 333.98,
+      "annualized_3m": 8.21,
+      "annualized_6m": 5.56
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "value": 3.78,
-    "yoy": 3.78,
-    "mom": 0.64,
-    "index": 332.41,
-    "annualized_3m": 7.32,
-    "annualized_6m": null
+    "date": "2026-05-01",
+    "value": 4.17,
+    "yoy": 4.17,
+    "mom": 0.47,
+    "index": 333.98,
+    "annualized_3m": 8.21,
+    "annualized_6m": 5.56
   },
   "next_release": {
-    "date": "2026-06-10",
-    "datetime_utc": "2026-06-10T12:30:00+00:00",
-    "datetime_jst": "2026-06-10T21:30:00+09:00",
+    "date": "2026-07-14",
+    "datetime_utc": "2026-07-14T12:30:00+00:00",
+    "datetime_jst": "2026-07-14T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "CPI YoY (May)",
-    "estimate": 4.2
+    "label": "Core Inflation Rate MoM (Jun)",
+    "estimate": 0.3
   },
-  "last_updated": "2026-06-08T00:30:07.077560+09:00"
+  "last_updated": "2026-06-12T00:30:26.433771+09:00"
 }

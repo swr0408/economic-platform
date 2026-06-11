@@ -7,6 +7,8 @@ MacroMicro のチャートスクリーンショットを毎日 JST 6:00 に自�
 import logging
 from zoneinfo import ZoneInfo
 
+import asyncio
+
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 
@@ -40,7 +42,9 @@ class BOCRateCutsScreenshotScheduler:
         try:
             logger.info("[Scheduler] BOC RateCuts Screenshot: capturing...")
             service = self._get_service()
-            result = service.capture_all_screenshots(force_refresh=True)
+            # Playwright sync API はブロッキング。ワーカースレッドへ退避しないと
+            # イベントループを占有し login 等すべてのエンドポイントが落ちる。
+            result = await asyncio.to_thread(service.capture_all_screenshots, force_refresh=True)
             yearend_ok = result["yearend"]["success"]
             rate_cuts_ok = result["rate_cuts"]["success"]
             logger.info(

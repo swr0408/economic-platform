@@ -38,7 +38,12 @@ DATA_CACHE_FILE = CACHE_DIR / "abs_cpi_categories_cache.json"
 
 # ABS API設定
 ABS_API_BASE = "https://data.api.abs.gov.au/rest/data"
-CPI_M_DATAFLOW = "ABS,CPI_M,"
+# 2025-11: ABS は旧「Monthly CPI indicator」(dataflow CPI_M, 2025-09 で終了) を廃止し、
+# 完全版 monthly CPI を dataflow CPI v2.0.0 (FREQ=M) に統合した。
+# 次元順は同一 (MEASURE.INDEX.TSEST.REGION.FREQ)、REGION=50 は「Australia」に改称。
+# 既存のカテゴリ INDEX コードはそのまま利用可。バージョンを固定し、ABS が次版へ
+# 移行した場合は staleness monitor が検知する。
+CPI_M_DATAFLOW = "ABS,CPI,2.0.0"
 
 # カテゴリINDEXコード
 CATEGORY_INDICES = "104101+104104+40055+115522+131186+20001"

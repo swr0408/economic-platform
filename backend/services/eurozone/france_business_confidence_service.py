@@ -40,8 +40,12 @@ CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "eurozone" 
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "france_business_confidence_cache.json"
 
-# INSEE XLS URL
+# INSEE XLS URL (公表ごとにファイル ID が変わり凍結するためフォールバック扱い)
 INSEE_XLS_URL = "https://www.insee.fr/fr/statistiques/fichier/8730143/014_EMI_4.xls"
+
+# INSEE BDM SDMX (安定): フランス企業景況感 統合指数 (climat des affaires France)
+# idbank 001565530。ファイル ID 陳腐化の影響を受けず、最新月まで自動追従できる。
+INSEE_BDM_URL = "https://bdm.insee.fr/series/sdmx/data/SERIES_BDM/001565530"
 
 
 class FranceBusinessConfidenceService:
@@ -101,8 +105,8 @@ class FranceBusinessConfidenceService:
                         "last_updated": last_updated_str,
                     }
 
-        # INSEE XLSから取得
-        xls_result = self._load_from_insee_xls()
+        # まず安定した INSEE BDM API、ダメなら従来の XLS にフォールバック
+        xls_result = self._load_from_insee_bdm() or self._load_from_insee_xls()
 
         if xls_result:
             latest = xls_result[-1] if xls_result else None
@@ -158,6 +162,60 @@ class FranceBusinessConfidenceService:
             "last_updated": None,
             "error": "No data available",
         }
+
+    def _load_from_insee_bdm(self) -> List[Dict[str, Any]]:
+        """INSEE BDM SDMX API から企業景況感指数を取得 (安定ソース)。
+
+        ファイル ID 陳腐化の影響を受けない。失敗時は空リストを返し、
+        呼び出し側が従来の XLS にフォールバックする。
+        Returns: [{"date": "YYYY-MM-01", "value": float}, ...] (日付昇順)
+        """
+        import xml.etree.ElementTree as ET
+        try:
+            print(f"[FranceBusinessConfidence] Fetching from INSEE BDM: {INSEE_BDM_URL}")
+            resp = requests.get(
+                INSEE_BDM_URL,
+                timeout=30,
+                headers={"User-Agent": "Mozilla/5.0"},
+            )
+            if resp.status_code != 200:
+                print(f"[FranceBusinessConfidence] BDM HTTP {resp.status_code}")
+                return []
+
+            root = ET.fromstring(resp.content)
+            result: List[Dict[str, Any]] = []
+            for el in root.iter():
+                if el.tag.split("}")[-1] != "Obs":
+                    continue
+                # generic SDMX: TIME_PERIOD/OBS_VALUE は属性または子要素
+                period = el.get("TIME_PERIOD")
+                value = el.get("OBS_VALUE")
+                if period is None:
+                    for c in el:
+                        ct = c.tag.split("}")[-1]
+                        if ct == "ObsDimension":
+                            period = c.get("value")
+                        elif ct == "ObsValue":
+                            value = c.get("value")
+                if not period or value in (None, ""):
+                    continue
+                # "YYYY-MM" -> "YYYY-MM-01"
+                date_str = f"{period}-01" if len(period) == 7 else period
+                try:
+                    v = float(value)
+                except (ValueError, TypeError):
+                    continue
+                if 0 < v < 300:
+                    result.append({"date": date_str, "value": round(v, 1)})
+
+            # 日付昇順 + 重複除去
+            dedup = {r["date"]: r for r in sorted(result, key=lambda x: x["date"])}
+            out = sorted(dedup.values(), key=lambda x: x["date"])
+            print(f"[FranceBusinessConfidence] Loaded {len(out)} records from INSEE BDM")
+            return out
+        except Exception as e:
+            print(f"[FranceBusinessConfidence] Error loading from INSEE BDM: {e}")
+            return []
 
     def _load_from_insee_xls(self) -> List[Dict[str, Any]]:
         """INSEEのXLSファイルからデータを取得"""

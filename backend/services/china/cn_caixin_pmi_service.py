@@ -49,9 +49,13 @@ class CnCaixinPmiService:
         "services": "cn_caixin_service_pmi",
     }
 
+    # FMP は Caixin China PMI を 2026 に "S&P Global Manufacturing/Services PMI"
+    # (country=CN) へ改称した (Caixin China PMI は S&P Global が編纂)。"Caixin ..."
+    # 名は 2026-02 で停止。両名を OR でマッチさせ、旧 Caixin 履歴 + 新 S&P Global を
+    # シームレスに結合する (同月の重複は _load_from_db が後勝ちで dedup)。
     EVENT_PATTERNS = {
-        "manufacturing": ["Caixin Manufacturing PMI"],
-        "services": ["Caixin Services PMI"],
+        "manufacturing": ["Caixin Manufacturing PMI", "S&P Global Manufacturing PMI"],
+        "services": ["Caixin Services PMI", "S&P Global Services PMI"],
     }
 
     def __init__(self):

@@ -34,6 +34,7 @@ import requests
 import pandas as pd
 
 from core.redis_client import redis_client
+from services.switzerland.bfs_asset_resolver import resolve_master_url_from_url
 from services.switzerland.fmp_next_release_utils import (
     get_next_release_by_pattern,
     should_refresh_by_pattern,
@@ -224,7 +225,7 @@ class CHIndustrialProductionService:
         - Column 3以降がデータ
         """
         try:
-            resp = requests.get(url, timeout=60)
+            resp = requests.get(resolve_master_url_from_url(url), timeout=60)
             resp.raise_for_status()
 
             xls = pd.ExcelFile(io.BytesIO(resp.content))
@@ -262,7 +263,7 @@ class CHIndustrialProductionService:
         - Column 3以降がデータ
         """
         try:
-            resp = requests.get(url, timeout=60)
+            resp = requests.get(resolve_master_url_from_url(url), timeout=60)
             resp.raise_for_status()
 
             xls = pd.ExcelFile(io.BytesIO(resp.content))

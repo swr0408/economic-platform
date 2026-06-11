@@ -20,6 +20,20 @@
       "updated_from_date": ""
     },
     {
+      "symbol": "AD",
+      "name": "Ahold Delhaize",
+      "tier": "A",
+      "country_code": "netherlands",
+      "date": "2026-08-10",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 0.4097,
+      "eps_actual": null,
+      "revenue_estimate": 52447490.0,
+      "revenue_actual": null,
+      "updated_from_date": ""
+    },
+    {
       "symbol": "ASML",
       "name": "ASML",
       "tier": "S",
@@ -74,25 +88,11 @@
       "revenue_estimate": null,
       "revenue_actual": null,
       "updated_from_date": null
-    },
-    {
-      "symbol": "AD",
-      "name": "Ahold Delhaize",
-      "tier": "A",
-      "country_code": "netherlands",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
     }
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-06-06T05:30:03.626359+00:00",
+  "last_updated": "2026-06-11T05:30:03.824875+00:00",
   "cached": false,
   "status": "ok"
 }

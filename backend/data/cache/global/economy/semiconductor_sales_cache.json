@@ -3863,6 +3863,14 @@
       "europe": 6.531,
       "japan": 4.4673,
       "asia_pacific": 64.6155
+    },
+    {
+      "date": "2026-04-01",
+      "worldwide": 113.6767,
+      "americas": 41.5344,
+      "europe": 6.7547,
+      "japan": 4.4286,
+      "asia_pacific": 60.959
     }
   ],
   "yoy_data": [
@@ -7633,6 +7641,14 @@
       "europe": 36.89,
       "japan": 9.23,
       "asia_pacific": 100.68
+    },
+    {
+      "date": "2026-04-01",
+      "worldwide": 106.33,
+      "americas": 158.16,
+      "europe": 63.96,
+      "japan": 25.52,
+      "asia_pacific": 94.41
     }
   ],
   "mma_data": [
@@ -11502,11 +11518,11 @@
     },
     {
       "date": "2026-04-01",
-      "worldwide": 0.0,
-      "americas": 0.0,
-      "europe": 0.0,
-      "japan": 0.0,
-      "asia_pacific": 0.0
+      "worldwide": 110.4805,
+      "americas": 39.4433,
+      "europe": 6.6154,
+      "japan": 4.3093,
+      "asia_pacific": 60.1124
     },
     {
       "date": "2026-05-01",
@@ -15344,11 +15360,11 @@
     },
     {
       "date": "2026-04-01",
-      "worldwide": -100.0,
-      "americas": -100.0,
-      "europe": -100.0,
-      "japan": -100.0,
-      "asia_pacific": -100.0
+      "worldwide": 93.89,
+      "americas": 115.81,
+      "europe": 54.71,
+      "japan": 15.62,
+      "asia_pacific": 95.81
     },
     {
       "date": "2026-05-01",
@@ -15416,12 +15432,12 @@
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "worldwide": 116.2096,
-    "americas": 40.5959,
-    "europe": 6.531,
-    "japan": 4.4673,
-    "asia_pacific": 64.6155
+    "date": "2026-04-01",
+    "worldwide": 113.6767,
+    "americas": 41.5344,
+    "europe": 6.7547,
+    "japan": 4.4286,
+    "asia_pacific": 60.959
   },
   "metadata": {
     "source": "WSTS (World Semiconductor Trade Statistics)",
@@ -15430,5 +15446,5 @@
     "frequency": "Monthly",
     "description": "Monthly semiconductor billings by region"
   },
-  "last_updated": "2026-06-09T00:30:29.710392+09:00"
+  "last_updated": "2026-06-12T00:30:30.382434+09:00"
 }

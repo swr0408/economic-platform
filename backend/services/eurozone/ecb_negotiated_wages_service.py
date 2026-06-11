@@ -105,7 +105,16 @@ class ECBNegotiatedWagesService:
                     }
 
         # ECB APIから取得
-        wages_data = self._fetch_ecb_data() or []
+        # ECB STS.INWR 系列は 2025-Q3 で凍結したため、長期履歴は ECB から、直近四半期は
+        # FMP (economic_calendar_events の "Negotiated Wage Growth", EU) から取得して結合する。
+        ecb_data = self._fetch_ecb_data() or []
+        db_data = self._fetch_from_db() or []
+        merged = {d["date"]: d["value"] for d in ecb_data}
+        merged.update({d["date"]: d["value"] for d in db_data})  # DB(新しい分)で上書き
+        wages_data = sorted(
+            ({"date": k, "value": v} for k, v in merged.items()),
+            key=lambda x: x["date"],
+        )
 
         if wages_data:
             latest = wages_data[-1] if wages_data else None
@@ -162,6 +171,46 @@ class ECBNegotiatedWagesService:
             "last_updated": None,
             "error": "No data available",
         }
+
+    def _fetch_from_db(self) -> Optional[List[Dict]]:
+        """economic_calendar_events (FMP) の "Negotiated Wage Growth" (EU) から取得。
+
+        ECB STS.Q.I9.N.INWR 系列は 2025-Q3 で凍結したため、直近四半期はこちらで補完する。
+        Returns: [{"date": "YYYY-Qn", "value": float}, ...] (date 昇順)
+        """
+        import re
+        try:
+            from core.database import SessionLocal
+            from sqlalchemy import text
+            with SessionLocal() as session:
+                rows = session.execute(text("""
+                    SELECT event, event_period, datetime_utc, actual
+                    FROM economic_calendar_events
+                    WHERE country = 'EU'
+                      AND event ILIKE '%Negotiated Wage Growth%'
+                      AND actual IS NOT NULL
+                    ORDER BY datetime_utc ASC
+                """)).fetchall()
+
+            result: Dict[str, float] = {}
+            for event, period, dt, actual in rows:
+                m = re.search(r'Q([1-4])', str(period or "")) or re.search(r'\(Q([1-4])\)', str(event or ""))
+                if not m or actual is None or dt is None:
+                    continue
+                q = int(m.group(1))
+                year = dt.year
+                # Q4 は翌年 2 月頃に発表されるため対象四半期の年を 1 つ戻す
+                if q == 4 and dt.month <= 3:
+                    year -= 1
+                result[f"{year}-Q{q}"] = float(actual)  # 同四半期は後勝ち (確報値)
+
+            out = [{"date": d, "value": v} for d, v in result.items()]
+            out.sort(key=lambda x: x["date"])
+            print(f"[ECBNegotiatedWages] Loaded {len(out)} data points from DB (FMP)")
+            return out or None
+        except Exception as e:
+            print(f"[ECBNegotiatedWages] DB load error: {e}")
+            return None
 
     def _fetch_ecb_data(self, start_period: str = "2015-Q1") -> Optional[List[Dict]]:
         """

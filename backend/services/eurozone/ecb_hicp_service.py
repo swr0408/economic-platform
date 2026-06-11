@@ -50,25 +50,29 @@ class ECBHICPService:
     FMP_COUNTRY = "EU"
 
     # ECB Data API設定
-    ECB_API_BASE = "https://data-api.ecb.europa.eu/service/data"
-    DATAFLOW = "ICP"
+    # 2026: ユーロ圏拡大 (ブルガリア加盟=EA21) により ECB ICP / Eurostat prc_hicp_*
+    # の euro圏集計は 2025-12 で停止し、EA21 系列は未公表。現行データは Eurostat の
+    # euro-indicators HICP テーブル ei_cphi_m にあり、geo=EA は「可変構成」で 2026 以降
+    # 自動的に EA21 を指す。指数単位は HICP2025 (2025=100) に変更されたが、YoY/MoM は
+    # 指数の比なのでリベースは出力に影響しない (既存の計算ロジックを流用)。
+    EUROSTAT_HICP_BASE = (
+        "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ei_cphi_m"
+    )
+    HICP_GEO = "EA"          # 可変構成 (2026 以降 EA21)
+    HICP_INDEX_UNIT = "HICP2025"  # 指数 (2025=100)
 
-    # Series keys
-    # Key structure: Frequency.Area.Adjustment.Category.Unit.TransformationType
-    # M = Monthly, U2 = Euro Area, N = Not seasonally adjusted, Y = Seasonally adjusted
-    # 000000 = All-items, XEF000 = Excluding energy and food
-    # XEFUN0 = Excluding energy, food, unprocessed food
-    # GOODS0 = Goods, FOOD00 = Food, NRGY00 = Energy, SERV00 = Services
-    # 4 = Index, 3 = HICP 2015=100
-    # INX = Index numbers
+    # 旧 ECB ICP のカテゴリ → Eurostat ei_cphi_m の indic コード対応
+    #   TOTAL=総合, CP-HI00XEF=コア(エネルギー・食品・酒類煙草除く),
+    #   CP-HI00XEFU=エネルギー・未加工食品除く, CP-HIG=財, CP-HIF=食品,
+    #   CP-HIE=エネルギー, CP-HIS=サービス
     SERIES_KEYS = {
-        "total_hicp_index": "M.U2.N.000000.4.INX",
-        "core_hicp_index": "M.U2.N.XEF000.4.INX",
-        "core_excl_unprocessed_food_index": "M.U2.Y.XEFUN0.3.INX",
-        "goods_index": "M.U2.N.GOODS0.4.INX",
-        "food_index": "M.U2.Y.FOOD00.3.INX",
-        "energy_index": "M.U2.N.NRGY00.4.INX",
-        "services_index": "M.U2.Y.SERV00.3.INX",
+        "total_hicp_index": "TOTAL",
+        "core_hicp_index": "CP-HI00XEF",
+        "core_excl_unprocessed_food_index": "CP-HI00XEFU",
+        "goods_index": "CP-HIG",
+        "food_index": "CP-HIF",
+        "energy_index": "CP-HIE",
+        "services_index": "CP-HIS",
     }
 
     def __init__(self):
@@ -208,60 +212,49 @@ class ECBHICPService:
             traceback.print_exc()
             return None
 
-    def _fetch_series_data(self, series_key: str, start_date: str = "2015-01-01") -> Optional[List[Dict]]:
-        """ECB APIから単一シリーズデータを取得"""
+    def _fetch_series_data(self, indic_code: str, start_date: str = "2015-01-01") -> Optional[List[Dict]]:
+        """Eurostat ei_cphi_m から単一系列(指数, geo=EA)を取得して [{date,value}] を返す。
+
+        date は "YYYY-MM" 形式 (旧 ECB ICP と同じ) なので下流の YoY/MoM 計算は無改修。
+        """
         try:
-            url = f"{self.ECB_API_BASE}/{self.DATAFLOW}/{series_key}"
-
             params = {
-                "startPeriod": start_date,
-                "format": "jsondata",
-                "detail": "dataonly"
+                "format": "JSON",
+                "lang": "EN",
+                "geo": self.HICP_GEO,
+                "indic": indic_code,
+                "unit": self.HICP_INDEX_UNIT,
+                "freq": "M",
+                "sinceTimePeriod": start_date[:7],
             }
-
-            print(f"[ECBHICP] Fetching series: {series_key}")
-            response = requests.get(url, params=params, timeout=30)
+            print(f"[ECBHICP] Fetching series (Eurostat ei_cphi_m): indic={indic_code}")
+            response = requests.get(self.EUROSTAT_HICP_BASE, params=params, timeout=30)
             response.raise_for_status()
 
             data = response.json()
+            # JSON-stat: value(index->数値) と dimension.time.category.index(date->index)
+            time_index = (
+                data.get("dimension", {}).get("time", {})
+                .get("category", {}).get("index", {})
+            )
+            idx_to_date = {v: k for k, v in time_index.items()}
+            values = data.get("value", {})
+
             result = []
-
-            if "dataSets" in data and len(data["dataSets"]) > 0:
-                dataset = data["dataSets"][0]
-
-                if "series" in dataset:
-                    dimensions = data.get("structure", {}).get("dimensions", {})
-                    observation_dimension = dimensions.get("observation", [])
-
-                    time_values = []
-                    for dim in observation_dimension:
-                        if dim.get("id") == "TIME_PERIOD":
-                            time_values = [v.get("id") for v in dim.get("values", [])]
-                            break
-
-                    for series_data in dataset["series"].values():
-                        observations = series_data.get("observations", {})
-
-                        for obs_index, obs_value in observations.items():
-                            time_index = int(obs_index)
-                            if time_index < len(time_values):
-                                date = time_values[time_index]
-                                value = obs_value[0] if isinstance(obs_value, list) else obs_value
-
-                                result.append({
-                                    "date": date,
-                                    "value": float(value) if value is not None else None
-                                })
+            for idx_str, value in values.items():
+                date = idx_to_date.get(int(idx_str))
+                if date and value is not None:
+                    result.append({"date": date, "value": float(value)})
 
             result.sort(key=lambda x: x["date"])
-            print(f"[ECBHICP] Fetched {len(result)} data points for {series_key}")
+            print(f"[ECBHICP] Fetched {len(result)} data points for indic={indic_code}")
             return result
 
         except requests.exceptions.RequestException as e:
-            print(f"[ECBHICP] Request error for {series_key}: {e}")
+            print(f"[ECBHICP] Request error for {indic_code}: {e}")
             return None
         except (KeyError, ValueError, IndexError) as e:
-            print(f"[ECBHICP] Parse error for {series_key}: {e}")
+            print(f"[ECBHICP] Parse error for {indic_code}: {e}")
             return None
 
     def _calculate_monthly_change(self, index_data: List[Dict]) -> List[Dict]:

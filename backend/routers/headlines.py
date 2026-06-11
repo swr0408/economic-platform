@@ -11,6 +11,7 @@ try:
     from backend.core.auth.models import ROLE_MASTER
     from backend.services.headlines.headlines_service import (
         get_headlines, get_headline_by_id, save_headline, unsave_headline,
+        create_manual_headline,
         get_categories, create_category, update_category, delete_category,
         seed_country_categories,
     )
@@ -22,6 +23,7 @@ except ImportError:
     from core.auth.models import ROLE_MASTER
     from services.headlines.headlines_service import (
         get_headlines, get_headline_by_id, save_headline, unsave_headline,
+        create_manual_headline,
         get_categories, create_category, update_category, delete_category,
         seed_country_categories,
     )
@@ -73,6 +75,40 @@ def api_get_headline(headline_id: int, _user=Depends(_require_special_or_master)
     result = get_headline_by_id(headline_id)
     if result is None:
         raise HTTPException(status_code=404, detail="Headline not found")
+    return result
+
+
+class ManualHeadlineRequest(BaseModel):
+    content: str
+    roughCategory: Optional[str] = None
+    categoryIds: list[int] = []
+    newCategoryName: Optional[str] = None
+    note: Optional[str] = None
+    isPublicVisible: bool = False
+    speakerName: Optional[str] = None
+    organization: Optional[str] = None
+    externalLink: Optional[str] = None
+
+
+@router.post("/headlines/manual")
+def api_create_manual_headline(
+    body: ManualHeadlineRequest,
+    _master=Depends(_require_master),
+):
+    """ヘッドラインを手動作成してカテゴリに保存 (master 限定)"""
+    result = create_manual_headline(
+        content=body.content,
+        rough_category=body.roughCategory,
+        category_ids=body.categoryIds,
+        new_category_name=body.newCategoryName,
+        note=body.note,
+        is_public_visible=body.isPublicVisible,
+        speaker_name=body.speakerName,
+        organization=body.organization,
+        external_link=body.externalLink,
+    )
+    if "error" in result:
+        raise HTTPException(status_code=400, detail=result["error"])
     return result
 
 

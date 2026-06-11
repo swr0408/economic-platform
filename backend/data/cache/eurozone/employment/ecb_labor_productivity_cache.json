@@ -711,8 +711,8 @@
     "time_jst": "18:00",
     "datetime_cet": "2026-08-14T11:00:00+02:00",
     "time_cet": "11:00",
-    "label": "Employment Change YoY (Q2)",
-    "estimate": 0.5
+    "label": "Employment Change QoQ (Q2)",
+    "estimate": 0.1
   },
-  "last_updated": "2026-06-08T22:00:12.349427+09:00"
+  "last_updated": "2026-06-11T23:15:28.788763+09:00"
 }

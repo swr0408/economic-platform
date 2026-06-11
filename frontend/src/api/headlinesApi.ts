@@ -185,6 +185,33 @@ export async function saveHeadline(headlineId: number, params: SaveHeadlineParam
   return resp.json()
 }
 
+// ========== Manual headline (master only) ==========
+
+export interface ManualHeadlineParams {
+  content: string
+  roughCategory?: string
+  categoryIds?: number[]
+  newCategoryName?: string
+  note?: string
+  isPublicVisible?: boolean
+  speakerName?: string
+  organization?: string
+  externalLink?: string
+}
+
+export async function createManualHeadline(params: ManualHeadlineParams): Promise<any> {
+  const resp = await fetch(`${API_BASE_URL}/api/headlines/manual`, {
+    method: 'POST',
+    headers: authHeaders({ 'Content-Type': 'application/json' }),
+    body: JSON.stringify(params),
+  })
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({}))
+    throw new Error(err.detail || `Failed to create manual headline: ${resp.status}`)
+  }
+  return resp.json()
+}
+
 export async function unsaveHeadline(headlineId: number, savedId: number): Promise<void> {
   const resp = await fetch(`${API_BASE_URL}/api/headlines/${headlineId}/save/${savedId}`, {
     method: 'DELETE',

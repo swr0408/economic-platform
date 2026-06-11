@@ -91,6 +91,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
         "unemployment_rate",
         "unemployment_by_reason",
         "chicago_fed_unemployment_rate_forecast",
+        "nairu",
         "cb_jobs_labor",
         "nonfarm_payrolls",
         "fullpart_time_employment",
@@ -751,6 +752,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
 
             if empsit_stale:
                 stale.add("unemployment_rate")
+                stale.add("nairu")  # 実際の失業率（UNRATE）を含むため雇用統計で更新
                 stale.add("unemployment_by_reason")
                 stale.add("nonfarm_payrolls")
                 stale.add("fullpart_time_employment")
@@ -929,11 +931,13 @@ class USAEmploymentLoader(BaseDashboardLoader):
         from services.usa.temporary_help_services_service import temporary_help_services_service
         from services.usa.chicago_fed_unemployment_rate_forecast_service import chicago_fed_unemployment_rate_forecast_service
         from services.usa.number_of_workers_by_place_of_birth_service import number_of_workers_by_place_of_birth_service
+        from services.usa.nairu_service import nairu_service
 
         result = {
             "unemployment_rate": None,
             "unemployment_by_reason": None,
             "chicago_fed_unemployment_rate_forecast": None,
+            "nairu": None,
             "cb_jobs_labor": None,
             "nonfarm_payrolls": None,
             "fullpart_time_employment": None,
@@ -996,6 +1000,7 @@ class USAEmploymentLoader(BaseDashboardLoader):
                 executor.submit(self._get_temporary_help_services, temporary_help_services_service): "temporary_help_services",
                 executor.submit(self._get_chicago_fed_unemployment_rate_forecast, chicago_fed_unemployment_rate_forecast_service): "chicago_fed_unemployment_rate_forecast",
                 executor.submit(self._get_number_of_workers_by_place_of_birth, number_of_workers_by_place_of_birth_service): "number_of_workers_by_place_of_birth",
+                executor.submit(self._get_nairu, nairu_service): "nairu",
             }
 
             for future in as_completed(futures):
@@ -1024,6 +1029,24 @@ class USAEmploymentLoader(BaseDashboardLoader):
             }
         except Exception as e:
             print(f"Error getting Unemployment Rate data: {e}")
+            return None
+
+    def _get_nairu(self, service) -> Optional[dict]:
+        """NAIRU（自然失業率 NROU）/ 失業率 比較データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("nairu")
+            response = service.get_nairu_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting NAIRU data: {e}")
             return None
 
     def _get_unemployment_by_reason(self, service) -> Optional[dict]:
@@ -1638,10 +1661,12 @@ class USAEmploymentLoader(BaseDashboardLoader):
         from services.usa.temporary_help_services_service import temporary_help_services_service
         from services.usa.chicago_fed_unemployment_rate_forecast_service import chicago_fed_unemployment_rate_forecast_service
         from services.usa.number_of_workers_by_place_of_birth_service import number_of_workers_by_place_of_birth_service
+        from services.usa.nairu_service import nairu_service
 
         # 全サービスのキャッシュを無効化
         services = [
             (unemployment_rate_service, "Unemployment Rate"),
+            (nairu_service, "NAIRU / Unemployment Rate"),
             (unemployment_by_reason_service, "Unemployment by Reason"),
             (cb_jobs_labor_differential_service, "CB Jobs Labor Differential"),
             (nonfarm_payrolls_service, "Nonfarm Payrolls"),

@@ -47,8 +47,10 @@ class CHUnemploymentRateService:
     FMP_COUNTRY = "CH"
     FMP_EVENT_PATTERN = "Unemployment Rate"
 
-    # BFS API URL
-    BFS_API_URL = "https://dam-api.bfs.admin.ch/hub/api/dam/assets/36341018/master"
+    # BFS API: 公表ごとに damId が変わるため、シード ID から最新版を動的解決する
+    # (orderNr ベース解決。詳細は bfs_asset_resolver.py)
+    BFS_SEED_ASSET_ID = "36341018"
+    BFS_API_URL = "https://dam-api.bfs.admin.ch/hub/api/dam/assets/36341018/master"  # フォールバック
 
     def __init__(self):
         pass
@@ -131,9 +133,11 @@ class CHUnemploymentRateService:
     def _load_from_bfs(self) -> List[Dict[str, Any]]:
         """BFS APIからデータを取得（全年度のシートから結合）"""
         try:
-            print(f"[CHUnemploymentRate] Fetching data from BFS API: {self.BFS_API_URL}")
+            from services.switzerland.bfs_asset_resolver import resolve_master_url
+            url = resolve_master_url(self.BFS_SEED_ASSET_ID)
+            print(f"[CHUnemploymentRate] Fetching data from BFS API: {url}")
 
-            resp = requests.get(self.BFS_API_URL, timeout=120)
+            resp = requests.get(url, timeout=120)
             resp.raise_for_status()
 
             excel_data = io.BytesIO(resp.content)

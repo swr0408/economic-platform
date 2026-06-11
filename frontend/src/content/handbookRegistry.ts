@@ -359,6 +359,16 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['失業率', 'U-6', '失業内訳', '一時解雇', '恒久的失職', '自発的離職', '再参入者', '採用率', '離職率', 'レイオフ', 'BLS', 'CPS', 'JOLTS'],
   },
   {
+    indicatorId: 'nairu',
+    title: 'NAIRU（非循環的失業率 / 自然失業率）',
+    country: 'usa',
+    category: 'employment',
+    summary: 'CBO推計の非循環的失業率（FRED NROU）。インフレを加速させない労働市場の均衡水準で、実際の失業率との差（失業率ギャップ）から労働市場の過熱・スラックを判断する基準線。',
+    loadContent: loadMd('usa/nairu.md'),
+    relatedIndicators: ['unemployment', 'sahm-rule', 'labor-force-participation', 'average-hourly-earnings', 'atlanta-fed-wage'],
+    tags: ['NAIRU', '自然失業率', '非循環的失業率', 'Noncyclical Rate of Unemployment', 'NROU', 'CBO', '失業率ギャップ', 'フィリップス曲線', 'インフレ', '労働市場', 'スラック', 'FRED'],
+  },
+  {
     indicatorId: 'unemployment-by-reason',
     title: '失業率内訳（理由別）',
     country: 'usa',

@@ -19,6 +19,8 @@ from zoneinfo import ZoneInfo
 
 import requests
 
+import asyncio
+
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 
@@ -159,6 +161,11 @@ class ChinaGoldEtfBalanceScheduler:
         self.scheduler = AsyncIOScheduler(timezone=JST)
 
     async def _run(self):
+        # ブロッキング I/O (requests/sync DB) をワーカースレッドへ退避。
+        # 直接実行するとイベントループを占有し login 等が応答不能になる。
+        await asyncio.to_thread(self._run_sync)
+
+    def _run_sync(self):
         try:
             logger.info("[ChinaGoldEtfBalanceScheduler] Starting daily update...")
             records = fetch_new_data()

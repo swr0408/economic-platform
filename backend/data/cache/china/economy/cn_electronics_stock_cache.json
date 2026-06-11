@@ -2124,7 +2124,7 @@
     },
     {
       "date": "2027-02-01",
-      "sox_yoy": 120.33
+      "sox_yoy": 121.52
     }
   ],
   "latest": {
@@ -2140,7 +2140,7 @@
     "sox_note": "SOX YoY (8-month lead)",
     "total_records": 157,
     "sox_records": 374,
-    "last_fetched": "2026-06-07T22:17:54.188466+09:00"
+    "last_fetched": "2026-06-11T04:07:08.138702+09:00"
   },
   "next_release": null,
   "csv_mtime": 1780320243.4814808

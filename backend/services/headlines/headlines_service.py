@@ -2,6 +2,7 @@
 ヘッドラインサービス - CRUD + 重複判定
 """
 
+import uuid
 from datetime import datetime, timezone, timedelta
 
 try:
@@ -335,6 +336,100 @@ def save_headline(
 
             conn.commit()
             return {"saved_ids": saved}
+
+
+def create_manual_headline(
+    content: str,
+    rough_category: str = None,
+    category_ids: list[int] = None,
+    new_category_name: str = None,
+    note: str = None,
+    is_public_visible: bool = False,
+    speaker_name: str = None,
+    organization: str = None,
+    external_link: str = None,
+) -> dict:
+    """手動でヘッドラインを作成し、指定カテゴリに保存する (master 限定)
+
+    RSS/Discord 由来ではなく master が手入力したヘッドライン。
+    source_type='manual'、翻訳済み (translation_status='done') として登録し、
+    そのまま save_headline と同じ形でカテゴリへ保存する。
+    各国ページのサイドバー (savedOnly + prefix) に表示させるには
+    カテゴリ指定 (category_ids または new_category_name) が必須。
+    """
+    content = (content or "").strip()
+    if not content:
+        return {"error": "Content is required"}
+
+    ids = list(category_ids or [])
+    has_new = bool(new_category_name and new_category_name.strip())
+    if not ids and not has_new:
+        return {"error": "No categories specified"}
+
+    normalized = normalize_text(content)
+    n_hash = text_hash(normalized)
+    now = datetime.now(timezone.utc)
+    # 手入力は重複排除しない。一意な dedupe_key を割り当てる。
+    dedupe = f"manual:{uuid.uuid4().hex}"
+    # 手動ヘッドラインは保存前提なので実質期限切れしないが、念のため長期に設定
+    expires = now + timedelta(days=3650)
+
+    with get_db_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute("""
+                INSERT INTO headlines (
+                    source_type, headline_raw, headline_ja,
+                    normalized_text, normalized_text_hash,
+                    rough_category, speaker_name, organization_name,
+                    external_link, published_at, translation_status,
+                    dedupe_key, canonical_source, expires_at
+                ) VALUES (
+                    'manual', %(content)s, %(content)s,
+                    %(normalized)s, %(n_hash)s,
+                    %(rough)s, %(speaker)s, %(org)s,
+                    %(link)s, %(now)s, 'done',
+                    %(dedupe)s, 'manual', %(expires)s
+                )
+                RETURNING id
+            """, {
+                "content": content,
+                "normalized": normalized,
+                "n_hash": n_hash,
+                "rough": rough_category,
+                "speaker": (speaker_name or None),
+                "org": (organization or None),
+                "link": (external_link or None),
+                "now": now,
+                "dedupe": dedupe,
+                "expires": expires,
+            })
+            headline_id = cur.fetchone()[0]
+
+            # 新規トップレベルカテゴリ
+            if has_new:
+                cur.execute("""
+                    INSERT INTO categories (name) VALUES (%s)
+                    ON CONFLICT (name) DO UPDATE SET name = EXCLUDED.name
+                    RETURNING id
+                """, (new_category_name.strip(),))
+                ids.append(cur.fetchone()[0])
+
+            saved = []
+            for cid in ids:
+                cur.execute("""
+                    INSERT INTO saved_headlines (headline_id, category_id, saved_note,
+                        snapshot_raw, snapshot_ja, snapshot_source_type, snapshot_published_at,
+                        is_public_visible)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                    ON CONFLICT (headline_id, category_id) DO UPDATE SET
+                        saved_note = EXCLUDED.saved_note,
+                        is_public_visible = EXCLUDED.is_public_visible
+                    RETURNING id
+                """, (headline_id, cid, note, content, content, 'manual', now, is_public_visible))
+                saved.append(cur.fetchone()[0])
+
+            conn.commit()
+            return {"headline_id": headline_id, "saved_ids": saved}
 
 
 def unsave_headline(saved_id: int) -> bool:

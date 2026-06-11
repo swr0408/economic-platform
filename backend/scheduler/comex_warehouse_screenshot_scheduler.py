@@ -8,6 +8,8 @@ import logging
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
+import asyncio
+
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 
@@ -40,7 +42,9 @@ class ComexWarehouseScreenshotScheduler:
         try:
             logger.info("[Scheduler] COMEX Warehouse Screenshot: capturing...")
             service = self._get_service()
-            result = service.capture_all_screenshots(force_refresh=True)
+            # Playwright sync API はブロッキング。ワーカースレッドへ退避しないと
+            # イベントループを占有し login 等すべてのエンドポイントが落ちる。
+            result = await asyncio.to_thread(service.capture_all_screenshots, force_refresh=True)
             gold_ok = result["gold"]["success"]
             silver_ok = result["silver"]["success"]
             copper_ok = result["copper"]["success"]

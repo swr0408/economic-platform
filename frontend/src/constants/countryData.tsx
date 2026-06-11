@@ -122,6 +122,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'cb-consumer-confidence', name: 'CB消費者信頼感指数' },
           { code: 'michigan-consumer-sentiment', name: 'ミシガン消費者信頼感指数' },
           { code: 'pce', name: '個人消費支出（PCE）' },
+          { code: 'personal-consumption-services', name: '個人消費支出：サービス' },
           { code: 'personal-saving-rate', name: '家計貯蓄率' },
           { code: 'personal-income', name: '個人所得' },
           { code: 'disposable-income', name: '可処分所得' },
@@ -136,6 +137,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'unemployment', name: '失業率' },
           { code: 'unemployment-by-reason', name: '失業率内訳' },
           { code: 'chicago-fed-ur-forecast', name: 'シカゴ連銀失業率予測' },
+          { code: 'nairu', name: 'NAIRU（自然失業率）' },
           { code: 'sahm-rule', name: 'サームルール' },
           { code: 'job-openings-per-unemployed', name: '求人倍率' },
           { code: 'cb-jobs-labor', name: 'CB雇用機会業況判断' },
@@ -307,6 +309,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'pos-uvpi', name: 'POS-UVPI（消費者購買単価指数）' },
           { code: 'gdp-gap', name: 'GDPギャップ（内閣府）' },
           { code: 'boj-gdp-gap', name: 'GDPギャップ（日銀）' },
+          { code: 'household-expected-inflation', name: '家計予想物価上昇率' },
         ],
       },
       {

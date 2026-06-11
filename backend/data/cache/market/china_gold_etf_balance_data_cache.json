@@ -6883,11 +6883,91 @@
     {
       "date": "2026-05-13",
       "total_shares_wan": 1169644.08
+    },
+    {
+      "date": "2026-05-14",
+      "total_shares_wan": 1163964.08
+    },
+    {
+      "date": "2026-05-15",
+      "total_shares_wan": 1156144.08
+    },
+    {
+      "date": "2026-05-18",
+      "total_shares_wan": 1156204.08
+    },
+    {
+      "date": "2026-05-19",
+      "total_shares_wan": 1153654.08
+    },
+    {
+      "date": "2026-05-20",
+      "total_shares_wan": 1150784.08
+    },
+    {
+      "date": "2026-05-21",
+      "total_shares_wan": 1140964.08
+    },
+    {
+      "date": "2026-05-22",
+      "total_shares_wan": 1133494.08
+    },
+    {
+      "date": "2026-05-25",
+      "total_shares_wan": 1131664.08
+    },
+    {
+      "date": "2026-05-26",
+      "total_shares_wan": 1130594.08
+    },
+    {
+      "date": "2026-05-27",
+      "total_shares_wan": 1129524.08
+    },
+    {
+      "date": "2026-05-28",
+      "total_shares_wan": 1125554.08
+    },
+    {
+      "date": "2026-05-29",
+      "total_shares_wan": 1118844.08
+    },
+    {
+      "date": "2026-06-01",
+      "total_shares_wan": 1111544.08
+    },
+    {
+      "date": "2026-06-02",
+      "total_shares_wan": 1104824.08
+    },
+    {
+      "date": "2026-06-03",
+      "total_shares_wan": 1102774.08
+    },
+    {
+      "date": "2026-06-04",
+      "total_shares_wan": 1100434.08
+    },
+    {
+      "date": "2026-06-05",
+      "total_shares_wan": 1094394.08
+    },
+    {
+      "date": "2026-06-08",
+      "total_shares_wan": 1092974.08
+    },
+    {
+      "date": "2026-06-09",
+      "total_shares_wan": 1090504.08
+    },
+    {
+      "date": "2026-06-10",
+      "total_shares_wan": 1086914.08
     }
   ],
   "latest": {
-    "date": "2026-05-13",
-    "total_shares_wan": 1169644.08
+    "date": "2026-06-10",
+    "total_shares_wan": 1086914.08
   },
   "metadata": {
     "source": "Shanghai Stock Exchange",
@@ -6895,11 +6975,11 @@
     "fund_name": "華安黄金ETF",
     "frequency": "daily",
     "unit": "万份",
-    "data_count": 1721,
+    "data_count": 1741,
     "start_date": "2019-03-01",
-    "end_date": "2026-05-13"
+    "end_date": "2026-06-10"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-05-14T13:18:56.279814+09:00"
+  "last_updated": "2026-06-11T01:59:52.432806+09:00"
 }

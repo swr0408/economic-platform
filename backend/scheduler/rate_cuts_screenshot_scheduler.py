@@ -7,6 +7,8 @@ MacroMicro のチャートスクリーンショットを毎日 JST 6:00 に自�
 import logging
 from zoneinfo import ZoneInfo
 
+import asyncio
+
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 
@@ -64,6 +66,11 @@ class RateCutsScreenshotScheduler:
         return self._boj_service
 
     async def _run(self):
+        # Playwright sync API + time.sleep(10) はブロッキング。ワーカースレッドへ退避。
+        # 直接実行するとイベントループを占有し login 等が応答不能になる。
+        await asyncio.to_thread(self._run_sync)
+
+    def _run_sync(self):
         """スクリーンショットを強制更新（Fed + BOE + BOJ）"""
         for label, get_svc in [
             ("Fed", self._get_fed_service),

@@ -50,14 +50,17 @@ CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "eurozone" 
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "spain_hicp_cpi_cache.json"
 
-# INE Tempus3 API シリーズコード（ユーザー指定）
+# INE Tempus3 API シリーズコード
+# 2026: INE が ECOICOP ver.2 へ移行し、旧系列 (IPC251855/856, IPC253989/990,
+# IPCA1885/1886) は 2025-12 で停止した。ver.2 の新系列コードへ更新する。
+# (取得ロジックは同一。DATOS_SERIE のコードのみ差し替え)
 INE_SERIES = {
-    "cpi_mom": "IPC251855",      # National Total. Overall index. Monthly variation rate.
-    "cpi_yoy": "IPC251856",      # National Total. Overall index. Annual variation.
-    "core_cpi_mom": "IPC253989", # Core CPI Monthly variation rate.
-    "core_cpi_yoy": "IPC253990", # Core CPI Annual variation.
-    "hicp_mom": "IPCA1886",      # National Total. Overall index. Monthly variation rate.
-    "hicp_yoy": "IPCA1885",      # National Total. Overall index. Annual variation.
+    "cpi_mom": "IPC290752",      # National. Overall index. Monthly change (ECOICOP v2)
+    "cpi_yoy": "IPC290750",      # National. Overall index. Annual change (ECOICOP v2)
+    "core_cpi_mom": "IPC292512", # Core inflation (excl unprocessed food & energy). Monthly change
+    "core_cpi_yoy": "IPC292510", # Core inflation (excl unprocessed food & energy). Annual change
+    "hicp_mom": "IPCA8092",      # National Total. Overall index. Monthly change (HICP, ECOICOP v2)
+    "hicp_yoy": "IPCA8090",      # National Total. Overall index. Annual change (HICP, ECOICOP v2)
 }
 
 # APIエンドポイント

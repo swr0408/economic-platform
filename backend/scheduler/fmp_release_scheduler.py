@@ -58,6 +58,22 @@ FMP_COUNTRY_TO_DASHBOARD = {
     "CN": "china",
 }
 
+# FMP の経済カレンダーは英国イベントを国コード "UK" で返す (ISO の "GB" ではない)。
+# 設定側 country="GB" のままだと FMP の country フィルタに一致せず 0 件になるためマップする。
+_FMP_COUNTRY_MAP = {"GB": "UK"}
+
+
+def _normalize_event_name(name: str) -> str:
+    """イベント名の末尾の期間サフィックスを除去して比較用に正規化する。
+
+    FMP はイベント名に "(May)" / "(Q1)" / "(Apr/2026)" のような期間サフィックスを
+    付けるようになった。設定側 fmp_event は接尾辞なしのため、完全一致では外れる。
+    末尾の "(...)" を落としてから照合する。
+    """
+    import re
+    return re.sub(r"\s*\([^)]*\)\s*$", "", name or "").strip()
+
+
 FMP_INDICATOR_CONFIGS = [
     # ========== USA ==========
     {
@@ -471,6 +487,28 @@ FMP_INDICATOR_CONFIGS = [
         "service_module": "services.uk.brc_retail_sales_service",
         "service_instance": "brc_retail_sales_service",
         "fetch_method": "get_brc_retail_sales_data",
+    },
+    {
+        # FMP: "CBI Industrial Trends Orders (May)" — country は FMP では "UK"
+        "name_ja": "CBI製造業受注",
+        "fmp_event": "CBI Industrial Trends Orders",
+        "fmp_event_pattern": "CBI Industrial Trends Orders",
+        "country": "GB",
+        "category": "economy",
+        "service_module": "services.uk.cbi_industrial_trends_service",
+        "service_instance": "cbi_industrial_trends_service",
+        "fetch_method": "get_cbi_industrial_trends_data",
+    },
+    {
+        # FMP: UK "Consumer Confidence (May)" = GfK 消費者信頼感 (country は FMP では "UK")
+        "name_ja": "GfK消費者信頼感",
+        "fmp_event": "Consumer Confidence",
+        "fmp_event_pattern": "Consumer Confidence",
+        "country": "GB",
+        "category": "consumer",
+        "service_module": "services.uk.gfk_consumer_confidence_service",
+        "service_instance": "gfk_consumer_confidence_service",
+        "fetch_method": "get_gfk_consumer_confidence_data",
     },
     {
         # FMP: "Nationwide Housing Prices MoM/YoY" (nationwide_hpi mapping)
@@ -1072,6 +1110,16 @@ class FMPReleaseScheduler:
     _BULK_FETCH_COUNTRIES = ["US", "JP", "EU", "DE", "FR", "ES", "GB", "CN", "AU", "CA", "NZ", "CH"]
 
     async def _populate_all_country_events(self, lookback_days: int = 30, future_days: int = 30):
+        """全国カレンダー一括取得（ブロッキング I/O をワーカースレッドへ退避）。
+
+        中身は同期 HTTP / DB I/O のみ。AsyncIOScheduler 上でコルーチンとして
+        イベントループ上で実行されるため、直接動かすと login 等を止める。
+        """
+        return await asyncio.to_thread(
+            self._populate_all_country_events_sync, lookback_days, future_days
+        )
+
+    def _populate_all_country_events_sync(self, lookback_days: int = 30, future_days: int = 30):
         """
         全対象国のカレンダーイベントを一括取得して DB に投入
 
@@ -1103,6 +1151,14 @@ class FMPReleaseScheduler:
         return per_country
 
     async def _backfill_recent_releases(self):
+        """直近30日バックフィル（ブロッキング I/O をワーカースレッドへ退避）。
+
+        中身は同期 HTTP / DB I/O のみ。直接動かすとイベントループを占有し
+        login 等すべてのエンドポイントが応答不能になる。
+        """
+        await asyncio.to_thread(self._backfill_recent_releases_sync)
+
+    def _backfill_recent_releases_sync(self):
         """
         過去30日間の発表データをFMPから再取得してDBに補完する
 
@@ -1113,17 +1169,33 @@ class FMPReleaseScheduler:
         today = date.today()
         start_date = today - timedelta(days=30)
 
+        # 国ごとに 1 回だけ取得してキャッシュする。
+        # FMP の event 完全一致は月サフィックス "(May)" 付きイベントに一致しないため
+        # event フィルタは使わず、取得後にイベント名を正規化して照合する。
+        # 国コードは GB→UK 等にマップする (FMP は英国を "UK" で返す)。
+        _country_cache: dict = {}
+
+        def _fetch_country_events(cc: str) -> list:
+            fmp_cc = _FMP_COUNTRY_MAP.get(cc, cc)
+            if fmp_cc not in _country_cache:
+                try:
+                    _country_cache[fmp_cc] = fmp_service.fetch_calendar(
+                        start_date, today, country=fmp_cc) or []
+                except Exception as e:
+                    print(f"[FMPScheduler] Backfill fetch error for country={fmp_cc}: {e}")
+                    _country_cache[fmp_cc] = []
+            return _country_cache[fmp_cc]
+
         backfilled_total = 0
         for config in FMP_INDICATOR_CONFIGS:
             name_ja = config["name_ja"]
             fmp_event = config["fmp_event"]
             country = config.get("country", "US")
             try:
-                events = fmp_service.fetch_calendar(
-                    start_date, today,
-                    country=country,
-                    event=fmp_event
-                )
+                all_events = _fetch_country_events(country)
+                target = _normalize_event_name(fmp_event)
+                events = [e for e in all_events
+                          if _normalize_event_name(e.get("event")) == target]
                 if events:
                     # actual値があるイベントのみ処理
                     actual_events = [e for e in events if e.get("actual") is not None]

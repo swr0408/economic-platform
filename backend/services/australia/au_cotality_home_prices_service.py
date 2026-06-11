@@ -22,6 +22,7 @@ from zoneinfo import ZoneInfo
 from pathlib import Path
 
 import pandas as pd
+import requests
 
 from core.redis_client import redis_client
 
@@ -40,6 +41,11 @@ EXCEL_DIR = Path(__file__).parent.parent.parent / "data" / "excel"
 # ファイル名パターン
 EXCEL_PATTERN = "Cotality_HVI_365_days_*.xlsx"
 
+# Cotality 公開 JSON (認証不要)。日次 HVI を配信。worm 配列の code="999"
+# (5 capital city aggregate) が 5 都市集計の日次時系列 [[YYYYMMDD, value], ...]。
+# 手動 Excel 配置を不要にする安定ソース。
+COTALITY_JSON_URL = "https://au-indices.cotality.com/asx.json"
+
 # 5 capital city aggregate は Col 6
 AGGREGATE_COL = 6
 
@@ -51,6 +57,47 @@ class AuCotalityHomePricesService:
 
     def __init__(self):
         pass
+
+    def _fetch_from_json(self) -> List[Dict[str, Any]]:
+        """Cotality 公開 JSON から 5 都市集計の日次 HVI 時系列を取得 (安定ソース)。
+
+        worm 配列の code="999" (5 capital city aggregate) の
+        data=[[YYYYMMDD, value], ...] を [{"date":"YYYY-MM-DD","value":float}] に変換。
+        手動 Excel が不要になる。失敗時は空リストを返し Excel にフォールバック。
+        """
+        try:
+            logger.info(f"Fetching Cotality daily HVI JSON: {COTALITY_JSON_URL}")
+            resp = requests.get(
+                COTALITY_JSON_URL, timeout=30, headers={"User-Agent": "Mozilla/5.0"}
+            )
+            resp.raise_for_status()
+            payload = resp.json()
+            agg = None
+            for w in payload.get("worm", []):
+                if str(w.get("code")) == "999" or "aggregate" in str(w.get("label", "")).lower():
+                    agg = w
+                    break
+            if not agg:
+                logger.warning("[Cotality] aggregate (code 999) not found in JSON worm")
+                return []
+            result: List[Dict[str, Any]] = []
+            for pair in agg.get("data", []):
+                if not isinstance(pair, (list, tuple)) or len(pair) < 2:
+                    continue
+                ymd = str(pair[0])
+                if len(ymd) != 8 or not ymd.isdigit():
+                    continue
+                date_str = f"{ymd[:4]}-{ymd[4:6]}-{ymd[6:8]}"
+                try:
+                    result.append({"date": date_str, "value": round(float(pair[1]), 2)})
+                except (ValueError, TypeError):
+                    continue
+            result.sort(key=lambda x: x["date"])
+            logger.info(f"[Cotality] Loaded {len(result)} daily points from JSON")
+            return result
+        except Exception as e:
+            logger.error(f"[Cotality] Error fetching JSON: {e}")
+            return []
 
     def _find_latest_excel(self) -> Optional[Path]:
         """最新日付のExcelファイルを自動検出"""
@@ -186,38 +233,43 @@ class AuCotalityHomePricesService:
                         "source": "redis",
                     }
 
-        excel_file = self._find_latest_excel()
-        if excel_file:
-            daily_data = self._parse_excel(excel_file)
-            if daily_data:
-                monthly_data = self._build_monthly_data(daily_data)
-                latest = daily_data[-1] if daily_data else None
-
-                file_date = ""
+        # まず Cotality 公開 JSON (安定)、ダメなら従来のローカル Excel にフォールバック
+        daily_data = self._fetch_from_json()
+        source = "cotality_json"
+        file_date = datetime.now(JST).strftime("%Y%m%d")
+        if not daily_data:
+            excel_file = self._find_latest_excel()
+            if excel_file:
+                daily_data = self._parse_excel(excel_file)
+                source = "excel"
                 match = re.search(r"(\d{8})\.xlsx$", excel_file.name)
                 if match:
                     file_date = match.group(1)
 
-                result = {
-                    "data": daily_data,
-                    "monthly_data": monthly_data,
-                    "latest": latest,
-                    "metadata": {
-                        "source": "Cotality (formerly CoreLogic)",
-                        "indicator": "Daily Home Value Index - 5 Capital City Aggregate",
-                        "frequency": "daily",
-                        "unit": "index",
-                    },
-                    "next_release": None,
-                }
-                cache_payload = {
-                    **result,
-                    "last_updated": datetime.now(JST).isoformat(),
-                    "file_date": file_date,
-                }
-                redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
-                self._save_file_cache(cache_payload)
-                return {**result, "cached": False, "source": "excel"}
+        if daily_data:
+            monthly_data = self._build_monthly_data(daily_data)
+            latest = daily_data[-1] if daily_data else None
+
+            result = {
+                "data": daily_data,
+                "monthly_data": monthly_data,
+                "latest": latest,
+                "metadata": {
+                    "source": "Cotality (formerly CoreLogic)",
+                    "indicator": "Daily Home Value Index - 5 Capital City Aggregate",
+                    "frequency": "daily",
+                    "unit": "index",
+                },
+                "next_release": None,
+            }
+            cache_payload = {
+                **result,
+                "last_updated": datetime.now(JST).isoformat(),
+                "file_date": file_date,
+            }
+            redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
+            self._save_file_cache(cache_payload)
+            return {**result, "cached": False, "source": source}
 
         file_cache = self._load_file_cache()
         if file_cache:

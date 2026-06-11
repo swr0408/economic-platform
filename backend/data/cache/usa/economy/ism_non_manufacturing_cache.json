@@ -1053,7 +1053,7 @@
     {
       "date": "2025-10-01",
       "value": 52.4,
-      "forecast": 50.7,
+      "forecast": 50.8,
       "previous": 50.0
     },
     {
@@ -1065,7 +1065,7 @@
     {
       "date": "2025-12-01",
       "value": 54.4,
-      "forecast": 52.2,
+      "forecast": 52.3,
       "previous": 52.6
     },
     {
@@ -1095,14 +1095,14 @@
     {
       "date": "2026-05-01",
       "value": 54.5,
-      "forecast": 53.7,
+      "forecast": 53.8,
       "previous": 53.6
     }
   ],
   "latest": {
     "date": "2026-05-01",
     "value": 54.5,
-    "forecast": 53.7,
+    "forecast": 53.8,
     "previous": 53.6
   },
   "next_release": {
@@ -1113,5 +1113,5 @@
     "label": "ISM Services PMI (Jun)",
     "estimate": 51.5
   },
-  "last_updated": "2026-06-07T22:44:54.090151+09:00"
+  "last_updated": "2026-06-12T00:30:25.971932+09:00"
 }

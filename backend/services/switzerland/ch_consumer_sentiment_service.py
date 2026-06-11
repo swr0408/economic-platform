@@ -48,9 +48,15 @@ class CHConsumerSentimentService:
     FMP_COUNTRY = "CH"
     FMP_EVENT_PATTERN = "SECO Consumer Climate"
 
-    # SECO API URLs
+    # SECO API URLs (恒常的に HTTP 502 のためフォールバック扱い)
     QUARTERLY_URL = "https://www.seco.admin.ch/dam/seco/en/dokumente/Wirtschaft/Wirtschaftslage/Konsumentenstimmung/ks_q.xlsx.download.xlsx/ks_q.xlsx"
     MONTHLY_URL = "https://www.seco.admin.ch/dam/seco/en/dokumente/Wirtschaft/Wirtschaftslage/Konsumentenstimmung/ks_m.xlsx.download.xlsx/ks_m.xlsx"
+
+    # SNB データポータルが SECO 消費者景況感を machine-readable CSV で再配信している。
+    # NIK 系列 = 総合指数 (Konsumentenstimmungsindex)。
+    # conconm = 月次 (2023-01〜)、concon = 四半期 (1972-Q4〜) で履歴を補完する。
+    SNB_MONTHLY_URL = "https://data.snb.ch/api/cube/conconm/data/csv/en"
+    SNB_QUARTERLY_URL = "https://data.snb.ch/api/cube/concon/data/csv/en"
 
     def __init__(self):
         pass
@@ -76,8 +82,8 @@ class CHConsumerSentimentService:
                         "last_updated": last_updated_str,
                     }
 
-        # SECO APIから取得（四半期と月次を組み合わせ）
-        seco_result = self._load_from_seco()
+        # まず安定した SNB 再配信 CSV、ダメなら従来の SECO xlsx にフォールバック
+        seco_result = self._load_from_snb() or self._load_from_seco()
         if seco_result:
             # 最新値を取得
             latest = seco_result[-1] if seco_result else None
@@ -128,6 +134,67 @@ class CHConsumerSentimentService:
             "last_updated": None,
             "error": "No data available",
         }
+
+    def _parse_snb_nik(self, url: str, quarterly: bool) -> List[Dict[str, Any]]:
+        """SNB CSV cube から NIK 系列を [{date:"YYYY-MM-01", value}] で取得。
+
+        CSV 形式: 先頭にメタ行 (CubeId, PublishingDate) → "Date";"D0";"Value" → データ行。
+        月次 Date="YYYY-MM"、四半期 Date="YYYY-Qn" (Q1→01,Q2→04,Q3→07,Q4→10 に変換)。
+        """
+        import re
+        q_map = {"Q1": "01", "Q2": "04", "Q3": "07", "Q4": "10"}
+        resp = requests.get(url, timeout=30, headers={"User-Agent": "Mozilla/5.0"})
+        resp.raise_for_status()
+        out: List[Dict[str, Any]] = []
+        for line in resp.text.splitlines():
+            parts = [p.strip().strip('"') for p in line.split(";")]
+            if len(parts) < 3 or parts[1] != "NIK":
+                continue
+            date_raw, value = parts[0], parts[2]
+            if quarterly:
+                m = re.match(r"^(\d{4})-(Q[1-4])$", date_raw)
+                if not m:
+                    continue
+                date_str = f"{m.group(1)}-{q_map[m.group(2)]}-01"
+            else:
+                if not re.match(r"^\d{4}-\d{2}$", date_raw):
+                    continue
+                date_str = f"{date_raw}-01"
+            try:
+                out.append({"date": date_str, "value": round(float(value), 1)})
+            except ValueError:
+                continue
+        out.sort(key=lambda x: x["date"])
+        return out
+
+    def _load_from_snb(self) -> List[Dict[str, Any]]:
+        """SNB の CSV cube から SECO 消費者景況感を取得 (四半期履歴 + 月次最新を結合)。
+
+        SECO 自身の xlsx は恒常 502 のため、安定した SNB の machine-readable CSV を主ソースにする。
+        Returns: [{"date": "YYYY-MM-01", "value": float}, ...] (日付昇順)
+        """
+        try:
+            print(f"[CHConsumerSentiment] Fetching from SNB: {self.SNB_MONTHLY_URL} (+ quarterly)")
+            monthly = self._parse_snb_nik(self.SNB_MONTHLY_URL, quarterly=False)
+            try:
+                quarterly = self._parse_snb_nik(self.SNB_QUARTERLY_URL, quarterly=True)
+            except Exception as qe:
+                print(f"[CHConsumerSentiment] SNB quarterly fetch failed: {qe}")
+                quarterly = []
+
+            # 月次開始日より前は四半期、それ以降は月次 (元の SECO 結合ロジックと同じ)
+            if monthly and quarterly:
+                monthly_min = min(d["date"] for d in monthly)
+                combined = [d for d in quarterly if d["date"] < monthly_min] + monthly
+            else:
+                combined = monthly or quarterly
+            combined.sort(key=lambda x: x["date"])
+            print(f"[CHConsumerSentiment] Loaded {len(combined)} records from SNB "
+                  f"(quarterly={len(quarterly)}, monthly={len(monthly)})")
+            return combined
+        except Exception as e:
+            print(f"[CHConsumerSentiment] Error loading from SNB: {e}")
+            return []
 
     def _load_from_seco(self) -> List[Dict[str, Any]]:
         """SECOからデータを取得（四半期と月次を組み合わせ）"""

@@ -33,7 +33,9 @@ class PolicyRateScheduler:
             print(f"[{datetime.now().isoformat()}] Updating policy rate for FOMC {fomc_date.strftime('%Y-%m-%d')}...")
 
             # FRED APIからデータ取得（キャッシュを強制更新）
-            result = self.service.get_policy_rate(force_refresh=True)
+            # get_policy_rate は requests (FRED API) のブロッキング処理。
+            # ワーカースレッドへ退避しないとイベントループを占有し login 等が落ちる。
+            result = await asyncio.to_thread(self.service.get_policy_rate, force_refresh=True)
 
             if result.get("data"):
                 status = self.service.get_cache_status("DFEDTARU")

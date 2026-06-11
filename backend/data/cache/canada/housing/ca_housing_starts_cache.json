@@ -2626,7 +2626,7 @@
     "datetime_toronto": "2026-06-15T08:15:00-04:00",
     "time_toronto": "08:15",
     "label": "Housing Starts (May)",
-    "estimate": null
+    "estimate": 260.0
   },
-  "last_updated": "2026-06-08T20:01:05.807292+09:00"
+  "last_updated": "2026-06-11T21:30:14.812792+09:00"
 }

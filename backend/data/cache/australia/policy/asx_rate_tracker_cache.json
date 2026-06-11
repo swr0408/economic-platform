@@ -5,7 +5,7 @@
       "last_rate_change": 0.25,
       "last_meeting_date": "2026-05-05",
       "next_meeting_date": "2026-06-16",
-      "settlement_date": "2026-06-04",
+      "settlement_date": "2026-06-09",
       "settlement_price": 95.65,
       "market_expectation_pct": 0,
       "future_cash_rate": 4.1,
@@ -14,21 +14,6 @@
       "expiry_year": 2026
     },
     "probability_history": [
-      {
-        "date": "2026-05-15",
-        "prob_no_change": 100,
-        "prob_change": 0
-      },
-      {
-        "date": "2026-05-18",
-        "prob_no_change": 100,
-        "prob_change": 0
-      },
-      {
-        "date": "2026-05-19",
-        "prob_no_change": 100,
-        "prob_change": 0
-      },
       {
         "date": "2026-05-20",
         "prob_no_change": 100,
@@ -88,6 +73,21 @@
         "date": "2026-06-04",
         "prob_no_change": 100,
         "prob_change": 0
+      },
+      {
+        "date": "2026-06-05",
+        "prob_no_change": 100,
+        "prob_change": 0
+      },
+      {
+        "date": "2026-06-08",
+        "prob_no_change": 100,
+        "prob_change": 0
+      },
+      {
+        "date": "2026-06-09",
+        "prob_no_change": 100,
+        "prob_change": 0
       }
     ],
     "probability_meta": {
@@ -95,7 +95,7 @@
       "future_rate_change": -0.25
     },
     "yield_curve": {
-      "settlement_date": "2026-06-04",
+      "settlement_date": "2026-06-09",
       "target_rate": 4.35,
       "data": [
         {
@@ -104,74 +104,74 @@
         },
         {
           "month": "Jul-26",
-          "implied_yield": 4.355
+          "implied_yield": 4.35
         },
         {
           "month": "Aug-26",
-          "implied_yield": 4.44
+          "implied_yield": 4.42
         },
         {
           "month": "Sep-26",
-          "implied_yield": 4.48
+          "implied_yield": 4.455
         },
         {
           "month": "Oct-26",
-          "implied_yield": 4.525
-        },
-        {
-          "month": "Nov-26",
-          "implied_yield": 4.57
-        },
-        {
-          "month": "Dec-26",
-          "implied_yield": 4.59
-        },
-        {
-          "month": "Jan-27",
-          "implied_yield": 4.59
-        },
-        {
-          "month": "Feb-27",
-          "implied_yield": 4.59
-        },
-        {
-          "month": "Mar-27",
-          "implied_yield": 4.59
-        },
-        {
-          "month": "Apr-27",
-          "implied_yield": 4.58
-        },
-        {
-          "month": "May-27",
-          "implied_yield": 4.565
-        },
-        {
-          "month": "Jun-27",
-          "implied_yield": 4.555
-        },
-        {
-          "month": "Jul-27",
-          "implied_yield": 4.53
-        },
-        {
-          "month": "Aug-27",
-          "implied_yield": 4.51
-        },
-        {
-          "month": "Sep-27",
           "implied_yield": 4.49
         },
         {
+          "month": "Nov-26",
+          "implied_yield": 4.55
+        },
+        {
+          "month": "Dec-26",
+          "implied_yield": 4.565
+        },
+        {
+          "month": "Jan-27",
+          "implied_yield": 4.56
+        },
+        {
+          "month": "Feb-27",
+          "implied_yield": 4.57
+        },
+        {
+          "month": "Mar-27",
+          "implied_yield": 4.57
+        },
+        {
+          "month": "Apr-27",
+          "implied_yield": 4.565
+        },
+        {
+          "month": "May-27",
+          "implied_yield": 4.55
+        },
+        {
+          "month": "Jun-27",
+          "implied_yield": 4.54
+        },
+        {
+          "month": "Jul-27",
+          "implied_yield": 4.52
+        },
+        {
+          "month": "Aug-27",
+          "implied_yield": 4.495
+        },
+        {
+          "month": "Sep-27",
+          "implied_yield": 4.475
+        },
+        {
           "month": "Oct-27",
-          "implied_yield": 4.465
+          "implied_yield": 4.455
         },
         {
           "month": "Nov-27",
-          "implied_yield": 4.44
+          "implied_yield": 4.43
         }
       ]
     }
   },
-  "last_updated": "2026-06-09T10:46:02.866355+09:00"
+  "last_updated": "2026-06-11T11:30:07.108294+09:00"
 }

@@ -19048,31 +19048,22 @@
     {
       "date": "2026-06-06",
       "hdd": 1,
-      "cdd": 10,
-      "forecast": true
+      "cdd": 7
     },
     {
       "date": "2026-06-07",
       "hdd": 1,
-      "cdd": 9,
-      "forecast": true
+      "cdd": 9
     },
     {
       "date": "2026-06-08",
       "hdd": 1,
-      "cdd": 9,
-      "forecast": true
-    },
-    {
-      "date": "2026-06-09",
-      "hdd": 1,
-      "cdd": 10,
-      "forecast": true
+      "cdd": 7
     },
     {
       "date": "2026-06-10",
       "hdd": 1,
-      "cdd": 11,
+      "cdd": 12,
       "forecast": true
     },
     {
@@ -19084,23 +19075,47 @@
     {
       "date": "2026-06-12",
       "hdd": 0,
-      "cdd": 13,
+      "cdd": 12,
+      "forecast": true
+    },
+    {
+      "date": "2026-06-13",
+      "hdd": 0,
+      "cdd": 11,
+      "forecast": true
+    },
+    {
+      "date": "2026-06-14",
+      "hdd": 0,
+      "cdd": 11,
+      "forecast": true
+    },
+    {
+      "date": "2026-06-15",
+      "hdd": 0,
+      "cdd": 9,
+      "forecast": true
+    },
+    {
+      "date": "2026-06-16",
+      "hdd": 0,
+      "cdd": 8,
       "forecast": true
     }
   ],
   "latest": {
-    "date": "2026-06-05",
-    "hdd": 0,
+    "date": "2026-06-08",
+    "hdd": 1,
     "cdd": 7
   },
   "outlook": {
     "6_10": {
-      "date_range": "Jun 12 - 16 2026",
+      "date_range": "Jun 16 - 20 2026",
       "states": [
         {
           "state": "WASHINGTON",
           "temp": "A",
-          "precip": "B"
+          "precip": "N"
         },
         {
           "state": "OREGON",
@@ -19129,17 +19144,17 @@
         },
         {
           "state": "W MONTANA",
-          "temp": "B",
+          "temp": "N",
           "precip": "N"
         },
         {
           "state": "E MONTANA",
-          "temp": "B",
+          "temp": "N",
           "precip": "N"
         },
         {
           "state": "WYOMING",
-          "temp": "B",
+          "temp": "N",
           "precip": "N"
         },
         {
@@ -19150,36 +19165,36 @@
         {
           "state": "ARIZONA",
           "temp": "A",
-          "precip": "N"
+          "precip": "A"
         },
         {
           "state": "COLORADO",
-          "temp": "B",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "NEW MEXICO",
-          "temp": "A",
-          "precip": "N"
-        },
-        {
-          "state": "N DAKOTA",
-          "temp": "B",
-          "precip": "N"
-        },
-        {
-          "state": "S DAKOTA",
-          "temp": "B",
-          "precip": "N"
-        },
-        {
-          "state": "NEBRASKA",
-          "temp": "B",
+          "temp": "N",
           "precip": "A"
         },
         {
+          "state": "N DAKOTA",
+          "temp": "N",
+          "precip": "B"
+        },
+        {
+          "state": "S DAKOTA",
+          "temp": "N",
+          "precip": "B"
+        },
+        {
+          "state": "NEBRASKA",
+          "temp": "N",
+          "precip": "N"
+        },
+        {
           "state": "KANSAS",
-          "temp": "B",
+          "temp": "N",
           "precip": "A"
         },
         {
@@ -19189,12 +19204,12 @@
         },
         {
           "state": "N TEXAS",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "S TEXAS",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
@@ -19205,136 +19220,136 @@
         {
           "state": "MINNESOTA",
           "temp": "B",
-          "precip": "N"
+          "precip": "B"
         },
         {
           "state": "IOWA",
           "temp": "B",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "MISSOURI",
-          "temp": "N",
+          "temp": "B",
           "precip": "A"
         },
         {
           "state": "ARKANSAS",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "LOUISIANA",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "WISCONSIN",
-          "temp": "N",
+          "temp": "B",
           "precip": "N"
         },
         {
           "state": "ILLINOIS",
-          "temp": "A",
+          "temp": "B",
           "precip": "A"
         },
         {
           "state": "MISSISSIPPI",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "MICHIGAN",
-          "temp": "A",
-          "precip": "A"
+          "temp": "B",
+          "precip": "N"
         },
         {
           "state": "INDIANA",
-          "temp": "A",
+          "temp": "B",
           "precip": "A"
         },
         {
           "state": "OHIO",
-          "temp": "A",
+          "temp": "B",
           "precip": "A"
         },
         {
           "state": "KENTUCKY",
-          "temp": "A",
+          "temp": "B",
           "precip": "A"
         },
         {
           "state": "TENNESSEE",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "ALABAMA",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "NEW YORK",
-          "temp": "A",
+          "temp": "B",
           "precip": "A"
         },
         {
           "state": "VERMONT",
-          "temp": "A",
+          "temp": "B",
           "precip": "A"
         },
         {
           "state": "NEW HAMP",
-          "temp": "A",
+          "temp": "B",
           "precip": "A"
         },
         {
           "state": "MAINE",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "MASS",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "CONN",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "RHODE IS",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "PENN",
-          "temp": "A",
+          "temp": "B",
           "precip": "A"
         },
         {
           "state": "NEW JERSEY",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "W VIRGINIA",
-          "temp": "A",
+          "temp": "B",
           "precip": "A"
         },
         {
           "state": "MARYLAND",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "DELAWARE",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "VIRGINIA",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
@@ -19369,53 +19384,53 @@
         },
         {
           "state": "AK ALEUTIAN",
-          "temp": "N",
-          "precip": "A"
+          "temp": "B",
+          "precip": "B"
         },
         {
           "state": "AK WESTERN",
-          "temp": "A",
-          "precip": "A"
+          "temp": "B",
+          "precip": "N"
         },
         {
           "state": "AK INT BSN",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "AK S INT",
-          "temp": "A",
-          "precip": "A"
+          "temp": "N",
+          "precip": "N"
         },
         {
           "state": "AK SO COAST",
           "temp": "N",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "AK PNHDL",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         }
       ]
     },
     "8_14": {
-      "date_range": "Jun 14 - 20 2026",
+      "date_range": "Jun 18 - 24 2026",
       "states": [
         {
           "state": "WASHINGTON",
-          "temp": "A",
-          "precip": "B"
+          "temp": "N",
+          "precip": "A"
         },
         {
           "state": "OREGON",
-          "temp": "A",
-          "precip": "B"
+          "temp": "N",
+          "precip": "N"
         },
         {
           "state": "NRN CALIF",
-          "temp": "A",
-          "precip": "B"
+          "temp": "N",
+          "precip": "N"
         },
         {
           "state": "SRN CALIF",
@@ -19424,43 +19439,43 @@
         },
         {
           "state": "IDAHO",
-          "temp": "A",
+          "temp": "N",
           "precip": "N"
         },
         {
           "state": "NEVADA",
-          "temp": "A",
+          "temp": "N",
           "precip": "N"
         },
         {
           "state": "W MONTANA",
-          "temp": "A",
-          "precip": "B"
+          "temp": "N",
+          "precip": "N"
         },
         {
           "state": "E MONTANA",
-          "temp": "B",
-          "precip": "B"
+          "temp": "N",
+          "precip": "N"
         },
         {
           "state": "WYOMING",
-          "temp": "B",
-          "precip": "A"
+          "temp": "A",
+          "precip": "N"
         },
         {
           "state": "UTAH",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "ARIZONA",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "COLORADO",
-          "temp": "B",
-          "precip": "A"
+          "temp": "A",
+          "precip": "N"
         },
         {
           "state": "NEW MEXICO",
@@ -19469,32 +19484,32 @@
         },
         {
           "state": "N DAKOTA",
-          "temp": "B",
-          "precip": "B"
+          "temp": "N",
+          "precip": "A"
         },
         {
           "state": "S DAKOTA",
-          "temp": "B",
+          "temp": "N",
           "precip": "N"
         },
         {
           "state": "NEBRASKA",
-          "temp": "B",
+          "temp": "A",
           "precip": "N"
         },
         {
           "state": "KANSAS",
-          "temp": "B",
-          "precip": "N"
+          "temp": "A",
+          "precip": "A"
         },
         {
           "state": "OKLAHOMA",
-          "temp": "B",
+          "temp": "A",
           "precip": "A"
         },
         {
           "state": "N TEXAS",
-          "temp": "N",
+          "temp": "A",
           "precip": "A"
         },
         {
@@ -19504,53 +19519,53 @@
         },
         {
           "state": "W TEXAS",
-          "temp": "B",
+          "temp": "A",
           "precip": "A"
         },
         {
           "state": "MINNESOTA",
-          "temp": "B",
-          "precip": "N"
-        },
-        {
-          "state": "IOWA",
-          "temp": "B",
-          "precip": "N"
-        },
-        {
-          "state": "MISSOURI",
-          "temp": "B",
-          "precip": "N"
-        },
-        {
-          "state": "ARKANSAS",
           "temp": "N",
           "precip": "A"
         },
         {
-          "state": "LOUISIANA",
+          "state": "IOWA",
+          "temp": "N",
+          "precip": "A"
+        },
+        {
+          "state": "MISSOURI",
           "temp": "A",
           "precip": "A"
         },
         {
-          "state": "WISCONSIN",
-          "temp": "B",
+          "state": "ARKANSAS",
+          "temp": "A",
           "precip": "N"
         },
         {
-          "state": "ILLINOIS",
-          "temp": "B",
+          "state": "LOUISIANA",
+          "temp": "A",
           "precip": "N"
+        },
+        {
+          "state": "WISCONSIN",
+          "temp": "N",
+          "precip": "A"
+        },
+        {
+          "state": "ILLINOIS",
+          "temp": "N",
+          "precip": "A"
         },
         {
           "state": "MISSISSIPPI",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "MICHIGAN",
-          "temp": "B",
-          "precip": "N"
+          "temp": "N",
+          "precip": "A"
         },
         {
           "state": "INDIANA",
@@ -19559,7 +19574,7 @@
         },
         {
           "state": "OHIO",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
@@ -19570,71 +19585,71 @@
         {
           "state": "TENNESSEE",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "ALABAMA",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "NEW YORK",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "VERMONT",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "NEW HAMP",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "MAINE",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "MASS",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "CONN",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "RHODE IS",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "PENN",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "NEW JERSEY",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "W VIRGINIA",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "MARYLAND",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
           "state": "DELAWARE",
-          "temp": "A",
+          "temp": "N",
           "precip": "A"
         },
         {
@@ -19645,27 +19660,27 @@
         {
           "state": "N CAROLINA",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "S CAROLINA",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "GEORGIA",
           "temp": "A",
-          "precip": "A"
+          "precip": "N"
         },
         {
           "state": "FL PNHDL",
           "temp": "A",
-          "precip": "A"
+          "precip": "B"
         },
         {
           "state": "FL PENIN",
           "temp": "A",
-          "precip": "A"
+          "precip": "B"
         },
         {
           "state": "AK N SLOPE",
@@ -19674,13 +19689,13 @@
         },
         {
           "state": "AK ALEUTIAN",
-          "temp": "N",
-          "precip": "N"
+          "temp": "B",
+          "precip": "B"
         },
         {
           "state": "AK WESTERN",
-          "temp": "A",
-          "precip": "A"
+          "temp": "N",
+          "precip": "B"
         },
         {
           "state": "AK INT BSN",
@@ -19689,18 +19704,18 @@
         },
         {
           "state": "AK S INT",
-          "temp": "N",
-          "precip": "A"
+          "temp": "A",
+          "precip": "N"
         },
         {
           "state": "AK SO COAST",
-          "temp": "N",
-          "precip": "A"
+          "temp": "A",
+          "precip": "B"
         },
         {
           "state": "AK PNHDL",
-          "temp": "A",
-          "precip": "B"
+          "temp": "N",
+          "precip": "N"
         }
       ]
     },
@@ -19716,12 +19731,12 @@
     "frequency": "daily",
     "unit": "degree days",
     "series": "Population-Weighted CONUS HDD/CDD",
-    "data_count": 3816,
+    "data_count": 3819,
     "start_date": "2016-01-01",
-    "end_date": "2026-06-12",
-    "forecast_end_date": "2026-06-12"
+    "end_date": "2026-06-16",
+    "forecast_end_date": "2026-06-16"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-07T22:37:39.210257+09:00"
+  "last_updated": "2026-06-11T09:01:37.042146+09:00"
 }

@@ -6258,28 +6258,248 @@
       "volume_kg": 34600.0,
       "amount_cny": 35577662960.0,
       "open_interest": 237458
+    },
+    {
+      "date": "2026-05-14",
+      "open": 1029.0,
+      "high": 1030.8,
+      "low": 1022.0,
+      "close": 1028.31,
+      "settlement": 1026.27,
+      "volume_kg": 36624.0,
+      "amount_cny": 37586272660.0,
+      "open_interest": 238954
+    },
+    {
+      "date": "2026-05-15",
+      "open": 1026.6,
+      "high": 1029.56,
+      "low": 1000.01,
+      "close": 1005.53,
+      "settlement": 1008.67,
+      "volume_kg": 81424.0,
+      "amount_cny": 82130507240.0,
+      "open_interest": 232200
+    },
+    {
+      "date": "2026-05-18",
+      "open": 1001.0,
+      "high": 1004.5,
+      "low": 987.1,
+      "close": 999.2,
+      "settlement": 996.63,
+      "volume_kg": 66122.0,
+      "amount_cny": 65899829480.0,
+      "open_interest": 231084
+    },
+    {
+      "date": "2026-05-19",
+      "open": 999.0,
+      "high": 1005.43,
+      "low": 995.0,
+      "close": 998.12,
+      "settlement": 998.51,
+      "volume_kg": 41134.0,
+      "amount_cny": 41072756000.0,
+      "open_interest": 228276
+    },
+    {
+      "date": "2026-05-20",
+      "open": 996.0,
+      "high": 998.7,
+      "low": 979.25,
+      "close": 984.9,
+      "settlement": 984.04,
+      "volume_kg": 70216.0,
+      "amount_cny": 69095512080.0,
+      "open_interest": 225594
+    },
+    {
+      "date": "2026-05-21",
+      "open": 987.7,
+      "high": 1001.94,
+      "low": 981.49,
+      "close": 990.24,
+      "settlement": 994.9,
+      "volume_kg": 34654.0,
+      "amount_cny": 34477512740.0,
+      "open_interest": 218340
+    },
+    {
+      "date": "2026-05-22",
+      "open": 991.7,
+      "high": 998.98,
+      "low": 986.0,
+      "close": 991.81,
+      "settlement": 991.99,
+      "volume_kg": 27396.0,
+      "amount_cny": 27176661340.0,
+      "open_interest": 210378
+    },
+    {
+      "date": "2026-05-25",
+      "open": 990.76,
+      "high": 1002.0,
+      "low": 985.06,
+      "close": 996.79,
+      "settlement": 996.56,
+      "volume_kg": 27950.0,
+      "amount_cny": 27854077420.0,
+      "open_interest": 213582
+    },
+    {
+      "date": "2026-05-26",
+      "open": 1000.0,
+      "high": 1001.5,
+      "low": 990.25,
+      "close": 991.76,
+      "settlement": 994.1,
+      "volume_kg": 32004.0,
+      "amount_cny": 31815351320.0,
+      "open_interest": 215614
+    },
+    {
+      "date": "2026-05-27",
+      "open": 986.99,
+      "high": 991.47,
+      "low": 979.9,
+      "close": 981.88,
+      "settlement": 984.12,
+      "volume_kg": 37404.0,
+      "amount_cny": 36810099320.0,
+      "open_interest": 214286
+    },
+    {
+      "date": "2026-05-28",
+      "open": 969.0,
+      "high": 978.0,
+      "low": 956.0,
+      "close": 961.2,
+      "settlement": 963.05,
+      "volume_kg": 80918.0,
+      "amount_cny": 77928402460.0,
+      "open_interest": 216090
+    },
+    {
+      "date": "2026-05-29",
+      "open": 960.96,
+      "high": 986.93,
+      "low": 958.4,
+      "close": 983.97,
+      "settlement": 980.6,
+      "volume_kg": 41450.0,
+      "amount_cny": 40646128140.0,
+      "open_interest": 214358
+    },
+    {
+      "date": "2026-06-01",
+      "open": 986.0,
+      "high": 999.5,
+      "low": 980.0,
+      "close": 981.21,
+      "settlement": 986.25,
+      "volume_kg": 35280.0,
+      "amount_cny": 34794932360.0,
+      "open_interest": 213594
+    },
+    {
+      "date": "2026-06-02",
+      "open": 982.0,
+      "high": 988.58,
+      "low": 970.29,
+      "close": 987.0,
+      "settlement": 979.19,
+      "volume_kg": 44352.0,
+      "amount_cny": 43429110720.0,
+      "open_interest": 215736
+    },
+    {
+      "date": "2026-06-03",
+      "open": 985.99,
+      "high": 986.99,
+      "low": 971.88,
+      "close": 973.4,
+      "settlement": 975.97,
+      "volume_kg": 29598.0,
+      "amount_cny": 28887027000.0,
+      "open_interest": 219386
+    },
+    {
+      "date": "2026-06-04",
+      "open": 974.73,
+      "high": 978.5,
+      "low": 966.95,
+      "close": 974.31,
+      "settlement": 974.49,
+      "volume_kg": 35260.0,
+      "amount_cny": 34360517440.0,
+      "open_interest": 224860
+    },
+    {
+      "date": "2026-06-05",
+      "open": 983.5,
+      "high": 984.75,
+      "low": 966.6,
+      "close": 974.16,
+      "settlement": 971.96,
+      "volume_kg": 32018.0,
+      "amount_cny": 31120433220.0,
+      "open_interest": 225422
+    },
+    {
+      "date": "2026-06-08",
+      "open": 974.0,
+      "high": 974.6,
+      "low": 932.5,
+      "close": 941.23,
+      "settlement": 947.14,
+      "volume_kg": 66230.0,
+      "amount_cny": 62729436340.0,
+      "open_interest": 229232
+    },
+    {
+      "date": "2026-06-09",
+      "open": 945.0,
+      "high": 950.0,
+      "low": 942.65,
+      "close": 944.04,
+      "settlement": 946.59,
+      "volume_kg": 22924.0,
+      "amount_cny": 21699638120.0,
+      "open_interest": 226748
+    },
+    {
+      "date": "2026-06-10",
+      "open": 947.5,
+      "high": 951.24,
+      "low": 909.75,
+      "close": 915.49,
+      "settlement": 916.75,
+      "volume_kg": 60130.0,
+      "amount_cny": 55124298740.0,
+      "open_interest": 227668
     }
   ],
   "latest": {
-    "date": "2026-05-13",
-    "open": 1029.8,
-    "high": 1032.67,
-    "low": 1017.3,
-    "close": 1029.63,
-    "settlement": 1028.25,
-    "volume_kg": 34600.0,
-    "amount_cny": 35577662960.0,
-    "open_interest": 237458
+    "date": "2026-06-10",
+    "open": 947.5,
+    "high": 951.24,
+    "low": 909.75,
+    "close": 915.49,
+    "settlement": 916.75,
+    "volume_kg": 60130.0,
+    "amount_cny": 55124298740.0,
+    "open_interest": 227668
   },
   "metadata": {
     "source": "Shanghai Gold Exchange",
     "contract": "Au(T+D)",
     "frequency": "daily",
-    "data_count": 569,
+    "data_count": 589,
     "start_date": "2024-01-02",
-    "end_date": "2026-05-13"
+    "end_date": "2026-06-10"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-05-14T13:18:56.257434+09:00"
+  "last_updated": "2026-06-11T01:59:52.363123+09:00"
 }

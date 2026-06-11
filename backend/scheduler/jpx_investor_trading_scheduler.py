@@ -19,6 +19,8 @@ from zoneinfo import ZoneInfo
 import pandas as pd
 import requests
 
+import asyncio
+
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 
@@ -236,6 +238,11 @@ class JpxInvestorTradingScheduler:
         self.scheduler = AsyncIOScheduler(timezone=JST)
 
     async def _run(self):
+        # ブロッキング I/O (requests/BeautifulSoup/pandas/sync DB) をワーカースレッドへ退避。
+        # 直接実行するとイベントループを占有し login 等が応答不能になる。
+        await asyncio.to_thread(self._run_sync)
+
+    def _run_sync(self):
         """JPXから最新XLSを取得しDBに保存"""
         try:
             logger.info("[JpxScheduler] Starting weekly update...")

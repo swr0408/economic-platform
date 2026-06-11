@@ -62,7 +62,12 @@ def _fetch_nikkei225jp_data() -> List[Dict[str, Any]]:
     if not match:
         raise ValueError("Could not parse nikkei225jp.com response")
 
-    raw = json.loads(match.group(1))
+    raw_json = match.group(1)
+    # nikkei225jp.com は空フィールドを `,,` のような空要素で出力することがあり
+    # (例: `...99.39,,,1529...`)、そのままでは JSON として不正 (Expecting value)。
+    # 連続カンマ / `[,` / `,]` の空要素を null で補完してからパースする。
+    raw_json = re.sub(r"(?<=[,\[])(?=[,\]])", "null", raw_json)
+    raw = json.loads(raw_json)
     result: List[Dict[str, Any]] = []
 
     for row in raw:

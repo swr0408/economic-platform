@@ -23,6 +23,7 @@ import PersonalSavingRateChart from './consumer/PersonalSavingRateChart'
 import PersonalIncomeChart from './consumer/PersonalIncomeChart'
 import DisposableIncomeChart from './consumer/DisposableIncomeChart'
 import PCEChart from './consumer/PCEChart'
+import PersonalConsumptionExpendituresServicesChart from './consumer/PersonalConsumptionExpendituresServicesChart'
 
 export default function USAConsumerCharts() {
   const queryResult = useUSAConsumerDashboard()
@@ -80,6 +81,10 @@ export default function USAConsumerCharts() {
 
           <ChartWrapper id="pce">
             <PCEChart data={dashboardData?.pce ?? null} />
+          </ChartWrapper>
+
+          <ChartWrapper id="personal-consumption-services">
+            <PersonalConsumptionExpendituresServicesChart data={dashboardData?.personal_consumption_expenditures_services ?? null} />
           </ChartWrapper>
 
           <ChartWrapper id="personal-saving-rate">

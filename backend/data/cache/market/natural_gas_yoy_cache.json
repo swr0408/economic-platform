@@ -627,14 +627,14 @@
     },
     {
       "date": "2026-06-01",
-      "natural_gas_yoy": -21.61,
-      "natural_gas_close": 3.23
+      "natural_gas_yoy": -22.58,
+      "natural_gas_close": 3.19
     }
   ],
   "latest": {
     "date": "2026-06-01",
-    "natural_gas_yoy": -21.61,
-    "natural_gas_close": 3.23
+    "natural_gas_yoy": -22.58,
+    "natural_gas_close": 3.19
   },
   "metadata": {
     "source": "yfinance (NG=F)",
@@ -647,5 +647,5 @@
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-07T22:37:29.278696+09:00"
+  "last_updated": "2026-06-11T09:01:29.111458+09:00"
 }

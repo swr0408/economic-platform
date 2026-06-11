@@ -51,6 +51,11 @@ DATA_CACHE_FILE = CACHE_DIR / "used_car_prices_cache.json"
 MANHEIM_RETRY_INTERVAL_SECONDS = 24 * 60 * 60
 # Manheim発表が期待される最早日（毎月の日付）
 MANHEIM_EXPECTED_DAY_OF_MONTH = 5
+# FREDフォールバックTTL（7日）。
+# CPI発表直後にFRED取得しても中古車系列(CUSR0000SETA02)は1〜3日反映ラグがあり、
+# 古い値のままfred_last_updatedを刻むとFMPスケジュール判定が次回発表まで再取得を
+# ブロックして1か月staleになる。発表ベース判定がFalseでも7日経過で取りに行く。
+FRED_FALLBACK_MAX_AGE_SECONDS = 7 * 24 * 60 * 60
 
 
 class UsedCarPricesService:
@@ -147,13 +152,26 @@ class UsedCarPricesService:
     # ---------------------------------------------------------------
 
     def _should_refresh_fred(self, cache_payload: Optional[Dict[str, Any]]) -> bool:
-        """FREDの更新判定: CPI発表ベース"""
+        """FREDの更新判定: CPI発表ベース + 7日フォールバックTTL"""
         if not cache_payload:
             return True
         fred_last_updated = cache_payload.get("fred_last_updated")
         if not fred_last_updated:
             return True
-        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, fred_last_updated)
+        if should_refresh_by_fmp_schedule(self.ECONALPHA_ID, fred_last_updated):
+            return True
+        # 発表ベース判定がFalseでも、FREDラグで取り逃した分を後追いするため
+        # 最終更新から7日経過していれば再取得する
+        try:
+            last_dt = datetime.fromisoformat(fred_last_updated)
+            if last_dt.tzinfo is None:
+                last_dt = last_dt.replace(tzinfo=JST)
+            elapsed = (datetime.now(JST) - last_dt).total_seconds()
+            if elapsed >= FRED_FALLBACK_MAX_AGE_SECONDS:
+                return True
+        except (ValueError, TypeError):
+            return True
+        return False
 
     def _should_refresh_manheim(self, cache_payload: Optional[Dict[str, Any]]) -> bool:
         """

@@ -8,6 +8,8 @@ MacroMicro のチャートスクリーンショット (Expectations + OIS) を
 import logging
 from zoneinfo import ZoneInfo
 
+import asyncio
+
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 
@@ -51,6 +53,11 @@ class RbaExpectationsScreenshotScheduler:
         return self._ois_service
 
     async def _run(self):
+        # Playwright sync API はブロッキング。ワーカースレッドへ退避。
+        # 直接実行するとイベントループを占有し login 等が応答不能になる。
+        await asyncio.to_thread(self._run_sync)
+
+    def _run_sync(self):
         """スクリーンショットを強制更新（Expectations + OIS）"""
         # --- RBA Expectations ---
         try:

@@ -1,0 +1,356 @@
+Cache staleness audit  (NOW=2026-06-11)  files=754
+========================================================================================================================
+FLAGGED total: 307   STUCK(writer-runs,data-frozen): 153   WRITER_STOPPED: 95   LAGGING: 59
+no-extractable-date: 40   parse_errors: 0
+
+CAT              OVR FREQ         INTV LATEST      d_late UPDATED      d_upd      N  FILE
+-----------------------------------------------------------------------------------------
+STUCK          110.0 daily         1.0 2026-02-21     110 2026-06-10       0    365  australia/housing/au_cotality_home_prices_cache.json
+STUCK           84.0 daily         1.0 2026-03-19      84 2026-06-09       1   8191  market/comex_copper_stock_cache.json
+STUCK           84.0 daily         1.0 2026-03-19      84 2026-06-09       1   8368  market/comex_gold_stock_cache.json
+STUCK           83.0 daily         1.0 2026-03-20      83 2026-06-09       1   8538  market/comex_silver_stock_cache.json
+STUCK           69.0 daily         1.0 2026-04-03      69 2026-06-11      -1   4250  market/shfe_copper_stock_cache.json
+STUCK           18.0 monthly      31.0 2024-12-01     557 2026-06-10       0    119  japan/consumer/consumption_expenditure_cache.json
+STUCK           13.0 daily         1.0 2026-05-29      13 2026-06-10       0   2540  usa/employment/jolts_indeed_cache.json
+STUCK           10.1 monthly      31.0 2025-08-01     314 2026-06-10       0     15  japan/consumer/retail_sales_cache.json
+STUCK            9.1 monthly      31.0 2025-09-01     283 2026-06-10       0     96  australia/inflation/abs_cpi_categories_cache.json
+STUCK            9.1 monthly      31.0 2025-09-01     283 2026-06-11      -1     47  china/economy/cn_local_bonds_cache.json
+STUCK            9.1 monthly      31.0 2025-09-01     283 2026-06-08       2    179  switzerland/economy/ch_industrial_production_cache.json
+STUCK            7.2 monthly      31.0 2025-11-01     222 2026-06-10       0    347  global/economy/global_epu_cache.json
+STUCK            7.2 monthly      31.0 2025-11-01     222 2026-06-08       2    310  switzerland/consumer/ch_retail_trade_cache.json
+STUCK            6.2 monthly      31.0 2025-12-01     192 2026-06-10       0    132  eurozone/consumer/eurostat_consumer_confidence_cache.json
+STUCK            6.2 monthly      31.0 2025-12-01     192 2026-06-10       0    131  eurozone/inflation/ecb_hicp_cache.json
+STUCK            6.2 monthly      31.0 2025-12-01     192 2026-06-10       0    300  eurozone/inflation/spain_hicp_cpi_cache.json
+STUCK            6.2 monthly      31.0 2025-12-01     192 2026-06-08       2    264  switzerland/employment/ch_job_vacancies_cache.json
+STUCK            6.2 monthly      31.0 2025-12-01     192 2026-06-08       2    577  switzerland/employment/ch_unemployment_rate_cache.json
+STUCK            6.2 monthly      31.0 2025-12-01     192 2026-06-08       2    516  switzerland/inflation/ch_cpi_cache.json
+STUCK            6.2 monthly      31.0 2025-12-01     192 2026-06-08       2   1188  switzerland/inflation/ch_ppi_cache.json
+STUCK            5.2 monthly      31.0 2026-01-01     161 2026-06-09       1    176  canada/economy/ca_ivey_pmi_cache.json
+STUCK            5.2 monthly      31.0 2026-01-01     161 2026-06-10       0    598  eurozone/economy/france_business_confidence_cache.json
+STUCK            5.2 monthly      31.0 2026-01-01     161 2026-06-10       0    133  global/economy/taiwan_electrical_equipment_exports_cache.json
+STUCK            4.2 monthly      31.0 2026-02-01     130 2026-06-10       0    194  china/economy/cn_caixin_pmi_cache.json
+STUCK            4.2 monthly      31.0 2026-02-01     130 2026-06-10       0     28  global/economy/kr_semiconductor_exports_cache.json
+STUCK            4.2 monthly      31.0 2026-02-01     130 2026-06-10       0    120  global/economy/south_korean_exports_cache.json
+STUCK            4.2 monthly      31.0 2026-02-01     130 2026-06-10       0    122  global/economy/taiwan_export_orders_cache.json
+STUCK            4.2 monthly      31.0 2026-02-01     130 2026-06-10       0     41  global/economy/taiwan_manufacturing_pmi_cache.json
+STUCK            4.2 monthly      31.0 2026-02-01     130 2026-06-08       2    197  switzerland/housing/ch_mortgage_rates_cache.json
+STUCK            3.8 quarterly    91.0 2025-07-01     345 2026-06-10       0     43  eurozone/employment/ecb_negotiated_wages_cache.json
+STUCK            3.8 quarterly    91.0 2025-07-01     345 2026-06-10       0    119  japan/economy/japan_current_account_gdp_ratio_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-09       1    110  canada/consumer/ca_retail_sales_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-09       1    350  canada/economy/ca_gdp_monthly_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-09       1    350  canada/economy/ca_industrial_production_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-09       1    351  canada/economy/ca_trade_balance_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-09       1    351  canada/economy/ca_us_export_dependence_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-09       1    126  canada/employment/ca_job_vacancy_rate_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-09       1    303  canada/employment/ca_weekly_average_salary_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-09       1     99  canada/housing/ca_building_permits_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-09       1    315  canada/policy/canada_banks_balance_sheet_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-10       0    135  eurozone/economy/ecb_production_cache.json
+STUCK            3.3 monthly        31 2026-03-01     102 2026-06-10       0     14  eurozone/economy/germany_industrial_production_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-10       0    252  japan/economy/machinery_orders_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-11      -1    543  market/adjustments_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-10       0    114  market/eu_natural_gas_production_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-10       0    602  market/lng_exports_by_region_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-10       0    639  market/us_natural_gas_trade_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-09       1    315  switzerland/housing/ch_mortgage_balance_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-08       2    255  switzerland/monetary_policy/snb_sight_deposits_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-09       1    351  uk/economy/ons_gva_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-09       1    351  uk/economy/uk_trade_balance_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-10       0    301  uk/employment/ons_real_wages_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-10       0    301  uk/employment/ons_wages_cache.json
+STUCK            3.3 monthly      31.0 2026-03-01     102 2026-06-11      -1    315  usa/housing/case_shiller_cache.json
+STUCK            3.1 quarterly    92.0 2025-09-01     283 2026-06-10       0     63  china/economy/cn_current_account_gdp_ratio_cache.json
+STUCK            3.1 quarterly    92.0 2025-09-01     283 2026-06-08       2    135  switzerland/employment/ch_nominal_wage_growth_cache.json
+STUCK            2.9 weekly        7.0 2026-05-22      20 2026-06-11      -1   1116  market/cmdi_cache.json
+STUCK            2.8 quarterly    91.5 2025-09-30     254 2026-06-10       0     27  australia/policy/au_housing_loan_arrears_cache.json
+STUCK            2.8 quarterly    91.5 2025-10-01     253 2026-06-09       1    144  canada/consumer/ca_debt_service_ratio_cache.json
+STUCK            2.8 quarterly    91.5 2025-10-01     253 2026-06-10       0     44  eurozone/employment/eurostat_job_vacancy_cache.json
+STUCK            2.8 quarterly    91.5 2025-10-01     253 2026-06-10       0    104  japan/price/boj_gdp_gap_cache.json
+STUCK            2.8 quarterly    91.5 2025-10-01     253 2026-06-08       2     36  switzerland/housing/ch_housing_prices_cache.json
+STUCK            2.8 quarterly    91.5 2025-10-01     253 2026-06-08       2     32  switzerland/housing/ch_new_mortgage_loans_cache.json
+STUCK            2.8 quarterly    91.5 2025-10-01     253 2026-06-09       1    283  uk/employment/ons_productivity_cache.json
+STUCK            2.7 weekly        7.0 2026-05-23      19 2026-06-10       0   1378  usa/employment/continued_claims_cache.json
+STUCK            2.4 quarterly    92.0 2025-11-01     222 2026-06-10       0     76  japan/employment/employment_type_cache.json
+STUCK            2.4 weekly        7.0 2026-05-25      17 2026-06-11      -1    282  japan/price/japan_pos_uvpi_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    112  australia/consumer/au_household_spending_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    658  australia/economy/au_international_trade_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-07       3    316  australia/employment/au_employed_persons_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-07       3    316  australia/employment/au_fulltime_parttime_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-07       3    316  australia/employment/au_participation_rate_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-07       3    316  australia/employment/au_unemployment_rate_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    514  australia/housing/au_number_of_building_permits_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    103  australia/inflation/abs_monthly_cpi_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-09       1    436  canada/housing/ca_housing_starts_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-09       1    300  canada/housing/ca_new_housing_price_index_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-09       1    316  canada/inflation/ca_cpi_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-09       1    304  canada/inflation/ca_cpi_service_rent_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-09       1    196  canada/inflation/ca_ippi_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0     35  china/economy/cn_land_sales_income_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    182  china/housing/cn_house_price_index_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-11      -1    196  china/policy/cn_capital_flows_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-11      -1    106  china/policy/cn_overseas_investor_flow_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    135  eurozone/consumer/ecb_retail_trade_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    135  eurozone/consumer/germany_retail_sales_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    136  eurozone/economy/ecb_adjusted_loans_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0     40  eurozone/economy/germany_factory_orders_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0     49  eurozone/employment/ecb_ces_wage_expectations_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    136  eurozone/employment/ecb_unemployment_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0     88  eurozone/employment/indeed_euro_wage_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0     49  eurozone/inflation/ecb_inflation_expectations_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    135  eurozone/inflation/ecb_ppi_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    135  eurozone/inflation/eu_import_prices_cache.json
+STUCK            2.3 monthly        31 2026-04-01      71 2026-06-10       0     14  eurozone/inflation/germany_ppi_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    136  eurozone/monetary_policy/ecb_bank_interest_rates_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-08       2    136  eurozone/monetary_policy/ecb_m3_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    124  global/economy/jpmorgan_global_manufacturing_pmi_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    568  japan/economy/japan_balance_of_trade_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    364  japan/economy/japan_current_account_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    316  japan/employment/cash_earnings_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    316  japan/employment/real_wage_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    124  japan/employment/scheduled_wage_common_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    287  japan/employment/unemployment_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    256  japan/policy/boj_current_account_balance_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-11      -1    916  market/roni_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-09       1    229  newzealand/economy/nz_pci_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-09       1    285  newzealand/economy/nz_pmi_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-09       1    229  newzealand/economy/nz_psi_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0     89  newzealand/economy/nz_trade_balance_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-08       2    241  switzerland/consumer/ch_consumer_sentiment_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-08       2    172  switzerland/economy/ch_balance_of_trade_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-08       2    323  switzerland/monetary_policy/foreign_currency_reserves_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-08       2    364  switzerland/monetary_policy/monetary_aggregate_m2_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-08       2    916  switzerland/monetary_policy/monetary_base_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-09       1    353  switzerland/monetary_policy/snb_balance_sheet_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-09       1    398  uk/economy/uk_government_debt_to_gdp_ratio_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    315  usa/consumer/advance_real_retail_sales_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    316  usa/consumer/disposable_income_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-11      -1    316  usa/consumer/pce_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    316  usa/consumer/personal_income_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    316  usa/consumer/personal_saving_rate_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-11      -1    196  usa/consumer/retail_control_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-11      -1    316  usa/consumer/retail_sales_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    136  usa/consumer/visa_spending_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    316  usa/economy/capacity_utilization_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    316  usa/economy/durable_goods_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    316  usa/economy/industrial_production_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-07       3     66  usa/employment/adp_wage_growth_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0     88  usa/employment/indeed_wage_tracker_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    304  usa/employment/job_openings_per_unemployed_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    305  usa/employment/jolts_hires_layoffs_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    136  usa/employment/pce_food_recreation_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-11      -1    316  usa/housing/housing_starts_permits_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-11      -1    316  usa/housing/new_home_sales_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    304  usa/inflation/core_pce_deflator_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    181  usa/inflation/core_ppi_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-11      -1    303  usa/inflation/import_export_price_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    509  usa/inflation/median_cpi_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    304  usa/inflation/pce_deflator_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    186  usa/inflation/ppi_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0     61  usa/inflation/supply_and_demand_driven_pce_inflation_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    591  usa/inflation/trimmed_mean_pce_cache.json
+STUCK            2.3 monthly      31.0 2026-04-01      71 2026-06-10       0    124  usa/inflation/zillow_rent_index_cache.json
+STUCK            2.1 quarterly    91.5 2025-12-01     192 2026-06-10       0    104  eurozone/economy/eu_government_debt_to_gdp_ratio_cache.json
+STUCK            2.1 quarterly    91.5 2025-12-01     192 2026-06-09       1    219  newzealand/economy/nz_current_account_balance_cache.json
+STUCK            2.1 quarterly    91.5 2025-12-01     192 2026-06-09       1    155  newzealand/economy/nz_current_account_gdp_ratio_cache.json
+STUCK            2.1 quarterly    91.5 2025-12-01     192 2026-06-10       0    154  newzealand/economy/nz_gdp_growth_rate_cache.json
+STUCK            2.1 quarterly    91.5 2025-12-01     192 2026-06-10       0    155  newzealand/economy/nz_gdp_item_cache.json
+STUCK            2.1 quarterly    91.5 2025-12-01     192 2026-06-08       2    104  switzerland/economy/ch_current_account_cache.json
+STUCK            2.1 quarterly    91.5 2025-12-01     192 2026-06-08       2    104  switzerland/economy/ch_current_account_gdp_ratio_cache.json
+STUCK            2.1 quarterly    91.5 2025-12-01     192 2026-06-09       1    284  uk/economy/uk_current_account_cache.json
+STUCK            2.0 weekly        7.0 2026-05-28      14 2026-06-11      -1    404  usa/consumer/carts_weekly_cache.json
+WRITER_STOPPED 174.0 daily         1.0 2025-12-19     174 None          None    479  market/advance_decline_daily_ad.json
+WRITER_STOPPED  97.0 daily         1.0 2026-03-06      97 2026-03-08      94   3900  global/economy/usd_fundamental_index_cache.json
+WRITER_STOPPED  97.0 daily         1.0 2026-03-06      97 2026-03-07      95  15040  global/economy/us_daily_epu_cache.json
+WRITER_STOPPED  84.0 daily         1.0 2026-03-19      84 2026-03-21      81   3666  market/nikkei225_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   2950  market/aluminum_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3905  market/audcad_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3903  market/audchf_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3904  market/audnzd_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3900  market/audusd_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3741  market/brent_oil_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3832  market/cac40_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3901  market/cadchf_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3769  market/copper_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3800  market/dax_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3769  market/dow_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3770  market/dxy_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3754  market/eurostoxx50_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3901  market/eurusd_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3784  market/ftse100_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3903  market/gbpaud_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3903  market/gbpcad_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3901  market/gbpchf_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3903  market/gbpnzd_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3901  market/gbpusd_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3769  market/nasdaq100_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3769  market/nasdaq_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3902  market/nzdcad_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3899  market/nzdchf_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3901  market/nzdusd_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3767  market/platinum_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3769  market/russell2000_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3654  market/twii_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3900  market/usdcad_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3898  market/usdchf_cache.json
+WRITER_STOPPED  83.0 daily         1.0 2026-03-20      83 2026-03-21      81   3769  market/vix_cache.json
+WRITER_STOPPED  76.0 daily         1.0 2026-03-27      76 2026-03-29      73   3900  market/usdjpy_cache.json
+WRITER_STOPPED  72.0 daily         1.0 2026-03-31      72 2026-04-01      70   3769  market/sp500_cache.json
+WRITER_STOPPED  61.0 daily         1.0 2026-04-11      61 None          None   4470  china/economy/cn_beijing_pm25_cache.json
+WRITER_STOPPED  56.0 daily         1.0 2026-04-16      56 2026-04-18      53   1824  market/eu_natural_gas_storage_cache.json
+WRITER_STOPPED  55.0 daily         1.0 2026-04-17      55 2026-04-18      53   3905  market/audjpy_cache.json
+WRITER_STOPPED  55.0 daily         1.0 2026-04-17      55 2026-04-18      53   3904  market/cadjpy_cache.json
+WRITER_STOPPED  55.0 daily         1.0 2026-04-17      55 2026-04-18      53   3904  market/chfjpy_cache.json
+WRITER_STOPPED  55.0 daily         1.0 2026-04-17      55 2026-04-18      53   3904  market/euraud_cache.json
+WRITER_STOPPED  55.0 daily         1.0 2026-04-17      55 2026-04-18      53   3904  market/eurcad_cache.json
+WRITER_STOPPED  55.0 daily         1.0 2026-04-17      55 2026-04-18      53   3902  market/eurchf_cache.json
+WRITER_STOPPED  55.0 daily         1.0 2026-04-17      55 2026-04-18      53   3904  market/eurgbp_cache.json
+WRITER_STOPPED  55.0 daily         1.0 2026-04-17      55 2026-04-18      53   3904  market/eurjpy_cache.json
+WRITER_STOPPED  55.0 daily         1.0 2026-04-17      55 2026-04-18      53   3904  market/eurnzd_cache.json
+WRITER_STOPPED  55.0 daily         1.0 2026-04-17      55 2026-04-18      53   3903  market/gbpjpy_cache.json
+WRITER_STOPPED  55.0 daily         1.0 2026-04-17      55 2026-04-18      53   3903  market/nzdjpy_cache.json
+WRITER_STOPPED  55.0 daily         1.0 2026-04-17      55 2026-04-18      53   3768  market/sox_cache.json
+WRITER_STOPPED  34.0 daily         1.0 2026-05-08      34 2026-05-14      27   6013  market/gold_premium_cache.json
+WRITER_STOPPED  31.0 daily         1.0 2026-05-11      31 2026-05-13      28   2110  uk/monetary_policy/sonia_cache.json
+WRITER_STOPPED  30.0 daily         1.0 2026-05-12      30 2026-05-12      29   5976  eurozone/monetary_policy/ecb_rates_cache.json
+WRITER_STOPPED  29.0 daily         1.0 2026-05-13      29 2026-05-14      27   1721  market/china_gold_etf_balance_data_cache.json
+WRITER_STOPPED  29.0 daily         1.0 2026-05-13      29 2026-05-14      27   3768  market/gold_cache.json
+WRITER_STOPPED  29.0 daily         1.0 2026-05-13      29 2026-05-14      27   4711  market/gold_etf_holdings_cache.json
+WRITER_STOPPED  29.0 daily         1.0 2026-05-13      29 2026-05-14      27    569  market/sge_gold_cache.json
+WRITER_STOPPED  29.0 daily         1.0 2026-05-13      29 2026-05-14      27   3768  market/silver_cache.json
+WRITER_STOPPED  29.0 daily         1.0 2026-05-13      29 2026-05-14      27   3769  market/tsmc_cache.json
+WRITER_STOPPED  27.0 daily         1.0 2026-05-15      27 2026-05-16      25   3770  market/natural_gas_cache.json
+WRITER_STOPPED  20.1 weekly        7.0 2026-01-21     141 2026-01-23     138   1206  usa/monetary_policy/reserve_balances_wresbal_cache.json
+WRITER_STOPPED  17.0 daily         1.0 2026-05-25      17 None          None   2174  china/policy/ch_reverse_repo_rate_cache.json
+WRITER_STOPPED  17.0 daily         1.0 2026-05-25      17 None          None   1842  china/policy/cn_fixing_repo_rate_cache.json
+WRITER_STOPPED  17.0 daily         1.0 2026-05-25      17 None          None   2590  china/policy/cn_shibor_cache.json
+WRITER_STOPPED  13.0 daily         1.0 2026-05-29      13 2026-06-01       9   3768  market/crude_oil_cache.json
+WRITER_STOPPED  13.0 daily         1.0 2026-05-29      13 2026-06-01       9   3664  market/nt_magnification_cache.json
+WRITER_STOPPED  11.3 daily         1.5 2026-05-25      17 None          None    918  market/nikkei225_options_atm_iv_history.json
+WRITER_STOPPED  11.3 daily         1.5 2026-05-25      17 2026-05-25      16    918  market/nikkei225_options_cache.json
+WRITER_STOPPED   7.2 monthly      31.0 2025-11-01     222 2026-01-30     131    131  eurozone/economy/ecb_current_account_cache.json
+WRITER_STOPPED   7.2 monthly        31 2025-11-01     222 2026-02-28     102     12  eurozone/economy/eu_terms_of_trade_cache.json
+WRITER_STOPPED   6.2 monthly      31.0 2025-12-01     192 2026-02-21     109    654  australia/housing/au_international_trade_cache.json
+WRITER_STOPPED   6.2 monthly      31.0 2025-12-01     192 None          None    192  china/economy/cn_trade_balance_cache.json
+WRITER_STOPPED   6.2 monthly      31.0 2025-12-01     192 2026-02-28     102    132  eurozone/economy/eu_international_trade_cache.json
+WRITER_STOPPED   6.2 monthly      31.0 2025-12-01     192 None          None     24  market/advance_decline_prime_codes.json
+WRITER_STOPPED   6.2 monthly      31.0 2025-12-01     192 2026-01-17     144     72  uk/economic_outlook/boe_cpi_components_cache.json
+WRITER_STOPPED   6.2 monthly      31.0 2025-12-01     192 2026-02-08     122    345  usa/employment/atlanta_fed_wage_cache.json
+WRITER_STOPPED   5.2 monthly      31.0 2025-12-31     162 2026-02-22     108     78  australia/policy/au_housing_lending_rates_cache.json
+WRITER_STOPPED   5.2 monthly      31.0 2025-12-31     162 2026-02-23     107    109  newzealand/policy/nz_bank_balance_sheet_cache.json
+WRITER_STOPPED   4.2 monthly      31.0 2026-01-31     131 None          None    129  china/policy/ch_cbs_cache.json
+WRITER_STOPPED   4.2 monthly      31.0 2026-02-01     130 2026-03-26      76     62  japan/price/japan_sppi_cache.json
+WRITER_STOPPED   4.2 monthly      31.0 2026-01-31     131 2026-02-23     107    175  newzealand/policy/nz_central_bank_balance_sheet_cache.json
+WRITER_STOPPED   4.2 monthly      31.0 2026-02-01     130 None          None     62  usa/economy/ism_components_cache.json
+WRITER_STOPPED   3.3 monthly      31.0 2026-03-01     102 None          None     98  china/employment/cn_unemployment_rate_cache.json
+WRITER_STOPPED   3.3 monthly      31.0 2026-02-28     103 2026-03-11      91    277  market/wgc_gold_etf_holdings_usd_cache.json
+WRITER_STOPPED   3.3 monthly      31.0 2026-03-01     102 2026-01-17     144     63  uk/economic_outlook/boe_cpi_contributions_cache.json
+WRITER_STOPPED   3.2 monthly      30.5 2026-03-06      97 2026-03-11      91    277  market/wgc_gold_etf_flows_usd_cache.json
+WRITER_STOPPED   2.4 monthly      29.5 2026-04-01      71 None          None      3  china/economy/cn_industrial_production_cache.json
+WRITER_STOPPED   2.3 monthly      31.0 2026-04-01      71 None          None    112  china/consumer/cn_retail_sales_cache.json
+WRITER_STOPPED   2.3 monthly      31.0 2026-04-01      71 None          None    173  china/economy/cn_fixed_asset_investment_cache.json
+WRITER_STOPPED   2.3 monthly      31.0 2026-04-01      71 None          None    167  china/economy/cn_integrated_circuit_manufacturing_cache.json
+WRITER_STOPPED   2.3 monthly      31.0 2026-04-01      71 None          None    179  china/housing/cn_commercial_residential_sales_cache.json
+WRITER_STOPPED   2.3 monthly      31.0 2026-04-01      71 None          None    123  china/inflation/cn_cpi_cache.json
+WRITER_STOPPED   2.3 monthly      31.0 2026-04-01      71 None          None    194  china/inflation/cn_export_prices_cache.json
+WRITER_STOPPED   2.1 quarterly    91.5 2025-12-01     192 None          None     83  japan/economy/machinery_orders_forecast_cache.json
+LAGGING          9.0 daily         1.0 2026-06-02       9 2026-06-04       6   6673  uk/monetary_policy/boe_bank_rate_cache.json
+LAGGING          6.2 monthly      31.0 2025-12-01     192 2026-06-05       5    192  uk/consumer/brc_retail_sales_cache.json
+LAGGING          6.2 monthly      31.0 2025-12-01     192 2026-06-04       6     60  uk/economic_outlook/boe_services_inflation_cache.json
+LAGGING          5.2 monthly      31.0 2026-01-01     161 2026-04-20      51     96  japan/economy/tertiary_industry_index_cache.json
+LAGGING          5.2 monthly      31.0 2026-01-01     161 2026-06-05       5    193  uk/consumer/gfk_consumer_confidence_cache.json
+LAGGING          5.2 monthly      31.0 2026-01-01     161 2026-06-04       6     25  uk/economic_outlook/boe_inflation_expectations_cache.json
+LAGGING          5.2 monthly      31.0 2026-01-01     161 2026-06-05       5    193  uk/economy/cbi_industrial_trends_cache.json
+LAGGING          5.2 monthly      31.0 2026-01-01     161 2026-06-05       5    193  uk/economy/uk_pmi_cache.json
+LAGGING          5.2 monthly      31.0 2026-01-01     161 2026-06-05       5    193  uk/inflation/brc_shop_price_cache.json
+LAGGING          5.1 weekly        7.0 2026-05-06      36 2026-06-05       5    896  uk/monetary_policy/uk_qt_cache.json
+LAGGING          4.8 quarterly    91.5 2025-04-01     436 2026-01-17     144     26  uk/economic_outlook/boe_import_prices_cache.json
+LAGGING          4.4 monthly        42 2025-12-10     183 2026-05-19      22      8  usa/fomc_schedule/fomc_schedule.json
+LAGGING          4.2 monthly      31.0 2026-02-01     130 2026-04-18      53     98  japan/economy/japan_capacity_utilization_cache.json
+LAGGING          4.2 monthly      31.0 2026-02-01     130 2026-04-20      51     98  japan/economy/japan_iip_cache.json
+LAGGING          4.2 monthly      31.0 2026-02-01     130 2026-04-20      51     98  japan/economy/japan_iip_yoy_cache.json
+LAGGING          4.2 monthly      31.0 2026-02-01     130 2026-06-05       5    661  uk/employment/ons_economic_activity_cache.json
+LAGGING          4.2 monthly      31.0 2026-02-01     130 2026-06-05       5    661  uk/employment/ons_employment_cache.json
+LAGGING          4.2 monthly      31.0 2026-02-01     130 2026-06-05       5    661  uk/employment/ons_unemployment_cache.json
+LAGGING          3.8 quarterly    91.0 2025-07-01     345 2026-02-20     110    264  australia/economy/au_gdp_economic_related_cache.json
+LAGGING          3.8 quarterly      91 2025-06-30     346 2026-05-12      29      8  earnings/earnings_southkorea_financials_005380.KS_cache.json
+LAGGING          3.3 monthly      31.0 2026-03-01     102 2026-05-20      21    578  australia/employment/au_underutilization_cache.json
+LAGGING          3.3 monthly      31.0 2026-03-01     102 2026-05-14      27    316  china/policy/cn_gold_reserves_service_cache.json
+LAGGING          3.3 monthly      31.0 2026-03-01     102 2026-04-18      53   1515  global/economy/us_monthly_epu_cache.json
+LAGGING          3.3 monthly      31.0 2026-03-01     102 2026-05-12      29    279  japan/consumption/boj_cai_cache.json
+LAGGING          3.3 monthly      31.0 2026-03-01     102 2026-04-14      57    195  japan/economy/boj_lending_cache.json
+LAGGING          3.3 monthly      31.0 2026-03-01     102 2026-06-06       4    350  uk/economy/ons_production_cache.json
+LAGGING          3.3 monthly      31.0 2026-03-01     102 2026-05-15      26     87  uk/employment/indeed_wage_tracker_cache.json
+LAGGING          3.3 monthly      31.0 2026-03-01     102 2026-05-10      31    135  uk/housing/boe_mortgage_lending_cache.json
+LAGGING          3.3 monthly      31.0 2026-03-01     102 2026-06-05       5    315  uk/housing/uk_house_price_cache.json
+LAGGING          3.3 monthly      31.0 2026-03-01     102 2026-05-10      31    207  uk/inflation/ons_ppi_cache.json
+LAGGING          3.3 monthly      31.0 2026-03-01     102 2026-05-10      31    397  uk/monetary_policy/ons_public_sector_net_borrowing_cache.json
+LAGGING          2.9 weekly        7.0 2026-05-22      20 2026-06-05       5    856  market/us_natural_gas_storage_cache.json
+LAGGING          2.8 quarterly    91.5 2025-10-01     253 2026-05-12      29    104  japan/economy/japan_gdp_gap_cache.json
+LAGGING          2.8 quarterly    91.5 2025-10-01     253 2026-04-03      68    104  japan/economy/potential_growth_cache.json
+LAGGING          2.8 quarterly    91.5 2025-10-01     253 2026-05-25      16    104  japan/economy/quarterly_gdp_qoq.json
+LAGGING          2.8 quarterly    91.5 2025-10-01     253 2026-05-25      16    104  japan/economy/quarterly_gdp_qoq_annualized.json
+LAGGING          2.8 quarterly    91.5 2025-10-01     253 2026-05-25      16    104  japan/economy/quarterly_gdp_yoy.json
+LAGGING          2.8 quarterly    91.5 2025-10-01     253 2026-06-06       4    283  uk/employment/ons_unit_labour_costs_cache.json
+LAGGING          2.3 monthly      31.0 2026-04-01      71 2026-05-30      11     11  japan/employment/job_offers_ratio_cache.json
+LAGGING          2.3 monthly      31.0 2026-04-01      71 2026-06-05       5    316  japan/employment/scheduled_wage_estat_cache.json
+LAGGING          2.3 monthly      31.0 2026-04-01      71 2026-06-01       9    337  japan/monetary_policy/japan_balance_sheet_cache.json
+LAGGING          2.3 monthly      31.0 2026-04-01      71 2026-05-28      13    124  japan/price/japan_cgpi_cache.json
+LAGGING          2.3 monthly      31.0 2026-04-01      71 2026-05-30      11    240  japan/price/national_cpi_cache.json
+LAGGING          2.3 monthly      31.0 2026-04-01      71 2026-06-05       5    459  uk/consumer/ons_retail_sales_cache.json
+LAGGING          2.3 monthly      31.0 2026-04-01      71 2026-06-04       6    112  uk/dmp/boe_dmp_survey_cache.json
+LAGGING          2.3 monthly      31.0 2026-04-01      71 2026-06-05       5    664  uk/employment/ons_claimant_count_cache.json
+LAGGING          2.3 monthly      31.0 2026-04-01      71 2026-05-10      31    172  uk/housing/boe_mortgage_rates_cache.json
+LAGGING          2.3 monthly      31.0 2026-04-01      71 2026-06-01       9    196  uk/housing/halifax_house_price_cache.json
+LAGGING          2.3 monthly      31.0 2026-04-01      71 2026-05-10      31    423  uk/housing/nationwide_hpi_cache.json
+LAGGING          2.3 monthly      31.0 2026-04-01      71 2026-06-01       9    196  uk/housing/rics_house_price_cache.json
+LAGGING          2.3 monthly      31.0 2026-04-01      71 2026-06-05       5    316  uk/inflation/ons_cpih_cache.json
+LAGGING          2.1 quarterly    91.5 2025-12-01     192 2026-01-12     149     87  bsi/bsi_ref1_forecast1.json
+LAGGING          2.1 quarterly    91.5 2025-12-01     192 2026-01-12     149     87  bsi/bsi_ref1_forecast2.json
+LAGGING          2.1 quarterly    91.5 2025-12-01     192 2026-01-12     149     87  bsi/bsi_ref2_actual.json
+LAGGING          2.1 quarterly    91.5 2025-12-01     192 2026-01-12     149     87  bsi/bsi_ref3_actual.json
+LAGGING          2.1 quarterly    91.5 2025-12-01     192 2026-01-12     149     87  bsi/bsi_ref4_actual.json
+LAGGING          2.1 quarterly    91.5 2025-12-01     192 2026-02-26     104     65  newzealand/employment/test_response.json
+LAGGING          2.1 quarterly    91.5 2025-12-01     192 2026-02-26     104     34  newzealand/employment/test_unemp.json
+LAGGING          2.1 quarterly    91.5 2025-12-01     192 2026-06-06       4    284  uk/economy/ons_gdp_cache.json
+
+=== files with NO extractable date: 40 (manual check) ===
+  upd=2026-06-01  n=0  australia/inflation/nab_imported_pdfs.json
+  upd=2026-02-15  n=0  australia/policy/rba_smp_forecast_cache.json
+  upd=2026-06-06  n=0  earnings/earnings_australia_calendar_cache.json
+  upd=2026-06-06  n=0  earnings/earnings_china-hongkong_calendar_cache.json
+  upd=2026-06-06  n=0  earnings/earnings_denmark_calendar_cache.json
+  upd=2026-06-06  n=0  earnings/earnings_india_calendar_cache.json
+  upd=2026-06-06  n=0  earnings/earnings_japan_calendar_cache.json
+  upd=2026-06-06  n=0  earnings/earnings_southkorea_calendar_cache.json
+  upd=2026-06-06  n=0  earnings/earnings_taiwan_calendar_cache.json
+  upd=2026-06-11  n=0  eurozone/monetary_policy/eurex_ois_cache.json
+  upd=None  n=0  global/economy/kr_semiconductor_history.json
+  upd=2026-05-25  n=0  japan/economy/gdp_components_cache.json
+  upd=2026-04-18  n=0  japan/economy/japan_iip_forecast_cache.json
+  upd=None  n=0  japan/employment/shuntou_schedule_cache.json
+  upd=None  n=0  japan/monetary_policy/boj_meeting_expectations.json
+  upd=2026-04-18  n=0  japan/monetary_policy/boj_outlook_report.json
+  upd=2026-05-11  n=0  japan/monetary_policy/jscc_ois_curve.json
+  upd=2026-05-12  n=0  japan/price/national_cpi_categories_cache.json
+  upd=2026-06-10  n=0  market/iea_oil_market_report_cache.json
+  upd=2026-05-21  n=0  market/ny_option_cut_cache.json
+  upd=2026-06-10  n=0  market/tsmc_revenue_cache.json
+  upd=2026-06-08  n=0  switzerland/monetary_policy/ch_inflation_forecast_cache.json
+  upd=2026-01-19  n=0  uk/consumer/brc_commentary_cache.json
+  upd=2026-06-04  n=0  uk/economic_outlook/boe_average_weekly_earnings_cache.json
+  upd=2026-06-05  n=0  uk/economic_outlook/boe_unit_wage_costs_cache.json
+  upd=2026-06-01  n=0  uk/housing/halifax_imported_pdfs.json
+  upd=None  n=0  uk/housing/halifax_schedule_cache.json
+  upd=2026-06-01  n=0  uk/housing/rics_imported_pdfs.json
+  upd=2026-04-12  n=0  uk/housing/rics_residential_survey.json
+  upd=2026-06-01  n=0  uk/housing/rightmove_imported_pdfs.json
+  upd=2026-06-10  n=0  uk/monetary_policy/boe_ois_curve_cache.json
+  upd=2026-06-10  n=0  usa/employment/ner_pulse_cache.json
+  upd=None  n=0  usa/employment/ner_pulse_schedule.json
+  upd=2026-06-10  n=0  usa/fiscal/cbo_projections_cache.json
+  upd=2026-01-25  n=0  usa/fomc_projections/figure2_20251210_metadata.json
+  upd=2026-03-18  n=0  usa/fomc_projections/figure2_20260318_metadata.json
+  upd=2026-01-25  n=0  usa/fomc_table1/table1_20251210_metadata.json
+  upd=2026-03-18  n=0  usa/fomc_table1/table1_20260318_metadata.json
+  upd=2026-06-11  n=0  usa/inflation/inflation_nowcasting_cache.json
+  upd=2026-06-10  n=0  usa/inflation/ppi_categories_cache.json

@@ -172,7 +172,8 @@ class CHRetailTradeService:
             {date: value} の辞書
         """
         try:
-            resp = requests.get(url, timeout=60)
+            from services.switzerland.bfs_asset_resolver import resolve_master_url_from_url
+            resp = requests.get(resolve_master_url_from_url(url), timeout=60)
             resp.raise_for_status()
 
             # Variation ratesシートを読み込み

@@ -49145,28 +49145,34 @@
       "registered_tons": 372446.0,
       "eligible_tons": 216258.0,
       "total_tons": 588704.0
+    },
+    {
+      "date": "2026-06-08",
+      "registered_tons": 432215.0,
+      "eligible_tons": 215546.0,
+      "total_tons": 647761.0
     }
   ],
   "latest": {
-    "date": "2026-03-19",
-    "registered_tons": 372446.0,
-    "eligible_tons": 216258.0,
-    "total_tons": 588704.0
+    "date": "2026-06-08",
+    "registered_tons": 432215.0,
+    "eligible_tons": 215546.0,
+    "total_tons": 647761.0
   },
   "latest_copper": {
-    "date": "2026-05-24",
-    "close": 6.379
+    "date": "2026-06-10",
+    "close": 6.1895
   },
   "metadata": {
     "source": "CME COMEX + yfinance (HG=F)",
     "indicator": "COMEX Copper Warehouse Stock",
     "unit": "short tons",
     "frequency": "daily",
-    "data_count": 8191,
+    "data_count": 8192,
     "start_date": "1993-04-29",
-    "end_date": "2026-03-19"
+    "end_date": "2026-06-08"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-05-25T12:00:16.335228+09:00"
+  "last_updated": "2026-06-11T12:00:01.238937+09:00"
 }

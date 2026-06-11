@@ -190,7 +190,7 @@
     },
     {
       "date": "2011-Q4",
-      "value": 0.2
+      "value": 0.1
     },
     {
       "date": "2012-Q1",
@@ -198,7 +198,7 @@
     },
     {
       "date": "2012-Q2",
-      "value": -3.6
+      "value": -3.7
     },
     {
       "date": "2012-Q3",
@@ -226,7 +226,7 @@
     },
     {
       "date": "2014-Q1",
-      "value": 4.2
+      "value": 4.3
     },
     {
       "date": "2014-Q2",
@@ -246,7 +246,7 @@
     },
     {
       "date": "2015-Q2",
-      "value": 0.3
+      "value": 0.2
     },
     {
       "date": "2015-Q3",
@@ -262,7 +262,7 @@
     },
     {
       "date": "2016-Q2",
-      "value": -1.3
+      "value": -1.4
     },
     {
       "date": "2016-Q3",
@@ -294,11 +294,11 @@
     },
     {
       "date": "2018-Q2",
-      "value": 2.6
+      "value": 2.5
     },
     {
       "date": "2018-Q3",
-      "value": -2.0
+      "value": -1.9
     },
     {
       "date": "2018-Q4",
@@ -322,19 +322,19 @@
     },
     {
       "date": "2020-Q1",
-      "value": 1.5
+      "value": 1.6
     },
     {
       "date": "2020-Q2",
-      "value": -25.9
+      "value": -26.0
     },
     {
       "date": "2020-Q3",
-      "value": 21.4
+      "value": 21.5
     },
     {
       "date": "2020-Q4",
-      "value": 6.9
+      "value": 6.8
     },
     {
       "date": "2021-Q1",
@@ -342,11 +342,11 @@
     },
     {
       "date": "2021-Q2",
-      "value": 3.0
+      "value": 2.8
     },
     {
       "date": "2021-Q3",
-      "value": -0.7
+      "value": -0.6
     },
     {
       "date": "2021-Q4",
@@ -354,31 +354,31 @@
     },
     {
       "date": "2022-Q1",
-      "value": -1.4
+      "value": -1.3
     },
     {
       "date": "2022-Q2",
-      "value": 3.9
+      "value": 3.7
     },
     {
       "date": "2022-Q3",
-      "value": -1.6
+      "value": -1.4
     },
     {
       "date": "2022-Q4",
-      "value": 1.8
+      "value": 1.9
     },
     {
       "date": "2023-Q1",
-      "value": 3.1
+      "value": 3.3
     },
     {
       "date": "2023-Q2",
-      "value": 0.8
+      "value": 0.3
     },
     {
       "date": "2023-Q3",
-      "value": -5.5
+      "value": -5.4
     },
     {
       "date": "2023-Q4",
@@ -386,42 +386,46 @@
     },
     {
       "date": "2024-Q1",
-      "value": -2.1
+      "value": -1.2
     },
     {
       "date": "2024-Q2",
-      "value": 0.7
+      "value": -0.1
     },
     {
       "date": "2024-Q3",
-      "value": 2.6
+      "value": 2.8
     },
     {
       "date": "2024-Q4",
-      "value": 1.9
+      "value": 1.4
     },
     {
       "date": "2025-Q1",
-      "value": 1.1
+      "value": 2.0
     },
     {
       "date": "2025-Q2",
-      "value": 2.4
+      "value": 1.1
     },
     {
       "date": "2025-Q3",
-      "value": -2.6
+      "value": -2.3
     },
     {
       "date": "2025-Q4",
-      "value": 1.3
+      "value": 0.7
+    },
+    {
+      "date": "2026-Q1",
+      "value": 1.8
     }
   ],
   "latest": {
-    "date": "2025-Q4",
-    "value": 1.3
+    "date": "2026-Q1",
+    "value": 1.8
   },
   "next_release": null,
-  "last_updated": "2026-05-25T11:42:03.577967+09:00",
+  "last_updated": "2026-06-11T21:38:40.725424+09:00",
   "source": "Cabinet Office CSV"
 }

@@ -712,6 +712,7 @@ export interface USAConsumerData {
   personal_income: PersonalIncomeData | null
   disposable_income: DisposableIncomeData | null
   pce: PCEData | null
+  personal_consumption_expenditures_services: PersonalConsumptionExpendituresServicesData | null
 }
 
 // ミシガン大学消費者信頼感指数データの型
@@ -1092,6 +1093,29 @@ export interface AdvanceRealRetailSalesNextRelease {
   label: string
 }
 
+// 個人消費支出：サービス（FRED PCES）。前月比%・前年比%を表示
+export interface PersonalConsumptionExpendituresServicesData {
+  data: PersonalConsumptionExpendituresServicesItem[]
+  latest: PersonalConsumptionExpendituresServicesItem | null
+  next_release: PersonalConsumptionExpendituresServicesNextRelease | null
+  last_updated: string | null
+}
+
+export interface PersonalConsumptionExpendituresServicesItem {
+  date: string         // YYYY-MM-DD形式
+  value: number        // 個人消費支出：サービス（10億ドル、SAAR）
+  mom: number | null   // 前月比（%）
+  yoy: number | null   // 前年比（%）
+}
+
+export interface PersonalConsumptionExpendituresServicesNextRelease {
+  date: string
+  datetime_jst?: string
+  time_jst?: string
+  label?: string
+  estimate?: number | null
+}
+
 /**
  * ダッシュボードデータを取得するAPI関数
  */
@@ -1323,6 +1347,21 @@ export interface UnemploymentRateItem {
 export interface UnemploymentRateNextRelease {
   date: string
   label: string
+}
+
+// NAIRU / 失業率データの型（FRED NROU = 自然失業率, UNRATE = 実際の失業率）
+// NROUはCBO推計の四半期データ（四半期始月のみ値を持つ）、UNRATEは月次
+export interface NairuData {
+  data: NairuItem[]
+  latest: NairuItem | null
+  next_release: UnemploymentRateNextRelease | null
+  last_updated: string | null
+}
+
+export interface NairuItem {
+  date: string              // YYYY-MM-DD形式
+  unrate: number            // 実際の失業率（U-3）%
+  nairu: number | null      // 自然失業率 / NAIRU（NROU）% ※四半期始月のみ
 }
 
 // 失業率内訳データの型（FRED LNS13023653, LNS13025699, LNS13023705, LNS13023557, LNS13023569）
@@ -2009,6 +2048,7 @@ export interface USAEmploymentData {
   unemployment_rate: UnemploymentRateData | null
   unemployment_by_reason: UnemploymentByReasonData | null
   chicago_fed_unemployment_rate_forecast: ChicagoFedUnemploymentRateForecastData | null
+  nairu: NairuData | null
   cb_jobs_labor: CBJobsLaborData | null
   nonfarm_payrolls: NonfarmPayrollsData | null
   fullpart_time_employment: FullPartTimeEmploymentData | null

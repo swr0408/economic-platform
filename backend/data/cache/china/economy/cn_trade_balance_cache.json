@@ -6893,14 +6893,14 @@
       "imports_yoy": "輸入 前年比 (%)"
     },
     "total_records": 192,
-    "last_fetched": "2026-06-07T22:13:57.228723+09:00"
+    "last_fetched": "2026-06-11T04:02:35.028514+09:00"
   },
   "next_release": {
-    "date": "2026-06-09",
-    "datetime_utc": "2026-06-09T03:00:00+00:00",
-    "datetime_jst": "2026-06-09T12:00:00+09:00",
+    "date": "2026-07-14",
+    "datetime_utc": "2026-07-14T03:00:00+00:00",
+    "datetime_jst": "2026-07-14T12:00:00+09:00",
     "time_jst": "12:00",
-    "label": "Exports YoY (May)",
-    "estimate": 14.3
+    "label": "Exports YoY (Jun)",
+    "estimate": null
   }
 }

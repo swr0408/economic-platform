@@ -50207,28 +50207,34 @@
       "registered_oz": 16518712.066,
       "eligible_oz": 15535563.225,
       "total_oz": 32054275.291
+    },
+    {
+      "date": "2026-06-08",
+      "registered_oz": 15143042.586,
+      "eligible_oz": 13161187.547,
+      "total_oz": 28304230.133
     }
   ],
   "latest": {
-    "date": "2026-03-19",
-    "registered_oz": 16518712.066,
-    "eligible_oz": 15535563.225,
-    "total_oz": 32054275.291
+    "date": "2026-06-08",
+    "registered_oz": 15143042.586,
+    "eligible_oz": 13161187.547,
+    "total_oz": 28304230.133
   },
   "latest_gold": {
-    "date": "2026-05-24",
-    "close": 4523.2002
+    "date": "2026-06-10",
+    "close": 4075.7
   },
   "metadata": {
     "source": "CME COMEX + yfinance (GC=F)",
     "indicator": "COMEX Gold Warehouse Stock",
     "unit": "troy oz",
     "frequency": "daily",
-    "data_count": 8368,
+    "data_count": 8369,
     "start_date": "1992-08-31",
-    "end_date": "2026-03-19"
+    "end_date": "2026-06-08"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-05-25T12:00:15.618683+09:00"
+  "last_updated": "2026-06-11T12:00:00.730123+09:00"
 }

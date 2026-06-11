@@ -358,6 +358,7 @@ class USAConsumerLoader(BaseDashboardLoader):
                 stale.add("personal_income")
                 stale.add("disposable_income")
                 stale.add("pce")
+                stale.add("personal_consumption_expenditures_services")
 
             if stale:
                 print(f"[stale] Detected stale indicators: {stale}")
@@ -413,6 +414,7 @@ class USAConsumerLoader(BaseDashboardLoader):
         from services.usa.personal_income_service import personal_income_service
         from services.usa.disposable_income_service import disposable_income_service
         from services.usa.pce_service import pce_service
+        from services.usa.personal_consumption_expenditures_services_service import personal_consumption_expenditures_services_service
         from services.usa.unemployment_rate_service import unemployment_rate_service
         from services.usa.advance_real_retail_sales_service import advance_real_retail_sales_service
 
@@ -435,6 +437,7 @@ class USAConsumerLoader(BaseDashboardLoader):
             "personal_income": None,
             "disposable_income": None,
             "pce": None,
+            "personal_consumption_expenditures_services": None,
         }
 
         # 並列でデータを取得
@@ -458,6 +461,7 @@ class USAConsumerLoader(BaseDashboardLoader):
                 executor.submit(self._get_personal_income, personal_income_service): "personal_income",
                 executor.submit(self._get_disposable_income, disposable_income_service): "disposable_income",
                 executor.submit(self._get_pce, pce_service): "pce",
+                executor.submit(self._get_personal_consumption_expenditures_services, personal_consumption_expenditures_services_service): "personal_consumption_expenditures_services",
             }
 
             for future in as_completed(futures):
@@ -792,6 +796,24 @@ class USAConsumerLoader(BaseDashboardLoader):
             print(f"Error getting PCE data: {e}")
             return None
 
+    def _get_personal_consumption_expenditures_services(self, service) -> Optional[dict]:
+        """個人消費支出：サービス データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("personal_consumption_expenditures_services")
+            response = service.get_personal_consumption_expenditures_services_data(force_refresh=force_refresh)
+            data = response.get("data", [])
+            if not data:
+                return None
+            return {
+                "data": data,
+                "latest": response.get("latest"),
+                "next_release": response.get("next_release"),
+                "last_updated": response.get("last_updated")
+            }
+        except Exception as e:
+            print(f"Error getting PCE Services data: {e}")
+            return None
+
     def invalidate_cache(self) -> bool:
         """
         キャッシュを無効化（ダッシュボード + 個別サービス）
@@ -813,6 +835,7 @@ class USAConsumerLoader(BaseDashboardLoader):
         from services.usa.personal_income_service import personal_income_service
         from services.usa.disposable_income_service import disposable_income_service
         from services.usa.pce_service import pce_service
+        from services.usa.personal_consumption_expenditures_services_service import personal_consumption_expenditures_services_service
 
         # 全サービスのキャッシュを無効化
         services = [
@@ -833,6 +856,7 @@ class USAConsumerLoader(BaseDashboardLoader):
             (personal_income_service, "Personal Income"),
             (disposable_income_service, "Disposable Income"),
             (pce_service, "PCE"),
+            (personal_consumption_expenditures_services_service, "PCE Services"),
         ]
         self._invalidate_service_caches(services)
 

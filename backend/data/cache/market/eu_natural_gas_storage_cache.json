@@ -1,492 +1,6 @@
 {
   "data": [
     {
-      "date": "2021-04-19",
-      "gas_in_storage": 326.4643,
-      "fill_rate": 29.09,
-      "injection": 866.33,
-      "withdrawal": 1434.3,
-      "working_gas_volume": 1122.27,
-      "yoy": null
-    },
-    {
-      "date": "2021-04-20",
-      "gas_in_storage": 326.4169,
-      "fill_rate": 29.09,
-      "injection": 1173.44,
-      "withdrawal": 1208.5,
-      "working_gas_volume": 1122.27,
-      "yoy": null
-    },
-    {
-      "date": "2021-04-21",
-      "gas_in_storage": 327.1148,
-      "fill_rate": 29.15,
-      "injection": 1396.7,
-      "withdrawal": 689.7,
-      "working_gas_volume": 1122.27,
-      "yoy": null
-    },
-    {
-      "date": "2021-04-22",
-      "gas_in_storage": 327.8492,
-      "fill_rate": 29.21,
-      "injection": 1493.24,
-      "withdrawal": 760.8,
-      "working_gas_volume": 1122.27,
-      "yoy": null
-    },
-    {
-      "date": "2021-04-23",
-      "gas_in_storage": 328.7841,
-      "fill_rate": 29.3,
-      "injection": 1579.19,
-      "withdrawal": 629.3,
-      "working_gas_volume": 1122.27,
-      "yoy": null
-    },
-    {
-      "date": "2021-04-24",
-      "gas_in_storage": 331.4765,
-      "fill_rate": 29.56,
-      "injection": 2964.84,
-      "withdrawal": 284.2,
-      "working_gas_volume": 1121.27,
-      "yoy": null
-    },
-    {
-      "date": "2021-04-25",
-      "gas_in_storage": 334.1302,
-      "fill_rate": 29.77,
-      "injection": 2946.69,
-      "withdrawal": 292.8,
-      "working_gas_volume": 1122.27,
-      "yoy": null
-    },
-    {
-      "date": "2021-04-26",
-      "gas_in_storage": 335.1666,
-      "fill_rate": 29.87,
-      "injection": 1640.96,
-      "withdrawal": 604.1,
-      "working_gas_volume": 1122.272,
-      "yoy": null
-    },
-    {
-      "date": "2021-04-27",
-      "gas_in_storage": 336.0143,
-      "fill_rate": 29.94,
-      "injection": 1535.58,
-      "withdrawal": 666.9,
-      "working_gas_volume": 1122.272,
-      "yoy": null
-    },
-    {
-      "date": "2021-04-28",
-      "gas_in_storage": 337.1018,
-      "fill_rate": 30.04,
-      "injection": 1696.73,
-      "withdrawal": 607.0,
-      "working_gas_volume": 1122.272,
-      "yoy": null
-    },
-    {
-      "date": "2021-04-29",
-      "gas_in_storage": 338.1295,
-      "fill_rate": 30.13,
-      "injection": 1702.73,
-      "withdrawal": 670.8,
-      "working_gas_volume": 1122.272,
-      "yoy": null
-    },
-    {
-      "date": "2021-04-30",
-      "gas_in_storage": 336.0534,
-      "fill_rate": 29.94,
-      "injection": 1504.06,
-      "withdrawal": 907.7,
-      "working_gas_volume": 1122.272,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-01",
-      "gas_in_storage": 338.4377,
-      "fill_rate": 30.17,
-      "injection": 2779.23,
-      "withdrawal": 352.5,
-      "working_gas_volume": 1121.892,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-02",
-      "gas_in_storage": 340.8527,
-      "fill_rate": 30.38,
-      "injection": 2804.53,
-      "withdrawal": 371.7,
-      "working_gas_volume": 1121.892,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-03",
-      "gas_in_storage": 341.9475,
-      "fill_rate": 30.48,
-      "injection": 1978.33,
-      "withdrawal": 915.9,
-      "working_gas_volume": 1121.8905,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-04",
-      "gas_in_storage": 343.3034,
-      "fill_rate": 30.6,
-      "injection": 2182.85,
-      "withdrawal": 807.0,
-      "working_gas_volume": 1121.8905,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-05",
-      "gas_in_storage": 343.6199,
-      "fill_rate": 30.63,
-      "injection": 1772.64,
-      "withdrawal": 1424.1,
-      "working_gas_volume": 1121.8905,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-06",
-      "gas_in_storage": 343.5909,
-      "fill_rate": 30.63,
-      "injection": 1766.37,
-      "withdrawal": 1796.0,
-      "working_gas_volume": 1121.8906,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-07",
-      "gas_in_storage": 344.1167,
-      "fill_rate": 30.67,
-      "injection": 1966.63,
-      "withdrawal": 1419.5,
-      "working_gas_volume": 1121.8906,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-08",
-      "gas_in_storage": 347.263,
-      "fill_rate": 30.95,
-      "injection": 3398.21,
-      "withdrawal": 241.5,
-      "working_gas_volume": 1121.8906,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-09",
-      "gas_in_storage": 351.8024,
-      "fill_rate": 31.36,
-      "injection": 4701.05,
-      "withdrawal": 130.4,
-      "working_gas_volume": 1121.8906,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-10",
-      "gas_in_storage": 355.9459,
-      "fill_rate": 31.73,
-      "injection": 4222.66,
-      "withdrawal": 177.2,
-      "working_gas_volume": 1121.8926,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-11",
-      "gas_in_storage": 359.4331,
-      "fill_rate": 32.04,
-      "injection": 3756.06,
-      "withdrawal": 266.4,
-      "working_gas_volume": 1121.8926,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-12",
-      "gas_in_storage": 362.6226,
-      "fill_rate": 32.32,
-      "injection": 3515.16,
-      "withdrawal": 327.6,
-      "working_gas_volume": 1121.8926,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-13",
-      "gas_in_storage": 366.3428,
-      "fill_rate": 32.64,
-      "injection": 3957.01,
-      "withdrawal": 255.1,
-      "working_gas_volume": 1122.4926,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-14",
-      "gas_in_storage": 369.782,
-      "fill_rate": 32.96,
-      "injection": 3692.69,
-      "withdrawal": 270.5,
-      "working_gas_volume": 1121.8926,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-15",
-      "gas_in_storage": 373.4829,
-      "fill_rate": 33.29,
-      "injection": 4112.39,
-      "withdrawal": 411.4,
-      "working_gas_volume": 1121.8926,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-16",
-      "gas_in_storage": 377.2896,
-      "fill_rate": 33.57,
-      "injection": 4208.6,
-      "withdrawal": 396.3,
-      "working_gas_volume": 1123.9676,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-17",
-      "gas_in_storage": 379.6248,
-      "fill_rate": 33.78,
-      "injection": 3144.86,
-      "withdrawal": 781.4,
-      "working_gas_volume": 1123.9681,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-18",
-      "gas_in_storage": 381.2107,
-      "fill_rate": 33.92,
-      "injection": 2614.29,
-      "withdrawal": 994.4,
-      "working_gas_volume": 1123.9681,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-19",
-      "gas_in_storage": 383.0195,
-      "fill_rate": 34.08,
-      "injection": 2662.57,
-      "withdrawal": 846.1,
-      "working_gas_volume": 1123.9681,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-20",
-      "gas_in_storage": 385.8929,
-      "fill_rate": 34.33,
-      "injection": 3461.45,
-      "withdrawal": 570.3,
-      "working_gas_volume": 1123.9681,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-21",
-      "gas_in_storage": 389.3853,
-      "fill_rate": 34.64,
-      "injection": 3830.15,
-      "withdrawal": 337.2,
-      "working_gas_volume": 1123.9681,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-22",
-      "gas_in_storage": 393.3714,
-      "fill_rate": 35.0,
-      "injection": 4323.07,
-      "withdrawal": 326.8,
-      "working_gas_volume": 1123.9681,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-23",
-      "gas_in_storage": 397.5584,
-      "fill_rate": 35.37,
-      "injection": 4544.48,
-      "withdrawal": 293.6,
-      "working_gas_volume": 1123.9681,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-24",
-      "gas_in_storage": 401.1457,
-      "fill_rate": 35.69,
-      "injection": 3901.63,
-      "withdrawal": 364.5,
-      "working_gas_volume": 1123.9627,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-25",
-      "gas_in_storage": 403.7628,
-      "fill_rate": 35.92,
-      "injection": 3283.08,
-      "withdrawal": 639.4,
-      "working_gas_volume": 1123.9627,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-26",
-      "gas_in_storage": 405.8979,
-      "fill_rate": 36.11,
-      "injection": 2810.43,
-      "withdrawal": 664.5,
-      "working_gas_volume": 1123.9627,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-27",
-      "gas_in_storage": 407.6938,
-      "fill_rate": 36.27,
-      "injection": 2704.94,
-      "withdrawal": 858.6,
-      "working_gas_volume": 1123.9627,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-28",
-      "gas_in_storage": 410.4953,
-      "fill_rate": 36.52,
-      "injection": 3318.36,
-      "withdrawal": 472.3,
-      "working_gas_volume": 1123.9627,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-29",
-      "gas_in_storage": 415.0799,
-      "fill_rate": 36.93,
-      "injection": 4770.84,
-      "withdrawal": 153.7,
-      "working_gas_volume": 1123.9627,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-30",
-      "gas_in_storage": 419.8913,
-      "fill_rate": 37.36,
-      "injection": 4977.55,
-      "withdrawal": 195.8,
-      "working_gas_volume": 1123.9627,
-      "yoy": null
-    },
-    {
-      "date": "2021-05-31",
-      "gas_in_storage": 422.5138,
-      "fill_rate": 37.59,
-      "injection": 4706.25,
-      "withdrawal": 200.0,
-      "working_gas_volume": 1123.972,
-      "yoy": null
-    },
-    {
-      "date": "2021-06-01",
-      "gas_in_storage": 426.6578,
-      "fill_rate": 37.95,
-      "injection": 4428.63,
-      "withdrawal": 224.4,
-      "working_gas_volume": 1124.222,
-      "yoy": null
-    },
-    {
-      "date": "2021-06-02",
-      "gas_in_storage": 431.3447,
-      "fill_rate": 38.37,
-      "injection": 4824.9,
-      "withdrawal": 204.0,
-      "working_gas_volume": 1124.222,
-      "yoy": null
-    },
-    {
-      "date": "2021-06-03",
-      "gas_in_storage": 435.8824,
-      "fill_rate": 38.77,
-      "injection": 4639.75,
-      "withdrawal": 128.8,
-      "working_gas_volume": 1124.222,
-      "yoy": null
-    },
-    {
-      "date": "2021-06-04",
-      "gas_in_storage": 440.2905,
-      "fill_rate": 39.16,
-      "injection": 4519.3,
-      "withdrawal": 116.9,
-      "working_gas_volume": 1124.222,
-      "yoy": null
-    },
-    {
-      "date": "2021-06-05",
-      "gas_in_storage": 445.0886,
-      "fill_rate": 39.59,
-      "injection": 4898.22,
-      "withdrawal": 112.6,
-      "working_gas_volume": 1124.222,
-      "yoy": null
-    },
-    {
-      "date": "2021-06-06",
-      "gas_in_storage": 449.9995,
-      "fill_rate": 40.03,
-      "injection": 5027.88,
-      "withdrawal": 123.2,
-      "working_gas_volume": 1124.222,
-      "yoy": null
-    },
-    {
-      "date": "2021-06-07",
-      "gas_in_storage": 453.5808,
-      "fill_rate": 40.35,
-      "injection": 3849.23,
-      "withdrawal": 267.9,
-      "working_gas_volume": 1124.2259,
-      "yoy": null
-    },
-    {
-      "date": "2021-06-08",
-      "gas_in_storage": 457.0595,
-      "fill_rate": 40.66,
-      "injection": 3757.77,
-      "withdrawal": 280.9,
-      "working_gas_volume": 1124.2259,
-      "yoy": null
-    },
-    {
-      "date": "2021-06-09",
-      "gas_in_storage": 459.5693,
-      "fill_rate": 40.88,
-      "injection": 3183.27,
-      "withdrawal": 636.1,
-      "working_gas_volume": 1124.2259,
-      "yoy": null
-    },
-    {
-      "date": "2021-06-10",
-      "gas_in_storage": 462.8818,
-      "fill_rate": 41.17,
-      "injection": 3690.52,
-      "withdrawal": 426.7,
-      "working_gas_volume": 1124.2259,
-      "yoy": null
-    },
-    {
-      "date": "2021-06-11",
-      "gas_in_storage": 466.4505,
-      "fill_rate": 41.49,
-      "injection": 3891.69,
-      "withdrawal": 305.4,
-      "working_gas_volume": 1124.2259,
-      "yoy": null
-    },
-    {
       "date": "2021-06-12",
       "gas_in_storage": 471.3373,
       "fill_rate": 41.93,
@@ -2063,163 +1577,163 @@
     },
     {
       "date": "2021-12-04",
-      "gas_in_storage": 732.4913,
+      "gas_in_storage": 732.4915,
       "fill_rate": 65.6,
       "injection": 572.48,
-      "withdrawal": 5607.3,
+      "withdrawal": 5607.1,
       "working_gas_volume": 1116.5582,
       "yoy": null
     },
     {
       "date": "2021-12-05",
-      "gas_in_storage": 727.3707,
+      "gas_in_storage": 727.3711,
       "fill_rate": 65.14,
       "injection": 466.11,
-      "withdrawal": 5590.2,
+      "withdrawal": 5590.0,
       "working_gas_volume": 1116.5582,
       "yoy": null
     },
     {
       "date": "2021-12-06",
-      "gas_in_storage": 720.3376,
+      "gas_in_storage": 720.3381,
       "fill_rate": 64.51,
       "injection": 299.08,
-      "withdrawal": 7370.9,
+      "withdrawal": 7370.7,
       "working_gas_volume": 1116.5562,
       "yoy": null
     },
     {
       "date": "2021-12-07",
-      "gas_in_storage": 713.506,
+      "gas_in_storage": 713.5067,
       "fill_rate": 63.9,
       "injection": 274.1,
-      "withdrawal": 7064.0,
+      "withdrawal": 7063.8,
       "working_gas_volume": 1116.5562,
       "yoy": null
     },
     {
       "date": "2021-12-08",
-      "gas_in_storage": 706.7146,
+      "gas_in_storage": 706.7155,
       "fill_rate": 63.29,
       "injection": 221.9,
-      "withdrawal": 6981.7,
+      "withdrawal": 6981.5,
       "working_gas_volume": 1116.5562,
       "yoy": null
     },
     {
       "date": "2021-12-09",
-      "gas_in_storage": 699.446,
+      "gas_in_storage": 699.447,
       "fill_rate": 62.64,
       "injection": 194.89,
-      "withdrawal": 7469.5,
+      "withdrawal": 7469.3,
       "working_gas_volume": 1116.5562,
       "yoy": null
     },
     {
       "date": "2021-12-10",
-      "gas_in_storage": 692.7351,
+      "gas_in_storage": 692.7363,
       "fill_rate": 62.04,
       "injection": 247.88,
-      "withdrawal": 6950.8,
+      "withdrawal": 6950.6,
       "working_gas_volume": 1116.5562,
       "yoy": null
     },
     {
       "date": "2021-12-11",
-      "gas_in_storage": 687.227,
+      "gas_in_storage": 687.2284,
       "fill_rate": 61.55,
       "injection": 581.72,
-      "withdrawal": 6069.6,
+      "withdrawal": 6069.4,
       "working_gas_volume": 1116.5562,
       "yoy": null
     },
     {
       "date": "2021-12-12",
-      "gas_in_storage": 682.831,
+      "gas_in_storage": 682.8325,
       "fill_rate": 61.16,
       "injection": 724.18,
-      "withdrawal": 5035.3,
+      "withdrawal": 5035.1,
       "working_gas_volume": 1116.5562,
       "yoy": null
     },
     {
       "date": "2021-12-13",
-      "gas_in_storage": 676.8271,
+      "gas_in_storage": 676.8289,
       "fill_rate": 60.62,
       "injection": 476.08,
-      "withdrawal": 6491.7,
+      "withdrawal": 6491.6,
       "working_gas_volume": 1116.5611,
       "yoy": null
     },
     {
       "date": "2021-12-14",
-      "gas_in_storage": 671.2745,
+      "gas_in_storage": 671.2765,
       "fill_rate": 60.12,
       "injection": 366.37,
-      "withdrawal": 5871.6,
+      "withdrawal": 5871.4,
       "working_gas_volume": 1116.5611,
       "yoy": null
     },
     {
       "date": "2021-12-15",
-      "gas_in_storage": 666.0072,
+      "gas_in_storage": 666.0093,
       "fill_rate": 59.65,
       "injection": 403.23,
-      "withdrawal": 5625.6,
+      "withdrawal": 5625.4,
       "working_gas_volume": 1116.5611,
       "yoy": null
     },
     {
       "date": "2021-12-16",
-      "gas_in_storage": 660.6565,
+      "gas_in_storage": 660.6588,
       "fill_rate": 59.17,
       "injection": 429.1,
-      "withdrawal": 5766.3,
+      "withdrawal": 5766.2,
       "working_gas_volume": 1116.5611,
       "yoy": null
     },
     {
       "date": "2021-12-17",
-      "gas_in_storage": 655.2715,
+      "gas_in_storage": 655.2739,
       "fill_rate": 58.69,
       "injection": 351.55,
-      "withdrawal": 5735.7,
+      "withdrawal": 5735.5,
       "working_gas_volume": 1116.5611,
       "yoy": null
     },
     {
       "date": "2021-12-18",
-      "gas_in_storage": 650.7606,
+      "gas_in_storage": 650.7633,
       "fill_rate": 58.28,
       "injection": 328.7,
-      "withdrawal": 4777.7,
+      "withdrawal": 4777.5,
       "working_gas_volume": 1116.5611,
       "yoy": null
     },
     {
       "date": "2021-12-19",
-      "gas_in_storage": 645.9406,
+      "gas_in_storage": 645.9434,
       "fill_rate": 57.85,
       "injection": 301.18,
-      "withdrawal": 5089.7,
+      "withdrawal": 5089.5,
       "working_gas_volume": 1116.5611,
       "yoy": null
     },
     {
       "date": "2021-12-20",
-      "gas_in_storage": 638.3257,
+      "gas_in_storage": 638.3287,
       "fill_rate": 57.17,
       "injection": 98.28,
-      "withdrawal": 7702.2,
+      "withdrawal": 7702.0,
       "working_gas_volume": 1116.5587,
       "yoy": null
     },
     {
       "date": "2021-12-21",
-      "gas_in_storage": 629.7425,
+      "gas_in_storage": 629.7457,
       "fill_rate": 56.4,
       "injection": 152.05,
-      "withdrawal": 8694.6,
+      "withdrawal": 8694.5,
       "working_gas_volume": 1116.5587,
       "yoy": null
     },
@@ -3229,7 +2743,7 @@
       "injection": 3069.38,
       "withdrawal": 548.9,
       "working_gas_volume": 1105.7681,
-      "yoy": -6.84
+      "yoy": null
     },
     {
       "date": "2022-04-13",
@@ -3238,7 +2752,7 @@
       "injection": 3293.38,
       "withdrawal": 373.8,
       "working_gas_volume": 1105.7681,
-      "yoy": -5.95
+      "yoy": null
     },
     {
       "date": "2022-04-14",
@@ -3247,7 +2761,7 @@
       "injection": 3807.73,
       "withdrawal": 389.8,
       "working_gas_volume": 1105.7681,
-      "yoy": -4.9
+      "yoy": null
     },
     {
       "date": "2022-04-15",
@@ -3256,7 +2770,7 @@
       "injection": 4352.68,
       "withdrawal": 265.3,
       "working_gas_volume": 1106.3905,
-      "yoy": -3.45
+      "yoy": null
     },
     {
       "date": "2022-04-16",
@@ -3265,7 +2779,7 @@
       "injection": 4883.81,
       "withdrawal": 182.2,
       "working_gas_volume": 1106.3905,
-      "yoy": -2.01
+      "yoy": null
     },
     {
       "date": "2022-04-17",
@@ -3274,7 +2788,7 @@
       "injection": 5003.81,
       "withdrawal": 174.3,
       "working_gas_volume": 1106.3905,
-      "yoy": -0.53
+      "yoy": null
     },
     {
       "date": "2022-04-18",
@@ -3283,7 +2797,7 @@
       "injection": 4903.91,
       "withdrawal": 183.2,
       "working_gas_volume": 1106.39,
-      "yoy": 0.87
+      "yoy": null
     },
     {
       "date": "2022-04-19",
@@ -3292,7 +2806,7 @@
       "injection": 3494.78,
       "withdrawal": 569.9,
       "working_gas_volume": 1106.39,
-      "yoy": 1.82
+      "yoy": null
     },
     {
       "date": "2022-04-20",
@@ -3301,7 +2815,7 @@
       "injection": 3424.06,
       "withdrawal": 647.1,
       "working_gas_volume": 1106.39,
-      "yoy": 2.69
+      "yoy": null
     },
     {
       "date": "2022-04-21",
@@ -3310,7 +2824,7 @@
       "injection": 3567.6,
       "withdrawal": 473.7,
       "working_gas_volume": 1107.537,
-      "yoy": 3.41
+      "yoy": null
     },
     {
       "date": "2022-04-22",
@@ -3319,7 +2833,7 @@
       "injection": 3978.11,
       "withdrawal": 365.0,
       "working_gas_volume": 1107.537,
-      "yoy": 4.28
+      "yoy": null
     },
     {
       "date": "2022-04-23",
@@ -3328,7 +2842,7 @@
       "injection": 4735.43,
       "withdrawal": 177.7,
       "working_gas_volume": 1107.537,
-      "yoy": 5.36
+      "yoy": null
     },
     {
       "date": "2022-04-24",
@@ -3337,7 +2851,7 @@
       "injection": 4880.37,
       "withdrawal": 206.3,
       "working_gas_volume": 1107.537,
-      "yoy": 5.92
+      "yoy": null
     },
     {
       "date": "2022-04-25",
@@ -3346,7 +2860,7 @@
       "injection": 3576.23,
       "withdrawal": 658.9,
       "working_gas_volume": 1107.5477,
-      "yoy": 5.96
+      "yoy": null
     },
     {
       "date": "2022-04-26",
@@ -3355,7 +2869,7 @@
       "injection": 2920.96,
       "withdrawal": 699.3,
       "working_gas_volume": 1107.5477,
-      "yoy": 6.31
+      "yoy": null
     },
     {
       "date": "2022-04-27",
@@ -3364,7 +2878,7 @@
       "injection": 2733.05,
       "withdrawal": 617.6,
       "working_gas_volume": 1103.0415,
-      "yoy": 6.67
+      "yoy": null
     },
     {
       "date": "2022-04-28",
@@ -3373,7 +2887,7 @@
       "injection": 3433.38,
       "withdrawal": 394.4,
       "working_gas_volume": 1103.0415,
-      "yoy": 7.23
+      "yoy": null
     },
     {
       "date": "2022-04-29",
@@ -3382,7 +2896,7 @@
       "injection": 3693.31,
       "withdrawal": 369.0,
       "working_gas_volume": 1103.0415,
-      "yoy": 7.89
+      "yoy": null
     },
     {
       "date": "2022-04-30",
@@ -3391,7 +2905,7 @@
       "injection": 4388.8,
       "withdrawal": 160.0,
       "working_gas_volume": 1101.606,
-      "yoy": 9.72
+      "yoy": null
     },
     {
       "date": "2022-05-01",
@@ -3400,7 +2914,7 @@
       "injection": 5178.25,
       "withdrawal": 116.8,
       "working_gas_volume": 1103.838,
-      "yoy": 10.45
+      "yoy": null
     },
     {
       "date": "2022-05-02",
@@ -3409,7 +2923,7 @@
       "injection": 4525.83,
       "withdrawal": 227.3,
       "working_gas_volume": 1103.8585,
-      "yoy": 10.93
+      "yoy": null
     },
     {
       "date": "2022-05-03",
@@ -3418,7 +2932,7 @@
       "injection": 4614.84,
       "withdrawal": 166.3,
       "working_gas_volume": 1103.8585,
-      "yoy": 11.88
+      "yoy": null
     },
     {
       "date": "2022-05-04",
@@ -3427,7 +2941,7 @@
       "injection": 4766.47,
       "withdrawal": 401.2,
       "working_gas_volume": 1103.8585,
-      "yoy": 12.7
+      "yoy": null
     },
     {
       "date": "2022-05-05",
@@ -3436,7 +2950,7 @@
       "injection": 4786.78,
       "withdrawal": 280.3,
       "working_gas_volume": 1103.8585,
-      "yoy": 13.91
+      "yoy": null
     },
     {
       "date": "2022-05-06",
@@ -3445,7 +2959,7 @@
       "injection": 5531.21,
       "withdrawal": 842.5,
       "working_gas_volume": 1103.8585,
-      "yoy": 15.28
+      "yoy": null
     },
     {
       "date": "2022-05-07",
@@ -3454,7 +2968,7 @@
       "injection": 5904.69,
       "withdrawal": 218.2,
       "working_gas_volume": 1103.8585,
-      "yoy": 16.78
+      "yoy": null
     },
     {
       "date": "2022-05-08",
@@ -3463,7 +2977,7 @@
       "injection": 5923.71,
       "withdrawal": 243.4,
       "working_gas_volume": 1103.8585,
-      "yoy": 17.35
+      "yoy": null
     },
     {
       "date": "2022-05-09",
@@ -3472,7 +2986,7 @@
       "injection": 5330.21,
       "withdrawal": 520.2,
       "working_gas_volume": 1103.8595,
-      "yoy": 17.21
+      "yoy": null
     },
     {
       "date": "2022-05-10",
@@ -3481,7 +2995,7 @@
       "injection": 5406.01,
       "withdrawal": 803.8,
       "working_gas_volume": 1103.8595,
-      "yoy": 17.13
+      "yoy": null
     },
     {
       "date": "2022-05-11",
@@ -3490,7 +3004,7 @@
       "injection": 5439.03,
       "withdrawal": 498.8,
       "working_gas_volume": 1103.8595,
-      "yoy": 17.37
+      "yoy": null
     },
     {
       "date": "2022-05-12",
@@ -3499,7 +3013,7 @@
       "injection": 5397.44,
       "withdrawal": 705.3,
       "working_gas_volume": 1103.8595,
-      "yoy": 17.66
+      "yoy": null
     },
     {
       "date": "2022-05-13",
@@ -3508,7 +3022,7 @@
       "injection": 5766.7,
       "withdrawal": 180.3,
       "working_gas_volume": 1102.7513,
-      "yoy": 17.99
+      "yoy": null
     },
     {
       "date": "2022-05-14",
@@ -3517,7 +3031,7 @@
       "injection": 6223.65,
       "withdrawal": 82.8,
       "working_gas_volume": 1102.7513,
-      "yoy": 18.56
+      "yoy": null
     },
     {
       "date": "2022-05-15",
@@ -3526,7 +3040,7 @@
       "injection": 6517.6,
       "withdrawal": 63.9,
       "working_gas_volume": 1102.7513,
-      "yoy": 19.12
+      "yoy": null
     },
     {
       "date": "2022-05-16",
@@ -3535,7 +3049,7 @@
       "injection": 5066.53,
       "withdrawal": 308.3,
       "working_gas_volume": 1102.7713,
-      "yoy": 19.18
+      "yoy": null
     },
     {
       "date": "2022-05-17",
@@ -3544,7 +3058,7 @@
       "injection": 4615.53,
       "withdrawal": 238.1,
       "working_gas_volume": 1102.7713,
-      "yoy": 19.6
+      "yoy": null
     },
     {
       "date": "2022-05-18",
@@ -3553,7 +3067,7 @@
       "injection": 4719.2,
       "withdrawal": 287.1,
       "working_gas_volume": 1102.7503,
-      "yoy": 20.26
+      "yoy": null
     },
     {
       "date": "2022-05-19",
@@ -3562,7 +3076,7 @@
       "injection": 5020.51,
       "withdrawal": 226.4,
       "working_gas_volume": 1102.7503,
-      "yoy": 20.96
+      "yoy": null
     },
     {
       "date": "2022-05-20",
@@ -3571,7 +3085,7 @@
       "injection": 5226.38,
       "withdrawal": 235.4,
       "working_gas_volume": 1102.7503,
-      "yoy": 21.39
+      "yoy": null
     },
     {
       "date": "2022-05-21",
@@ -3580,7 +3094,7 @@
       "injection": 6039.64,
       "withdrawal": 94.6,
       "working_gas_volume": 1102.7503,
-      "yoy": 21.83
+      "yoy": null
     },
     {
       "date": "2022-05-22",
@@ -3589,7 +3103,7 @@
       "injection": 5957.11,
       "withdrawal": 112.4,
       "working_gas_volume": 1102.7503,
-      "yoy": 22.08
+      "yoy": null
     },
     {
       "date": "2022-05-23",
@@ -3598,7 +3112,7 @@
       "injection": 5041.55,
       "withdrawal": 246.2,
       "working_gas_volume": 1102.7664,
-      "yoy": 22.0
+      "yoy": null
     },
     {
       "date": "2022-05-24",
@@ -3607,7 +3121,7 @@
       "injection": 4954.15,
       "withdrawal": 262.9,
       "working_gas_volume": 1102.7664,
-      "yoy": 22.08
+      "yoy": null
     },
     {
       "date": "2022-05-25",
@@ -3616,7 +3130,7 @@
       "injection": 5184.87,
       "withdrawal": 278.4,
       "working_gas_volume": 1102.7664,
-      "yoy": 22.53
+      "yoy": null
     },
     {
       "date": "2022-05-26",
@@ -3625,7 +3139,7 @@
       "injection": 5509.26,
       "withdrawal": 167.6,
       "working_gas_volume": 1102.7664,
-      "yoy": 23.2
+      "yoy": null
     },
     {
       "date": "2022-05-27",
@@ -3634,7 +3148,7 @@
       "injection": 5395.09,
       "withdrawal": 93.2,
       "working_gas_volume": 1102.7664,
-      "yoy": 23.96
+      "yoy": null
     },
     {
       "date": "2022-05-28",
@@ -3643,7 +3157,7 @@
       "injection": 5514.97,
       "withdrawal": 132.2,
       "working_gas_volume": 1102.7664,
-      "yoy": 24.42
+      "yoy": null
     },
     {
       "date": "2022-05-29",
@@ -3652,7 +3166,7 @@
       "injection": 5373.56,
       "withdrawal": 204.1,
       "working_gas_volume": 1102.7664,
-      "yoy": 24.3
+      "yoy": null
     },
     {
       "date": "2022-05-30",
@@ -3661,7 +3175,7 @@
       "injection": 4073.87,
       "withdrawal": 672.2,
       "working_gas_volume": 1102.784,
-      "yoy": 23.73
+      "yoy": null
     },
     {
       "date": "2022-05-31",
@@ -3670,7 +3184,7 @@
       "injection": 3920.87,
       "withdrawal": 528.6,
       "working_gas_volume": 1102.784,
-      "yoy": 23.73
+      "yoy": null
     },
     {
       "date": "2022-06-01",
@@ -3679,7 +3193,7 @@
       "injection": 4111.98,
       "withdrawal": 281.4,
       "working_gas_volume": 1102.7839,
-      "yoy": 23.42
+      "yoy": null
     },
     {
       "date": "2022-06-02",
@@ -3688,7 +3202,7 @@
       "injection": 4796.68,
       "withdrawal": 287.0,
       "working_gas_volume": 1102.7839,
-      "yoy": 23.12
+      "yoy": null
     },
     {
       "date": "2022-06-03",
@@ -3697,7 +3211,7 @@
       "injection": 4851.11,
       "withdrawal": 192.7,
       "working_gas_volume": 1102.7839,
-      "yoy": 22.92
+      "yoy": null
     },
     {
       "date": "2022-06-04",
@@ -3706,7 +3220,7 @@
       "injection": 5706.35,
       "withdrawal": 142.1,
       "working_gas_volume": 1102.7839,
-      "yoy": 22.95
+      "yoy": null
     },
     {
       "date": "2022-06-05",
@@ -3715,7 +3229,7 @@
       "injection": 5721.37,
       "withdrawal": 162.5,
       "working_gas_volume": 1102.7839,
-      "yoy": 22.88
+      "yoy": 16.03
     },
     {
       "date": "2022-06-06",
@@ -3724,7 +3238,7 @@
       "injection": 5154.91,
       "withdrawal": 179.6,
       "working_gas_volume": 1102.8015,
-      "yoy": 22.65
+      "yoy": 17.09
     },
     {
       "date": "2022-06-07",
@@ -3733,7 +3247,7 @@
       "injection": 4270.9,
       "withdrawal": 457.3,
       "working_gas_volume": 1102.8015,
-      "yoy": 22.52
+      "yoy": 17.9
     },
     {
       "date": "2022-06-08",
@@ -3742,7 +3256,7 @@
       "injection": 3750.41,
       "withdrawal": 848.0,
       "working_gas_volume": 1102.8015,
-      "yoy": 22.22
+      "yoy": 18.52
     },
     {
       "date": "2022-06-09",
@@ -3751,7 +3265,7 @@
       "injection": 3760.14,
       "withdrawal": 894.5,
       "working_gas_volume": 1102.8016,
-      "yoy": 22.12
+      "yoy": 19.07
     },
     {
       "date": "2022-06-10",
@@ -3760,7 +3274,7 @@
       "injection": 4018.14,
       "withdrawal": 627.5,
       "working_gas_volume": 1102.8015,
-      "yoy": 21.82
+      "yoy": 19.63
     },
     {
       "date": "2022-06-11",
@@ -3769,7 +3283,7 @@
       "injection": 5814.42,
       "withdrawal": 72.8,
       "working_gas_volume": 1102.8015,
-      "yoy": 22.12
+      "yoy": 20.85
     },
     {
       "date": "2022-06-12",
@@ -4304,10 +3818,10 @@
     },
     {
       "date": "2022-08-10",
-      "gas_in_storage": 813.5192,
+      "gas_in_storage": 813.5194,
       "fill_rate": 73.2,
-      "injection": 4654.67,
-      "withdrawal": 210.8,
+      "injection": 4654.78,
+      "withdrawal": 210.7,
       "working_gas_volume": 1111.3788,
       "yoy": 20.39
     },
@@ -5600,10 +5114,10 @@
     },
     {
       "date": "2023-01-01",
-      "gas_in_storage": 934.9269,
+      "gas_in_storage": 934.9272,
       "fill_rate": 83.53,
-      "injection": 2341.51,
-      "withdrawal": 767.9,
+      "injection": 2341.62,
+      "withdrawal": 767.7,
       "working_gas_volume": 1119.3095,
       "yoy": 55.71
     },
@@ -5726,28 +5240,28 @@
     },
     {
       "date": "2023-01-15",
-      "gas_in_storage": 912.98,
+      "gas_in_storage": 912.9803,
       "fill_rate": 81.52,
-      "injection": 494.93,
-      "withdrawal": 2734.7,
+      "injection": 495.04,
+      "withdrawal": 2734.5,
       "working_gas_volume": 1119.956,
       "yoy": 73.71
     },
     {
       "date": "2023-01-16",
-      "gas_in_storage": 908.2565,
+      "gas_in_storage": 908.257,
       "fill_rate": 81.1,
-      "injection": 186.08,
-      "withdrawal": 4763.6,
+      "injection": 186.19,
+      "withdrawal": 4763.5,
       "working_gas_volume": 1119.956,
       "yoy": 74.64
     },
     {
       "date": "2023-01-17",
-      "gas_in_storage": 902.9038,
+      "gas_in_storage": 902.9047,
       "fill_rate": 80.62,
-      "injection": 172.85,
-      "withdrawal": 5511.3,
+      "injection": 172.96,
+      "withdrawal": 5511.1,
       "working_gas_volume": 1119.956,
       "yoy": 76.05
     },
@@ -5834,82 +5348,82 @@
     },
     {
       "date": "2023-01-27",
-      "gas_in_storage": 832.8187,
+      "gas_in_storage": 832.8188,
       "fill_rate": 74.26,
       "injection": 159.86,
-      "withdrawal": 7977.4,
+      "withdrawal": 7977.2,
       "working_gas_volume": 1121.4501,
       "yoy": 89.07
     },
     {
       "date": "2023-01-28",
-      "gas_in_storage": 826.3134,
+      "gas_in_storage": 826.3138,
       "fill_rate": 73.68,
       "injection": 199.59,
-      "withdrawal": 6648.9,
+      "withdrawal": 6648.7,
       "working_gas_volume": 1121.4501,
       "yoy": 90.3
     },
     {
       "date": "2023-01-29",
-      "gas_in_storage": 820.4145,
+      "gas_in_storage": 820.415,
       "fill_rate": 73.16,
       "injection": 255.43,
-      "withdrawal": 5939.1,
+      "withdrawal": 5938.9,
       "working_gas_volume": 1121.4501,
       "yoy": 90.69
     },
     {
       "date": "2023-01-30",
-      "gas_in_storage": 813.9426,
+      "gas_in_storage": 813.9433,
       "fill_rate": 72.58,
       "injection": 118.89,
-      "withdrawal": 6576.8,
+      "withdrawal": 6576.6,
       "working_gas_volume": 1121.4501,
       "yoy": 90.91
     },
     {
       "date": "2023-01-31",
-      "gas_in_storage": 810.1706,
+      "gas_in_storage": 810.1715,
       "fill_rate": 72.1,
       "injection": 193.58,
-      "withdrawal": 6162.9,
+      "withdrawal": 6162.7,
       "working_gas_volume": 1123.7501,
-      "yoy": 92.79
+      "yoy": 92.8
     },
     {
       "date": "2023-02-01",
-      "gas_in_storage": 804.8713,
+      "gas_in_storage": 804.8724,
       "fill_rate": 71.62,
       "injection": 215.59,
-      "withdrawal": 5393.5,
+      "withdrawal": 5393.3,
       "working_gas_volume": 1123.7501,
       "yoy": 93.81
     },
     {
       "date": "2023-02-02",
-      "gas_in_storage": 799.7828,
+      "gas_in_storage": 799.784,
       "fill_rate": 71.17,
       "injection": 238.62,
-      "withdrawal": 5329.4,
+      "withdrawal": 5329.2,
       "working_gas_volume": 1123.7501,
       "yoy": 94.87
     },
     {
       "date": "2023-02-03",
-      "gas_in_storage": 795.4704,
+      "gas_in_storage": 795.4718,
       "fill_rate": 70.79,
       "injection": 233.03,
-      "withdrawal": 4431.9,
+      "withdrawal": 4431.8,
       "working_gas_volume": 1123.7501,
       "yoy": 96.01
     },
     {
       "date": "2023-02-04",
-      "gas_in_storage": 791.983,
+      "gas_in_storage": 791.9845,
       "fill_rate": 70.48,
       "injection": 357.98,
-      "withdrawal": 3802.6,
+      "withdrawal": 3802.4,
       "working_gas_volume": 1123.7501,
       "yoy": 96.99
     },
@@ -8993,10 +8507,10 @@
     },
     {
       "date": "2024-01-13",
-      "gas_in_storage": 906.7256,
+      "gas_in_storage": 906.7261,
       "fill_rate": 79.45,
       "injection": 246.72,
-      "withdrawal": 6986.9,
+      "withdrawal": 6986.5,
       "working_gas_volume": 1141.2834,
       "yoy": -1.16
     },
@@ -10001,10 +9515,10 @@
     },
     {
       "date": "2024-05-04",
-      "gas_in_storage": 716.806,
+      "gas_in_storage": 716.8062,
       "fill_rate": 63.32,
-      "injection": 2999.51,
-      "withdrawal": 277.4,
+      "injection": 2999.53,
+      "withdrawal": 277.3,
       "working_gas_volume": 1132.0607,
       "yoy": 4.07
     },
@@ -10847,55 +10361,55 @@
     },
     {
       "date": "2024-08-06",
-      "gas_in_storage": 983.454,
+      "gas_in_storage": 983.4541,
       "fill_rate": 86.41,
-      "injection": 2674.72,
-      "withdrawal": 294.7,
+      "injection": 2674.74,
+      "withdrawal": 294.5,
       "working_gas_volume": 1138.0965,
       "yoy": -0.98
     },
     {
       "date": "2024-08-07",
-      "gas_in_storage": 985.9217,
+      "gas_in_storage": 985.922,
       "fill_rate": 86.63,
-      "injection": 2772.84,
-      "withdrawal": 296.1,
+      "injection": 2772.86,
+      "withdrawal": 296.0,
       "working_gas_volume": 1138.0965,
       "yoy": -1.07
     },
     {
       "date": "2024-08-08",
-      "gas_in_storage": 988.3214,
+      "gas_in_storage": 988.3219,
       "fill_rate": 86.84,
-      "injection": 2770.37,
-      "withdrawal": 369.0,
+      "injection": 2770.39,
+      "withdrawal": 368.8,
       "working_gas_volume": 1138.0965,
       "yoy": -1.14
     },
     {
       "date": "2024-08-09",
-      "gas_in_storage": 991.161,
+      "gas_in_storage": 991.1617,
       "fill_rate": 87.09,
-      "injection": 3142.41,
-      "withdrawal": 304.4,
+      "injection": 3142.43,
+      "withdrawal": 304.3,
       "working_gas_volume": 1138.0965,
       "yoy": -1.16
     },
     {
       "date": "2024-08-10",
-      "gas_in_storage": 994.261,
+      "gas_in_storage": 994.2618,
       "fill_rate": 87.36,
-      "injection": 3293.6,
-      "withdrawal": 192.4,
+      "injection": 3293.62,
+      "withdrawal": 192.2,
       "working_gas_volume": 1138.0965,
       "yoy": -1.19
     },
     {
       "date": "2024-08-11",
-      "gas_in_storage": 998.2654,
+      "gas_in_storage": 998.2664,
       "fill_rate": 87.71,
-      "injection": 3370.46,
-      "withdrawal": 222.6,
+      "injection": 3370.48,
+      "withdrawal": 222.4,
       "working_gas_volume": 1138.0965,
       "yoy": -1.21
     },
@@ -11927,1398 +11441,1398 @@
     },
     {
       "date": "2024-12-04",
-      "gas_in_storage": 959.5152,
+      "gas_in_storage": 959.5154,
       "fill_rate": 83.6,
-      "injection": 131.74,
-      "withdrawal": 6510.6,
+      "injection": 131.76,
+      "withdrawal": 6510.4,
       "working_gas_volume": 1147.7616,
       "yoy": -9.2
     },
     {
       "date": "2024-12-05",
-      "gas_in_storage": 953.8848,
+      "gas_in_storage": 953.8852,
       "fill_rate": 83.11,
-      "injection": 211.99,
-      "withdrawal": 5804.6,
+      "injection": 212.01,
+      "withdrawal": 5804.4,
       "working_gas_volume": 1147.7616,
       "yoy": -9.16
     },
     {
       "date": "2024-12-06",
-      "gas_in_storage": 949.0927,
+      "gas_in_storage": 949.0932,
       "fill_rate": 82.69,
-      "injection": 334.8,
-      "withdrawal": 5125.9,
+      "injection": 334.82,
+      "withdrawal": 5125.7,
       "working_gas_volume": 1147.7616,
       "yoy": -9.1
     },
     {
       "date": "2024-12-07",
-      "gas_in_storage": 945.2736,
+      "gas_in_storage": 945.2742,
       "fill_rate": 82.36,
-      "injection": 406.96,
-      "withdrawal": 4228.1,
+      "injection": 406.98,
+      "withdrawal": 4228.0,
       "working_gas_volume": 1147.7616,
       "yoy": -9.04
     },
     {
       "date": "2024-12-08",
-      "gas_in_storage": 941.6181,
+      "gas_in_storage": 941.6189,
       "fill_rate": 82.04,
-      "injection": 400.35,
-      "withdrawal": 4035.5,
+      "injection": 400.37,
+      "withdrawal": 4035.4,
       "working_gas_volume": 1147.7616,
       "yoy": -9.14
     },
     {
       "date": "2024-12-09",
-      "gas_in_storage": 935.8729,
+      "gas_in_storage": 935.8739,
       "fill_rate": 81.54,
-      "injection": 164.26,
-      "withdrawal": 5922.2,
+      "injection": 164.28,
+      "withdrawal": 5922.1,
       "working_gas_volume": 1147.7616,
       "yoy": -9.5
     },
     {
       "date": "2024-12-10",
-      "gas_in_storage": 928.3669,
-      "fill_rate": 80.88,
-      "injection": 92.26,
-      "withdrawal": 7592.4,
+      "gas_in_storage": 928.3681,
+      "fill_rate": 80.89,
+      "injection": 92.28,
+      "withdrawal": 7592.3,
       "working_gas_volume": 1147.7616,
       "yoy": -9.91
     },
     {
       "date": "2024-12-11",
-      "gas_in_storage": 920.1289,
+      "gas_in_storage": 920.1302,
       "fill_rate": 80.16,
-      "injection": 96.01,
-      "withdrawal": 8361.4,
+      "injection": 96.03,
+      "withdrawal": 8361.2,
       "working_gas_volume": 1147.8346,
       "yoy": -10.37
     },
     {
       "date": "2024-12-12",
-      "gas_in_storage": 911.8421,
+      "gas_in_storage": 911.8436,
       "fill_rate": 79.44,
-      "injection": 74.84,
-      "withdrawal": 8342.3,
+      "injection": 74.86,
+      "withdrawal": 8342.1,
       "working_gas_volume": 1147.8346,
       "yoy": -10.83
     },
     {
       "date": "2024-12-13",
-      "gas_in_storage": 904.056,
+      "gas_in_storage": 904.0577,
       "fill_rate": 78.76,
-      "injection": 105.48,
-      "withdrawal": 8037.5,
+      "injection": 105.5,
+      "withdrawal": 8037.4,
       "working_gas_volume": 1147.8346,
       "yoy": -11.22
     },
     {
       "date": "2024-12-14",
-      "gas_in_storage": 898.4652,
+      "gas_in_storage": 898.4671,
       "fill_rate": 78.27,
-      "injection": 246.11,
-      "withdrawal": 5836.7,
+      "injection": 246.13,
+      "withdrawal": 5836.6,
       "working_gas_volume": 1147.8346,
       "yoy": -11.44
     },
     {
       "date": "2024-12-15",
-      "gas_in_storage": 894.3103,
+      "gas_in_storage": 894.3124,
       "fill_rate": 77.91,
-      "injection": 431.13,
-      "withdrawal": 4573.7,
+      "injection": 431.15,
+      "withdrawal": 4573.5,
       "working_gas_volume": 1147.8346,
       "yoy": -11.69
     },
     {
       "date": "2024-12-16",
-      "gas_in_storage": 889.5768,
+      "gas_in_storage": 889.579,
       "fill_rate": 77.5,
-      "injection": 325.85,
-      "withdrawal": 5220.6,
+      "injection": 325.87,
+      "withdrawal": 5220.4,
       "working_gas_volume": 1147.8346,
       "yoy": -11.98
     },
     {
       "date": "2024-12-17",
-      "gas_in_storage": 884.9341,
+      "gas_in_storage": 884.9364,
       "fill_rate": 77.1,
-      "injection": 285.49,
-      "withdrawal": 4926.6,
+      "injection": 285.51,
+      "withdrawal": 4926.4,
       "working_gas_volume": 1147.8346,
       "yoy": -12.09
     },
     {
       "date": "2024-12-18",
-      "gas_in_storage": 880.7647,
+      "gas_in_storage": 880.7673,
       "fill_rate": 76.73,
-      "injection": 399.45,
-      "withdrawal": 4562.9,
+      "injection": 399.47,
+      "withdrawal": 4562.7,
       "working_gas_volume": 1147.8346,
       "yoy": -12.12
     },
     {
       "date": "2024-12-19",
-      "gas_in_storage": 877.6265,
+      "gas_in_storage": 877.6292,
       "fill_rate": 76.46,
-      "injection": 486.9,
-      "withdrawal": 3903.7,
+      "injection": 486.92,
+      "withdrawal": 3903.5,
       "working_gas_volume": 1147.8346,
       "yoy": -12.11
     },
     {
       "date": "2024-12-20",
-      "gas_in_storage": 873.6536,
+      "gas_in_storage": 873.6565,
       "fill_rate": 76.11,
-      "injection": 423.56,
-      "withdrawal": 4391.6,
+      "injection": 423.58,
+      "withdrawal": 4391.4,
       "working_gas_volume": 1147.8346,
       "yoy": -12.27
     },
     {
       "date": "2024-12-21",
-      "gas_in_storage": 870.9673,
+      "gas_in_storage": 870.9704,
       "fill_rate": 75.88,
-      "injection": 782.04,
-      "withdrawal": 3464.0,
+      "injection": 782.07,
+      "withdrawal": 3463.9,
       "working_gas_volume": 1147.8346,
       "yoy": -12.36
     },
     {
       "date": "2024-12-22",
-      "gas_in_storage": 868.226,
+      "gas_in_storage": 868.2292,
       "fill_rate": 75.64,
-      "injection": 827.95,
-      "withdrawal": 3393.4,
+      "injection": 827.97,
+      "withdrawal": 3393.2,
       "working_gas_volume": 1147.8346,
       "yoy": -12.52
     },
     {
       "date": "2024-12-23",
-      "gas_in_storage": 864.3207,
+      "gas_in_storage": 864.3241,
       "fill_rate": 75.3,
-      "injection": 402.85,
-      "withdrawal": 4295.6,
+      "injection": 402.87,
+      "withdrawal": 4295.4,
       "working_gas_volume": 1147.8346,
       "yoy": -12.87
     },
     {
       "date": "2024-12-24",
-      "gas_in_storage": 860.7595,
+      "gas_in_storage": 860.7631,
       "fill_rate": 74.99,
-      "injection": 400.71,
-      "withdrawal": 3958.7,
+      "injection": 400.73,
+      "withdrawal": 3958.6,
       "working_gas_volume": 1147.8346,
       "yoy": -13.21
     },
     {
       "date": "2024-12-25",
-      "gas_in_storage": 858.176,
-      "fill_rate": 74.76,
-      "injection": 541.58,
-      "withdrawal": 3221.2,
+      "gas_in_storage": 858.1797,
+      "fill_rate": 74.77,
+      "injection": 541.6,
+      "withdrawal": 3221.0,
       "working_gas_volume": 1147.8346,
       "yoy": -13.4
     },
     {
       "date": "2024-12-26",
-      "gas_in_storage": 854.6007,
+      "gas_in_storage": 854.6046,
       "fill_rate": 74.45,
-      "injection": 415.57,
-      "withdrawal": 3986.9,
+      "injection": 415.59,
+      "withdrawal": 3986.8,
       "working_gas_volume": 1147.8346,
       "yoy": -13.62
     },
     {
       "date": "2024-12-27",
-      "gas_in_storage": 849.3521,
+      "gas_in_storage": 849.3562,
       "fill_rate": 74.0,
-      "injection": 196.18,
-      "withdrawal": 5405.0,
+      "injection": 196.2,
+      "withdrawal": 5404.8,
       "working_gas_volume": 1147.8346,
       "yoy": -14.05
     },
     {
       "date": "2024-12-28",
-      "gas_in_storage": 844.0033,
+      "gas_in_storage": 844.0075,
       "fill_rate": 73.53,
-      "injection": 183.2,
-      "withdrawal": 5519.2,
+      "injection": 183.22,
+      "withdrawal": 5519.1,
       "working_gas_volume": 1147.8346,
       "yoy": -14.47
     },
     {
       "date": "2024-12-29",
-      "gas_in_storage": 838.9732,
+      "gas_in_storage": 838.9776,
       "fill_rate": 73.09,
-      "injection": 241.69,
-      "withdrawal": 5255.9,
+      "injection": 241.71,
+      "withdrawal": 5255.8,
       "working_gas_volume": 1147.8346,
       "yoy": -14.89
     },
     {
       "date": "2024-12-30",
-      "gas_in_storage": 832.0209,
+      "gas_in_storage": 832.0255,
       "fill_rate": 72.49,
-      "injection": 204.27,
-      "withdrawal": 5052.6,
+      "injection": 204.29,
+      "withdrawal": 5052.4,
       "working_gas_volume": 1147.8346,
       "yoy": -15.5
     },
     {
       "date": "2024-12-31",
-      "gas_in_storage": 828.2484,
+      "gas_in_storage": 828.2532,
       "fill_rate": 72.16,
-      "injection": 244.57,
-      "withdrawal": 5390.2,
+      "injection": 244.59,
+      "withdrawal": 5390.1,
       "working_gas_volume": 1147.8346,
       "yoy": -15.73
     },
     {
       "date": "2025-01-01",
-      "gas_in_storage": 824.0968,
+      "gas_in_storage": 824.1017,
       "fill_rate": 71.81,
-      "injection": 429.66,
-      "withdrawal": 4578.9,
+      "injection": 429.68,
+      "withdrawal": 4578.7,
       "working_gas_volume": 1147.6446,
       "yoy": -15.94
     },
     {
       "date": "2025-01-02",
-      "gas_in_storage": 818.5641,
+      "gas_in_storage": 818.5692,
       "fill_rate": 71.33,
-      "injection": 176.11,
-      "withdrawal": 5704.2,
+      "injection": 176.13,
+      "withdrawal": 5704.1,
       "working_gas_volume": 1147.6446,
       "yoy": -16.29
     },
     {
       "date": "2025-01-03",
-      "gas_in_storage": 811.9118,
+      "gas_in_storage": 811.917,
       "fill_rate": 70.75,
-      "injection": 172.29,
-      "withdrawal": 6804.6,
+      "injection": 172.31,
+      "withdrawal": 6804.4,
       "working_gas_volume": 1147.6446,
       "yoy": -16.64
     },
     {
       "date": "2025-01-04",
-      "gas_in_storage": 805.4081,
+      "gas_in_storage": 805.4136,
       "fill_rate": 70.18,
-      "injection": 216.09,
-      "withdrawal": 6738.7,
+      "injection": 216.11,
+      "withdrawal": 6738.5,
       "working_gas_volume": 1147.6446,
       "yoy": -16.94
     },
     {
       "date": "2025-01-05",
-      "gas_in_storage": 800.1435,
+      "gas_in_storage": 800.1491,
       "fill_rate": 69.72,
-      "injection": 390.79,
-      "withdrawal": 5833.4,
+      "injection": 390.81,
+      "withdrawal": 5833.2,
       "working_gas_volume": 1147.6446,
       "yoy": -17.12
     },
     {
       "date": "2025-01-06",
-      "gas_in_storage": 795.5357,
+      "gas_in_storage": 795.5415,
       "fill_rate": 69.32,
-      "injection": 400.73,
-      "withdrawal": 5007.4,
+      "injection": 400.75,
+      "withdrawal": 5007.2,
       "working_gas_volume": 1147.6446,
       "yoy": -17.15
     },
     {
       "date": "2025-01-07",
-      "gas_in_storage": 789.9493,
+      "gas_in_storage": 789.9552,
       "fill_rate": 68.83,
-      "injection": 222.1,
-      "withdrawal": 5809.4,
+      "injection": 222.12,
+      "withdrawal": 5809.3,
       "working_gas_volume": 1147.6446,
       "yoy": -16.96
     },
     {
       "date": "2025-01-08",
-      "gas_in_storage": 783.1403,
+      "gas_in_storage": 783.1464,
       "fill_rate": 68.24,
-      "injection": 230.47,
-      "withdrawal": 6836.2,
+      "injection": 230.49,
+      "withdrawal": 6836.0,
       "working_gas_volume": 1147.6446,
       "yoy": -16.83
     },
     {
       "date": "2025-01-09",
-      "gas_in_storage": 776.2143,
+      "gas_in_storage": 776.2206,
       "fill_rate": 67.64,
-      "injection": 194.24,
-      "withdrawal": 7135.9,
+      "injection": 194.26,
+      "withdrawal": 7135.8,
       "working_gas_volume": 1147.6446,
-      "yoy": -16.7
+      "yoy": -16.69
     },
     {
       "date": "2025-01-10",
-      "gas_in_storage": 769.0816,
+      "gas_in_storage": 769.088,
       "fill_rate": 66.9,
-      "injection": 116.47,
-      "withdrawal": 6471.3,
+      "injection": 116.49,
+      "withdrawal": 6471.2,
       "working_gas_volume": 1149.6521,
       "yoy": -16.6
     },
     {
       "date": "2025-01-11",
-      "gas_in_storage": 762.0247,
+      "gas_in_storage": 762.0313,
       "fill_rate": 66.4,
-      "injection": 146.55,
-      "withdrawal": 7189.1,
+      "injection": 146.57,
+      "withdrawal": 7188.9,
       "working_gas_volume": 1147.6446,
       "yoy": -16.59
     },
     {
       "date": "2025-01-12",
-      "gas_in_storage": 754.8291,
+      "gas_in_storage": 754.8359,
       "fill_rate": 65.77,
-      "injection": 156.49,
-      "withdrawal": 7334.9,
+      "injection": 156.52,
+      "withdrawal": 7334.8,
       "working_gas_volume": 1147.6446,
       "yoy": -16.75
     },
     {
       "date": "2025-01-13",
-      "gas_in_storage": 745.7652,
+      "gas_in_storage": 745.7722,
       "fill_rate": 64.98,
-      "injection": 74.64,
-      "withdrawal": 9104.4,
+      "injection": 74.66,
+      "withdrawal": 9104.3,
       "working_gas_volume": 1147.6446,
       "yoy": -17.18
     },
     {
       "date": "2025-01-14",
-      "gas_in_storage": 736.2239,
+      "gas_in_storage": 736.2311,
       "fill_rate": 64.15,
-      "injection": 78.15,
-      "withdrawal": 9626.3,
+      "injection": 78.17,
+      "withdrawal": 9626.1,
       "working_gas_volume": 1147.6446,
       "yoy": -17.52
     },
     {
       "date": "2025-01-15",
-      "gas_in_storage": 727.0017,
+      "gas_in_storage": 727.009,
       "fill_rate": 63.35,
-      "injection": 221.69,
-      "withdrawal": 9453.5,
+      "injection": 221.71,
+      "withdrawal": 9453.4,
       "working_gas_volume": 1147.6446,
       "yoy": -17.76
     },
     {
       "date": "2025-01-16",
-      "gas_in_storage": 717.9696,
+      "gas_in_storage": 717.977,
       "fill_rate": 62.56,
-      "injection": 134.83,
-      "withdrawal": 9218.2,
+      "injection": 134.85,
+      "withdrawal": 9218.0,
       "working_gas_volume": 1147.6446,
       "yoy": -18.01
     },
     {
       "date": "2025-01-17",
-      "gas_in_storage": 708.282,
+      "gas_in_storage": 708.2896,
       "fill_rate": 61.72,
-      "injection": 142.25,
-      "withdrawal": 9831.4,
+      "injection": 142.27,
+      "withdrawal": 9831.2,
       "working_gas_volume": 1147.6446,
-      "yoy": -18.41
+      "yoy": -18.4
     },
     {
       "date": "2025-01-18",
-      "gas_in_storage": 699.6617,
+      "gas_in_storage": 699.6699,
       "fill_rate": 60.97,
-      "injection": 189.35,
-      "withdrawal": 8824.9,
+      "injection": 189.41,
+      "withdrawal": 8824.5,
       "working_gas_volume": 1147.6446,
       "yoy": -18.67
     },
     {
       "date": "2025-01-19",
-      "gas_in_storage": 690.987,
+      "gas_in_storage": 690.9957,
       "fill_rate": 60.21,
-      "injection": 276.93,
-      "withdrawal": 8810.3,
+      "injection": 276.99,
+      "withdrawal": 8809.9,
       "working_gas_volume": 1147.6446,
       "yoy": -19.08
     },
     {
       "date": "2025-01-20",
-      "gas_in_storage": 680.8232,
+      "gas_in_storage": 680.8324,
       "fill_rate": 59.32,
-      "injection": 151.27,
-      "withdrawal": 10303.2,
+      "injection": 151.33,
+      "withdrawal": 10302.7,
       "working_gas_volume": 1147.6446,
       "yoy": -19.71
     },
     {
       "date": "2025-01-21",
-      "gas_in_storage": 670.1338,
+      "gas_in_storage": 670.1421,
       "fill_rate": 58.39,
-      "injection": 98.96,
-      "withdrawal": 10600.2,
+      "injection": 98.98,
+      "withdrawal": 10600.0,
       "working_gas_volume": 1147.6446,
       "yoy": -20.42
     },
     {
       "date": "2025-01-22",
-      "gas_in_storage": 660.9945,
+      "gas_in_storage": 661.003,
       "fill_rate": 57.6,
-      "injection": 159.66,
-      "withdrawal": 9270.4,
+      "injection": 159.68,
+      "withdrawal": 9270.2,
       "working_gas_volume": 1147.6446,
-      "yoy": -21.0
+      "yoy": -20.99
     },
     {
       "date": "2025-01-23",
-      "gas_in_storage": 654.3013,
+      "gas_in_storage": 654.31,
       "fill_rate": 57.01,
-      "injection": 233.89,
-      "withdrawal": 7105.1,
+      "injection": 233.91,
+      "withdrawal": 7105.0,
       "working_gas_volume": 1147.6446,
       "yoy": -21.38
     },
     {
       "date": "2025-01-24",
-      "gas_in_storage": 648.7073,
+      "gas_in_storage": 648.7162,
       "fill_rate": 56.53,
-      "injection": 334.54,
-      "withdrawal": 5928.5,
+      "injection": 334.56,
+      "withdrawal": 5928.4,
       "working_gas_volume": 1147.6446,
       "yoy": -21.62
     },
     {
       "date": "2025-01-25",
-      "gas_in_storage": 644.7048,
+      "gas_in_storage": 644.7138,
       "fill_rate": 56.18,
-      "injection": 521.33,
-      "withdrawal": 4739.8,
+      "injection": 521.35,
+      "withdrawal": 4739.6,
       "working_gas_volume": 1147.6446,
       "yoy": -21.7
     },
     {
       "date": "2025-01-26",
-      "gas_in_storage": 640.5316,
+      "gas_in_storage": 640.5408,
       "fill_rate": 55.72,
-      "injection": 366.8,
-      "withdrawal": 3876.7,
+      "injection": 366.82,
+      "withdrawal": 3876.5,
       "working_gas_volume": 1149.6521,
       "yoy": -21.82
     },
     {
       "date": "2025-01-27",
-      "gas_in_storage": 636.1499,
+      "gas_in_storage": 636.1592,
       "fill_rate": 55.43,
-      "injection": 458.46,
-      "withdrawal": 4848.1,
+      "injection": 458.48,
+      "withdrawal": 4848.0,
       "working_gas_volume": 1147.6446,
       "yoy": -21.96
     },
     {
       "date": "2025-01-28",
-      "gas_in_storage": 631.7554,
+      "gas_in_storage": 631.7649,
       "fill_rate": 55.05,
-      "injection": 325.31,
-      "withdrawal": 4712.8,
+      "injection": 325.33,
+      "withdrawal": 4712.7,
       "working_gas_volume": 1147.6446,
-      "yoy": -21.99
+      "yoy": -21.98
     },
     {
       "date": "2025-01-29",
-      "gas_in_storage": 627.1201,
+      "gas_in_storage": 627.1297,
       "fill_rate": 54.64,
-      "injection": 337.47,
-      "withdrawal": 4805.7,
+      "injection": 337.49,
+      "withdrawal": 4805.6,
       "working_gas_volume": 1147.6446,
       "yoy": -22.05
     },
     {
       "date": "2025-01-30",
-      "gas_in_storage": 621.2564,
+      "gas_in_storage": 621.2663,
       "fill_rate": 54.13,
-      "injection": 179.14,
-      "withdrawal": 6056.8,
+      "injection": 179.16,
+      "withdrawal": 6056.6,
       "working_gas_volume": 1147.6446,
       "yoy": -22.3
     },
     {
       "date": "2025-01-31",
-      "gas_in_storage": 614.9666,
+      "gas_in_storage": 614.9766,
       "fill_rate": 53.59,
-      "injection": 144.04,
-      "withdrawal": 6467.7,
+      "injection": 144.06,
+      "withdrawal": 6467.5,
       "working_gas_volume": 1147.6446,
       "yoy": -22.61
     },
     {
       "date": "2025-02-01",
-      "gas_in_storage": 609.7119,
+      "gas_in_storage": 609.7221,
       "fill_rate": 53.12,
-      "injection": 260.97,
-      "withdrawal": 5621.3,
+      "injection": 260.99,
+      "withdrawal": 5621.2,
       "working_gas_volume": 1147.7502,
       "yoy": -22.85
     },
     {
       "date": "2025-02-02",
-      "gas_in_storage": 604.1305,
-      "fill_rate": 52.54,
-      "injection": 186.41,
-      "withdrawal": 5232.1,
+      "gas_in_storage": 604.1409,
+      "fill_rate": 52.55,
+      "injection": 186.43,
+      "withdrawal": 5231.9,
       "working_gas_volume": 1149.7577,
       "yoy": -23.32
     },
     {
       "date": "2025-02-03",
-      "gas_in_storage": 596.4251,
-      "fill_rate": 51.96,
-      "injection": 137.74,
-      "withdrawal": 7870.5,
+      "gas_in_storage": 596.4356,
+      "fill_rate": 51.97,
+      "injection": 137.76,
+      "withdrawal": 7870.4,
       "working_gas_volume": 1147.7502,
       "yoy": -24.06
     },
     {
       "date": "2025-02-04",
-      "gas_in_storage": 588.7282,
-      "fill_rate": 51.2,
-      "injection": 139.41,
-      "withdrawal": 6979.6,
+      "gas_in_storage": 588.7389,
+      "fill_rate": 51.21,
+      "injection": 139.43,
+      "withdrawal": 6979.4,
       "working_gas_volume": 1149.7577,
       "yoy": -24.69
     },
     {
       "date": "2025-02-05",
-      "gas_in_storage": 580.9132,
+      "gas_in_storage": 580.9241,
       "fill_rate": 50.61,
-      "injection": 194.4,
-      "withdrawal": 7951.2,
+      "injection": 194.42,
+      "withdrawal": 7951.0,
       "working_gas_volume": 1147.7502,
       "yoy": -25.34
     },
     {
       "date": "2025-02-06",
-      "gas_in_storage": 573.4866,
+      "gas_in_storage": 573.4977,
       "fill_rate": 49.97,
-      "injection": 133.72,
-      "withdrawal": 7500.2,
+      "injection": 133.74,
+      "withdrawal": 7500.0,
       "working_gas_volume": 1147.7502,
       "yoy": -25.85
     },
     {
       "date": "2025-02-07",
-      "gas_in_storage": 567.0352,
-      "fill_rate": 49.4,
-      "injection": 266.19,
-      "withdrawal": 6712.0,
+      "gas_in_storage": 567.0464,
+      "fill_rate": 49.41,
+      "injection": 266.21,
+      "withdrawal": 6711.9,
       "working_gas_volume": 1147.7502,
       "yoy": -26.25
     },
     {
       "date": "2025-02-08",
-      "gas_in_storage": 561.4393,
+      "gas_in_storage": 561.4507,
       "fill_rate": 48.92,
-      "injection": 253.75,
-      "withdrawal": 5846.2,
+      "injection": 253.77,
+      "withdrawal": 5846.0,
       "working_gas_volume": 1147.7502,
       "yoy": -26.7
     },
     {
       "date": "2025-02-09",
-      "gas_in_storage": 556.2556,
+      "gas_in_storage": 556.2671,
       "fill_rate": 48.38,
-      "injection": 293.7,
-      "withdrawal": 4714.0,
+      "injection": 293.72,
+      "withdrawal": 4713.8,
       "working_gas_volume": 1149.7577,
       "yoy": -27.19
     },
     {
       "date": "2025-02-10",
-      "gas_in_storage": 549.5174,
+      "gas_in_storage": 549.5291,
       "fill_rate": 47.88,
-      "injection": 235.89,
-      "withdrawal": 6991.0,
+      "injection": 235.91,
+      "withdrawal": 6990.9,
       "working_gas_volume": 1147.7502,
       "yoy": -27.87
     },
     {
       "date": "2025-02-11",
-      "gas_in_storage": 542.1162,
+      "gas_in_storage": 542.1281,
       "fill_rate": 47.23,
-      "injection": 216.49,
-      "withdrawal": 7616.2,
+      "injection": 216.51,
+      "withdrawal": 7616.0,
       "working_gas_volume": 1147.7502,
       "yoy": -28.47
     },
     {
       "date": "2025-02-12",
-      "gas_in_storage": 534.4724,
+      "gas_in_storage": 534.4844,
       "fill_rate": 46.49,
-      "injection": 137.89,
-      "withdrawal": 6821.3,
+      "injection": 137.91,
+      "withdrawal": 6821.2,
       "working_gas_volume": 1149.7577,
       "yoy": -29.11
     },
     {
       "date": "2025-02-13",
-      "gas_in_storage": 526.7199,
+      "gas_in_storage": 526.7322,
       "fill_rate": 45.89,
-      "injection": 129.03,
-      "withdrawal": 8012.0,
+      "injection": 129.05,
+      "withdrawal": 8011.8,
       "working_gas_volume": 1147.7502,
-      "yoy": -29.85
+      "yoy": -29.84
     },
     {
       "date": "2025-02-14",
-      "gas_in_storage": 518.7157,
-      "fill_rate": 45.19,
-      "injection": 165.4,
-      "withdrawal": 8179.6,
+      "gas_in_storage": 518.7281,
+      "fill_rate": 45.2,
+      "injection": 165.42,
+      "withdrawal": 8179.5,
       "working_gas_volume": 1147.7502,
       "yoy": -30.68
     },
     {
       "date": "2025-02-15",
-      "gas_in_storage": 512.0503,
+      "gas_in_storage": 512.0629,
       "fill_rate": 44.61,
-      "injection": 147.32,
-      "withdrawal": 6827.8,
+      "injection": 147.34,
+      "withdrawal": 6827.6,
       "working_gas_volume": 1147.7502,
-      "yoy": -31.39
+      "yoy": -31.38
     },
     {
       "date": "2025-02-16",
-      "gas_in_storage": 505.6956,
+      "gas_in_storage": 505.7083,
       "fill_rate": 44.06,
-      "injection": 267.6,
-      "withdrawal": 6553.6,
+      "injection": 267.62,
+      "withdrawal": 6553.5,
       "working_gas_volume": 1147.7502,
       "yoy": -32.12
     },
     {
       "date": "2025-02-17",
-      "gas_in_storage": 497.3284,
+      "gas_in_storage": 497.3413,
       "fill_rate": 43.33,
-      "injection": 112.19,
-      "withdrawal": 8659.1,
+      "injection": 112.21,
+      "withdrawal": 8658.9,
       "working_gas_volume": 1147.7502,
       "yoy": -33.14
     },
     {
       "date": "2025-02-18",
-      "gas_in_storage": 488.7781,
+      "gas_in_storage": 488.7912,
       "fill_rate": 42.59,
-      "injection": 166.96,
-      "withdrawal": 8695.7,
+      "injection": 166.98,
+      "withdrawal": 8695.5,
       "working_gas_volume": 1147.7502,
-      "yoy": -34.09
+      "yoy": -34.08
     },
     {
       "date": "2025-02-19",
-      "gas_in_storage": 481.283,
+      "gas_in_storage": 481.2962,
       "fill_rate": 41.85,
-      "injection": 268.87,
-      "withdrawal": 6989.7,
+      "injection": 268.89,
+      "withdrawal": 6989.6,
       "working_gas_volume": 1149.9987,
-      "yoy": -34.89
+      "yoy": -34.88
     },
     {
       "date": "2025-02-20",
-      "gas_in_storage": 475.1525,
+      "gas_in_storage": 475.166,
       "fill_rate": 41.32,
-      "injection": 437.19,
-      "withdrawal": 5706.5,
+      "injection": 437.21,
+      "withdrawal": 5706.4,
       "working_gas_volume": 1149.9987,
       "yoy": -35.5
     },
     {
       "date": "2025-02-21",
-      "gas_in_storage": 470.9258,
+      "gas_in_storage": 470.9394,
       "fill_rate": 40.95,
-      "injection": 678.81,
-      "withdrawal": 4180.4,
+      "injection": 678.83,
+      "withdrawal": 4180.3,
       "working_gas_volume": 1149.9987,
       "yoy": -35.86
     },
     {
       "date": "2025-02-22",
-      "gas_in_storage": 467.9843,
-      "fill_rate": 40.69,
-      "injection": 811.97,
-      "withdrawal": 3097.1,
+      "gas_in_storage": 467.998,
+      "fill_rate": 40.7,
+      "injection": 811.99,
+      "withdrawal": 3097.0,
       "working_gas_volume": 1149.9987,
-      "yoy": -36.0
+      "yoy": -35.99
     },
     {
       "date": "2025-02-23",
-      "gas_in_storage": 465.7636,
+      "gas_in_storage": 465.7776,
       "fill_rate": 40.51,
-      "injection": 1072.77,
-      "withdrawal": 2774.7,
+      "injection": 1072.79,
+      "withdrawal": 2774.6,
       "working_gas_volume": 1149.7577,
       "yoy": -36.1
     },
     {
       "date": "2025-02-24",
-      "gas_in_storage": 462.376,
+      "gas_in_storage": 462.3901,
       "fill_rate": 40.22,
-      "injection": 813.9,
-      "withdrawal": 3351.6,
+      "injection": 813.92,
+      "withdrawal": 3351.4,
       "working_gas_volume": 1149.7577,
       "yoy": -36.41
     },
     {
       "date": "2025-02-25",
-      "gas_in_storage": 458.1679,
+      "gas_in_storage": 458.1822,
       "fill_rate": 39.85,
-      "injection": 442.28,
-      "withdrawal": 3798.0,
+      "injection": 442.3,
+      "withdrawal": 3797.8,
       "working_gas_volume": 1149.7577,
       "yoy": -36.67
     },
     {
       "date": "2025-02-26",
-      "gas_in_storage": 453.7526,
+      "gas_in_storage": 453.7671,
       "fill_rate": 39.47,
-      "injection": 359.47,
-      "withdrawal": 4081.4,
+      "injection": 359.49,
+      "withdrawal": 4081.2,
       "working_gas_volume": 1149.7577,
       "yoy": -36.92
     },
     {
       "date": "2025-02-27",
-      "gas_in_storage": 448.9538,
+      "gas_in_storage": 448.9684,
       "fill_rate": 39.05,
-      "injection": 217.61,
-      "withdrawal": 4330.6,
+      "injection": 217.63,
+      "withdrawal": 4330.4,
       "working_gas_volume": 1149.7577,
       "yoy": -37.25
     },
     {
       "date": "2025-02-28",
-      "gas_in_storage": 438.9366,
+      "gas_in_storage": 438.9514,
       "fill_rate": 38.18,
-      "injection": 171.89,
-      "withdrawal": 6446.6,
+      "injection": 171.91,
+      "withdrawal": 6446.5,
       "working_gas_volume": 1149.7577,
       "yoy": -38.39
     },
     {
       "date": "2025-03-01",
-      "gas_in_storage": 438.2752,
+      "gas_in_storage": 438.2902,
       "fill_rate": 38.16,
-      "injection": 218.79,
-      "withdrawal": 3346.8,
+      "injection": 218.81,
+      "withdrawal": 3346.7,
       "working_gas_volume": 1148.5719,
       "yoy": -38.29
     },
     {
       "date": "2025-03-02",
-      "gas_in_storage": 435.3867,
+      "gas_in_storage": 435.4018,
       "fill_rate": 37.91,
-      "injection": 350.34,
-      "withdrawal": 2970.3,
+      "injection": 350.36,
+      "withdrawal": 2970.2,
       "working_gas_volume": 1148.5719,
       "yoy": -38.62
     },
     {
       "date": "2025-03-03",
-      "gas_in_storage": 431.3212,
+      "gas_in_storage": 431.3365,
       "fill_rate": 37.55,
-      "injection": 270.84,
-      "withdrawal": 3633.3,
+      "injection": 270.86,
+      "withdrawal": 3633.1,
       "working_gas_volume": 1148.5719,
-      "yoy": -39.14
+      "yoy": -39.13
     },
     {
       "date": "2025-03-04",
-      "gas_in_storage": 427.7391,
+      "gas_in_storage": 427.7546,
       "fill_rate": 37.24,
-      "injection": 383.12,
-      "withdrawal": 3376.1,
+      "injection": 383.14,
+      "withdrawal": 3376.0,
       "working_gas_volume": 1148.572,
-      "yoy": -39.43
+      "yoy": -39.42
     },
     {
       "date": "2025-03-05",
-      "gas_in_storage": 424.8592,
+      "gas_in_storage": 424.8748,
       "fill_rate": 36.99,
-      "injection": 448.25,
-      "withdrawal": 2688.4,
+      "injection": 448.27,
+      "withdrawal": 2688.2,
       "working_gas_volume": 1148.572,
       "yoy": -39.57
     },
     {
       "date": "2025-03-06",
-      "gas_in_storage": 422.7089,
+      "gas_in_storage": 422.7248,
       "fill_rate": 36.8,
-      "injection": 719.69,
-      "withdrawal": 2295.9,
+      "injection": 719.71,
+      "withdrawal": 2295.7,
       "working_gas_volume": 1148.572,
       "yoy": -39.56
     },
     {
       "date": "2025-03-07",
-      "gas_in_storage": 420.9527,
+      "gas_in_storage": 420.9687,
       "fill_rate": 36.65,
-      "injection": 724.79,
-      "withdrawal": 1861.6,
+      "injection": 724.81,
+      "withdrawal": 1861.4,
       "working_gas_volume": 1148.572,
-      "yoy": -39.54
+      "yoy": -39.53
     },
     {
       "date": "2025-03-08",
-      "gas_in_storage": 420.6624,
-      "fill_rate": 36.62,
-      "injection": 1312.3,
-      "withdrawal": 1223.3,
+      "gas_in_storage": 420.6785,
+      "fill_rate": 36.63,
+      "injection": 1312.32,
+      "withdrawal": 1223.1,
       "working_gas_volume": 1148.5721,
       "yoy": -39.35
     },
     {
       "date": "2025-03-09",
-      "gas_in_storage": 420.3355,
+      "gas_in_storage": 420.3518,
       "fill_rate": 36.6,
-      "injection": 1237.03,
-      "withdrawal": 1165.2,
+      "injection": 1237.05,
+      "withdrawal": 1165.1,
       "working_gas_volume": 1148.5722,
-      "yoy": -39.29
+      "yoy": -39.28
     },
     {
       "date": "2025-03-10",
-      "gas_in_storage": 418.2874,
+      "gas_in_storage": 418.3039,
       "fill_rate": 36.42,
-      "injection": 661.6,
-      "withdrawal": 2026.2,
+      "injection": 661.62,
+      "withdrawal": 2026.0,
       "working_gas_volume": 1148.5723,
       "yoy": -39.5
     },
     {
       "date": "2025-03-11",
-      "gas_in_storage": 415.2481,
+      "gas_in_storage": 415.2648,
       "fill_rate": 36.15,
-      "injection": 331.7,
-      "withdrawal": 2809.3,
+      "injection": 331.72,
+      "withdrawal": 2809.1,
       "working_gas_volume": 1148.5723,
       "yoy": -39.7
     },
     {
       "date": "2025-03-12",
-      "gas_in_storage": 411.4413,
+      "gas_in_storage": 411.4582,
       "fill_rate": 35.82,
-      "injection": 313.29,
-      "withdrawal": 3443.7,
+      "injection": 313.31,
+      "withdrawal": 3443.6,
       "working_gas_volume": 1148.5723,
       "yoy": -40.0
     },
     {
       "date": "2025-03-13",
-      "gas_in_storage": 407.3546,
+      "gas_in_storage": 407.3716,
       "fill_rate": 35.47,
-      "injection": 259.98,
-      "withdrawal": 3786.4,
+      "injection": 260.0,
+      "withdrawal": 3786.3,
       "working_gas_volume": 1148.5724,
       "yoy": -40.39
     },
     {
       "date": "2025-03-14",
-      "gas_in_storage": 403.8136,
+      "gas_in_storage": 403.8308,
       "fill_rate": 35.16,
-      "injection": 289.8,
-      "withdrawal": 3513.3,
+      "injection": 289.82,
+      "withdrawal": 3513.2,
       "working_gas_volume": 1148.5725,
       "yoy": -40.89
     },
     {
       "date": "2025-03-15",
-      "gas_in_storage": 401.4749,
-      "fill_rate": 34.95,
-      "injection": 411.17,
-      "withdrawal": 2472.5,
+      "gas_in_storage": 401.4923,
+      "fill_rate": 34.96,
+      "injection": 411.19,
+      "withdrawal": 2472.4,
       "working_gas_volume": 1148.5726,
       "yoy": -41.11
     },
     {
       "date": "2025-03-16",
-      "gas_in_storage": 399.3628,
+      "gas_in_storage": 399.3803,
       "fill_rate": 34.77,
-      "injection": 433.92,
-      "withdrawal": 2282.2,
+      "injection": 433.94,
+      "withdrawal": 2282.0,
       "working_gas_volume": 1148.5726,
       "yoy": -41.39
     },
     {
       "date": "2025-03-17",
-      "gas_in_storage": 395.8666,
+      "gas_in_storage": 395.8843,
       "fill_rate": 34.47,
-      "injection": 323.61,
-      "withdrawal": 3135.0,
+      "injection": 323.63,
+      "withdrawal": 3134.8,
       "working_gas_volume": 1148.5726,
-      "yoy": -41.87
+      "yoy": -41.86
     },
     {
       "date": "2025-03-18",
-      "gas_in_storage": 392.6461,
+      "gas_in_storage": 392.6639,
       "fill_rate": 34.19,
-      "injection": 413.52,
-      "withdrawal": 3075.7,
+      "injection": 413.54,
+      "withdrawal": 3075.5,
       "working_gas_volume": 1148.5727,
       "yoy": -42.2
     },
     {
       "date": "2025-03-19",
-      "gas_in_storage": 389.9525,
+      "gas_in_storage": 389.9705,
       "fill_rate": 33.95,
-      "injection": 505.96,
-      "withdrawal": 2606.1,
+      "injection": 505.98,
+      "withdrawal": 2605.9,
       "working_gas_volume": 1148.5727,
       "yoy": -42.46
     },
     {
       "date": "2025-03-20",
-      "gas_in_storage": 388.2599,
-      "fill_rate": 33.8,
-      "injection": 874.95,
-      "withdrawal": 1989.3,
+      "gas_in_storage": 388.2781,
+      "fill_rate": 33.81,
+      "injection": 874.97,
+      "withdrawal": 1989.2,
       "working_gas_volume": 1148.5729,
       "yoy": -42.61
     },
     {
       "date": "2025-03-21",
-      "gas_in_storage": 387.874,
+      "gas_in_storage": 387.8924,
       "fill_rate": 33.77,
-      "injection": 1519.65,
-      "withdrawal": 1412.5,
+      "injection": 1519.67,
+      "withdrawal": 1412.3,
       "working_gas_volume": 1148.5731,
-      "yoy": -42.6
+      "yoy": -42.59
     },
     {
       "date": "2025-03-22",
-      "gas_in_storage": 388.5581,
+      "gas_in_storage": 388.5766,
       "fill_rate": 33.83,
-      "injection": 1763.92,
-      "withdrawal": 799.8,
+      "injection": 1763.94,
+      "withdrawal": 799.6,
       "working_gas_volume": 1148.5732,
       "yoy": -42.47
     },
     {
       "date": "2025-03-23",
-      "gas_in_storage": 388.9354,
+      "gas_in_storage": 388.9541,
       "fill_rate": 33.86,
-      "injection": 1466.31,
-      "withdrawal": 926.4,
+      "injection": 1466.33,
+      "withdrawal": 926.2,
       "working_gas_volume": 1148.5734,
       "yoy": -42.43
     },
     {
       "date": "2025-03-24",
-      "gas_in_storage": 387.7038,
+      "gas_in_storage": 387.7227,
       "fill_rate": 33.76,
-      "injection": 824.88,
-      "withdrawal": 1591.4,
+      "injection": 824.9,
+      "withdrawal": 1591.3,
       "working_gas_volume": 1148.5735,
       "yoy": -42.59
     },
     {
       "date": "2025-03-25",
-      "gas_in_storage": 386.4743,
+      "gas_in_storage": 386.4934,
       "fill_rate": 33.65,
-      "injection": 839.65,
-      "withdrawal": 1629.7,
+      "injection": 839.67,
+      "withdrawal": 1629.5,
       "working_gas_volume": 1148.5738,
       "yoy": -42.61
     },
     {
       "date": "2025-03-26",
-      "gas_in_storage": 385.3431,
+      "gas_in_storage": 385.3623,
       "fill_rate": 33.55,
-      "injection": 867.35,
-      "withdrawal": 1640.1,
+      "injection": 867.37,
+      "withdrawal": 1639.9,
       "working_gas_volume": 1148.5741,
-      "yoy": -42.68
+      "yoy": -42.67
     },
     {
       "date": "2025-03-27",
-      "gas_in_storage": 384.8033,
+      "gas_in_storage": 384.8227,
       "fill_rate": 33.5,
-      "injection": 1039.32,
-      "withdrawal": 1313.0,
+      "injection": 1039.34,
+      "withdrawal": 1312.9,
       "working_gas_volume": 1148.5742,
       "yoy": -42.66
     },
     {
       "date": "2025-03-28",
-      "gas_in_storage": 384.8599,
+      "gas_in_storage": 384.8795,
       "fill_rate": 33.51,
-      "injection": 1281.12,
-      "withdrawal": 1125.7,
+      "injection": 1281.14,
+      "withdrawal": 1125.5,
       "working_gas_volume": 1148.5747,
       "yoy": -42.55
     },
     {
       "date": "2025-03-29",
-      "gas_in_storage": 385.6797,
+      "gas_in_storage": 385.6995,
       "fill_rate": 33.58,
-      "injection": 1574.8,
-      "withdrawal": 767.3,
+      "injection": 1574.82,
+      "withdrawal": 767.1,
       "working_gas_volume": 1148.5747,
       "yoy": -42.43
     },
     {
       "date": "2025-03-30",
-      "gas_in_storage": 386.6572,
-      "fill_rate": 33.66,
-      "injection": 1576.19,
-      "withdrawal": 705.7,
+      "gas_in_storage": 386.6771,
+      "fill_rate": 33.67,
+      "injection": 1576.21,
+      "withdrawal": 705.6,
       "working_gas_volume": 1148.5747,
       "yoy": -42.31
     },
     {
       "date": "2025-03-31",
-      "gas_in_storage": 387.4897,
+      "gas_in_storage": 387.5098,
       "fill_rate": 33.8,
-      "injection": 1319.73,
-      "withdrawal": 1687.6,
+      "injection": 1319.75,
+      "withdrawal": 1687.4,
       "working_gas_volume": 1146.5096,
       "yoy": -41.83
     },
     {
       "date": "2025-04-01",
-      "gas_in_storage": 387.5979,
+      "gas_in_storage": 387.6181,
       "fill_rate": 34.29,
-      "injection": 2721.73,
-      "withdrawal": 905.7,
+      "injection": 2721.75,
+      "withdrawal": 905.5,
       "working_gas_volume": 1130.2509,
       "yoy": -42.07
     },
     {
       "date": "2025-04-02",
-      "gas_in_storage": 388.5669,
+      "gas_in_storage": 388.5873,
       "fill_rate": 34.4,
-      "injection": 1637.49,
-      "withdrawal": 664.0,
+      "injection": 1637.51,
+      "withdrawal": 663.8,
       "working_gas_volume": 1129.714,
       "yoy": -42.06
     },
     {
       "date": "2025-04-03",
-      "gas_in_storage": 389.3324,
+      "gas_in_storage": 389.3529,
       "fill_rate": 34.46,
-      "injection": 1535.53,
-      "withdrawal": 729.9,
+      "injection": 1535.55,
+      "withdrawal": 729.7,
       "working_gas_volume": 1129.714,
-      "yoy": -42.01
+      "yoy": -42.0
     },
     {
       "date": "2025-04-04",
-      "gas_in_storage": 390.9361,
-      "fill_rate": 34.6,
-      "injection": 2089.42,
-      "withdrawal": 477.7,
+      "gas_in_storage": 390.9569,
+      "fill_rate": 34.61,
+      "injection": 2089.44,
+      "withdrawal": 477.6,
       "working_gas_volume": 1129.714,
-      "yoy": -41.81
+      "yoy": -41.8
     },
     {
       "date": "2025-04-05",
-      "gas_in_storage": 393.189,
-      "fill_rate": 34.8,
-      "injection": 2604.31,
-      "withdrawal": 350.1,
+      "gas_in_storage": 393.2099,
+      "fill_rate": 34.81,
+      "injection": 2604.33,
+      "withdrawal": 349.9,
       "working_gas_volume": 1129.714,
       "yoy": -41.63
     },
     {
       "date": "2025-04-06",
-      "gas_in_storage": 395.5578,
-      "fill_rate": 35.01,
-      "injection": 2168.67,
-      "withdrawal": 685.0,
+      "gas_in_storage": 395.5789,
+      "fill_rate": 35.02,
+      "injection": 2168.69,
+      "withdrawal": 684.8,
       "working_gas_volume": 1129.714,
       "yoy": -41.59
     },
     {
       "date": "2025-04-07",
-      "gas_in_storage": 395.3526,
+      "gas_in_storage": 395.3738,
       "fill_rate": 35.0,
-      "injection": 1360.76,
-      "withdrawal": 1573.0,
+      "injection": 1360.78,
+      "withdrawal": 1572.8,
       "working_gas_volume": 1129.7124,
       "yoy": -41.87
     },
     {
       "date": "2025-04-08",
-      "gas_in_storage": 395.1016,
-      "fill_rate": 34.97,
-      "injection": 1155.58,
-      "withdrawal": 1463.2,
+      "gas_in_storage": 395.123,
+      "fill_rate": 34.98,
+      "injection": 1155.6,
+      "withdrawal": 1463.1,
       "working_gas_volume": 1129.7121,
       "yoy": -42.19
     },
     {
       "date": "2025-04-09",
-      "gas_in_storage": 395.1821,
+      "gas_in_storage": 395.2037,
       "fill_rate": 34.98,
-      "injection": 1260.21,
-      "withdrawal": 1186.5,
+      "injection": 1260.23,
+      "withdrawal": 1186.3,
       "working_gas_volume": 1129.7121,
       "yoy": -42.33
     },
     {
       "date": "2025-04-10",
-      "gas_in_storage": 395.6003,
+      "gas_in_storage": 395.6221,
       "fill_rate": 35.02,
-      "injection": 1639.32,
-      "withdrawal": 1220.3,
+      "injection": 1639.34,
+      "withdrawal": 1220.1,
       "working_gas_volume": 1129.7121,
       "yoy": -42.4
     },
     {
       "date": "2025-04-11",
-      "gas_in_storage": 396.6797,
-      "fill_rate": 35.11,
-      "injection": 1913.48,
-      "withdrawal": 836.3,
+      "gas_in_storage": 396.7016,
+      "fill_rate": 35.12,
+      "injection": 1913.5,
+      "withdrawal": 836.1,
       "working_gas_volume": 1129.7121,
       "yoy": -42.42
     },
     {
       "date": "2025-04-12",
-      "gas_in_storage": 399.3703,
+      "gas_in_storage": 399.3924,
       "fill_rate": 35.35,
-      "injection": 3090.21,
-      "withdrawal": 379.4,
+      "injection": 3090.23,
+      "withdrawal": 379.3,
       "working_gas_volume": 1129.7121,
-      "yoy": -42.27
+      "yoy": -42.26
     },
     {
       "date": "2025-04-13",
-      "gas_in_storage": 402.3945,
+      "gas_in_storage": 402.4168,
       "fill_rate": 35.62,
-      "injection": 3310.26,
-      "withdrawal": 279.3,
+      "injection": 3310.28,
+      "withdrawal": 279.1,
       "working_gas_volume": 1129.7121,
       "yoy": -42.16
     },
     {
       "date": "2025-04-14",
-      "gas_in_storage": 404.4493,
+      "gas_in_storage": 404.4718,
       "fill_rate": 35.8,
-      "injection": 2495.5,
-      "withdrawal": 442.3,
+      "injection": 2495.52,
+      "withdrawal": 442.2,
       "working_gas_volume": 1129.7121,
       "yoy": -42.17
     },
     {
       "date": "2025-04-15",
-      "gas_in_storage": 406.3158,
+      "gas_in_storage": 406.3384,
       "fill_rate": 35.97,
-      "injection": 2471.54,
-      "withdrawal": 695.4,
+      "injection": 2471.56,
+      "withdrawal": 695.3,
       "working_gas_volume": 1129.5277,
       "yoy": -42.08
     },
     {
       "date": "2025-04-16",
-      "gas_in_storage": 407.7829,
+      "gas_in_storage": 407.8056,
       "fill_rate": 36.1,
-      "injection": 2112.31,
-      "withdrawal": 616.5,
+      "injection": 2112.33,
+      "withdrawal": 616.3,
       "working_gas_volume": 1129.5277,
       "yoy": -41.97
     },
     {
       "date": "2025-04-17",
-      "gas_in_storage": 409.4619,
+      "gas_in_storage": 409.4848,
       "fill_rate": 36.25,
-      "injection": 2119.9,
-      "withdrawal": 436.7,
+      "injection": 2119.92,
+      "withdrawal": 436.6,
       "working_gas_volume": 1129.5277,
       "yoy": -41.74
     },
     {
       "date": "2025-04-18",
-      "gas_in_storage": 411.7099,
+      "gas_in_storage": 411.733,
       "fill_rate": 36.45,
-      "injection": 2579.32,
-      "withdrawal": 331.3,
+      "injection": 2579.34,
+      "withdrawal": 331.1,
       "working_gas_volume": 1129.5277,
-      "yoy": -41.4
+      "yoy": -41.39
     },
     {
       "date": "2025-04-19",
-      "gas_in_storage": 414.9807,
+      "gas_in_storage": 415.004,
       "fill_rate": 36.74,
-      "injection": 3398.18,
-      "withdrawal": 117.0,
+      "injection": 3398.2,
+      "withdrawal": 116.9,
       "working_gas_volume": 1129.5277,
-      "yoy": -40.92
+      "yoy": -40.91
     },
     {
       "date": "2025-04-20",
-      "gas_in_storage": 418.3707,
+      "gas_in_storage": 418.3941,
       "fill_rate": 37.04,
-      "injection": 3611.01,
-      "withdrawal": 113.2,
+      "injection": 3611.03,
+      "withdrawal": 113.1,
       "working_gas_volume": 1129.5277,
       "yoy": -40.48
     },
     {
       "date": "2025-04-21",
-      "gas_in_storage": 421.562,
+      "gas_in_storage": 421.5856,
       "fill_rate": 37.32,
-      "injection": 3431.97,
-      "withdrawal": 222.5,
+      "injection": 3431.99,
+      "withdrawal": 222.4,
       "working_gas_volume": 1129.5277,
-      "yoy": -40.08
+      "yoy": -40.07
     },
     {
       "date": "2025-04-22",
-      "gas_in_storage": 423.9732,
+      "gas_in_storage": 423.997,
       "fill_rate": 37.54,
-      "injection": 2696.79,
-      "withdrawal": 288.8,
+      "injection": 2696.81,
+      "withdrawal": 288.6,
       "working_gas_volume": 1129.5277,
-      "yoy": -39.63
+      "yoy": -39.62
     },
     {
       "date": "2025-04-23",
-      "gas_in_storage": 426.199,
+      "gas_in_storage": 426.2229,
       "fill_rate": 37.73,
-      "injection": 2465.86,
-      "withdrawal": 241.3,
+      "injection": 2465.88,
+      "withdrawal": 241.1,
       "working_gas_volume": 1129.5277,
       "yoy": -39.17
     },
     {
       "date": "2025-04-24",
-      "gas_in_storage": 428.261,
+      "gas_in_storage": 428.2852,
       "fill_rate": 37.92,
-      "injection": 2335.05,
-      "withdrawal": 268.9,
+      "injection": 2335.07,
+      "withdrawal": 268.8,
       "working_gas_volume": 1129.5277,
       "yoy": -38.75
     },
     {
       "date": "2025-04-25",
-      "gas_in_storage": 430.7484,
+      "gas_in_storage": 430.7727,
       "fill_rate": 38.14,
-      "injection": 2708.39,
-      "withdrawal": 228.5,
+      "injection": 2708.41,
+      "withdrawal": 228.3,
       "working_gas_volume": 1129.5277,
-      "yoy": -38.28
+      "yoy": -38.27
     },
     {
       "date": "2025-04-26",
-      "gas_in_storage": 433.9275,
+      "gas_in_storage": 433.952,
       "fill_rate": 38.42,
-      "injection": 3342.43,
-      "withdrawal": 164.7,
+      "injection": 3342.45,
+      "withdrawal": 164.5,
       "working_gas_volume": 1129.5277,
       "yoy": -37.79
     },
     {
       "date": "2025-04-27",
-      "gas_in_storage": 437.0026,
+      "gas_in_storage": 437.0273,
       "fill_rate": 38.69,
-      "injection": 3468.52,
-      "withdrawal": 115.3,
+      "injection": 3468.54,
+      "withdrawal": 115.1,
       "working_gas_volume": 1129.5277,
       "yoy": -37.48
     },
     {
       "date": "2025-04-28",
-      "gas_in_storage": 439.9996,
+      "gas_in_storage": 440.0245,
       "fill_rate": 38.96,
-      "injection": 3194.79,
-      "withdrawal": 185.9,
+      "injection": 3194.81,
+      "withdrawal": 185.7,
       "working_gas_volume": 1129.487,
       "yoy": -37.26
     },
     {
       "date": "2025-04-29",
-      "gas_in_storage": 442.9447,
+      "gas_in_storage": 442.9697,
       "fill_rate": 39.22,
-      "injection": 3214.11,
-      "withdrawal": 250.0,
+      "injection": 3214.13,
+      "withdrawal": 249.9,
       "working_gas_volume": 1129.3285,
       "yoy": -37.01
     },
     {
       "date": "2025-04-30",
-      "gas_in_storage": 446.3697,
+      "gas_in_storage": 446.3948,
       "fill_rate": 39.52,
-      "injection": 3596.64,
-      "withdrawal": 247.9,
+      "injection": 3596.66,
+      "withdrawal": 247.7,
       "working_gas_volume": 1129.4401,
       "yoy": -36.75
     },
     {
       "date": "2025-05-01",
-      "gas_in_storage": 450.9499,
-      "fill_rate": 39.89,
-      "injection": 4777.48,
-      "withdrawal": 168.8,
+      "gas_in_storage": 450.9752,
+      "fill_rate": 39.9,
+      "injection": 4777.5,
+      "withdrawal": 168.7,
       "working_gas_volume": 1130.3984,
       "yoy": -36.39
     },
     {
       "date": "2025-05-02",
-      "gas_in_storage": 455.4464,
+      "gas_in_storage": 455.4719,
       "fill_rate": 40.29,
-      "injection": 4589.44,
-      "withdrawal": 95.8,
+      "injection": 4589.46,
+      "withdrawal": 95.6,
       "working_gas_volume": 1130.3984,
-      "yoy": -36.02
+      "yoy": -36.01
     },
     {
       "date": "2025-05-03",
-      "gas_in_storage": 460.4545,
-      "fill_rate": 40.73,
-      "injection": 5112.74,
-      "withdrawal": 93.6,
+      "gas_in_storage": 460.4802,
+      "fill_rate": 40.74,
+      "injection": 5112.76,
+      "withdrawal": 93.4,
       "working_gas_volume": 1130.3984,
       "yoy": -35.52
     },
     {
       "date": "2025-05-04",
-      "gas_in_storage": 464.9779,
-      "fill_rate": 41.13,
-      "injection": 4664.03,
-      "withdrawal": 145.3,
+      "gas_in_storage": 465.0037,
+      "fill_rate": 41.14,
+      "injection": 4664.05,
+      "withdrawal": 145.1,
       "working_gas_volume": 1130.3984,
       "yoy": -35.13
     },
     {
       "date": "2025-05-05",
-      "gas_in_storage": 467.9237,
-      "fill_rate": 41.39,
-      "injection": 3322.02,
-      "withdrawal": 358.3,
+      "gas_in_storage": 467.9497,
+      "fill_rate": 41.4,
+      "injection": 3322.04,
+      "withdrawal": 358.1,
       "working_gas_volume": 1130.3984,
-      "yoy": -34.98
+      "yoy": -34.97
     },
     {
       "date": "2025-05-06",
-      "gas_in_storage": 470.429,
+      "gas_in_storage": 470.4552,
       "fill_rate": 41.58,
-      "injection": 2908.94,
-      "withdrawal": 399.2,
+      "injection": 2908.96,
+      "withdrawal": 399.1,
       "working_gas_volume": 1131.3342,
       "yoy": -34.82
     },
     {
       "date": "2025-05-07",
-      "gas_in_storage": 472.727,
-      "fill_rate": 41.78,
-      "injection": 2730.86,
-      "withdrawal": 439.2,
+      "gas_in_storage": 472.7534,
+      "fill_rate": 41.79,
+      "injection": 2730.88,
+      "withdrawal": 439.0,
       "working_gas_volume": 1131.3342,
-      "yoy": -34.64
+      "yoy": -34.63
     },
     {
       "date": "2025-05-08",
@@ -13520,28 +13034,28 @@
     },
     {
       "date": "2025-05-30",
-      "gas_in_storage": 542.3011,
+      "gas_in_storage": 542.3013,
       "fill_rate": 47.89,
-      "injection": 4342.21,
-      "withdrawal": 160.5,
+      "injection": 4342.23,
+      "withdrawal": 160.4,
       "working_gas_volume": 1132.2823,
       "yoy": -31.33
     },
     {
       "date": "2025-05-31",
-      "gas_in_storage": 547.3689,
+      "gas_in_storage": 547.3693,
       "fill_rate": 48.34,
-      "injection": 5207.27,
-      "withdrawal": 186.9,
+      "injection": 5207.29,
+      "withdrawal": 186.8,
       "working_gas_volume": 1132.2823,
       "yoy": -30.97
     },
     {
       "date": "2025-06-01",
-      "gas_in_storage": 554.2948,
+      "gas_in_storage": 554.2953,
       "fill_rate": 48.88,
-      "injection": 6030.66,
-      "withdrawal": 134.5,
+      "injection": 6030.68,
+      "withdrawal": 134.3,
       "working_gas_volume": 1134.0428,
       "yoy": -30.32
     },
@@ -14699,19 +14213,19 @@
     },
     {
       "date": "2025-10-08",
-      "gas_in_storage": 945.2081,
+      "gas_in_storage": 945.2083,
       "fill_rate": 82.83,
-      "injection": 849.04,
-      "withdrawal": 1264.3,
+      "injection": 849.06,
+      "withdrawal": 1264.2,
       "working_gas_volume": 1141.1617,
       "yoy": -12.96
     },
     {
       "date": "2025-10-09",
-      "gas_in_storage": 945.1377,
+      "gas_in_storage": 945.138,
       "fill_rate": 82.82,
-      "injection": 836.19,
-      "withdrawal": 901.3,
+      "injection": 836.21,
+      "withdrawal": 901.1,
       "working_gas_volume": 1141.1617,
       "yoy": -13.06
     },
@@ -15280,7 +14794,7 @@
       "injection": 299.14,
       "withdrawal": 4768.7,
       "working_gas_volume": 1142.6223,
-      "yoy": -12.02
+      "yoy": -12.03
     },
     {
       "date": "2025-12-12",
@@ -15568,7 +15082,7 @@
       "injection": 192.35,
       "withdrawal": 9198.6,
       "working_gas_volume": 1142.6332,
-      "yoy": -19.5
+      "yoy": -19.51
     },
     {
       "date": "2026-01-13",
@@ -15649,7 +15163,7 @@
       "injection": 243.44,
       "withdrawal": 8572.6,
       "working_gas_volume": 1142.6332,
-      "yoy": -18.88
+      "yoy": -18.89
     },
     {
       "date": "2026-01-22",
@@ -15721,7 +15235,7 @@
       "injection": 175.3,
       "withdrawal": 8118.6,
       "working_gas_volume": 1142.6332,
-      "yoy": -23.19
+      "yoy": -23.2
     },
     {
       "date": "2026-01-30",
@@ -15775,7 +15289,7 @@
       "injection": 337.24,
       "withdrawal": 7964.1,
       "working_gas_volume": 1142.6332,
-      "yoy": -25.27
+      "yoy": -25.28
     },
     {
       "date": "2026-02-05",
@@ -15820,7 +15334,7 @@
       "injection": 221.72,
       "withdrawal": 6441.2,
       "working_gas_volume": 1142.6332,
-      "yoy": -25.8
+      "yoy": -25.81
     },
     {
       "date": "2026-02-10",
@@ -15838,7 +15352,7 @@
       "injection": 415.05,
       "withdrawal": 5134.2,
       "working_gas_volume": 1142.6332,
-      "yoy": -25.81
+      "yoy": -25.82
     },
     {
       "date": "2026-02-12",
@@ -15856,7 +15370,7 @@
       "injection": 348.01,
       "withdrawal": 5241.1,
       "working_gas_volume": 1142.6332,
-      "yoy": -25.43
+      "yoy": -25.44
     },
     {
       "date": "2026-02-14",
@@ -15919,7 +15433,7 @@
       "injection": 208.34,
       "withdrawal": 5105.3,
       "working_gas_volume": 1142.6332,
-      "yoy": -25.28
+      "yoy": -25.29
     },
     {
       "date": "2026-02-21",
@@ -16000,11 +15514,11 @@
       "injection": 1344.21,
       "withdrawal": 1361.6,
       "working_gas_volume": 1142.6337,
-      "yoy": -21.85
+      "yoy": -21.86
     },
     {
       "date": "2026-03-02",
-      "gas_in_storage": 341.4941,
+      "gas_in_storage": 341.494,
       "fill_rate": 29.89,
       "injection": 1095.5,
       "withdrawal": 2073.4,
@@ -16013,12 +15527,12 @@
     },
     {
       "date": "2026-03-03",
-      "gas_in_storage": 339.9486,
+      "gas_in_storage": 339.9485,
       "fill_rate": 29.75,
       "injection": 988.07,
       "withdrawal": 2449.2,
       "working_gas_volume": 1142.6337,
-      "yoy": -21.18
+      "yoy": -21.19
     },
     {
       "date": "2026-03-04",
@@ -16040,7 +15554,7 @@
     },
     {
       "date": "2026-03-06",
-      "gas_in_storage": 336.1936,
+      "gas_in_storage": 336.1935,
       "fill_rate": 29.42,
       "injection": 1199.28,
       "withdrawal": 2324.4,
@@ -16049,7 +15563,7 @@
     },
     {
       "date": "2026-03-07",
-      "gas_in_storage": 335.9395,
+      "gas_in_storage": 335.9394,
       "fill_rate": 29.4,
       "injection": 1523.27,
       "withdrawal": 1694.9,
@@ -16058,7 +15572,7 @@
     },
     {
       "date": "2026-03-08",
-      "gas_in_storage": 335.9107,
+      "gas_in_storage": 335.9106,
       "fill_rate": 29.4,
       "injection": 1717.76,
       "withdrawal": 1616.6,
@@ -16067,70 +15581,70 @@
     },
     {
       "date": "2026-03-09",
-      "gas_in_storage": 334.7406,
+      "gas_in_storage": 334.7405,
       "fill_rate": 29.3,
       "injection": 1106.58,
-      "withdrawal": 2270.6,
+      "withdrawal": 2270.7,
       "working_gas_volume": 1142.6337,
-      "yoy": -20.36
+      "yoy": -20.37
     },
     {
       "date": "2026-03-10",
-      "gas_in_storage": 334.4126,
+      "gas_in_storage": 334.4125,
       "fill_rate": 29.27,
       "injection": 1126.56,
       "withdrawal": 2184.8,
       "working_gas_volume": 1142.6337,
-      "yoy": -20.05
+      "yoy": -20.06
     },
     {
       "date": "2026-03-11",
-      "gas_in_storage": 334.1503,
+      "gas_in_storage": 334.1502,
       "fill_rate": 29.24,
-      "injection": 1184.38,
+      "injection": 1184.37,
       "withdrawal": 1883.1,
       "working_gas_volume": 1142.6337,
       "yoy": -19.53
     },
     {
       "date": "2026-03-12",
-      "gas_in_storage": 333.2506,
+      "gas_in_storage": 333.2505,
       "fill_rate": 29.17,
       "injection": 972.39,
-      "withdrawal": 1859.9,
+      "withdrawal": 1859.8,
       "working_gas_volume": 1142.6337,
-      "yoy": -19.0
+      "yoy": -19.01
     },
     {
       "date": "2026-03-13",
-      "gas_in_storage": 332.5574,
+      "gas_in_storage": 332.5572,
       "fill_rate": 29.1,
       "injection": 1135.0,
-      "withdrawal": 1810.2,
+      "withdrawal": 1810.3,
       "working_gas_volume": 1142.6337,
-      "yoy": -18.36
+      "yoy": -18.37
     },
     {
       "date": "2026-03-14",
-      "gas_in_storage": 331.6651,
+      "gas_in_storage": 331.6649,
       "fill_rate": 29.03,
       "injection": 941.32,
-      "withdrawal": 1838.6,
+      "withdrawal": 1838.7,
       "working_gas_volume": 1142.6337,
       "yoy": -17.87
     },
     {
       "date": "2026-03-15",
-      "gas_in_storage": 331.424,
+      "gas_in_storage": 331.4237,
       "fill_rate": 29.01,
       "injection": 1321.29,
-      "withdrawal": 1494.7,
+      "withdrawal": 1494.8,
       "working_gas_volume": 1142.6337,
       "yoy": -17.45
     },
     {
       "date": "2026-03-16",
-      "gas_in_storage": 330.5597,
+      "gas_in_storage": 330.5595,
       "fill_rate": 28.93,
       "injection": 1063.89,
       "withdrawal": 1930.2,
@@ -16139,7 +15653,7 @@
     },
     {
       "date": "2026-03-17",
-      "gas_in_storage": 328.8636,
+      "gas_in_storage": 328.8633,
       "fill_rate": 28.78,
       "injection": 808.69,
       "withdrawal": 2095.7,
@@ -16148,7 +15662,7 @@
     },
     {
       "date": "2026-03-18",
-      "gas_in_storage": 327.4326,
+      "gas_in_storage": 327.4323,
       "fill_rate": 28.66,
       "injection": 783.03,
       "withdrawal": 2106.2,
@@ -16157,7 +15671,7 @@
     },
     {
       "date": "2026-03-19",
-      "gas_in_storage": 326.2012,
+      "gas_in_storage": 326.2009,
       "fill_rate": 28.55,
       "injection": 816.34,
       "withdrawal": 2036.5,
@@ -16166,7 +15680,7 @@
     },
     {
       "date": "2026-03-20",
-      "gas_in_storage": 325.7929,
+      "gas_in_storage": 325.7925,
       "fill_rate": 28.51,
       "injection": 982.61,
       "withdrawal": 1818.3,
@@ -16175,70 +15689,70 @@
     },
     {
       "date": "2026-03-21",
-      "gas_in_storage": 325.4806,
+      "gas_in_storage": 325.4803,
       "fill_rate": 28.49,
       "injection": 1336.57,
-      "withdrawal": 1588.5,
+      "withdrawal": 1588.4,
       "working_gas_volume": 1142.6337,
       "yoy": -16.09
     },
     {
       "date": "2026-03-22",
-      "gas_in_storage": 325.3981,
+      "gas_in_storage": 325.3977,
       "fill_rate": 28.48,
       "injection": 1447.6,
       "withdrawal": 1514.7,
       "working_gas_volume": 1142.6337,
-      "yoy": -16.25
+      "yoy": -16.26
     },
     {
       "date": "2026-03-23",
-      "gas_in_storage": 324.7247,
+      "gas_in_storage": 324.7242,
       "fill_rate": 28.42,
       "injection": 933.99,
-      "withdrawal": 2048.2,
+      "withdrawal": 2048.3,
       "working_gas_volume": 1142.6337,
       "yoy": -16.51
     },
     {
       "date": "2026-03-24",
-      "gas_in_storage": 325.0727,
+      "gas_in_storage": 325.0724,
       "fill_rate": 28.45,
       "injection": 1544.85,
       "withdrawal": 1475.8,
       "working_gas_volume": 1142.6337,
-      "yoy": -16.15
+      "yoy": -16.16
     },
     {
       "date": "2026-03-25",
-      "gas_in_storage": 324.9297,
+      "gas_in_storage": 324.9293,
       "fill_rate": 28.44,
       "injection": 1325.91,
-      "withdrawal": 1482.8,
+      "withdrawal": 1482.9,
       "working_gas_volume": 1142.6337,
-      "yoy": -15.92
+      "yoy": -15.93
     },
     {
       "date": "2026-03-26",
-      "gas_in_storage": 323.2829,
+      "gas_in_storage": 323.2825,
       "fill_rate": 28.29,
       "injection": 648.19,
-      "withdrawal": 2286.0,
+      "withdrawal": 2286.1,
       "working_gas_volume": 1142.6337,
       "yoy": -16.11
     },
     {
       "date": "2026-03-27",
-      "gas_in_storage": 321.5742,
+      "gas_in_storage": 321.5738,
       "fill_rate": 28.15,
       "injection": 688.88,
-      "withdrawal": 2427.0,
+      "withdrawal": 2426.9,
       "working_gas_volume": 1142.5345,
-      "yoy": -16.43
+      "yoy": -16.44
     },
     {
       "date": "2026-03-28",
-      "gas_in_storage": 321.0279,
+      "gas_in_storage": 321.0274,
       "fill_rate": 28.13,
       "injection": 1062.46,
       "withdrawal": 1555.7,
@@ -16247,184 +15761,661 @@
     },
     {
       "date": "2026-03-29",
-      "gas_in_storage": 321.1075,
+      "gas_in_storage": 321.107,
       "fill_rate": 28.1,
       "injection": 1412.21,
       "withdrawal": 1346.7,
       "working_gas_volume": 1142.5345,
-      "yoy": -16.74
+      "yoy": -16.75
     },
     {
       "date": "2026-03-30",
-      "gas_in_storage": 320.4466,
+      "gas_in_storage": 320.4461,
       "fill_rate": 28.05,
       "injection": 1023.12,
       "withdrawal": 1675.5,
       "working_gas_volume": 1142.5345,
-      "yoy": -17.12
+      "yoy": -17.13
     },
     {
       "date": "2026-03-31",
-      "gas_in_storage": 314.2068,
+      "gas_in_storage": 314.2064,
       "fill_rate": 27.66,
       "injection": 481.76,
-      "withdrawal": 2517.9,
+      "withdrawal": 2517.8,
       "working_gas_volume": 1136.0304,
-      "yoy": -18.91
+      "yoy": -18.92
     },
     {
       "date": "2026-04-01",
-      "gas_in_storage": 316.15,
-      "fill_rate": 27.89,
+      "gas_in_storage": 316.0445,
+      "fill_rate": 27.87,
       "injection": 571.52,
-      "withdrawal": 2207.0,
-      "working_gas_volume": 1133.7278,
-      "yoy": -18.43
+      "withdrawal": 2207.4,
+      "working_gas_volume": 1133.9722,
+      "yoy": -18.46
     },
     {
       "date": "2026-04-02",
-      "gas_in_storage": 315.6357,
-      "fill_rate": 27.88,
+      "gas_in_storage": 315.5298,
+      "fill_rate": 27.87,
       "injection": 866.79,
-      "withdrawal": 2080.7,
+      "withdrawal": 2081.1,
       "working_gas_volume": 1132.2439,
-      "yoy": -18.77
+      "yoy": -18.8
     },
     {
       "date": "2026-04-03",
-      "gas_in_storage": 316.21,
-      "fill_rate": 27.93,
-      "injection": 1531.3,
-      "withdrawal": 928.3,
+      "gas_in_storage": 316.104,
+      "fill_rate": 27.92,
+      "injection": 1531.04,
+      "withdrawal": 928.2,
       "working_gas_volume": 1132.2439,
-      "yoy": -18.78
+      "yoy": -18.81
     },
     {
       "date": "2026-04-04",
-      "gas_in_storage": 318.6354,
-      "fill_rate": 28.14,
-      "injection": 2760.86,
+      "gas_in_storage": 319.5306,
+      "fill_rate": 28.22,
+      "injection": 2762.3,
       "withdrawal": 302.5,
       "working_gas_volume": 1132.2439,
-      "yoy": -18.49
+      "yoy": -18.27
     },
     {
       "date": "2026-04-05",
-      "gas_in_storage": 321.3112,
-      "fill_rate": 28.38,
-      "injection": 2898.22,
+      "gas_in_storage": 321.206,
+      "fill_rate": 28.37,
+      "injection": 2897.68,
       "withdrawal": 280.0,
       "working_gas_volume": 1132.2439,
-      "yoy": -18.28
+      "yoy": -18.31
     },
     {
       "date": "2026-04-06",
-      "gas_in_storage": 323.5286,
-      "fill_rate": 28.58,
-      "injection": 2560.22,
+      "gas_in_storage": 323.4229,
+      "fill_rate": 28.56,
+      "injection": 2559.92,
       "withdrawal": 350.7,
-      "working_gas_volume": 1131.9995,
-      "yoy": -18.21
+      "working_gas_volume": 1132.2439,
+      "yoy": -18.24
     },
     {
       "date": "2026-04-07",
-      "gas_in_storage": 325.3284,
-      "fill_rate": 28.73,
-      "injection": 2186.44,
+      "gas_in_storage": 325.2223,
+      "fill_rate": 28.72,
+      "injection": 2186.04,
       "withdrawal": 404.9,
       "working_gas_volume": 1132.2303,
-      "yoy": -17.71
+      "yoy": -17.74
     },
     {
       "date": "2026-04-08",
-      "gas_in_storage": 327.0183,
-      "fill_rate": 28.88,
-      "injection": 2129.63,
+      "gas_in_storage": 326.912,
+      "fill_rate": 28.87,
+      "injection": 2129.42,
       "withdrawal": 406.1,
       "working_gas_volume": 1132.2303,
-      "yoy": -17.23
+      "yoy": -17.26
     },
     {
       "date": "2026-04-09",
-      "gas_in_storage": 328.5482,
-      "fill_rate": 29.01,
-      "injection": 2133.14,
+      "gas_in_storage": 328.5465,
+      "fill_rate": 29.02,
+      "injection": 2133.04,
       "withdrawal": 543.4,
-      "working_gas_volume": 1132.6532,
-      "yoy": -16.86
+      "working_gas_volume": 1132.2303,
+      "yoy": -16.87
     },
     {
       "date": "2026-04-10",
-      "gas_in_storage": 329.9421,
+      "gas_in_storage": 329.928,
       "fill_rate": 29.14,
-      "injection": 1999.54,
-      "withdrawal": 605.2,
+      "injection": 1999.48,
+      "withdrawal": 617.5,
       "working_gas_volume": 1132.2303,
-      "yoy": -16.6
+      "yoy": -16.61
     },
     {
       "date": "2026-04-11",
-      "gas_in_storage": 332.0374,
-      "fill_rate": 29.33,
-      "injection": 2447.84,
+      "gas_in_storage": 332.0229,
+      "fill_rate": 29.32,
+      "injection": 2447.48,
       "withdrawal": 342.0,
       "working_gas_volume": 1132.2303,
       "yoy": -16.3
     },
     {
       "date": "2026-04-12",
-      "gas_in_storage": 333.9935,
+      "gas_in_storage": 333.987,
       "fill_rate": 29.5,
-      "injection": 2370.97,
-      "withdrawal": 382.7,
+      "injection": 2376.85,
+      "withdrawal": 380.6,
       "working_gas_volume": 1132.2303,
-      "yoy": -16.37
+      "yoy": -16.38
     },
     {
       "date": "2026-04-13",
-      "gas_in_storage": 334.26,
+      "gas_in_storage": 334.2326,
       "fill_rate": 29.52,
-      "injection": 1681.78,
+      "injection": 1668.95,
       "withdrawal": 1398.7,
       "working_gas_volume": 1132.2303,
-      "yoy": -16.93
+      "yoy": -16.94
     },
     {
       "date": "2026-04-14",
-      "gas_in_storage": 334.1485,
+      "gas_in_storage": 334.1416,
       "fill_rate": 29.51,
-      "injection": 1226.52,
-      "withdrawal": 1332.0,
+      "injection": 1229.74,
+      "withdrawal": 1302.4,
       "working_gas_volume": 1132.2303,
-      "yoy": -17.38
+      "yoy": -17.39
     },
     {
       "date": "2026-04-15",
-      "gas_in_storage": 334.7689,
+      "gas_in_storage": 334.7888,
       "fill_rate": 29.55,
-      "injection": 1572.12,
+      "injection": 1573.24,
       "withdrawal": 917.8,
       "working_gas_volume": 1132.7695,
       "yoy": -17.61
     },
     {
       "date": "2026-04-16",
-      "gas_in_storage": 336.2883,
-      "fill_rate": 29.69,
-      "injection": 2130.11,
+      "gas_in_storage": 336.4753,
+      "fill_rate": 29.7,
+      "injection": 2074.52,
       "withdrawal": 492.9,
       "working_gas_volume": 1132.7695,
+      "yoy": -17.49
+    },
+    {
+      "date": "2026-04-17",
+      "gas_in_storage": 338.9204,
+      "fill_rate": 29.92,
+      "injection": 2801.56,
+      "withdrawal": 304.8,
+      "working_gas_volume": 1132.7695,
+      "yoy": -17.23
+    },
+    {
+      "date": "2026-04-18",
+      "gas_in_storage": 342.1,
+      "fill_rate": 30.2,
+      "injection": 3424.54,
+      "withdrawal": 195.8,
+      "working_gas_volume": 1132.7695,
+      "yoy": -16.91
+    },
+    {
+      "date": "2026-04-19",
+      "gas_in_storage": 345.0527,
+      "fill_rate": 30.46,
+      "injection": 3154.66,
+      "withdrawal": 216.5,
+      "working_gas_volume": 1132.7695,
+      "yoy": -16.86
+    },
+    {
+      "date": "2026-04-20",
+      "gas_in_storage": 346.7613,
+      "fill_rate": 30.61,
+      "injection": 2075.52,
+      "withdrawal": 409.6,
+      "working_gas_volume": 1132.7695,
+      "yoy": -17.12
+    },
+    {
+      "date": "2026-04-21",
+      "gas_in_storage": 347.8354,
+      "fill_rate": 30.71,
+      "injection": 1778.3,
+      "withdrawal": 672.5,
+      "working_gas_volume": 1132.7695,
+      "yoy": -17.49
+    },
+    {
+      "date": "2026-04-22",
+      "gas_in_storage": 349.1527,
+      "fill_rate": 30.82,
+      "injection": 1817.35,
+      "withdrawal": 500.9,
+      "working_gas_volume": 1132.7695,
+      "yoy": -17.65
+    },
+    {
+      "date": "2026-04-23",
+      "gas_in_storage": 350.6091,
+      "fill_rate": 30.95,
+      "injection": 1933.06,
+      "withdrawal": 460.1,
+      "working_gas_volume": 1132.7695,
+      "yoy": -17.74
+    },
+    {
+      "date": "2026-04-24",
+      "gas_in_storage": 353.2168,
+      "fill_rate": 31.19,
+      "injection": 2841.59,
+      "withdrawal": 241.6,
+      "working_gas_volume": 1132.5795,
       "yoy": -17.53
+    },
+    {
+      "date": "2026-04-25",
+      "gas_in_storage": 356.4602,
+      "fill_rate": 31.47,
+      "injection": 3447.66,
+      "withdrawal": 201.7,
+      "working_gas_volume": 1132.5795,
+      "yoy": -17.25
+    },
+    {
+      "date": "2026-04-26",
+      "gas_in_storage": 359.6223,
+      "fill_rate": 31.75,
+      "injection": 3358.52,
+      "withdrawal": 193.8,
+      "working_gas_volume": 1132.5795,
+      "yoy": -17.13
+    },
+    {
+      "date": "2026-04-27",
+      "gas_in_storage": 362.1377,
+      "fill_rate": 31.97,
+      "injection": 2805.16,
+      "withdrawal": 295.2,
+      "working_gas_volume": 1132.5795,
+      "yoy": -17.14
+    },
+    {
+      "date": "2026-04-28",
+      "gas_in_storage": 365.085,
+      "fill_rate": 32.23,
+      "injection": 3131.32,
+      "withdrawal": 201.3,
+      "working_gas_volume": 1132.5795,
+      "yoy": -17.03
+    },
+    {
+      "date": "2026-04-29",
+      "gas_in_storage": 367.9409,
+      "fill_rate": 32.49,
+      "injection": 3071.51,
+      "withdrawal": 191.0,
+      "working_gas_volume": 1132.5795,
+      "yoy": -16.94
+    },
+    {
+      "date": "2026-04-30",
+      "gas_in_storage": 370.7271,
+      "fill_rate": 32.73,
+      "injection": 3016.15,
+      "withdrawal": 259.0,
+      "working_gas_volume": 1132.5809,
+      "yoy": -16.95
+    },
+    {
+      "date": "2026-05-01",
+      "gas_in_storage": 374.3045,
+      "fill_rate": 33.06,
+      "injection": 3926.99,
+      "withdrawal": 85.2,
+      "working_gas_volume": 1132.1209,
+      "yoy": -17.0
+    },
+    {
+      "date": "2026-05-02",
+      "gas_in_storage": 378.4166,
+      "fill_rate": 33.43,
+      "injection": 4187.21,
+      "withdrawal": 63.9,
+      "working_gas_volume": 1132.1209,
+      "yoy": -16.92
+    },
+    {
+      "date": "2026-05-03",
+      "gas_in_storage": 382.417,
+      "fill_rate": 33.78,
+      "injection": 4092.39,
+      "withdrawal": 78.5,
+      "working_gas_volume": 1132.1209,
+      "yoy": -16.95
+    },
+    {
+      "date": "2026-05-04",
+      "gas_in_storage": 385.5515,
+      "fill_rate": 34.05,
+      "injection": 3238.87,
+      "withdrawal": 138.7,
+      "working_gas_volume": 1132.1539,
+      "yoy": -17.09
+    },
+    {
+      "date": "2026-05-05",
+      "gas_in_storage": 387.6692,
+      "fill_rate": 34.24,
+      "injection": 2965.22,
+      "withdrawal": 595.7,
+      "working_gas_volume": 1132.1539,
+      "yoy": -17.16
+    },
+    {
+      "date": "2026-05-06",
+      "gas_in_storage": 389.2504,
+      "fill_rate": 34.38,
+      "injection": 2087.59,
+      "withdrawal": 494.1,
+      "working_gas_volume": 1132.1539,
+      "yoy": -17.26
+    },
+    {
+      "date": "2026-05-07",
+      "gas_in_storage": 390.5789,
+      "fill_rate": 34.5,
+      "injection": 1993.7,
+      "withdrawal": 658.5,
+      "working_gas_volume": 1132.1539,
+      "yoy": -17.38
+    },
+    {
+      "date": "2026-05-08",
+      "gas_in_storage": 393.1521,
+      "fill_rate": 34.73,
+      "injection": 2716.31,
+      "withdrawal": 134.4,
+      "working_gas_volume": 1132.1539,
+      "yoy": -17.04
+    },
+    {
+      "date": "2026-05-09",
+      "gas_in_storage": 396.5853,
+      "fill_rate": 35.04,
+      "injection": 3556.06,
+      "withdrawal": 107.5,
+      "working_gas_volume": 1131.8689,
+      "yoy": -16.79
+    },
+    {
+      "date": "2026-05-10",
+      "gas_in_storage": 400.0889,
+      "fill_rate": 35.35,
+      "injection": 3665.59,
+      "withdrawal": 135.9,
+      "working_gas_volume": 1131.8845,
+      "yoy": -16.73
+    },
+    {
+      "date": "2026-05-11",
+      "gas_in_storage": 402.546,
+      "fill_rate": 35.56,
+      "injection": 2673.25,
+      "withdrawal": 239.0,
+      "working_gas_volume": 1131.8845,
+      "yoy": -16.92
+    },
+    {
+      "date": "2026-05-12",
+      "gas_in_storage": 404.1955,
+      "fill_rate": 35.71,
+      "injection": 2176.95,
+      "withdrawal": 530.9,
+      "working_gas_volume": 1131.8845,
+      "yoy": -17.13
+    },
+    {
+      "date": "2026-05-13",
+      "gas_in_storage": 405.5866,
+      "fill_rate": 35.83,
+      "injection": 2167.97,
+      "withdrawal": 781.9,
+      "working_gas_volume": 1131.8845,
+      "yoy": -17.34
+    },
+    {
+      "date": "2026-05-14",
+      "gas_in_storage": 407.3004,
+      "fill_rate": 35.98,
+      "injection": 2149.3,
+      "withdrawal": 435.5,
+      "working_gas_volume": 1131.8845,
+      "yoy": -17.53
+    },
+    {
+      "date": "2026-05-15",
+      "gas_in_storage": 409.059,
+      "fill_rate": 36.14,
+      "injection": 2227.11,
+      "withdrawal": 465.8,
+      "working_gas_volume": 1131.8845,
+      "yoy": -17.63
+    },
+    {
+      "date": "2026-05-16",
+      "gas_in_storage": 411.3281,
+      "fill_rate": 36.34,
+      "injection": 2583.37,
+      "withdrawal": 280.7,
+      "working_gas_volume": 1131.8845,
+      "yoy": -17.63
+    },
+    {
+      "date": "2026-05-17",
+      "gas_in_storage": 413.7886,
+      "fill_rate": 36.56,
+      "injection": 2716.7,
+      "withdrawal": 246.6,
+      "working_gas_volume": 1131.8845,
+      "yoy": -17.71
+    },
+    {
+      "date": "2026-05-18",
+      "gas_in_storage": 415.6687,
+      "fill_rate": 36.72,
+      "injection": 2112.98,
+      "withdrawal": 421.0,
+      "working_gas_volume": 1131.8845,
+      "yoy": -17.86
+    },
+    {
+      "date": "2026-05-19",
+      "gas_in_storage": 417.371,
+      "fill_rate": 36.87,
+      "injection": 2278.06,
+      "withdrawal": 474.7,
+      "working_gas_volume": 1131.8845,
+      "yoy": -17.92
+    },
+    {
+      "date": "2026-05-20",
+      "gas_in_storage": 418.6343,
+      "fill_rate": 36.99,
+      "injection": 1923.91,
+      "withdrawal": 690.8,
+      "working_gas_volume": 1131.8845,
+      "yoy": -18.09
+    },
+    {
+      "date": "2026-05-21",
+      "gas_in_storage": 420.8068,
+      "fill_rate": 37.18,
+      "injection": 2610.61,
+      "withdrawal": 424.8,
+      "working_gas_volume": 1131.8845,
+      "yoy": -17.9
+    },
+    {
+      "date": "2026-05-22",
+      "gas_in_storage": 423.8871,
+      "fill_rate": 37.45,
+      "injection": 3247.79,
+      "withdrawal": 147.0,
+      "working_gas_volume": 1131.8845,
+      "yoy": -17.63
+    },
+    {
+      "date": "2026-05-23",
+      "gas_in_storage": 428.1552,
+      "fill_rate": 37.83,
+      "injection": 4355.62,
+      "withdrawal": 80.5,
+      "working_gas_volume": 1131.8845,
+      "yoy": -17.21
+    },
+    {
+      "date": "2026-05-24",
+      "gas_in_storage": 432.5345,
+      "fill_rate": 38.21,
+      "injection": 4473.74,
+      "withdrawal": 103.5,
+      "working_gas_volume": 1131.8845,
+      "yoy": -16.87
+    },
+    {
+      "date": "2026-05-25",
+      "gas_in_storage": 435.8614,
+      "fill_rate": 38.52,
+      "injection": 3943.79,
+      "withdrawal": 207.8,
+      "working_gas_volume": 1131.4655,
+      "yoy": -16.88
+    },
+    {
+      "date": "2026-05-26",
+      "gas_in_storage": 439.2975,
+      "fill_rate": 38.83,
+      "injection": 3657.28,
+      "withdrawal": 228.8,
+      "working_gas_volume": 1131.4655,
+      "yoy": -16.74
+    },
+    {
+      "date": "2026-05-27",
+      "gas_in_storage": 442.7614,
+      "fill_rate": 39.13,
+      "injection": 3669.24,
+      "withdrawal": 218.3,
+      "working_gas_volume": 1131.4655,
+      "yoy": -16.59
+    },
+    {
+      "date": "2026-05-28",
+      "gas_in_storage": 445.9808,
+      "fill_rate": 39.42,
+      "injection": 3394.46,
+      "withdrawal": 187.9,
+      "working_gas_volume": 1131.4655,
+      "yoy": -16.5
+    },
+    {
+      "date": "2026-05-29",
+      "gas_in_storage": 449.6172,
+      "fill_rate": 39.74,
+      "injection": 3690.09,
+      "withdrawal": 104.2,
+      "working_gas_volume": 1131.4655,
+      "yoy": -16.45
+    },
+    {
+      "date": "2026-05-30",
+      "gas_in_storage": 453.6316,
+      "fill_rate": 40.09,
+      "injection": 4115.16,
+      "withdrawal": 95.7,
+      "working_gas_volume": 1131.4655,
+      "yoy": -16.35
+    },
+    {
+      "date": "2026-05-31",
+      "gas_in_storage": 457.9912,
+      "fill_rate": 40.48,
+      "injection": 4322.09,
+      "withdrawal": 66.3,
+      "working_gas_volume": 1131.4655,
+      "yoy": -16.33
+    },
+    {
+      "date": "2026-06-01",
+      "gas_in_storage": 461.2198,
+      "fill_rate": 40.76,
+      "injection": 3473.87,
+      "withdrawal": 299.9,
+      "working_gas_volume": 1131.466,
+      "yoy": -16.79
+    },
+    {
+      "date": "2026-06-02",
+      "gas_in_storage": 464.2255,
+      "fill_rate": 41.03,
+      "injection": 3316.19,
+      "withdrawal": 311.9,
+      "working_gas_volume": 1131.466,
+      "yoy": -16.83
+    },
+    {
+      "date": "2026-06-03",
+      "gas_in_storage": 466.7692,
+      "fill_rate": 41.25,
+      "injection": 3039.56,
+      "withdrawal": 492.1,
+      "working_gas_volume": 1131.466,
+      "yoy": -16.94
+    },
+    {
+      "date": "2026-06-04",
+      "gas_in_storage": 469.8971,
+      "fill_rate": 41.53,
+      "injection": 3480.97,
+      "withdrawal": 356.1,
+      "working_gas_volume": 1131.466,
+      "yoy": -16.94
+    },
+    {
+      "date": "2026-06-05",
+      "gas_in_storage": 472.8504,
+      "fill_rate": 41.79,
+      "injection": 3228.25,
+      "withdrawal": 287.0,
+      "working_gas_volume": 1131.466,
+      "yoy": -16.88
+    },
+    {
+      "date": "2026-06-06",
+      "gas_in_storage": 476.6757,
+      "fill_rate": 42.13,
+      "injection": 4004.38,
+      "withdrawal": 119.6,
+      "working_gas_volume": 1131.466,
+      "yoy": -16.81
+    },
+    {
+      "date": "2026-06-07",
+      "gas_in_storage": 480.6871,
+      "fill_rate": 42.48,
+      "injection": 4098.02,
+      "withdrawal": 83.0,
+      "working_gas_volume": 1131.466,
+      "yoy": -16.84
+    },
+    {
+      "date": "2026-06-08",
+      "gas_in_storage": 484.2551,
+      "fill_rate": 42.8,
+      "injection": 3660.38,
+      "withdrawal": 96.9,
+      "working_gas_volume": 1131.466,
+      "yoy": -16.93
     }
   ],
   "latest": {
-    "date": "2026-04-16",
-    "gas_in_storage": 336.2883,
-    "fill_rate": 29.69,
-    "injection": 2130.11,
-    "withdrawal": 492.9,
-    "working_gas_volume": 1132.7695,
-    "yoy": -17.53
+    "date": "2026-06-08",
+    "gas_in_storage": 484.2551,
+    "fill_rate": 42.8,
+    "injection": 3660.38,
+    "withdrawal": 96.9,
+    "working_gas_volume": 1131.466,
+    "yoy": -16.93
   },
   "next_release": null,
   "metadata": {
@@ -16432,11 +16423,11 @@
     "frequency": "daily",
     "unit": "TWh",
     "series": "EU Aggregated Gas Storage Inventory",
-    "data_count": 1824,
-    "start_date": "2021-04-19",
-    "end_date": "2026-04-16"
+    "data_count": 1823,
+    "start_date": "2021-06-12",
+    "end_date": "2026-06-08"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-04-18T16:48:08.791127+09:00"
+  "last_updated": "2026-06-11T02:00:04.892450+09:00"
 }

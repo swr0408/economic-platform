@@ -784,32 +784,50 @@
       "date": "2025-11-01",
       "value": 29.3,
       "mom": 6.8,
-      "raw_value": 21635.0
+      "raw_value": 21632.028
     },
     {
       "date": "2025-12-01",
       "value": 24.1,
-      "mom": -1.3,
-      "raw_value": 21364.0
+      "mom": -1.2,
+      "raw_value": 21363.936
     },
     {
       "date": "2026-01-01",
       "value": 59.8,
       "mom": 4.7,
-      "raw_value": 22359.0
+      "raw_value": 22359.039
+    },
+    {
+      "date": "2026-02-01",
+      "value": 24.5,
+      "mom": -19.6,
+      "raw_value": 17978.596
+    },
+    {
+      "date": "2026-03-01",
+      "value": 44.0,
+      "mom": 40.4,
+      "raw_value": 25243.012
     },
     {
       "date": "2026-04-01",
       "value": 38.9,
-      "mom": null,
+      "mom": -9.7,
       "raw_value": 22787.436
+    },
+    {
+      "date": "2026-05-01",
+      "value": 56.0,
+      "mom": 17.8,
+      "raw_value": 26841.088
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "value": 38.9,
-    "mom": null,
-    "raw_value": 22787.436
+    "date": "2026-05-01",
+    "value": 56.0,
+    "mom": 17.8,
+    "raw_value": 26841.088
   },
   "metadata": {
     "source": "MOF (Ministry of Finance, Taiwan)",
@@ -819,5 +837,5 @@
     "frequency": "monthly"
   },
   "next_release": null,
-  "last_updated": "2026-06-09T00:30:32.100319+09:00"
+  "last_updated": "2026-06-12T00:30:37.735611+09:00"
 }

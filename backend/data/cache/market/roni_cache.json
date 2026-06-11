@@ -4572,14 +4572,19 @@
     },
     {
       "date": "2026-03-01",
-      "value": -0.5,
+      "value": -0.4,
       "season": "FMA"
+    },
+    {
+      "date": "2026-04-01",
+      "value": -0.1,
+      "season": "MAM"
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "value": -0.5,
-    "season": "FMA"
+    "date": "2026-04-01",
+    "value": -0.1,
+    "season": "MAM"
   },
   "metadata": {
     "source": "NOAA CPC",
@@ -4587,11 +4592,11 @@
     "frequency": "monthly",
     "unit": "°C",
     "base_period": "1991-2020",
-    "data_count": 915,
+    "data_count": 916,
     "start_date": "1950-01-01",
-    "end_date": "2026-03-01"
+    "end_date": "2026-04-01"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-01T21:53:08.049042+09:00"
+  "last_updated": "2026-06-11T01:30:21.660088+09:00"
 }

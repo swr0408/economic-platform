@@ -27,6 +27,7 @@ import PricePassThroughRateChart from './price/PricePassThroughRateChart'
 import JapanPriceDISpreadChart from './price/JapanPriceDISpreadChart'
 import JapanGDPGapChart from './economy/JapanGDPGapChart'
 import BOJGDPGapChart from './price/BOJGDPGapChart'
+import HouseholdExpectedInflationChart from './price/HouseholdExpectedInflationChart'
 
 export default function JapanInflationCharts() {
   return (
@@ -94,6 +95,11 @@ export default function JapanInflationCharts() {
       {/* GDPギャップ（日銀） */}
       <div id="boj-gdp-gap">
         <BOJGDPGapChart />
+      </div>
+
+      {/* 家計予想物価上昇率（生活意識アンケート） */}
+      <div id="household-expected-inflation">
+        <HouseholdExpectedInflationChart />
       </div>
     </div>
   )

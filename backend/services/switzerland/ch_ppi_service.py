@@ -147,8 +147,9 @@ class ChPPIService:
         try:
             print(f"[ChPPI] Fetching data from BFS API: {self.BFS_ASSET_URL}")
 
-            # Excelファイルをダウンロード
-            resp = requests.get(self.BFS_ASSET_URL, timeout=60)
+            # Excelファイルをダウンロード (公表ごとに damId が変わるため最新版を動的解決)
+            from services.switzerland.bfs_asset_resolver import resolve_master_url_from_url
+            resp = requests.get(resolve_master_url_from_url(self.BFS_ASSET_URL), timeout=60)
             resp.raise_for_status()
 
             # Excelファイルを読み込み

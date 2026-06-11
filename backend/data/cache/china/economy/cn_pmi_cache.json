@@ -5759,14 +5759,14 @@
     "headline_records": 197,
     "mfg_sub_records": 197,
     "nmf_sub_records": 197,
-    "last_fetched": "2026-06-07T22:13:49.241635+09:00"
+    "last_fetched": "2026-06-11T04:02:25.279635+09:00"
   },
   "next_release": {
     "date": "2026-06-30",
     "datetime_utc": "2026-06-30T01:30:00+00:00",
     "datetime_jst": "2026-06-30T10:30:00+09:00",
     "time_jst": "10:30",
-    "label": "NBS General PMI (Jun)",
-    "estimate": 51.1
+    "label": "NBS Manufacturing PMI (Jun)",
+    "estimate": 50.4
   }
 }

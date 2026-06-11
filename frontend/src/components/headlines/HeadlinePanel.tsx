@@ -7,10 +7,12 @@ import { useState, useMemo } from 'react'
 import { Typography, Tag, Spin, Empty, Button, Space } from 'antd'
 import {
   SoundOutlined, LinkOutlined, ReloadOutlined,
-  MinusCircleOutlined,
+  MinusCircleOutlined, PlusOutlined,
 } from '@ant-design/icons'
 import dayjs from 'dayjs'
 import { useHeadlines, useUnsaveHeadline, useCategories } from '../../hooks/useHeadlines'
+import { useIsMaster } from '../../hooks/useIsMaster'
+import ManualHeadlineModal from './ManualHeadlineModal'
 import type { HeadlinesParams, Headline, Category } from '../../api/headlinesApi'
 
 const { Text } = Typography
@@ -279,6 +281,8 @@ function HeadlinePanel({
 
   const { data, isLoading, refetch, isFetching } = useHeadlines(queryParams)
   const { data: allCategories = [] } = useCategories()
+  const isMaster = useIsMaster()
+  const [manualOpen, setManualOpen] = useState(false)
 
   const isSavedMode = !!externalParams?.savedOnly
   const countryPrefix = externalParams?.savedCategoryPrefix
@@ -314,14 +318,34 @@ function HeadlinePanel({
             <Text style={{ color: colors.textTertiary, fontSize: 11 }}>{data.total}件</Text>
           )}
         </Space>
-        <Button
-          type="text"
-          size="small"
-          icon={<ReloadOutlined spin={isFetching} />}
-          onClick={() => refetch()}
-          style={{ color: colors.textSecondary, padding: '0 4px' }}
-        />
+        <Space size={2}>
+          {isMaster && (
+            <Button
+              type="text"
+              size="small"
+              icon={<PlusOutlined />}
+              onClick={() => setManualOpen(true)}
+              style={{ color: colors.accent, padding: '0 4px' }}
+              title="ヘッドラインを手動登録"
+            />
+          )}
+          <Button
+            type="text"
+            size="small"
+            icon={<ReloadOutlined spin={isFetching} />}
+            onClick={() => refetch()}
+            style={{ color: colors.textSecondary, padding: '0 4px' }}
+          />
+        </Space>
       </div>
+
+      {/* Manual headline registration (master only) */}
+      {manualOpen && isMaster && (
+        <ManualHeadlineModal
+          onClose={() => setManualOpen(false)}
+          defaultCategoryPrefix={countryPrefix}
+        />
+      )}
 
       {/* List */}
       {items.length === 0 ? (

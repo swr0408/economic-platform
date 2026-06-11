@@ -11,6 +11,7 @@ import { DashboardContainer, ChartWrapper } from './common/DashboardContainer'
 import UnemploymentRateChart from './employment/UnemploymentRateChart'
 import UnemploymentByReasonChart from './employment/UnemploymentByReasonChart'
 import ChicagoFedUnemploymentRateForecastChart from './employment/ChicagoFedUnemploymentRateForecastChart'
+import NairuChart from './employment/NairuChart'
 import NonfarmPayrollsChart from './employment/NonfarmPayrollsChart'
 import ADPEmploymentChart from './employment/ADPEmploymentChart'
 import FullPartTimeChart from './employment/FullPartTimeChart'
@@ -58,6 +59,10 @@ export default function USAEmploymentCharts() {
             <ChicagoFedUnemploymentRateForecastChart
               data={dashboardData?.chicago_fed_unemployment_rate_forecast ?? null}
             />
+          </ChartWrapper>
+
+          <ChartWrapper id="nairu">
+            <NairuChart data={dashboardData?.nairu ?? null} />
           </ChartWrapper>
 
           <ChartWrapper id="sahm-rule">

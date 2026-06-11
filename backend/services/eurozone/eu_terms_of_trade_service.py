@@ -204,9 +204,11 @@ class EUTermsOfTradeService:
         """
         # teiet300/teiet310 は複数の次元を持つ:
         # freq, stk_flow, sitc06, partner, unit, geo, time
-        # パス内でフィルタを指定: M...WRL_REST.I21_NSA.EA20
-        # M = Monthly, WRL_REST = Rest of world, I21_NSA = Index 2021=100, EA20 = Euro area 20
-        series_key = "M...WRL_REST.I21_NSA.EA20"
+        # パス内でフィルタを指定: M...WRL_REST.I21_NSA.EA21
+        # M = Monthly, WRL_REST = Rest of world, I21_NSA = Index 2021=100, EA21 = Euro area 21
+        # 2026: ユーロ圏が 21 か国に拡大し teiet300 の geo から EA20 が削除された
+        # (INVALID_QUERY_DIMENSION_VALUE) ため EA21 へ更新。
+        series_key = "M...WRL_REST.I21_NSA.EA21"
         url = f"{self.EUROSTAT_API_BASE}/{dataset}/{series_key}"
 
         params = {

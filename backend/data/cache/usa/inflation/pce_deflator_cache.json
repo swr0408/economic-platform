@@ -2746,13 +2746,6 @@
     "annualized_3m": 6.02,
     "annualized_6m": 4.79
   },
-  "next_release": {
-    "date": "2026-06-25",
-    "datetime_utc": "2026-06-25T12:30:00+00:00",
-    "datetime_jst": "2026-06-25T21:30:00+09:00",
-    "time_jst": "21:30",
-    "label": "Core PCE Price Index MoM (May)",
-    "estimate": null
-  },
-  "last_updated": "2026-05-30T17:30:03.671736+09:00"
+  "next_release": null,
+  "last_updated": "2026-06-10T22:18:22.822180+09:00"
 }

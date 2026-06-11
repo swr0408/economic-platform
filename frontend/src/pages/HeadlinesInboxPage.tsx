@@ -3,14 +3,16 @@ import { Input, Select, Tag, Button, Pagination, Spin, Space, DatePicker, Switch
 import {
   SearchOutlined, ReloadOutlined, SoundOutlined,
   StarOutlined, StarFilled, TranslationOutlined, LinkOutlined,
-  SettingOutlined, FolderOutlined,
+  SettingOutlined, FolderOutlined, PlusOutlined,
 } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/ja'
 import { useHeadlines, useRetranslate } from '../hooks/useHeadlines'
+import { useIsMaster } from '../hooks/useIsMaster'
 import SaveToCategoryModal from '../components/headlines/SaveToCategoryModal'
+import ManualHeadlineModal from '../components/headlines/ManualHeadlineModal'
 import type { Headline } from '../api/headlinesApi'
 
 dayjs.extend(relativeTime)
@@ -70,6 +72,8 @@ function HeadlinesInboxPage() {
   const [searchInput, setSearchInput] = useState('')
   const [dateRange, setDateRange] = useState<[dayjs.Dayjs | null, dayjs.Dayjs | null] | null>(null)
   const [saveModalTarget, setSaveModalTarget] = useState<Headline | null>(null)
+  const [manualOpen, setManualOpen] = useState(false)
+  const isMaster = useIsMaster()
 
   const params = useMemo(() => ({
     limit: pageSize,
@@ -104,6 +108,15 @@ function HeadlinesInboxPage() {
           </Text>
         </div>
         <Space size={8}>
+          {isMaster && (
+            <Button
+              icon={<PlusOutlined />}
+              onClick={() => setManualOpen(true)}
+              style={{ background: colors.accent, borderColor: colors.accent, color: '#fff' }}
+            >
+              手動登録
+            </Button>
+          )}
           <Button
             icon={<FolderOutlined />}
             onClick={() => navigate('/saved')}
@@ -208,6 +221,11 @@ function HeadlinesInboxPage() {
           headline={saveModalTarget}
           onClose={() => setSaveModalTarget(null)}
         />
+      )}
+
+      {/* Manual Headline Modal (master only) */}
+      {manualOpen && isMaster && (
+        <ManualHeadlineModal onClose={() => setManualOpen(false)} />
       )}
     </div>
   )

@@ -11,6 +11,8 @@ DBにUPSERT後、Redisキャッシュをクリアする。
 import logging
 from zoneinfo import ZoneInfo
 
+import asyncio
+
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
 
@@ -74,6 +76,11 @@ class ComexStockScheduler:
         self.scheduler = AsyncIOScheduler(timezone=JST)
 
     async def _run(self):
+        # ブロッキング I/O (requests/yfinance/sync DB) をワーカースレッドへ退避。
+        # 直接実行するとイベントループを占有し login 等が応答不能になる。
+        await asyncio.to_thread(self._run_sync)
+
+    def _run_sync(self):
         """全3メタルの在庫データを更新"""
         logger.info("[ComexScheduler] Starting daily COMEX stock update...")
         for name, fn in [("Gold", _refresh_gold), ("Silver", _refresh_silver), ("Copper", _refresh_copper)]:

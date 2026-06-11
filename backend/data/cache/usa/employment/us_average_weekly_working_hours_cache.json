@@ -1451,13 +1451,19 @@
       "awhaetp": 34.3,
       "awhnonag": 33.8,
       "awhman": 41.6
+    },
+    {
+      "date": "2026-05-01",
+      "awhaetp": 34.3,
+      "awhnonag": 33.8,
+      "awhman": 41.6
     }
   ],
   "latest": {
-    "date": "2026-04-01",
+    "date": "2026-05-01",
     "awhaetp": 34.3,
     "awhnonag": 33.8,
     "awhman": 41.6
   },
-  "last_updated": "2026-06-05T22:16:03.093570+09:00"
+  "last_updated": "2026-06-10T22:17:14.443271+09:00"
 }

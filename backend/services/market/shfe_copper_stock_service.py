@@ -115,12 +115,15 @@ class ShfeCopperStockService:
 
         html = resp.text
 
-        # Pattern 1: {"d":"YYYY-MM-DD","v":12345,...} (escaped quotes)
-        pattern1 = r'\{\\"d\\":\\"(\d{4}-\d{2}-\d{2})\\",\\"v\\":(\d+)'
+        # Pattern 1: 2026 以降サイトは非エスケープ・引用符なしキー形式に変更:
+        #   {d:"YYYY-MM-DD",v:12345,date:"YYYY-MM-DD",value:12345}
+        # 旧エスケープ形式 ({\"d\":\"...\",\"v\":...}) も後方互換で許容する。
+        pattern1 = r'\{(?:\\")?d(?:\\")?:(?:\\")?(\d{4}-\d{2}-\d{2})(?:\\")?,(?:\\")?v(?:\\")?:(\d+)'
         matches1 = re.findall(pattern1, html)
 
-        # Pattern 2: ["MMM DD,YYYY",value] (escaped quotes)
-        pattern2 = r'\[\\"([A-Z][a-z]{2} \d{2},\d{4})\\",(\d+)\]'
+        # Pattern 2: ["MMM DD,YYYY",value] / [\"MMM DD,YYYY\",value]
+        #   groupedData の ["Oct 06,2008",7526] 形式（エスケープ有無どちらも）
+        pattern2 = r'\[(?:\\")?([A-Z][a-z]{2} \d{2},\d{4})(?:\\")?,(\d+)\]'
         matches2 = re.findall(pattern2, html)
 
         seen: set[str] = set()

@@ -1162,15 +1162,33 @@
       {
         "date": "2026-02-01",
         "value": 52.1,
-        "forecast": null,
-        "previous": null
+        "forecast": 50.2,
+        "previous": 50.3
+      },
+      {
+        "date": "2026-03-01",
+        "value": 50.8,
+        "forecast": 51.6,
+        "previous": 52.1
+      },
+      {
+        "date": "2026-04-01",
+        "value": 52.2,
+        "forecast": 51.0,
+        "previous": 50.8
+      },
+      {
+        "date": "2026-05-01",
+        "value": 51.8,
+        "forecast": 51.4,
+        "previous": 52.2
       }
     ],
     "latest": {
-      "date": "2026-02-01",
-      "value": 52.1,
-      "forecast": null,
-      "previous": null
+      "date": "2026-05-01",
+      "value": 51.8,
+      "forecast": 51.4,
+      "previous": 52.2
     }
   },
   "services": {
@@ -2192,15 +2210,33 @@
       {
         "date": "2026-02-01",
         "value": 56.7,
-        "forecast": null,
-        "previous": null
+        "forecast": 52.3,
+        "previous": 52.3
+      },
+      {
+        "date": "2026-03-01",
+        "value": 52.1,
+        "forecast": 53.7,
+        "previous": 56.7
+      },
+      {
+        "date": "2026-04-01",
+        "value": 52.6,
+        "forecast": 52.0,
+        "previous": 52.1
+      },
+      {
+        "date": "2026-05-01",
+        "value": 54.4,
+        "forecast": 52.3,
+        "previous": 52.6
       }
     ],
     "latest": {
-      "date": "2026-02-01",
-      "value": 56.7,
-      "forecast": null,
-      "previous": null
+      "date": "2026-05-01",
+      "value": 54.4,
+      "forecast": 52.3,
+      "previous": 52.6
     }
   },
   "next_release_manufacturing": null,
@@ -2208,9 +2244,9 @@
   "metadata": {
     "indicator": "Caixin PMI (Manufacturing / Services)",
     "source": "S&P Global / Caixin",
-    "manufacturing_records": 194,
-    "services_records": 170,
-    "last_fetched": "2026-06-07T22:13:57.040489+09:00"
+    "manufacturing_records": 197,
+    "services_records": 173,
+    "last_fetched": "2026-06-11T11:18:28.269362+09:00"
   },
-  "last_updated": "2026-06-07T22:13:57.040506+09:00"
+  "last_updated": "2026-06-11T11:18:28.269362+09:00"
 }

@@ -53,8 +53,10 @@ class EurostatConsumerConfidenceService:
     # BS-CSMCI = Consumer confidence indicator
     # SA = Seasonally adjusted, not calendar adjusted
     # BAL = Balance
-    # EA20 = Euro area - 20 countries (from 2023)
-    SERIES_KEY = "M.BS-CSMCI.SA.BAL.EA20"
+    # EA21 = Euro area - 21 countries。2026 にユーロ圏が 21 か国へ拡大し、
+    #        EA20 集計は 2025-12 で値が停止 (期間は宣言されるが value=null)。
+    #        EA21 は 2000-01 以降の全履歴 + 2026 の最新値を持つため EA21 を使用。
+    SERIES_KEY = "M.BS-CSMCI.SA.BAL.EA21"
 
     def __init__(self):
         pass

@@ -51227,28 +51227,34 @@
       "registered_oz": 79199547.639,
       "eligible_oz": 253495706.985,
       "total_oz": 332695254.624
+    },
+    {
+      "date": "2026-06-09",
+      "registered_oz": 84923903.641,
+      "eligible_oz": 234435904.823,
+      "total_oz": 319359808.464
     }
   ],
   "latest": {
-    "date": "2026-03-20",
-    "registered_oz": 79199547.639,
-    "eligible_oz": 253495706.985,
-    "total_oz": 332695254.624
+    "date": "2026-06-09",
+    "registered_oz": 84923903.641,
+    "eligible_oz": 234435904.823,
+    "total_oz": 319359808.464
   },
   "latest_silver": {
-    "date": "2026-05-24",
-    "close": 76.199
+    "date": "2026-06-10",
+    "close": 63.08
   },
   "metadata": {
     "source": "CME COMEX + yfinance (SI=F)",
     "indicator": "COMEX Silver Warehouse Stock",
     "unit": "troy oz",
     "frequency": "daily",
-    "data_count": 8538,
+    "data_count": 8539,
     "start_date": "1992-08-31",
-    "end_date": "2026-03-20"
+    "end_date": "2026-06-09"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-05-25T12:00:15.982096+09:00"
+  "last_updated": "2026-06-11T12:00:00.999234+09:00"
 }

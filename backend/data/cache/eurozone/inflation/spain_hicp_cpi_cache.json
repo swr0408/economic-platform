@@ -1199,6 +1199,18 @@
     {
       "date": "2025-12-01",
       "value": 0.3
+    },
+    {
+      "date": "2026-03-01",
+      "value": 1.2
+    },
+    {
+      "date": "2026-04-01",
+      "value": 0.4
+    },
+    {
+      "date": "2026-05-01",
+      "value": 0.1
     }
   ],
   "cpi_yoy": [
@@ -2401,6 +2413,18 @@
     {
       "date": "2025-12-01",
       "value": 2.9
+    },
+    {
+      "date": "2026-03-01",
+      "value": 3.4
+    },
+    {
+      "date": "2026-04-01",
+      "value": 3.2
+    },
+    {
+      "date": "2026-05-01",
+      "value": 3.2
     }
   ],
   "core_cpi_mom": [
@@ -3555,6 +3579,18 @@
     {
       "date": "2025-12-01",
       "value": 0.4
+    },
+    {
+      "date": "2026-03-01",
+      "value": 0.7
+    },
+    {
+      "date": "2026-04-01",
+      "value": 0.8
+    },
+    {
+      "date": "2026-05-01",
+      "value": 0.2
     }
   ],
   "core_cpi_yoy": [
@@ -4709,6 +4745,18 @@
     {
       "date": "2025-12-01",
       "value": 2.6
+    },
+    {
+      "date": "2026-03-01",
+      "value": 2.9
+    },
+    {
+      "date": "2026-04-01",
+      "value": 2.8
+    },
+    {
+      "date": "2026-05-01",
+      "value": 2.9
     }
   ],
   "hicp_mom": [
@@ -5911,6 +5959,18 @@
     {
       "date": "2025-12-01",
       "value": 0.3
+    },
+    {
+      "date": "2026-03-01",
+      "value": 1.7
+    },
+    {
+      "date": "2026-04-01",
+      "value": 0.7
+    },
+    {
+      "date": "2026-05-01",
+      "value": 0.1
     }
   ],
   "hicp_yoy": [
@@ -7113,15 +7173,27 @@
     {
       "date": "2025-12-01",
       "value": 3.0
+    },
+    {
+      "date": "2026-03-01",
+      "value": 3.4
+    },
+    {
+      "date": "2026-04-01",
+      "value": 3.5
+    },
+    {
+      "date": "2026-05-01",
+      "value": 3.6
     }
   ],
   "latest_cpi_yoy": {
-    "date": "2025-12-01",
-    "value": 2.9
+    "date": "2026-05-01",
+    "value": 3.2
   },
   "latest_hicp_yoy": {
-    "date": "2025-12-01",
-    "value": 3.0
+    "date": "2026-05-01",
+    "value": 3.6
   },
   "metadata": {
     "source": "INE (Instituto Nacional de Estadística) - Tempus3 API + DB",
@@ -7130,12 +7202,12 @@
     "frequency": "Monthly",
     "description": "スペイン消費者物価指数 / 調和消費者物価指数",
     "series_codes": {
-      "cpi_mom": "IPC251855",
-      "cpi_yoy": "IPC251856",
-      "core_cpi_mom": "IPC253989",
-      "core_cpi_yoy": "IPC253990",
-      "hicp_mom": "IPCA1886",
-      "hicp_yoy": "IPCA1885"
+      "cpi_mom": "IPC290752",
+      "cpi_yoy": "IPC290750",
+      "core_cpi_mom": "IPC292512",
+      "core_cpi_yoy": "IPC292510",
+      "hicp_mom": "IPCA8092",
+      "hicp_yoy": "IPCA8090"
     }
   },
   "next_release": {
@@ -7148,5 +7220,5 @@
     "label": "HICP YoY (Jun)",
     "estimate": null
   },
-  "last_updated": "2026-06-08T22:00:20.802306+09:00"
+  "last_updated": "2026-06-11T23:15:37.379667+09:00"
 }

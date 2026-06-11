@@ -57,9 +57,11 @@ class EUInternationalTradeService:
     BASE_PARAMS = {
         "freq": "M",              # Monthly
         "unit": "MIO-EUR-NSA",    # Million euro - not seasonally adjusted
-        "partner": "EXT_EA20",    # Extra-euro area - 20 countries
+        # 2026: ユーロ圏が 21 か国に拡大。partner=EXT_EA20 は無効化され
+        # (INVALID_QUERY_DIMENSION_VALUE)、データも EA20 系は 2025-12 で停止。EA21 へ更新。
+        "partner": "EXT_EA21",    # Extra-euro area - 21 countries
         "indic": "ET-T",          # Total
-        "geo": "EA20"             # Euro area - 20 countries
+        "geo": "EA21"             # Euro area - 21 countries
     }
 
     DATA_CACHE_KEY = "economy:eu_international_trade:data"

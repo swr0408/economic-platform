@@ -71,6 +71,7 @@ try:
     from backend.routers.japan.pos_uvpi import router as japan_pos_uvpi_router
     from backend.routers.japan.gdp_gap import router as japan_gdp_gap_router
     from backend.routers.japan.boj_gdp_gap import router as japan_boj_gdp_gap_router
+    from backend.routers.japan.household_expected_inflation import router as japan_household_expected_inflation_router
     from backend.routers.japan.machinery_orders import router as japan_machinery_orders_router
     from backend.routers.japan.machinery_orders_forecast import router as japan_machinery_orders_forecast_router
     from backend.routers.japan.tertiary_industry_index import router as japan_tertiary_industry_index_router
@@ -152,6 +153,7 @@ try:
     from backend.scheduler.ny_option_cut_scheduler import ny_option_cut_scheduler
     from backend.scheduler.comex_stock_scheduler import comex_stock_scheduler
     from backend.scheduler.market_data_scheduler import market_data_scheduler
+    from backend.scheduler.staleness_monitor_scheduler import staleness_monitor_scheduler
     from backend.scheduler.eurex_ois_scheduler import eurex_ois_scheduler
     from backend.scheduler.ecb_rate_cuts_screenshot_scheduler import ecb_rate_cuts_screenshot_scheduler
     from backend.scheduler.boc_rate_cuts_screenshot_scheduler import boc_rate_cuts_screenshot_scheduler
@@ -161,6 +163,7 @@ try:
     from backend.routers.headlines import router as headlines_router
     from backend.routers.auth import router as auth_router
     from backend.routers.visibility import router as visibility_router
+    from backend.routers.admin_staleness import router as admin_staleness_router
     from backend.core.auth.schema_init import init_auth_schema
     from backend.core.auth.visibility_schema_init import init_visibility_schema
     from backend.core.auth.write_guard import WriteOperationGuardMiddleware
@@ -225,6 +228,7 @@ except ImportError as _ie:
     from routers.japan.pos_uvpi import router as japan_pos_uvpi_router
     from routers.japan.gdp_gap import router as japan_gdp_gap_router
     from routers.japan.boj_gdp_gap import router as japan_boj_gdp_gap_router
+    from routers.japan.household_expected_inflation import router as japan_household_expected_inflation_router
     from routers.japan.machinery_orders import router as japan_machinery_orders_router
     from routers.japan.machinery_orders_forecast import router as japan_machinery_orders_forecast_router
     from routers.japan.machine_tool_orders import router as japan_machine_tool_orders_router
@@ -370,6 +374,7 @@ except ImportError as _ie:
     from scheduler.ny_option_cut_scheduler import ny_option_cut_scheduler
     from scheduler.comex_stock_scheduler import comex_stock_scheduler
     from scheduler.market_data_scheduler import market_data_scheduler
+    from scheduler.staleness_monitor_scheduler import staleness_monitor_scheduler
     from scheduler.eurex_ois_scheduler import eurex_ois_scheduler
     from scheduler.ecb_rate_cuts_screenshot_scheduler import ecb_rate_cuts_screenshot_scheduler
     from scheduler.boc_rate_cuts_screenshot_scheduler import boc_rate_cuts_screenshot_scheduler
@@ -379,6 +384,7 @@ except ImportError as _ie:
     from routers.headlines import router as headlines_router
     from routers.auth import router as auth_router
     from routers.visibility import router as visibility_router
+    from routers.admin_staleness import router as admin_staleness_router
     from core.auth.schema_init import init_auth_schema
     from core.auth.visibility_schema_init import init_visibility_schema
     from core.auth.write_guard import WriteOperationGuardMiddleware
@@ -509,6 +515,7 @@ app.include_router(japan_import_export_price_router)
 app.include_router(japan_pos_uvpi_router)
 app.include_router(japan_gdp_gap_router)
 app.include_router(japan_boj_gdp_gap_router)
+app.include_router(japan_household_expected_inflation_router)
 app.include_router(japan_machinery_orders_router)
 app.include_router(japan_machinery_orders_forecast_router)
 app.include_router(japan_machine_tool_orders_router)
@@ -638,6 +645,7 @@ app.include_router(global_oecd_cli_router)
 app.include_router(headlines_router)
 app.include_router(auth_router)
 app.include_router(visibility_router)
+app.include_router(admin_staleness_router)
 
 
 @app.get("/health")
@@ -894,6 +902,13 @@ async def startup_event():
     except Exception as e:
         print(f"Warning: Could not start Market Data Scheduler: {e}")
 
+    # キャッシュ鮮度モニタ (取りこぼし検知ガード) を開始
+    try:
+        staleness_monitor_scheduler.start()
+        print("Staleness Monitor Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Staleness Monitor Scheduler: {e}")
+
     # Eurex OIS 日次スケジューラーを開始
     try:
         eurex_ois_scheduler.start()
@@ -1106,6 +1121,11 @@ async def shutdown_event():
         market_data_scheduler.shutdown()
     except Exception as e:
         print(f"Warning: Error shutting down Market Data Scheduler: {e}")
+
+    try:
+        staleness_monitor_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down Staleness Monitor Scheduler: {e}")
 
     try:
         discord_news_listener.shutdown()

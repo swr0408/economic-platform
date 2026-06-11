@@ -36,7 +36,9 @@ class FOMCProjectionsScheduler:
             print(f"Updating FOMC Projections for {release_date.strftime('%Y-%m-%d')}")
 
             # Figure 2 (Dot Plot) を更新
-            result = self.service.update_figure_2(release_date)
+            # update_figure_2 は requests + PDF描画 (fitz) のブロッキング処理。
+            # ワーカースレッドへ退避しないとイベントループを占有し login 等が落ちる。
+            result = await asyncio.to_thread(self.service.update_figure_2, release_date)
 
             if result["success"]:
                 print(f"Successfully updated FOMC Projections Figure 2: {result['file_path']}")
@@ -47,8 +49,8 @@ class FOMCProjectionsScheduler:
             else:
                 print(f"Failed to update FOMC Projections Figure 2: {result.get('error')}")
 
-            # Table 1 (Economic Projections) を更新
-            table1_result = self.table1_service.update_table_1(release_date)
+            # Table 1 (Economic Projections) を更新（同じくブロッキング処理）
+            table1_result = await asyncio.to_thread(self.table1_service.update_table_1, release_date)
 
             if table1_result["success"]:
                 print(f"Successfully updated FOMC Projections Table 1: {table1_result['file_path']}")

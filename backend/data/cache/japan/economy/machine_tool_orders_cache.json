@@ -979,20 +979,25 @@
       "date": "2026-04-01",
       "total_orders": 188967.0,
       "value": 45.099999999999994
+    },
+    {
+      "date": "2026-06-01",
+      "total_orders": null,
+      "value": 37.400000000000006
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "total_orders": 188967.0,
-    "value": 45.099999999999994
+    "date": "2026-06-01",
+    "total_orders": null,
+    "value": 37.400000000000006
   },
   "next_release": {
-    "date": "2026-06-09",
-    "datetime_utc": "2026-06-09T06:00:00+00:00",
-    "datetime_jst": "2026-06-09T15:00:00+09:00",
+    "date": "2026-07-09",
+    "datetime_utc": "2026-07-09T06:00:00+00:00",
+    "datetime_jst": "2026-07-09T15:00:00+09:00",
     "time_jst": "15:00",
-    "label": "Machine Tool Orders YoY (May)",
-    "estimate": 37
+    "label": "Machine Tool Orders YoY (Jun)",
+    "estimate": null
   },
-  "last_updated": "2026-06-08T20:01:03.332742+09:00"
+  "last_updated": "2026-06-11T09:00:00.547049+09:00"
 }

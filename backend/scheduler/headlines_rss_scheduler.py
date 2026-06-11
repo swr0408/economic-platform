@@ -5,7 +5,7 @@ FinancialJuice RSS を1時間ごとに取得し、Discord側で取りこぼし�
 """
 
 import xml.etree.ElementTree as ET
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from zoneinfo import ZoneInfo
 
@@ -201,8 +201,17 @@ class HeadlinesRSSScheduler:
         self.scheduler.start()
         self._is_running = True
 
-        # 起動時にも1回実行
-        self._process_rss()
+        # 起動時にも1回実行。ただし _process_rss は同期ブロッキング (httpx.get 30s) のため、
+        # ここで直接呼ぶと async startup 上でイベントループを止め login 等が応答不能になる。
+        # 即時 date ジョブとして登録し、executor のワーカースレッドで実行する。
+        self.scheduler.add_job(
+            self._process_rss,
+            trigger="date",
+            run_date=datetime.now(JST) + timedelta(seconds=5),
+            id="rss_startup_fetch",
+            replace_existing=True,
+            misfire_grace_time=600,
+        )
         print("[RSS] Headlines RSS Scheduler started (hourly + daily cleanup)")
 
     def shutdown(self):

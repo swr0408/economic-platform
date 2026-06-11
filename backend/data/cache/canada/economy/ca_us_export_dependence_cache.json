@@ -2677,132 +2677,140 @@
     },
     {
       "date": "2025-01-01",
-      "value": 77.72,
-      "us_export": 57384.0,
-      "total_export": 73834.0,
-      "ma_3m": 76.77,
+      "value": 77.69,
+      "us_export": 57115.1,
+      "total_export": 73521.4,
+      "ma_3m": 76.75,
       "ma_12m": 75.98
     },
     {
       "date": "2025-02-01",
-      "value": 79.6,
-      "us_export": 54762.6,
-      "total_export": 68798.1,
-      "ma_3m": 77.84,
+      "value": 79.59,
+      "us_export": 54413.6,
+      "total_export": 68371.2,
+      "ma_3m": 77.82,
       "ma_12m": 76.38
     },
     {
       "date": "2025-03-01",
-      "value": 73.06,
-      "us_export": 48860.8,
-      "total_export": 66878.9,
-      "ma_3m": 76.85,
+      "value": 73.1,
+      "us_export": 49087.0,
+      "total_export": 67151.5,
+      "ma_3m": 76.83,
       "ma_12m": 76.17
     },
     {
       "date": "2025-04-01",
-      "value": 69.35,
-      "us_export": 41579.0,
-      "total_export": 59952.7,
-      "ma_3m": 74.22,
+      "value": 69.41,
+      "us_export": 41841.7,
+      "total_export": 60286.1,
+      "ma_3m": 74.23,
       "ma_12m": 75.69
     },
     {
       "date": "2025-05-01",
-      "value": 68.57,
-      "us_export": 41969.8,
-      "total_export": 61210.3,
-      "ma_3m": 70.41,
-      "ma_12m": 74.92
+      "value": 68.46,
+      "us_export": 41890.8,
+      "total_export": 61186.0,
+      "ma_3m": 70.42,
+      "ma_12m": 74.91
     },
     {
       "date": "2025-06-01",
-      "value": 70.2,
-      "us_export": 43336.9,
-      "total_export": 61737.6,
-      "ma_3m": 69.37,
-      "ma_12m": 74.49
+      "value": 70.21,
+      "us_export": 43465.2,
+      "total_export": 61908.4,
+      "ma_3m": 69.36,
+      "ma_12m": 74.48
     },
     {
       "date": "2025-07-01",
-      "value": 72.63,
-      "us_export": 45422.9,
-      "total_export": 62540.8,
-      "ma_3m": 70.48,
-      "ma_12m": 74.09
+      "value": 72.64,
+      "us_export": 45423.9,
+      "total_export": 62531.5,
+      "ma_3m": 70.45,
+      "ma_12m": 74.08
     },
     {
       "date": "2025-08-01",
-      "value": 72.38,
-      "us_export": 43854.4,
-      "total_export": 60589.0,
-      "ma_3m": 71.73,
-      "ma_12m": 73.89
+      "value": 72.42,
+      "us_export": 43941.6,
+      "total_export": 60679.3,
+      "ma_3m": 71.75,
+      "ma_12m": 73.88
     },
     {
       "date": "2025-09-01",
-      "value": 70.93,
-      "us_export": 45769.3,
-      "total_export": 64525.6,
-      "ma_3m": 71.97,
+      "value": 70.96,
+      "us_export": 45820.3,
+      "total_export": 64570.7,
+      "ma_3m": 71.99,
       "ma_12m": 73.49
     },
     {
       "date": "2025-10-01",
-      "value": 67.25,
-      "us_export": 43982.9,
-      "total_export": 65403.3,
-      "ma_3m": 70.13,
-      "ma_12m": 73.02
+      "value": 67.29,
+      "us_export": 44064.4,
+      "total_export": 65481.6,
+      "ma_3m": 70.16,
+      "ma_12m": 73.01
     },
     {
       "date": "2025-11-01",
-      "value": 68.38,
-      "us_export": 43887.8,
-      "total_export": 64185.6,
-      "ma_3m": 68.85,
+      "value": 68.4,
+      "us_export": 43865.8,
+      "total_export": 64135.7,
+      "ma_3m": 68.88,
       "ma_12m": 72.36
     },
     {
       "date": "2025-12-01",
-      "value": 67.41,
-      "us_export": 44577.4,
-      "total_export": 66128.9,
-      "ma_3m": 67.67,
+      "value": 67.4,
+      "us_export": 44458.4,
+      "total_export": 65961.3,
+      "ma_3m": 67.69,
       "ma_12m": 71.59
     },
     {
       "date": "2026-01-01",
       "value": 67.84,
-      "us_export": 42600.2,
-      "total_export": 62795.1,
+      "us_export": 42793.7,
+      "total_export": 63080.4,
       "ma_3m": 67.87,
-      "ma_12m": 70.69
+      "ma_12m": 70.7
     },
     {
       "date": "2026-02-01",
-      "value": 66.82,
-      "us_export": 44803.6,
-      "total_export": 67054.8,
-      "ma_3m": 67.34,
-      "ma_12m": 69.55
+      "value": 66.91,
+      "us_export": 44974.4,
+      "total_export": 67218.4,
+      "ma_3m": 67.37,
+      "ma_12m": 69.57
     },
     {
       "date": "2026-03-01",
-      "value": 66.65,
-      "us_export": 48506.4,
-      "total_export": 72773.4,
-      "ma_3m": 67.08,
-      "ma_12m": 68.97
+      "value": 67.07,
+      "us_export": 49617.9,
+      "total_export": 73979.9,
+      "ma_3m": 67.25,
+      "ma_12m": 69.02
+    },
+    {
+      "date": "2026-04-01",
+      "value": 69.15,
+      "us_export": 51974.9,
+      "total_export": 75160.4,
+      "ma_3m": 67.74,
+      "ma_12m": 69.0
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "value": 66.65,
-    "us_export": 48506.4,
-    "total_export": 72773.4,
-    "ma_3m": 67.08,
-    "ma_12m": 68.97
+    "date": "2026-04-01",
+    "value": 69.15,
+    "us_export": 51974.9,
+    "total_export": 75160.4,
+    "ma_3m": 67.74,
+    "ma_12m": 69.0
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -2813,14 +2821,14 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-06-09",
-    "datetime_utc": "2026-06-09T12:30:00+00:00",
-    "datetime_jst": "2026-06-09T21:30:00+09:00",
+    "date": "2026-07-07",
+    "datetime_utc": "2026-07-07T12:30:00+00:00",
+    "datetime_jst": "2026-07-07T21:30:00+09:00",
     "time_jst": "21:30",
-    "datetime_toronto": "2026-06-09T08:30:00-04:00",
+    "datetime_toronto": "2026-07-07T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "Imports (Apr)",
-    "estimate": 69.5
+    "label": "Imports (May)",
+    "estimate": null
   },
-  "last_updated": "2026-06-08T20:01:16.367065+09:00"
+  "last_updated": "2026-06-11T21:30:18.352656+09:00"
 }

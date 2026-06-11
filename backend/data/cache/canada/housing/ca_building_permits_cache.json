@@ -571,22 +571,28 @@
     },
     {
       "date": "2026-02-01",
-      "value": 12226.5,
-      "mom": -7.75,
-      "yoy": -7.47
+      "value": 12223.9,
+      "mom": -7.77,
+      "yoy": -7.49
     },
     {
       "date": "2026-03-01",
-      "value": 13484.2,
-      "mom": 10.29,
-      "yoy": 8.48
+      "value": 13514.8,
+      "mom": 10.56,
+      "yoy": 8.73
+    },
+    {
+      "date": "2026-04-01",
+      "value": 12491.1,
+      "mom": -7.57,
+      "yoy": 6.05
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "value": 13484.2,
-    "mom": 10.29,
-    "yoy": 8.48
+    "date": "2026-04-01",
+    "value": 12491.1,
+    "mom": -7.57,
+    "yoy": 6.05
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -604,7 +610,7 @@
     "datetime_toronto": "2026-06-11T08:30:00-04:00",
     "time_toronto": "08:30",
     "label": "Building Permits MoM (Apr)",
-    "estimate": -5.0
+    "estimate": -3.5
   },
-  "last_updated": "2026-06-08T20:01:05.544970+09:00"
+  "last_updated": "2026-06-11T21:45:27.449870+09:00"
 }

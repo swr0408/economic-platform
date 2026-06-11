@@ -140,7 +140,8 @@ class CHNominalWageGrowthService:
         try:
             print(f"[CHNominalWageGrowth] Fetching data from BFS API: {self.BFS_API_URL}")
 
-            resp = requests.get(self.BFS_API_URL, timeout=120)
+            from services.switzerland.bfs_asset_resolver import resolve_master_url_from_url
+            resp = requests.get(resolve_master_url_from_url(self.BFS_API_URL), timeout=120)
             resp.raise_for_status()
 
             # CSVをパース

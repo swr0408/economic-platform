@@ -1275,13 +1275,6 @@
     "mom": 1.03,
     "index": 154.06
   },
-  "next_release": {
-    "date": "2026-06-11",
-    "datetime_utc": "2026-06-11T12:30:00+00:00",
-    "datetime_jst": "2026-06-11T21:30:00+09:00",
-    "time_jst": "21:30",
-    "label": "Producer Price Index MoM (May)",
-    "estimate": null
-  },
-  "last_updated": "2026-05-14T21:31:30.439580+09:00"
+  "next_release": null,
+  "last_updated": "2026-06-10T22:18:30.972894+09:00"
 }

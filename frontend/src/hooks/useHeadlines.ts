@@ -1,10 +1,11 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import {
   fetchHeadlines, fetchHeadlineById, saveHeadline, unsaveHeadline,
+  createManualHeadline,
   retranslateHeadline, fetchCategories, createCategory, updateCategory,
   deleteCategory, fetchAdminStatus, runRSSBackfill, fetchRSSLogs,
   seedCategories,
-  type HeadlinesParams, type SaveHeadlineParams,
+  type HeadlinesParams, type SaveHeadlineParams, type ManualHeadlineParams,
 } from '../api/headlinesApi'
 
 // ========== Headlines ==========
@@ -32,6 +33,18 @@ export function useSaveHeadline() {
   return useMutation({
     mutationFn: ({ headlineId, params }: { headlineId: number; params: SaveHeadlineParams }) =>
       saveHeadline(headlineId, params),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['headlines'] })
+      qc.invalidateQueries({ queryKey: ['headline'] })
+      qc.invalidateQueries({ queryKey: ['categories'] })
+    },
+  })
+}
+
+export function useCreateManualHeadline() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: (params: ManualHeadlineParams) => createManualHeadline(params),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['headlines'] })
       qc.invalidateQueries({ queryKey: ['headline'] })

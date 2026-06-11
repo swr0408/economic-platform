@@ -167,6 +167,7 @@ class USAInflationLoader(BaseDashboardLoader):
                 stale.add("cpi")
                 stale.add("core_cpi")  # 同時発表
                 stale.add("cpi_categories")  # 同時発表
+                stale.add("used_car_prices")  # FRED中古車(CUSR0000SETA02)はCPIと同時発表
 
             if stale:
                 print(f"[stale] Detected stale indicators: {stale}")

@@ -157,6 +157,7 @@ function getIndicatorMapping(indicatorId: string): {
     '/api/japan/potential-growth',
     '/api/japan/gdp-gap',
     '/api/japan/boj-',
+    '/api/japan/household-expected-inflation',
     '/api/japan/ois-',
     '/api/japan/capital-investment',
     '/api/japan/iip',

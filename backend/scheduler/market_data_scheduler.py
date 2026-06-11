@@ -28,6 +28,7 @@
   sge_gold, china_gold_etf_balance, nikkei225_options, ny_option_cut,
   jpx_investor_trading
 """
+import asyncio
 import logging
 import time
 from datetime import datetime, timedelta
@@ -294,49 +295,53 @@ class MarketDataScheduler:
 
     # ── 日次ハンドラー ──
 
+    # NOTE: 各ハンドラは AsyncIOScheduler 上でコルーチンとしてイベントループ上で実行される。
+    # _run_batch は yfinance/dukascopy/stooq/requests などの同期ブロッキング I/O を行うため、
+    # 直接 await せずワーカースレッドへ退避する。これをしないと起動時 catchup が
+    # イベントループを占有し、login 等すべてのエンドポイントが応答不能になる。
     async def _run_us_close(self):
         logger.info("[MarketScheduler] US_CLOSE refresh...")
-        _run_batch(US_CLOSE_SERVICES, "US_CLOSE")
+        await asyncio.to_thread(_run_batch, US_CLOSE_SERVICES, "US_CLOSE")
 
     async def _run_jp_close(self):
         logger.info("[MarketScheduler] JP_CLOSE refresh...")
-        _run_batch(JP_CLOSE_SERVICES, "JP_CLOSE")
+        await asyncio.to_thread(_run_batch, JP_CLOSE_SERVICES, "JP_CLOSE")
 
     # ── 週次ハンドラー ──
 
     async def _run_eia_weekly(self):
         logger.info("[MarketScheduler] EIA_WEEKLY refresh...")
-        _run_batch(EIA_WEEKLY_SERVICES, "EIA_WEEKLY")
+        await asyncio.to_thread(_run_batch, EIA_WEEKLY_SERVICES, "EIA_WEEKLY")
 
     async def _run_eia_gas(self):
         logger.info("[MarketScheduler] EIA_GAS refresh...")
-        _run_batch(EIA_GAS_SERVICES, "EIA_GAS")
+        await asyncio.to_thread(_run_batch, EIA_GAS_SERVICES, "EIA_GAS")
 
     async def _run_naaim(self):
         logger.info("[MarketScheduler] NAAIM refresh...")
-        _run_batch(NAAIM_SERVICES, "NAAIM")
+        await asyncio.to_thread(_run_batch, NAAIM_SERVICES, "NAAIM")
 
     async def _run_api_crude(self):
         logger.info("[MarketScheduler] API_CRUDE refresh...")
-        _run_batch(API_CRUDE_SERVICES, "API_CRUDE")
+        await asyncio.to_thread(_run_batch, API_CRUDE_SERVICES, "API_CRUDE")
 
     async def _run_cftc(self):
         logger.info("[MarketScheduler] CFTC refresh...")
-        _run_batch(CFTC_SERVICES, "CFTC")
+        await asyncio.to_thread(_run_batch, CFTC_SERVICES, "CFTC")
 
     # ── 月次ハンドラー ──
 
     async def _run_monthly_early(self):
         logger.info("[MarketScheduler] MONTHLY_EARLY refresh...")
-        _run_batch(MONTHLY_EARLY_SERVICES, "MONTHLY_EARLY")
+        await asyncio.to_thread(_run_batch, MONTHLY_EARLY_SERVICES, "MONTHLY_EARLY")
 
     async def _run_monthly_mid(self):
         logger.info("[MarketScheduler] MONTHLY_MID refresh...")
-        _run_batch(MONTHLY_MID_SERVICES, "MONTHLY_MID")
+        await asyncio.to_thread(_run_batch, MONTHLY_MID_SERVICES, "MONTHLY_MID")
 
     async def _run_monthly_late(self):
         logger.info("[MarketScheduler] MONTHLY_LATE refresh...")
-        _run_batch(MONTHLY_LATE_SERVICES, "MONTHLY_LATE")
+        await asyncio.to_thread(_run_batch, MONTHLY_LATE_SERVICES, "MONTHLY_LATE")
 
     # ── 起動 / 停止 ──
 

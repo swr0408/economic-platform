@@ -737,6 +737,12 @@
       "value": 3.93,
       "forecast": null,
       "previous": null
+    },
+    {
+      "date": "2026-04-01",
+      "value": 3.92,
+      "forecast": null,
+      "previous": null
     }
   ],
   "cfmz6jv": [
@@ -1475,6 +1481,12 @@
     {
       "date": "2026-03-01",
       "value": 4.01,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2026-04-01",
+      "value": 4.05,
       "forecast": null,
       "previous": null
     }
@@ -2511,26 +2523,32 @@
       "value": 6.6,
       "forecast": null,
       "previous": null
+    },
+    {
+      "date": "2026-05-01",
+      "value": 6.6,
+      "forecast": null,
+      "previous": null
     }
   ],
   "latest_cfmz6k6": {
-    "date": "2026-03-01",
-    "value": 3.93,
+    "date": "2026-04-01",
+    "value": 3.92,
     "forecast": null,
     "previous": null
   },
   "latest_cfmz6jv": {
-    "date": "2026-03-01",
-    "value": 4.01,
+    "date": "2026-04-01",
+    "value": 4.05,
     "forecast": null,
     "previous": null
   },
   "latest_iumtlmv": {
-    "date": "2026-04-01",
+    "date": "2026-05-01",
     "value": 6.6,
     "forecast": null,
     "previous": null
   },
   "next_release": null,
-  "last_updated": "2026-05-10T20:49:03.365001+09:00"
+  "last_updated": "2026-06-11T11:30:08.168158+09:00"
 }

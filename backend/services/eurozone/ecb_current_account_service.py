@@ -272,9 +272,17 @@ class ECBCurrentAccountService:
             return self._fetch_from_api_fallback(start_date)
 
     def _fetch_from_api_fallback(self, start_date: str = "2015-01-01") -> Optional[List[Dict]]:
-        """ECB Data APIからデータを取得（フォールバック）"""
-        # 旧形式のシリーズキー
-        legacy_key = "M.I9.N.CA.H.X1.T.N.EUR._Z._T._X._X.N.ALL"
+        """ECB Data APIからデータを取得（フォールバック）
+
+        注: 旧 SDW ホスト sdw.ecb.europa.eu は廃止 (DNS解決不可) のため、
+        実質このAPIフォールバックが主経路。新 Data Portal の BPS dataflow は
+        次元順が変わっており (FREQ.ADJUSTMENT.REF_AREA.COUNTERPART_AREA.
+        REF_SECTOR.COUNTERPART_SECTOR.FLOW_STOCK_ENTRY.ACCOUNTING_ENTRY.
+        INT_ACC_ITEM. ... )、ユーロ圏(I9)・経常収支(CA)・残高(B)・月次(M)・
+        非調整(N) の正しいキーは下記。旧キー (M.I9.N.CA.H.X1...) は 400 を返す。
+        """
+        # ECB Data Portal (新) のシリーズキー: 経常収支 残高 ユーロ圏 月次
+        legacy_key = "M.N.I9.W1.S1.S1.T.B.CA._Z._Z._Z.EUR._T._X.N.ALL"
         url = f"https://data-api.ecb.europa.eu/service/data/BPS/{legacy_key}"
         params = {
             "startPeriod": start_date[:7],  # YYYY-MM形式

@@ -37,9 +37,18 @@ CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "global" / 
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "taiwan_electrical_equipment_exports_cache.json"
 
-# MOF Excel URL
+# 旧 download/21848 は失効 (HTML を返す)。MOF は月次 Excel を ROC 年月で配信:
+#   https://service.mof.gov.tw/public/Data/statistic/trade/news/{ROC_YYMM}/NET{ROC_YYMM}E.xlsx
+#   ROC_YYMM = (西暦-1911)*100 + 月。英語版シート "MajXe" の "Parts of Electronic Product"
+#   行 (col1=当月 US$M, col3=前年同月)。各ファイルは1ヶ月分。
+MOF_NEWS_URL_TMPL = (
+    "https://service.mof.gov.tw/public/Data/statistic/trade/news/{ym}/NET{ym}E.xlsx"
+)
+MAJXE_SHEET = "MajXe"
+MAJXE_ROW_EN = "Parts of Electronic Product"
+
+# 旧ソース (現在 dead、フォールバック用に残置)
 MOF_EXCEL_URL = "https://www.mof.gov.tw/download/21848"
-# MajExシート Row31 が (1)電子零組件
 MAJEX_ROW_NAME = "(1)電子零組件"
 
 
@@ -76,10 +85,9 @@ class TaiwanElectricalEquipmentExportsService:
         # DBから原数値を取得
         raw_data = self._load_from_db()
 
-        # MOFから最新値を取得してマージ
-        mof_latest = self._fetch_latest_from_mof()
-        if mof_latest:
-            raw_data = self._merge_mof_data(raw_data, mof_latest)
+        # MOFの月次Excelから直近数ヶ月を取得してマージ (欠損月を埋める)
+        for rec in self._fetch_recent_from_mof():
+            raw_data = self._merge_mof_data(raw_data, rec)
 
         if raw_data:
             # YoY/MoMを計算
@@ -192,8 +200,65 @@ class TaiwanElectricalEquipmentExportsService:
             traceback.print_exc()
             return []
 
+    def _fetch_recent_from_mof(self, months: int = 8) -> List[Dict[str, Any]]:
+        """MOF 月次 Excel (NET{ROC_YYMM}E.xlsx, sheet MajXe) から直近数ヶ月の
+        電子零組件輸出額を取得する。各ファイルは1ヶ月分で、月は URL の ROC_YYMM から
+        確定する (シートのヘッダー解析不要)。存在しない月 (未公表) はスキップ。
+        Returns: [{"current_date","current_value","prev_year_date","prev_year_value"}, ...]
+        """
+        import io
+        import warnings
+        import requests
+        import pandas as pd
+        warnings.filterwarnings("ignore")
+
+        out: List[Dict[str, Any]] = []
+        now = datetime.now(JST)
+        for back in range(months):
+            m = now.month - back
+            yy = now.year
+            while m <= 0:
+                m += 12
+                yy -= 1
+            ym = (yy - 1911) * 100 + m  # ROC 年月
+            url = MOF_NEWS_URL_TMPL.format(ym=ym)
+            try:
+                resp = requests.get(url, timeout=40, headers={"User-Agent": "Mozilla/5.0"})
+                if resp.status_code != 200 or not resp.content[:4] == b"PK\x03\x04":
+                    continue
+                xls = pd.ExcelFile(io.BytesIO(resp.content))
+                if MAJXE_SHEET not in xls.sheet_names:
+                    continue
+                df = pd.read_excel(xls, sheet_name=MAJXE_SHEET, header=None)
+                target = None
+                for ri in range(df.shape[0]):
+                    cell = df.iloc[ri, 0]
+                    if pd.notna(cell) and MAJXE_ROW_EN in str(cell):
+                        target = ri
+                        break
+                if target is None:
+                    continue
+                cur = df.iloc[target, 1]   # col1 = 当月 (CY current)
+                prev = df.iloc[target, 3]  # col3 = 前年同月 (CY prior)
+                if pd.isna(cur):
+                    continue
+                rec = {
+                    "current_date": f"{yy}-{m:02d}-01",
+                    "current_value": float(cur),
+                }
+                if pd.notna(prev):
+                    rec["prev_year_date"] = f"{yy - 1}-{m:02d}-01"
+                    rec["prev_year_value"] = float(prev)
+                out.append(rec)
+            except Exception as e:
+                print(f"[TaiwanElectricalEquipmentExports] MOF fetch error for {ym}: {e}")
+                continue
+
+        print(f"[TaiwanElectricalEquipmentExports] MOF fetched {len(out)} recent months")
+        return out
+
     def _fetch_latest_from_mof(self) -> Optional[Dict[str, Any]]:
-        """MOF Excelから最新値と前年同月値を取得"""
+        """MOF Excelから最新値と前年同月値を取得（旧 download/21848 用・現在 dead）"""
         try:
             import requests
             import pandas as pd
