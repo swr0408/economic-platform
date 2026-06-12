@@ -6,6 +6,174 @@
   ],
   "items": [
     {
+      "symbol": "JPM",
+      "name": "JPMorgan Chase",
+      "tier": "S",
+      "country_code": "usa",
+      "date": "2026-07-14",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 5.39,
+      "eps_actual": null,
+      "revenue_estimate": 48702090000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
+      "symbol": "BAC",
+      "name": "Bank of America",
+      "tier": "A",
+      "country_code": "usa",
+      "date": "2026-07-14",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 1.1,
+      "eps_actual": null,
+      "revenue_estimate": 30116580000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
+      "symbol": "GS",
+      "name": "Goldman Sachs",
+      "tier": "A",
+      "country_code": "usa",
+      "date": "2026-07-14",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 13.71,
+      "eps_actual": null,
+      "revenue_estimate": 15679740000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
+      "symbol": "WFC",
+      "name": "Wells Fargo",
+      "tier": "A",
+      "country_code": "usa",
+      "date": "2026-07-14",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 1.71,
+      "eps_actual": null,
+      "revenue_estimate": 21760070000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
+      "symbol": "MS",
+      "name": "Morgan Stanley",
+      "tier": "A",
+      "country_code": "usa",
+      "date": "2026-07-15",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 2.71,
+      "eps_actual": null,
+      "revenue_estimate": 19092100000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
+      "symbol": "JNJ",
+      "name": "Johnson & Johnson",
+      "tier": "B",
+      "country_code": "usa",
+      "date": "2026-07-15",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 2.83,
+      "eps_actual": null,
+      "revenue_estimate": 24963500000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
+      "symbol": "NFLX",
+      "name": "Netflix",
+      "tier": "A",
+      "country_code": "usa",
+      "date": "2026-07-16",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 0.79,
+      "eps_actual": null,
+      "revenue_estimate": 12579730000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
+      "symbol": "GE",
+      "name": "GE Aerospace",
+      "tier": "B",
+      "country_code": "usa",
+      "date": "2026-07-16",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 1.87,
+      "eps_actual": null,
+      "revenue_estimate": 11770310000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
+      "symbol": "GOOGL",
+      "name": "Alphabet",
+      "tier": "S",
+      "country_code": "usa",
+      "date": "2026-07-22",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 2.85,
+      "eps_actual": null,
+      "revenue_estimate": 116813100000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla",
+      "tier": "S",
+      "country_code": "usa",
+      "date": "2026-07-22",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 0.45,
+      "eps_actual": null,
+      "revenue_estimate": 24308760000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
+      "symbol": "V",
+      "name": "Visa",
+      "tier": "A",
+      "country_code": "usa",
+      "date": "2026-07-28",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 3.21,
+      "eps_actual": null,
+      "revenue_estimate": 11369410000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
+      "symbol": "RTX",
+      "name": "RTX",
+      "tier": "B",
+      "country_code": "usa",
+      "date": "2026-07-28",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 1.66,
+      "eps_actual": null,
+      "revenue_estimate": 22866880000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
       "symbol": "MSFT",
       "name": "Microsoft",
       "tier": "S",
@@ -17,7 +185,7 @@
       "eps_actual": null,
       "revenue_estimate": 87614680000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "META",
@@ -31,7 +199,7 @@
       "eps_actual": null,
       "revenue_estimate": 60180010000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "AAPL",
@@ -45,7 +213,7 @@
       "eps_actual": null,
       "revenue_estimate": 108400600000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "AMZN",
@@ -59,7 +227,7 @@
       "eps_actual": null,
       "revenue_estimate": 196245200000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "MA",
@@ -73,7 +241,7 @@
       "eps_actual": null,
       "revenue_estimate": 9069325000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "ABBV",
@@ -87,7 +255,7 @@
       "eps_actual": null,
       "revenue_estimate": 16777270000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "BRK-B",
@@ -101,7 +269,7 @@
       "eps_actual": null,
       "revenue_estimate": 96523500000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "UNH",
@@ -115,7 +283,7 @@
       "eps_actual": null,
       "revenue_estimate": 110761300000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "MRK",
@@ -129,7 +297,7 @@
       "eps_actual": null,
       "revenue_estimate": 16362840000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "CAT",
@@ -141,9 +309,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 6.19,
       "eps_actual": null,
-      "revenue_estimate": 19125700000.0,
+      "revenue_estimate": 19156090000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "LLY",
@@ -157,7 +325,7 @@
       "eps_actual": null,
       "revenue_estimate": 20490110000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "XOM",
@@ -171,7 +339,7 @@
       "eps_actual": null,
       "revenue_estimate": 111011400000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "CVX",
@@ -185,25 +353,11 @@
       "eps_actual": null,
       "revenue_estimate": 63241430000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "NVDA",
       "name": "NVIDIA",
-      "tier": "S",
-      "country_code": "usa",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "GOOGL",
-      "name": "Alphabet",
       "tier": "S",
       "country_code": "usa",
       "date": null,
@@ -228,165 +382,11 @@
       "revenue_estimate": null,
       "revenue_actual": null,
       "updated_from_date": null
-    },
-    {
-      "symbol": "TSLA",
-      "name": "Tesla",
-      "tier": "S",
-      "country_code": "usa",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "JPM",
-      "name": "JPMorgan Chase",
-      "tier": "S",
-      "country_code": "usa",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "V",
-      "name": "Visa",
-      "tier": "A",
-      "country_code": "usa",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "BAC",
-      "name": "Bank of America",
-      "tier": "A",
-      "country_code": "usa",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "GS",
-      "name": "Goldman Sachs",
-      "tier": "A",
-      "country_code": "usa",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "WFC",
-      "name": "Wells Fargo",
-      "tier": "A",
-      "country_code": "usa",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "MS",
-      "name": "Morgan Stanley",
-      "tier": "A",
-      "country_code": "usa",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "NFLX",
-      "name": "Netflix",
-      "tier": "A",
-      "country_code": "usa",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "JNJ",
-      "name": "Johnson & Johnson",
-      "tier": "B",
-      "country_code": "usa",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "GE",
-      "name": "GE Aerospace",
-      "tier": "B",
-      "country_code": "usa",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "RTX",
-      "name": "RTX",
-      "tier": "B",
-      "country_code": "usa",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
     }
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-06-11T05:30:01.194467+00:00",
+  "last_updated": "2026-06-12T01:35:37.000814+00:00",
   "cached": false,
   "status": "ok"
 }

@@ -14,6 +14,7 @@
    - 更新したらその月は以降スキップ
 """
 
+import asyncio
 import logging
 from datetime import datetime
 from typing import Dict, Any
@@ -62,7 +63,8 @@ class JapanPotentialGrowthScheduler:
         try:
             logger.info("[Scheduler] Checking Cabinet Office Potential Growth Rate...")
             service = self._get_potential_growth_service()
-            result = service.scheduled_update()
+            # 同期 requests/Excel 解析のためワーカースレッドへ退避（イベントループ保護）
+            result = await asyncio.to_thread(service.scheduled_update)
             logger.info(f"[Scheduler] Cabinet Office Potential Growth update result: {result}")
         except Exception as e:
             logger.error(f"[Scheduler] Error updating Cabinet Office Potential Growth: {e}")
@@ -72,7 +74,8 @@ class JapanPotentialGrowthScheduler:
         try:
             logger.info("[Scheduler] Checking BOJ Potential Growth Rate...")
             service = self._get_boj_potential_growth_service()
-            result = service.scheduled_update()
+            # 同期 requests/Excel 解析のためワーカースレッドへ退避（イベントループ保護）
+            result = await asyncio.to_thread(service.scheduled_update)
             logger.info(f"[Scheduler] BOJ Potential Growth update result: {result}")
         except Exception as e:
             logger.error(f"[Scheduler] Error updating BOJ Potential Growth: {e}")

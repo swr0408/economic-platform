@@ -699,11 +699,23 @@
     {
       "date": "2026-01-31",
       "value": 73262.0
+    },
+    {
+      "date": "2026-02-28",
+      "value": 71899.0
+    },
+    {
+      "date": "2026-03-31",
+      "value": 79577.0
+    },
+    {
+      "date": "2026-04-30",
+      "value": 72757.0
     }
   ],
   "latest": {
-    "date": "2026-01-31",
-    "value": 73262.0
+    "date": "2026-04-30",
+    "value": 72757.0
   },
   "metadata": {
     "source": "Reserve Bank of New Zealand",
@@ -712,12 +724,12 @@
     "unit": "NZD millions",
     "frequency": "monthly",
     "table": "R1 - Our Balance Sheet",
-    "published_date": "2026-02-16"
+    "published_date": "2026-05-14"
   },
   "next_release": {
-    "date": "2026-03-16",
-    "label": "R1 Balance Sheet (Mar 2026)",
+    "date": "2026-06-14",
+    "label": "R1 Balance Sheet (Jun 2026)",
     "estimated": true
   },
-  "last_updated": "2026-02-23T13:05:26.270797+09:00"
+  "last_updated": "2026-06-12T09:26:22.877668+09:00"
 }

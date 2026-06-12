@@ -6058,12 +6058,20 @@
     },
     {
       "date": "2026-03-01",
-      "value": 382.22
+      "value": 374.66
+    },
+    {
+      "date": "2026-04-01",
+      "value": 297.4
+    },
+    {
+      "date": "2026-05-01",
+      "value": 296.08
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "value": 382.22
+    "date": "2026-05-01",
+    "value": 296.08
   },
   "metadata": {
     "source": "Economic Policy Uncertainty (policyuncertainty.com)",
@@ -6072,5 +6080,5 @@
     "frequency": "Monthly",
     "description": "News-based index of US economic policy uncertainty (monthly)"
   },
-  "last_updated": "2026-04-18T14:54:13.684838+09:00"
+  "last_updated": "2026-06-12T01:30:30.401746+09:00"
 }

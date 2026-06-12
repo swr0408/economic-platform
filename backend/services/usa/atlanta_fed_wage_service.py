@@ -42,7 +42,14 @@ JST = ZoneInfo("Asia/Tokyo")
 ET = ZoneInfo("America/New_York")
 
 # データURL
-ATLANTAFED_WAGE_URL = "https://www.atlantafed.org/-/media/documents/datafiles/chcs/wage-growth-tracker/wage-growth-data.xlsx"
+# 2026年: サイト改修で media パスが /-/media/documents/... から
+# /-/media/Project/Atlanta/FRBA/Documents/... に変更された（旧URLはHTML 200を返す罠）
+# 候補を順に試行し、xlsx マジックバイトで検証する
+ATLANTAFED_WAGE_URLS = [
+    "https://www.atlantafed.org/-/media/Project/Atlanta/FRBA/Documents/datafiles/chcs/wage-growth-tracker/wage-growth-data.xlsx",
+    # 旧URL（フォールバック: 将来パスが戻る可能性に備える）
+    "https://www.atlantafed.org/-/media/documents/datafiles/chcs/wage-growth-tracker/wage-growth-data.xlsx",
+]
 
 # キャッシュディレクトリ
 CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "employment"
@@ -196,11 +203,34 @@ class AtlantaFedWageService:
             headers = {
                 "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
             }
-            response = requests.get(ATLANTAFED_WAGE_URL, headers=headers, timeout=60)
-            response.raise_for_status()
+
+            content = None
+            for url in ATLANTAFED_WAGE_URLS:
+                response = requests.get(url, headers=headers, timeout=60)
+                if response.status_code != 200:
+                    print(f"[AtlantaFedWage] HTTP {response.status_code}: {url}")
+                    continue
+
+                # ガード: HTML が xlsx を装って HTTP 200 で返ることがある
+                # （2026年のパス変更時に発生 → 例外が握り潰されサイレント stale 化した）
+                content_type = (response.headers.get("content-type") or "").lower()
+                if not response.content.startswith(b"PK\x03\x04") or "html" in content_type:
+                    print(
+                        f"[AtlantaFedWage] ERROR: Response is not xlsx "
+                        f"(content-type={content_type}, head={response.content[:16]!r}): {url} "
+                        f"-- URL probably changed, check the wage-growth-tracker page"
+                    )
+                    continue
+
+                content = response.content
+                break
+
+            if content is None:
+                print("[AtlantaFedWage] ERROR: All candidate URLs failed to return a valid xlsx")
+                return None
 
             # Excel ファイルを解析（data_overallシートを使用）
-            excel_data = io.BytesIO(response.content)
+            excel_data = io.BytesIO(content)
             df = pd.read_excel(excel_data, sheet_name='data_overall', header=1)
 
             # 日付列を特定（Unnamed: 0）

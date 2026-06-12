@@ -589,13 +589,20 @@ def invalidate_dashboard_cache(country_code: str, category: str) -> bool:
         print(f"[FMPScheduler] Unknown country code: {country_code}")
         return False
 
-    cache_key = f"dashboard:{dashboard_country}:{category}:data"
+    # ローダーの実キーは "{country}:{category}:dashboard:v1"（loaders/base.py の cache_key）。
+    # 旧キー "dashboard:{country}:{category}:data" は存在せず削除が空振りしていた。
+    # :light / :heavy（プログレッシブレンダリング用の分割キャッシュ）も併せて削除しないと
+    # 古いデータが配信され続ける。
+    base_key = f"{dashboard_country}:{category}:dashboard:v1"
+    cache_keys = [base_key, f"{base_key}:light", f"{base_key}:heavy"]
 
     try:
-        deleted = redis_client.delete(cache_key)
-        if deleted:
-            print(f"[FMPScheduler] Dashboard cache invalidated: {cache_key}")
-        return deleted
+        deleted_any = False
+        for cache_key in cache_keys:
+            if redis_client.delete(cache_key):
+                deleted_any = True
+                print(f"[FMPScheduler] Dashboard cache invalidated: {cache_key}")
+        return deleted_any
     except Exception as e:
         print(f"[FMPScheduler] Failed to invalidate dashboard cache: {e}")
         return False
@@ -797,7 +804,10 @@ class FMPReleaseScheduler:
             print(f"[FMPScheduler] Fetching {name_ja} (iteration {iteration}/{UPDATE_ITERATIONS})...")
 
             # Step 1: FMPから最新データを取得してDBに保存（eventパラメータで絞り込み）
-            synced_count = self._sync_fmp_indicator_data(fmp_event, name_ja, country)
+            # 同期 HTTP/DB I/O のためワーカースレッドへ退避（イベントループ保護）
+            synced_count = await asyncio.to_thread(
+                self._sync_fmp_indicator_data, fmp_event, name_ja, country
+            )
             print(f"[FMPScheduler] DB synced: {synced_count} events")
 
             # Step 2: サービス経由でデータを取得（DBから読み込み）
@@ -815,7 +825,9 @@ class FMPReleaseScheduler:
             if hasattr(service, 'invalidate_cache'):
                 service.invalidate_cache()
 
-            result = fetch_method(force_refresh=True)
+            # fetch は同期 HTTP（httpx/requests）のためワーカースレッドへ退避。
+            # 直接呼ぶとイベントループを占有し login 等が応答不能になる。
+            result = await asyncio.to_thread(fetch_method, force_refresh=True)
 
             if result and not result.get("error"):
                 latest = result.get("latest", {})
@@ -831,7 +843,10 @@ class FMPReleaseScheduler:
                         if related_service:
                             related_method = getattr(related_service, related['fetch_method'], None)
                             if related_method:
-                                related_result = related_method(force_refresh=True)
+                                # 関連サービスも同期 I/O のためワーカースレッドへ退避
+                                related_result = await asyncio.to_thread(
+                                    related_method, force_refresh=True
+                                )
                                 if related_result and not related_result.get("error"):
                                     r_latest = related_result.get("latest", {})
                                     r_date = r_latest.get("date") if r_latest else "N/A"
@@ -909,6 +924,14 @@ class FMPReleaseScheduler:
             return None
 
     async def _retry_if_still_pending(self, config: Dict[str, Any]):
+        """発表後ポーリングリトライ（ブロッキング I/O をワーカースレッドへ退避）。
+
+        中身は同期 DB クエリ + 同期 HTTP のみ。AsyncIOScheduler 上で直接動かすと
+        イベントループを占有し login 等が応答不能になる。
+        """
+        await asyncio.to_thread(self._retry_if_still_pending_sync, config)
+
+    def _retry_if_still_pending_sync(self, config: Dict[str, Any]):
         """
         発表後のポーリングリトライ: データソース（FRED等）の反映を検知して再取得
 
@@ -1014,9 +1037,18 @@ class FMPReleaseScheduler:
     def schedule_release_jobs(self):
         """
         全発表日のジョブをスケジュール（各指標ごとにFMP APIを呼び出し）
+
+        ※ FMP への同期 HTTP を含むため、イベントループ上から呼ぶ場合は
+          _refresh_schedules() を使うこと（fetch を to_thread に退避する）。
         """
         print("[FMPScheduler] Scheduling release jobs...")
 
+        # 全指標の発表日を取得（指標ごとにeventパラメータで絞って取得）
+        releases = self.fetch_all_upcoming_releases()
+        self._register_release_jobs(releases)
+
+    def _register_release_jobs(self, releases: List[Dict[str, Any]]):
+        """発表予定リストから取得ジョブ＋ポーリングリトライを登録（軽量・ループ上で実行可）"""
         # 既存ジョブをクリア
         for job_id in list(self._scheduled_jobs):
             try:
@@ -1024,9 +1056,6 @@ class FMPReleaseScheduler:
             except Exception:
                 pass
         self._scheduled_jobs.clear()
-
-        # 全指標の発表日を取得（指標ごとにeventパラメータで絞って取得）
-        releases = self.fetch_all_upcoming_releases()
 
         scheduled_count = 0
         now_jst = datetime.now(JST)
@@ -1098,16 +1127,21 @@ class FMPReleaseScheduler:
         print("[FMPScheduler] Scheduled daily refresh at 05:00 JST")
 
     async def _refresh_schedules(self):
-        """スケジュールを再計算して更新（+ 過去発表分のバックフィル）"""
+        """スケジュールを再計算して更新（+ 過去発表分のバックフィル）
+
+        発表日取得は約45指標分の同期 HTTP を伴うため、ワーカースレッドへ退避し、
+        ジョブ登録（add_job）のみイベントループ上で行う。
+        """
         print("[FMPScheduler] Refreshing release schedules...")
-        self.schedule_release_jobs()
+        releases = await asyncio.to_thread(self.fetch_all_upcoming_releases)
+        self._register_release_jobs(releases)
 
         # 過去30日分の発表データをバックフィル（スケジューラー停止中の漏れを補完）
         await self._backfill_recent_releases()
 
     # ダッシュボードの staleness 検出に必要な国（FMP API側コード）
     # base.py の _DASHBOARD_TO_FMP_COUNTRY と一致させる
-    _BULK_FETCH_COUNTRIES = ["US", "JP", "EU", "DE", "FR", "ES", "GB", "CN", "AU", "CA", "NZ", "CH"]
+    _BULK_FETCH_COUNTRIES = ["US", "JP", "EU", "DE", "FR", "ES", "GB", "CN", "AU", "CA", "NZ", "CH", "KR", "TW"]
 
     async def _populate_all_country_events(self, lookback_days: int = 30, future_days: int = 30):
         """全国カレンダー一括取得（ブロッキング I/O をワーカースレッドへ退避）。

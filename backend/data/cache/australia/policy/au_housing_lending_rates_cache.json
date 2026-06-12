@@ -653,7 +653,7 @@
       "outstanding_oo_variable": 5.78,
       "outstanding_oo_fixed": 5.14,
       "outstanding_inv_variable": 6.04,
-      "outstanding_inv_fixed": 5.31,
+      "outstanding_inv_fixed": 5.3,
       "new_oo_variable": 5.75,
       "new_oo_fixed": 5.39
     },
@@ -662,7 +662,7 @@
       "outstanding_oo_variable": 5.54,
       "outstanding_oo_fixed": 5.18,
       "outstanding_inv_variable": 5.79,
-      "outstanding_inv_fixed": 5.3,
+      "outstanding_inv_fixed": 5.29,
       "new_oo_variable": 5.51,
       "new_oo_fixed": 5.31
     },
@@ -671,7 +671,7 @@
       "outstanding_oo_variable": 5.52,
       "outstanding_oo_fixed": 5.22,
       "outstanding_inv_variable": 5.78,
-      "outstanding_inv_fixed": 5.3,
+      "outstanding_inv_fixed": 5.29,
       "new_oo_variable": 5.51,
       "new_oo_fixed": 5.2
     },
@@ -697,20 +697,56 @@
       "date": "2025-12-31",
       "outstanding_oo_variable": 5.51,
       "outstanding_oo_fixed": 5.27,
-      "outstanding_inv_variable": 5.75,
+      "outstanding_inv_variable": 5.76,
       "outstanding_inv_fixed": 5.26,
       "new_oo_variable": 5.5,
       "new_oo_fixed": 5.17
+    },
+    {
+      "date": "2026-01-31",
+      "outstanding_oo_variable": 5.51,
+      "outstanding_oo_fixed": 5.28,
+      "outstanding_inv_variable": 5.75,
+      "outstanding_inv_fixed": 5.28,
+      "new_oo_variable": 5.51,
+      "new_oo_fixed": 5.27
+    },
+    {
+      "date": "2026-02-28",
+      "outstanding_oo_variable": 5.75,
+      "outstanding_oo_fixed": 5.31,
+      "outstanding_inv_variable": 5.99,
+      "outstanding_inv_fixed": 5.33,
+      "new_oo_variable": 5.73,
+      "new_oo_fixed": 5.45
+    },
+    {
+      "date": "2026-03-31",
+      "outstanding_oo_variable": 5.94,
+      "outstanding_oo_fixed": 5.4,
+      "outstanding_inv_variable": 6.17,
+      "outstanding_inv_fixed": 5.45,
+      "new_oo_variable": 5.9,
+      "new_oo_fixed": 5.69
+    },
+    {
+      "date": "2026-04-30",
+      "outstanding_oo_variable": 6.0,
+      "outstanding_oo_fixed": 5.47,
+      "outstanding_inv_variable": 6.24,
+      "outstanding_inv_fixed": 5.53,
+      "new_oo_variable": 5.99,
+      "new_oo_fixed": 5.9
     }
   ],
   "latest": {
-    "date": "2025-12-31",
-    "outstanding_oo_variable": 5.51,
-    "outstanding_oo_fixed": 5.27,
-    "outstanding_inv_variable": 5.75,
-    "outstanding_inv_fixed": 5.26,
-    "new_oo_variable": 5.5,
-    "new_oo_fixed": 5.17
+    "date": "2026-04-30",
+    "outstanding_oo_variable": 6.0,
+    "outstanding_oo_fixed": 5.47,
+    "outstanding_inv_variable": 6.24,
+    "outstanding_inv_fixed": 5.53,
+    "new_oo_variable": 5.99,
+    "new_oo_fixed": 5.9
   },
   "metadata": {
     "source": "Reserve Bank of Australia",
@@ -718,15 +754,6 @@
     "frequency": "monthly",
     "unit": "% p.a."
   },
-  "next_release": {
-    "date": "2026-03-17",
-    "datetime_utc": "2026-03-17T03:30:00+00:00",
-    "datetime_jst": "2026-03-17T12:30:00+09:00",
-    "time_jst": "12:30",
-    "datetime_sydney": "2026-03-17T14:30:00+11:00",
-    "time_sydney": "14:30",
-    "label": "RBA Interest Rate Decision",
-    "estimate": null
-  },
-  "last_updated": "2026-02-22T18:04:27.320980+09:00"
+  "next_release": null,
+  "last_updated": "2026-06-12T11:01:31.551638+09:00"
 }

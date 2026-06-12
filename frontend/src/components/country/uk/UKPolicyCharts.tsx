@@ -80,15 +80,14 @@ export default function UKPolicyCharts() {
 
       {/* BOE Economic Outlook Section */}
       <div id="boe-economic-outlook">
+        {/* ※ 政策金利見通し(Bank Rate)とUWCは2026年4月MPRでBoEが廃止したため削除 */}
         <BOEEconomicOutlookSection
-          marketExpectationsData={dashboardData?.boe_market_expectations ?? null}
           cpiProjectionsData={dashboardData?.boe_cpi_projections ?? null}
           gdpForecastData={dashboardData?.boe_gdp_forecast ?? null}
           unemploymentForecastData={dashboardData?.boe_unemployment_forecast ?? null}
           servicesInflationData={dashboardData?.boe_services_inflation ?? null}
           wageGrowthData={dashboardData?.boe_wage_growth ?? null}
           averageWeeklyEarningsData={dashboardData?.boe_average_weekly_earnings ?? null}
-          unitWageCostsData={dashboardData?.boe_unit_wage_costs ?? null}
           inflationExpectationsData={dashboardData?.boe_inflation_expectations ?? null}
           isLoading={isLoading}
         />

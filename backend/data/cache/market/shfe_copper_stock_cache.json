@@ -16999,22 +16999,202 @@
     {
       "date": "2026-04-03",
       "stock_tonnes": 199305.0
+    },
+    {
+      "date": "2026-04-07",
+      "stock_tonnes": 191225.0
+    },
+    {
+      "date": "2026-04-08",
+      "stock_tonnes": 186023.0
+    },
+    {
+      "date": "2026-04-09",
+      "stock_tonnes": 179834.0
+    },
+    {
+      "date": "2026-04-10",
+      "stock_tonnes": 173576.0
+    },
+    {
+      "date": "2026-04-13",
+      "stock_tonnes": 165352.0
+    },
+    {
+      "date": "2026-04-14",
+      "stock_tonnes": 153913.0
+    },
+    {
+      "date": "2026-04-15",
+      "stock_tonnes": 149416.0
+    },
+    {
+      "date": "2026-04-16",
+      "stock_tonnes": 145813.0
+    },
+    {
+      "date": "2026-04-17",
+      "stock_tonnes": 140339.0
+    },
+    {
+      "date": "2026-04-20",
+      "stock_tonnes": 130577.0
+    },
+    {
+      "date": "2026-04-21",
+      "stock_tonnes": 127491.0
+    },
+    {
+      "date": "2026-04-22",
+      "stock_tonnes": 122528.0
+    },
+    {
+      "date": "2026-04-23",
+      "stock_tonnes": 118497.0
+    },
+    {
+      "date": "2026-04-24",
+      "stock_tonnes": 112043.0
+    },
+    {
+      "date": "2026-04-27",
+      "stock_tonnes": 106371.0
+    },
+    {
+      "date": "2026-04-28",
+      "stock_tonnes": 104062.0
+    },
+    {
+      "date": "2026-04-29",
+      "stock_tonnes": 100789.0
+    },
+    {
+      "date": "2026-04-30",
+      "stock_tonnes": 96664.0
+    },
+    {
+      "date": "2026-05-06",
+      "stock_tonnes": 92999.0
+    },
+    {
+      "date": "2026-05-07",
+      "stock_tonnes": 92441.0
+    },
+    {
+      "date": "2026-05-08",
+      "stock_tonnes": 89928.0
+    },
+    {
+      "date": "2026-05-11",
+      "stock_tonnes": 88077.0
+    },
+    {
+      "date": "2026-05-12",
+      "stock_tonnes": 88547.0
+    },
+    {
+      "date": "2026-05-13",
+      "stock_tonnes": 92864.0
+    },
+    {
+      "date": "2026-05-14",
+      "stock_tonnes": 97011.0
+    },
+    {
+      "date": "2026-05-15",
+      "stock_tonnes": 98899.0
+    },
+    {
+      "date": "2026-05-18",
+      "stock_tonnes": 102153.0
+    },
+    {
+      "date": "2026-05-19",
+      "stock_tonnes": 102250.0
+    },
+    {
+      "date": "2026-05-20",
+      "stock_tonnes": 101014.0
+    },
+    {
+      "date": "2026-05-21",
+      "stock_tonnes": 99866.0
+    },
+    {
+      "date": "2026-05-22",
+      "stock_tonnes": 100664.0
+    },
+    {
+      "date": "2026-05-25",
+      "stock_tonnes": 100265.0
+    },
+    {
+      "date": "2026-05-26",
+      "stock_tonnes": 97188.0
+    },
+    {
+      "date": "2026-05-27",
+      "stock_tonnes": 94930.0
+    },
+    {
+      "date": "2026-05-28",
+      "stock_tonnes": 94480.0
+    },
+    {
+      "date": "2026-05-29",
+      "stock_tonnes": 94496.0
+    },
+    {
+      "date": "2026-06-01",
+      "stock_tonnes": 99543.0
+    },
+    {
+      "date": "2026-06-02",
+      "stock_tonnes": 98629.0
+    },
+    {
+      "date": "2026-06-03",
+      "stock_tonnes": 96391.0
+    },
+    {
+      "date": "2026-06-04",
+      "stock_tonnes": 95855.0
+    },
+    {
+      "date": "2026-06-05",
+      "stock_tonnes": 95092.0
+    },
+    {
+      "date": "2026-06-08",
+      "stock_tonnes": 95044.0
+    },
+    {
+      "date": "2026-06-09",
+      "stock_tonnes": 95543.0
+    },
+    {
+      "date": "2026-06-10",
+      "stock_tonnes": 96087.0
+    },
+    {
+      "date": "2026-06-11",
+      "stock_tonnes": 97391.0
     }
   ],
   "latest": {
-    "date": "2026-04-03",
-    "stock_tonnes": 199305.0
+    "date": "2026-06-11",
+    "stock_tonnes": 97391.0
   },
   "metadata": {
-    "source": "SHFE (commoditieschart.net)",
+    "source": "SHFE (Eastmoney)",
     "indicator": "SHFE Copper Warehouse Stock",
     "unit": "tonnes",
     "frequency": "daily",
-    "data_count": 4250,
+    "data_count": 4295,
     "start_date": "2008-10-06",
-    "end_date": "2026-04-03"
+    "end_date": "2026-06-11"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-11T08:51:18.894155+09:00"
+  "last_updated": "2026-06-12T02:12:19.620717+09:00"
 }

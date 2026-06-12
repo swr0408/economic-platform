@@ -31,9 +31,9 @@ from zoneinfo import ZoneInfo
 from pathlib import Path
 
 import openpyxl
-import requests
 
 from core.redis_client import redis_client
+from services.australia._rba_fetch import fetch_rba_xlsx
 
 logger = logging.getLogger(__name__)
 
@@ -107,27 +107,13 @@ class RbaSmpForecastService:
         pass
 
     def _download_excel(self) -> Optional[bytes]:
-        """RBA SMP forecast Excel をダウンロード"""
-        try:
-            logger.info(f"Downloading RBA SMP forecast from {SMP_FORECAST_URL}")
-            response = requests.get(
-                SMP_FORECAST_URL,
-                timeout=30,
-                headers={
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-                },
-            )
-            if response.status_code != 200:
-                logger.error(f"Failed to download: HTTP {response.status_code}")
-                return None
+        """RBA SMP forecast Excel をダウンロード
 
-            logger.info(f"Downloaded {len(response.content)} bytes")
-            return response.content
-
-        except Exception as e:
-            logger.error(f"Error downloading SMP forecast Excel: {e}")
-            return None
+        注意: ブラウザ UA 偽装は RBA WAF に 403 で弾かれる（2026-06確認）。
+        共通ヘルパー fetch_rba_xlsx を使用すること。
+        """
+        logger.info(f"Downloading RBA SMP forecast from {SMP_FORECAST_URL}")
+        return fetch_rba_xlsx(SMP_FORECAST_URL, timeout=60)
 
     def _parse_sheet(
         self, wb: openpyxl.Workbook, sheet_name: str

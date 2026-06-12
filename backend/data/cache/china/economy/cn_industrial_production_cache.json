@@ -24,7 +24,7 @@
       "yoy": "鉱工業生産 前年比 (%)"
     },
     "total_records": 3,
-    "last_fetched": "2026-06-11T04:01:36.351821+09:00"
+    "last_fetched": "2026-06-12T11:01:45.921072+09:00"
   },
   "next_release": {
     "date": "2026-06-16",
@@ -32,6 +32,6 @@
     "datetime_jst": "2026-06-16T11:00:00+09:00",
     "time_jst": "11:00",
     "label": "Industrial Production YoY (May)",
-    "estimate": 4.7
+    "estimate": 4.2
   }
 }

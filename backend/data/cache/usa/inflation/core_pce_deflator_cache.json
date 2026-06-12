@@ -2746,6 +2746,13 @@
     "annualized_3m": 3.78,
     "annualized_6m": 3.79
   },
-  "next_release": null,
-  "last_updated": "2026-06-10T22:18:22.522152+09:00"
+  "next_release": {
+    "date": "2026-06-25",
+    "datetime_utc": "2026-06-25T12:30:00+00:00",
+    "datetime_jst": "2026-06-25T21:30:00+09:00",
+    "time_jst": "21:30",
+    "label": "Personal Income MoM (May)",
+    "estimate": null
+  },
+  "last_updated": "2026-06-12T09:30:07.116526+09:00"
 }

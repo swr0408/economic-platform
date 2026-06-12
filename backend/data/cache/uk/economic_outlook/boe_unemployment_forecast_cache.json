@@ -1,89 +1,144 @@
 {
   "table_data": [
     {
+      "quarter": "2025Q1",
+      "scenario_a": 4.5,
+      "scenario_b": 4.5,
+      "scenario_c": 4.5,
+      "previous": 4.5
+    },
+    {
       "quarter": "2025Q2",
-      "latest": 4.7,
+      "scenario_a": 4.7,
+      "scenario_b": 4.7,
+      "scenario_c": 4.7,
       "previous": 4.7
     },
     {
       "quarter": "2025Q3",
-      "latest": 4.9,
-      "previous": 4.8
+      "scenario_a": 5.0,
+      "scenario_b": 5.0,
+      "scenario_c": 5.0,
+      "previous": 5.0
     },
     {
       "quarter": "2025Q4",
-      "latest": 5.0,
-      "previous": 4.9
+      "scenario_a": 5.2,
+      "scenario_b": 5.2,
+      "scenario_c": 5.2,
+      "previous": 5.1
     },
     {
       "quarter": "2026Q1",
-      "latest": 5.0,
-      "previous": 4.9
+      "scenario_a": 4.9,
+      "scenario_b": 4.9,
+      "scenario_c": 4.9,
+      "previous": 5.2
     },
     {
       "quarter": "2026Q2",
-      "latest": 5.1,
-      "previous": 4.9
+      "scenario_a": 5.1,
+      "scenario_b": 5.1,
+      "scenario_c": 5.1,
+      "previous": 5.3
     },
     {
       "quarter": "2026Q3",
-      "latest": 5.0,
-      "previous": 4.9
+      "scenario_a": 5.2,
+      "scenario_b": 5.1,
+      "scenario_c": 5.2,
+      "previous": 5.3
     },
     {
       "quarter": "2026Q4",
-      "latest": 5.0,
-      "previous": 4.9
+      "scenario_a": 5.3,
+      "scenario_b": 5.3,
+      "scenario_c": 5.4,
+      "previous": 5.3
     },
     {
       "quarter": "2027Q1",
-      "latest": 5.0,
-      "previous": 4.9
+      "scenario_a": 5.4,
+      "scenario_b": 5.4,
+      "scenario_c": 5.5,
+      "previous": 5.3
     },
     {
       "quarter": "2027Q2",
-      "latest": 5.0,
-      "previous": 4.9
+      "scenario_a": 5.5,
+      "scenario_b": 5.5,
+      "scenario_c": 5.6,
+      "previous": 5.3
     },
     {
       "quarter": "2027Q3",
-      "latest": 5.0,
-      "previous": 4.8
+      "scenario_a": 5.6,
+      "scenario_b": 5.5,
+      "scenario_c": 5.7,
+      "previous": 5.2
     },
     {
       "quarter": "2027Q4",
-      "latest": 4.9,
-      "previous": 4.8
+      "scenario_a": 5.5,
+      "scenario_b": 5.5,
+      "scenario_c": 5.7,
+      "previous": 5.2
     },
     {
       "quarter": "2028Q1",
-      "latest": 4.9,
-      "previous": 4.8
+      "scenario_a": 5.5,
+      "scenario_b": 5.5,
+      "scenario_c": 5.7,
+      "previous": 5.1
     },
     {
       "quarter": "2028Q2",
-      "latest": 4.8,
-      "previous": 4.8
+      "scenario_a": 5.4,
+      "scenario_b": 5.4,
+      "scenario_c": 5.6,
+      "previous": 5.1
     },
     {
       "quarter": "2028Q3",
-      "latest": 4.8,
-      "previous": 4.8
+      "scenario_a": 5.4,
+      "scenario_b": 5.4,
+      "scenario_c": 5.6,
+      "previous": 5.0
     },
     {
       "quarter": "2028Q4",
-      "latest": 4.7,
+      "scenario_a": 5.3,
+      "scenario_b": 5.3,
+      "scenario_c": 5.5,
+      "previous": 5.0
+    },
+    {
+      "quarter": "2029Q1",
+      "scenario_a": 5.2,
+      "scenario_b": 5.2,
+      "scenario_c": 5.4,
+      "previous": 4.9
+    },
+    {
+      "quarter": "2029Q2",
+      "scenario_a": 5.1,
+      "scenario_b": 5.2,
+      "scenario_c": 5.3,
       "previous": null
     }
   ],
   "chart_data": null,
+  "scenario_labels": {
+    "scenario_a": "April 2026 Scenario A",
+    "scenario_b": "April 2026 Scenario B",
+    "scenario_c": "April 2026 Scenario C"
+  },
   "metadata": {
-    "latest_forecast": "November 2025",
-    "previous_forecast": "August 2025",
-    "last_updated": "2026-06-05T08:30:49.809991",
+    "latest_forecast": "April 2026",
+    "previous_forecast": "February 2026",
+    "last_updated": "2026-06-12T10:30:41.729004",
     "source": "Bank of England",
-    "note": "Using previous MPR data",
     "data_source": "Projections Databank"
   },
-  "last_updated": "2026-06-05T17:30:49.810000+09:00"
+  "last_updated": "2026-06-12T10:30:41.730966+09:00"
 }

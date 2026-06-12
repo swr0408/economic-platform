@@ -4,6 +4,7 @@ China Fixing Repo Rate 日次スケジューラー
 毎日 JST 15:30（CST 14:30）に chinamoney.com.cn API から
 当年データを取得して Excel 上書き → キャッシュ再構築。
 """
+import asyncio
 import logging
 from zoneinfo import ZoneInfo
 
@@ -37,7 +38,8 @@ class CnFixingRepoRateScheduler:
         try:
             logger.info("[Scheduler] CnFixingRepoRate: updating current year...")
             service = self._get_service()
-            result = service.update_current_year()
+            # 同期 requests（+ time.sleep）のためワーカースレッドへ退避（イベントループ保護）
+            result = await asyncio.to_thread(service.update_current_year)
             total = result.get("metadata", {}).get("total_records", 0)
             latest_date = (result.get("latest") or {}).get("date")
             logger.info(

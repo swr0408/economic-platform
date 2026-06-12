@@ -26,6 +26,7 @@ RBNZ中央銀行バランスシート（総資産）サービス
 キャッシュ方式:
 - Redis + ファイルキャッシュ
 """
+import io
 import json
 import logging
 import os
@@ -40,6 +41,12 @@ from pathlib import Path
 import pandas as pd
 
 from core.redis_client import redis_client
+
+# RBNZ Cloudflare 403 対策の共通フェッチャ (curl フォールバック付き)
+try:
+    from services.newzealand._rbnz_fetch import fetch_rbnz_xlsx
+except ImportError:
+    from backend.services.newzealand._rbnz_fetch import fetch_rbnz_xlsx
 
 logger = logging.getLogger(__name__)
 
@@ -158,60 +165,39 @@ class NzCentralBankBalanceSheetService:
             (data_list, published_date_str)
         """
         try:
-            print(f"[NzBalanceSheet] Downloading R1 via curl from: {R1_URL}")
+            print(f"[NzBalanceSheet] Downloading R1 from: {R1_URL}")
 
-            with tempfile.NamedTemporaryFile(suffix=".xlsx", delete=False) as tmp:
-                tmp_path = tmp.name
-
-            try:
-                proc = subprocess.run(
-                    [
-                        "curl", "-L", "-o", tmp_path,
-                        "-H", "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-                        "--max-time", "120",
-                        "-s",
-                        R1_URL,
-                    ],
-                    capture_output=True,
-                    text=True,
-                    timeout=150,
+            # 共通ヘルパー使用（CF 403 を検出して明示的に ERROR ログを残す）
+            content = fetch_rbnz_xlsx(R1_URL, timeout=120)
+            if content is None:
+                logger.error(
+                    "[NzBalanceSheet] ERROR: R1 download failed (all methods) — "
+                    "serving stale cache. Check Cloudflare block on rbnz.govt.nz"
                 )
+                return [], None
 
-                if proc.returncode != 0:
-                    print(f"[NzBalanceSheet] curl failed (exit {proc.returncode}): {proc.stderr[:200]}")
-                    return [], None
+            print(f"[NzBalanceSheet] Downloaded {len(content)} bytes")
+            excel_io = io.BytesIO(content)
 
-                file_size = os.path.getsize(tmp_path)
-                if file_size < 5000:
-                    print(f"[NzBalanceSheet] Downloaded file too small ({file_size} bytes)")
-                    return [], None
+            # Published Date を Table Description シートから取得
+            published_date = None
+            try:
+                desc_df = pd.read_excel(excel_io, sheet_name="Table Description", header=None, engine="openpyxl")
+                for row_idx in range(desc_df.shape[0]):
+                    label = desc_df.iloc[row_idx, 0]
+                    if pd.notna(label) and "Published Date" in str(label):
+                        date_val = desc_df.iloc[row_idx, 1]
+                        if isinstance(date_val, datetime):
+                            published_date = date_val.strftime("%Y-%m-%d")
+                        elif pd.notna(date_val):
+                            published_date = str(date_val)[:10]
+                        break
+            except Exception as e:
+                print(f"[NzBalanceSheet] Could not read Published Date: {e}")
 
-                print(f"[NzBalanceSheet] Downloaded {file_size} bytes")
-
-                # Published Date を Table Description シートから取得
-                published_date = None
-                try:
-                    desc_df = pd.read_excel(tmp_path, sheet_name="Table Description", header=None, engine="openpyxl")
-                    for row_idx in range(desc_df.shape[0]):
-                        label = desc_df.iloc[row_idx, 0]
-                        if pd.notna(label) and "Published Date" in str(label):
-                            date_val = desc_df.iloc[row_idx, 1]
-                            if isinstance(date_val, datetime):
-                                published_date = date_val.strftime("%Y-%m-%d")
-                            elif pd.notna(date_val):
-                                published_date = str(date_val)[:10]
-                            break
-                except Exception as e:
-                    print(f"[NzBalanceSheet] Could not read Published Date: {e}")
-
-                # Data シートからTotal Assetsを取得
-                df = pd.read_excel(tmp_path, sheet_name="Data", header=None, engine="openpyxl")
-
-            finally:
-                try:
-                    os.unlink(tmp_path)
-                except Exception:
-                    pass
+            # Data シートからTotal Assetsを取得
+            excel_io.seek(0)
+            df = pd.read_excel(excel_io, sheet_name="Data", header=None, engine="openpyxl")
 
             # ヘッダー確認
             header_check = str(df.iloc[1, TOTAL_ASSETS_COL]) if df.shape[0] > 1 and df.shape[1] > TOTAL_ASSETS_COL else ""

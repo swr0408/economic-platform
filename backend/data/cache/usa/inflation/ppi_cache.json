@@ -1276,40 +1276,54 @@
     },
     {
       "date": "2026-01-01",
-      "value": 3.01,
-      "yoy": 3.01,
-      "mom": 0.56,
-      "index": 152.44
+      "value": 3.04,
+      "yoy": 3.04,
+      "mom": 0.58,
+      "index": 152.47
     },
     {
       "date": "2026-02-01",
-      "value": 3.42,
-      "yoy": 3.42,
-      "mom": 0.57,
-      "index": 153.3
+      "value": 3.38,
+      "yoy": 3.38,
+      "mom": 0.5,
+      "index": 153.24
     },
     {
       "date": "2026-03-01",
       "value": 4.27,
       "yoy": 4.27,
-      "mom": 0.7,
-      "index": 154.37
+      "mom": 0.75,
+      "index": 154.38
     },
     {
       "date": "2026-04-01",
-      "value": 5.99,
-      "yoy": 5.99,
-      "mom": 1.38,
-      "index": 156.5
+      "value": 5.66,
+      "yoy": 5.66,
+      "mom": 1.06,
+      "index": 156.01
+    },
+    {
+      "date": "2026-05-01",
+      "value": 6.42,
+      "yoy": 6.42,
+      "mom": 1.06,
+      "index": 157.66
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "value": 5.99,
-    "yoy": 5.99,
-    "mom": 1.38,
-    "index": 156.5
+    "date": "2026-05-01",
+    "value": 6.42,
+    "yoy": 6.42,
+    "mom": 1.06,
+    "index": 157.66
   },
-  "next_release": null,
-  "last_updated": "2026-06-10T22:18:30.020396+09:00"
+  "next_release": {
+    "date": "2026-07-15",
+    "datetime_utc": "2026-07-15T12:30:00+00:00",
+    "datetime_jst": "2026-07-15T21:30:00+09:00",
+    "time_jst": "21:30",
+    "label": "Producer Price Index (Jun)",
+    "estimate": 159.1
+  },
+  "last_updated": "2026-06-12T02:00:13.969283+09:00"
 }

@@ -36,6 +36,16 @@ UPDATE_INTERVAL_SECONDS = 60
 # ポーリングリトライ設定（FRED/e-Stat等の反映ラグ対策）
 POLLING_RETRY_MINUTES = [15, 30, 45, 60]
 
+# 起動時キャッチアップ設定
+# JSCC OIS 等「当日分しかソースに残らない」指標は、停止中にジョブを逃すと
+# 永久にデータが欠損するため、起動直後に全指標を一巡 force_refresh する。
+STARTUP_CATCHUP_DELAY_SECONDS = 45   # 起動からの遅延（他の起動処理と競合しないよう少し待つ）
+STARTUP_CATCHUP_GAP_SECONDS = 5      # 指標間の間隔（ソースへの負荷分散）
+
+# ジョブの misfire 猶予（秒）。デフォルト(1秒)だとイベントループが
+# 一時的に詰まっただけで発表ジョブがスキップされ、取りこぼしになる。
+JOB_MISFIRE_GRACE_TIME = 3600
+
 # ============================================================
 # 非FMP指標設定
 # ============================================================
@@ -310,7 +320,8 @@ NON_FMP_INDICATOR_CONFIGS = [
         "category": "policy",
         "service_module": "services.usa.reserve_balances_service",
         "service_instance": "reserve_balances_service",
-        "fetch_method": "get_reserve_balances_data",
+        # ※ サービスの実メソッドは get_data（旧 get_reserve_balances_data はリファクタで消滅）
+        "fetch_method": "get_data",
         "schedule_type": "weekly",
         "schedule_config": {
             "day_of_week": 4,  # 金曜日（木曜日ET発表 → 金曜日JST）
@@ -463,6 +474,29 @@ NON_FMP_INDICATOR_CONFIGS = [
             "minute": 0,
         },
     },
+    # ============================================================
+    # グローバル
+    # ============================================================
+    {
+        # 構成: ISM非製造業PMI − 独製造業PMI スプレッド + DXY/EURUSD 日次終値
+        # オンリクエストのみだと誰もアクセスしない限り再構築されず停滞するため、
+        # 日次で再構築する（構成データはDB/キャッシュ参照 + yfinance のみで軽量）
+        # ※ ダッシュボードローダー未登録のため category=None（キャッシュ無効化不要）
+        "name_ja": "USDファンダメンタル指数",
+        "country": "GLOBAL",
+        "category": None,
+        "service_module": "services.global.usd_fundamental_index_service",
+        "service_instance": "usd_fundamental_index_service",
+        "fetch_method": "get_data",
+        "schedule_type": "daily",
+        "schedule_config": {
+            "hour": 7,   # ISM/独PMI/前日終値が出揃った朝に再構築
+            "minute": 0,
+        },
+        # 合成指数のため発表時刻の概念がない → 3回取得・ポーリングリトライは不要
+        "update_iterations": 1,
+        "skip_polling_retry": True,
+    },
 ]
 
 
@@ -491,6 +525,21 @@ class NonFMPReleaseScheduler:
         try:
             # 各指標のスケジュールを登録
             self._schedule_all_indicators()
+
+            # 起動時キャッチアップ（1回だけ）:
+            # スケジューラー停止中に発表時刻を跨いだ指標の取りこぼし対策。
+            # 特に JSCC OIS のように「当日分しかソースに残らない」指標は、
+            # 発表ジョブを1日逃すとデータが永久欠損するため必須。
+            self.scheduler.add_job(
+                self._startup_catchup,
+                trigger=DateTrigger(
+                    run_date=datetime.now(JST) + timedelta(seconds=STARTUP_CATCHUP_DELAY_SECONDS)
+                ),
+                id="non_fmp_startup_catchup",
+                replace_existing=True,
+                misfire_grace_time=JOB_MISFIRE_GRACE_TIME,
+                name="NonFMP: 起動時キャッチアップ",
+            )
 
             # スケジューラーを開始
             self.scheduler.start()
@@ -617,10 +666,47 @@ class NonFMPReleaseScheduler:
             args=[config],
             id=job_id,
             replace_existing=True,
+            # デフォルト(1秒)だと一時的なループ詰まりで発表ジョブがスキップされるため延長
+            misfire_grace_time=JOB_MISFIRE_GRACE_TIME,
             name=f"NonFMP: {name_ja}"
         )
 
         print(f"[NonFMPScheduler] Scheduled: {name_ja} ({schedule_type})")
+
+    async def _startup_catchup(self):
+        """
+        起動時キャッチアップ: 全指標の fetch を1回ずつ force_refresh で実行
+
+        スケジューラー停止中に発表時刻を跨いだ指標を取り戻す。各 fetch メソッドは
+        キャッシュ・差分判定を内蔵しているため、最新済みの指標は実質軽量に終わる。
+        ブロッキング I/O は _fetch_indicator_data 内で asyncio.to_thread に退避され、
+        指標間に小さな間隔を置いて直列実行する（ソース負荷・イベントループ保護）。
+        """
+        # 同一サービス・同一メソッドの重複設定（複数スケジュール登録分）は1回に集約
+        seen: Set[tuple] = set()
+        targets = []
+        for config in NON_FMP_INDICATOR_CONFIGS:
+            key = (
+                config["service_module"],
+                config["service_instance"],
+                config["fetch_method"],
+                tuple(sorted(config.get("fetch_kwargs", {}).items())),
+            )
+            if key in seen:
+                continue
+            seen.add(key)
+            targets.append(config)
+
+        print(f"[NonFMPScheduler] Startup catch-up: {len(targets)} indicators...")
+
+        for config in targets:
+            try:
+                await self._fetch_indicator_data(config, iteration=1)
+            except Exception as e:
+                print(f"[NonFMPScheduler] Startup catch-up error for {config['name_ja']}: {e}")
+            await asyncio.sleep(STARTUP_CATCHUP_GAP_SECONDS)
+
+        print("[NonFMPScheduler] Startup catch-up complete")
 
     async def _update_indicator(self, config: Dict[str, Any]):
         """
@@ -635,15 +721,22 @@ class NonFMPReleaseScheduler:
         # 初回取得前のサービス最新日付を記録
         latest_before = self._get_service_latest_date(config)
 
-        for iteration in range(1, UPDATE_ITERATIONS + 1):
+        # 取得回数は指標ごとに上書き可能（合成指数等は1回で十分）
+        iterations = config.get("update_iterations", UPDATE_ITERATIONS)
+
+        for iteration in range(1, iterations + 1):
             try:
                 await self._fetch_indicator_data(config, iteration)
 
-                if iteration < UPDATE_ITERATIONS:
+                if iteration < iterations:
                     await asyncio.sleep(UPDATE_INTERVAL_SECONDS)
 
             except Exception as e:
                 print(f"[NonFMPScheduler] Error in iteration {iteration} for {name_ja}: {e}")
+
+        # ポーリングリトライ不要の指標（発表時刻の概念がない合成指数等）はここで終了
+        if config.get("skip_polling_retry"):
+            return
 
         # 初回取得後のサービス最新日付を確認
         latest_after = self._get_service_latest_date(config)
@@ -663,6 +756,7 @@ class NonFMPReleaseScheduler:
                         args=[config, latest_before],
                         id=retry_job_id,
                         replace_existing=True,
+                        misfire_grace_time=JOB_MISFIRE_GRACE_TIME,
                     )
                 except Exception as e:
                     print(f"[NonFMPScheduler] Failed to schedule retry: {e}")
@@ -699,7 +793,9 @@ class NonFMPReleaseScheduler:
                 return
 
             extra_kwargs = config.get("fetch_kwargs", {})
-            result = fetch_method(force_refresh=True, **extra_kwargs)
+            # fetch は同期 HTTP/ファイル I/O のため、イベントループを塞がないよう
+            # ワーカースレッドへ退避する（直接呼ぶと login 等全エンドポイントが停止）
+            result = await asyncio.to_thread(fetch_method, force_refresh=True, **extra_kwargs)
 
             if result and not result.get("error"):
                 new_latest = result.get("latest", {})
@@ -770,8 +866,9 @@ class NonFMPReleaseScheduler:
             fetch_method = getattr(service, fetch_method_name)
 
             # データを取得（force_refresh=True）
+            # 同期 HTTP/ファイル I/O のためワーカースレッドへ退避（イベントループ保護）
             extra_kwargs = config.get("fetch_kwargs", {})
-            result = fetch_method(force_refresh=True, **extra_kwargs)
+            result = await asyncio.to_thread(fetch_method, force_refresh=True, **extra_kwargs)
 
             if result and not result.get("error"):
                 latest = result.get("latest", {})

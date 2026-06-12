@@ -7,18 +7,29 @@ DBにUPSERT後、Redisキャッシュをクリアする。
 スケジュール:
   - 毎日 JST 07:00（CME前日分レポート取得）
   - 毎日 JST 12:00（リトライ）
+  - 起動時キャッチアップ: 当日まだ成功していなければ即時実行
+
+※ CME の Gold/Silver/Copper_Stocks.xls は「当日分のみのスナップショット」で
+  過去日は遡及取得できない。07:00/12:00 の両方を逃すとその日のデータは
+  永久欠損するため、起動時キャッチアップが必須 (nikkei225 options と同型)。
 """
 import logging
+from datetime import datetime, timedelta
+from pathlib import Path
 from zoneinfo import ZoneInfo
 
 import asyncio
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
+from apscheduler.triggers.date import DateTrigger
 
 logger = logging.getLogger(__name__)
 
 JST = ZoneInfo("Asia/Tokyo")
+
+# 当日成功マーカー (uvicorn --reload 等の頻繁な再起動で CME を叩き直さないため)
+_RUN_MARKER = Path(__file__).resolve().parents[1] / "data" / "cache" / "market" / "_comex_stock_last_run.txt"
 
 
 def _refresh_gold():
@@ -83,34 +94,68 @@ class ComexStockScheduler:
     def _run_sync(self):
         """全3メタルの在庫データを更新"""
         logger.info("[ComexScheduler] Starting daily COMEX stock update...")
+        ok = 0
         for name, fn in [("Gold", _refresh_gold), ("Silver", _refresh_silver), ("Copper", _refresh_copper)]:
             try:
                 fn()
+                ok += 1
             except Exception as e:
                 logger.error(f"[ComexScheduler] {name} error: {e}")
-        logger.info("[ComexScheduler] Daily update complete")
+        logger.info(f"[ComexScheduler] Daily update complete ({ok}/3 ok)")
+        # 全滅時はマーカーを書かない (起動時キャッチアップで再試行させる)
+        if ok > 0:
+            try:
+                _RUN_MARKER.write_text(datetime.now(JST).strftime("%Y-%m-%d"), encoding="utf-8")
+            except Exception as e:
+                logger.warning(f"[ComexScheduler] run marker write failed: {e}")
+
+    async def _startup_catchup(self):
+        """起動時キャッチアップ: 当日まだ成功していなければ即時取得
+
+        CME のレポートは当日分しか取得できないため、07:00/12:00 のジョブを
+        両方逃した日 (停止・ループ詰まり) でも、その日のうちに再起動すれば
+        ここで回収できる。
+        """
+        try:
+            today = datetime.now(JST).strftime("%Y-%m-%d")
+            if _RUN_MARKER.exists() and _RUN_MARKER.read_text(encoding="utf-8").strip() == today:
+                logger.info("[ComexScheduler] Startup catch-up: already ran today, skipping")
+                return
+            logger.info("[ComexScheduler] Startup catch-up: fetching today's snapshot...")
+            await asyncio.to_thread(self._run_sync)
+        except Exception as e:
+            logger.error(f"[ComexScheduler] Startup catch-up error: {e}")
 
     def start(self):
         """スケジューラーを開始
         - 毎日 07:00 JST
         - 毎日 12:00 JST（リトライ）
+        - 起動時キャッチアップ（当日未取得なら即時）
         """
         self.scheduler.add_job(
             self._run,
             CronTrigger(hour=7, minute=0, timezone=JST),
             id="comex_stock_daily_07",
             replace_existing=True,
-            misfire_grace_time=3600,
+            # 当日中ならいつ実行しても価値があるスナップショットなので猶予を長めに
+            misfire_grace_time=6 * 3600,
         )
         self.scheduler.add_job(
             self._run,
             CronTrigger(hour=12, minute=0, timezone=JST),
             id="comex_stock_daily_12",
             replace_existing=True,
+            misfire_grace_time=6 * 3600,
+        )
+        self.scheduler.add_job(
+            self._startup_catchup,
+            DateTrigger(run_date=datetime.now(JST) + timedelta(seconds=60)),
+            id="comex_stock_startup_catchup",
+            replace_existing=True,
             misfire_grace_time=3600,
         )
         self.scheduler.start()
-        logger.info("[ComexScheduler] Started (07:00 + 12:00 JST)")
+        logger.info("[ComexScheduler] Started (07:00 + 12:00 JST + startup catch-up)")
 
     def shutdown(self):
         try:

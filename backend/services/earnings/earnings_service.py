@@ -216,26 +216,32 @@ _COMPANIES: Dict[str, List[Dict[str, str]]] = {
     ],
 }
 
-# Pre-build per-country company maps: {ticker_upper: {name, tier, country_code}}
+# Per-country company maps for FMP calendar matching:
+#   {FMPシンボル(大文字): {ticker(表示用), name, tier, country_code}}
+#
+# 重要: FMPカレンダーのsymbolはFMP上の上場シンボル (米国株 / ADR / OTC)。
+# 表示ティッカー (例: "7203.T", 独 "DTE", スイス "ROG") でマッチさせると、
+#   - 日本/韓国/台湾等の現地コードはFMP無料枠に存在せず全件マッチ不能
+#   - "DTE"→DTE Energy, "ROG"→Rogers など無関係な米国株と衝突
+# となるため、マッチは fmp_ticker の完全一致のみで行う。
+# 補助として "." 付き表示ティッカー (取引所サフィックス付きでFMP上でも一意)
+# だけはエイリアスとして許可する。サフィックスなしの現地コードは登録しない。
 def _build_company_map(country_code: str) -> Dict[str, Dict[str, str]]:
-    return {
-        c["ticker"].upper(): {
+    company_map: Dict[str, Dict[str, str]] = {}
+    for c in _COMPANIES.get(country_code, []):
+        info = {
+            "ticker": c["ticker"],
             "name": c["name"],
             "tier": c["tier"],
             "country_code": country_code,
         }
-        for c in _COMPANIES.get(country_code, [])
-    }
-
-# Global map across all countries
-_GLOBAL_COMPANY_MAP: Dict[str, Dict[str, str]] = {}
-for _cc, _comps in _COMPANIES.items():
-    for _c in _comps:
-        _GLOBAL_COMPANY_MAP[_c["ticker"].upper()] = {
-            "name": _c["name"],
-            "tier": _c["tier"],
-            "country_code": _cc,
-        }
+        fmp_sym = (c.get("fmp_ticker") or "").upper()
+        if fmp_sym:
+            company_map[fmp_sym] = info
+        # 取引所サフィックス付き表示ティッカーはFMP上でも一意なので併用可
+        if "." in c["ticker"]:
+            company_map.setdefault(c["ticker"].upper(), info)
+    return company_map
 
 
 # ---------------------------------------------------------------------------
@@ -333,18 +339,34 @@ class EarningsService:
     # Public: calendar
     # ------------------------------------------------------------------
 
-    def get_calendar(self, country_code: str) -> Dict[str, Any]:
+    def get_calendar(self, country_code: str, force_refresh: bool = False) -> Dict[str, Any]:
         country = self._require_country(country_code)
 
-        # Try cache first
+        # Try cache first (force_refresh時はTTLを無視して再取得)
         cached = self._read_cache(country_code, "calendar")
-        if cached is not None and not self._is_stale(country_code, "calendar", CALENDAR_TTL_HOURS):
+        if (
+            not force_refresh
+            and cached is not None
+            and not self._is_stale(country_code, "calendar", CALENDAR_TTL_HOURS)
+        ):
             cached["cached"] = True
             return cached
 
-        # Fetch fresh data
+        # Fetch fresh data (fetch-then-replace: 失敗時は旧キャッシュを温存)
         try:
             payload = self._fetch_calendar(country_code, country)
+            # 空上書きガード: 新データに日付が1件もないのに旧キャッシュには
+            # 日付があった場合はソース異常とみなし、旧キャッシュを温存する
+            new_dated = sum(1 for i in payload.get("items", []) if i.get("date"))
+            old_dated = sum(1 for i in (cached or {}).get("items", []) if i.get("date"))
+            if new_dated == 0 and old_dated > 0:
+                logger.warning(
+                    "Calendar refresh for %s returned no dated items (cached has %d); keeping old cache",
+                    country_code, old_dated,
+                )
+                cached["cached"] = True
+                cached["stale"] = True
+                return cached
             self._write_cache(country_code, "calendar", payload)
             return payload
         except Exception as exc:
@@ -390,16 +412,29 @@ class EarningsService:
     # Public: data (historical earnings)
     # ------------------------------------------------------------------
 
-    def get_data(self, country_code: str) -> Dict[str, Any]:
+    def get_data(self, country_code: str, force_refresh: bool = False) -> Dict[str, Any]:
         country = self._require_country(country_code)
 
         cached = self._read_cache(country_code, "data")
-        if cached is not None and not self._is_stale(country_code, "data", DATA_TTL_HOURS):
+        if (
+            not force_refresh
+            and cached is not None
+            and not self._is_stale(country_code, "data", DATA_TTL_HOURS)
+        ):
             cached["cached"] = True
             return cached
 
         try:
             payload = self._fetch_data(country_code, country)
+            # 空上書きガード: 新データが空なのに旧キャッシュに実データがある場合は温存
+            if not payload.get("latest_results") and (cached or {}).get("latest_results"):
+                logger.warning(
+                    "Data refresh for %s returned empty results; keeping old cache",
+                    country_code,
+                )
+                cached["cached"] = True
+                cached["stale"] = True
+                return cached
             self._write_cache(country_code, "data", payload)
             return payload
         except Exception as exc:
@@ -414,7 +449,7 @@ class EarningsService:
     # Public: financials (IS / CF / BS merged, per symbol)
     # ------------------------------------------------------------------
 
-    def get_financials(self, country_code: str, ticker: str) -> Dict[str, Any]:
+    def get_financials(self, country_code: str, ticker: str, force_refresh: bool = False) -> Dict[str, Any]:
         """Return merged quarterly financials for a single ticker."""
         country = self._require_country(country_code)
         ticker_upper = ticker.upper()
@@ -433,12 +468,25 @@ class EarningsService:
             )
 
         cached = self._read_cache(country_code, f"financials_{ticker_upper}")
-        if cached is not None and not self._is_stale(country_code, f"financials_{ticker_upper}", FINANCIALS_TTL_HOURS):
+        if (
+            not force_refresh
+            and cached is not None
+            and not self._is_stale(country_code, f"financials_{ticker_upper}", FINANCIALS_TTL_HOURS)
+        ):
             cached["cached"] = True
             return cached
 
         try:
             payload = self._fetch_financials(ticker_upper, comp, country_code, country)
+            # 空上書きガード: 新データが空なのに旧キャッシュに実データがある場合は温存
+            if not payload.get("periods") and (cached or {}).get("periods"):
+                logger.warning(
+                    "Financials refresh for %s/%s returned no periods; keeping old cache",
+                    country_code, ticker,
+                )
+                cached["cached"] = True
+                cached["stale"] = True
+                return cached
             self._write_cache(country_code, f"financials_{ticker_upper}", payload)
             return payload
         except Exception as exc:
@@ -613,15 +661,20 @@ class EarningsService:
         all_results: List[Dict[str, Any]] = []
 
         for comp in companies:
+            # FMP照会は fmp_ticker (ADR/OTC等のFMP上のシンボル) で行う。
+            # 表示ティッカー (7203.T 等) はFMP無料枠に存在しないか無関係な米国株と衝突する
+            fmp_sym = (comp.get("fmp_ticker") or "").upper()
+            if comp.get("no_financials") or not fmp_sym:
+                continue
             try:
                 raw_list = fmp_earnings_provider.fetch_historical_earnings(
-                    comp["ticker"], limit=HISTORY_LIMIT
+                    fmp_sym, limit=HISTORY_LIMIT
                 )
                 for raw in raw_list:
                     entry = fmp_earnings_provider.normalise_historical_entry(raw, comp)
                     all_results.append(entry)
             except Exception as exc:
-                logger.warning("fetch_data skip %s: %s", comp["ticker"], exc)
+                logger.warning("fetch_data skip %s (%s): %s", comp["ticker"], fmp_sym, exc)
 
         # Sort by date desc
         all_results.sort(key=lambda x: x.get("date", ""), reverse=True)

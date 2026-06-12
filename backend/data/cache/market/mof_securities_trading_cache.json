@@ -13383,8 +13383,8 @@
     {
       "date": "2026-05-23",
       "assets_equity_net": -3678.0,
-      "assets_longterm_debt_net": 129.0,
-      "liabilities_equity_net": 10797.0,
+      "assets_longterm_debt_net": 82.0,
+      "liabilities_equity_net": 10794.0,
       "liabilities_longterm_debt_net": 13502.0,
       "sp500": 7580.06,
       "nikkei225": 66329.5,
@@ -13394,27 +13394,39 @@
     },
     {
       "date": "2026-05-30",
-      "assets_equity_net": -10720.0,
-      "assets_longterm_debt_net": -1848.0,
-      "liabilities_equity_net": -4912.0,
-      "liabilities_longterm_debt_net": 12458.0,
+      "assets_equity_net": -10681.0,
+      "assets_longterm_debt_net": -1844.0,
+      "liabilities_equity_net": -4915.0,
+      "liabilities_longterm_debt_net": 12502.0,
       "sp500": 7383.74,
       "nikkei225": 66588.12,
       "usdjpy": 160.291,
       "us10y": 4.536,
       "jgb10y": 2.515
+    },
+    {
+      "date": "2026-06-06",
+      "assets_equity_net": -9436.0,
+      "assets_longterm_debt_net": 1975.0,
+      "liabilities_equity_net": -7010.0,
+      "liabilities_longterm_debt_net": -10385.0,
+      "sp500": 7298.79,
+      "nikkei225": 64217.27,
+      "usdjpy": 160.524,
+      "us10y": 4.53,
+      "jgb10y": 2.515
     }
   ],
   "latest": {
-    "date": "2026-05-30",
-    "assets_equity_net": -10720.0,
-    "assets_longterm_debt_net": -1848.0,
-    "liabilities_equity_net": -4912.0,
-    "liabilities_longterm_debt_net": 12458.0,
-    "sp500": 7383.74,
-    "nikkei225": 66588.12,
-    "usdjpy": 160.291,
-    "us10y": 4.536,
+    "date": "2026-06-06",
+    "assets_equity_net": -9436.0,
+    "assets_longterm_debt_net": 1975.0,
+    "liabilities_equity_net": -7010.0,
+    "liabilities_longterm_debt_net": -10385.0,
+    "sp500": 7298.79,
+    "nikkei225": 64217.27,
+    "usdjpy": 160.524,
+    "us10y": 4.53,
     "jgb10y": 2.515
   },
   "metadata": {
@@ -13423,9 +13435,9 @@
     "description": "対外及び対内証券売買等の状況（週次）",
     "unit": "億円",
     "frequency": "weekly",
-    "data_count": 1117,
+    "data_count": 1118,
     "start_date": "2005-01-08",
-    "end_date": "2026-05-30",
+    "end_date": "2026-06-06",
     "overlays": [
       "sp500",
       "nikkei225",
@@ -13434,5 +13446,5 @@
       "jgb10y"
     ]
   },
-  "last_updated": "2026-06-11T00:39:05.541563+09:00"
+  "last_updated": "2026-06-12T01:41:09.638271+09:00"
 }

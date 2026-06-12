@@ -16694,16 +16694,25 @@
       "ma4": 6695.5,
       "yoy": 8.27,
       "ma4_yoy": 4.42
+    },
+    {
+      "date": "2026-06-05",
+      "products_supplied": 20600.0,
+      "field_production": 13799.0,
+      "net_demand": 6801.0,
+      "ma4": 6850.5,
+      "yoy": 7.37,
+      "ma4_yoy": 5.73
     }
   ],
   "latest": {
-    "date": "2026-05-29",
-    "products_supplied": 20333.0,
-    "field_production": 13707.0,
-    "net_demand": 6626.0,
-    "ma4": 6695.5,
-    "yoy": 8.27,
-    "ma4_yoy": 4.42
+    "date": "2026-06-05",
+    "products_supplied": 20600.0,
+    "field_production": 13799.0,
+    "net_demand": 6801.0,
+    "ma4": 6850.5,
+    "yoy": 7.37,
+    "ma4_yoy": 5.73
   },
   "metadata": {
     "source": "EIA",
@@ -16717,11 +16726,11 @@
       "yoy": "Net Demand Raw Year-over-Year %",
       "ma4_yoy": "4-Week MA of Raw YoY %"
     },
-    "data_count": 1855,
+    "data_count": 1856,
     "start_date": "1990-11-09",
-    "end_date": "2026-05-29"
+    "end_date": "2026-06-05"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-11T00:39:19.288993+09:00"
+  "last_updated": "2026-06-12T01:21:30.415733+09:00"
 }

@@ -16,6 +16,7 @@ Cox Automotive の Manheim Used Vehicle Value Index を定期的にチェック�
 複数の cron はネットワーク失敗時の冗長化目的。
 """
 
+import asyncio
 import logging
 from datetime import datetime
 from typing import Dict, Any
@@ -65,7 +66,8 @@ class ManheimUsedVehicleScheduler:
         try:
             logger.info("[ManheimUVVI] Triggering scheduled check...")
             service = self._get_service()
-            result = service.get_data(force_refresh=False)
+            # 同期スクレイピング/Excel 取得のためワーカースレッドへ退避（イベントループ保護）
+            result = await asyncio.to_thread(service.get_data, force_refresh=False)
             source = result.get("source", "unknown")
             latest = result.get("latest", {}) or {}
             logger.info(
@@ -135,7 +137,8 @@ class ManheimUsedVehicleScheduler:
         """手動更新トリガー"""
         try:
             service = self._get_service()
-            result = service.get_data(force_refresh=False)
+            # 同期 I/O のためワーカースレッドへ退避（FastAPI ループから呼ばれるため）
+            result = await asyncio.to_thread(service.get_data, force_refresh=False)
             return {
                 "status": "ok",
                 "source": result.get("source"),

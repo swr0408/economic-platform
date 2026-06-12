@@ -18,7 +18,7 @@ from typing import Dict, Optional, Any
 from pathlib import Path
 
 from .boe_base import BOEServiceBase
-from .boe_mpr_utils import get_mpr_info, get_projections_databank, resolve_sheet_by_suffix
+from .boe_mpr_utils import get_mpr_info, get_projections_databank, resolve_sheet_by_suffix, parse_scenario_databank_sheet
 
 logger = logging.getLogger(__name__)
 
@@ -60,7 +60,9 @@ class BOEAverageWeeklyEarningsService(BOEServiceBase):
                     logger.warning(f"Sheet matching '{self.SHEET_SUFFIX}' not found in Databank")
 
             # Try previous MPR if latest failed
-            if latest_data is None or latest_data.get('latest') is None:
+            if latest_data is None or (
+                latest_data.get('latest') is None and not latest_data.get('table_data')
+            ):
                 logger.warning("AWE not found in latest MPR, trying previous")
                 result = get_projections_databank(previous_info['year'], previous_info['month_name'])
                 actual_mpr_info = previous_info
@@ -72,7 +74,7 @@ class BOEAverageWeeklyEarningsService(BOEServiceBase):
                         ws = wb[sheet_name]
                         latest_data = self._extract_data_from_sheet(ws)
 
-            if latest_data and latest_data.get('latest'):
+            if latest_data and (latest_data.get('latest') or latest_data.get('table_data')):
                 return {
                     self.DATA_KEY: latest_data,
                     "metadata": {
@@ -92,6 +94,21 @@ class BOEAverageWeeklyEarningsService(BOEServiceBase):
     def _extract_data_from_sheet(self, ws) -> Dict[str, Any]:
         """シートからAverage Weekly Earningsデータを抽出"""
         data = {'quarters': [], 'latest': None, 'previous': None}
+
+        # 2026年4月MPR以降の転置シナリオ方式レイアウトを先に試す
+        # (旧来: 行=公表日/列=四半期 → 新: 行=四半期/列=系列)
+        scenario = parse_scenario_databank_sheet(ws)
+        if scenario is not None:
+            table_data = scenario.get('table_data', [])
+            return {
+                'quarters': [r['quarter'] for r in table_data],
+                'latest': None,
+                'previous': None,
+                'table_data': table_data,
+                'scenario_labels': scenario.get('scenario_labels'),
+                'latest_forecast': scenario.get('latest_forecast', ''),
+                'previous_forecast': scenario.get('previous_forecast', ''),
+            }
 
         HEADER_ROW = 5
         DATA_START_ROW = 6

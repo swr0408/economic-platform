@@ -19,13 +19,13 @@
 import io
 import json
 import logging
-import urllib.request
 from datetime import datetime
 from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
 from pathlib import Path
 
 from core.redis_client import redis_client
+from services.australia._rba_fetch import fetch_rba_xlsx
 
 logger = logging.getLogger(__name__)
 
@@ -83,27 +83,13 @@ class AuHousingLendingRatesService:
         pass
 
     def _fetch_excel(self) -> Optional[bytes]:
-        """RBA F6 Excelをダウンロード（urllib使用 - Akamai対策）"""
-        try:
-            logger.info(f"Downloading RBA F6 from {EXCEL_URL}")
-            req = urllib.request.Request(
-                EXCEL_URL,
-                headers={
-                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-                    "Accept-Language": "en-US,en;q=0.5",
-                    "Sec-Fetch-Dest": "document",
-                    "Sec-Fetch-Mode": "navigate",
-                    "Sec-Fetch-Site": "none",
-                },
-            )
-            with urllib.request.urlopen(req, timeout=90) as response:
-                data = response.read()
-                logger.info(f"Downloaded {len(data)} bytes")
-                return data
-        except Exception as e:
-            logger.error(f"Error downloading RBA F6 Excel: {e}")
-            return None
+        """RBA F6 Excelをダウンロード
+
+        注意: ブラウザ UA 偽装は RBA WAF (Akamai) に 403 で弾かれる（2026-06確認）。
+        共通ヘルパー fetch_rba_xlsx を使用すること。
+        """
+        logger.info(f"Downloading RBA F6 from {EXCEL_URL}")
+        return fetch_rba_xlsx(EXCEL_URL, timeout=90)
 
     def _parse_excel(self, excel_bytes: bytes) -> Dict[str, List[Dict[str, Any]]]:
         """F6 Excelから複数系列を抽出"""

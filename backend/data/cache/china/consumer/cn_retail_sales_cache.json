@@ -460,7 +460,7 @@
       "yoy": "小売売上高 前年比 (%)"
     },
     "total_records": 112,
-    "last_fetched": "2026-06-11T04:01:21.825125+09:00"
+    "last_fetched": "2026-06-12T11:01:32.167791+09:00"
   },
   "next_release": {
     "date": "2026-06-16",
@@ -468,6 +468,6 @@
     "datetime_jst": "2026-06-16T11:00:00+09:00",
     "time_jst": "11:00",
     "label": "Retail Sales YoY (May)",
-    "estimate": 0.8
+    "estimate": 0
   }
 }

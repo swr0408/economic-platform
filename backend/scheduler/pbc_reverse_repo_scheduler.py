@@ -7,6 +7,7 @@ DB未登録の新しいデータを取得・登録する。
 PBOCは北京時間（CST = JST-1）の午前中に公告を出す。
 JST 16:00 = CST 15:00 に実行することで当日データを確実に取得。
 """
+import asyncio
 import logging
 from zoneinfo import ZoneInfo
 
@@ -40,7 +41,8 @@ class PbcReverseRepoScheduler:
         try:
             logger.info("[Scheduler] PBC Reverse Repo: checking for new data...")
             fetch_fn = self._get_service()
-            count = fetch_fn()
+            # 同期スクレイピングのためワーカースレッドへ退避（イベントループ保護）
+            count = await asyncio.to_thread(fetch_fn)
             logger.info(f"[Scheduler] PBC Reverse Repo: {count} new records added")
         except Exception as e:
             logger.error(f"[Scheduler] PBC Reverse Repo error: {e}")

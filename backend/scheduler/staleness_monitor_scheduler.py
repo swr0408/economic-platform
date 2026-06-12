@@ -206,9 +206,24 @@ class StalenessMonitorScheduler:
                 id="staleness_monitor",
                 name="Cache Staleness Monitor",
                 replace_existing=True,
+                # セーフティネット自身が 10:30 を逃すと当日のスキャンが消える。
+                # ループ詰まり・再起動跨ぎでも数時間以内なら実行する
+                misfire_grace_time=6 * 3600,
+            )
+            # 起動時スキャン: 再起動すれば必ず一度は鮮度スキャンが走るようにする
+            # (cron のみだと、毎日 10:30 前に再起動する運用では永久にスキャンされない)
+            from apscheduler.triggers.date import DateTrigger
+            from datetime import timedelta
+            self.scheduler.add_job(
+                self._scheduled_scan,
+                DateTrigger(run_date=datetime.now(JST) + timedelta(minutes=3)),
+                id="staleness_monitor_startup",
+                name="Cache Staleness Monitor (startup)",
+                replace_existing=True,
+                misfire_grace_time=6 * 3600,
             )
             self.scheduler.start()
-            logger.info("[StalenessMonitor] Scheduler started - Daily 10:30 JST")
+            logger.info("[StalenessMonitor] Scheduler started - Daily 10:30 JST + startup scan")
         except Exception as e:
             logger.error(f"[StalenessMonitor] Error starting scheduler: {e}")
 

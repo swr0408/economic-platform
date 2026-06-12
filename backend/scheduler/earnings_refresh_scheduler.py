@@ -21,14 +21,17 @@ import logging
 from datetime import date, datetime, timedelta
 from typing import List, Tuple
 from zoneinfo import ZoneInfo
-from concurrent.futures import ThreadPoolExecutor
 
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.cron import CronTrigger
+from apscheduler.triggers.date import DateTrigger
 
 logger = logging.getLogger(__name__)
 
 JST = ZoneInfo("Asia/Tokyo")
+
+# イベントループ詰まり・再起動跨ぎでジョブが無音スキップされないための misfire 猶予
+JOB_MISFIRE_GRACE_TIME = 3600
 
 
 class EarningsRefreshScheduler:
@@ -36,7 +39,6 @@ class EarningsRefreshScheduler:
 
     def __init__(self) -> None:
         self.scheduler = AsyncIOScheduler(timezone=JST)
-        self._executor = ThreadPoolExecutor(max_workers=2)
         self._is_running = False
 
     # ------------------------------------------------------------------
@@ -63,7 +65,12 @@ class EarningsRefreshScheduler:
     # ------------------------------------------------------------------
 
     def _refresh_all_calendars(self) -> None:
-        """各国の決算カレンダーを再取得 (古いキャッシュを削除して即フェッチ)"""
+        """各国の決算カレンダーを再取得
+
+        fetch-then-replace: 旧キャッシュは削除せず force_refresh で再取得する。
+        （旧実装はフェッチ前に unlink していたため、FMP 失敗時に最終良品データが
+        消滅していた。get_calendar 側がフェッチ失敗・空応答時に旧キャッシュを温存する）
+        """
         svc, countries, _ = self._service()
         start = datetime.now(JST)
         refreshed = 0
@@ -72,9 +79,7 @@ class EarningsRefreshScheduler:
         for c in countries:
             cc = c["code"]
             try:
-                cache_path = svc._cache_path(cc, "calendar")
-                cache_path.unlink(missing_ok=True)
-                svc.get_calendar(cc)  # cache miss → forces fetch
+                svc.get_calendar(cc, force_refresh=True)
                 refreshed += 1
             except Exception as exc:
                 logger.warning("[EarningsRefresh] calendar %s: %s", cc, exc)
@@ -90,15 +95,16 @@ class EarningsRefreshScheduler:
     # Phase 2: refresh financials for recently-released companies
     # ------------------------------------------------------------------
 
-    def _find_targets(self) -> List[Tuple[str, str]]:
-        """直近(昨日〜本日)に決算発表があった銘柄 [(country_code, display_ticker), ...]
+    def _find_targets(self, window_days: int = 2) -> List[Tuple[str, str]]:
+        """直近 window_days 日以内に決算発表があった銘柄 [(country_code, display_ticker), ...]
 
-        BMO/AMC 双方を捕捉するため 2日ウィンドウを採用。
+        通常スイープは BMO/AMC 双方を捕捉する2日ウィンドウ。
+        起動時キャッチアップはスケジューラ停止期間の取りこぼし回収のため広めに取る。
         no_financials/fmp_ticker無しの銘柄は除外。
         """
         svc, countries, companies_by_cc = self._service()
         today = date.today()
-        window = {today - timedelta(days=1), today}
+        window = {today - timedelta(days=i) for i in range(window_days)}
         targets: List[Tuple[str, str]] = []
 
         for c in countries:
@@ -128,11 +134,15 @@ class EarningsRefreshScheduler:
 
         return targets
 
-    def _refresh_recent_financials(self) -> None:
-        """対象銘柄の財務諸表キャッシュを削除 → 即再取得"""
+    def _refresh_recent_financials(self, window_days: int = 2) -> None:
+        """対象銘柄の財務諸表を再取得
+
+        fetch-then-replace: 旧キャッシュは削除せず force_refresh で再取得する
+        （FMP 失敗・空応答時は get_financials 側が旧キャッシュを温存する）。
+        """
         svc, _, _ = self._service()
         start = datetime.now(JST)
-        targets = self._find_targets()
+        targets = self._find_targets(window_days=window_days)
 
         if not targets:
             logger.info("[EarningsRefresh] No recent releases; skipping financials refresh")
@@ -142,9 +152,7 @@ class EarningsRefreshScheduler:
         errors = 0
         for cc, sym in targets:
             try:
-                cache_path = svc._cache_path(cc, f"financials_{sym.upper()}")
-                cache_path.unlink(missing_ok=True)
-                svc.get_financials(cc, sym)
+                svc.get_financials(cc, sym, force_refresh=True)
                 ok += 1
             except Exception as exc:
                 logger.warning("[EarningsRefresh] %s/%s: %s", cc, sym, exc)
@@ -161,6 +169,23 @@ class EarningsRefreshScheduler:
     # Start / stop
     # ------------------------------------------------------------------
 
+    def _startup_catchup(self) -> None:
+        """起動時キャッチアップ: 停止期間中に逃したカレンダー更新・決算スイープを回収
+
+        カレンダーは全国分を再取得し、財務諸表は過去7日ウィンドウで
+        発表済み銘柄を拾い直す（通常スイープの2日より広く取る）。
+        """
+        logger.info("[EarningsRefresh] Startup catch-up...")
+        try:
+            self._refresh_all_calendars()
+        except Exception as exc:
+            logger.warning("[EarningsRefresh] startup calendar catch-up failed: %s", exc)
+        try:
+            self._refresh_recent_financials(window_days=7)
+        except Exception as exc:
+            logger.warning("[EarningsRefresh] startup financials catch-up failed: %s", exc)
+        logger.info("[EarningsRefresh] Startup catch-up complete")
+
     def start(self) -> None:
         if self._is_running:
             return
@@ -171,6 +196,7 @@ class EarningsRefreshScheduler:
             CronTrigger(hour=5, minute=30),
             id="earnings_calendars",
             replace_existing=True,
+            misfire_grace_time=JOB_MISFIRE_GRACE_TIME,
         )
 
         # 06:00 JST: morning sweep (US AMC released previous evening + Asia BMO)
@@ -179,6 +205,7 @@ class EarningsRefreshScheduler:
             CronTrigger(hour=6, minute=0),
             id="earnings_financials_morning",
             replace_existing=True,
+            misfire_grace_time=JOB_MISFIRE_GRACE_TIME,
         )
 
         # 18:00 JST: evening sweep (Asia AMC + EU intra)
@@ -187,12 +214,24 @@ class EarningsRefreshScheduler:
             CronTrigger(hour=18, minute=0),
             id="earnings_financials_evening",
             replace_existing=True,
+            misfire_grace_time=JOB_MISFIRE_GRACE_TIME,
+        )
+
+        # 起動時キャッチアップ (停止期間中のカレンダー/スイープ取りこぼし回収)
+        # ※ ジョブは同期関数のため APScheduler のスレッドプールで実行され、
+        #   イベントループはブロックしない
+        self.scheduler.add_job(
+            self._startup_catchup,
+            DateTrigger(run_date=datetime.now(JST) + timedelta(seconds=90)),
+            id="earnings_startup_catchup",
+            replace_existing=True,
+            misfire_grace_time=JOB_MISFIRE_GRACE_TIME,
         )
 
         self.scheduler.start()
         self._is_running = True
         logger.info(
-            "[EarningsRefresh] Started (05:30 calendars; 06:00/18:00 financials)"
+            "[EarningsRefresh] Started (05:30 calendars; 06:00/18:00 financials; startup catch-up)"
         )
 
     def shutdown(self) -> None:

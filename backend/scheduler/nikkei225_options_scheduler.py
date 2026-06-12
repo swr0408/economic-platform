@@ -5,11 +5,21 @@ JPX Settlement Price CSV: 毎営業日 ~16:45 JST (当日日付)
 JPX Open Interest XLSX:   毎営業日 ~20:00 JST (前営業日日付)
 
 スケジュール:
+  - 起動時 (約20秒後): 取りこぼし catch-up（停止明けに最新日を確実に取得）
+  - 毎営業日 08:30 JST: 取りこぼし catch-up（夜間取得失敗の保険）
   - 毎営業日 17:00 JST: Settlement CSV取得 + ローカル保存
   - 毎営業日 20:30 JST: OI XLSX + Market Data取得・マージ + ローカル保存
   - 毎営業日 21:00 JST: リトライ
+
+取りこぼし対策 (catch-up):
+  JPX Settlement/OI のエンドポイントは「最新営業日1日分」しかホストしないため、
+  サーバーが止まっていた日のファイルは後から取得できない。起動時と毎朝に
+  「ローカル最新日より新しく、かつ今まだ取得可能な営業日」を即ダウンロードして
+  日々の取りこぼしを防ぐ（複数日の連続停止分は JPX 仕様上どうしても穴が残る）。
 """
+import asyncio
 import logging
+import re
 from datetime import datetime, timedelta
 from pathlib import Path
 
@@ -44,6 +54,8 @@ OSE_TP_URL = (
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 }
+
+RB_FILE_RE = re.compile(r"rb(\d{8})\.csv")
 
 
 def _prev_business_day(d):
@@ -81,84 +93,170 @@ class Nikkei225OptionsScheduler:
             logger.debug(f"[NK225Options] Download failed {local_path.name}: {e}")
         return False
 
-    async def _run_settlement(self):
-        """Settlement CSV + ose*tp.csv 取得 → ローカル保存 → データ更新"""
-        try:
-            import requests
+    def _download_day(self, ds: str) -> bool:
+        """指定営業日 (YYYYMMDD) の4ファイルをダウンロード。
 
-            today = datetime.now(JST).date()
-            date_str = today.strftime("%Y%m%d")
+        1つでも新規取得できれば True。既に全て存在する場合も True
+        （_download_and_save が既存ファイルを True で返すため）。
+        """
+        got = False
+        targets = [
+            (LOCAL_DATA_DIR / f"rb{ds}.csv", SETTLEMENT_CSV_URL.format(date=ds)),
+            (LOCAL_DATA_DIR / f"ose{ds}tp.csv", OSE_TP_URL.format(date=ds)),
+            (LOCAL_DATA_DIR / f"{ds}open_interest.xlsx", OPEN_INTEREST_URL.format(date=ds)),
+            (LOCAL_DATA_DIR / f"{ds}_market_data_whole_day.xlsx", MARKET_DATA_URL.format(date=ds)),
+        ]
+        for path, url in targets:
+            if self._download_and_save(url, path):
+                got = True
+        return got
 
-            # Try today and recent business days
-            for i in range(3):
-                d = today - timedelta(days=i)
-                if d.weekday() >= 5:
-                    continue
-                ds = d.strftime("%Y%m%d")
+    def _latest_local_date(self) -> str | None:
+        """ローカルに存在する rb{date}.csv の最新日付 (YYYYMMDD) を返す"""
+        if not LOCAL_DATA_DIR.exists():
+            return None
+        dates = [
+            m.group(1)
+            for p in LOCAL_DATA_DIR.iterdir()
+            if (m := RB_FILE_RE.match(p.name))
+        ]
+        return max(dates) if dates else None
 
-                # Download rb CSV
-                rb_path = LOCAL_DATA_DIR / f"rb{ds}.csv"
-                rb_url = SETTLEMENT_CSV_URL.format(date=ds)
-                self._download_and_save(rb_url, rb_path)
+    # ========== 取りこぼし catch-up ==========
 
-                # Download ose*tp CSV
-                ose_path = LOCAL_DATA_DIR / f"ose{ds}tp.csv"
-                ose_url = OSE_TP_URL.format(date=ds)
-                self._download_and_save(ose_url, ose_path)
+    def _catchup_sync(self) -> None:
+        """ローカル最新日より新しく、かつ今まだ JPX が公開している営業日を取得。
 
-                if rb_path.exists() or ose_path.exists():
-                    break
+        JPX は最新営業日分しかホストしないため、停止明けに取得可能な分だけを
+        確実に拾い、取れた場合のみデータを再ビルドする。
+        """
+        today = datetime.now(JST).date()
+        latest_local = self._latest_local_date()
+        new_dates = []
 
-            # Trigger data rebuild
+        # 新しい営業日から順に。ローカル最新日に達したら打ち切り。
+        for i in range(7):
+            d = today - timedelta(days=i)
+            if d.weekday() >= 5:
+                continue
+            ds = d.strftime("%Y%m%d")
+            if latest_local and ds <= latest_local:
+                break
+            if self._download_day(ds):
+                new_dates.append(ds)
+
+        if new_dates:
             service = self._import_service()
-            logger.info("[NK225Options] Fetching settlement data...")
             result = service.get_data(force_refresh=True)
-            if result and result.get("data"):
-                data = result["data"]
-                date_val = data.get("date", "?")
-                n_exp = len(data.get("expiries", []))
-                logger.info(
-                    f"[NK225Options] Settlement data updated: {date_val} "
-                    f"({n_exp} expiries)"
-                )
-            else:
-                logger.warning("[NK225Options] Settlement data fetch returned empty")
+            date_val = (result or {}).get("data", {}).get("date", "?")
+            logger.info(
+                f"[NK225Options] Catch-up: downloaded {new_dates} "
+                f"(latest_local was {latest_local}) → rebuilt to {date_val}"
+            )
+        else:
+            logger.info(
+                f"[NK225Options] Catch-up: already current "
+                f"(latest_local={latest_local})"
+            )
+
+    def _settlement_sync(self) -> None:
+        """Settlement CSV + ose*tp.csv 取得 → ローカル保存 → データ更新（同期）"""
+        today = datetime.now(JST).date()
+
+        # Try today and recent business days
+        for i in range(3):
+            d = today - timedelta(days=i)
+            if d.weekday() >= 5:
+                continue
+            ds = d.strftime("%Y%m%d")
+
+            rb_path = LOCAL_DATA_DIR / f"rb{ds}.csv"
+            self._download_and_save(SETTLEMENT_CSV_URL.format(date=ds), rb_path)
+
+            ose_path = LOCAL_DATA_DIR / f"ose{ds}tp.csv"
+            self._download_and_save(OSE_TP_URL.format(date=ds), ose_path)
+
+            if rb_path.exists() or ose_path.exists():
+                break
+
+        service = self._import_service()
+        logger.info("[NK225Options] Fetching settlement data...")
+        result = service.get_data(force_refresh=True)
+        if result and result.get("data"):
+            data = result["data"]
+            date_val = data.get("date", "?")
+            n_exp = len(data.get("expiries", []))
+            logger.info(
+                f"[NK225Options] Settlement data updated: {date_val} "
+                f"({n_exp} expiries)"
+            )
+        else:
+            logger.warning("[NK225Options] Settlement data fetch returned empty")
+
+    def _oi_merge_sync(self) -> None:
+        """OI XLSX + Market Data 取得 → ローカル保存 → データ更新（同期）"""
+        today = datetime.now(JST).date()
+
+        # OI uses previous business day or current day
+        for d in [today, _prev_business_day(today)]:
+            ds = d.strftime("%Y%m%d")
+
+            oi_path = LOCAL_DATA_DIR / f"{ds}open_interest.xlsx"
+            self._download_and_save(OPEN_INTEREST_URL.format(date=ds), oi_path)
+
+            md_path = LOCAL_DATA_DIR / f"{ds}_market_data_whole_day.xlsx"
+            self._download_and_save(MARKET_DATA_URL.format(date=ds), md_path)
+
+        service = self._import_service()
+        logger.info("[NK225Options] Merging OI data...")
+        result = service.get_data(force_refresh=True)
+        if result and result.get("data"):
+            logger.info("[NK225Options] OI merge completed")
+        else:
+            logger.warning("[NK225Options] OI merge returned empty")
+
+    # ========== async ラッパー (blocking I/O は to_thread でループ外実行) ==========
+
+    async def _run_catchup(self):
+        try:
+            await asyncio.to_thread(self._catchup_sync)
+        except Exception as e:
+            logger.error(f"[NK225Options] Catch-up error: {e}")
+            import traceback
+            traceback.print_exc()
+
+    async def _run_settlement(self):
+        try:
+            await asyncio.to_thread(self._settlement_sync)
         except Exception as e:
             logger.error(f"[NK225Options] Error: {e}")
             import traceback
             traceback.print_exc()
 
     async def _run_oi_merge(self):
-        """OI XLSX + Market Data 取得 → ローカル保存 → データ更新"""
         try:
-            today = datetime.now(JST).date()
-
-            # OI uses previous business day or current day
-            for d in [today, _prev_business_day(today)]:
-                ds = d.strftime("%Y%m%d")
-
-                # Download OI XLSX
-                oi_path = LOCAL_DATA_DIR / f"{ds}open_interest.xlsx"
-                oi_url = OPEN_INTEREST_URL.format(date=ds)
-                self._download_and_save(oi_url, oi_path)
-
-                # Download Market Data XLSX
-                md_path = LOCAL_DATA_DIR / f"{ds}_market_data_whole_day.xlsx"
-                md_url = MARKET_DATA_URL.format(date=ds)
-                self._download_and_save(md_url, md_path)
-
-            # Trigger data rebuild
-            service = self._import_service()
-            logger.info("[NK225Options] Merging OI data...")
-            result = service.get_data(force_refresh=True)
-            if result and result.get("data"):
-                logger.info("[NK225Options] OI merge completed")
-            else:
-                logger.warning("[NK225Options] OI merge returned empty")
+            await asyncio.to_thread(self._oi_merge_sync)
         except Exception as e:
             logger.error(f"[NK225Options] OI merge error: {e}")
 
     def start(self):
+        # 起動時 catch-up (約20秒後に1回): 停止明けに最新日を確実に取得
+        self.scheduler.add_job(
+            self._run_catchup,
+            "date",
+            run_date=datetime.now(JST) + timedelta(seconds=20),
+            id="nk225_options_catchup_startup",
+            replace_existing=True,
+            misfire_grace_time=3600,
+        )
+        # 08:30 JST - 朝の catch-up (夜間取得失敗の保険)
+        self.scheduler.add_job(
+            self._run_catchup,
+            CronTrigger(day_of_week="mon-fri", hour=8, minute=30, timezone=JST),
+            id="nk225_options_catchup_morning",
+            replace_existing=True,
+            misfire_grace_time=3600,
+        )
         # 17:00 JST - Settlement CSV (published ~16:45)
         self.scheduler.add_job(
             self._run_settlement,
@@ -184,7 +282,10 @@ class Nikkei225OptionsScheduler:
             misfire_grace_time=3600,
         )
         self.scheduler.start()
-        logger.info("[NK225Options] Scheduler started (17:00 + 20:30 + 21:00 JST)")
+        logger.info(
+            "[NK225Options] Scheduler started "
+            "(catch-up: startup + 08:30 | 17:00 + 20:30 + 21:00 JST)"
+        )
 
     def shutdown(self):
         try:

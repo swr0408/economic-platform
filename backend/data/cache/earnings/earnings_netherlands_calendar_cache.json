@@ -6,6 +6,48 @@
   ],
   "items": [
     {
+      "symbol": "PRX",
+      "name": "Prosus",
+      "tier": "A",
+      "country_code": "netherlands",
+      "date": "2026-06-29",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 0.514,
+      "eps_actual": null,
+      "revenue_estimate": 5661197000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
+      "symbol": "ASML",
+      "name": "ASML",
+      "tier": "S",
+      "country_code": "netherlands",
+      "date": "2026-07-15",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 8.01,
+      "eps_actual": null,
+      "revenue_estimate": 10456440000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
+      "symbol": "ASM",
+      "name": "ASM International",
+      "tier": "A",
+      "country_code": "netherlands",
+      "date": "2026-07-28",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 6.69,
+      "eps_actual": null,
+      "revenue_estimate": 1098461000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
       "symbol": "ING",
       "name": "ING",
       "tier": "A",
@@ -17,63 +59,21 @@
       "eps_actual": null,
       "revenue_estimate": 7131577000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "AD",
       "name": "Ahold Delhaize",
       "tier": "A",
       "country_code": "netherlands",
-      "date": "2026-08-10",
+      "date": "2026-08-05",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.4097,
+      "eps_estimate": 0.75,
       "eps_actual": null,
-      "revenue_estimate": 52447490.0,
+      "revenue_estimate": 27331870000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
-    },
-    {
-      "symbol": "ASML",
-      "name": "ASML",
-      "tier": "S",
-      "country_code": "netherlands",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "PRX",
-      "name": "Prosus",
-      "tier": "A",
-      "country_code": "netherlands",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "ASM",
-      "name": "ASM International",
-      "tier": "A",
-      "country_code": "netherlands",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "ADYEN",
@@ -91,8 +91,8 @@
     }
   ],
   "next_7d_count": 0,
-  "next_30d_count": 0,
-  "last_updated": "2026-06-11T05:30:03.824875+00:00",
+  "next_30d_count": 1,
+  "last_updated": "2026-06-12T01:35:37.022658+00:00",
   "cached": false,
   "status": "ok"
 }

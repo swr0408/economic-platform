@@ -21,8 +21,32 @@ interface BOEGDPForecastChartProps {
 
 interface ChartDataPoint {
   quarter: string
-  latest: number | null
-  previous: number | null
+  [seriesKey: string]: string | number | null | undefined
+}
+
+// 系列キー → 色 (previous=赤破線、最新/シナリオ=寒色系)
+const SERIES_COLORS: Record<string, string> = {
+  latest: '#1890ff',
+  previous: '#ff7875',
+  scenario_a: '#1890ff',
+  scenario_b: '#52c41a',
+  scenario_c: '#b37feb',
+}
+const FALLBACK_COLORS = ['#13c2c2', '#faad14', '#eb2f96']
+
+// table_data の行から quarter 以外の系列キーを抽出 (シナリオ→latest→previous の順)
+const extractSeriesKeys = (rows: { quarter: string;[k: string]: unknown }[]): string[] => {
+  const keys = new Set<string>()
+  for (const row of rows) {
+    for (const k of Object.keys(row)) {
+      if (k !== 'quarter') keys.add(k)
+    }
+  }
+  const scenarios = [...keys].filter((k) => k.startsWith('scenario_')).sort()
+  const ordered = [...scenarios]
+  if (keys.has('latest')) ordered.push('latest')
+  if (keys.has('previous')) ordered.push('previous')
+  return ordered
 }
 
 // Convert forecast date to readable format (e.g., "November 2025" -> "2025年11月")
@@ -73,20 +97,16 @@ const formatQuarterLabel = (quarter: string): string => {
 
 export default function BOEGDPForecastChart({ data }: BOEGDPForecastChartProps) {
   // Prepare chart data from table_data
-  const chartData = useMemo(() => {
+  // 旧来: { quarter, latest, previous } / 2026年4月MPR以降: { quarter, scenario_a.., previous }
+  const { chartData, seriesKeys } = useMemo(() => {
     if (!data?.table_data || data.table_data.length === 0) {
-      return []
+      return { chartData: [] as ChartDataPoint[], seriesKeys: [] as string[] }
     }
-
-    // table_data has format: { quarter, latest, previous }
-    return data.table_data
-      .map((row) => ({
-        quarter: row.quarter,
-        latest: row.latest,
-        previous: row.previous,
-      }))
-      .filter((row) => row.latest !== null || row.previous !== null)
+    const keys = extractSeriesKeys(data.table_data)
+    const rows = data.table_data
+      .filter((row) => keys.some((k) => row[k] !== null && row[k] !== undefined))
       .sort((a, b) => a.quarter.localeCompare(b.quarter)) as ChartDataPoint[]
+    return { chartData: rows, seriesKeys: keys }
   }, [data])
 
   const formatValue = (value: number): string => {
@@ -110,6 +130,16 @@ export default function BOEGDPForecastChart({ data }: BOEGDPForecastChartProps) 
 
   const latestLabel = formatForecastDate(latestForecastDate)
   const previousLabel = formatForecastDate(previousForecastDate)
+
+  // 系列キー → 表示名 ("scenario_a" → "シナリオA (2026年4月)")
+  const seriesDisplayName = (key: string): string => {
+    if (key === 'latest') return `最新 ${latestLabel}`
+    if (key === 'previous') return `前回 ${previousLabel}`
+    const raw = data.scenario_labels?.[key]
+    const m = raw?.match(/Scenario\s+(\w+)\s*$/i)
+    const sc = m ? `シナリオ${m[1].toUpperCase()}` : raw || key
+    return latestLabel ? `${sc} (${latestLabel})` : sc
+  }
 
   return (
     <ChartContainer 
@@ -138,38 +168,28 @@ export default function BOEGDPForecastChart({ data }: BOEGDPForecastChartProps) 
               labelFormatter={formatQuarterLabel}
               contentStyle={TOOLTIP_STYLE}
               formatter={(value: number, name: string) => {
-                const displayName = name === 'latest' ? `最新 ${latestLabel}` : `前回 ${previousLabel}`
-                return [formatValue(value), displayName]
+                return [formatValue(value), seriesDisplayName(name)]
               }}
             />
             <Legend
               wrapperStyle={{ color: DARK_THEME.textPrimary }}
-              formatter={(value: string) => {
-                if (value === 'latest') return `最新 ${latestLabel}`
-                if (value === 'previous') return `前回 ${previousLabel}`
-                return value
-              }}
+              formatter={(value: string) => seriesDisplayName(value)}
             />
             {/* Reference line at 0 */}
             <ReferenceLine y={0} stroke={DARK_THEME.textTertiary} strokeWidth={1} />
-            <Line
-              type="monotone"
-              dataKey="latest"
-              stroke="#1890ff"
-              strokeWidth={3}
-              name="latest"
-              dot={false}
-              connectNulls={false}
-            />
-            <Line
-              type="monotone"
-              dataKey="previous"
-              stroke="#ff7875"
-              strokeWidth={2}
-              name="previous"
-              dot={false}
-              connectNulls={false}
-            />
+            {seriesKeys.map((key, i) => (
+              <Line
+                key={key}
+                type="monotone"
+                dataKey={key}
+                stroke={SERIES_COLORS[key] ?? FALLBACK_COLORS[i % FALLBACK_COLORS.length]}
+                strokeWidth={key === 'previous' ? 2 : 3}
+                strokeDasharray={key === 'previous' ? '6 3' : undefined}
+                name={key}
+                dot={false}
+                connectNulls={false}
+              />
+            ))}
           </LineChart>
         </ResponsiveContainer>
       </div>

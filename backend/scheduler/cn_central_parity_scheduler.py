@@ -7,6 +7,7 @@ China Central Parity Rate 日次スケジューラー
 Fixingは毎日 9:15 CST (10:15 JST) に発表されるが、
 APIへの反映は午後になるため 16:00 CST に実行する。
 """
+import asyncio
 import logging
 from zoneinfo import ZoneInfo
 
@@ -36,7 +37,8 @@ class CnCentralParityScheduler:
         try:
             logger.info("[Scheduler] CnCentralParity: updating current year...")
             service = self._get_service()
-            result = service.update_current_year()
+            # 同期 requests（+ time.sleep）のためワーカースレッドへ退避（イベントループ保護）
+            result = await asyncio.to_thread(service.update_current_year)
             total = result.get("metadata", {}).get("total_records", 0)
             latest = result.get("latest") or {}
             logger.info(

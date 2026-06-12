@@ -23649,16 +23649,21 @@
       "date": "2026-06-09",
       "holdings_ton": 1016.49,
       "gold_price_usd": 4260.0
+    },
+    {
+      "date": "2026-06-10",
+      "holdings_ton": 1013.64,
+      "gold_price_usd": 4108.2
     }
   ],
   "latest": {
-    "date": "2026-06-09",
-    "holdings_ton": 1016.49,
-    "gold_price_usd": 4260.0
+    "date": "2026-06-10",
+    "holdings_ton": 1013.64,
+    "gold_price_usd": 4108.2
   },
   "latest_gold": {
-    "date": "2026-06-10",
-    "close": 4143.4
+    "date": "2026-06-11",
+    "close": 4245.5
   },
   "metadata": {
     "source": "SPDR Gold Shares + yfinance (GC=F)",
@@ -23666,11 +23671,11 @@
     "unit_holdings": "ton",
     "unit_price": "USD/oz",
     "frequency": "daily",
-    "data_count": 4730,
+    "data_count": 4731,
     "start_date": "2008-06-30",
-    "end_date": "2026-06-09"
+    "end_date": "2026-06-10"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-11T01:59:52.282648+09:00"
+  "last_updated": "2026-06-12T09:37:30.322718+09:00"
 }

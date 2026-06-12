@@ -66,7 +66,11 @@
       "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\" -Directory)",
       "Bash(Select-Object Name)",
       "WebFetch(domain:web02.mof.gov.tw)",
-      "WebFetch(domain:www.pmi.spglobal.com)"
+      "WebFetch(domain:www.pmi.spglobal.com)",
+      "PowerShell($d = Get-Content \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend\\\\data\\\\cache\\\\market\\\\nikkei225_options_cache.json\" -Raw | ConvertFrom-Json; \"served date  : $\\($d.data.date\\)\"; \"prev_date    : $\\($d.data.prev_date\\)\"; \"last_updated : $\\($d.last_updated\\)\"; \"source       : $\\($d.source\\)\"; \"expiries     : $\\($d.data.expiries.Count\\)\"; \"hist days    : $\\($d.metadata.history_days\\)\"; $h=$d.data.atm_iv_history; \"history last : $\\($h[$h.Count-1].date\\)\")",
+      "PowerShell(cd \"c:\\\\Users\\\\owner\\\\Desktop\\\\economic-platform\\\\backend\"; \\(Get-Command python\\).Source; python --version; if \\(Test-Path \".\\\\.venv\"\\) { \"venv: .venv exists\" }; if \\(Test-Path \"..\\\\.venv\"\\) { \"venv: ..\\\\.venv exists\" }; if \\(Test-Path \".\\\\venv\"\\) { \"venv: venv exists\" })",
+      "PowerShell(docker version --format \"{{.Server.Version}}\")",
+      "PowerShell(wsl -l -v)"
     ],
     "additionalDirectories": [
       "\\tmp",

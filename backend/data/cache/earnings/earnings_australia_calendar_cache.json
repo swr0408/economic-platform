@@ -6,6 +6,20 @@
   ],
   "items": [
     {
+      "symbol": "RIO.AX",
+      "name": "Rio Tinto Ltd",
+      "tier": "A",
+      "country_code": "australia",
+      "date": "2026-07-29",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 3.88,
+      "eps_actual": null,
+      "revenue_estimate": 33475160000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
       "symbol": "BHP.AX",
       "name": "BHP",
       "tier": "A",
@@ -102,25 +116,11 @@
       "revenue_estimate": null,
       "revenue_actual": null,
       "updated_from_date": null
-    },
-    {
-      "symbol": "RIO.AX",
-      "name": "Rio Tinto Ltd",
-      "tier": "A",
-      "country_code": "australia",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
     }
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-06-11T05:30:06.537653+00:00",
+  "last_updated": "2026-06-12T01:35:37.119411+00:00",
   "cached": false,
   "status": "ok"
 }

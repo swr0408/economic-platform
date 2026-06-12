@@ -29,10 +29,12 @@ def get_reserve_balances(
     start_time = time.time()
 
     try:
+        # リファクタ後のサービスは単一シリーズ (WRBWFRBL) の
+        # {data, latest, next_release, ...} 形を返す。
+        # 旧 wrbwfrbl/wresbal 二系列形を期待していた本ルーターは常時 404 だった。
         result = reserve_balances_service.get_data(force_refresh=refresh)
 
-        # 両シリーズともデータがない場合のみエラー
-        if not result.get("wrbwfrbl") and not result.get("wresbal"):
+        if not result.get("data"):
             raise HTTPException(
                 status_code=404,
                 detail="Reserve Balances data not available"
@@ -41,19 +43,16 @@ def get_reserve_balances(
         response_time_ms = (time.time() - start_time) * 1000
 
         return {
-            "series_ids": ["WRBWFRBL", "WRESBAL"],
-            "wrbwfrbl": result.get("wrbwfrbl", []),
-            "wresbal": result.get("wresbal", []),
-            "latest_wrbwfrbl": result.get("latest_wrbwfrbl"),
-            "latest_wresbal": result.get("latest_wresbal"),
+            "series_id": reserve_balances_service.SERIES_ID,
+            "data": result.get("data", []),
+            "latest": result.get("latest"),
             "next_release": result.get("next_release"),
             "meta": {
                 "cached": result.get("cached", False),
                 "source": result.get("source", "unknown"),
                 "last_updated": result.get("last_updated"),
                 "response_time_ms": round(response_time_ms, 2),
-                "count_wrbwfrbl": len(result.get("wrbwfrbl", [])),
-                "count_wresbal": len(result.get("wresbal", []))
+                "count": len(result.get("data", [])),
             }
         }
 

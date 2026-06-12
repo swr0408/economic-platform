@@ -8066,25 +8066,26 @@
     },
     {
       "date": "2026-06-10",
-      "score": 27.2,
+      "score": 26.9,
       "rating": "fear",
       "sp500": 7266.99
     },
     {
       "date": "2026-06-11",
-      "score": 27.2,
+      "score": 29.7,
       "rating": "fear",
-      "sp500": null
+      "sp500": 7394.3
     }
   ],
   "latest": {
     "date": "2026-06-11",
-    "score": 27.2,
+    "score": 29.7,
     "rating": "fear",
     "previous_close": 27.5,
     "previous_1_week": 53.9,
     "previous_1_month": 66.6,
-    "previous_1_year": 64.2
+    "previous_1_year": 64.2,
+    "sp500": 7394.3
   },
   "metadata": {
     "source": "CNN Fear & Greed Index",
@@ -8094,5 +8095,5 @@
   },
   "cached": false,
   "source": "api",
-  "last_updated": "2026-06-11T21:25:30.306319+09:00"
+  "last_updated": "2026-06-12T09:09:45.319004+09:00"
 }

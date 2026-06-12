@@ -6,6 +6,48 @@
   ],
   "items": [
     {
+      "symbol": "DANSKE",
+      "name": "Danske Bank",
+      "tier": "A",
+      "country_code": "denmark",
+      "date": "2026-07-17",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 0.562,
+      "eps_actual": null,
+      "revenue_estimate": 2260362000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
+      "symbol": "DSV",
+      "name": "DSV",
+      "tier": "A",
+      "country_code": "denmark",
+      "date": "2026-07-30",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 1.21,
+      "eps_actual": null,
+      "revenue_estimate": 11511980000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
+      "symbol": "NOVO-B",
+      "name": "Novo Nordisk",
+      "tier": "S",
+      "country_code": "denmark",
+      "date": "2026-08-05",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 0.83,
+      "eps_actual": null,
+      "revenue_estimate": 11209850000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
       "symbol": "GMAB",
       "name": "Genmab",
       "tier": "A",
@@ -17,49 +59,21 @@
       "eps_actual": null,
       "revenue_estimate": 1091184000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
-      "symbol": "NOVO-B",
-      "name": "Novo Nordisk",
-      "tier": "S",
-      "country_code": "denmark",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "DSV",
-      "name": "DSV",
+      "symbol": "MAERSK-B",
+      "name": "AP Moller Maersk",
       "tier": "A",
       "country_code": "denmark",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
+      "date": "2026-08-06",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 0.05,
       "eps_actual": null,
-      "revenue_estimate": null,
+      "revenue_estimate": 13721790000.0,
       "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
-      "symbol": "DANSKE",
-      "name": "Danske Bank",
-      "tier": "A",
-      "country_code": "denmark",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "VWS",
@@ -88,25 +102,11 @@
       "revenue_estimate": null,
       "revenue_actual": null,
       "updated_from_date": null
-    },
-    {
-      "symbol": "MAERSK-B",
-      "name": "AP Moller Maersk",
-      "tier": "A",
-      "country_code": "denmark",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
     }
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-06-11T05:30:04.858865+00:00",
+  "last_updated": "2026-06-12T01:35:37.058322+00:00",
   "cached": false,
   "status": "ok"
 }

@@ -717,27 +717,39 @@
     {
       "date": "2025-12-01",
       "value": 43.8,
-      "forecast": 41.0,
-      "previous": 39.5
+      "forecast": null,
+      "previous": 39.6
     },
     {
       "date": "2026-01-01",
       "value": 60.1,
       "forecast": 50.9,
-      "previous": 43.8
+      "previous": 44.0
     },
     {
       "date": "2026-02-01",
       "value": 23.8,
-      "forecast": 53.0,
+      "forecast": null,
       "previous": 60.1
+    },
+    {
+      "date": "2026-03-01",
+      "value": 65.9,
+      "forecast": 41.0,
+      "previous": 23.8
+    },
+    {
+      "date": "2026-04-01",
+      "value": 48.1,
+      "forecast": 51.0,
+      "previous": 65.9
     }
   ],
   "latest": {
-    "date": "2026-02-01",
-    "value": 23.8,
-    "forecast": 53.0,
-    "previous": 60.1
+    "date": "2026-04-01",
+    "value": 48.1,
+    "forecast": 51.0,
+    "previous": 65.9
   },
   "metadata": {
     "source": "MOEA (Ministry of Economic Affairs, Taiwan)",
@@ -747,5 +759,5 @@
     "frequency": "monthly"
   },
   "next_release": null,
-  "last_updated": "2026-06-12T00:30:34.472097+09:00"
+  "last_updated": "2026-06-12T11:03:27.356799+09:00"
 }

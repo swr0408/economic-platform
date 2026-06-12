@@ -9,8 +9,8 @@ from __future__ import annotations
 
 import os
 import logging
-from datetime import date, datetime, timezone
-from typing import Any, Dict, List, Optional
+from datetime import date, datetime, timedelta, timezone
+from typing import Any, Dict, List, Optional, Tuple
 
 import httpx
 from dotenv import load_dotenv
@@ -25,6 +25,16 @@ FMP_TIMEOUT = 30
 
 UTC = timezone.utc
 
+# /stable/earnings-calendar は1リクエストあたり最大4000件で打ち切られる
+# (長期間を一括指定すると期間末尾の4000件しか返らない)。
+# → 日付レンジを小チャンクに分割して取得する。
+FMP_CALENDAR_ROW_CAP    = 4000
+FMP_CALENDAR_CHUNK_DAYS = 3   # 決算ピーク日 ~950件/日 × 3日 ≈ 2850 < 4000
+
+# 同一レンジのバルクカレンダーをメモリ上で短時間共有するTTL(秒)。
+# 14ヵ国分の get_calendar() が同じグローバルカレンダーを連続要求するため。
+_RAW_CALENDAR_TTL_SEC = 1800
+
 
 class FMPEarningsProvider:
     """Fetch earnings calendar and historical earnings from FMP."""
@@ -32,6 +42,8 @@ class FMPEarningsProvider:
     def __init__(self, api_key: str = FMP_API_KEY) -> None:
         self.api_key = api_key
         self._client: Optional[httpx.Client] = None
+        # バルクカレンダーの短期メモリキャッシュ: (from, to, 取得時刻, データ)
+        self._raw_calendar_cache: Optional[Tuple[str, str, datetime, List[Dict[str, Any]]]] = None
 
     @property
     def _http(self) -> httpx.Client:
@@ -57,12 +69,53 @@ class FMPEarningsProvider:
 
         FMP endpoint: GET /stable/earnings-calendar
           params: from, to, apikey
-        Returns list of dicts with keys: symbol, date, eps, epsEstimated,
-          revenue, revenueEstimated, time, updatedFromDate, fiscalDateEnding
+        Returns list of dicts with keys: symbol, date, epsActual, epsEstimated,
+          revenueActual, revenueEstimated, lastUpdated
+
+        注意: FMPは1リクエスト4000件で打ち切るため、長期間は
+        FMP_CALENDAR_CHUNK_DAYS 日ごとに分割取得する。
+        14ヵ国分の連続呼び出しでAPIを浪費しないよう、同一レンジの結果は
+        _RAW_CALENDAR_TTL_SEC 秒間メモリ共有する。
         """
         if not self.api_key:
             raise ValueError("FMP_API_KEY is not set")
 
+        # 短期メモリキャッシュ (同一レンジのみ)
+        cached = self._raw_calendar_cache
+        now = datetime.now(tz=UTC)
+        if cached is not None:
+            c_from, c_to, fetched_at, c_data = cached
+            if (
+                c_from == from_date.isoformat()
+                and c_to == to_date.isoformat()
+                and (now - fetched_at).total_seconds() < _RAW_CALENDAR_TTL_SEC
+            ):
+                return c_data
+
+        all_rows: List[Dict[str, Any]] = []
+        chunk_start = from_date
+        while chunk_start <= to_date:
+            chunk_end = min(chunk_start + timedelta(days=FMP_CALENDAR_CHUNK_DAYS - 1), to_date)
+            rows = self._fetch_calendar_chunk(chunk_start, chunk_end)
+            if len(rows) >= FMP_CALENDAR_ROW_CAP and chunk_start < chunk_end:
+                # 4000件キャップに到達 → 1日単位に再分割して取りこぼしを防ぐ
+                logger.warning(
+                    "FMP earnings-calendar row cap hit for %s..%s; splitting per-day",
+                    chunk_start, chunk_end,
+                )
+                rows = []
+                d = chunk_start
+                while d <= chunk_end:
+                    rows.extend(self._fetch_calendar_chunk(d, d))
+                    d += timedelta(days=1)
+            all_rows.extend(rows)
+            chunk_start = chunk_end + timedelta(days=1)
+
+        self._raw_calendar_cache = (from_date.isoformat(), to_date.isoformat(), now, all_rows)
+        return all_rows
+
+    def _fetch_calendar_chunk(self, from_date: date, to_date: date) -> List[Dict[str, Any]]:
+        """単一チャンクのカレンダー取得。HTTPエラーは呼び出し元へ送出。"""
         params = {
             "from": from_date.isoformat(),
             "to": to_date.isoformat(),
@@ -73,7 +126,8 @@ class FMPEarningsProvider:
             resp = self._http.get(url, params=params)
             resp.raise_for_status()
         except httpx.HTTPStatusError as exc:
-            logger.error("FMP earnings-calendar HTTP error: %s", exc)
+            logger.error("FMP earnings-calendar HTTP error (%s..%s): %s",
+                         from_date, to_date, exc)
             raise
 
         data = resp.json()
@@ -133,8 +187,10 @@ class FMPEarningsProvider:
             resp = self._http.get(url, params=params)
             resp.raise_for_status()
         except httpx.HTTPStatusError as exc:
+            # [] を返すと呼び出し元が「データなし」と誤認して正常キャッシュを
+            # 空で上書きしてしまうため、HTTPエラーは必ず送出する
             logger.warning("FMP %s HTTP error for %s: %s", endpoint, symbol, exc)
-            return []
+            raise
 
         # FMP returns a JSON string ("Premium Query Parameter: ...") on tier
         # restriction. resp.json() decodes it to a Python str — handle that.
@@ -254,8 +310,8 @@ class FMPEarningsProvider:
 
         FMP endpoint: GET /stable/earnings
           params: symbol, limit, apikey
-        Returns list of dicts with keys: symbol, date, eps, epsEstimated,
-          revenue, revenueEstimated, reportedCurrency, period
+        Returns list of dicts with keys: symbol, date, epsActual, epsEstimated,
+          revenueActual, revenueEstimated
         """
         if not self.api_key:
             raise ValueError("FMP_API_KEY is not set")
@@ -270,8 +326,9 @@ class FMPEarningsProvider:
             resp = self._http.get(url, params=params)
             resp.raise_for_status()
         except httpx.HTTPStatusError as exc:
+            # 空リスト返却は「データなし」と区別がつかないため送出する
             logger.warning("FMP earnings HTTP error for %s: %s", symbol, exc)
-            return []
+            raise
 
         data = resp.json()
         if isinstance(data, dict) and "error" in data:
@@ -288,7 +345,10 @@ class FMPEarningsProvider:
     def normalise_calendar_entry(raw: Dict[str, Any], company_map: Dict[str, Dict[str, Any]]) -> Optional[Dict[str, Any]]:
         """Convert a raw FMP calendar entry to our internal format.
 
-        company_map: {ticker_upper: {"name": str, "tier": str, "country_code": str}}
+        company_map: {FMPシンボル(大文字): {"ticker": 表示ティッカー, "name", "tier", "country_code"}}
+          ※ キーは fmp_ticker (ADR/OTC等のFMP上のシンボル) で完全一致させる。
+            表示ティッカー(例: 日本の "7203.T"、独 "DTE")でのマッチは
+            無関係な米国株 (DTE Energy 等) と衝突するため行わない。
         Returns None if the symbol is not in the target company list.
         """
         symbol: str = (raw.get("symbol") or "").upper()
@@ -299,12 +359,12 @@ class FMPEarningsProvider:
         if comp is None:
             return None
 
-        # EPS
-        eps_actual:   Optional[float] = _to_float(raw.get("eps"))
+        # EPS (FMP stable は epsActual/epsEstimated。旧フィールド名 eps もフォールバック)
+        eps_actual:   Optional[float] = _to_float(raw.get("epsActual", raw.get("eps")))
         eps_estimate: Optional[float] = _to_float(raw.get("epsEstimated"))
 
-        # Revenue (FMP may use "revenue" or "revenueEstimated")
-        rev_actual:   Optional[float] = _to_float(raw.get("revenue"))
+        # Revenue (revenueActual/revenueEstimated。旧 revenue もフォールバック)
+        rev_actual:   Optional[float] = _to_float(raw.get("revenueActual", raw.get("revenue")))
         rev_estimate: Optional[float] = _to_float(raw.get("revenueEstimated"))
 
         # time field: "bmo", "amc", "--", or absent
@@ -317,7 +377,8 @@ class FMPEarningsProvider:
             time_label = "--"
 
         return {
-            "symbol": symbol,
+            # フロントには表示ティッカーで返す (FMPシンボルではなく)
+            "symbol": comp["ticker"],
             "name": comp["name"],
             "tier": comp["tier"],
             "country_code": comp["country_code"],
@@ -328,15 +389,16 @@ class FMPEarningsProvider:
             "eps_actual": eps_actual,
             "revenue_estimate": rev_estimate,
             "revenue_actual": rev_actual,
-            "updated_from_date": raw.get("updatedFromDate", ""),
+            "updated_from_date": raw.get("lastUpdated", raw.get("updatedFromDate", "")),
         }
 
     @staticmethod
     def normalise_historical_entry(raw: Dict[str, Any], comp: Dict[str, Any]) -> Dict[str, Any]:
         """Convert a raw FMP historical earnings entry."""
-        eps_actual:   Optional[float] = _to_float(raw.get("eps"))
+        # FMP stable は epsActual/revenueActual。旧フィールド名もフォールバック
+        eps_actual:   Optional[float] = _to_float(raw.get("epsActual", raw.get("eps")))
         eps_estimate: Optional[float] = _to_float(raw.get("epsEstimated"))
-        rev_actual:   Optional[float] = _to_float(raw.get("revenue"))
+        rev_actual:   Optional[float] = _to_float(raw.get("revenueActual", raw.get("revenue")))
         rev_estimate: Optional[float] = _to_float(raw.get("revenueEstimated"))
 
         eps_surprise_pct: Optional[float] = None
@@ -348,7 +410,8 @@ class FMPEarningsProvider:
             rev_surprise_pct = (rev_actual - rev_estimate) / abs(rev_estimate) * 100
 
         return {
-            "symbol": (raw.get("symbol") or "").upper(),
+            # ADRシンボルで取得しても表示ティッカーで返す
+            "symbol": comp["ticker"],
             "name": comp["name"],
             "tier": comp["tier"],
             "date": raw.get("date", ""),

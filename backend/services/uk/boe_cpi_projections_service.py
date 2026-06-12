@@ -23,6 +23,8 @@ from pathlib import Path
 
 from core.redis_client import redis_client
 from .boe_mpr_utils import (
+    resolve_sheet,
+    parse_scenario_databank_sheet,
     get_mpr_info,
     get_projections_databank,
     download_mpr_zip,
@@ -62,6 +64,7 @@ class BOECPIProjectionsService:
                     return {
                         "table_data": cached_data.get("table_data", []),
                         "chart_data": cached_data.get("chart_data"),
+                        "scenario_labels": cached_data.get("scenario_labels"),
                         "metadata": cached_data.get("metadata", {}),
                         "cached": True,
                         "source": "redis",
@@ -74,6 +77,7 @@ class BOECPIProjectionsService:
             cache_payload = {
                 "table_data": data.get("table_data", []),
                 "chart_data": data.get("chart_data"),
+                "scenario_labels": data.get("scenario_labels"),
                 "metadata": data.get("metadata", {}),
                 "last_updated": datetime.now(JST).isoformat(),
             }
@@ -83,6 +87,7 @@ class BOECPIProjectionsService:
             return {
                 "table_data": data.get("table_data", []),
                 "chart_data": data.get("chart_data"),
+                "scenario_labels": data.get("scenario_labels"),
                 "metadata": data.get("metadata", {}),
                 "cached": False,
                 "source": "boe_mpr",
@@ -94,6 +99,7 @@ class BOECPIProjectionsService:
             return {
                 "table_data": file_cache.get("table_data", []),
                 "chart_data": file_cache.get("chart_data"),
+                "scenario_labels": file_cache.get("scenario_labels"),
                 "metadata": file_cache.get("metadata", {}),
                 "cached": True,
                 "source": "file (fallback)",
@@ -112,11 +118,20 @@ class BOECPIProjectionsService:
         Returns data in table_data format (same as GDP/Unemployment forecasts)
         """
         try:
-            if self.SHEET_NAME not in wb.sheetnames:
-                logger.error(f"Sheet {self.SHEET_NAME} not found")
+            # シート番号はMPRごとにドリフトするため動的解決する
+            # (例: "1. CPI inflation" -> 2026年4月版 "2. CPI inflation")
+            resolved = resolve_sheet(wb, self.SHEET_NAME)
+            if resolved is None:
+                logger.error(f"Sheet {self.SHEET_NAME} not found (even by suffix)")
                 return None
 
-            ws = wb[self.SHEET_NAME]
+            ws = wb[resolved]
+
+            # 2026年4月MPR以降の転置シナリオ方式レイアウトを先に試す
+            # (旧来: 行=公表日/列=四半期 → 新: 行=四半期/列=系列)
+            scenario = parse_scenario_databank_sheet(ws)
+            if scenario is not None:
+                return scenario
 
             # Get column headers (quarters) from row 5
             quarters = []
@@ -310,6 +325,7 @@ class BOECPIProjectionsService:
                 if parsed_data and parsed_data.get('table_data'):
                     return {
                         "table_data": parsed_data.get('table_data', []),
+                        "scenario_labels": parsed_data.get("scenario_labels"),
                         "chart_data": None,  # Chart data not used for CPI projections table
                         "metadata": {
                             "last_updated": datetime.now().isoformat(),
@@ -356,6 +372,7 @@ class BOECPIProjectionsService:
                 if parsed_data and parsed_data.get('table_data'):
                     return {
                         "table_data": parsed_data.get('table_data', []),
+                        "scenario_labels": parsed_data.get("scenario_labels"),
                         "chart_data": None,
                         "metadata": {
                             "last_updated": datetime.now().isoformat(),

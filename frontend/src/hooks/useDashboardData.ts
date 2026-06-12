@@ -3707,34 +3707,42 @@ export interface BOEMarketExpectationsPoint {
 export interface BOECPIProjectionsData {
   table_data: BOEProjectionTableRow[]
   chart_data: Record<string, unknown> | null
+  // 2026年4月MPRのシナリオ方式: scenario_a 等のキーラベル (例: "April 2026 Scenario A")
+  scenario_labels?: Record<string, string> | null
   metadata: Record<string, unknown>
   next_release: BOEBankRateNextRelease | null
 }
 
+// 旧来: latest/previous の2系列。2026年4月MPR以降のシナリオ方式では
+// scenario_a/scenario_b/... + previous の動的キーになる
 export interface BOEProjectionTableRow {
   quarter: string
-  latest: number | null
-  previous: number | null
+  latest?: number | null
+  previous?: number | null
+  [seriesKey: string]: string | number | null | undefined
 }
 
 // BOE GDP Forecast データの型
 export interface BOEGDPForecastData {
   table_data: BOEForecastTableRow[]
   chart_data: Record<string, unknown> | null
+  scenario_labels?: Record<string, string> | null
   metadata: Record<string, unknown>
   next_release: BOEBankRateNextRelease | null
 }
 
 export interface BOEForecastTableRow {
   quarter: string
-  latest: number | null
-  previous: number | null
+  latest?: number | null
+  previous?: number | null
+  [seriesKey: string]: string | number | null | undefined
 }
 
 // BOE Unemployment Forecast データの型
 export interface BOEUnemploymentForecastData {
   table_data: BOEForecastTableRow[]
   chart_data: Record<string, unknown> | null
+  scenario_labels?: Record<string, string> | null
   metadata: Record<string, unknown>
   next_release: BOEBankRateNextRelease | null
 }
@@ -3819,6 +3827,11 @@ export interface BOEAverageWeeklyEarningsInnerData {
     date: string
     data: BOEAverageWeeklyEarningsDataPoint[]
   } | null
+  // 2026年4月MPR以降のシナリオ方式 (latest/previous は null になり、こちらを使用)
+  table_data?: BOEForecastTableRow[]
+  scenario_labels?: Record<string, string> | null
+  latest_forecast?: string
+  previous_forecast?: string
 }
 
 export interface BOEAverageWeeklyEarningsData {

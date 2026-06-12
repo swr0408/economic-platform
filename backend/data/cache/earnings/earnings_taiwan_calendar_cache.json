@@ -10,14 +10,14 @@
       "name": "TSMC",
       "tier": "S",
       "country_code": "taiwan",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
+      "date": "2026-07-16",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 3.69,
       "eps_actual": null,
-      "revenue_estimate": null,
+      "revenue_estimate": 40024420000.0,
       "revenue_actual": null,
-      "updated_from_date": null
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "2317.TW",
@@ -50,7 +50,7 @@
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-06-11T05:30:05.342863+00:00",
+  "last_updated": "2026-06-12T01:35:37.075388+00:00",
   "cached": false,
   "status": "ok"
 }

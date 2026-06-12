@@ -4218,12 +4218,12 @@
       "us_production": 8.875,
       "opec_production": 26.73,
       "opec_plus_production": 36.783,
-      "world_production": 97.387,
+      "world_production": 97.39,
       "china_consumption": 12.914,
       "us_consumption": 19.29,
       "world_consumption": 96.038,
       "wti_price": 52.504,
-      "world_balance": 1.349
+      "world_balance": 1.352
     },
     {
       "date": "2017-02-01",
@@ -4231,12 +4231,12 @@
       "us_production": 9.097,
       "opec_production": 26.602,
       "opec_plus_production": 36.674,
-      "world_production": 97.413,
+      "world_production": 97.416,
       "china_consumption": 12.975,
       "us_consumption": 19.146,
       "world_consumption": 97.739,
       "wti_price": 53.468,
-      "world_balance": -0.326
+      "world_balance": -0.323
     },
     {
       "date": "2017-03-01",
@@ -4244,12 +4244,12 @@
       "us_production": 9.168,
       "opec_production": 26.305,
       "opec_plus_production": 36.404,
-      "world_production": 97.103,
+      "world_production": 97.106,
       "china_consumption": 13.603,
       "us_consumption": 20.057,
       "world_consumption": 99.727,
       "wti_price": 49.328,
-      "world_balance": -2.624
+      "world_balance": -2.621
     },
     {
       "date": "2017-04-01",
@@ -4257,12 +4257,12 @@
       "us_production": 9.105,
       "opec_production": 26.336,
       "opec_plus_production": 36.442,
-      "world_production": 96.802,
+      "world_production": 96.806,
       "china_consumption": 13.225,
       "us_consumption": 19.621,
       "world_consumption": 97.492,
       "wti_price": 51.06,
-      "world_balance": -0.69
+      "world_balance": -0.686
     },
     {
       "date": "2017-05-01",
@@ -4270,12 +4270,12 @@
       "us_production": 9.189,
       "opec_production": 26.859,
       "opec_plus_production": 36.685,
-      "world_production": 97.947,
+      "world_production": 97.95,
       "china_consumption": 13.843,
       "us_consumption": 20.047,
       "world_consumption": 99.982,
       "wti_price": 48.476,
-      "world_balance": -2.035
+      "world_balance": -2.032
     },
     {
       "date": "2017-06-01",
@@ -4283,12 +4283,12 @@
       "us_production": 9.113,
       "opec_production": 27.24,
       "opec_plus_production": 36.998,
-      "world_production": 98.403,
+      "world_production": 98.406,
       "china_consumption": 13.752,
       "us_consumption": 20.565,
       "world_consumption": 101.795,
       "wti_price": 45.178,
-      "world_balance": -3.392
+      "world_balance": -3.389
     },
     {
       "date": "2017-07-01",
@@ -4296,12 +4296,12 @@
       "us_production": 9.26,
       "opec_production": 27.48,
       "opec_plus_production": 37.168,
-      "world_production": 99.151,
+      "world_production": 99.164,
       "china_consumption": 12.857,
       "us_consumption": 20.125,
       "world_consumption": 99.745,
       "wti_price": 46.63,
-      "world_balance": -0.594
+      "world_balance": -0.581
     },
     {
       "date": "2017-08-01",
@@ -4309,12 +4309,12 @@
       "us_production": 9.262,
       "opec_production": 27.327,
       "opec_plus_production": 36.839,
-      "world_production": 98.538,
+      "world_production": 98.551,
       "china_consumption": 12.691,
       "us_consumption": 20.274,
       "world_consumption": 99.992,
       "wti_price": 48.037,
-      "world_balance": -1.454
+      "world_balance": -1.441
     },
     {
       "date": "2017-09-01",
@@ -4322,12 +4322,12 @@
       "us_production": 9.513,
       "opec_production": 27.495,
       "opec_plus_production": 36.894,
-      "world_production": 98.536,
+      "world_production": 98.549,
       "china_consumption": 14.007,
       "us_consumption": 19.629,
       "world_consumption": 100.926,
       "wti_price": 49.822,
-      "world_balance": -2.39
+      "world_balance": -2.377
     },
     {
       "date": "2017-10-01",
@@ -4335,12 +4335,12 @@
       "us_production": 9.667,
       "opec_production": 27.285,
       "opec_plus_production": 36.829,
-      "world_production": 99.176,
+      "world_production": 99.189,
       "china_consumption": 12.984,
       "us_consumption": 19.971,
       "world_consumption": 99.28,
       "wti_price": 51.578,
-      "world_balance": -0.104
+      "world_balance": -0.091
     },
     {
       "date": "2017-11-01",
@@ -4348,12 +4348,12 @@
       "us_production": 10.086,
       "opec_production": 27.171,
       "opec_plus_production": 36.824,
-      "world_production": 99.557,
+      "world_production": 99.57,
       "china_consumption": 14.492,
       "us_consumption": 20.31,
       "world_consumption": 101.952,
       "wti_price": 56.639,
-      "world_balance": -2.395
+      "world_balance": -2.382
     },
     {
       "date": "2017-12-01",
@@ -4361,12 +4361,12 @@
       "us_production": 9.987,
       "opec_production": 26.957,
       "opec_plus_production": 36.8,
-      "world_production": 98.718,
+      "world_production": 98.731,
       "china_consumption": 13.019,
       "us_consumption": 20.319,
       "world_consumption": 100.369,
       "wti_price": 57.881,
-      "world_balance": -1.651
+      "world_balance": -1.638
     },
     {
       "date": "2018-01-01",
@@ -4374,12 +4374,12 @@
       "us_production": 10.0,
       "opec_production": 27.236,
       "opec_plus_production": 37.005,
-      "world_production": 99.056,
+      "world_production": 99.034,
       "china_consumption": 13.136,
       "us_consumption": 20.564,
       "world_consumption": 98.15,
       "wti_price": 63.698,
-      "world_balance": 0.906
+      "world_balance": 0.884
     },
     {
       "date": "2018-02-01",
@@ -4387,12 +4387,12 @@
       "us_production": 10.263,
       "opec_production": 27.116,
       "opec_plus_production": 37.011,
-      "world_production": 99.4,
+      "world_production": 99.378,
       "china_consumption": 13.536,
       "us_consumption": 19.693,
       "world_consumption": 99.764,
       "wti_price": 62.229,
-      "world_balance": -0.364
+      "world_balance": -0.386
     },
     {
       "date": "2018-03-01",
@@ -4400,12 +4400,12 @@
       "us_production": 10.467,
       "opec_production": 26.989,
       "opec_plus_production": 36.955,
-      "world_production": 99.665,
+      "world_production": 99.644,
       "china_consumption": 13.456,
       "us_consumption": 20.731,
       "world_consumption": 99.947,
       "wti_price": 62.725,
-      "world_balance": -0.282
+      "world_balance": -0.303
     },
     {
       "date": "2018-04-01",
@@ -4413,12 +4413,12 @@
       "us_production": 10.493,
       "opec_production": 26.918,
       "opec_plus_production": 36.916,
-      "world_production": 99.867,
+      "world_production": 99.846,
       "china_consumption": 13.738,
       "us_consumption": 20.038,
       "world_consumption": 98.967,
       "wti_price": 66.254,
-      "world_balance": 0.9
+      "world_balance": 0.879
     },
     {
       "date": "2018-05-01",
@@ -4426,12 +4426,12 @@
       "us_production": 10.432,
       "opec_production": 26.818,
       "opec_plus_production": 36.871,
-      "world_production": 99.958,
+      "world_production": 99.936,
       "china_consumption": 13.543,
       "us_consumption": 20.251,
       "world_consumption": 99.684,
       "wti_price": 69.978,
-      "world_balance": 0.274
+      "world_balance": 0.252
     },
     {
       "date": "2018-06-01",
@@ -4439,12 +4439,12 @@
       "us_production": 10.641,
       "opec_production": 26.809,
       "opec_plus_production": 37.278,
-      "world_production": 100.388,
+      "world_production": 100.367,
       "china_consumption": 13.393,
       "us_consumption": 20.77,
       "world_consumption": 100.701,
       "wti_price": 67.873,
-      "world_balance": -0.313
+      "world_balance": -0.334
     },
     {
       "date": "2018-07-01",
@@ -4452,12 +4452,12 @@
       "us_production": 10.903,
       "opec_production": 26.826,
       "opec_plus_production": 37.664,
-      "world_production": 101.369,
+      "world_production": 101.347,
       "china_consumption": 13.343,
       "us_consumption": 20.671,
       "world_consumption": 101.11,
       "wti_price": 70.981,
-      "world_balance": 0.259
+      "world_balance": 0.237
     },
     {
       "date": "2018-08-01",
@@ -4465,12 +4465,12 @@
       "us_production": 11.396,
       "opec_production": 27.02,
       "opec_plus_production": 37.501,
-      "world_production": 101.856,
+      "world_production": 101.834,
       "china_consumption": 12.936,
       "us_consumption": 21.356,
       "world_consumption": 101.472,
       "wti_price": 68.055,
-      "world_balance": 0.384
+      "world_balance": 0.362
     },
     {
       "date": "2018-09-01",
@@ -4478,12 +4478,12 @@
       "us_production": 11.444,
       "opec_production": 27.136,
       "opec_plus_production": 37.948,
-      "world_production": 101.736,
+      "world_production": 101.714,
       "china_consumption": 13.642,
       "us_consumption": 20.084,
       "world_consumption": 100.171,
       "wti_price": 70.231,
-      "world_balance": 1.565
+      "world_balance": 1.543
     },
     {
       "date": "2018-10-01",
@@ -4491,12 +4491,12 @@
       "us_production": 11.508,
       "opec_production": 27.291,
       "opec_plus_production": 38.006,
-      "world_production": 102.375,
+      "world_production": 102.353,
       "china_consumption": 12.846,
       "us_consumption": 20.786,
       "world_consumption": 100.128,
       "wti_price": 70.749,
-      "world_balance": 2.247
+      "world_balance": 2.225
     },
     {
       "date": "2018-11-01",
@@ -4504,12 +4504,12 @@
       "us_production": 11.892,
       "opec_production": 26.866,
       "opec_plus_production": 38.422,
-      "world_production": 102.696,
+      "world_production": 102.674,
       "china_consumption": 13.656,
       "us_consumption": 20.774,
       "world_consumption": 100.476,
       "wti_price": 56.963,
-      "world_balance": 2.22
+      "world_balance": 2.198
     },
     {
       "date": "2018-12-01",
@@ -4517,12 +4517,12 @@
       "us_production": 11.951,
       "opec_production": 26.066,
       "opec_plus_production": 37.976,
-      "world_production": 101.917,
+      "world_production": 101.896,
       "china_consumption": 14.041,
       "us_consumption": 20.327,
       "world_consumption": 100.189,
       "wti_price": 49.523,
-      "world_balance": 1.728
+      "world_balance": 1.707
     },
     {
       "date": "2019-01-01",
@@ -4530,12 +4530,12 @@
       "us_production": 11.873,
       "opec_production": 25.436,
       "opec_plus_production": 37.174,
-      "world_production": 100.142,
+      "world_production": 100.014,
       "china_consumption": 13.673,
       "us_consumption": 20.615,
       "world_consumption": 99.507,
       "wti_price": 51.376,
-      "world_balance": 0.635
+      "world_balance": 0.507
     },
     {
       "date": "2019-02-01",
@@ -4543,12 +4543,12 @@
       "us_production": 11.653,
       "opec_production": 25.481,
       "opec_plus_production": 37.381,
-      "world_production": 100.112,
+      "world_production": 99.976,
       "china_consumption": 14.088,
       "us_consumption": 20.284,
       "world_consumption": 100.509,
       "wti_price": 54.954,
-      "world_balance": -0.397
+      "world_balance": -0.533
     },
     {
       "date": "2019-03-01",
@@ -4556,12 +4556,12 @@
       "us_production": 11.912,
       "opec_production": 25.035,
       "opec_plus_production": 36.814,
-      "world_production": 99.966,
+      "world_production": 99.818,
       "china_consumption": 14.003,
       "us_consumption": 20.176,
       "world_consumption": 99.366,
       "wti_price": 58.151,
-      "world_balance": 0.6
+      "world_balance": 0.452
     },
     {
       "date": "2019-04-01",
@@ -4569,12 +4569,12 @@
       "us_production": 12.144,
       "opec_production": 25.125,
       "opec_plus_production": 36.61,
-      "world_production": 100.378,
+      "world_production": 100.212,
       "china_consumption": 14.295,
       "us_consumption": 20.333,
       "world_consumption": 100.413,
       "wti_price": 63.862,
-      "world_balance": -0.035
+      "world_balance": -0.201
     },
     {
       "date": "2019-05-01",
@@ -4582,12 +4582,12 @@
       "us_production": 12.151,
       "opec_production": 24.785,
       "opec_plus_production": 36.499,
-      "world_production": 100.28,
+      "world_production": 100.126,
       "china_consumption": 14.09,
       "us_consumption": 20.387,
       "world_consumption": 100.134,
       "wti_price": 60.827,
-      "world_balance": 0.146
+      "world_balance": -0.008
     },
     {
       "date": "2019-06-01",
@@ -4595,12 +4595,12 @@
       "us_production": 12.222,
       "opec_production": 24.865,
       "opec_plus_production": 37.043,
-      "world_production": 100.523,
+      "world_production": 100.385,
       "china_consumption": 13.932,
       "us_consumption": 20.654,
       "world_consumption": 101.077,
       "wti_price": 54.657,
-      "world_balance": -0.554
+      "world_balance": -0.692
     },
     {
       "date": "2019-07-01",
@@ -4608,12 +4608,12 @@
       "us_production": 11.907,
       "opec_production": 24.515,
       "opec_plus_production": 36.606,
-      "world_production": 100.079,
+      "world_production": 99.933,
       "china_consumption": 13.878,
       "us_consumption": 20.735,
       "world_consumption": 102.143,
       "wti_price": 57.354,
-      "world_balance": -2.064
+      "world_balance": -2.21
     },
     {
       "date": "2019-08-01",
@@ -4621,12 +4621,12 @@
       "us_production": 12.488,
       "opec_production": 24.665,
       "opec_plus_production": 36.996,
-      "world_production": 101.218,
+      "world_production": 101.066,
       "china_consumption": 13.453,
       "us_consumption": 21.158,
       "world_consumption": 102.089,
       "wti_price": 54.805,
-      "world_balance": -0.871
+      "world_balance": -1.023
     },
     {
       "date": "2019-09-01",
@@ -4634,12 +4634,12 @@
       "us_production": 12.596,
       "opec_production": 23.155,
       "opec_plus_production": 35.558,
-      "world_production": 99.541,
+      "world_production": 99.411,
       "china_consumption": 14.184,
       "us_consumption": 20.248,
       "world_consumption": 100.864,
       "wti_price": 56.947,
-      "world_balance": -1.323
+      "world_balance": -1.453
     },
     {
       "date": "2019-10-01",
@@ -4647,12 +4647,12 @@
       "us_production": 12.809,
       "opec_production": 24.585,
       "opec_plus_production": 36.893,
-      "world_production": 101.443,
+      "world_production": 101.313,
       "china_consumption": 13.354,
       "us_consumption": 20.714,
       "world_consumption": 100.33,
       "wti_price": 53.963,
-      "world_balance": 1.113
+      "world_balance": 0.983
     },
     {
       "date": "2019-11-01",
@@ -4660,12 +4660,12 @@
       "us_production": 12.998,
       "opec_production": 24.454,
       "opec_plus_production": 36.864,
-      "world_production": 102.007,
+      "world_production": 101.88,
       "china_consumption": 14.193,
       "us_consumption": 20.736,
       "world_consumption": 101.089,
       "wti_price": 57.027,
-      "world_balance": 0.918
+      "world_balance": 0.791
     },
     {
       "date": "2019-12-01",
@@ -4673,12 +4673,12 @@
       "us_production": 12.983,
       "opec_production": 24.325,
       "opec_plus_production": 36.626,
-      "world_production": 101.915,
+      "world_production": 101.785,
       "china_consumption": 14.591,
       "us_consumption": 20.443,
       "world_consumption": 101.537,
       "wti_price": 59.877,
-      "world_balance": 0.378
+      "world_balance": 0.248
     },
     {
       "date": "2020-01-01",
@@ -4686,12 +4686,12 @@
       "us_production": 12.865,
       "opec_production": 24.12,
       "opec_plus_production": 36.76,
-      "world_production": 101.282,
+      "world_production": 101.176,
       "china_consumption": 13.902,
       "us_consumption": 19.933,
       "world_consumption": 94.003,
       "wti_price": 57.52,
-      "world_balance": 7.279
+      "world_balance": 7.173
     },
     {
       "date": "2020-02-01",
@@ -4699,12 +4699,12 @@
       "us_production": 12.864,
       "opec_production": 23.45,
       "opec_plus_production": 36.728,
-      "world_production": 100.225,
+      "world_production": 100.144,
       "china_consumption": 13.3,
       "us_consumption": 20.132,
       "world_consumption": 95.268,
       "wti_price": 50.54,
-      "world_balance": 4.957
+      "world_balance": 4.876
     },
     {
       "date": "2020-03-01",
@@ -4712,12 +4712,12 @@
       "us_production": 12.805,
       "opec_production": 23.29,
       "opec_plus_production": 36.99,
-      "world_production": 100.358,
+      "world_production": 100.27,
       "china_consumption": 13.131,
       "us_consumption": 18.463,
       "world_consumption": 91.17,
       "wti_price": 29.21,
-      "world_balance": 9.188
+      "world_balance": 9.1
     },
     {
       "date": "2020-04-01",
@@ -4725,12 +4725,12 @@
       "us_production": 11.918,
       "opec_production": 25.055,
       "opec_plus_production": 38.865,
-      "world_production": 99.753,
+      "world_production": 99.688,
       "china_consumption": 13.716,
       "us_consumption": 14.549,
       "world_consumption": 83.712,
       "wti_price": 16.55,
-      "world_balance": 16.041
+      "world_balance": 15.976
     },
     {
       "date": "2020-05-01",
@@ -4738,12 +4738,12 @@
       "us_production": 9.723,
       "opec_production": 20.53,
       "opec_plus_production": 31.741,
-      "world_production": 88.452,
+      "world_production": 88.352,
       "china_consumption": 13.685,
       "us_consumption": 16.078,
       "world_consumption": 86.407,
       "wti_price": 28.56,
-      "world_balance": 2.045
+      "world_balance": 1.945
     },
     {
       "date": "2020-06-01",
@@ -4751,12 +4751,12 @@
       "us_production": 10.45,
       "opec_production": 18.78,
       "opec_plus_production": 30.005,
-      "world_production": 88.412,
+      "world_production": 88.309,
       "china_consumption": 13.511,
       "us_consumption": 17.578,
       "world_consumption": 90.109,
       "wti_price": 38.31,
-      "world_balance": -1.697
+      "world_balance": -1.8
     },
     {
       "date": "2020-07-01",
@@ -4764,12 +4764,12 @@
       "us_production": 11.014,
       "opec_production": 19.375,
       "opec_plus_production": 30.665,
-      "world_production": 90.403,
+      "world_production": 90.291,
       "china_consumption": 14.031,
       "us_consumption": 18.381,
       "world_consumption": 92.193,
       "wti_price": 40.71,
-      "world_balance": -1.79
+      "world_balance": -1.902
     },
     {
       "date": "2020-08-01",
@@ -4777,12 +4777,12 @@
       "us_production": 10.6,
       "opec_production": 20.06,
       "opec_plus_production": 31.957,
-      "world_production": 91.32,
+      "world_production": 91.201,
       "china_consumption": 13.88,
       "us_consumption": 18.558,
       "world_consumption": 91.79,
       "wti_price": 42.34,
-      "world_balance": -0.47
+      "world_balance": -0.589
     },
     {
       "date": "2020-09-01",
@@ -4790,12 +4790,12 @@
       "us_production": 10.963,
       "opec_production": 20.235,
       "opec_plus_production": 32.176,
-      "world_production": 91.247,
+      "world_production": 91.127,
       "china_consumption": 14.658,
       "us_consumption": 18.415,
       "world_consumption": 93.266,
       "wti_price": 39.63,
-      "world_balance": -2.019
+      "world_balance": -2.139
     },
     {
       "date": "2020-10-01",
@@ -4803,12 +4803,12 @@
       "us_production": 10.492,
       "opec_production": 20.77,
       "opec_plus_production": 32.401,
-      "world_production": 91.615,
+      "world_production": 91.513,
       "china_consumption": 13.884,
       "us_consumption": 18.614,
       "world_consumption": 92.31,
       "wti_price": 39.4,
-      "world_balance": -0.695
+      "world_balance": -0.797
     },
     {
       "date": "2020-11-01",
@@ -4816,12 +4816,12 @@
       "us_production": 11.225,
       "opec_production": 21.41,
       "opec_plus_production": 32.355,
-      "world_production": 93.211,
+      "world_production": 93.09,
       "china_consumption": 14.794,
       "us_consumption": 18.743,
       "world_consumption": 93.11,
       "wti_price": 40.94,
-      "world_balance": 0.101
+      "world_balance": -0.02
     },
     {
       "date": "2020-12-01",
@@ -4829,12 +4829,12 @@
       "us_production": 11.188,
       "opec_production": 21.575,
       "opec_plus_production": 32.374,
-      "world_production": 93.359,
+      "world_production": 93.237,
       "china_consumption": 15.212,
       "us_consumption": 18.802,
       "world_consumption": 93.941,
       "wti_price": 47.02,
-      "world_balance": -0.582
+      "world_balance": -0.704
     },
     {
       "date": "2021-01-01",
@@ -4842,12 +4842,12 @@
       "us_production": 11.156,
       "opec_production": 21.595,
       "opec_plus_production": 32.437,
-      "world_production": 93.873,
+      "world_production": 93.783,
       "china_consumption": 14.96,
       "us_consumption": 18.814,
       "world_consumption": 92.829,
       "wti_price": 52.0,
-      "world_balance": 1.044
+      "world_balance": 0.954
     },
     {
       "date": "2021-02-01",
@@ -4855,12 +4855,12 @@
       "us_production": 9.931,
       "opec_production": 21.175,
       "opec_plus_production": 31.86,
-      "world_production": 90.713,
+      "world_production": 90.633,
       "china_consumption": 15.413,
       "us_consumption": 17.699,
       "world_consumption": 94.297,
       "wti_price": 59.04,
-      "world_balance": -3.584
+      "world_balance": -3.664
     },
     {
       "date": "2021-03-01",
@@ -4868,12 +4868,12 @@
       "us_production": 11.376,
       "opec_production": 21.285,
       "opec_plus_production": 31.987,
-      "world_production": 93.907,
+      "world_production": 93.836,
       "china_consumption": 15.321,
       "us_consumption": 19.132,
       "world_consumption": 95.702,
       "wti_price": 62.33,
-      "world_balance": -1.795
+      "world_balance": -1.866
     },
     {
       "date": "2021-04-01",
@@ -4881,12 +4881,12 @@
       "us_production": 11.355,
       "opec_production": 21.275,
       "opec_plus_production": 32.134,
-      "world_production": 94.13,
+      "world_production": 93.984,
       "china_consumption": 15.64,
       "us_consumption": 19.744,
       "world_consumption": 95.764,
       "wti_price": 61.72,
-      "world_balance": -1.634
+      "world_balance": -1.78
     },
     {
       "date": "2021-05-01",
@@ -4894,12 +4894,12 @@
       "us_production": 11.425,
       "opec_production": 21.752,
       "opec_plus_production": 32.525,
-      "world_production": 95.093,
+      "world_production": 94.947,
       "china_consumption": 15.416,
       "us_consumption": 20.05,
       "world_consumption": 96.106,
       "wti_price": 65.17,
-      "world_balance": -1.013
+      "world_balance": -1.159
     },
     {
       "date": "2021-06-01",
@@ -4907,12 +4907,12 @@
       "us_production": 11.401,
       "opec_production": 22.265,
       "opec_plus_production": 32.995,
-      "world_production": 95.513,
+      "world_production": 95.366,
       "china_consumption": 15.243,
       "us_consumption": 20.586,
       "world_consumption": 98.928,
       "wti_price": 71.38,
-      "world_balance": -3.415
+      "world_balance": -3.562
     },
     {
       "date": "2021-07-01",
@@ -4920,12 +4920,12 @@
       "us_production": 11.42,
       "opec_production": 22.89,
       "opec_plus_production": 33.645,
-      "world_production": 97.161,
+      "world_production": 96.989,
       "china_consumption": 15.183,
       "us_consumption": 20.172,
       "world_consumption": 98.55,
       "wti_price": 72.49,
-      "world_balance": -1.389
+      "world_balance": -1.561
     },
     {
       "date": "2021-08-01",
@@ -4933,12 +4933,12 @@
       "us_production": 11.318,
       "opec_production": 22.865,
       "opec_plus_production": 33.509,
-      "world_production": 96.573,
+      "world_production": 96.391,
       "china_consumption": 14.718,
       "us_consumption": 20.573,
       "world_consumption": 98.362,
       "wti_price": 67.73,
-      "world_balance": -1.789
+      "world_balance": -1.971
     },
     {
       "date": "2021-09-01",
@@ -4946,12 +4946,12 @@
       "us_production": 10.961,
       "opec_production": 23.175,
       "opec_plus_production": 34.109,
-      "world_production": 96.864,
+      "world_production": 96.677,
       "china_consumption": 15.519,
       "us_consumption": 20.139,
       "world_consumption": 99.333,
       "wti_price": 71.65,
-      "world_balance": -2.469
+      "world_balance": -2.656
     },
     {
       "date": "2021-10-01",
@@ -4959,12 +4959,12 @@
       "us_production": 11.64,
       "opec_production": 23.455,
       "opec_plus_production": 34.611,
-      "world_production": 98.223,
+      "world_production": 98.029,
       "china_consumption": 14.61,
       "us_consumption": 20.377,
       "world_consumption": 98.475,
       "wti_price": 81.48,
-      "world_balance": -0.252
+      "world_balance": -0.446
     },
     {
       "date": "2021-11-01",
@@ -4972,12 +4972,12 @@
       "us_production": 11.871,
       "opec_production": 23.785,
       "opec_plus_production": 34.999,
-      "world_production": 99.085,
+      "world_production": 98.886,
       "china_consumption": 15.528,
       "us_consumption": 20.573,
       "world_consumption": 99.567,
       "wti_price": 79.15,
-      "world_balance": -0.482
+      "world_balance": -0.681
     },
     {
       "date": "2021-12-01",
@@ -4985,12 +4985,12 @@
       "us_production": 11.76,
       "opec_production": 23.8,
       "opec_plus_production": 35.094,
-      "world_production": 98.45,
+      "world_production": 98.248,
       "china_consumption": 15.964,
       "us_consumption": 20.657,
       "world_consumption": 101.039,
       "wti_price": 71.71,
-      "world_balance": -2.589
+      "world_balance": -2.791
     },
     {
       "date": "2022-01-01",
@@ -4998,12 +4998,12 @@
       "us_production": 11.451,
       "opec_production": 23.79,
       "opec_plus_production": 35.19,
-      "world_production": 98.399,
+      "world_production": 98.18,
       "china_consumption": 15.303,
       "us_consumption": 19.613,
       "world_consumption": 97.204,
       "wti_price": 83.22,
-      "world_balance": 1.195
+      "world_balance": 0.976
     },
     {
       "date": "2022-02-01",
@@ -5011,12 +5011,12 @@
       "us_production": 11.465,
       "opec_production": 24.45,
       "opec_plus_production": 35.679,
-      "world_production": 99.571,
+      "world_production": 99.366,
       "china_consumption": 15.492,
       "us_consumption": 20.19,
       "world_consumption": 100.456,
       "wti_price": 91.64,
-      "world_balance": -0.885
+      "world_balance": -1.09
     },
     {
       "date": "2022-03-01",
@@ -5024,12 +5024,12 @@
       "us_production": 11.888,
       "opec_production": 24.085,
       "opec_plus_production": 35.185,
-      "world_production": 100.078,
+      "world_production": 99.873,
       "china_consumption": 14.83,
       "us_consumption": 20.483,
       "world_consumption": 99.222,
       "wti_price": 108.5,
-      "world_balance": 0.856
+      "world_balance": 0.651
     },
     {
       "date": "2022-04-01",
@@ -5037,12 +5037,12 @@
       "us_production": 11.83,
       "opec_production": 24.37,
       "opec_plus_production": 34.608,
-      "world_production": 99.475,
+      "world_production": 99.271,
       "china_consumption": 15.128,
       "us_consumption": 19.727,
       "world_consumption": 97.921,
       "wti_price": 101.78,
-      "world_balance": 1.554
+      "world_balance": 1.35
     },
     {
       "date": "2022-05-01",
@@ -5050,12 +5050,12 @@
       "us_production": 11.758,
       "opec_production": 23.895,
       "opec_plus_production": 34.606,
-      "world_production": 99.461,
+      "world_production": 99.251,
       "china_consumption": 15.261,
       "us_consumption": 19.84,
       "world_consumption": 99.201,
       "wti_price": 109.55,
-      "world_balance": 0.26
+      "world_balance": 0.05
     },
     {
       "date": "2022-06-01",
@@ -5063,12 +5063,12 @@
       "us_production": 11.919,
       "opec_production": 24.02,
       "opec_plus_production": 35.045,
-      "world_production": 99.97,
+      "world_production": 99.755,
       "china_consumption": 15.166,
       "us_consumption": 20.433,
       "world_consumption": 101.006,
       "wti_price": 114.84,
-      "world_balance": -1.036
+      "world_balance": -1.251
     },
     {
       "date": "2022-07-01",
@@ -5076,12 +5076,12 @@
       "us_production": 12.009,
       "opec_production": 24.24,
       "opec_plus_production": 35.583,
-      "world_production": 101.095,
+      "world_production": 100.878,
       "china_consumption": 15.154,
       "us_consumption": 19.926,
       "world_consumption": 100.231,
       "wti_price": 101.62,
-      "world_balance": 0.864
+      "world_balance": 0.647
     },
     {
       "date": "2022-08-01",
@@ -5089,12 +5089,12 @@
       "us_production": 12.134,
       "opec_production": 25.17,
       "opec_plus_production": 35.695,
-      "world_production": 101.641,
+      "world_production": 101.423,
       "china_consumption": 14.76,
       "us_consumption": 20.265,
       "world_consumption": 100.793,
       "wti_price": 93.67,
-      "world_balance": 0.848
+      "world_balance": 0.63
     },
     {
       "date": "2022-09-01",
@@ -5102,12 +5102,12 @@
       "us_production": 12.429,
       "opec_production": 25.31,
       "opec_plus_production": 35.941,
-      "world_production": 102.171,
+      "world_production": 101.952,
       "china_consumption": 15.621,
       "us_consumption": 20.129,
       "world_consumption": 101.069,
       "wti_price": 84.26,
-      "world_balance": 1.102
+      "world_balance": 0.883
     },
     {
       "date": "2022-10-01",
@@ -5115,12 +5115,12 @@
       "us_production": 12.442,
       "opec_production": 24.905,
       "opec_plus_production": 35.479,
-      "world_production": 102.342,
+      "world_production": 102.124,
       "china_consumption": 14.684,
       "us_consumption": 20.007,
       "world_consumption": 98.84,
       "wti_price": 87.55,
-      "world_balance": 3.502
+      "world_balance": 3.284
     },
     {
       "date": "2022-11-01",
@@ -5128,12 +5128,12 @@
       "us_production": 12.493,
       "opec_production": 24.61,
       "opec_plus_production": 35.568,
-      "world_production": 102.504,
+      "world_production": 102.286,
       "china_consumption": 15.462,
       "us_consumption": 20.214,
       "world_consumption": 100.374,
       "wti_price": 84.37,
-      "world_balance": 2.13
+      "world_balance": 1.912
     },
     {
       "date": "2022-12-01",
@@ -5141,12 +5141,12 @@
       "us_production": 12.202,
       "opec_production": 24.66,
       "opec_plus_production": 35.639,
-      "world_production": 100.876,
+      "world_production": 100.656,
       "china_consumption": 15.954,
       "us_consumption": 19.327,
       "world_consumption": 100.952,
       "wti_price": 76.44,
-      "world_balance": -0.076
+      "world_balance": -0.296
     },
     {
       "date": "2023-01-01",
@@ -5154,12 +5154,12 @@
       "us_production": 12.64,
       "opec_production": 24.055,
       "opec_plus_production": 34.895,
-      "world_production": 101.632,
+      "world_production": 101.384,
       "china_consumption": 15.636,
       "us_consumption": 19.353,
       "world_consumption": 97.931,
       "wti_price": 78.12,
-      "world_balance": 3.701
+      "world_balance": 3.453
     },
     {
       "date": "2023-02-01",
@@ -5167,12 +5167,12 @@
       "us_production": 12.621,
       "opec_production": 24.34,
       "opec_plus_production": 35.297,
-      "world_production": 102.23,
+      "world_production": 101.982,
       "china_consumption": 16.11,
       "us_consumption": 19.942,
       "world_consumption": 101.553,
       "wti_price": 76.83,
-      "world_balance": 0.677
+      "world_balance": 0.429
     },
     {
       "date": "2023-03-01",
@@ -5180,12 +5180,12 @@
       "us_production": 12.867,
       "opec_production": 24.555,
       "opec_plus_production": 35.187,
-      "world_production": 102.579,
+      "world_production": 102.33,
       "china_consumption": 16.013,
       "us_consumption": 20.207,
       "world_consumption": 101.009,
       "wti_price": 73.28,
-      "world_balance": 1.57
+      "world_balance": 1.321
     },
     {
       "date": "2023-04-01",
@@ -5193,12 +5193,12 @@
       "us_production": 12.734,
       "opec_production": 24.56,
       "opec_plus_production": 34.995,
-      "world_production": 102.368,
+      "world_production": 102.117,
       "china_consumption": 16.347,
       "us_consumption": 19.972,
       "world_consumption": 100.03,
       "wti_price": 79.45,
-      "world_balance": 2.338
+      "world_balance": 2.087
     },
     {
       "date": "2023-05-01",
@@ -5206,12 +5206,12 @@
       "us_production": 12.732,
       "opec_production": 24.085,
       "opec_plus_production": 34.289,
-      "world_production": 101.856,
+      "world_production": 101.607,
       "china_consumption": 16.112,
       "us_consumption": 20.323,
       "world_consumption": 101.449,
       "wti_price": 71.58,
-      "world_balance": 0.407
+      "world_balance": 0.158
     },
     {
       "date": "2023-06-01",
@@ -5219,12 +5219,12 @@
       "us_production": 12.787,
       "opec_production": 24.235,
       "opec_plus_production": 34.401,
-      "world_production": 102.761,
+      "world_production": 102.511,
       "china_consumption": 15.931,
       "us_consumption": 20.755,
       "world_consumption": 103.144,
       "wti_price": 70.25,
-      "world_balance": -0.383
+      "world_balance": -0.633
     },
     {
       "date": "2023-07-01",
@@ -5232,12 +5232,12 @@
       "us_production": 12.912,
       "opec_production": 23.39,
       "opec_plus_production": 33.312,
-      "world_production": 102.242,
+      "world_production": 101.992,
       "china_consumption": 15.869,
       "us_consumption": 20.043,
       "world_consumption": 101.792,
       "wti_price": 76.07,
-      "world_balance": 0.45
+      "world_balance": 0.2
     },
     {
       "date": "2023-08-01",
@@ -5245,12 +5245,12 @@
       "us_production": 12.999,
       "opec_production": 23.175,
       "opec_plus_production": 32.938,
-      "world_production": 101.991,
+      "world_production": 101.74,
       "china_consumption": 15.384,
       "us_consumption": 20.768,
       "world_consumption": 102.055,
       "wti_price": 81.39,
-      "world_balance": -0.064
+      "world_balance": -0.315
     },
     {
       "date": "2023-09-01",
@@ -5258,12 +5258,12 @@
       "us_production": 13.178,
       "opec_production": 23.825,
       "opec_plus_production": 33.757,
-      "world_production": 103.093,
+      "world_production": 102.842,
       "china_consumption": 16.22,
       "us_consumption": 20.155,
       "world_consumption": 102.017,
       "wti_price": 89.43,
-      "world_balance": 1.076
+      "world_balance": 0.825
     },
     {
       "date": "2023-10-01",
@@ -5271,12 +5271,12 @@
       "us_production": 13.213,
       "opec_production": 23.715,
       "opec_plus_production": 33.656,
-      "world_production": 103.348,
+      "world_production": 103.096,
       "china_consumption": 15.27,
       "us_consumption": 20.631,
       "world_consumption": 101.465,
       "wti_price": 85.64,
-      "world_balance": 1.883
+      "world_balance": 1.631
     },
     {
       "date": "2023-11-01",
@@ -5284,12 +5284,12 @@
       "us_production": 13.316,
       "opec_production": 23.77,
       "opec_plus_production": 33.5,
-      "world_production": 104.138,
+      "world_production": 103.887,
       "china_consumption": 16.23,
       "us_consumption": 20.739,
       "world_consumption": 102.371,
       "wti_price": 77.69,
-      "world_balance": 1.767
+      "world_balance": 1.516
     },
     {
       "date": "2023-12-01",
@@ -5297,12 +5297,12 @@
       "us_production": 13.297,
       "opec_production": 23.7,
       "opec_plus_production": 33.388,
-      "world_production": 104.134,
+      "world_production": 103.882,
       "china_consumption": 16.685,
       "us_consumption": 20.396,
       "world_consumption": 102.559,
       "wti_price": 71.9,
-      "world_balance": 1.575
+      "world_balance": 1.323
     },
     {
       "date": "2024-01-01",
@@ -5310,12 +5310,12 @@
       "us_production": 12.517,
       "opec_production": 23.54,
       "opec_plus_production": 33.333,
-      "world_production": 101.701,
+      "world_production": 101.415,
       "china_consumption": 16.017,
       "us_consumption": 19.789,
       "world_consumption": 99.741,
       "wti_price": 74.15,
-      "world_balance": 1.96
+      "world_balance": 1.674
     },
     {
       "date": "2024-02-01",
@@ -5323,12 +5323,12 @@
       "us_production": 13.129,
       "opec_production": 23.845,
       "opec_plus_production": 33.313,
-      "world_production": 102.953,
+      "world_production": 102.666,
       "china_consumption": 16.503,
       "us_consumption": 19.972,
       "world_consumption": 101.905,
       "wti_price": 77.25,
-      "world_balance": 1.048
+      "world_balance": 0.761
     },
     {
       "date": "2024-03-01",
@@ -5336,12 +5336,12 @@
       "us_production": 13.19,
       "opec_production": 24.175,
       "opec_plus_production": 33.498,
-      "world_production": 103.759,
+      "world_production": 103.471,
       "china_consumption": 16.404,
       "us_consumption": 20.011,
       "world_consumption": 101.323,
       "wti_price": 81.28,
-      "world_balance": 2.436
+      "world_balance": 2.148
     },
     {
       "date": "2024-04-01",
@@ -5349,12 +5349,12 @@
       "us_production": 13.314,
       "opec_production": 24.13,
       "opec_plus_production": 33.265,
-      "world_production": 103.643,
+      "world_production": 103.355,
       "china_consumption": 16.746,
       "us_consumption": 20.155,
       "world_consumption": 102.154,
       "wti_price": 85.35,
-      "world_balance": 1.489
+      "world_balance": 1.201
     },
     {
       "date": "2024-05-01",
@@ -5362,12 +5362,12 @@
       "us_production": 13.256,
       "opec_production": 23.98,
       "opec_plus_production": 32.822,
-      "world_production": 103.279,
+      "world_production": 102.99,
       "china_consumption": 16.505,
       "us_consumption": 20.888,
       "world_consumption": 103.138,
       "wti_price": 80.02,
-      "world_balance": 0.141
+      "world_balance": -0.148
     },
     {
       "date": "2024-06-01",
@@ -5375,12 +5375,12 @@
       "us_production": 13.252,
       "opec_production": 23.58,
       "opec_plus_production": 32.422,
-      "world_production": 103.267,
+      "world_production": 102.983,
       "china_consumption": 16.32,
       "us_consumption": 20.537,
       "world_consumption": 103.808,
       "wti_price": 79.77,
-      "world_balance": -0.541
+      "world_balance": -0.825
     },
     {
       "date": "2024-07-01",
@@ -5388,12 +5388,12 @@
       "us_production": 13.212,
       "opec_production": 24.02,
       "opec_plus_production": 32.839,
-      "world_production": 103.373,
+      "world_production": 103.089,
       "china_consumption": 16.256,
       "us_consumption": 20.593,
       "world_consumption": 103.992,
       "wti_price": 81.8,
-      "world_balance": -0.619
+      "world_balance": -0.903
     },
     {
       "date": "2024-08-01",
@@ -5401,12 +5401,12 @@
       "us_production": 13.411,
       "opec_production": 23.94,
       "opec_plus_production": 32.753,
-      "world_production": 103.756,
+      "world_production": 103.47,
       "china_consumption": 15.759,
       "us_consumption": 20.985,
       "world_consumption": 103.522,
       "wti_price": 76.68,
-      "world_balance": 0.234
+      "world_balance": -0.052
     },
     {
       "date": "2024-09-01",
@@ -5414,12 +5414,12 @@
       "us_production": 13.171,
       "opec_production": 23.21,
       "opec_plus_production": 32.366,
-      "world_production": 102.594,
+      "world_production": 102.308,
       "china_consumption": 16.615,
       "us_consumption": 20.356,
       "world_consumption": 103.397,
       "wti_price": 70.24,
-      "world_balance": -0.803
+      "world_balance": -1.089
     },
     {
       "date": "2024-10-01",
@@ -5427,12 +5427,12 @@
       "us_production": 13.53,
       "opec_production": 23.71,
       "opec_plus_production": 32.102,
-      "world_production": 103.939,
+      "world_production": 103.652,
       "china_consumption": 15.643,
       "us_consumption": 21.249,
       "world_consumption": 103.718,
       "wti_price": 71.99,
-      "world_balance": 0.221
+      "world_balance": -0.066
     },
     {
       "date": "2024-11-01",
@@ -5440,12 +5440,12 @@
       "us_production": 13.396,
       "opec_production": 23.725,
       "opec_plus_production": 32.168,
-      "world_production": 104.041,
+      "world_production": 103.756,
       "china_consumption": 16.626,
       "us_consumption": 20.367,
       "world_consumption": 103.343,
       "wti_price": 69.95,
-      "world_balance": 0.698
+      "world_balance": 0.413
     },
     {
       "date": "2024-12-01",
@@ -5453,12 +5453,12 @@
       "us_production": 13.437,
       "opec_production": 23.88,
       "opec_plus_production": 32.149,
-      "world_production": 103.928,
+      "world_production": 103.642,
       "china_consumption": 17.092,
       "us_consumption": 20.615,
       "world_consumption": 103.565,
       "wti_price": 70.12,
-      "world_balance": 0.363
+      "world_balance": 0.077
     },
     {
       "date": "2025-01-01",
@@ -5466,12 +5466,12 @@
       "us_production": 13.14,
       "opec_production": 23.87,
       "opec_plus_production": 32.233,
-      "world_production": 102.821,
-      "china_consumption": 16.255,
+      "world_production": 102.542,
+      "china_consumption": 16.235,
       "us_consumption": 20.736,
-      "world_consumption": 101.717,
+      "world_consumption": 101.698,
       "wti_price": 75.74,
-      "world_balance": 1.104
+      "world_balance": 0.844
     },
     {
       "date": "2025-02-01",
@@ -5479,12 +5479,12 @@
       "us_production": 13.24,
       "opec_production": 24.0,
       "opec_plus_production": 32.511,
-      "world_production": 103.34,
-      "china_consumption": 16.655,
+      "world_production": 103.059,
+      "china_consumption": 16.635,
       "us_consumption": 20.225,
-      "world_consumption": 103.209,
+      "world_consumption": 103.19,
       "wti_price": 71.53,
-      "world_balance": 0.131
+      "world_balance": -0.131
     },
     {
       "date": "2025-03-01",
@@ -5492,12 +5492,12 @@
       "us_production": 13.453,
       "opec_production": 24.25,
       "opec_plus_production": 32.864,
-      "world_production": 104.808,
-      "china_consumption": 16.404,
+      "world_production": 104.526,
+      "china_consumption": 16.384,
       "us_consumption": 19.95,
-      "world_consumption": 102.014,
+      "world_consumption": 101.996,
       "wti_price": 68.24,
-      "world_balance": 2.794
+      "world_balance": 2.53
     },
     {
       "date": "2025-04-01",
@@ -5505,12 +5505,12 @@
       "us_production": 13.466,
       "opec_production": 24.055,
       "opec_plus_production": 32.617,
-      "world_production": 104.491,
-      "china_consumption": 16.768,
+      "world_production": 104.209,
+      "china_consumption": 16.748,
       "us_consumption": 20.213,
-      "world_consumption": 103.275,
+      "world_consumption": 103.257,
       "wti_price": 63.54,
-      "world_balance": 1.216
+      "world_balance": 0.952
     },
     {
       "date": "2025-05-01",
@@ -5518,12 +5518,12 @@
       "us_production": 13.447,
       "opec_production": 24.41,
       "opec_plus_production": 32.855,
-      "world_production": 104.998,
-      "china_consumption": 16.647,
+      "world_production": 104.716,
+      "china_consumption": 16.627,
       "us_consumption": 20.323,
-      "world_consumption": 103.197,
+      "world_consumption": 103.178,
       "wti_price": 62.17,
-      "world_balance": 1.801
+      "world_balance": 1.538
     },
     {
       "date": "2025-06-01",
@@ -5531,12 +5531,12 @@
       "us_production": 13.61,
       "opec_production": 24.91,
       "opec_plus_production": 33.769,
-      "world_production": 106.179,
-      "china_consumption": 16.666,
+      "world_production": 105.897,
+      "china_consumption": 16.646,
       "us_consumption": 21.007,
-      "world_consumption": 105.418,
+      "world_consumption": 105.399,
       "wti_price": 68.17,
-      "world_balance": 0.761
+      "world_balance": 0.498
     },
     {
       "date": "2025-07-01",
@@ -5544,12 +5544,12 @@
       "us_production": 13.707,
       "opec_production": 24.46,
       "opec_plus_production": 33.301,
-      "world_production": 107.235,
-      "china_consumption": 16.426,
+      "world_production": 106.952,
+      "china_consumption": 16.406,
       "us_consumption": 20.984,
-      "world_consumption": 105.118,
+      "world_consumption": 105.099,
       "wti_price": 68.39,
-      "world_balance": 2.117
+      "world_balance": 1.853
     },
     {
       "date": "2025-08-01",
@@ -5557,12 +5557,12 @@
       "us_production": 13.81,
       "opec_production": 24.435,
       "opec_plus_production": 33.395,
-      "world_production": 107.796,
-      "china_consumption": 15.944,
+      "world_production": 107.512,
+      "china_consumption": 15.924,
       "us_consumption": 21.195,
-      "world_consumption": 104.186,
+      "world_consumption": 104.168,
       "wti_price": 64.86,
-      "world_balance": 3.61
+      "world_balance": 3.344
     },
     {
       "date": "2025-09-01",
@@ -5570,12 +5570,12 @@
       "us_production": 13.828,
       "opec_production": 25.58,
       "opec_plus_production": 34.501,
-      "world_production": 108.894,
-      "china_consumption": 17.01,
+      "world_production": 108.61,
+      "china_consumption": 16.99,
       "us_consumption": 20.72,
-      "world_consumption": 105.544,
+      "world_consumption": 105.527,
       "wti_price": 63.96,
-      "world_balance": 3.35
+      "world_balance": 3.083
     },
     {
       "date": "2025-10-01",
@@ -5583,12 +5583,12 @@
       "us_production": 13.864,
       "opec_production": 25.295,
       "opec_plus_production": 34.045,
-      "world_production": 108.61,
-      "china_consumption": 15.872,
+      "world_production": 108.326,
+      "china_consumption": 15.852,
       "us_consumption": 20.846,
-      "world_consumption": 104.142,
+      "world_consumption": 104.124,
       "wti_price": 60.89,
-      "world_balance": 4.468
+      "world_balance": 4.202
     },
     {
       "date": "2025-11-01",
@@ -5596,12 +5596,12 @@
       "us_production": 13.789,
       "opec_production": 25.055,
       "opec_plus_production": 33.945,
-      "world_production": 108.68,
-      "china_consumption": 17.024,
+      "world_production": 108.415,
+      "china_consumption": 17.004,
       "us_consumption": 20.227,
-      "world_consumption": 103.932,
+      "world_consumption": 103.914,
       "wti_price": 60.06,
-      "world_balance": 4.748
+      "world_balance": 4.501
     },
     {
       "date": "2025-12-01",
@@ -5609,326 +5609,326 @@
       "us_production": 13.657,
       "opec_production": 25.175,
       "opec_plus_production": 33.742,
-      "world_production": 108.161,
-      "china_consumption": 17.565,
+      "world_production": 107.897,
+      "china_consumption": 17.545,
       "us_consumption": 20.851,
-      "world_consumption": 105.908,
+      "world_consumption": 105.889,
       "wti_price": 57.97,
-      "world_balance": 2.253
+      "world_balance": 2.008
     },
     {
       "date": "2026-01-01",
       "brent_price": 66.6,
-      "us_production": 13.237,
-      "opec_production": 25.05,
-      "opec_plus_production": 33.2,
-      "world_production": 106.052,
-      "china_consumption": 16.679,
+      "us_production": 13.305,
+      "opec_production": 25.1,
+      "opec_plus_production": 33.219,
+      "world_production": 105.942,
+      "china_consumption": 16.64,
       "us_consumption": 20.65,
-      "world_consumption": 102.609,
+      "world_consumption": 102.428,
       "wti_price": 60.04,
-      "world_balance": 3.443
+      "world_balance": 3.514
     },
     {
       "date": "2026-02-01",
       "brent_price": 70.89,
-      "us_production": 13.626,
+      "us_production": 13.697,
       "opec_production": 25.91,
-      "opec_plus_production": 34.465,
-      "world_production": 108.86,
-      "china_consumption": 16.965,
+      "opec_plus_production": 34.49,
+      "world_production": 107.309,
+      "china_consumption": 16.927,
       "us_consumption": 21.138,
-      "world_consumption": 104.685,
+      "world_consumption": 104.425,
       "wti_price": 64.51,
-      "world_balance": 4.175
+      "world_balance": 2.884
     },
     {
       "date": "2026-03-01",
       "brent_price": 103.13,
-      "us_production": 13.727,
-      "opec_production": 18.3,
-      "opec_plus_production": 26.992,
-      "world_production": 97.057,
-      "china_consumption": 16.606,
-      "us_consumption": 20.528,
-      "world_consumption": 102.332,
+      "us_production": 13.696,
+      "opec_production": 18.33,
+      "opec_plus_production": 27.055,
+      "world_production": 97.316,
+      "china_consumption": 16.488,
+      "us_consumption": 20.383,
+      "world_consumption": 101.89,
       "wti_price": 91.38,
-      "world_balance": -5.275
+      "world_balance": -4.574
     },
     {
       "date": "2026-04-01",
       "brent_price": 117.29,
-      "us_production": 13.745,
-      "opec_production": 16.92,
-      "opec_plus_production": 25.378,
-      "world_production": 94.548,
-      "china_consumption": 17.193,
-      "us_consumption": 20.691,
-      "world_consumption": 103.168,
+      "us_production": 13.651,
+      "opec_production": 16.87,
+      "opec_plus_production": 25.493,
+      "world_production": 94.538,
+      "china_consumption": 16.192,
+      "us_consumption": 20.704,
+      "world_consumption": 99.934,
       "wti_price": 100.32,
-      "world_balance": -8.62
+      "world_balance": -5.396
     },
     {
       "date": "2026-05-01",
-      "brent_price": 107.0,
-      "us_production": 13.728,
-      "opec_production": 16.59,
-      "opec_plus_production": 25.442,
-      "world_production": 94.401,
-      "china_consumption": 16.732,
-      "us_consumption": 20.544,
-      "world_consumption": 103.4,
-      "wti_price": 95.0,
-      "world_balance": -8.999
+      "brent_price": 107.14,
+      "us_production": 13.709,
+      "opec_production": 16.2,
+      "opec_plus_production": 25.35,
+      "world_production": 93.719,
+      "china_consumption": 15.754,
+      "us_consumption": 20.155,
+      "world_consumption": 99.73,
+      "wti_price": 102.13,
+      "world_balance": -6.011
     },
     {
       "date": "2026-06-01",
       "brent_price": 105.0,
-      "us_production": 13.746,
-      "opec_production": 18.285,
-      "opec_plus_production": 27.227,
-      "world_production": 97.25,
-      "china_consumption": 16.803,
-      "us_consumption": 20.877,
-      "world_consumption": 105.034,
-      "wti_price": 94.0,
-      "world_balance": -7.784
+      "us_production": 13.832,
+      "opec_production": 15.99,
+      "opec_plus_production": 25.682,
+      "world_production": 94.195,
+      "china_consumption": 15.831,
+      "us_consumption": 20.697,
+      "world_consumption": 101.548,
+      "wti_price": 99.0,
+      "world_balance": -7.353
     },
     {
       "date": "2026-07-01",
-      "brent_price": 102.0,
-      "us_production": 13.675,
-      "opec_production": 18.98,
-      "opec_plus_production": 28.03,
-      "world_production": 98.631,
-      "china_consumption": 16.649,
-      "us_consumption": 20.813,
-      "world_consumption": 104.934,
-      "wti_price": 92.0,
-      "world_balance": -6.303
+      "brent_price": 105.0,
+      "us_production": 13.818,
+      "opec_production": 15.78,
+      "opec_plus_production": 25.731,
+      "world_production": 94.233,
+      "china_consumption": 15.694,
+      "us_consumption": 20.795,
+      "world_consumption": 101.699,
+      "wti_price": 99.0,
+      "world_balance": -7.466
     },
     {
       "date": "2026-08-01",
-      "brent_price": 99.0,
-      "us_production": 13.636,
-      "opec_production": 20.163,
-      "opec_plus_production": 29.227,
-      "world_production": 100.675,
-      "china_consumption": 16.091,
-      "us_consumption": 21.114,
-      "world_consumption": 104.868,
-      "wti_price": 90.0,
-      "world_balance": -4.193
+      "brent_price": 101.0,
+      "us_production": 13.812,
+      "opec_production": 17.055,
+      "opec_plus_production": 26.961,
+      "world_production": 96.327,
+      "china_consumption": 15.962,
+      "us_consumption": 21.153,
+      "world_consumption": 104.566,
+      "wti_price": 95.0,
+      "world_balance": -8.239
     },
     {
       "date": "2026-09-01",
-      "brent_price": 96.0,
-      "us_production": 13.506,
-      "opec_production": 21.245,
-      "opec_plus_production": 30.427,
-      "world_production": 102.328,
-      "china_consumption": 17.245,
-      "us_consumption": 20.519,
-      "world_consumption": 105.023,
-      "wti_price": 88.0,
-      "world_balance": -2.695
+      "brent_price": 97.0,
+      "us_production": 13.676,
+      "opec_production": 18.01,
+      "opec_plus_production": 27.784,
+      "world_production": 97.682,
+      "china_consumption": 17.116,
+      "us_consumption": 20.584,
+      "world_consumption": 104.747,
+      "wti_price": 92.0,
+      "world_balance": -7.065
     },
     {
       "date": "2026-10-01",
       "brent_price": 92.0,
-      "us_production": 13.592,
-      "opec_production": 22.747,
-      "opec_plus_production": 31.888,
-      "world_production": 104.885,
-      "china_consumption": 15.961,
-      "us_consumption": 20.809,
-      "world_consumption": 103.797,
-      "wti_price": 85.0,
-      "world_balance": 1.088
+      "us_production": 13.743,
+      "opec_production": 19.343,
+      "opec_plus_production": 28.976,
+      "world_production": 100.03,
+      "china_consumption": 15.862,
+      "us_consumption": 20.905,
+      "world_consumption": 103.633,
+      "wti_price": 87.0,
+      "world_balance": -3.603
     },
     {
       "date": "2026-11-01",
       "brent_price": 89.0,
-      "us_production": 13.747,
-      "opec_production": 23.745,
-      "opec_plus_production": 32.849,
-      "world_production": 107.149,
-      "china_consumption": 17.153,
-      "us_consumption": 20.322,
-      "world_consumption": 104.499,
-      "wti_price": 83.0,
-      "world_balance": 2.65
+      "us_production": 13.852,
+      "opec_production": 20.675,
+      "opec_plus_production": 30.162,
+      "world_production": 102.585,
+      "china_consumption": 17.064,
+      "us_consumption": 20.426,
+      "world_consumption": 104.355,
+      "wti_price": 84.0,
+      "world_balance": -1.77
     },
     {
       "date": "2026-12-01",
       "brent_price": 86.0,
-      "us_production": 13.835,
-      "opec_production": 24.13,
-      "opec_plus_production": 33.307,
-      "world_production": 107.863,
-      "china_consumption": 17.795,
-      "us_consumption": 20.491,
-      "world_consumption": 105.596,
+      "us_production": 13.886,
+      "opec_production": 22.277,
+      "opec_plus_production": 31.628,
+      "world_production": 104.636,
+      "china_consumption": 17.707,
+      "us_consumption": 20.614,
+      "world_consumption": 105.473,
       "wti_price": 81.0,
-      "world_balance": 2.267
+      "world_balance": -0.837
     },
     {
       "date": "2027-01-01",
       "brent_price": 85.0,
-      "us_production": 13.903,
-      "opec_production": 24.185,
-      "opec_plus_production": 33.381,
-      "world_production": 107.768,
-      "china_consumption": 16.768,
-      "us_consumption": 20.362,
-      "world_consumption": 103.039,
+      "us_production": 13.916,
+      "opec_production": 23.82,
+      "opec_plus_production": 33.073,
+      "world_production": 106.796,
+      "china_consumption": 16.689,
+      "us_consumption": 20.552,
+      "world_consumption": 102.843,
       "wti_price": 80.0,
-      "world_balance": 4.729
+      "world_balance": 3.953
     },
     {
       "date": "2027-02-01",
       "brent_price": 84.0,
-      "us_production": 13.87,
+      "us_production": 13.871,
       "opec_production": 24.19,
-      "opec_plus_production": 33.38,
-      "world_production": 108.01,
-      "china_consumption": 17.06,
-      "us_consumption": 20.34,
-      "world_consumption": 105.307,
+      "opec_plus_production": 33.467,
+      "world_production": 107.852,
+      "china_consumption": 16.981,
+      "us_consumption": 20.44,
+      "world_consumption": 105.019,
       "wti_price": 79.0,
-      "world_balance": 2.703
+      "world_balance": 2.833
     },
     {
       "date": "2027-03-01",
       "brent_price": 83.0,
-      "us_production": 14.04,
+      "us_production": 14.028,
       "opec_production": 24.295,
-      "opec_plus_production": 33.474,
-      "world_production": 108.287,
-      "china_consumption": 16.695,
-      "us_consumption": 20.339,
-      "world_consumption": 104.187,
+      "opec_plus_production": 33.563,
+      "world_production": 108.094,
+      "china_consumption": 16.616,
+      "us_consumption": 20.496,
+      "world_consumption": 103.953,
       "wti_price": 78.0,
-      "world_balance": 4.1
+      "world_balance": 4.141
     },
     {
       "date": "2027-04-01",
       "brent_price": 82.0,
-      "us_production": 14.084,
+      "us_production": 14.092,
       "opec_production": 24.4,
-      "opec_plus_production": 33.559,
-      "world_production": 108.724,
-      "china_consumption": 17.407,
-      "us_consumption": 20.596,
-      "world_consumption": 105.033,
+      "opec_plus_production": 33.647,
+      "world_production": 108.599,
+      "china_consumption": 17.328,
+      "us_consumption": 20.602,
+      "world_consumption": 104.678,
       "wti_price": 77.0,
-      "world_balance": 3.691
+      "world_balance": 3.921
     },
     {
       "date": "2027-05-01",
       "brent_price": 81.0,
-      "us_production": 14.137,
+      "us_production": 14.161,
       "opec_production": 24.405,
-      "opec_plus_production": 33.351,
-      "world_production": 108.79,
-      "china_consumption": 16.937,
-      "us_consumption": 20.678,
-      "world_consumption": 105.281,
+      "opec_plus_production": 33.64,
+      "world_production": 108.884,
+      "china_consumption": 16.858,
+      "us_consumption": 20.722,
+      "world_consumption": 104.967,
       "wti_price": 76.0,
-      "world_balance": 3.509
+      "world_balance": 3.917
     },
     {
       "date": "2027-06-01",
       "brent_price": 80.0,
-      "us_production": 14.167,
+      "us_production": 14.206,
       "opec_production": 24.51,
-      "opec_plus_production": 33.64,
-      "world_production": 109.538,
-      "china_consumption": 17.009,
-      "us_consumption": 21.046,
-      "world_consumption": 106.835,
+      "opec_plus_production": 33.328,
+      "world_production": 109.068,
+      "china_consumption": 16.93,
+      "us_consumption": 21.032,
+      "world_consumption": 106.463,
       "wti_price": 75.0,
-      "world_balance": 2.703
+      "world_balance": 2.605
     },
     {
       "date": "2027-07-01",
       "brent_price": 78.0,
-      "us_production": 14.139,
+      "us_production": 14.194,
       "opec_production": 24.53,
-      "opec_plus_production": 33.646,
-      "world_production": 109.877,
-      "china_consumption": 16.852,
-      "us_consumption": 20.898,
-      "world_consumption": 106.479,
+      "opec_plus_production": 33.737,
+      "world_production": 109.844,
+      "china_consumption": 16.773,
+      "us_consumption": 20.906,
+      "world_consumption": 106.129,
       "wti_price": 73.0,
-      "world_balance": 3.398
+      "world_balance": 3.715
     },
     {
       "date": "2027-08-01",
       "brent_price": 78.0,
-      "us_production": 14.145,
+      "us_production": 14.219,
       "opec_production": 24.535,
-      "opec_plus_production": 33.51,
-      "world_production": 110.153,
-      "china_consumption": 16.284,
-      "us_consumption": 21.223,
-      "world_consumption": 106.376,
+      "opec_plus_production": 33.593,
+      "world_production": 110.027,
+      "china_consumption": 16.205,
+      "us_consumption": 21.224,
+      "world_consumption": 106.021,
       "wti_price": 73.0,
-      "world_balance": 3.777
+      "world_balance": 4.006
     },
     {
       "date": "2027-09-01",
       "brent_price": 78.0,
-      "us_production": 14.038,
+      "us_production": 14.126,
       "opec_production": 24.44,
-      "opec_plus_production": 33.543,
-      "world_production": 109.996,
-      "china_consumption": 17.46,
-      "us_consumption": 20.624,
-      "world_consumption": 106.535,
+      "opec_plus_production": 33.636,
+      "world_production": 110.026,
+      "china_consumption": 17.381,
+      "us_consumption": 20.634,
+      "world_consumption": 106.186,
       "wti_price": 73.0,
-      "world_balance": 3.461
+      "world_balance": 3.84
     },
     {
       "date": "2027-10-01",
       "brent_price": 75.0,
-      "us_production": 14.122,
+      "us_production": 14.222,
       "opec_production": 24.445,
-      "opec_plus_production": 33.534,
-      "world_production": 110.725,
-      "china_consumption": 16.151,
-      "us_consumption": 20.949,
-      "world_consumption": 105.325,
+      "opec_plus_production": 33.629,
+      "world_production": 110.658,
+      "china_consumption": 16.072,
+      "us_consumption": 20.952,
+      "world_consumption": 104.988,
       "wti_price": 70.0,
-      "world_balance": 5.4
+      "world_balance": 5.67
     },
     {
       "date": "2027-11-01",
       "brent_price": 75.0,
-      "us_production": 14.239,
+      "us_production": 14.35,
       "opec_production": 24.37,
-      "opec_plus_production": 33.438,
-      "world_production": 111.007,
-      "china_consumption": 17.365,
-      "us_consumption": 20.515,
-      "world_consumption": 106.1,
+      "opec_plus_production": 33.533,
+      "world_production": 110.98,
+      "china_consumption": 17.287,
+      "us_consumption": 20.512,
+      "world_consumption": 105.759,
       "wti_price": 70.0,
-      "world_balance": 4.907
+      "world_balance": 5.221
     },
     {
       "date": "2027-12-01",
       "brent_price": 75.0,
-      "us_production": 14.282,
+      "us_production": 14.41,
       "opec_production": 24.375,
-      "opec_plus_production": 33.431,
-      "world_production": 110.999,
-      "china_consumption": 18.02,
-      "us_consumption": 20.688,
-      "world_consumption": 107.232,
+      "opec_plus_production": 33.528,
+      "world_production": 110.881,
+      "china_consumption": 17.941,
+      "us_consumption": 20.697,
+      "world_consumption": 106.904,
       "wti_price": 70.0,
-      "world_balance": 3.767
+      "world_balance": 3.977
     }
   ],
   "forecast_month": "2027-12-01",
-  "saved_at": "2026-05-15T11:03:34.219226+09:00"
+  "saved_at": "2026-06-12T01:21:32.853604+09:00"
 }

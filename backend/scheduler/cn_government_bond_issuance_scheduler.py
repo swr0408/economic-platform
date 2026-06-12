@@ -4,6 +4,7 @@
 毎日 JST 18:00（CST 17:00）に MOF サイトから
 新規の通知・公告をスクレイピングしてDBに格納。
 """
+import asyncio
 import logging
 from zoneinfo import ZoneInfo
 
@@ -33,7 +34,8 @@ class CnGovernmentBondIssuanceScheduler:
         try:
             logger.info("[Scheduler] CnGovernmentBondIssuance: updating...")
             service = self._get_service()
-            result = service.update_latest()
+            # 同期スクレイピングのためワーカースレッドへ退避（イベントループ保護）
+            result = await asyncio.to_thread(service.update_latest)
             meta = result.get("metadata", {})
             logger.info(
                 f"[Scheduler] CnGovernmentBondIssuance: done. "

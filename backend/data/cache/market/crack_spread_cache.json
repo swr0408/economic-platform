@@ -1,17 +1,6 @@
 {
   "data": [
     {
-      "date": "2011-06-15",
-      "wti": 94.81,
-      "rbob_crack_wti": 27.98,
-      "ulsd_crack_wti": 30.55,
-      "crack_321_wti": 28.84,
-      "brent": 117.1,
-      "rbob_crack_brent": 5.69,
-      "ulsd_crack_brent": 8.26,
-      "crack_321_brent": 6.55
-    },
-    {
       "date": "2011-06-16",
       "wti": 94.95,
       "rbob_crack_wti": 28.92,
@@ -41439,26 +41428,37 @@
     },
     {
       "date": "2026-06-10",
-      "wti": 92.83,
-      "rbob_crack_wti": 38.32,
-      "ulsd_crack_wti": 62.52,
-      "crack_321_wti": 46.39,
-      "brent": 95.49,
-      "rbob_crack_brent": 35.66,
-      "ulsd_crack_brent": 59.86,
-      "crack_321_brent": 43.73
+      "wti": 90.03,
+      "rbob_crack_wti": 40.59,
+      "ulsd_crack_wti": 61.7,
+      "crack_321_wti": 47.62,
+      "brent": 93.1,
+      "rbob_crack_brent": 37.52,
+      "ulsd_crack_brent": 58.63,
+      "crack_321_brent": 44.55
+    },
+    {
+      "date": "2026-06-11",
+      "wti": 86.26,
+      "rbob_crack_wti": 39.98,
+      "ulsd_crack_wti": 58.95,
+      "crack_321_wti": 46.31,
+      "brent": 89.0,
+      "rbob_crack_brent": 37.24,
+      "ulsd_crack_brent": 56.21,
+      "crack_321_brent": 43.57
     }
   ],
   "latest": {
-    "date": "2026-06-10",
-    "wti": 92.83,
-    "rbob_crack_wti": 38.32,
-    "ulsd_crack_wti": 62.52,
-    "crack_321_wti": 46.39,
-    "brent": 95.49,
-    "rbob_crack_brent": 35.66,
-    "ulsd_crack_brent": 59.86,
-    "crack_321_brent": 43.73
+    "date": "2026-06-11",
+    "wti": 86.26,
+    "rbob_crack_wti": 39.98,
+    "ulsd_crack_wti": 58.95,
+    "crack_321_wti": 46.31,
+    "brent": 89.0,
+    "rbob_crack_brent": 37.24,
+    "ulsd_crack_brent": 56.21,
+    "crack_321_brent": 43.57
   },
   "metadata": {
     "source": "yfinance",
@@ -41479,10 +41479,10 @@
       "crack_321_brent": "(2×RBOB×42 + ULSD×42 - 3×Brent) / 3"
     },
     "data_count": 3768,
-    "start_date": "2011-06-15",
-    "end_date": "2026-06-10"
+    "start_date": "2011-06-16",
+    "end_date": "2026-06-11"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-11T09:01:29.564395+09:00"
+  "last_updated": "2026-06-12T09:10:29.909155+09:00"
 }

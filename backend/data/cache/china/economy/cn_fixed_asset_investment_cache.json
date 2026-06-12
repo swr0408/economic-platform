@@ -704,7 +704,7 @@
       "ytd": "固定資産投資 累計前年比 (%)"
     },
     "total_records": 173,
-    "last_fetched": "2026-06-11T04:01:46.543131+09:00"
+    "last_fetched": "2026-06-12T11:01:55.453123+09:00"
   },
   "next_release": {
     "date": "2026-06-16",
@@ -712,6 +712,6 @@
     "datetime_jst": "2026-06-16T11:00:00+09:00",
     "time_jst": "11:00",
     "label": "Fixed Asset Investment (YTD) YoY (May)",
-    "estimate": -0.8
+    "estimate": -2
   }
 }

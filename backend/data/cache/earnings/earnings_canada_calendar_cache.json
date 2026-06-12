@@ -6,6 +6,20 @@
   ],
   "items": [
     {
+      "symbol": "AEM",
+      "name": "Agnico Eagle",
+      "tier": "A",
+      "country_code": "canada",
+      "date": "2026-07-29",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 3.14,
+      "eps_actual": null,
+      "revenue_estimate": 3881833000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
+    },
+    {
       "symbol": "ENB",
       "name": "Enbridge",
       "tier": "A",
@@ -17,7 +31,7 @@
       "eps_actual": null,
       "revenue_estimate": 7994175000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "SHOP",
@@ -29,9 +43,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.39,
       "eps_actual": null,
-      "revenue_estimate": 3371474000.0,
+      "revenue_estimate": 3374146000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "BAM",
@@ -43,9 +57,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.44,
       "eps_actual": null,
-      "revenue_estimate": 1447944000.0,
+      "revenue_estimate": 1448146000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "CNQ",
@@ -55,11 +69,11 @@
       "date": "2026-08-06",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 1.4,
+      "eps_estimate": 1.39,
       "eps_actual": null,
-      "revenue_estimate": 8619831000.0,
+      "revenue_estimate": 8621034000.0,
       "revenue_actual": null,
-      "updated_from_date": ""
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "RY",
@@ -88,25 +102,11 @@
       "revenue_estimate": null,
       "revenue_actual": null,
       "updated_from_date": null
-    },
-    {
-      "symbol": "AEM",
-      "name": "Agnico Eagle",
-      "tier": "A",
-      "country_code": "canada",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
     }
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-06-11T05:30:06.303927+00:00",
+  "last_updated": "2026-06-12T01:35:37.110638+00:00",
   "cached": false,
   "status": "ok"
 }

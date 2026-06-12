@@ -428,6 +428,15 @@ def should_refresh_by_fmp_schedule(
 
         now = datetime.now(JST)
 
+        # 7日 max-age フォールバック:
+        # FMP側のイベント欠落・bulk populate の国コード漏れ等で
+        # economic_calendar_events に新イベントが入らなくなると、
+        # 以下のスケジュール判定は永久に False を返し続け、
+        # キャッシュが無期限凍結する（2026-06 KR/TW 凍結の長期化要因）。
+        # 週1回は必ずリフレッシュさせて自己回復可能にする。
+        if (now - last_updated).total_seconds() > 7 * 24 * 60 * 60:
+            return True
+
         # マッピングからパターンと国コードを取得
         patterns = get_fmp_event_patterns(econalpha_id)
         if not patterns:

@@ -10,14 +10,28 @@
       "name": "Samsung Electronics",
       "tier": "S",
       "country_code": "southkorea",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
+      "date": "2026-07-23",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 6.94,
       "eps_actual": null,
-      "revenue_estimate": null,
+      "revenue_estimate": 108314100000.0,
       "revenue_actual": null,
-      "updated_from_date": null
+      "updated_from_date": "2026-06-11"
+    },
+    {
+      "symbol": "055550.KS",
+      "name": "Shinhan Financial",
+      "tier": "A",
+      "country_code": "southkorea",
+      "date": "2026-07-24",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 2.22,
+      "eps_actual": null,
+      "revenue_estimate": 2883913000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-11"
     },
     {
       "symbol": "000660.KS",
@@ -76,20 +90,6 @@
       "updated_from_date": null
     },
     {
-      "symbol": "055550.KS",
-      "name": "Shinhan Financial",
-      "tier": "A",
-      "country_code": "southkorea",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
-      "eps_actual": null,
-      "revenue_estimate": null,
-      "revenue_actual": null,
-      "updated_from_date": null
-    },
-    {
       "symbol": "012450.KS",
       "name": "Hanwha Aerospace",
       "tier": "A",
@@ -120,7 +120,7 @@
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-06-11T05:30:05.582504+00:00",
+  "last_updated": "2026-06-12T01:35:37.084321+00:00",
   "cached": false,
   "status": "ok"
 }

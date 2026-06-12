@@ -23,7 +23,7 @@ import calendar
 import json
 import logging
 import re
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 from zoneinfo import ZoneInfo
@@ -122,6 +122,52 @@ class NyOptionCutService:
             return False
         return data.get("date") == today_str
 
+    def fetch_latest_available(self, max_back_days: int = 7) -> Dict[str, Any]:
+        """今日から営業日を遡り、直近の公開済み記事を取得する（取りこぼしキャッチアップ用）
+
+        investinglive.com は過去日付の記事も残るため、スケジューラが
+        止まっていた期間があっても直近営業日分まで遡って復旧できる。
+        キャッシュが既にそれ以上に新しい場合はネットワークに出ない。
+        """
+        today = datetime.now(JST).date()
+
+        cached = self._load_from_redis() or self._load_from_file()
+        cached_date: Optional[date] = None
+        if cached and cached.get("data") and cached["data"].get("date"):
+            try:
+                cached_date = date.fromisoformat(cached["data"]["date"])
+            except ValueError:
+                pass
+
+        target = today
+        for _ in range(max_back_days + 1):
+            if target.weekday() < 5:
+                if cached_date is not None and target <= cached_date:
+                    break  # キャッシュの方が新しい or 同日
+                try:
+                    data = self._fetch_for_date(target)
+                except Exception as e:
+                    logger.error(f"[NYOptionCut] Catch-up fetch error for {target}: {e}")
+                    data = None
+                if data and data.get("status") == "published":
+                    self._save_to_redis(data)
+                    self._save_to_file(data)
+                    logger.info(f"[NYOptionCut] Catch-up: recovered article for {target}")
+                    return data
+            target -= timedelta(days=1)
+
+        if cached:
+            cached["cached"] = True
+            cached["source"] = "fallback"
+            return cached
+        return {
+            "data": None,
+            "status": "not_published",
+            "cached": False,
+            "source": "none",
+            "last_updated": None,
+        }
+
     def _build_article_url(self, target_date: date) -> str:
         """日付からarticle URLを構築"""
         day = target_date.day
@@ -147,7 +193,13 @@ class NyOptionCutService:
                 "last_updated": now_str,
             }
 
-        url = self._build_article_url(today)
+        return self._fetch_for_date(today)
+
+    def _fetch_for_date(self, target_date: date) -> Dict[str, Any]:
+        """指定日の記事を取得（過去日付のキャッチアップにも使用）"""
+        now_str = datetime.now(JST).isoformat()
+
+        url = self._build_article_url(target_date)
         logger.info(f"[NYOptionCut] Fetching: {url}")
 
         try:
@@ -163,7 +215,7 @@ class NyOptionCutService:
             }
 
         if resp.status_code == 404:
-            logger.info(f"[NYOptionCut] Article not yet published for {today}")
+            logger.info(f"[NYOptionCut] Article not yet published for {target_date}")
             return {
                 "data": None,
                 "status": "not_published",
@@ -195,7 +247,7 @@ class NyOptionCutService:
 
         return {
             "data": {
-                "date": today.isoformat(),
+                "date": target_date.isoformat(),
                 "headline": parsed["headline"],
                 "article_body": parsed["article_body"],
                 "image_url": parsed["image_url"],

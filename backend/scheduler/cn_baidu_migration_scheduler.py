@@ -2,6 +2,7 @@
 百度迁徙（Baidu Migration）Screenshot Scheduler
 毎日 JST 18:00（CTC 17:00）にスクリーンショットを自動更新
 """
+import asyncio
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
@@ -32,7 +33,12 @@ class CnBaiduMigrationScheduler:
 
             print(f"[BaiduMigrationScheduler] Starting screenshot update at {datetime.now(JST).isoformat()}")
 
-            result = cn_baidu_migration_screenshot_service.capture_screenshot(force_refresh=True)
+            # sync Playwright をイベントループ上で直接起動すると毎回例外で即死するため
+            # ワーカースレッドへ退避する
+            result = await asyncio.to_thread(
+                cn_baidu_migration_screenshot_service.capture_screenshot,
+                force_refresh=True,
+            )
 
             if result["success"]:
                 print("[BaiduMigrationScheduler] Successfully updated screenshot")

@@ -27947,17 +27947,23 @@
       "cash_usd": 13370.0,
       "three_month_usd": 13431.0,
       "stock_tonnes": 369575
+    },
+    {
+      "date": "2026-06-11",
+      "cash_usd": 13420.0,
+      "three_month_usd": 13458.0,
+      "stock_tonnes": 367300
     }
   ],
   "latest": {
-    "date": "2026-06-10",
-    "cash_usd": 13370.0,
-    "three_month_usd": 13431.0,
-    "stock_tonnes": 369575
+    "date": "2026-06-11",
+    "cash_usd": 13420.0,
+    "three_month_usd": 13458.0,
+    "stock_tonnes": 367300
   },
   "latest_copper": {
-    "date": "2026-06-10",
-    "close": 6.193
+    "date": "2026-06-11",
+    "close": 6.3945
   },
   "metadata": {
     "source": "LME + yfinance (HG=F)",
@@ -27965,11 +27971,11 @@
     "unit_price": "USD/tonne",
     "unit_stock": "tonnes",
     "frequency": "daily",
-    "data_count": 4658,
+    "data_count": 4659,
     "start_date": "2008-01-02",
-    "end_date": "2026-06-10"
+    "end_date": "2026-06-11"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-11T09:01:27.589288+09:00"
+  "last_updated": "2026-06-12T09:10:27.443770+09:00"
 }

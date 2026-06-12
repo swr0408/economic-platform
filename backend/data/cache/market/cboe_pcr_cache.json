@@ -29591,6 +29591,12 @@
       "pcr": 0.97,
       "pcr_10ma": 0.834,
       "sp500": 7266.99
+    },
+    {
+      "date": "2026-06-11",
+      "pcr": null,
+      "pcr_10ma": null,
+      "sp500": 7394.3
     }
   ],
   "latest": {
@@ -29601,13 +29607,13 @@
   },
   "metadata": {
     "source": "CBOE / yfinance",
-    "data_count": 4932,
+    "data_count": 4933,
     "pcr_count": 4929,
     "start_date": "2006-11-01",
-    "end_date": "2026-06-10",
+    "end_date": "2026-06-11",
     "pcr_latest": "2026-06-10"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-11T21:25:34.221442+09:00"
+  "last_updated": "2026-06-12T09:09:47.999610+09:00"
 }

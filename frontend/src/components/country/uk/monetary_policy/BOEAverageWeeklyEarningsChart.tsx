@@ -20,9 +20,18 @@ interface BOEAverageWeeklyEarningsChartProps {
 
 interface ChartDataPoint {
   quarter: string
-  latest: number | null
-  previous: number | null
+  [seriesKey: string]: string | number | null | undefined
 }
+
+// 系列キー → 色 (previous=赤破線、最新/シナリオ=寒色系)
+const SERIES_COLORS: Record<string, string> = {
+  latest: '#1890ff',
+  previous: '#ff7875',
+  scenario_a: '#1890ff',
+  scenario_b: '#52c41a',
+  scenario_c: '#b37feb',
+}
+const FALLBACK_COLORS = ['#13c2c2', '#faad14', '#eb2f96']
 
 // Convert forecast date to readable format (e.g., "2025-11-01 00:00:00" -> "2025年11月")
 const formatForecastDate = (dateStr: string): string => {
@@ -117,11 +126,37 @@ const filterRecentYears = (data: ChartDataPoint[], yearsToShow: number = 10): Ch
 
 export default function BOEAverageWeeklyEarningsChart({ data }: BOEAverageWeeklyEarningsChartProps) {
   // Prepare chart data
-  const { chartData, latestDate, previousDate } = useMemo(() => {
+  const { chartData, seriesKeys, latestDate, previousDate } = useMemo(() => {
     const aweData = data?.average_weekly_earnings
 
+    // 2026年4月MPR以降のシナリオ方式: table_data ({quarter, scenario_a.., previous})
+    if (aweData?.table_data && aweData.table_data.length > 0) {
+      const keys = new Set<string>()
+      for (const row of aweData.table_data) {
+        for (const k of Object.keys(row)) {
+          if (k !== 'quarter') keys.add(k)
+        }
+      }
+      const scenarios = [...keys].filter((k) => k.startsWith('scenario_')).sort()
+      const ordered = [...scenarios]
+      if (keys.has('latest')) ordered.push('latest')
+      if (keys.has('previous')) ordered.push('previous')
+
+      const rows = (aweData.table_data as ChartDataPoint[])
+        .filter((row) => ordered.some((k) => row[k] !== null && row[k] !== undefined))
+        .sort((a, b) => a.quarter.localeCompare(b.quarter))
+
+      return {
+        chartData: filterRecentYears(rows, 10),
+        seriesKeys: ordered,
+        latestDate: aweData.latest_forecast || '',
+        previousDate: aweData.previous_forecast || '',
+      }
+    }
+
+    // 旧来形式: latest/previous の2系列
     if (!aweData?.latest?.data || aweData.latest.data.length === 0) {
-      return { chartData: [], latestDate: '', previousDate: '' }
+      return { chartData: [], seriesKeys: [] as string[], latestDate: '', previousDate: '' }
     }
 
     const latestLabel = aweData.latest?.date || ''
@@ -143,6 +178,7 @@ export default function BOEAverageWeeklyEarningsChart({ data }: BOEAverageWeekly
 
     return {
       chartData: recentData,
+      seriesKeys: previousLabel ? ['latest', 'previous'] : ['latest'],
       latestDate: latestLabel,
       previousDate: previousLabel,
     }
@@ -166,6 +202,16 @@ export default function BOEAverageWeeklyEarningsChart({ data }: BOEAverageWeekly
 
   const latestLabel = formatForecastDate(latestDate)
   const previousLabel = formatForecastDate(previousDate)
+
+  // 系列キー → 表示名 ("scenario_a" → "シナリオA (2026年4月)")
+  const seriesDisplayName = (key: string): string => {
+    if (key === 'latest') return `最新 ${latestLabel}`
+    if (key === 'previous') return `前回 ${previousLabel}`
+    const raw = data.average_weekly_earnings?.scenario_labels?.[key]
+    const m = raw?.match(/Scenario\s+(\w+)\s*$/i)
+    const sc = m ? `シナリオ${m[1].toUpperCase()}` : raw || key
+    return latestLabel ? `${sc} (${latestLabel})` : sc
+  }
 
   return (
     <ChartContainer
@@ -194,38 +240,26 @@ export default function BOEAverageWeeklyEarningsChart({ data }: BOEAverageWeekly
               labelFormatter={formatQuarterLabel}
               contentStyle={TOOLTIP_STYLE}
               formatter={(value: number, name: string) => {
-                const displayName = name === 'latest' ? `最新 ${latestLabel}` : `前回 ${previousLabel}`
-                return [formatValue(value), displayName]
+                return [formatValue(value), seriesDisplayName(name)]
               }}
             />
             <Legend
               wrapperStyle={{ color: DARK_THEME.textPrimary }}
-              formatter={(value: string) => {
-                if (value === 'latest') return `最新 ${latestLabel}`
-                if (value === 'previous') return `前回 ${previousLabel}`
-                return value
-              }}
+              formatter={(value: string) => seriesDisplayName(value)}
             />
-            <Line
-              type="monotone"
-              dataKey="latest"
-              stroke="#1890ff"
-              strokeWidth={3}
-              name="latest"
-              dot={false}
-              connectNulls={true}
-            />
-            {previousDate && (
+            {seriesKeys.map((key, i) => (
               <Line
+                key={key}
                 type="monotone"
-                dataKey="previous"
-                stroke="#ff7875"
-                strokeWidth={2}
-                name="previous"
+                dataKey={key}
+                stroke={SERIES_COLORS[key] ?? FALLBACK_COLORS[i % FALLBACK_COLORS.length]}
+                strokeWidth={key === 'previous' ? 2 : 3}
+                strokeDasharray={key === 'previous' ? '6 3' : undefined}
+                name={key}
                 dot={false}
                 connectNulls={true}
               />
-            )}
+            ))}
           </LineChart>
         </ResponsiveContainer>
       </div>

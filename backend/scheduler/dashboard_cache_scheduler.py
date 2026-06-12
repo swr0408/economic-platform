@@ -187,7 +187,8 @@ class DashboardCacheScheduler:
 
     async def _event_driven_poll(self):
         """イベント駆動ポーリング: 直近に発表があった国のダッシュボードのみ更新"""
-        countries = self._find_countries_with_recent_releases()
+        # 同期 SQLAlchemy クエリのためワーカースレッドへ退避（イベントループ保護）
+        countries = await asyncio.to_thread(self._find_countries_with_recent_releases)
         if not countries:
             return
 

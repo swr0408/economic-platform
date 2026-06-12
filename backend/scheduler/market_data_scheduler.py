@@ -279,8 +279,16 @@ def _run_batch(services: list, label: str):
         f"[MarketScheduler] {label} complete: {ok} ok, {fail} fail, "
         f"{elapsed:.1f}s"
     )
-    # 起動時キャッチアップ判定用にマーカーを書き込み
-    _set_run_marker(label)
+    # 起動時キャッチアップ判定用にマーカーを書き込み。
+    # 全滅時 (ok=0) はマーカーを更新しない — 更新すると次回起動時の
+    # キャッチアップが「実行済み」と誤認し、失敗したバッチが二度と再試行されない
+    if ok > 0:
+        _set_run_marker(label)
+    else:
+        logger.warning(
+            f"[MarketScheduler] {label}: all services failed; "
+            "run marker NOT updated (will retry via startup catch-up)"
+        )
 
 
 # ---------------------------------------------------------------------------

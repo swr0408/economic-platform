@@ -17,6 +17,7 @@ Target: main tab > class="mm-cc-bd" > class="container chart-theater is-stat"
 invalidate_cache) は完全互換。
 """
 import logging
+import time
 from pathlib import Path
 from datetime import datetime
 from typing import Dict, Any
@@ -52,6 +53,9 @@ RATE_CUTS_SCREENSHOT_PATH = CACHE_DIR / RATE_CUTS_SCREENSHOT_FILENAME
 YEAREND_URL = "https://en.macromicro.me/series/78281/canada-boc-year-end-interest-rate-expectation-2026"
 RATE_CUTS_URL = "https://en.macromicro.me/series/78287/canada-boc-interest-rate-cuts-expectation-2026"
 
+# 連続撮影間の待機秒数 (MacroMicro の Cloudflare レート検知回避。45秒で実証済み)
+_INTER_CAPTURE_DELAY_SEC = 45
+
 
 class BocRateCutsScreenshotService:
     """BOC Rate Cuts Expectation Screenshot Service"""
@@ -65,12 +69,15 @@ class BocRateCutsScreenshotService:
         pass
 
     def _build_request(self, url: str, output_path: Path) -> ScreenshotRequest:
+        # ※ rate_cuts ページ (series/78287) はチャートのポーリング通信が止まらず
+        #   "networkidle" に永遠に到達しない → navigation timeout で4ヶ月無音停止していた。
+        #   "load" + wait_selector (チャート要素出現) + 固定待機で安定撮影する。
         return ScreenshotRequest(
             url=url,
             output_path=str(output_path),
             wait_selector=self.TARGET_SELECTOR,
-            wait_for_load_state="networkidle",
-            wait_after_load_ms=5_000,
+            wait_for_load_state="load",
+            wait_after_load_ms=8_000,
             clip_selector=self.TARGET_SELECTOR,
             scroll_into_view=True,
             viewport_override=(1920, 1400),
@@ -79,6 +86,8 @@ class BocRateCutsScreenshotService:
     def _build_config(self) -> BrowserConfig:
         return BrowserConfig(
             viewport=(1920, 1400),
+            # rate_cuts ページはチャート描画完了 (要素可視化) まで時間がかかる
+            default_action_timeout_ms=90_000,
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
                 "AppleWebKit/537.36 (KHTML, like Gecko) "
@@ -155,30 +164,39 @@ class BocRateCutsScreenshotService:
             )
             return results
 
-        # 1 ブラウザで複数枚連続撮影
+        # ※ MacroMicro は同一セッションで2ページ目に遷移すると Cloudflare の
+        #   "Just a moment..." チャレンジが発動し、2枚目 (rate_cuts) が
+        #   wait_selector timeout で必ず失敗していた (4ヶ月無音停止の原因)。
+        #   1枚ごとにランナー (ブラウザコンテキスト) を分離し、間に待機を挟む。
         try:
             with browser_semaphore:
-                with get_default_runner(config=self._build_config()) as runner:
-                    for key, url, path, filename in to_capture:
-                        try:
-                            logger.info(f"[BOCRateCuts] Capturing {key}...")
+                for i, (key, url, path, filename) in enumerate(to_capture):
+                    if i > 0:
+                        logger.info(
+                            f"[BOCRateCuts] Waiting {_INTER_CAPTURE_DELAY_SEC}s "
+                            "before next capture (Cloudflare rate-detection avoidance)..."
+                        )
+                        time.sleep(_INTER_CAPTURE_DELAY_SEC)
+                    try:
+                        logger.info(f"[BOCRateCuts] Capturing {key}...")
+                        with get_default_runner(config=self._build_config()) as runner:
                             result = runner.screenshot(self._build_request(url, path))
-                            logger.info(
-                                f"[BOCRateCuts] saved {key}: "
-                                f"{result.path} ({result.size_bytes} bytes)"
-                            )
-                            results[key] = {
-                                "success": True,
-                                "url": f"/cache/canada/policy/{filename}",
-                                "cached": False,
-                            }
-                        except BrowserRunnerError as e:
-                            logger.error(f"[BOCRateCuts] {key} capture failed: {e}")
-                            results[key] = {
-                                "success": False,
-                                "url": None,
-                                "cached": False,
-                            }
+                        logger.info(
+                            f"[BOCRateCuts] saved {key}: "
+                            f"{result.path} ({result.size_bytes} bytes)"
+                        )
+                        results[key] = {
+                            "success": True,
+                            "url": f"/cache/canada/policy/{filename}",
+                            "cached": False,
+                        }
+                    except BrowserRunnerError as e:
+                        logger.error(f"[BOCRateCuts] {key} capture failed: {e}")
+                        results[key] = {
+                            "success": False,
+                            "url": None,
+                            "cached": False,
+                        }
         except BrowserRunnerError as e:
             logger.error(f"[BOCRateCuts] runner setup failed: {e}")
             for key, _url, _path, _filename in to_capture:

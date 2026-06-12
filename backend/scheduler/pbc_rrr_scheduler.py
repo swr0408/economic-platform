@@ -4,6 +4,7 @@ PBOC 預金準備率 日次スケジューラー
 毎日 JST 16:00 に武漢PBOCウェブサイトをスクレイピングして
 DB未登録の新しい発表を取得・登録する。
 """
+import asyncio
 import logging
 from zoneinfo import ZoneInfo
 
@@ -37,7 +38,8 @@ class PbcRrrScheduler:
         try:
             logger.info("[Scheduler] PBC RRR: checking for new announcements...")
             fetch_fn = self._get_fetch_fn()
-            count = fetch_fn()
+            # 同期スクレイピングのためワーカースレッドへ退避（イベントループ保護）
+            count = await asyncio.to_thread(fetch_fn)
             if count > 0:
                 # キャッシュをクリアして最新データを反映
                 try:

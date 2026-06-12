@@ -17,6 +17,7 @@ SF Fed の PCE需給分解データを定期的にチェック。
 - データ最新確認後: 次回PCE発表まで完全スキップ
 """
 
+import asyncio
 import logging
 from datetime import datetime
 from typing import Dict, Any
@@ -73,7 +74,8 @@ class SupplyAndDemandPceScheduler:
             logger.info("[SupplyDemandPCE] Triggering scheduled check...")
             service = self._get_service()
             # force_refresh=False で呼び、サービス側の _should_refresh() に判定を委ねる
-            result = service.get_data(force_refresh=False)
+            # 同期 requests/Excel 解析のためワーカースレッドへ退避（イベントループ保護）
+            result = await asyncio.to_thread(service.get_data, force_refresh=False)
             source = result.get("source", "unknown")
             latest = result.get("latest", {}) or {}
             logger.info(
@@ -143,7 +145,8 @@ class SupplyAndDemandPceScheduler:
         """手動更新トリガー"""
         try:
             service = self._get_service()
-            result = service.get_data(force_refresh=False)
+            # 同期 I/O のためワーカースレッドへ退避（FastAPI ループから呼ばれるため）
+            result = await asyncio.to_thread(service.get_data, force_refresh=False)
             return {
                 "status": "ok",
                 "source": result.get("source"),

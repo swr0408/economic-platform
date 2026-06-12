@@ -3,10 +3,16 @@ SHFE Copper Stock サービス
 
 データソース:
   - DB: shfe_copper_stock テーブル（日次、SHFE Warehouse）
-  - 最新値自動更新: commoditieschart.net (HTMLに埋め込まれたJSON)
+  - 最新値自動更新（プライマリ）: Eastmoney 期货库存 API
+    (datacenter-web.eastmoney.com RPT_FUTU_STOCKDATA, SECURITY_CODE=CU)
+    ※ 約3ヶ月分のローリングウィンドウを毎回返すため、スケジューラが
+      数週間止まっても自動でバックフィルされる。
+    ※ 旧プライマリ commoditieschart.net は 2026-04-03 で更新停止
+      （凍結確認 2026-06-12）→ フォールバックに降格。
+      Eastmoney 値は旧ソースと完全一致を確認済み（2026-03-03〜04-03 の24日分）。
   - 手動更新: CSVインポート (scripts/import_shfe_copper_stock.py)
 
-更新スケジュール: 日次（JST 8:30）
+更新スケジュール: 日次（JP_CLOSE: JST 16:30 / 20:30）
 更新: 6時間TTL (Redis + ファイル)
 """
 import json
@@ -30,6 +36,17 @@ DATA_CACHE_FILE = CACHE_DIR / "shfe_copper_stock_cache.json"
 DATA_CACHE_KEY = "market:shfe_copper_stock:data"
 
 SCRAPE_URL = "https://commoditieschart.net/metals/copper/shfe-copper-stocks"
+
+# Eastmoney 期货库存データセンター (https://data.eastmoney.com/ifdata/kcsj.html)
+EASTMONEY_API_URL = "https://datacenter-web.eastmoney.com/api/data/v1/get"
+EASTMONEY_COPPER_CODE = "CU"  # 沪铜 (SHFE copper)
+
+BROWSER_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+    ),
+}
 
 
 class ShfeCopperStockService:
@@ -79,39 +96,115 @@ class ShfeCopperStockService:
         return {
             "data": [],
             "latest": None,
-            "metadata": {"source": "SHFE (commoditieschart.net)"},
+            "metadata": {"source": "SHFE (Eastmoney)"},
             "cached": False,
             "source": "error",
             "last_updated": None,
         }
 
-    def _scrape_latest(self) -> int:
-        """commoditieschart.net から最新データをスクレイピングしDBにUPSERT
+    def _fetch_eastmoney(self) -> List[tuple]:
+        """Eastmoney 期货库存 API から SHFE銅在庫（日次）を取得
+
+        約3ヶ月分のローリングウィンドウが返るため、取りこぼした週も
+        毎回の取得で自動的にバックフィルされる。
 
         Returns:
-            挿入/更新された行数
+            [(date_str, stock_tonnes_int), ...]（取得失敗時は空リスト）
         """
         import requests
-        from core.database import SessionLocal
-        from sqlalchemy import text
 
-        headers = {
-            "User-Agent": (
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-            ),
-        }
+        headers = dict(BROWSER_HEADERS)
+        headers["Referer"] = "https://data.eastmoney.com/ifdata/kcsj.html"
+
+        def _query_stock(security_code: str) -> List[tuple]:
+            params = {
+                "reportName": "RPT_FUTU_STOCKDATA",
+                "columns": "SECURITY_CODE,TRADE_DATE,ON_WARRANT_NUM,ADDCHANGE",
+                "filter": f'(SECURITY_CODE="{security_code}")',
+                "pageNumber": "1",
+                "pageSize": "5000",
+                "sortTypes": "-1",
+                "sortColumns": "TRADE_DATE",
+                "source": "WEB",
+                "client": "WEB",
+            }
+            resp = requests.get(
+                EASTMONEY_API_URL, params=params, headers=headers, timeout=30
+            )
+            if resp.status_code != 200:
+                logger.warning(
+                    f"[ShfeCopperStock] Eastmoney HTTP {resp.status_code}"
+                )
+                return []
+            j = resp.json()
+            rows = (j.get("result") or {}).get("data") or []
+            records: List[tuple] = []
+            for row in rows:
+                trade_date = row.get("TRADE_DATE")
+                stock = row.get("ON_WARRANT_NUM")
+                if not trade_date or stock is None:
+                    continue
+                records.append((str(trade_date)[:10], int(stock)))
+            records.sort(key=lambda x: x[0])
+            return records
 
         try:
-            resp = requests.get(SCRAPE_URL, headers=headers, timeout=30)
+            records = _query_stock(EASTMONEY_COPPER_CODE)
+            if records:
+                return records
+
+            # コードドリフト対策: 銘柄コード一覧から「沪铜」を動的解決して再試行
+            logger.warning(
+                "[ShfeCopperStock] Eastmoney empty for code "
+                f"'{EASTMONEY_COPPER_CODE}', resolving code dynamically..."
+            )
+            resp = requests.get(
+                EASTMONEY_API_URL,
+                params={
+                    "reportName": "RPT_FUTU_POSITIONCODE",
+                    "columns": "TRADE_MARKET_CODE,TRADE_CODE,TRADE_TYPE",
+                    "filter": '(IS_MAINCODE="1")',
+                    "pageNumber": "1",
+                    "pageSize": "500",
+                    "source": "WEB",
+                    "client": "WEB",
+                },
+                headers=headers,
+                timeout=30,
+            )
+            rows = (resp.json().get("result") or {}).get("data") or []
+            code = next(
+                (r["TRADE_CODE"] for r in rows if r.get("TRADE_TYPE") == "沪铜"),
+                None,
+            )
+            if code and code != EASTMONEY_COPPER_CODE:
+                logger.info(f"[ShfeCopperStock] Resolved 沪铜 code: {code}")
+                return _query_stock(code)
+        except Exception as e:
+            logger.warning(f"[ShfeCopperStock] Eastmoney fetch error: {e}")
+        return []
+
+    def _fetch_commoditieschart(self) -> List[tuple]:
+        """commoditieschart.net からスクレイピング（フォールバック）
+
+        注意: 2026-04-03 でサイト自体の更新が停止（2026-06-12確認）。
+        Eastmoney 失敗時の保険としてのみ残している。
+
+        Returns:
+            [(date_str, stock_tonnes_int), ...]（取得失敗時は空リスト）
+        """
+        import requests
+
+        try:
+            resp = requests.get(SCRAPE_URL, headers=BROWSER_HEADERS, timeout=30)
             if resp.status_code != 200:
                 logger.warning(
                     f"[ShfeCopperStock] Scrape failed: HTTP {resp.status_code}"
                 )
-                return 0
+                return []
         except Exception as e:
             logger.warning(f"[ShfeCopperStock] Scrape error: {e}")
-            return 0
+            return []
 
         html = resp.text
 
@@ -146,6 +239,33 @@ class ShfeCopperStockService:
 
         if not records:
             logger.warning("[ShfeCopperStock] No data extracted from page")
+        records.sort(key=lambda x: x[0])
+        return records
+
+    def _scrape_latest(self) -> int:
+        """最新データを取得しDBにUPSERT
+
+        プライマリ: Eastmoney API（約3ヶ月分 → 取りこぼし自動バックフィル）
+        フォールバック: commoditieschart.net スクレイピング
+
+        Returns:
+            挿入/更新された行数
+        """
+        from core.database import SessionLocal
+        from sqlalchemy import text
+
+        records = self._fetch_eastmoney()
+        source_name = "eastmoney"
+        if not records:
+            logger.warning(
+                "[ShfeCopperStock] Eastmoney returned no data, "
+                "falling back to commoditieschart.net"
+            )
+            records = self._fetch_commoditieschart()
+            source_name = "commoditieschart"
+
+        if not records:
+            logger.warning("[ShfeCopperStock] No data from any source")
             return 0
 
         # DB内の最新日付を取得して、新しいデータのみUPSERT
@@ -174,12 +294,12 @@ class ShfeCopperStockService:
                     session.execute(
                         text("""
                         INSERT INTO shfe_copper_stock (date, stock_tonnes, source)
-                        VALUES (:date, :stock, 'commoditieschart')
+                        VALUES (:date, :stock, :source)
                         ON CONFLICT (date) DO UPDATE SET
                             stock_tonnes = EXCLUDED.stock_tonnes,
                             updated_at = NOW()
                     """),
-                        {"date": date_str, "stock": stock},
+                        {"date": date_str, "stock": stock, "source": source_name},
                     )
                     upserted += 1
 
@@ -189,7 +309,8 @@ class ShfeCopperStockService:
             return 0
 
         logger.info(
-            f"[ShfeCopperStock] Scraped {len(records)} records total, "
+            f"[ShfeCopperStock] Fetched {len(records)} records from "
+            f"{source_name} ({records[0][0]} ~ {records[-1][0]}), "
             f"upserted {upserted} new rows"
         )
         return upserted
@@ -259,7 +380,7 @@ class ShfeCopperStockService:
             "data": result_data,
             "latest": latest,
             "metadata": {
-                "source": "SHFE (commoditieschart.net)",
+                "source": "SHFE (Eastmoney)",
                 "indicator": "SHFE Copper Warehouse Stock",
                 "unit": "tonnes",
                 "frequency": "daily",

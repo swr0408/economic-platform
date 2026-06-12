@@ -2759,16 +2759,56 @@
       "paid_hourly": 3.5,
       "job_stayer": 3.5,
       "job_switcher": 4.0
+    },
+    {
+      "date": "2026-01-01",
+      "overall": 3.6,
+      "fulltime": 3.8,
+      "paid_hourly": 3.7,
+      "job_stayer": 3.5,
+      "job_switcher": 4.7
+    },
+    {
+      "date": "2026-02-01",
+      "overall": 3.7,
+      "fulltime": 3.9,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.6,
+      "job_switcher": 4.7
+    },
+    {
+      "date": "2026-03-01",
+      "overall": 3.9,
+      "fulltime": 4.1,
+      "paid_hourly": 3.8,
+      "job_stayer": 3.8,
+      "job_switcher": 5.0
+    },
+    {
+      "date": "2026-04-01",
+      "overall": 3.6,
+      "fulltime": 4.0,
+      "paid_hourly": 3.3,
+      "job_stayer": 3.6,
+      "job_switcher": 3.8
+    },
+    {
+      "date": "2026-05-01",
+      "overall": 3.5,
+      "fulltime": 3.8,
+      "paid_hourly": 3.3,
+      "job_stayer": 3.3,
+      "job_switcher": 3.7
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "overall": 3.7,
+    "date": "2026-05-01",
+    "overall": 3.5,
     "fulltime": 3.8,
-    "paid_hourly": 3.5,
-    "job_stayer": 3.5,
-    "job_switcher": 4.0
+    "paid_hourly": 3.3,
+    "job_stayer": 3.3,
+    "job_switcher": 3.7
   },
-  "latest_data_date": "2025-12-01",
-  "last_updated": "2026-02-08T11:38:15.463386+09:00"
+  "latest_data_date": "2026-05-01",
+  "last_updated": "2026-06-12T09:25:38.173811+09:00"
 }

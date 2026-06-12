@@ -141,8 +141,18 @@ try:
     from backend.scheduler.boj_lending_scheduler import boj_lending_scheduler
     from backend.scheduler.supply_and_demand_pce_scheduler import supply_and_demand_pce_scheduler
     from backend.scheduler.manheim_used_vehicle_scheduler import manheim_used_vehicle_scheduler
+    # ※ fallback ブランチと同一セットを import すること
+    #    （片側にしか無いと、通ったブランチ次第で NameError → 無言で起動されない）
+    from backend.scheduler.non_fmp_release_scheduler import non_fmp_release_scheduler
     from backend.scheduler.pbc_reverse_repo_scheduler import pbc_reverse_repo_scheduler
     from backend.scheduler.pbc_rrr_scheduler import pbc_rrr_scheduler
+    from backend.scheduler.cn_fixing_repo_rate_scheduler import cn_fixing_repo_rate_scheduler
+    from backend.scheduler.cn_shibor_scheduler import cn_shibor_scheduler
+    from backend.scheduler.cn_central_parity_scheduler import cn_central_parity_scheduler
+    from backend.scheduler.cn_nbs_press_release_scheduler import cn_nbs_press_release_scheduler
+    from backend.scheduler.kr_semiconductor_scheduler import kr_semiconductor_scheduler
+    from backend.scheduler.cn_government_bond_issuance_scheduler import cn_government_bond_issuance_scheduler
+    from backend.scheduler.cn_baidu_migration_scheduler import cn_baidu_migration_scheduler
     from backend.scheduler.jpx_investor_trading_scheduler import jpx_investor_trading_scheduler
     from backend.scheduler.gold_etf_holdings_scheduler import gold_etf_holdings_scheduler
     from backend.scheduler.wgc_gold_etf_scheduler import wgc_gold_etf_scheduler
@@ -362,6 +372,7 @@ except ImportError as _ie:
     from scheduler.cn_shibor_scheduler import cn_shibor_scheduler
     from scheduler.cn_central_parity_scheduler import cn_central_parity_scheduler
     from scheduler.cn_nbs_press_release_scheduler import cn_nbs_press_release_scheduler
+    from scheduler.kr_semiconductor_scheduler import kr_semiconductor_scheduler
     from scheduler.cn_government_bond_issuance_scheduler import cn_government_bond_issuance_scheduler
     from scheduler.cn_baidu_migration_scheduler import cn_baidu_migration_scheduler
     from scheduler.jpx_investor_trading_scheduler import jpx_investor_trading_scheduler
@@ -818,6 +829,13 @@ async def startup_event():
     except Exception as e:
         print(f"Warning: Could not start CN NBS Press Release Scheduler: {e}")
 
+    # 韓国半導体輸出 日次更新スケジューラーを開始
+    try:
+        kr_semiconductor_scheduler.start()
+        print("KR Semiconductor Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start KR Semiconductor Scheduler: {e}")
+
     # 国債発行 日次スケジューラーを開始
     try:
         cn_government_bond_issuance_scheduler.start()
@@ -1076,6 +1094,11 @@ async def shutdown_event():
         cn_government_bond_issuance_scheduler.shutdown()
     except Exception as e:
         print(f"Warning: Error shutting down CN Government Bond Issuance Scheduler: {e}")
+
+    try:
+        kr_semiconductor_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down KR Semiconductor Scheduler: {e}")
 
     try:
         jpx_investor_trading_scheduler.shutdown()

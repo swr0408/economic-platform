@@ -851,11 +851,15 @@
     {
       "date": "2026-05-01",
       "value": 5.6
+    },
+    {
+      "date": "2026-06-01",
+      "value": 5.5
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": 5.6
+    "date": "2026-06-01",
+    "value": 5.5
   },
   "metadata": {
     "source": "Melbourne Institute",
@@ -863,5 +867,5 @@
     "frequency": "monthly",
     "unit": "%"
   },
-  "last_updated": "2026-06-11T10:15:07.824712+09:00"
+  "last_updated": "2026-06-12T11:01:35.398498+09:00"
 }

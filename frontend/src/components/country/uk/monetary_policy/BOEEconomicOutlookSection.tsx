@@ -3,36 +3,32 @@ import { Button, Card, Empty, Spin } from 'antd'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import { DARK_THEME } from '../../usa/common/chartConstants'
 import type {
-  BOEMarketExpectationsData,
   BOECPIProjectionsData,
   BOEGDPForecastData,
   BOEUnemploymentForecastData,
   BOEServicesInflationData,
   BOEWageGrowthData,
   BOEAverageWeeklyEarningsData,
-  BOEUnitWageCostsData,
   BOEInflationExpectationsData,
   BOEBankRateNextRelease,
 } from '../../../../hooks/useDashboardData'
-import BOEMarketExpectationsChart from './BOEMarketExpectationsChart'
 import BOECPIProjectionsChart from './BOECPIProjectionsChart'
 import BOEGDPForecastChart from './BOEGDPForecastChart'
 import BOEUnemploymentForecastChart from './BOEUnemploymentForecastChart'
 import BOEServicesInflationChart from './BOEServicesInflationChart'
 import BOEWageGrowthChart from './BOEWageGrowthChart'
 import BOEAverageWeeklyEarningsChart from './BOEAverageWeeklyEarningsChart'
-import BOEUnitWageCostsChart from './BOEUnitWageCostsChart'
 import BOEInflationExpectationsChart from './BOEInflationExpectationsChart'
+// ※ 政策金利見通し (Bank Rate) と単位賃金コスト (UWC) は
+//   2026年4月MPRのシナリオ方式移行で BoE が Databank から廃止したため削除
 
 interface BOEEconomicOutlookSectionProps {
-  marketExpectationsData: BOEMarketExpectationsData | null
   cpiProjectionsData: BOECPIProjectionsData | null
   gdpForecastData: BOEGDPForecastData | null
   unemploymentForecastData: BOEUnemploymentForecastData | null
   servicesInflationData: BOEServicesInflationData | null
   wageGrowthData: BOEWageGrowthData | null
   averageWeeklyEarningsData: BOEAverageWeeklyEarningsData | null
-  unitWageCostsData: BOEUnitWageCostsData | null
   inflationExpectationsData: BOEInflationExpectationsData | null
   isLoading?: boolean
 }
@@ -71,14 +67,12 @@ const formatNextRelease = (nextRelease: BOEBankRateNextRelease | null | undefine
  * カルーセル形式で複数のチャートを表示
  */
 export default function BOEEconomicOutlookSection({
-  marketExpectationsData,
   cpiProjectionsData,
   gdpForecastData,
   unemploymentForecastData,
   servicesInflationData,
   wageGrowthData,
   averageWeeklyEarningsData,
-  unitWageCostsData,
   inflationExpectationsData,
   isLoading = false,
 }: BOEEconomicOutlookSectionProps) {
@@ -88,14 +82,12 @@ export default function BOEEconomicOutlookSection({
   const nextReleaseInfo = useMemo(() => {
     // All economic outlook data uses the same MPR release date
     const sources = [
-      marketExpectationsData?.next_release,
       cpiProjectionsData?.next_release,
       gdpForecastData?.next_release,
       unemploymentForecastData?.next_release,
       servicesInflationData?.next_release,
       wageGrowthData?.next_release,
       averageWeeklyEarningsData?.next_release,
-      unitWageCostsData?.next_release,
       inflationExpectationsData?.next_release,
     ]
 
@@ -107,37 +99,30 @@ export default function BOEEconomicOutlookSection({
     }
     return null
   }, [
-    marketExpectationsData,
     cpiProjectionsData,
     gdpForecastData,
     unemploymentForecastData,
     servicesInflationData,
     wageGrowthData,
     averageWeeklyEarningsData,
-    unitWageCostsData,
     inflationExpectationsData,
   ])
 
   const nextReleaseText = formatNextRelease(nextReleaseInfo)
 
-  // 基本仕様（常設）のみ表示
-  // 1. 政策金利（Bank Rate 前提パス）
-  // 2. CPI（総合）見通し
-  // 3. GDP成長率 見通し
-  // 4. 失業率 見通し
-  // 5. サービスインフレ（基調/粘着性）
-  // 6. 賃金（足元トラッカー）
-  // 7. 平均週間賃金（AWE）見通し
-  // 8. 単位賃金コスト（UWC）見通し
-  // 9. インフレ期待（家計/企業）
+  // 基本仕様（常設）のみ表示 — 恒久的に取得できる系列に限定
+  // 1. GDP成長率 見通し
+  // 2. 失業率 見通し
+  // 3. インフレ 見通し
+  // 4. サービスインフレ（基調/粘着性）
+  // 5. インフレ期待（家計/企業）
+  // 6. 平均週間賃金（AWE）見通し
+  // 7. 民間セクター賃金上昇率
   // ※ CPI構成項目（37. Short-term inflation）は2025年11月以降の拡張データのため除外
   // ※ CPI寄与度は分解粒度が号で変わりやすいため除外
+  // ※ 政策金利（Bank Rate）/ 単位賃金コスト（UWC）は 2026年4月MPRの
+  //   シナリオ方式移行で BoE が Projections Databank から廃止したため削除
   const charts: ChartConfig[] = [
-    {
-      key: 'market-expectations',
-      label: '政策金利 見通し',
-      hasData: !!marketExpectationsData?.latest || !!marketExpectationsData?.previous,
-    },
     {
       key: 'gdp-forecast',
       label: 'GDP成長率 見通し',
@@ -166,17 +151,14 @@ export default function BOEEconomicOutlookSection({
     {
       key: 'average-weekly-earnings',
       label: '平均週間賃金（AWE）見通し',
-      hasData: !!averageWeeklyEarningsData?.average_weekly_earnings?.latest,
+      hasData:
+        !!averageWeeklyEarningsData?.average_weekly_earnings?.latest ||
+        (averageWeeklyEarningsData?.average_weekly_earnings?.table_data?.length ?? 0) > 0,
     },
     {
       key: 'wage-growth',
       label: '民間セクター賃金上昇率',
       hasData: !!wageGrowthData?.wage_growth?.data,
-    },
-    {
-      key: 'unit-wage-costs',
-      label: '単位賃金コスト（UWC）見通し',
-      hasData: !!unitWageCostsData?.unit_wage_costs?.latest,
     },
   ]
 
@@ -200,8 +182,6 @@ export default function BOEEconomicOutlookSection({
     }
 
     switch (currentChart.key) {
-      case 'market-expectations':
-        return <BOEMarketExpectationsChart data={marketExpectationsData} />
       case 'cpi-projections':
         return <BOECPIProjectionsChart data={cpiProjectionsData} />
       case 'gdp-forecast':
@@ -214,8 +194,6 @@ export default function BOEEconomicOutlookSection({
         return <BOEWageGrowthChart data={wageGrowthData} />
       case 'average-weekly-earnings':
         return <BOEAverageWeeklyEarningsChart data={averageWeeklyEarningsData} />
-      case 'unit-wage-costs':
-        return <BOEUnitWageCostsChart data={unitWageCostsData} />
       case 'inflation-expectations':
         return <BOEInflationExpectationsChart data={inflationExpectationsData} />
       default:

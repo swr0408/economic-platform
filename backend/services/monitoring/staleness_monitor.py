@@ -6,10 +6,18 @@
 「last_updated」を抽出。系列の頻度を日付間隔から推定し、期待リリース間隔より
 大幅に遅れているものを STUCK / WRITER_STOPPED / LAGGING に分類して返す。
 
+さらに、系列日付を持たない成果物も mtime ベースで監視する (従来の盲点対策):
+  - data/cache + data/picture 配下の PNG/CSV/XLSX (スクリーンショット・DL成果物)
+  - data/manual_update 配下 (手動更新の放置検知、ディレクトリ単位)
+  - data/cache/earnings (カレンダーは将来日付のみで系列判定不能 → mtime で判定)
+mtime 閾値超過は STUCK として返す (`check: "mtime"` フィールドで区別可能)。
+系列判定も mtime 判定もできない JSON は UNMONITORED として列挙し、盲点を
+API から enumerable にする。
+
 目的:
   ソース機構の劣化 (URL/資産ID変更、403/502、フォーマット変更等) で
   「再取得は走るのにデータが進まない」silent failure を**可視化**すること。
-  個別サービスを書き換えずに 754 キャッシュ全体を一括監視できる。
+  個別サービスを書き換えずに 754+ キャッシュ全体を一括監視できる。
 
 外部 API は叩かない (読み取り専用)。FMP カレンダー DB が利用可能なら、
 country 指標について「実際に公表済みの最新 actual 日付」と突き合わせて精度を上げる。
@@ -30,8 +38,11 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-# backend/data/cache
-CACHE_ROOT = Path(__file__).resolve().parents[2] / "data" / "cache"
+# backend/data 配下の監視対象ルート
+DATA_ROOT = Path(__file__).resolve().parents[2] / "data"
+CACHE_ROOT = DATA_ROOT / "cache"
+PICTURE_ROOT = DATA_ROOT / "picture"
+MANUAL_ROOT = DATA_ROOT / "manual_update"
 JST = timezone(timedelta(hours=9))
 
 _DATE_KEYS = ["date", "period", "month", "quarter", "time", "datetime",
@@ -49,7 +60,60 @@ _IGNORE_SUBSTR = (
     "test_response",
     "test_unemp",
     "test_estat",
+    "_test",            # *_test.png / *_test.xlsx 等のテスト成果物
+    "/temp/",           # 一時作業ディレクトリ
+    "_temp.",           # *_temp.xlsx 等の一時ファイル
+    "wgc_etf_template", # 静的テンプレート (更新されないのが正常)
 )
+
+# ---------------------------------------------------------------------------
+# mtime ベース監視ルール (PNG / CSV / XLSX / manual_update / earnings)
+#
+# 系列日付を持たない成果物 (スクリーンショット PNG、ダウンロード CSV/XLSX、
+# 手動更新ファイル、将来日付しか含まない earnings カレンダー) は系列ベースの
+# 鮮度判定ができず従来は完全な盲点だった。これらは「ファイル mtime の経過日数
+# > 閾値」で凍結を検知する (mtime = 最後に書き込みが成功した時刻なので、
+# 書き込みが止まった silent failure を直接捕捉できる)。閾値超過は STUCK。
+# ---------------------------------------------------------------------------
+
+# 拡張子ごとのデフォルト閾値 (日)。下の _MTIME_OVERRIDES が優先。
+_MTIME_DEFAULT_THRESHOLDS = {
+    ".png": 7.0,    # 日次スクリーンショット成果物 (週末・祝日を考慮して 7 日)
+    ".jpg": 7.0,
+    ".jpeg": 7.0,
+    ".csv": 90.0,   # ほぼ slow-moving なダウンロード成果物
+    ".xlsx": 90.0,
+    ".xls": 90.0,
+}
+
+# パス別オーバーライド: (パス部分一致, 閾値日数, per_dir)
+# 上から順に評価し最初に一致したルールを採用。
+# per_dir=True は「日付付きアーカイブのディレクトリ」(古いファイルが残るのが
+# 正常) を意味し、ディレクトリ内で最も新しいファイルの mtime だけを評価する。
+_MTIME_OVERRIDES = (
+    ("usa/fomc_projections/", 120.0, True),        # FOMC SEP (四半期)
+    ("usa/fomc_table1/", 120.0, True),             # FOMC Table1 (四半期)
+    ("japan/monetary_policy/outlook_images/", 120.0, True),   # 日銀展望レポート (1/4/7/10月)
+    ("switzerland/monetary_policy/inflation_forecast_images/", 120.0, True),  # SNB (四半期)
+    ("uk/housing/rics_survey_images/", 60.0, True),  # RICS 月次サーベイ画像
+    ("market/vx_contracts/", 14.0, True),          # VIX 限月別アーカイブ: 最新限月のみ評価
+    ("australia/inflation/nab_chart", 45.0, False),  # NAB 月次サーベイのチャート
+    ("newzealand/inflation/anz_business_outlook", 45.0, False),  # ANZ 月次
+    ("china/economy/cn_li_keqiang_index", 45.0, False),  # 月次合成
+)
+
+# manual_update のデフォルト閾値 (手動更新の放置を緩めに検知)
+_MANUAL_DEFAULT_THRESHOLD = 45.0
+# manual_update 配下のオーバーライド: (MANUAL_ROOT 相対パスの部分一致, 閾値日数)
+_MANUAL_OVERRIDES = (
+    ("seasonality/", 400.0),            # 季節性データは年 1 回の再生成で十分
+    ("yearly/", 400.0),                 # 年次更新フォルダ
+    ("monthly/switzerland_snb/", 400.0),  # SNB 年間カレンダー (.ics, 年次)
+)
+
+# earnings (JSON だがカレンダーは将来日付のみ → 系列判定不能なので mtime で判定)
+_EARNINGS_CALENDAR_THRESHOLD = 8.0     # カレンダーは日次〜週次で再取得されるはず
+_EARNINGS_FINANCIALS_THRESHOLD = 120.0  # 決算は四半期
 
 
 def _parse_date(s: Any) -> Optional[datetime]:
@@ -205,6 +269,109 @@ def _categorize(days_since_latest: Optional[int], days_since_update: Optional[in
     return "LAGGING"
 
 
+def _scan_mtime_artifacts() -> List[Dict[str, Any]]:
+    """系列日付を持たない成果物の mtime ベース凍結検知
+
+    対象: PNG/JPG/CSV/XLSX (cache + picture), manual_update 配下,
+          earnings JSON (将来日付のみで系列判定不能)。
+    閾値超過のみ STUCK (`check: "mtime"`) として返す。
+    """
+    import time as _time
+
+    now_ts = _time.time()
+    candidates: List[tuple] = []  # (mtime, label, threshold, group_key or None)
+
+    def _collect(path: Path, label: str, threshold: float, group: Optional[str]):
+        try:
+            mt = path.stat().st_mtime
+        except OSError:
+            return
+        candidates.append((mt, label, threshold, group))
+
+    # 1) cache + picture 配下の PNG/CSV/XLSX
+    for root, prefix in ((CACHE_ROOT, ""), (PICTURE_ROOT, "picture/")):
+        if not root.exists():
+            continue
+        for p in root.rglob("*"):
+            if not p.is_file():
+                continue
+            rel = str(p.relative_to(root)).replace("\\", "/")
+            if any(s in ("/" + rel) or s in rel for s in _IGNORE_SUBSTR):
+                continue
+            ext = p.suffix.lower()
+            label = prefix + rel
+
+            # earnings JSON は mtime で判定 (系列は将来日付のみ)
+            if prefix == "" and rel.startswith("earnings/") and ext == ".json":
+                thr = (_EARNINGS_CALENDAR_THRESHOLD if "calendar" in p.name
+                       else _EARNINGS_FINANCIALS_THRESHOLD)
+                _collect(p, label, thr, None)
+                continue
+
+            if ext not in _MTIME_DEFAULT_THRESHOLDS:
+                continue
+            thr = _MTIME_DEFAULT_THRESHOLDS[ext]
+            group = None
+            for sub, o_thr, per_dir in _MTIME_OVERRIDES:
+                if sub in rel:
+                    thr = o_thr
+                    if per_dir:
+                        group = sub  # ディレクトリ内最新ファイルのみ評価
+                    break
+            _collect(p, label, thr, group)
+
+    # 2) manual_update 配下 (トップレベルディレクトリ単位で最新ファイルのみ評価)
+    if MANUAL_ROOT.exists():
+        for p in MANUAL_ROOT.rglob("*"):
+            if not p.is_file():
+                continue
+            # ドキュメント類 (更新手順書等) はデータではないため対象外
+            if p.suffix.lower() in (".md", ".txt"):
+                continue
+            rel = str(p.relative_to(MANUAL_ROOT)).replace("\\", "/")
+            if any(s in rel for s in _IGNORE_SUBSTR):
+                continue
+            thr = _MANUAL_DEFAULT_THRESHOLD
+            for sub, o_thr in _MANUAL_OVERRIDES:
+                if sub in rel:
+                    thr = o_thr
+                    break
+            top = rel.split("/")[0] if "/" in rel else rel
+            _collect(p, f"manual_update/{rel}", thr, f"manual:{top}:{thr}")
+
+    # per_dir/グループ集約: グループ内で最も新しいファイルだけを代表として評価
+    singles: List[tuple] = []
+    by_group: Dict[str, tuple] = {}
+    for item in candidates:
+        mt, label, thr, group = item
+        if group is None:
+            singles.append(item)
+        else:
+            cur = by_group.get(group)
+            if cur is None or mt > cur[0]:
+                by_group[group] = item
+
+    rows: List[Dict[str, Any]] = []
+    for mt, label, thr, _group in singles + list(by_group.values()):
+        age_days = (now_ts - mt) / 86400.0
+        if age_days <= thr:
+            continue
+        rows.append({
+            "file": label,
+            "category": "STUCK",
+            "check": "mtime",
+            "freq": None,
+            "interval_days": None,
+            "latest": None,
+            "days_since_latest": round(age_days, 1),
+            "last_updated": datetime.fromtimestamp(mt).strftime("%Y-%m-%d"),
+            "days_since_update": round(age_days, 1),
+            "overdue_ratio": round(age_days / thr, 2) if thr else None,
+            "threshold_days": thr,
+        })
+    return rows
+
+
 def scan_stale_caches(now: Optional[datetime] = None,
                       include_ok: bool = False) -> Dict[str, Any]:
     """全キャッシュを走査して鮮度を判定する。
@@ -224,6 +391,10 @@ def scan_stale_caches(now: Optional[datetime] = None,
         rel = os.path.relpath(f, CACHE_ROOT).replace("\\", "/")
         if any(s in ("/" + rel) or s in rel for s in _IGNORE_SUBSTR):
             continue
+        # earnings JSON はカレンダーが将来日付のみで系列判定が永久に None になる
+        # → mtime ベース (_scan_mtime_artifacts) で監視するためここでは除外
+        if rel.startswith("earnings/"):
+            continue
         try:
             obj = json.load(open(f, encoding="utf-8"))
         except Exception as e:
@@ -240,8 +411,12 @@ def scan_stale_caches(now: Optional[datetime] = None,
         dsl = (now_dt - latest).days if latest else None
         dsu = (now_dt - last_updated).days if last_updated else None
         cat = _categorize(dsl, dsu, interval)
-        if cat is None and not include_ok:
-            continue
+        if cat is None:
+            # 系列日付が3点未満等で鮮度判定不能なファイルは盲点として列挙可能にする
+            if latest is None and include_ok:
+                cat = "UNMONITORED"
+            elif not include_ok:
+                continue
         overdue = round(dsl / interval, 2) if (dsl is not None and interval) else None
         rows.append({
             "file": rel,
@@ -256,19 +431,29 @@ def scan_stale_caches(now: Optional[datetime] = None,
             "n_points": len(dates),
         })
 
-    order = {"STUCK": 0, "WRITER_STOPPED": 1, "LAGGING": 2, "PARSE_ERROR": 3, "OK": 9}
+    # mtime ベースの成果物監視 (PNG/CSV/XLSX/manual_update/earnings) を統合
+    try:
+        rows.extend(_scan_mtime_artifacts())
+    except Exception as e:
+        logger.error(f"[StalenessMonitor] mtime artifact scan failed: {e}")
+
+    order = {"STUCK": 0, "WRITER_STOPPED": 1, "LAGGING": 2, "PARSE_ERROR": 3,
+             "UNMONITORED": 4, "OK": 9}
     flagged = [r for r in rows if r["category"] not in ("OK",)]
     flagged.sort(key=lambda r: (order.get(r["category"], 8),
                                 -(r.get("overdue_ratio") or 0)))
     counts: Dict[str, int] = {}
     for r in flagged:
         counts[r["category"]] = counts.get(r["category"], 0) + 1
+    items = flagged
+    if include_ok:
+        items = flagged + [r for r in rows if r["category"] == "OK"]
     return {
         "generated_at": (now or datetime.now(JST)).isoformat(),
         "total": len(files),
         "flagged": len(flagged),
         "counts": counts,
-        "items": flagged,
+        "items": items,
     }
 
 

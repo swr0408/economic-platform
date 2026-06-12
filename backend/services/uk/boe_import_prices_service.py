@@ -22,6 +22,8 @@ from pathlib import Path
 
 from core.redis_client import redis_client
 from .boe_mpr_utils import (
+    resolve_sheet,
+    parse_scenario_databank_sheet,
     get_mpr_info,
     get_projections_databank,
     get_chart_data,
@@ -124,11 +126,20 @@ class BOEImportPricesService:
         - Data starts from row 6
         """
         try:
-            if sheet_name not in wb.sheetnames:
-                logger.warning(f"Sheet {sheet_name} not found")
+            # シート番号はMPRごとにドリフトするため動的解決する。
+            # 2026年4月版で "UK import prices" シート自体が廃止されたケースは
+            # None を返し、呼び出し側のフォールバック (旧データ温存) に任せる
+            resolved = resolve_sheet(wb, sheet_name)
+            if resolved is None:
+                logger.warning(f"Sheet {sheet_name} not found (even by suffix)")
                 return None
 
-            ws = wb[sheet_name]
+            ws = wb[resolved]
+
+            # 2026年4月MPR以降の転置シナリオ方式レイアウトを先に試す
+            scenario = parse_scenario_databank_sheet(ws)
+            if scenario is not None:
+                return scenario
 
             # Get column headers (quarters) from row 5
             quarters = []

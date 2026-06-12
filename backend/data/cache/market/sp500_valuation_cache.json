@@ -64940,8 +64940,8 @@
       "earnings_yield": 0.045809,
       "yield_10y": 0.04542,
       "yield_spread": 0.000389,
-      "real_yield_10y": 0.022,
-      "real_yield_spread": 0.023809,
+      "real_yield_10y": 0.0221,
+      "real_yield_spread": 0.023709,
       "forward_pe_yoy": 0.89,
       "forward_eps_yoy": 19.93,
       "earnings_yield_yoy": -0.88
@@ -67621,8 +67621,8 @@
     "earnings_yield": 0.045809,
     "yield_10y": 0.04542,
     "yield_spread": 0.000389,
-    "real_yield_10y": 0.022,
-    "real_yield_spread": 0.023809,
+    "real_yield_10y": 0.0221,
+    "real_yield_spread": 0.023709,
     "forward_pe_yoy": 0.89,
     "forward_eps_yoy": 19.93,
     "earnings_yield_yoy": -0.88
@@ -67651,5 +67651,5 @@
   },
   "cached": false,
   "source": "csv+yfinance",
-  "last_updated": "2026-06-11T21:25:35.696688+09:00"
+  "last_updated": "2026-06-12T09:10:19.570674+09:00"
 }

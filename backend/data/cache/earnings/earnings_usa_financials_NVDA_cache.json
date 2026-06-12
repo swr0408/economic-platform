@@ -8,6 +8,31 @@
   "reported_currency": "USD",
   "periods": [
     {
+      "date": "2026-04-26",
+      "period": "Q1",
+      "fiscal_year": "2027",
+      "reported_currency": "USD",
+      "revenue": 81615000000.0,
+      "gross_profit": 61157000000.0,
+      "operating_income": 53536000000.0,
+      "net_income": 58321000000.0,
+      "eps_diluted": 2.39,
+      "gross_margin": 74.9335293757275,
+      "operating_margin": 65.59578508852539,
+      "net_margin": 71.45867793910433,
+      "operating_cf": 50344000000.0,
+      "fcf": 48587000000.0,
+      "capex": -1757000000.0,
+      "buyback": -21441000000.0,
+      "dividends_paid": -243000000.0,
+      "fcf_margin": 59.53194878392453,
+      "depreciation_amortization": 997000000.0,
+      "rd_expenses": 6321000000.0,
+      "stock_based_comp": 1928000000.0,
+      "revenue_yoy": 85.22763378875221,
+      "eps_yoy": 214.47368421052633
+    },
+    {
       "date": "2026-01-25",
       "period": "Q4",
       "fiscal_year": "2026",
@@ -104,8 +129,8 @@
       "depreciation_amortization": 611000000.0,
       "rd_expenses": 3989000000.0,
       "stock_based_comp": 1474000000.0,
-      "revenue_yoy": 69.18292121025956,
-      "eps_yoy": 26.66666666666667
+      "revenue_yoy": null,
+      "eps_yoy": null
     },
     {
       "date": "2025-01-26",
@@ -181,38 +206,13 @@
       "stock_based_comp": 1153000000.0,
       "revenue_yoy": null,
       "eps_yoy": null
-    },
-    {
-      "date": "2024-04-28",
-      "period": "Q1",
-      "fiscal_year": "2025",
-      "reported_currency": "USD",
-      "revenue": 26044000000.0,
-      "gross_profit": 20406000000.0,
-      "operating_income": 16909000000.0,
-      "net_income": 14881000000.0,
-      "eps_diluted": 0.6,
-      "gross_margin": 78.35201965903855,
-      "operating_margin": 64.92474274305022,
-      "net_margin": 57.13792044232837,
-      "operating_cf": 15345000000.0,
-      "fcf": 14976000000.0,
-      "capex": -369000000.0,
-      "buyback": -7740000000.0,
-      "dividends_paid": -98000000.0,
-      "fcf_margin": 57.50268775917677,
-      "depreciation_amortization": 410000000.0,
-      "rd_expenses": 2720000000.0,
-      "stock_based_comp": 1011000000.0,
-      "revenue_yoy": null,
-      "eps_yoy": null
     }
   ],
   "ir_home": "https://investor.nvidia.com/home/default.aspx",
   "ir_results": "https://investor.nvidia.com/financial-info/financial-reports/",
   "ir_tdnet": "",
   "ir_notes": "",
-  "last_updated": "2026-05-15T16:42:51.206653+00:00",
+  "last_updated": "2026-06-11T16:36:02.688224+00:00",
   "cached": false,
   "status": "ok"
 }

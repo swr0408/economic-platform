@@ -1579,12 +1579,17 @@
       "date": "2026-03-01",
       "gold_ounces_wan": 7438.0,
       "gold_value_usd_yi": 3427.63
+    },
+    {
+      "date": "2026-04-01",
+      "gold_ounces_wan": 7464.0,
+      "gold_value_usd_yi": 3441.72
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "gold_ounces_wan": 7438.0,
-    "gold_value_usd_yi": 3427.63
+    "date": "2026-04-01",
+    "gold_ounces_wan": 7464.0,
+    "gold_value_usd_yi": 3441.72
   },
   "metadata": {
     "source": "PBOC / SAFE",
@@ -1596,8 +1601,8 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-06-07",
+    "date": "2026-07-07",
     "label": "官方储备资产 (Official Reserve Assets)"
   },
-  "last_updated": "2026-05-14T13:20:06.607668+09:00"
+  "last_updated": "2026-06-12T01:22:14.639897+09:00"
 }

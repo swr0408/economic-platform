@@ -5,6 +5,7 @@
 更新できたらその月は以降スキップ
 """
 
+import asyncio
 import logging
 from datetime import datetime
 from typing import Dict, Any
@@ -41,7 +42,9 @@ class BOJLendingScheduler:
         try:
             logger.info("[Scheduler] Checking BOJ Lending Trends...")
             service = self._get_boj_lending_service()
-            result = service.scheduled_update()
+            # scheduled_update は同期 HTTP/Playwright を含むためワーカースレッドへ退避
+            # (sync Playwright はイベントループ上で起動すると毎回例外で即死する)
+            result = await asyncio.to_thread(service.scheduled_update)
             logger.info(f"[Scheduler] BOJ Lending update result: {result}")
         except Exception as e:
             logger.error(f"[Scheduler] Error updating BOJ Lending: {e}")

@@ -30,7 +30,7 @@ _DASHBOARD_TO_FMP_COUNTRY: Dict[str, List[str]] = {
     "canada": ["CA"],
     "newzealand": ["NZ"],
     "switzerland": ["CH"],
-    "global": ["US", "JP", "EU", "CN", "GB"],  # 主要国の代表指標
+    "global": ["US", "JP", "EU", "CN", "GB", "KR", "TW"],  # 主要国の代表指標 + 韓国/台湾 (global/economy の輸出・PMI)
 }
 
 # タイムゾーン

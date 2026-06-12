@@ -51242,8 +51242,8 @@
     "total_oz": 319359808.464
   },
   "latest_silver": {
-    "date": "2026-06-10",
-    "close": 63.08
+    "date": "2026-06-11",
+    "close": 67.68
   },
   "metadata": {
     "source": "CME COMEX + yfinance (SI=F)",
@@ -51256,5 +51256,5 @@
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-11T12:00:00.999234+09:00"
+  "last_updated": "2026-06-12T09:18:10.606364+09:00"
 }

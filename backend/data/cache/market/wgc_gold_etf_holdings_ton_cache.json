@@ -4449,38 +4449,54 @@
       "total": 3994.07
     },
     {
-      "date": "2026-05-08",
-      "gold_price_usd": 4716.19,
-      "us": 2004.78,
-      "uk": 634.7,
-      "germany": 323.47,
-      "switzerland": 378.03,
-      "japan": 73.92,
-      "china": 303.11,
-      "india": 116.71,
-      "australia": 54.44,
-      "canada": 78.88,
-      "south_africa": 17.07,
+      "date": "2026-05-31",
+      "gold_price_usd": 4586.0,
+      "us": 1998.21,
+      "uk": 635.57,
+      "germany": 325.7,
+      "switzerland": 376.47,
+      "japan": 73.9,
+      "china": 293.15,
+      "india": 116.31,
+      "australia": 54.32,
+      "canada": 78.77,
+      "south_africa": 17.11,
+      "hong_kong": 9.72,
+      "total": 3979.23
+    },
+    {
+      "date": "2026-06-05",
+      "gold_price_usd": 4586.0,
+      "us": 1989.13,
+      "uk": 636.68,
+      "germany": 325.23,
+      "switzerland": 375.42,
+      "japan": 73.9,
+      "china": 289.43,
+      "india": 116.31,
+      "australia": 53.84,
+      "canada": 77.85,
+      "south_africa": 17.11,
       "hong_kong": 9.7,
-      "total": 3994.81
+      "total": 3964.6
     }
   ],
   "data_type": "holdings_ton",
   "latest": {
-    "date": "2026-05-08",
-    "gold_price_usd": 4716.19,
-    "us": 2004.78,
-    "uk": 634.7,
-    "germany": 323.47,
-    "switzerland": 378.03,
-    "japan": 73.92,
-    "china": 303.11,
-    "india": 116.71,
-    "australia": 54.44,
-    "canada": 78.88,
-    "south_africa": 17.07,
+    "date": "2026-06-05",
+    "gold_price_usd": 4586.0,
+    "us": 1989.13,
+    "uk": 636.68,
+    "germany": 325.23,
+    "switzerland": 375.42,
+    "japan": 73.9,
+    "china": 289.43,
+    "india": 116.31,
+    "australia": 53.84,
+    "canada": 77.85,
+    "south_africa": 17.11,
     "hong_kong": 9.7,
-    "total": 3994.81
+    "total": 3964.6
   },
   "metadata": {
     "source": "World Gold Council",
@@ -4498,11 +4514,11 @@
       "hong_kong"
     ],
     "frequency": "monthly",
-    "data_count": 279,
+    "data_count": 280,
     "start_date": "2003-03-31",
-    "end_date": "2026-05-08"
+    "end_date": "2026-06-05"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-05-14T13:18:56.155719+09:00"
+  "last_updated": "2026-06-12T09:41:54.591982+09:00"
 }

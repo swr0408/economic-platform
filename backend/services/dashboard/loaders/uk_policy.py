@@ -29,20 +29,20 @@ class UKPolicyLoader(BaseDashboardLoader):
     - boe_bank_rate: BOE政策金利（Bank Rate）
     - boe_mpc_voting: BOE MPC投票履歴
     - boe_ois_curve: BOE OISフォワードカーブ
-    - boe_market_expectations: 政策金利 見通し（Bank Rate前提パス）
     - boe_cpi_projections: CPI（総合）見通し
     - boe_gdp_forecast: GDP成長率 見通し
     - boe_unemployment_forecast: 失業率 見通し
     - boe_services_inflation: サービスインフレ（基調/粘着性）
     - boe_wage_growth: 賃金（足元トラッカー）
     - boe_average_weekly_earnings: 平均週間賃金（AWE）見通し
-    - boe_unit_wage_costs: 単位賃金コスト（UWC）見通し
     - boe_inflation_expectations: インフレ期待（家計/企業）
     - boe_dmp_survey: DMP（意思決定者パネル）サーベイ
     - uk_public_sector_net_borrowing: 公的部門純借入（銀行除く）
 
     ※ CPI構成項目（boe_cpi_components）は2025年11月以降の拡張データのため除外
     ※ CPI寄与度（boe_cpi_contributions）は分解粒度が号で変わりやすいため除外
+    ※ 政策金利見通し（boe_market_expectations）/ 単位賃金コスト（boe_unit_wage_costs）は
+      2026年4月MPRのシナリオ方式移行で BoE が Projections Databank から廃止したため削除
 
     キャッシュ方式: 週次更新 + MPC発表日付近は頻繁更新
     """
@@ -55,14 +55,12 @@ class UKPolicyLoader(BaseDashboardLoader):
         "boe_bank_rate",
         "boe_mpc_voting",
         "boe_ois_curve",
-        "boe_market_expectations",
         "boe_cpi_projections",
         "boe_gdp_forecast",
         "boe_unemployment_forecast",
         "boe_services_inflation",
         "boe_wage_growth",
         "boe_average_weekly_earnings",
-        "boe_unit_wage_costs",
         "boe_inflation_expectations",
         "boe_dmp_survey",
         "uk_public_sector_net_borrowing",
@@ -131,14 +129,12 @@ class UKPolicyLoader(BaseDashboardLoader):
         from services.uk.boe_bank_rate_service import boe_bank_rate_service
         from services.uk.boe_mpc_voting_service import boe_mpc_voting_service
         from services.uk.boe_ois_curve_service import boe_ois_curve_service
-        from services.uk.boe_market_expectations_service import boe_market_expectations_service
         from services.uk.boe_cpi_projections_service import boe_cpi_projections_service
         from services.uk.boe_gdp_forecast_service import boe_gdp_forecast_service
         from services.uk.boe_unemployment_forecast_service import boe_unemployment_forecast_service
         from services.uk.boe_services_inflation_service import boe_services_inflation_service
         from services.uk.boe_wage_growth_service import boe_wage_growth_service
         from services.uk.boe_average_weekly_earnings_service import boe_average_weekly_earnings_service
-        from services.uk.boe_unit_wage_costs_service import boe_unit_wage_costs_service
         from services.uk.boe_inflation_expectations_service import boe_inflation_expectations_service
         from services.uk.boe_dmp_survey_service import boe_dmp_survey_service
         from services.uk.ons_public_sector_net_borrowing_service import ons_public_sector_net_borrowing_service
@@ -148,14 +144,12 @@ class UKPolicyLoader(BaseDashboardLoader):
             "boe_bank_rate": None,
             "boe_mpc_voting": None,
             "boe_ois_curve": None,
-            "boe_market_expectations": None,
             "boe_cpi_projections": None,
             "boe_gdp_forecast": None,
             "boe_unemployment_forecast": None,
             "boe_services_inflation": None,
             "boe_wage_growth": None,
             "boe_average_weekly_earnings": None,
-            "boe_unit_wage_costs": None,
             "boe_inflation_expectations": None,
             "boe_dmp_survey": None,
             "uk_public_sector_net_borrowing": None,
@@ -168,14 +162,12 @@ class UKPolicyLoader(BaseDashboardLoader):
                 executor.submit(self._get_boe_bank_rate, boe_bank_rate_service): "boe_bank_rate",
                 executor.submit(self._get_boe_mpc_voting, boe_mpc_voting_service): "boe_mpc_voting",
                 executor.submit(self._get_boe_ois_curve, boe_ois_curve_service): "boe_ois_curve",
-                executor.submit(self._get_boe_market_expectations, boe_market_expectations_service): "boe_market_expectations",
                 executor.submit(self._get_boe_cpi_projections, boe_cpi_projections_service): "boe_cpi_projections",
                 executor.submit(self._get_boe_gdp_forecast, boe_gdp_forecast_service): "boe_gdp_forecast",
                 executor.submit(self._get_boe_unemployment_forecast, boe_unemployment_forecast_service): "boe_unemployment_forecast",
                 executor.submit(self._get_boe_services_inflation, boe_services_inflation_service): "boe_services_inflation",
                 executor.submit(self._get_boe_wage_growth, boe_wage_growth_service): "boe_wage_growth",
                 executor.submit(self._get_boe_average_weekly_earnings, boe_average_weekly_earnings_service): "boe_average_weekly_earnings",
-                executor.submit(self._get_boe_unit_wage_costs, boe_unit_wage_costs_service): "boe_unit_wage_costs",
                 executor.submit(self._get_boe_inflation_expectations, boe_inflation_expectations_service): "boe_inflation_expectations",
                 executor.submit(self._get_boe_dmp_survey, boe_dmp_survey_service): "boe_dmp_survey",
                 executor.submit(self._get_uk_public_sector_net_borrowing, ons_public_sector_net_borrowing_service): "uk_public_sector_net_borrowing",
@@ -235,22 +227,6 @@ class UKPolicyLoader(BaseDashboardLoader):
             print(f"Error getting BOE OIS Curve: {e}")
             return {"current": None, "previous": None, "metadata": {}}
 
-    def _get_boe_market_expectations(self, service) -> dict:
-        """BOE Market Expectationsデータを取得"""
-        try:
-            force_refresh = self._should_force_refresh("boe_market_expectations")
-            response = service.get_market_expectations(force_refresh=force_refresh)
-            forecasts = response.get("forecasts", {})
-            return {
-                "latest": forecasts.get("latest_forecast"),
-                "previous": forecasts.get("previous_forecast"),
-                "metadata": response.get("metadata", {}),
-                "next_release": response.get("next_release"),
-            }
-        except Exception as e:
-            print(f"Error getting BOE Market Expectations: {e}")
-            return {"latest": None, "previous": None, "metadata": {}, "next_release": None}
-
     def _get_boe_cpi_projections(self, service) -> dict:
         """BOE CPI Projectionsデータを取得"""
         try:
@@ -261,6 +237,7 @@ class UKPolicyLoader(BaseDashboardLoader):
             # サービスがtable_data形式で直接返すようになった
             return {
                 "table_data": response.get("table_data", []),
+                "scenario_labels": response.get("scenario_labels"),
                 "chart_data": response.get("chart_data"),
                 "metadata": response.get("metadata", {}),
                 "next_release": next_release,
@@ -278,6 +255,7 @@ class UKPolicyLoader(BaseDashboardLoader):
             next_release = get_next_release_by_pattern(FMP_PATTERN_MPR)
             return {
                 "table_data": response.get("table_data", []),
+                "scenario_labels": response.get("scenario_labels"),
                 "chart_data": response.get("chart_data"),
                 "metadata": response.get("metadata", {}),
                 "next_release": next_release,
@@ -295,6 +273,7 @@ class UKPolicyLoader(BaseDashboardLoader):
             next_release = get_next_release_by_pattern(FMP_PATTERN_MPR)
             return {
                 "table_data": response.get("table_data", []),
+                "scenario_labels": response.get("scenario_labels"),
                 "chart_data": response.get("chart_data"),
                 "metadata": response.get("metadata", {}),
                 "next_release": next_release,
@@ -350,22 +329,6 @@ class UKPolicyLoader(BaseDashboardLoader):
         except Exception as e:
             print(f"Error getting BOE Average Weekly Earnings: {e}")
             return {"average_weekly_earnings": {}, "metadata": {}, "next_release": None}
-
-    def _get_boe_unit_wage_costs(self, service) -> dict:
-        """BOE Unit Wage Costsデータを取得"""
-        try:
-            force_refresh = self._should_force_refresh("boe_unit_wage_costs")
-            response = service.fetch_data(force_refresh=force_refresh)
-            # FMPから次回発表日時を取得
-            next_release = get_next_release_by_pattern(FMP_PATTERN_MPR)
-            return {
-                "unit_wage_costs": response.get("unit_wage_costs", {}),
-                "metadata": response.get("metadata", {}),
-                "next_release": next_release,
-            }
-        except Exception as e:
-            print(f"Error getting BOE Unit Wage Costs: {e}")
-            return {"unit_wage_costs": {}, "metadata": {}, "next_release": None}
 
     def _get_boe_inflation_expectations(self, service) -> dict:
         """BOE Inflation Expectationsデータを取得"""
