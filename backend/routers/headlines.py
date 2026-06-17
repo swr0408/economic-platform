@@ -14,6 +14,8 @@ try:
         create_manual_headline,
         get_categories, create_category, update_category, delete_category,
         seed_country_categories,
+        get_read_marker, set_read_marker, clear_read_marker,
+        reorder_saved_headlines, reorder_sidebar_entries,
     )
     from backend.services.headlines.translation_worker import translation_worker
     from backend.services.discord.discord_news_listener import discord_news_listener
@@ -26,6 +28,8 @@ except ImportError:
         create_manual_headline,
         get_categories, create_category, update_category, delete_category,
         seed_country_categories,
+        get_read_marker, set_read_marker, clear_read_marker,
+        reorder_saved_headlines, reorder_sidebar_entries,
     )
     from services.headlines.translation_worker import translation_worker
     from services.discord.discord_news_listener import discord_news_listener
@@ -67,6 +71,51 @@ def api_get_headlines(
         saved_category_prefix=savedCategoryPrefix,
         date_from=date_from, date_to=date_to, q=q,
     )
+
+
+# ========== 既読マーカー「ここまで見た」(master 限定) ==========
+# NOTE: /headlines/{headline_id} より先に定義すること (パスマッチ順)
+
+class ReadMarkerRequest(BaseModel):
+    headlineId: int
+
+
+@router.get("/headlines/read-marker")
+def api_get_read_marker(user=Depends(_require_master)):
+    """既読マーカー取得 (master 限定)"""
+    return {"marker": get_read_marker(user.id)}
+
+
+@router.put("/headlines/read-marker")
+def api_set_read_marker(body: ReadMarkerRequest, user=Depends(_require_master)):
+    """既読マーカー設定 (master 限定)"""
+    result = set_read_marker(user.id, body.headlineId)
+    if "error" in result:
+        raise HTTPException(status_code=404, detail=result["error"])
+    return result
+
+
+@router.delete("/headlines/read-marker")
+def api_clear_read_marker(user=Depends(_require_master)):
+    """既読マーカー解除 (master 限定)"""
+    clear_read_marker(user.id)
+    return {"success": True}
+
+
+class SidebarOrderEntry(BaseModel):
+    type: str  # 'saved' | 'category'
+    id: int
+    sortOrder: int
+
+
+class SidebarOrderRequest(BaseModel):
+    entries: list[SidebarOrderEntry]
+
+
+@router.put("/headlines/sidebar-order")
+def api_reorder_sidebar_entries(body: SidebarOrderRequest, _master=Depends(_require_master)):
+    """サイドバーセクション内の表示順を保存 (master 限定)"""
+    return reorder_sidebar_entries([e.model_dump() for e in body.entries])
 
 
 @router.get("/headlines/{headline_id}")
@@ -153,9 +202,13 @@ def api_unsave_headline(
 
 @router.post("/headlines/{headline_id}/retranslate")
 def api_retranslate(headline_id: int, _master=Depends(_require_master)):
-    """再翻訳 (master 限定)"""
-    translation_worker.retranslate(headline_id)
-    return {"success": True}
+    """再翻訳 (master 限定)。即時翻訳して結果を返す。
+
+    成功時 ``{"success": True, "status": "done", "headline_ja": ...}``、
+    翻訳 API 失敗時は ``{"success": False, "status": "pending"}`` を返し、
+    バックグラウンドワーカーが後続で再試行する。
+    """
+    return translation_worker.retranslate(headline_id)
 
 
 # ========== Categories (master 限定) ==========
@@ -174,8 +227,14 @@ class CategoryRequest(BaseModel):
 
 @router.post("/categories")
 def api_create_category(body: CategoryRequest, _master=Depends(_require_master)):
-    """カテゴリ作成 (master 限定)"""
-    return create_category(name=body.name, color=body.color, parent_id=body.parent_id)
+    """カテゴリ作成 (master 限定)。
+
+    同名カテゴリは「別の親の下なら作成可」。同じ親の下に同名がある場合のみ 409 を返す。
+    """
+    result = create_category(name=body.name, color=body.color, parent_id=body.parent_id)
+    if result.get("error"):
+        raise HTTPException(status_code=409, detail=result["error"])
+    return result
 
 
 class CategoryUpdateRequest(BaseModel):
@@ -195,6 +254,20 @@ def api_update_category(
     if not success:
         raise HTTPException(status_code=404, detail="Category not found")
     return {"success": True}
+
+
+class HeadlineOrderRequest(BaseModel):
+    savedIds: list[int]
+
+
+@router.put("/categories/{category_id}/headline-order")
+def api_reorder_saved_headlines(
+    category_id: int,
+    body: HeadlineOrderRequest,
+    _master=Depends(_require_master),
+):
+    """カテゴリ内の保存ヘッドラインを並び替え (master 限定)"""
+    return reorder_saved_headlines(category_id, body.savedIds)
 
 
 @router.delete("/categories/{category_id}")

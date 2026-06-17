@@ -1278,13 +1278,19 @@
         "value": 8.0,
         "forecast": 8.0,
         "previous": 7.0
+      },
+      {
+        "date": "2026-06-01",
+        "value": 13.0,
+        "forecast": 9.0,
+        "previous": 8.0
       }
     ],
     "latest": {
-      "date": "2026-05-01",
-      "value": 8.0,
-      "forecast": 8.0,
-      "previous": 7.0
+      "date": "2026-06-01",
+      "value": 13.0,
+      "forecast": 9.0,
+      "previous": 8.0
     }
   },
   "non_manufacturing": {
@@ -2566,26 +2572,32 @@
         "value": 29.0,
         "forecast": null,
         "previous": null
+      },
+      {
+        "date": "2026-06-01",
+        "value": 32.0,
+        "forecast": null,
+        "previous": null
       }
     ],
     "latest": {
-      "date": "2026-05-01",
-      "value": 29.0,
+      "date": "2026-06-01",
+      "value": 32.0,
       "forecast": null,
       "previous": null
     }
   },
   "next_release": {
-    "date": "2026-06-17",
-    "datetime_utc": "2026-06-17T23:00:00+00:00",
-    "datetime_jst": "2026-06-18T08:00:00+09:00",
+    "date": "2026-07-15",
+    "datetime_utc": "2026-07-15T23:00:00+00:00",
+    "datetime_jst": "2026-07-16T08:00:00+09:00",
     "time_jst": "08:00",
-    "label": "Reuters Tankan Index (Jun)",
-    "estimate": 9
+    "label": "Reuters Tankan Index (Jul)",
+    "estimate": null
   },
   "csv_mtime": {
     "manufacturing": 1779676949.392151,
-    "non_manufacturing": 1779676954.0488224
+    "non_manufacturing": 1781700200.3777125
   },
-  "last_updated": "2026-05-25T12:19:19.820510+09:00"
+  "last_updated": "2026-06-17T21:43:27.995950+09:00"
 }

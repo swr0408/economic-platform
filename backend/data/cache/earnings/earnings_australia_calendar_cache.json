@@ -13,11 +13,11 @@
       "date": "2026-07-29",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 3.88,
+      "eps_estimate": 3.96,
       "eps_actual": null,
-      "revenue_estimate": 33475160000.0,
+      "revenue_estimate": 32928870000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "BHP.AX",
@@ -120,7 +120,7 @@
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-06-12T01:35:37.119411+00:00",
+  "last_updated": "2026-06-17T12:37:42.875114+00:00",
   "cached": false,
   "status": "ok"
 }

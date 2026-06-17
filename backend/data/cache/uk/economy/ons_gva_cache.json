@@ -1730,14 +1730,19 @@
         "date": "2026-03-01",
         "value": 0.6,
         "period": "2026 MAR"
+      },
+      {
+        "date": "2026-04-01",
+        "value": 0.7,
+        "period": "2026 APR"
       }
     ],
     "metadata": {
       "title": "Gross Value Added - Monthly (3 month on 3 month growth) :CVM SA",
       "cdid": "ED3H",
       "unit": "",
-      "release_date": "14-05-2026",
-      "next_release_ons": "12 June 2026"
+      "release_date": "12-06-2026",
+      "next_release_ons": "16 July 2026"
     }
   },
   "ecy2": {
@@ -3763,6 +3768,12 @@
         "period": "2026 MAR",
         "value": 103.07,
         "yoy_change": 1.08
+      },
+      {
+        "date": "2026-04-01",
+        "period": "2026 APR",
+        "value": 103.27,
+        "yoy_change": 1.18
       }
     ],
     "data": [
@@ -5520,6 +5531,11 @@
         "date": "2026-03-01",
         "value": 103.4,
         "period": "2026 MAR"
+      },
+      {
+        "date": "2026-04-01",
+        "value": 103.3,
+        "period": "2026 APR"
       }
     ],
     "yoy": [
@@ -7556,6 +7572,12 @@
         "period": "2026 MAR",
         "value": 103.4,
         "yoy_change": 1.17
+      },
+      {
+        "date": "2026-04-01",
+        "period": "2026 APR",
+        "value": 103.3,
+        "yoy_change": 1.27
       }
     ],
     "mom": [
@@ -9658,14 +9680,20 @@
         "period": "2026 MAR",
         "value": 103.4,
         "mom_change": 0.29
+      },
+      {
+        "date": "2026-04-01",
+        "period": "2026 APR",
+        "value": 103.3,
+        "mom_change": -0.1
       }
     ],
     "metadata": {
       "title": "Gross Value Added - Monthly (Index 1dp) :CVM SA",
       "cdid": "ECY2",
       "unit": "",
-      "release_date": "14-05-2026",
-      "next_release_ons": "12 June 2026"
+      "release_date": "12-06-2026",
+      "next_release_ons": "16 July 2026"
     }
   },
   "metadata": {
@@ -9674,5 +9702,5 @@
     "ed3h_title": "Gross Value Added - Monthly (3 month on 3 month growth) :CVM SA",
     "ecy2_title": "Gross Value Added - Monthly (Index 1dp) :CVM SA"
   },
-  "last_updated": "2026-06-11T08:59:37.864329+09:00"
+  "last_updated": "2026-06-17T17:31:20.857569+09:00"
 }

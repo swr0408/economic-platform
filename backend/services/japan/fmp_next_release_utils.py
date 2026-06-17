@@ -309,6 +309,7 @@ def get_last_release_from_fmp(
 def should_refresh_by_fmp_schedule(
     econalpha_id: str,
     last_updated_str: str,
+    max_age_hours: float = 7 * 24,
 ) -> bool:
     """
     FMPスケジュールに基づく更新判定（日本向け）
@@ -319,6 +320,9 @@ def should_refresh_by_fmp_schedule(
     Args:
         econalpha_id: EconAlpha指標ID
         last_updated_str: 最終更新日時のISO文字列
+        max_age_hours: max-ageフォールバックの上限（時間）。これを超えて未更新なら
+            発表日判定に関係なく強制リフレッシュ。デフォルト168h(7日)。
+            源泉が発表当日〜翌日に反映される指標は24〜72hを指定して回復を早める。
 
     Returns:
         True: 更新が必要
@@ -334,13 +338,24 @@ def should_refresh_by_fmp_schedule(
 
         now = datetime.now(JST)
 
+        # max-age フォールバック（デフォルト7日、usa版と同等の自己回復ネット）:
+        # FMPイベント欠落・源泉の発表遅延等でスケジュール判定が永久に False を返し続け、
+        # キャッシュが無期限凍結するのを防ぐ。源泉が発表当日〜翌日に反映される指標は
+        # 呼び出し側で短い max_age_hours（24〜72h）を指定して回復を早める。
+        if (now - last_updated).total_seconds() > max_age_hours * 60 * 60:
+            return True
+
         # マッピングからパターンを取得
         patterns = get_fmp_event_patterns(econalpha_id)
         if not patterns:
             return False
 
         with SessionLocal() as session:
-            pattern_conditions = " OR ".join([f"event ILIKE '%{p}%'" for p in patterns])
+            # SQLインジェクション対策: 値は直埋めせずバインドパラメータで渡す
+            pattern_conditions = " OR ".join(
+                [f"event ILIKE :pat{i}" for i in range(len(patterns))]
+            )
+            pattern_params = {f"pat{i}": f"%{p}%" for i, p in enumerate(patterns)}
 
             # 1. actual IS NOT NULLの直近イベント（従来の判定）
             query = text(f"""
@@ -353,7 +368,7 @@ def should_refresh_by_fmp_schedule(
                 ORDER BY datetime_utc DESC
                 LIMIT 1
             """)
-            row = session.execute(query).fetchone()
+            row = session.execute(query, pattern_params).fetchone()
 
             if row:
                 dt_utc = row[0]
@@ -377,7 +392,7 @@ def should_refresh_by_fmp_schedule(
                 ORDER BY datetime_utc DESC
                 LIMIT 1
             """)
-            row_pending = session.execute(query_pending).fetchone()
+            row_pending = session.execute(query_pending, pattern_params).fetchone()
 
             if row_pending:
                 dt_utc_pending = row_pending[0]

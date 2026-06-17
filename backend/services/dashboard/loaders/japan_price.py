@@ -134,7 +134,10 @@ class JapanPriceLoader(BaseDashboardLoader):
 
         except Exception as e:
             print(f"Error detecting stale indicators: {e}")
-            return {"all"}
+            # エラー時に {"all"} を返すと、エラーが続く限り毎リクエストで全指標の
+            # 外部API一斉取得が走りイベントループ/executorを圧迫する (2026-06-13 障害)。
+            # 判定不能時はキャッシュ継続に倒す (各サービスのスケジューラが個別に更新する)。
+            return set()
 
         return stale
 

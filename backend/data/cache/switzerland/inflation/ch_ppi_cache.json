@@ -6014,12 +6014,17 @@
       "date": "2026-04-01",
       "ppi_yoy": 0.84,
       "ppi_mom": 100.46
+    },
+    {
+      "date": "2026-05-01",
+      "ppi_yoy": -0.35,
+      "ppi_mom": 100.1
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "ppi_yoy": 0.84,
-    "ppi_mom": 100.46
+    "date": "2026-05-01",
+    "ppi_yoy": -0.35,
+    "ppi_mom": 100.1
   },
   "metadata": {
     "source": "Swiss Federal Statistical Office (BFS)",
@@ -6027,5 +6032,5 @@
     "description": "スイス生産者・輸入物価指数（PPI）",
     "asset_id": "36390908"
   },
-  "last_updated": "2026-06-11T02:29:52.967162+09:00"
+  "last_updated": "2026-06-17T16:01:35.707597+09:00"
 }

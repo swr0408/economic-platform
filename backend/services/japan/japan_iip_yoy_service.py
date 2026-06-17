@@ -18,8 +18,10 @@ from pathlib import Path
 
 try:
     from backend.core.redis_client import redis_client
+    from backend.services.japan.estat_file_source import download_estat_excel
 except ImportError:
     from core.redis_client import redis_client
+    from services.japan.estat_file_source import download_estat_excel
 
 logger = logging.getLogger(__name__)
 
@@ -33,8 +35,11 @@ DATA_CACHE_FILE = CACHE_DIR / "japan_iip_yoy_cache.json"
 class JapanIIPYoYService:
     """Service for fetching raw IIP index and calculating YoY data"""
 
-    # METI Excel File Download URL for raw index (原指数)
-    METI_IIP_RAW_URL = "https://www.meti.go.jp/statistics/tyo/iip/xls/b2020_gom1j.xlsx"
+    # 取得元: e-Stat の「品目別／月次／原指数」の '生産' シート(YoY 算出用の原指数)。
+    # www.meti.go.jp は当サーバ IP をブロックするため e-Stat へ移行(旧 b2020_gom1j.xlsx と同構造)。
+    ESTAT_STATS_CODE = "00550300"
+    ESTAT_TABLE_FILTER = "品目別／月次／原指数"
+    ESTAT_FALLBACK_IDS = ("000040172368",)
 
     DATA_CACHE_KEY = "japan:iip_yoy:data"
 
@@ -42,58 +47,16 @@ class JapanIIPYoYService:
         pass
 
     def _download_excel_file(self) -> Optional[bytes]:
+        """e-Stat から IIP 原指数(品目別/月次)の Excel を取得する(YoY 算出用)。
+
+        statInfId はリリース毎にローテートするため Data Catalog API で動的解決する。
+        取得不能時は None(呼び出し側がキャッシュにフォールバック)。
         """
-        Download the raw index Excel file from METI with retry logic.
-        Fast-fail: 1 attempt, 20s timeout — caller must handle failure with cache fallback.
-        """
-        max_retries = 1
-        timeout = 20
-
-        for attempt in range(max_retries):
-            try:
-                logger.info(f"Attempting to download raw IIP Excel file (attempt {attempt + 1}/{max_retries})")
-
-                session = requests.Session()
-                session.headers.update({
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-                    'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,*/*',
-                    'Accept-Language': 'ja,en-US;q=0.9,en;q=0.8',
-                    'Accept-Encoding': 'gzip, deflate, br',
-                    'Connection': 'keep-alive',
-                })
-
-                response = session.get(
-                    self.METI_IIP_RAW_URL,
-                    timeout=timeout,
-                    stream=True,
-                    allow_redirects=True
-                )
-
-                if response.status_code == 200:
-                    content = b''
-                    for chunk in response.iter_content(chunk_size=8192):
-                        if chunk:
-                            content += chunk
-
-                    logger.info(f"Successfully downloaded raw IIP Excel file ({len(content)} bytes)")
-                    return content
-                else:
-                    logger.warning(f"Download attempt {attempt + 1} failed: HTTP {response.status_code}")
-                    if attempt < max_retries - 1:
-                        import time
-                        time.sleep(5)
-                    continue
-
-            except Exception as e:
-                logger.error(f"Error downloading raw IIP Excel (attempt {attempt + 1}): {e}")
-                if attempt < max_retries - 1:
-                    import time
-                    time.sleep(5)
-                    continue
-                return None
-
-        logger.error(f"Failed to download raw IIP file after {max_retries} attempts")
-        return None
+        return download_estat_excel(
+            stats_code=self.ESTAT_STATS_CODE,
+            table_name_filter=self.ESTAT_TABLE_FILTER,
+            fallback_stat_inf_ids=self.ESTAT_FALLBACK_IDS,
+        )
 
     def _parse_raw_index_excel(self, excel_content: bytes) -> Optional[Dict[str, float]]:
         """

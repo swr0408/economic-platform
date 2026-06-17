@@ -1013,21 +1013,27 @@
       "value": 0.75,
       "forecast": 0.75,
       "previous": 0.75
+    },
+    {
+      "date": "2026-04-28",
+      "value": 0.75,
+      "forecast": 0.75,
+      "previous": 0.75
     }
   ],
   "latest": {
-    "date": "2026-03-19",
+    "date": "2026-04-28",
     "value": 0.75,
     "forecast": 0.75,
     "previous": 0.75
   },
   "next_release": {
-    "date": "2026-04-28",
-    "datetime_utc": "2026-04-28T03:00:00+00:00",
-    "datetime_jst": "2026-04-28T12:00:00+09:00",
+    "date": "2026-06-16",
+    "datetime_utc": "2026-06-16T03:00:00+00:00",
+    "datetime_jst": "2026-06-16T12:00:00+09:00",
     "time_jst": "12:00",
     "label": "BoJ Interest Rate Decision",
-    "estimate": 0.75
+    "estimate": 1
   },
-  "last_updated": "2026-04-28T14:00:43.363310+09:00"
+  "last_updated": "2026-06-16T12:00:14.504648+09:00"
 }

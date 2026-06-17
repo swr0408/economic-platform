@@ -219,9 +219,11 @@ class CnHousePriceIndexService:
             from sqlalchemy import text
 
             with SessionLocal() as session:
+                # SQLインジェクション対策: 値は直埋めせずバインドパラメータで渡す
                 pattern_conditions = " OR ".join(
-                    [f"event ILIKE '%{p}%'" for p in patterns]
+                    [f"event ILIKE :pat{i}" for i in range(len(patterns))]
                 )
+                pattern_params = {f"pat{i}": f"%{p}%" for i, p in enumerate(patterns)}
                 query = text(f"""
                     SELECT datetime_utc
                     FROM economic_calendar_events
@@ -232,7 +234,7 @@ class CnHousePriceIndexService:
                     ORDER BY datetime_utc DESC
                     LIMIT 1
                 """)
-                row = session.execute(query).fetchone()
+                row = session.execute(query, pattern_params).fetchone()
 
                 if not row:
                     return False

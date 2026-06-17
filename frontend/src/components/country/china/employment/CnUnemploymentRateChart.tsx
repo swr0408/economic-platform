@@ -80,6 +80,17 @@ export default function CnUnemploymentRateChart({ data }: Props) {
   const sortedData = useSortedData(chartData)
   const hasData = sortedData.length > 0
 
+  // 系列ごとに最新の非NULL値を取得（youth は年齢別の発表ラグで total より遅れるため、
+  // 最新行(total基準)の youth が空でも、直近で値のある月を表示する）
+  const latestTotal = useMemo(() => {
+    const withVal = sortedData.filter((d) => d.total != null)
+    return withVal.length ? withVal[withVal.length - 1] : null
+  }, [sortedData])
+  const latestYouth = useMemo(() => {
+    const withVal = sortedData.filter((d) => d.youth != null)
+    return withVal.length ? withVal[withVal.length - 1] : null
+  }, [sortedData])
+
   if (data === null) {
     return <LoadingChart title="失業率" />
   }
@@ -92,7 +103,11 @@ export default function CnUnemploymentRateChart({ data }: Props) {
     )
   }
 
-  const latest = data.latest
+  // youth の最新月が total と異なる場合はラベルに月を併記（単一日付表示の誤解防止）
+  const youthLabel =
+    latestYouth && latestTotal && latestYouth.date !== latestTotal.date
+      ? `若年層（16-24歳・${formatDateFull(latestYouth.date)}）`
+      : '若年層（16-24歳）'
 
   return (
     <div id="unemployment">
@@ -106,10 +121,10 @@ export default function CnUnemploymentRateChart({ data }: Props) {
         {/* 最新値表示 */}
         <LatestValueBox
           items={[
-            { label: '全国城鎮調査失業率', value: latest?.total ?? null, color: COLOR_TOTAL, format: 'percent', decimals: 1 },
-            { label: '若年層（16-24歳）', value: latest?.youth ?? null, color: COLOR_YOUTH, format: 'percent', decimals: 1 },
+            { label: '全国城鎮調査失業率', value: latestTotal?.total ?? null, color: COLOR_TOTAL, format: 'percent', decimals: 1 },
+            { label: youthLabel, value: latestYouth?.youth ?? null, color: COLOR_YOUTH, format: 'percent', decimals: 1 },
           ]}
-          date={latest?.date}
+          date={latestTotal?.date}
           dateFormatter={formatDateFull}
           nextRelease={data.next_release ?? null}
         />

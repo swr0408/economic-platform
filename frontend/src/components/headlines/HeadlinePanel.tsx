@@ -7,10 +7,10 @@ import { useState, useMemo } from 'react'
 import { Typography, Tag, Spin, Empty, Button, Space } from 'antd'
 import {
   SoundOutlined, LinkOutlined, ReloadOutlined,
-  MinusCircleOutlined, PlusOutlined,
+  MinusCircleOutlined, PlusOutlined, CopyOutlined, CheckOutlined,
 } from '@ant-design/icons'
 import dayjs from 'dayjs'
-import { useHeadlines, useUnsaveHeadline, useCategories } from '../../hooks/useHeadlines'
+import { useHeadlines, useUnsaveHeadline, useCategories, useReorderSavedHeadlines, useReorderSidebarEntries } from '../../hooks/useHeadlines'
 import { useIsMaster } from '../../hooks/useIsMaster'
 import ManualHeadlineModal from './ManualHeadlineModal'
 import type { HeadlinesParams, Headline, Category } from '../../api/headlinesApi'
@@ -57,17 +57,51 @@ interface HeadlinePanelProps {
   limit?: number
   /** コンパクトモード */
   compact?: boolean
+  /** このカテゴリ名（短縮名、例:「雇用」）のセクションを先頭に表示する */
+  priorityCategoryName?: string
 }
 
 /** 各ヘッドライン行（削除確認ステート付き） */
-function HeadlineItem({ item, compact, showCategoryTags = true }: {
+function HeadlineItem({ item, compact, showCategoryTags = true, sectionCategoryId }: {
   item: Headline; compact: boolean; showCategoryTags?: boolean
+  /** グループ表示時の所属カテゴリID（master の行削除＝このカテゴリの保存解除に使う） */
+  sectionCategoryId?: number
 }) {
   const unsaveMutation = useUnsaveHeadline()
   const [confirmDeleteId, setConfirmDeleteId] = useState<number | null>(null)
+  const [copied, setCopied] = useState(false)
+  const isMaster = useIsMaster()
+
+  const handleCopy = async (e: React.MouseEvent) => {
+    e.stopPropagation()
+    const text = item.headline_ja || item.headline_raw || ''
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text)
+      } else {
+        // 非セキュアコンテキスト等のフォールバック
+        const ta = document.createElement('textarea')
+        ta.value = text
+        ta.style.position = 'fixed'
+        ta.style.opacity = '0'
+        document.body.appendChild(ta)
+        ta.select()
+        document.execCommand('copy')
+        document.body.removeChild(ta)
+      }
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1200)
+    } catch {
+      /* コピー失敗時は何もしない */
+    }
+  }
 
   const publishedTime = item.published_at ? dayjs(item.published_at).format('YYYY/MM/DD HH:mm') : ''
   const hasSaved = item.saved_categories && item.saved_categories.length > 0
+  // このセクションに対応する保存レコード（行レベル削除ボタンの対象）
+  const sectionSaved = sectionCategoryId != null
+    ? item.saved_categories?.find(sc => sc.category_id === sectionCategoryId)
+    : undefined
 
   const handleDelete = (savedId: number) => {
     if (confirmDeleteId === savedId) {
@@ -125,6 +159,16 @@ function HeadlineItem({ item, compact, showCategoryTags = true }: {
             <LinkOutlined />
           </a>
         )}
+        {copied
+          ? <CheckOutlined style={{ fontSize: 11, color: colors.accent }} title="コピーしました" />
+          : <CopyOutlined
+              onClick={handleCopy}
+              style={{ fontSize: 11, color: colors.textTertiary, cursor: 'pointer', transition: 'color 0.15s' }}
+              onMouseEnter={e => (e.currentTarget.style.color = colors.textPrimary)}
+              onMouseLeave={e => (e.currentTarget.style.color = colors.textTertiary)}
+              title="本文をコピー"
+            />
+        }
         {showCategoryTags && hasSaved && item.saved_categories!.map(sc => (
           <span key={sc.saved_id} style={{ display: 'inline-flex', alignItems: 'center', gap: 2 }}>
             <Tag
@@ -133,18 +177,34 @@ function HeadlineItem({ item, compact, showCategoryTags = true }: {
             >
               {sc.category_name}
             </Tag>
-            <MinusCircleOutlined
-              onClick={(e) => { e.stopPropagation(); handleDelete(sc.saved_id) }}
-              style={{
-                fontSize: 10,
-                color: confirmDeleteId === sc.saved_id ? '#ef4444' : colors.textTertiary,
-                cursor: 'pointer',
-                transition: 'color 0.15s',
-              }}
-              title={confirmDeleteId === sc.saved_id ? 'もう一度クリックで削除' : '保存を解除'}
-            />
+            {isMaster && (
+              <MinusCircleOutlined
+                onClick={(e) => { e.stopPropagation(); handleDelete(sc.saved_id) }}
+                style={{
+                  fontSize: 10,
+                  color: confirmDeleteId === sc.saved_id ? '#ef4444' : colors.textTertiary,
+                  cursor: 'pointer',
+                  transition: 'color 0.15s',
+                }}
+                title={confirmDeleteId === sc.saved_id ? 'もう一度クリックで削除' : '保存を解除'}
+              />
+            )}
           </span>
         ))}
+        {/* グループ表示時の行削除（master 限定: このセクションのカテゴリから保存解除） */}
+        {isMaster && sectionSaved && (
+          <MinusCircleOutlined
+            onClick={(e) => { e.stopPropagation(); handleDelete(sectionSaved.saved_id) }}
+            style={{
+              fontSize: 10,
+              color: confirmDeleteId === sectionSaved.saved_id ? '#ef4444' : colors.textTertiary,
+              cursor: 'pointer',
+              transition: 'color 0.15s',
+              marginLeft: 'auto',
+            }}
+            title={confirmDeleteId === sectionSaved.saved_id ? 'もう一度クリックで削除' : 'この一覧から削除（保存解除）'}
+          />
+        )}
       </div>
 
       {confirmDeleteId !== null && (
@@ -166,16 +226,18 @@ function HeadlineItem({ item, compact, showCategoryTags = true }: {
 }
 
 /** カテゴリ階層でグループ化されたセクション */
+interface ChildSection {
+  childCategory: { id: number; name: string; color: string; sort_order: number | null }
+  items: Headline[]
+}
+
 interface CategorySection {
   /** 第2層カテゴリ */
   parentCategory: { id: number; name: string; color: string }
   /** 第2層に直接保存されたヘッドライン */
   directItems: Headline[]
   /** 第3層サブセクション */
-  childSections: {
-    childCategory: { id: number; name: string; color: string }
-    items: Headline[]
-  }[]
+  childSections: ChildSection[]
 }
 
 /** ヘッドラインをカテゴリ階層でグループ化 */
@@ -253,13 +315,238 @@ function buildCategorySections(
       parentCategory: { id: val.parentCat.id, name: val.parentCat.name, color: val.parentCat.color },
       directItems: val.directItems,
       childSections: Array.from(val.childMap.values()).map(cs => ({
-        childCategory: { id: cs.childCat.id, name: cs.childCat.name, color: cs.childCat.color },
+        childCategory: {
+          id: cs.childCat.id, name: cs.childCat.name, color: cs.childCat.color,
+          sort_order: cs.childCat.sort_order ?? null,
+        },
         items: cs.items,
       })),
     })
   }
 
   return sections
+}
+
+/** セクション内の表示順: 手動並び替え済み (sort_order 昇順) より前に、
+ *  未並び替えの新着 (sort_order=null) を元の順序 (published_at 降順) のまま置く */
+function sortBySavedOrder(items: Headline[], categoryId: number): Headline[] {
+  const so = (h: Headline) =>
+    h.saved_categories?.find(sc => sc.category_id === categoryId)?.sort_order ?? null
+  return [...items].sort((a, b) => {
+    const sa = so(a), sb = so(b)
+    if (sa === null && sb === null) return 0
+    if (sa === null) return -1
+    if (sb === null) return 1
+    return sa - sb
+  })
+}
+
+/** セクション内ヘッドラインリスト（master はドラッグ&ドロップで並び替え可能） */
+function SortableSectionItems({ items, categoryId, compact }: {
+  items: Headline[]; categoryId: number; compact: boolean
+}) {
+  const isMaster = useIsMaster()
+  const reorderMutation = useReorderSavedHeadlines()
+  const [dragIdx, setDragIdx] = useState<number | null>(null)
+  const [overIdx, setOverIdx] = useState<number | null>(null)
+
+  const sorted = useMemo(() => sortBySavedOrder(items, categoryId), [items, categoryId])
+
+  const handleDrop = (toIdx: number) => {
+    if (dragIdx === null || dragIdx === toIdx) {
+      setDragIdx(null); setOverIdx(null)
+      return
+    }
+    const next = [...sorted]
+    const [moved] = next.splice(dragIdx, 1)
+    next.splice(toIdx, 0, moved)
+    const savedIds = next
+      .map(h => h.saved_categories?.find(sc => sc.category_id === categoryId)?.saved_id)
+      .filter((v): v is number => v != null)
+    reorderMutation.mutate({ categoryId, savedIds })
+    setDragIdx(null); setOverIdx(null)
+  }
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+      {sorted.map((item, idx) => (
+        <div
+          key={item.id}
+          draggable={isMaster}
+          // 親 (SectionBody) のD&Dとネストするため、ドラッグ開始は伝播を止め、
+          // over/drop は自リスト内ドラッグ中のみ処理する (それ以外は親へバブル)
+          onDragStart={isMaster ? (e) => {
+            e.stopPropagation()
+            e.dataTransfer.setData('text/plain', '')
+            e.dataTransfer.effectAllowed = 'move'
+            setDragIdx(idx)
+          } : undefined}
+          onDragOver={isMaster ? (e) => {
+            if (dragIdx !== null) { e.preventDefault(); e.stopPropagation(); setOverIdx(idx) }
+          } : undefined}
+          onDrop={isMaster ? (e) => {
+            if (dragIdx !== null) { e.preventDefault(); e.stopPropagation(); handleDrop(idx) }
+          } : undefined}
+          onDragEnd={isMaster ? (e) => { e.stopPropagation(); setDragIdx(null); setOverIdx(null) } : undefined}
+          style={{
+            opacity: dragIdx === idx ? 0.4 : 1,
+            borderTop: overIdx === idx && dragIdx !== null && dragIdx !== idx
+              ? `2px solid ${colors.accent}`
+              : '2px solid transparent',
+            cursor: isMaster ? 'grab' : 'default',
+          }}
+        >
+          <HeadlineItem item={item} compact={compact} showCategoryTags={false} sectionCategoryId={categoryId} />
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/** セクション内の並び替え対象エントリ（直下ヘッドライン or 子カテゴリブロック） */
+type SectionEntry =
+  | { kind: 'item'; key: string; item: Headline; savedId: number; order: number | null }
+  | { kind: 'child'; key: string; cs: ChildSection; order: number | null }
+
+/** 直下ヘッドラインと子カテゴリブロックを統一順序に並べる
+ *  (order=null は未並び替え → 従来表示順のまま先頭グループに) */
+function buildSectionEntries(section: CategorySection): SectionEntry[] {
+  const entries: SectionEntry[] = []
+  for (const item of section.directItems) {
+    const sc = item.saved_categories?.find(s => s.category_id === section.parentCategory.id)
+    if (!sc) continue
+    entries.push({ kind: 'item', key: `i${item.id}`, item, savedId: sc.saved_id, order: sc.sort_order ?? null })
+  }
+  for (const cs of section.childSections) {
+    entries.push({ kind: 'child', key: `c${cs.childCategory.id}`, cs, order: cs.childCategory.sort_order })
+  }
+  return entries.sort((a, b) => {
+    if (a.order === null && b.order === null) return 0
+    if (a.order === null) return -1
+    if (b.order === null) return 1
+    return a.order - b.order
+  })
+}
+
+/** 第2層セクション本体: 直下ヘッドラインと子カテゴリブロックを
+ *  master はドラッグ&ドロップで自由に並び替えできる */
+function SectionBody({ section, compact }: { section: CategorySection; compact: boolean }) {
+  const isMaster = useIsMaster()
+  const reorderMutation = useReorderSidebarEntries()
+  const [dragIdx, setDragIdx] = useState<number | null>(null)
+  const [overIdx, setOverIdx] = useState<number | null>(null)
+
+  const entries = useMemo(() => buildSectionEntries(section), [section])
+
+  const resetDrag = () => { setDragIdx(null); setOverIdx(null) }
+
+  const handleDrop = (toIdx: number) => {
+    if (dragIdx === null || dragIdx === toIdx) { resetDrag(); return }
+    const next = [...entries]
+    const [moved] = next.splice(dragIdx, 1)
+    next.splice(toIdx, 0, moved)
+    const payload = next.map((en, idx) =>
+      en.kind === 'item'
+        ? { type: 'saved' as const, id: en.savedId, sortOrder: idx }
+        : { type: 'category' as const, id: en.cs.childCategory.id, sortOrder: idx }
+    )
+    reorderMutation.mutate({ entries: payload })
+    resetDrag()
+  }
+
+  const handleDragStart = (idx: number) => (e: React.DragEvent) => {
+    e.dataTransfer.setData('text/plain', '')
+    e.dataTransfer.effectAllowed = 'move'
+    setDragIdx(idx)
+  }
+
+  // ドロップ受け側 (セクションレベルのドラッグ中のみ反応し、子リストのD&Dには干渉しない)
+  const dropTargetProps = (idx: number) => isMaster ? {
+    onDragOver: (e: React.DragEvent) => {
+      if (dragIdx !== null) { e.preventDefault(); setOverIdx(idx) }
+    },
+    onDrop: (e: React.DragEvent) => {
+      if (dragIdx !== null) { e.preventDefault(); handleDrop(idx) }
+    },
+  } : {}
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      {entries.map((en, idx) => {
+        const highlight = overIdx === idx && dragIdx !== null && dragIdx !== idx
+        const borderTop = highlight ? `2px solid ${colors.accent}` : '2px solid transparent'
+
+        if (en.kind === 'item') {
+          return (
+            <div
+              key={en.key}
+              draggable={isMaster}
+              onDragStart={isMaster ? handleDragStart(idx) : undefined}
+              onDragEnd={isMaster ? resetDrag : undefined}
+              {...dropTargetProps(idx)}
+              style={{
+                opacity: dragIdx === idx ? 0.4 : 1,
+                borderTop,
+                cursor: isMaster ? 'grab' : 'default',
+              }}
+            >
+              <HeadlineItem
+                item={en.item} compact={compact} showCategoryTags={false}
+                sectionCategoryId={section.parentCategory.id}
+              />
+            </div>
+          )
+        }
+
+        const cs = en.cs
+        return (
+          <div
+            key={en.key}
+            {...dropTargetProps(idx)}
+            style={{
+              marginTop: idx === 0 ? 0 : 6,
+              opacity: dragIdx === idx ? 0.4 : 1,
+              borderTop,
+            }}
+          >
+            {/* 第3層サブヘッダー (ここを掴んでブロックごと並び替え) */}
+            <div
+              draggable={isMaster}
+              onDragStart={isMaster ? handleDragStart(idx) : undefined}
+              onDragEnd={isMaster ? resetDrag : undefined}
+              style={{
+                display: 'flex', alignItems: 'center', gap: 4,
+                marginLeft: 8,
+                marginBottom: 4,
+                cursor: isMaster ? 'grab' : 'default',
+              }}
+            >
+              <Tag
+                color={cs.childCategory.color}
+                style={{
+                  margin: 0, fontSize: 10, lineHeight: '18px',
+                  padding: '0 5px', borderColor: 'transparent',
+                }}
+              >
+                {cs.childCategory.name}
+              </Tag>
+              <Text style={{ color: colors.textTertiary, fontSize: 10 }}>
+                {cs.items.length}件
+              </Text>
+            </div>
+
+            <div style={{ marginLeft: 8 }}>
+              <SortableSectionItems
+                items={cs.items}
+                categoryId={cs.childCategory.id}
+                compact={compact}
+              />
+            </div>
+          </div>
+        )
+      })}
+    </div>
+  )
 }
 
 /** カテゴリ名から短縮名を取得（「日本: 金融政策」→「金融政策」） */
@@ -273,6 +560,7 @@ function HeadlinePanel({
   title = 'ヘッドライン',
   limit = 20,
   compact = false,
+  priorityCategoryName,
 }: HeadlinePanelProps) {
   const queryParams: HeadlinesParams = {
     limit,
@@ -289,8 +577,17 @@ function HeadlinePanel({
 
   const sections = useMemo(() => {
     if (!isSavedMode || !data?.items) return []
-    return buildCategorySections(data.items, allCategories, countryPrefix)
-  }, [data?.items, allCategories, isSavedMode, countryPrefix])
+    const built = buildCategorySections(data.items, allCategories, countryPrefix)
+    // 現在ページのカテゴリ（例: 雇用ページなら「雇用」）のセクションを先頭へ
+    if (priorityCategoryName) {
+      built.sort((a, b) => {
+        const ap = shortCatName(a.parentCategory.name) === priorityCategoryName ? 0 : 1
+        const bp = shortCatName(b.parentCategory.name) === priorityCategoryName ? 0 : 1
+        return ap - bp
+      })
+    }
+    return built
+  }, [data?.items, allCategories, isSavedMode, countryPrefix, priorityCategoryName])
 
   if (isLoading) {
     return (
@@ -377,45 +674,8 @@ function HeadlinePanel({
                 </Text>
               </div>
 
-              {/* 第2層に直接保存されたヘッドライン */}
-              {section.directItems.length > 0 && (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                  {section.directItems.map(item => (
-                    <HeadlineItem key={item.id} item={item} compact={compact} showCategoryTags={false} />
-                  ))}
-                </div>
-              )}
-
-              {/* 第3層サブセクション */}
-              {section.childSections.map(cs => (
-                <div key={cs.childCategory.id} style={{ marginTop: section.directItems.length > 0 ? 8 : 0 }}>
-                  {/* 第3層サブヘッダー */}
-                  <div style={{
-                    display: 'flex', alignItems: 'center', gap: 4,
-                    marginLeft: 8,
-                    marginBottom: 4,
-                  }}>
-                    <Tag
-                      color={cs.childCategory.color}
-                      style={{
-                        margin: 0, fontSize: 10, lineHeight: '18px',
-                        padding: '0 5px', borderColor: 'transparent',
-                      }}
-                    >
-                      {cs.childCategory.name}
-                    </Tag>
-                    <Text style={{ color: colors.textTertiary, fontSize: 10 }}>
-                      {cs.items.length}件
-                    </Text>
-                  </div>
-
-                  <div style={{ marginLeft: 8, display: 'flex', flexDirection: 'column', gap: 1 }}>
-                    {cs.items.map(item => (
-                      <HeadlineItem key={item.id} item={item} compact={compact} showCategoryTags={false} />
-                    ))}
-                  </div>
-                </div>
-              ))}
+              {/* 直下ヘッドライン + 第3層サブセクション (master はD&Dで並び替え可能) */}
+              <SectionBody section={section} compact={compact} />
             </div>
           ))}
         </div>

@@ -12,7 +12,9 @@ nbs_monthly_data テーブルへのCSVインポートとAPIデータ蓄積を共
     PRIMARY KEY (indicator, date)
 """
 import logging
-from datetime import date
+import os
+import re
+from datetime import date, datetime
 from typing import Dict, List, Optional, Tuple
 
 logger = logging.getLogger(__name__)
@@ -110,7 +112,7 @@ def _invalidate_related_caches(indicator: str) -> None:
     # 2. 該当カテゴリのダッシュボードキャッシュ無効化
     try:
         import redis
-        r = redis.Redis(host="localhost", port=6379, db=0, socket_timeout=2)
+        r = redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379/0"), socket_timeout=2, socket_connect_timeout=2)
         dashboard_keys = [
             f"china:{dashboard_category}:dashboard:v1",
             f"china:{dashboard_category}:dashboard:v1:light",
@@ -253,6 +255,114 @@ def get_latest_date(indicator: str) -> Optional[str]:
     except Exception as e:
         logger.warning(f"[NBS-DB] {indicator}: get_latest_date failed: {e}")
         return None
+
+
+_MONTH_ABBR_TO_NUM = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+    "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+}
+_QUARTER_END_MONTH = {1: 3, 2: 6, 3: 9, 4: 12}
+
+
+def _fmp_event_period_date(
+    event_name: str, announcement_dt: datetime, quarterly: bool
+) -> Optional[date]:
+    """FMPイベント名＋発表日からデータ対象日付 (YYYY-MM-01) を解析。
+
+    例（月次）: "Industrial Production YoY (Apr)" announced 2026-05-18 → 2026-04-01
+    例（四半期）: "GDP Growth Rate YoY (Q4)" announced 2026-01-19 → 2025-12-01
+
+    nbs_monthly_data の既存規約に合わせ、四半期は四半期末月の1日に正規化する。
+    対象月が発表月より後＝前年データ（12月分が翌年1月発表など）として年を補正。
+    """
+    if quarterly:
+        m = re.search(r"\(Q([1-4])\)", event_name)
+        if not m:
+            return None
+        month = _QUARTER_END_MONTH[int(m.group(1))]
+    else:
+        m = re.search(r"\((\w{3})\)", event_name)
+        if not m:
+            return None
+        month = _MONTH_ABBR_TO_NUM.get(m.group(1).lower())
+        if not month:
+            return None
+
+    year = announcement_dt.year
+    if month > announcement_dt.month:
+        year -= 1
+    return date(year, month, 1)
+
+
+def backfill_from_fmp_events(
+    indicator: str,
+    event_like: str,
+    *,
+    quarterly: bool = False,
+    skip_january: bool = False,
+    lookback_months: int = 36,
+    round_ndigits: int = 1,
+) -> int:
+    """FMP economic_calendar_events(CN) の actual を nbs_monthly_data へ gap-fill。
+
+    NBSプレスリリース由来の既存値を一次ソースとして優先し、**DBに存在しない
+    過去期間のみ**補完する（既存値は上書きしない）。日付は `_fmp_event_period_date`
+    で既存規約 (YYYY-MM-01) に正規化。冪等なので各リフレッシュで安全に呼べる。
+
+    Args:
+        indicator: nbs_monthly_data の指標ID（例 cn_industrial_production_yoy）
+        event_like: economic_calendar_events.event の ILIKE パターン
+                    （例 "Industrial Production YoY"）
+        quarterly: 四半期指標なら True（(Q1)-(Q4) を解析、四半期末月-01 に正規化）
+        skip_january: 月次で1月を除外（中国IP/小売等は1-2月合算発表で単独1月が無い）
+        lookback_months: 遡る月数（FMP DBは概ね1〜2年分）
+        round_ndigits: 値の丸め桁
+
+    Returns:
+        gap-fill で UPSERT した件数
+    """
+    try:
+        from core.database import SessionLocal
+        from sqlalchemy import text
+
+        existing = set(load_nbs_data(indicator).keys())
+        gap: Dict[str, float] = {}
+
+        with SessionLocal() as session:
+            rows = session.execute(text("""
+                SELECT datetime_utc, event, actual
+                FROM economic_calendar_events
+                WHERE country = 'CN'
+                  AND event ILIKE :ev
+                  AND actual IS NOT NULL
+                  AND datetime_utc >= NOW() - make_interval(months => :lb)
+                ORDER BY datetime_utc ASC
+            """), {"ev": f"%{event_like}%", "lb": int(lookback_months)}).fetchall()
+
+        for dt_utc, event_name, actual in rows:
+            if dt_utc is None or actual is None:
+                continue
+            d = _fmp_event_period_date(event_name, dt_utc, quarterly)
+            if not d:
+                continue
+            if skip_january and not quarterly and d.month == 1:
+                continue
+            date_str = d.strftime("%Y-%m-%d")
+            if date_str in existing or date_str in gap:
+                continue
+            gap[date_str] = round(float(actual), round_ndigits)
+
+        if gap:
+            count = upsert_nbs_data(indicator, gap, source="api")
+            logger.info(
+                f"[NBS-DB] {indicator}: FMP backfill gap-filled {count} periods "
+                f"({min(gap)}〜{max(gap)})"
+            )
+            return count
+        return 0
+    except Exception as e:
+        logger.warning(f"[NBS-DB] {indicator}: FMP backfill failed: {e}")
+        return 0
 
 
 def get_record_count(indicator: str) -> int:

@@ -10,14 +10,60 @@
 from abc import ABC, abstractmethod
 from typing import Dict, Any, Optional, List
 from datetime import datetime, time, timedelta
+from pathlib import Path
 from zoneinfo import ZoneInfo
 import asyncio
 import logging
-from concurrent.futures import ThreadPoolExecutor, Future, as_completed
+import os
+import multiprocessing as _multiprocessing
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, Future, as_completed
 
 from core.redis_client import redis_client
 
 logger = logging.getLogger(__name__)
+
+
+# ──────────────────────────────────────────────────────────────────────────
+# バックグラウンド更新を別プロセスで実行する基盤（ベストプラクティス）
+#
+# ダッシュボードの load_all() は pandas/Excel/HTML 解析など CPU バウンドな処理を含む。
+# これをスレッド(SWR デーモンスレッド/スケジューラ)で実行すると GIL を握り、
+# メインプロセスの asyncio イベントループを飢えさせて全API(ログイン含む)が遅延する
+# 事象が頻発した(2026-06: LandSales/Stooq/china-redis/staleness/nz-retail 等)。
+# 個別最適ではなく、CPU バウンドな集約処理を **別プロセス(独立した GIL)** で実行する
+# ことで根本的に解消する。子プロセスは同じ Redis/DB(env URL)に接続するため各サービスの
+# 副作用(キャッシュ書き込み)も従来どおり働き、データの取りこぼし・更新内容は不変。
+# ──────────────────────────────────────────────────────────────────────────
+_REFRESH_POOL: Optional[ProcessPoolExecutor] = None
+
+
+def _get_refresh_pool() -> ProcessPoolExecutor:
+    """ダッシュボード更新用の共有プロセスプール(spawn, 子プロセス再利用)。"""
+    global _REFRESH_POOL
+    if _REFRESH_POOL is None:
+        # spawn: マルチスレッドな uvicorn ワーカーから fork する危険(ロック継承)を避ける。
+        # dashboard SWR/ブロッキング再取得 と market_data_scheduler バッチで共有する共通プール。
+        _REFRESH_POOL = ProcessPoolExecutor(
+            max_workers=3, mp_context=_multiprocessing.get_context("spawn")
+        )
+    return _REFRESH_POOL
+
+
+def _run_dashboard_load_all(country: str, category: str,
+                            last_updated: Optional[str]) -> Dict[str, Any]:
+    """別プロセスで dashboard の load_all を実行し data を返す(プール target)。
+
+    CPU バウンドな集約処理をメインプロセスの GIL から隔離する。
+    子プロセスでローダを再構築し _prepare_for_refresh→load_all を実行(副作用込み)。
+    返り値 data はキャッシュ保存(JSON化)される=ピッカブル。
+    """
+    try:
+        from services.dashboard.registry import get_dashboard_loader
+    except ImportError:
+        from backend.services.dashboard.registry import get_dashboard_loader
+    loader = get_dashboard_loader(country, category)
+    loader._prepare_for_refresh(last_updated)
+    return loader.load_all()
 
 # ダッシュボード国コード → FMP 経済カレンダー国コードのマッピング
 _DASHBOARD_TO_FMP_COUNTRY: Dict[str, List[str]] = {
@@ -81,6 +127,40 @@ class BaseDashboardLoader(ABC):
     # FMP カレンダーDB が一時的に空でも、最低限の鮮度を保証するセーフティネット
     MAX_CACHE_AGE_HOURS: int = 24
 
+    def get_manual_csv_paths(self) -> List[Path]:
+        """このダッシュボードが依存する手動更新CSVのパス一覧（サブクラスでオーバーライド）。
+
+        手動CSV（data/manual_update/...）を編集しても指標の「発表日時」は変化しないため、
+        発表日時ベースの stale 判定では検知できず、ダッシュボード集約キャッシュが古いまま
+        配信され続ける（per-service キャッシュは mtime で再取得するが、その手前の集約層に
+        届かない）。ここで宣言したCSVの mtime がキャッシュ last_updated より新しい場合、
+        _is_cache_stale が True を返し、集約キャッシュを再構築させる。
+
+        Returns:
+            List[Path]: 監視対象の手動更新CSVパス（存在しないパスは無視される）
+        """
+        return []
+
+    def _manual_csv_modified_after(self, last_updated_dt: datetime) -> bool:
+        """宣言された手動CSVのいずれかが last_updated 以降に更新されていれば True。"""
+        paths = self.get_manual_csv_paths()
+        if not paths:
+            return False
+        for path in paths:
+            try:
+                if not path.exists():
+                    continue
+                mtime = datetime.fromtimestamp(os.path.getmtime(path), tz=JST)
+                if mtime > last_updated_dt:
+                    print(
+                        f"Manual CSV modified for {self.COUNTRY_CODE}:{self.CATEGORY_CODE}: "
+                        f"{path.name} (mtime {mtime.isoformat()} > cache {last_updated_dt.isoformat()})"
+                    )
+                    return True
+            except Exception as e:
+                print(f"Error checking manual CSV mtime {path}: {e}")
+        return False
+
     def _is_cache_stale(self, last_updated: Optional[str]) -> bool:
         """
         キャッシュが古いかどうかを判定（発表日時ベース + 最大年齢フォールバック）
@@ -102,6 +182,11 @@ class BaseDashboardLoader(ABC):
                 last_updated_dt = last_updated_dt.replace(tzinfo=JST)
 
             now = datetime.now(JST)
+
+            # 手動更新CSVが last_updated 以降に編集されていれば再取得
+            # （手動編集は指標の発表日時を変えないため、発表日時ベース判定では検知できない）
+            if self._manual_csv_modified_after(last_updated_dt):
+                return True
 
             # フォールバック: 最大年齢超過チェック
             # 発表日時情報が無い/失われた場合のセーフティネット
@@ -362,9 +447,10 @@ class BaseDashboardLoader(ABC):
             else:
                 return cached
 
-        # キャッシュMISS or データ品質問題 → ブロッキング再取得
-        self._prepare_for_refresh(last_updated)
-        data = self.load_all()
+        # キャッシュMISS or データ品質問題 → ブロッキング再取得。
+        # CPU バウンドな load_all は別プロセスで実行し、待機中もメインの GIL/イベントループ
+        # (= 他リクエスト) が応答できるようにする。
+        data = self._load_all_offloaded(last_updated)
         self.save_to_cache(data)
 
         return {
@@ -372,6 +458,25 @@ class BaseDashboardLoader(ABC):
             "cached": False,
             "last_updated": datetime.now(JST).isoformat(),
         }
+
+    def _load_all_offloaded(self, last_updated: Optional[str]) -> Dict[str, Any]:
+        """load_all を別プロセス(独立 GIL)で実行する。
+
+        CPU バウンドな集約処理をメインプロセスの GIL から隔離し、バックグラウンド/
+        ブロッキングいずれの再取得中もイベントループ(全API)が応答できるようにする。
+        プールの起動/通信に失敗した場合はスレッド内 load_all にフォールバック(従来挙動)。
+        """
+        try:
+            return _get_refresh_pool().submit(
+                _run_dashboard_load_all, self.COUNTRY_CODE, self.CATEGORY_CODE, last_updated
+            ).result()
+        except Exception as e:
+            logger.warning(
+                f"[Dashboard] process-pool load_all failed for "
+                f"{self.COUNTRY_CODE}:{self.CATEGORY_CODE} ({e}); falling back to in-thread"
+            )
+            self._prepare_for_refresh(last_updated)
+            return self.load_all()
 
     def _trigger_background_refresh(self, last_updated: Optional[str]) -> None:
         """SWR バックグラウンド再取得を起動。
@@ -388,9 +493,10 @@ class BaseDashboardLoader(ABC):
         cls = type(self)
 
         def _refresh() -> None:
+            # CPU バウンドな load_all は別プロセスで実行(メインの GIL/イベントループを塞がない)。
+            # デーモンスレッドは結果を待つだけ(プロセス間通信の I/O 待ち=GIL 解放)。
             worker = cls()
-            worker._prepare_for_refresh(last_updated)
-            data = worker.load_all()
+            data = worker._load_all_offloaded(last_updated)
             worker.save_to_cache(data)
 
         background_revalidate(f"swr:{self.cache_key}", _refresh)

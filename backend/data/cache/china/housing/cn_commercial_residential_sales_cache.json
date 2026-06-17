@@ -1071,13 +1071,19 @@
       "floor_started_yoy": -22.0,
       "sales_yoy": -14.6,
       "floor_sold_yoy": -10.2
+    },
+    {
+      "date": "2026-05-01",
+      "floor_started_yoy": -22.6,
+      "sales_yoy": -13.5,
+      "floor_sold_yoy": -10.8
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "floor_started_yoy": -22.0,
-    "sales_yoy": -14.6,
-    "floor_sold_yoy": -10.2
+    "date": "2026-05-01",
+    "floor_started_yoy": -22.6,
+    "sales_yoy": -13.5,
+    "floor_sold_yoy": -10.8
   },
   "metadata": {
     "indicator": "Commercial Residential Sales",
@@ -1090,8 +1096,8 @@
       "sales_yoy": "新築商業ビル販売額 累積YoY",
       "floor_sold_yoy": "新築商業用ビル売却床面積 累積YoY"
     },
-    "total_records": 179,
-    "last_fetched": "2026-06-12T11:01:31.547096+09:00"
+    "total_records": 180,
+    "last_fetched": "2026-06-16T11:01:14.853778+09:00"
   },
   "next_release": {
     "date": "2026-06-16",

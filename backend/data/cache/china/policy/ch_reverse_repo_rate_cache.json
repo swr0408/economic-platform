@@ -13043,18 +13043,108 @@
       "value": 1.4,
       "bid_amount": 2580.0,
       "win_amount": 2580.0
+    },
+    {
+      "date": "2026-05-26",
+      "value": 1.4,
+      "bid_amount": 2490.0,
+      "win_amount": 2490.0
+    },
+    {
+      "date": "2026-05-27",
+      "value": 1.4,
+      "bid_amount": 1776.0,
+      "win_amount": 1776.0
+    },
+    {
+      "date": "2026-05-28",
+      "value": 1.4,
+      "bid_amount": 1013.0,
+      "win_amount": 1013.0
+    },
+    {
+      "date": "2026-05-29",
+      "value": 1.4,
+      "bid_amount": 1230.0,
+      "win_amount": 1230.0
+    },
+    {
+      "date": "2026-06-01",
+      "value": 1.4,
+      "bid_amount": 110.0,
+      "win_amount": 110.0
+    },
+    {
+      "date": "2026-06-02",
+      "value": 1.4,
+      "bid_amount": 2.0,
+      "win_amount": 2.0
+    },
+    {
+      "date": "2026-06-05",
+      "value": 1.4,
+      "bid_amount": 2150.0,
+      "win_amount": 2150.0
+    },
+    {
+      "date": "2026-06-08",
+      "value": 1.4,
+      "bid_amount": 2185.0,
+      "win_amount": 2185.0
+    },
+    {
+      "date": "2026-06-09",
+      "value": 1.4,
+      "bid_amount": 1530.0,
+      "win_amount": 1530.0
+    },
+    {
+      "date": "2026-06-10",
+      "value": 1.4,
+      "bid_amount": 1590.0,
+      "win_amount": 1590.0
+    },
+    {
+      "date": "2026-06-11",
+      "value": 1.4,
+      "bid_amount": 1885.0,
+      "win_amount": 1885.0
+    },
+    {
+      "date": "2026-06-12",
+      "value": 1.4,
+      "bid_amount": 3930.0,
+      "win_amount": 3930.0
+    },
+    {
+      "date": "2026-06-15",
+      "value": 1.4,
+      "bid_amount": 4250.0,
+      "win_amount": 4250.0
+    },
+    {
+      "date": "2026-06-16",
+      "value": 1.4,
+      "bid_amount": 4495.0,
+      "win_amount": 4495.0
+    },
+    {
+      "date": "2026-06-17",
+      "value": 1.4,
+      "bid_amount": 4203.0,
+      "win_amount": 4203.0
     }
   ],
   "latest": {
-    "date": "2026-05-25",
+    "date": "2026-06-17",
     "value": 1.4,
-    "bid_amount": 2580.0,
-    "win_amount": 2580.0
+    "bid_amount": 4203.0,
+    "win_amount": 4203.0
   },
   "metadata": {
     "source": "PBC（中国人民銀行）",
     "unit": "%",
     "frequency": "daily",
-    "total_records": 2174
+    "total_records": 2189
   }
 }

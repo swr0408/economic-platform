@@ -232,6 +232,17 @@ class PlaywrightRunner(BrowserRunner):
             actual_url = page.url
             png_bytes: bytes
             if request.clip_selector:
+                # wait_after_load_ms 経過後の一発 query では、描画が遅い
+                # チャート (例: MacroMicro の一部ページ) で要素未出現のまま
+                # 即失敗することがある。state="attached" で上限付きに待ってから
+                # 取得する (visible 待ちは一部ページで timeout するため attached)。
+                # タイムアウト時は従来どおり query→None で明確なエラーにする。
+                try:
+                    page.wait_for_selector(
+                        request.clip_selector, state="attached", timeout=30_000
+                    )
+                except Exception:
+                    pass
                 element = page.query_selector(request.clip_selector)
                 if element is None:
                     raise BrowserRunnerError(

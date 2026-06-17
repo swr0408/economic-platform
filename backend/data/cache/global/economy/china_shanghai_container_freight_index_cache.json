@@ -2939,12 +2939,17 @@
       "date": "2026-06-05",
       "scfi": 2726.48,
       "ccfi": 1411.6
+    },
+    {
+      "date": "2026-06-12",
+      "scfi": 2985.22,
+      "ccfi": 1480.11
     }
   ],
   "latest": {
-    "date": "2026-06-05",
-    "scfi": 2726.48,
-    "ccfi": 1411.6
+    "date": "2026-06-12",
+    "scfi": 2985.22,
+    "ccfi": 1480.11
   },
   "metadata": {
     "source": "Shanghai Shipping Exchange (SSE)",
@@ -2957,6 +2962,6 @@
       "ccfi": "China Containerized Freight Index (CCFI)"
     }
   },
-  "last_updated": "2026-06-12T11:03:30.988519+09:00",
+  "last_updated": "2026-06-17T20:05:09.617670+09:00",
   "csv_mtime": "2026-03-08T22:04:50.231675+09:00"
 }

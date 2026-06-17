@@ -52,9 +52,24 @@ _CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
 # ページネーション暴走ガード (40行/ページ × 150 ≈ 24年分)
 _MAX_PAGES = 150
+
+# PoW ソルバーの時間バジェット (秒)。
+# 期待試行回数は約 16^d。Stooq がアンチボット難易度 d を引き上げると総当たりが
+# 事実上終わらず、1スレッドが 100% CPU を占有して GIL を握り、全 API (ログイン含む) が
+# タイムアウトする事象があった。バジェット超過で打ち切り、last-good キャッシュへフォールバックする。
+_POW_MAX_SECONDS = 8.0
 _PAGE_SLEEP_SEC = 0.4
 # 差分取得時に重ねて取り直す日数 (休日・改定ぶれ吸収)
 _OVERLAP_DAYS = 7
+
+# 単一レスポンス本文の読み込み上限。
+# requests の timeout は「接続/バイト間」タイムアウトに過ぎず、本文の合計読み込み
+# 時間や展開後サイズを制限しない。Stooq が切れ目なく (または巨大な gzip で)
+# チャンクを流し続けると resp.text の解凍 (urllib3 read_chunked→zlib decompress) が
+# 事実上無限に CPU を焼き、1スレッドが GIL を握って全 API (inbox 含む) を飢えさせる
+# 事象があった。合計時間と展開後バイト数で打ち切り、超過時は None→last-good フォールバック。
+_MAX_READ_SECONDS = 20.0
+_MAX_BODY_BYTES = 8 * 1024 * 1024  # 8MB (日次テーブル HTML は数十KB〜数百KB)
 
 _session: Optional[requests.Session] = None
 _session_lock = threading.Lock()
@@ -78,25 +93,89 @@ def _get_session() -> requests.Session:
         return _session
 
 
-def _solve_pow(c: str, d: int) -> int:
-    """sha256(c+n) の16進表現が '0'*d で始まる最小の n を求める"""
+def _solve_pow(c: str, d: int, max_seconds: float = _POW_MAX_SECONDS) -> Optional[int]:
+    """sha256(c+n) の16進表現が '0'*d で始まる最小の n を求める。
+
+    期待試行回数は約 16^d。難易度が高いと総当たりが終わらず 1スレッドが CPU を
+    焼き続けてイベントループを飢えさせるため、時間バジェットで打ち切る。
+    打ち切った場合は None を返し、呼び出し側は last-good キャッシュへフォールバックする。
+    """
     target = "0" * d
+    deadline = time.monotonic() + max_seconds
     n = 0
     while True:
         if hashlib.sha256((c + str(n)).encode()).hexdigest().startswith(target):
             return n
         n += 1
+        # 約26万回ごとに時刻をチェック (ハッシュ計算に対し十分軽い)
+        if (n & 0x3FFFF) == 0 and time.monotonic() > deadline:
+            logger.error(
+                f"[Stooq] PoW give up: d={d} を {max_seconds}s 以内に解けず "
+                f"({n:,} hashes) — アンチボット難易度が高すぎるためキャッシュにフォールバック"
+            )
+            return None
+
+
+def _read_body_bounded(resp) -> Optional[bytes]:
+    """レスポンス本文を「壁時計デッドライン＋最大バイト数」付きで読み切る。
+
+    ``iter_content`` は content-encoding (gzip) を解凍済みのチャンクを逐次返すため、
+    チャンク境界ごとに経過時間と累積サイズを点検でき、無限/巨大ストリームに対して
+    1スレッドが GIL を握り続けるのを防げる。超過時は ``None`` を返す。
+    成功時は解凍後の生バイト列を返す (呼び出し側で ``resp._content`` に格納し、
+    以後 ``resp.text`` / ``resp.status_code`` が従来どおり使えるようにする)。
+    """
+    deadline = time.monotonic() + _MAX_READ_SECONDS
+    chunks = []
+    total = 0
+    try:
+        for chunk in resp.iter_content(chunk_size=65536):
+            if not chunk:
+                continue
+            chunks.append(chunk)
+            total += len(chunk)
+            if total > _MAX_BODY_BYTES:
+                logger.error(
+                    f"[Stooq] response body exceeded {_MAX_BODY_BYTES // (1024 * 1024)}MB "
+                    f"— abort {resp.url}"
+                )
+                return None
+            if time.monotonic() > deadline:
+                logger.error(
+                    f"[Stooq] response body read exceeded {_MAX_READ_SECONDS}s "
+                    f"({total:,} bytes) — abort {resp.url}"
+                )
+                return None
+    except requests.RequestException as e:
+        logger.error(f"[Stooq] body read failed: {e}")
+        return None
+    finally:
+        resp.close()
+    return b"".join(chunks)
 
 
 def _get_with_challenge(url: str, timeout: int = 30) -> Optional[requests.Response]:
-    """GET し、PoW チャレンジページが返ったら解いて再取得する"""
+    """GET し、PoW チャレンジページが返ったら解いて再取得する。
+
+    本文は ``stream=True`` + :func:`_read_body_bounded` で時間/サイズ上限付きに読む。
+    requests の ``timeout`` は本文の合計読み込み時間を縛らないため、これがないと
+    Stooq の巨大/無限ストリームで解凍が暴走し、GIL 占有で全 API が遅延する。
+    """
     session = _get_session()
     for attempt in range(3):
         try:
-            resp = session.get(url, timeout=timeout)
+            resp = session.get(url, timeout=timeout, stream=True)
         except requests.RequestException as e:
             logger.error(f"[Stooq] request failed: {e}")
             return None
+
+        body = _read_body_bounded(resp)
+        if body is None:
+            # 時間/サイズ超過 or 読み込み失敗 → last-good キャッシュへフォールバック
+            return None
+        # 読み込み済み本文を埋め込み、resp.text / resp.status_code を従来どおり使えるようにする
+        resp._content = body
+        resp._content_consumed = True
 
         match = _CHALLENGE_RE.search(resp.text)
         if not match:
@@ -105,12 +184,17 @@ def _get_with_challenge(url: str, timeout: int = 30) -> Optional[requests.Respon
         c, d = match.group(1), int(match.group(2))
         logger.info(f"[Stooq] solving anti-bot challenge (d={d}, attempt={attempt + 1})")
         n = _solve_pow(c, d)
+        if n is None:
+            # 難易度が高すぎて時間内に解けない → 再試行しても同じなので諦める
+            return None
         try:
-            session.post(
+            vr = session.post(
                 f"{STOOQ_BASE}/__verify",
                 data={"c": c, "n": str(n)},
                 timeout=timeout,
+                stream=True,
             )
+            _read_body_bounded(vr)  # verify 応答も上限付きで読み捨て (暴走スポットを残さない)
         except requests.RequestException as e:
             logger.error(f"[Stooq] /__verify failed: {e}")
             return None

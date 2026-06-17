@@ -2446,8 +2446,8 @@
     "datetime_utc": "2026-07-14T12:30:00+00:00",
     "datetime_jst": "2026-07-14T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "Core Inflation Rate MoM (Jun)",
-    "estimate": 0.3
+    "label": "Inflation Rate MoM (Jun)",
+    "estimate": 0.4
   },
-  "last_updated": "2026-06-12T09:30:18.635263+09:00"
+  "last_updated": "2026-06-17T21:46:53.140879+09:00"
 }

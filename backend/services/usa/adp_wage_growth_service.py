@@ -255,7 +255,9 @@ class ADPWageGrowthService:
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
-        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
+        # ADP賃金上昇率の源泉(ADP ZIP)はADP雇用発表より遅れて反映されるため、
+        # 発表日判定が「更新済み」と誤認して凍結するのを防ぐ24hフォールバックを指定。
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str, max_age_hours=24)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""

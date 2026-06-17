@@ -1047,13 +1047,13 @@
     },
     {
       "date": "2026-06-01",
-      "actual": 64217.27,
+      "actual": 69902.25,
       "model": null
     }
   ],
   "latest": {
     "date": "2026-06-01",
-    "actual": 64217.27,
+    "actual": 69902.25,
     "model": null
   },
   "model_info": {
@@ -1077,5 +1077,5 @@
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-12T01:36:07.763506+09:00"
+  "last_updated": "2026-06-17T20:39:47.755629+09:00"
 }

@@ -1,15 +1,16 @@
 import { useState, useMemo } from 'react'
-import { Input, Select, Tag, Button, Pagination, Spin, Space, DatePicker, Switch, Typography, Tooltip, Empty } from 'antd'
+import { Input, Select, Tag, Button, Pagination, Spin, Space, DatePicker, Switch, Typography, Tooltip, Empty, message } from 'antd'
 import {
   SearchOutlined, ReloadOutlined, SoundOutlined,
   StarOutlined, StarFilled, TranslationOutlined, LinkOutlined,
   SettingOutlined, FolderOutlined, PlusOutlined,
+  CheckOutlined, CheckCircleFilled,
 } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/ja'
-import { useHeadlines, useRetranslate } from '../hooks/useHeadlines'
+import { useHeadlines, useRetranslate, useReadMarker, useSetReadMarker, useClearReadMarker } from '../hooks/useHeadlines'
 import { useIsMaster } from '../hooks/useIsMaster'
 import SaveToCategoryModal from '../components/headlines/SaveToCategoryModal'
 import ManualHeadlineModal from '../components/headlines/ManualHeadlineModal'
@@ -88,6 +89,17 @@ function HeadlinesInboxPage() {
   const navigate = useNavigate()
   const { data, isLoading, refetch, isFetching } = useHeadlines(params)
   const retranslate = useRetranslate()
+
+  // 既読マーカー「ここまで見た」(master 限定)
+  const { data: readMarker } = useReadMarker(isMaster)
+  const setMarkerMutation = useSetReadMarker()
+  const clearMarkerMutation = useClearReadMarker()
+  const markerTime = isMaster && readMarker?.marked_published_at
+    ? dayjs(readMarker.marked_published_at).valueOf()
+    : null
+  const isReadItem = (item: Headline) =>
+    markerTime !== null && !!item.published_at && dayjs(item.published_at).valueOf() <= markerTime
+  const firstReadIdx = data ? data.items.findIndex(isReadItem) : -1
 
   const handleSearch = () => {
     setSearch(searchInput)
@@ -189,13 +201,37 @@ function HeadlinesInboxPage() {
       ) : (
         <>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            {data.items.map(item => (
-              <HeadlineRow
-                key={item.id}
-                item={item}
-                onSave={() => setSaveModalTarget(item)}
-                onRetranslate={() => retranslate.mutate(item.id)}
-              />
+            {data.items.map((item, idx) => (
+              <div key={item.id} style={{ display: 'contents' }}>
+                {/* 「ここまで見た」境界線 (未読→既読の切り替わり位置) */}
+                {isMaster && firstReadIdx === idx && (
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '4px 4px' }}>
+                    <div style={{ flex: 1, height: 1, background: `${colors.accent}66` }} />
+                    <Text style={{ color: colors.accent, fontSize: 11, whiteSpace: 'nowrap' }}>
+                      <CheckOutlined style={{ marginRight: 4 }} />
+                      ここまで見た
+                      {readMarker?.marked_published_at && ` (${dayjs(readMarker.marked_published_at).format('MM/DD HH:mm')})`}
+                    </Text>
+                    <div style={{ flex: 1, height: 1, background: `${colors.accent}66` }} />
+                  </div>
+                )}
+                <HeadlineRow
+                  item={item}
+                  onSave={() => setSaveModalTarget(item)}
+                  onRetranslate={() => retranslate.mutate(item.id, {
+                    onSuccess: (res) => {
+                      if (res.success) message.success('再翻訳しました')
+                      else message.warning('翻訳に失敗しました。バックグラウンドで再試行します')
+                    },
+                    onError: () => message.error('再翻訳リクエストに失敗しました'),
+                  })}
+                  retranslating={retranslate.isPending && retranslate.variables === item.id}
+                  isRead={isMaster && isReadItem(item)}
+                  isMarkerHere={isMaster && readMarker?.headline_id === item.id}
+                  onMarkRead={isMaster ? () => setMarkerMutation.mutate(item.id) : undefined}
+                  onClearMark={isMaster ? () => clearMarkerMutation.mutate() : undefined}
+                />
+              </div>
             ))}
           </div>
 
@@ -237,10 +273,20 @@ function HeadlineRow({
   item,
   onSave,
   onRetranslate,
+  retranslating = false,
+  isRead = false,
+  isMarkerHere = false,
+  onMarkRead,
+  onClearMark,
 }: {
   item: Headline
   onSave: () => void
   onRetranslate: () => void
+  retranslating?: boolean
+  isRead?: boolean
+  isMarkerHere?: boolean
+  onMarkRead?: () => void
+  onClearMark?: () => void
 }) {
   const hasSaved = item.saved_categories && item.saved_categories.length > 0
   const timeAgo = item.published_at ? dayjs(item.published_at).fromNow() : ''
@@ -257,6 +303,7 @@ function HeadlineRow({
         gap: 10,
         alignItems: 'flex-start',
         transition: 'border-color 0.15s',
+        opacity: isRead ? 0.55 : 1,
       }}
       onMouseEnter={e => (e.currentTarget.style.borderColor = colors.accent + '60')}
       onMouseLeave={e => (e.currentTarget.style.borderColor = colors.border)}
@@ -317,6 +364,19 @@ function HeadlineRow({
           <Text style={{ color: colors.textTertiary, fontSize: 11, whiteSpace: 'nowrap' }}>{timeAgo}</Text>
         </Tooltip>
         <Space size={4}>
+          {onMarkRead && (
+            <Tooltip title={isMarkerHere ? '「ここまで見た」を解除' : 'ここまで見た'}>
+              <Button
+                type="text"
+                size="small"
+                icon={isMarkerHere
+                  ? <CheckCircleFilled style={{ color: colors.accent }} />
+                  : <CheckOutlined />}
+                onClick={isMarkerHere ? onClearMark : onMarkRead}
+                style={{ color: colors.textSecondary, padding: '0 4px' }}
+              />
+            </Tooltip>
+          )}
           <Tooltip title="保存">
             <Button
               type="text"
@@ -326,17 +386,16 @@ function HeadlineRow({
               style={{ color: colors.textSecondary, padding: '0 4px' }}
             />
           </Tooltip>
-          {item.translation_status !== 'done' && (
-            <Tooltip title="再翻訳">
-              <Button
-                type="text"
-                size="small"
-                icon={<TranslationOutlined />}
-                onClick={onRetranslate}
-                style={{ color: colors.textSecondary, padding: '0 4px' }}
-              />
-            </Tooltip>
-          )}
+          <Tooltip title={item.translation_status === 'done' ? '再翻訳（訳し直す）' : '再翻訳'}>
+            <Button
+              type="text"
+              size="small"
+              loading={retranslating}
+              icon={<TranslationOutlined />}
+              onClick={onRetranslate}
+              style={{ color: colors.textSecondary, padding: '0 4px' }}
+            />
+          </Tooltip>
         </Space>
       </div>
     </div>

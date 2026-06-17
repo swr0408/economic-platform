@@ -278,20 +278,32 @@ class QuarterlyRefundingService:
             print(f"[QR] Error processing {doc_type} {url}: {e}")
 
     def _extract_published_at(self, soup) -> Optional[str]:
-        """Press releaseの発表日時を抽出"""
-        # <time> タグから
-        time_el = soup.find("time")
-        if time_el and time_el.get("datetime"):
-            return time_el["datetime"]
-        # テキストから日付抽出
+        """Press releaseの発表日時を抽出
+
+        注意: 素朴な soup.find("time") はページ先頭(サイドバーの「関連リリース」等)の
+        <time> を拾い、別リリースの日付を誤って発表日にしてしまう（過去に2026-Q2が
+        2月の日付になった原因）。公式の press-release-date フィールドに限定して抽出する。
+        """
+        # 公式の発表日フィールド (<div class="field--name-field-press-release-date">)
         date_el = soup.find("div", class_="field--name-field-press-release-date")
         if date_el:
+            # フィールド内の <time datetime="..."> を優先（タイムゾーン付きISO）
+            time_el = date_el.find("time")
+            if time_el and time_el.get("datetime"):
+                return time_el["datetime"]
+            # テキストから日付抽出 ("May 6, 2026")
             text = date_el.get_text(strip=True)
             try:
                 dt = datetime.strptime(text, "%B %d, %Y")
                 return dt.strftime("%Y-%m-%dT00:00:00-05:00")
             except ValueError:
                 pass
+        # フォールバック: <article>/<main> 内に限定した <time>（サイドバーを除外）
+        main = soup.find("article") or soup.find("main")
+        if main:
+            time_el = main.find("time")
+            if time_el and time_el.get("datetime"):
+                return time_el["datetime"]
         return None
 
     # ==================================================================

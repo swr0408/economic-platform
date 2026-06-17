@@ -4137,47 +4137,68 @@
         "intraday_close": 62625.366,
         "intraday_regular_open": null,
         "intraday_regular_close": null
+      },
+      {
+        "date": "2026-06-12",
+        "type": "MSQ",
+        "year": 2026,
+        "month": 6,
+        "sq_close": 66020.0390625,
+        "d_minus2_to_minus1": 0.0592,
+        "d_minus1_to_sq": 2.8073,
+        "d_minus2_to_sq": 2.8682,
+        "sq_day_oc": 1.2947,
+        "sq_to_next": 4.9946,
+        "intraday_return": -1.0688,
+        "intraday_regular_return": null,
+        "d_minus2_date": "2026-06-10",
+        "d_minus1_date": "2026-06-11",
+        "next_date": "2026-06-15",
+        "intraday_open": 66801.315,
+        "intraday_close": 66087.315,
+        "intraday_regular_open": null,
+        "intraday_regular_close": null
       }
     ],
     "summary": {
       "all": {
         "label": "全体",
-        "count": 197,
+        "count": 198,
         "d_minus2_to_minus1": {
-          "mean": 0.1232,
-          "median": 0.0324,
-          "win_rate": 52.3,
-          "count": 197
+          "mean": 0.1229,
+          "median": 0.0379,
+          "win_rate": 52.5,
+          "count": 198
         },
         "d_minus1_to_sq": {
-          "mean": 0.0728,
-          "median": 0.1751,
-          "win_rate": 55.4,
-          "count": 193
+          "mean": 0.0869,
+          "median": 0.1768,
+          "win_rate": 55.7,
+          "count": 194
         },
         "d_minus2_to_sq": {
-          "mean": 0.1924,
-          "median": 0.2138,
-          "win_rate": 56.0,
-          "count": 193
+          "mean": 0.2062,
+          "median": 0.2238,
+          "win_rate": 56.2,
+          "count": 194
         },
         "sq_day_oc": {
-          "mean": -0.0118,
-          "median": -0.0384,
-          "win_rate": 48.2,
-          "count": 193
+          "mean": -0.0051,
+          "median": -0.0369,
+          "win_rate": 48.5,
+          "count": 194
         },
         "sq_to_next": {
-          "mean": 0.0092,
-          "median": 0.0634,
-          "win_rate": 52.8,
-          "count": 193
+          "mean": 0.0349,
+          "median": 0.0691,
+          "win_rate": 53.1,
+          "count": 194
         },
         "intraday_return": {
-          "mean": 0.0582,
-          "median": 0.1374,
-          "win_rate": 54.8,
-          "count": 157
+          "mean": 0.0511,
+          "median": 0.1214,
+          "win_rate": 54.4,
+          "count": 158
         }
       },
       "sq": {
@@ -4222,42 +4243,42 @@
       },
       "msq": {
         "label": "MSQ",
-        "count": 65,
+        "count": 66,
         "d_minus2_to_minus1": {
-          "mean": 0.0357,
-          "median": 0.1872,
-          "win_rate": 53.8,
-          "count": 65
+          "mean": 0.0361,
+          "median": 0.1641,
+          "win_rate": 54.5,
+          "count": 66
         },
         "d_minus1_to_sq": {
-          "mean": 0.0499,
-          "median": 0.2457,
-          "win_rate": 58.5,
-          "count": 65
+          "mean": 0.0917,
+          "median": 0.3226,
+          "win_rate": 59.1,
+          "count": 66
         },
         "d_minus2_to_sq": {
-          "mean": 0.0894,
-          "median": 0.2494,
-          "win_rate": 53.8,
-          "count": 65
+          "mean": 0.1315,
+          "median": 0.2767,
+          "win_rate": 54.5,
+          "count": 66
         },
         "sq_day_oc": {
-          "mean": 0.0757,
-          "median": 0.1776,
-          "win_rate": 55.4,
-          "count": 65
+          "mean": 0.0942,
+          "median": 0.183,
+          "win_rate": 56.1,
+          "count": 66
         },
         "sq_to_next": {
-          "mean": -0.1976,
-          "median": 0.0337,
-          "win_rate": 52.3,
-          "count": 65
+          "mean": -0.1189,
+          "median": 0.0465,
+          "win_rate": 53.0,
+          "count": 66
         },
         "intraday_return": {
-          "mean": 0.1251,
-          "median": 0.2428,
-          "win_rate": 57.7,
-          "count": 52
+          "mean": 0.1026,
+          "median": 0.2347,
+          "win_rate": 56.6,
+          "count": 53
         }
       },
       "monthly": {
@@ -4463,42 +4484,42 @@
         },
         "6": {
           "label": "6月",
-          "count": 16,
+          "count": 17,
           "d_minus2_to_minus1": {
-            "mean": -0.5032,
-            "median": -0.3895,
-            "win_rate": 43.8,
-            "count": 16
+            "mean": -0.4701,
+            "median": -0.3771,
+            "win_rate": 47.1,
+            "count": 17
           },
           "d_minus1_to_sq": {
-            "mean": 0.1259,
-            "median": 0.1807,
-            "win_rate": 56.2,
-            "count": 16
+            "mean": 0.2836,
+            "median": 0.243,
+            "win_rate": 58.8,
+            "count": 17
           },
           "d_minus2_to_sq": {
-            "mean": -0.3854,
-            "median": 0.0413,
-            "win_rate": 50.0,
-            "count": 16
+            "mean": -0.194,
+            "median": 0.1433,
+            "win_rate": 52.9,
+            "count": 17
           },
           "sq_day_oc": {
-            "mean": 0.0504,
-            "median": -0.0402,
-            "win_rate": 50.0,
-            "count": 16
+            "mean": 0.1236,
+            "median": 0.0405,
+            "win_rate": 52.9,
+            "count": 17
           },
           "sq_to_next": {
-            "mean": -0.2937,
-            "median": -0.0304,
-            "win_rate": 50.0,
-            "count": 16
+            "mean": 0.0174,
+            "median": 0.0337,
+            "win_rate": 52.9,
+            "count": 17
           },
           "intraday_return": {
-            "mean": 0.1487,
-            "median": 0.1137,
-            "win_rate": 58.3,
-            "count": 12
+            "mean": 0.0551,
+            "median": 0.0268,
+            "win_rate": 53.8,
+            "count": 13
           }
         },
         "7": {
@@ -6359,5 +6380,5 @@
   },
   "cached": false,
   "source": "yfinance + dukascopy",
-  "last_updated": "2026-06-12T01:41:05.985052+09:00"
+  "last_updated": "2026-06-17T20:43:00.484146+09:00"
 }

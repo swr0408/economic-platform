@@ -11,6 +11,7 @@ OpenTableレストラン予約件数を一括取得
 """
 from typing import Dict, Any, Optional, List
 from datetime import time, datetime, timedelta
+from pathlib import Path
 from zoneinfo import ZoneInfo
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -355,6 +356,18 @@ class USAEconomyLoader(BaseDashboardLoader):
         except Exception:
             pass
         return None
+
+    def get_manual_csv_paths(self) -> List[Path]:
+        """手動更新CSV（ISM製造業/非製造業サブインデックス）を監視対象に宣言。
+
+        これらを編集すると base._is_cache_stale が mtime 変化を検知し、
+        ダッシュボード集約キャッシュ（main/light/heavy）を自動再構築する。
+        """
+        from services.usa.ism_components_service import CSV_FILE as ISM_MFG_CSV
+        from services.usa.ism_non_manufacturing_components_service import (
+            CSV_FILE as ISM_NM_CSV,
+        )
+        return [ISM_MFG_CSV, ISM_NM_CSV]
 
     def _should_force_refresh(self, indicator: str) -> bool:
         """指標が強制更新対象かどうかを判定"""

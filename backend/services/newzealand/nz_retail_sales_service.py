@@ -23,9 +23,11 @@ NZ 小売売上高サービス
 キャッシュ方式:
 - Redis + ファイルキャッシュ
 """
+import hashlib
 import json
 import logging
 import re
+from collections import OrderedDict
 from datetime import datetime
 from typing import Dict, List, Any, Optional, Tuple
 from zoneinfo import ZoneInfo
@@ -34,6 +36,28 @@ from pathlib import Path
 import requests
 import pandas as pd
 import io
+
+
+# Excel パース結果のキャッシュ。_load_from_stats_nz は同一 Excel の同一シートを
+# 複数の行ぶん繰り返し読むため(1 load あたり ~16 回 read_excel)、(内容ハッシュ, シート名)で
+# read_excel 結果を再利用し、同じワークブックを何度も再パース(高コスト・CPU占有で
+# イベントループを飢えさせる)のを防ぐ。SWR バックグラウンド再取得が同じ Excel で再実行されても
+# 再パースしない。read 専用 (呼び出し側は df を変更しない) のため共有して安全。
+_EXCEL_DF_CACHE: "OrderedDict[tuple, pd.DataFrame]" = OrderedDict()
+_EXCEL_DF_CACHE_MAX = 12
+
+
+def _read_excel_cached(excel_bytes: bytes, sheet_name: str) -> pd.DataFrame:
+    key = (hashlib.md5(excel_bytes).hexdigest(), sheet_name)
+    df = _EXCEL_DF_CACHE.get(key)
+    if df is None:
+        df = pd.read_excel(io.BytesIO(excel_bytes), sheet_name=sheet_name, header=None)
+        _EXCEL_DF_CACHE[key] = df
+        if len(_EXCEL_DF_CACHE) > _EXCEL_DF_CACHE_MAX:
+            _EXCEL_DF_CACHE.popitem(last=False)
+    else:
+        _EXCEL_DF_CACHE.move_to_end(key)
+    return df
 
 from core.redis_client import redis_client
 
@@ -360,7 +384,7 @@ class NzRetailSalesService:
         - target_row: データ行（偶数列に値）
         """
         try:
-            df = pd.read_excel(io.BytesIO(excel_bytes), sheet_name=sheet_name, header=None)
+            df = _read_excel_cached(excel_bytes, sheet_name)
             result = {}
 
             # 年ヘッダーを解析（Row 5）

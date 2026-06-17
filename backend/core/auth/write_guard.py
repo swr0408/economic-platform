@@ -26,15 +26,19 @@ from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 
+import asyncio
+
 try:
     from backend.core.auth.audit_log import audit_write_operation
     from backend.core.auth.cookies import extract_token_from_cookie
+    from backend.core.auth.guard_executor import AUTH_GUARD_EXECUTOR
     from backend.core.auth.models import ROLE_MASTER
     from backend.core.auth.revocation import get_force_logout_after, is_jti_revoked
     from backend.core.auth.security import decode_access_token
 except ImportError:
     from core.auth.audit_log import audit_write_operation
     from core.auth.cookies import extract_token_from_cookie
+    from core.auth.guard_executor import AUTH_GUARD_EXECUTOR
     from core.auth.models import ROLE_MASTER
     from core.auth.revocation import get_force_logout_after, is_jti_revoked
     from core.auth.security import decode_access_token
@@ -173,7 +177,11 @@ class WriteOperationGuardMiddleware(BaseHTTPMiddleware):
         if not is_write_request(method, path, request.query_params):
             return await call_next(request)
 
-        role, err, payload = _extract_role(request)
+        # _extract_role は同期 Redis 呼び出しを含むため、イベントループ上で
+        # 直接実行せず専用スレッドプールに退避する (Redis 遅延時の全停止防止)
+        role, err, payload = await asyncio.get_running_loop().run_in_executor(
+            AUTH_GUARD_EXECUTOR, _extract_role, request
+        )
         client_ip = request.client.host if request.client else None
 
         if err is not None:

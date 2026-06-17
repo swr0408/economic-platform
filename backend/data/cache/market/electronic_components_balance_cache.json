@@ -2622,7 +2622,7 @@
       "balance_3ma": 6.63,
       "nikkei_yoy": 64.47,
       "nikkei": 59285.0,
-      "preliminary": true
+      "preliminary": false
     },
     {
       "date": "2026-05-01",
@@ -2636,8 +2636,8 @@
       "date": "2026-06-01",
       "balance": null,
       "balance_3ma": null,
-      "nikkei_yoy": 58.61,
-      "nikkei": 64217.0,
+      "nikkei_yoy": 72.65,
+      "nikkei": 69902.0,
       "preliminary": false
     }
   ],
@@ -2647,7 +2647,7 @@
     "balance_3ma": 6.63,
     "nikkei_yoy": 64.47,
     "nikkei": 59285.0,
-    "preliminary": true
+    "preliminary": false
   },
   "metadata": {
     "source": "METI IIP / yfinance",
@@ -2658,11 +2658,9 @@
     "balance_start": "1999-01",
     "balance_latest": "2026-04-01",
     "nikkei_latest": "2026-06",
-    "preliminary_months": [
-      "2026-04"
-    ]
+    "preliminary_months": []
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-12T01:41:11.056348+09:00"
+  "last_updated": "2026-06-17T20:43:08.097657+09:00"
 }

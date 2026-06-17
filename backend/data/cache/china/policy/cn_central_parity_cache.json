@@ -31251,16 +31251,51 @@
       "spot": 6.7735
     },
     {
-      "date": "2026-06-06",
-      "fixing": null,
+      "date": "2026-06-08",
+      "fixing": 6.8198,
+      "spot": 6.7655
+    },
+    {
+      "date": "2026-06-09",
+      "fixing": 6.8147,
+      "spot": 6.7655
+    },
+    {
+      "date": "2026-06-10",
+      "fixing": 6.813,
+      "spot": 6.7725
+    },
+    {
+      "date": "2026-06-11",
+      "fixing": 6.815,
+      "spot": 6.7725
+    },
+    {
+      "date": "2026-06-12",
+      "fixing": 6.8109,
+      "spot": 6.7755
+    },
+    {
+      "date": "2026-06-15",
+      "fixing": 6.8088,
       "spot": 6.766
+    },
+    {
+      "date": "2026-06-16",
+      "fixing": 6.8108,
+      "spot": 6.757
+    },
+    {
+      "date": "2026-06-17",
+      "fixing": 6.8096,
+      "spot": 6.7564
     }
   ],
   "latest": {
-    "fixing_date": "2026-06-05",
-    "fixing": 6.8157,
-    "spot_date": "2026-06-06",
-    "spot": 6.766
+    "fixing_date": "2026-06-17",
+    "fixing": 6.8096,
+    "spot_date": "2026-06-17",
+    "spot": 6.7564
   },
   "metadata": {
     "source": "China Foreign Exchange Trade System (CFETS) / Yahoo Finance",
@@ -31270,6 +31305,6 @@
       "fixing",
       "spot"
     ],
-    "total_records": 6251
+    "total_records": 6258
   }
 }

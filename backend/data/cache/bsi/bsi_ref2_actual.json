@@ -869,13 +869,34 @@
       "large_non_manufacturing": 8.1,
       "medium_all_industries": 5.2,
       "small_all_industries": -7.0
+    },
+    {
+      "date": "2026-03-01",
+      "year": 2026,
+      "quarter": "Q1",
+      "large_all_industries": 8.0,
+      "large_manufacturing": 6.1,
+      "large_non_manufacturing": 8.8,
+      "medium_all_industries": 4.3,
+      "small_all_industries": -11.6
+    },
+    {
+      "date": "2026-06-01",
+      "year": 2026,
+      "quarter": "Q2",
+      "large_all_industries": -4.5,
+      "large_manufacturing": -6.4,
+      "large_non_manufacturing": -3.6,
+      "medium_all_industries": -14.3,
+      "small_all_industries": -28.2
     }
   ],
   "sheet_name": "ref2",
-  "sheet_title": "売上高",
-  "sheet_description": "Sales",
+  "sheet_title": "国内の景況",
+  "sheet_description": "Domestic Business Conditions",
   "period_type": "actual",
-  "last_updated": "2026-01-12T09:13:45.082700",
+  "last_updated": "2026-06-16T00:32:00.989462",
   "cached": false,
-  "source": "e-stat"
+  "source": "e-stat",
+  "next_release": null
 }

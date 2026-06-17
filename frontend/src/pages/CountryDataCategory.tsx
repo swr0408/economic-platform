@@ -1,6 +1,6 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, lazy, Suspense } from 'react'
 import { useParams, Link, useLocation } from 'react-router-dom'
-import { Card, Typography, Space, Button, Empty, Tooltip } from 'antd'
+import { Card, Typography, Space, Button, Empty, Tooltip, Spin } from 'antd'
 import {
   ArrowLeftOutlined,
   BankOutlined,
@@ -17,61 +17,62 @@ import {
   QuestionCircleOutlined,
 } from '@ant-design/icons'
 import { useHandbook } from '../contexts/HandbookContext'
-import USAPolicyCharts from '../components/country/usa/USAPolicyCharts'
-import USAEconomyCharts from '../components/country/usa/USAEconomyCharts'
-import USAConsumerCharts from '../components/country/usa/USAConsumerCharts'
-import USAEmploymentCharts from '../components/country/usa/USAEmploymentCharts'
-import USAInflationCharts from '../components/country/usa/USAInflationCharts'
-import USAHousingCharts from '../components/country/usa/USAHousingCharts'
-import JapanPolicyCharts from '../components/country/japan/JapanPolicyCharts'
-import JapanEconomyCharts from '../components/country/japan/JapanEconomyCharts'
-import JapanConsumerCharts from '../components/country/japan/JapanConsumerCharts'
-import JapanEmploymentCharts from '../components/country/japan/JapanEmploymentCharts'
-import JapanInflationCharts from '../components/country/japan/JapanInflationCharts'
-import EurozonePolicyCharts from '../components/country/eurozone/EurozonePolicyCharts'
-import EurozoneEconomyCharts from '../components/country/eurozone/EurozoneEconomyCharts'
-import EurozoneConsumerCharts from '../components/country/eurozone/EurozoneConsumerCharts'
-import EurozoneEmploymentCharts from '../components/country/eurozone/EurozoneEmploymentCharts'
-import EurozoneInflationCharts from '../components/country/eurozone/EurozoneInflationCharts'
-import UKPolicyCharts from '../components/country/uk/UKPolicyCharts'
-import UKEconomyCharts from '../components/country/uk/UKEconomyCharts'
-import UKConsumerCharts from '../components/country/uk/UKConsumerCharts'
-import UKEmploymentCharts from '../components/country/uk/UKEmploymentCharts'
-import UKInflationCharts from '../components/country/uk/UKInflationCharts'
-import UKHousingCharts from '../components/country/uk/UKHousingCharts'
-import SwitzerlandPolicyCharts from '../components/country/switzerland/SwitzerlandPolicyCharts'
-import SwitzerlandEconomyCharts from '../components/country/switzerland/SwitzerlandEconomyCharts'
-import SwitzerlandInflationCharts from '../components/country/switzerland/SwitzerlandInflationCharts'
-import SwitzerlandConsumerCharts from '../components/country/switzerland/SwitzerlandConsumerCharts'
-import SwitzerlandEmploymentCharts from '../components/country/switzerland/SwitzerlandEmploymentCharts'
-import SwitzerlandHousingCharts from '../components/country/switzerland/SwitzerlandHousingCharts'
-import CanadaPolicyCharts from '../components/country/canada/CanadaPolicyCharts'
-import CanadaEconomyCharts from '../components/country/canada/CanadaEconomyCharts'
-import CanadaInflationCharts from '../components/country/canada/CanadaInflationCharts'
-import CanadaEmploymentCharts from '../components/country/canada/CanadaEmploymentCharts'
-import CanadaConsumerCharts from '../components/country/canada/CanadaConsumerCharts'
-import CanadaHousingCharts from '../components/country/canada/CanadaHousingCharts'
-import AustraliaPolicyCharts from '../components/country/australia/AustraliaPolicyCharts'
-import AustraliaInflationCharts from '../components/country/australia/AustraliaInflationCharts'
-import AustraliaEmploymentCharts from '../components/country/australia/AustraliaEmploymentCharts'
-import AustraliaConsumerCharts from '../components/country/australia/AustraliaConsumerCharts'
-import AustraliaEconomyCharts from '../components/country/australia/AustraliaEconomyCharts'
-import AustraliaHousingCharts from '../components/country/australia/AustraliaHousingCharts'
-import ChinaPolicyCharts from '../components/country/china/ChinaPolicyCharts'
-import ChinaHousingCharts from '../components/country/china/ChinaHousingCharts'
-import ChinaInflationCharts from '../components/country/china/ChinaInflationCharts'
-import ChinaConsumerCharts from '../components/country/china/ChinaConsumerCharts'
-import ChinaEmploymentCharts from '../components/country/china/ChinaEmploymentCharts'
-import ChinaEconomyCharts from '../components/country/china/ChinaEconomyCharts'
-import NewZealandPolicyCharts from '../components/country/newzealand/NewZealandPolicyCharts'
-import NewZealandInflationCharts from '../components/country/newzealand/NewZealandInflationCharts'
-import NewZealandEmploymentCharts from '../components/country/newzealand/NewZealandEmploymentCharts'
-import NewZealandConsumerCharts from '../components/country/newzealand/NewZealandConsumerCharts'
-import NewZealandEconomyCharts from '../components/country/newzealand/NewZealandEconomyCharts'
-import GlobalEconomyCharts from '../components/country/global/GlobalEconomyCharts'
 import EconomicCalendarWidgets from '../components/country/usa/EconomicCalendarWidgets'
 import HeadlinePanel from '../components/headlines/HeadlinePanel'
 import { COUNTRIES_DATA, type IndicatorItem } from '../constants/countryData'
+// 国別チャートは遅延読み込み（初回バンドルから除外し、表示するページのみ取得）
+const USAPolicyCharts = lazy(() => import('../components/country/usa/USAPolicyCharts'))
+const USAEconomyCharts = lazy(() => import('../components/country/usa/USAEconomyCharts'))
+const USAConsumerCharts = lazy(() => import('../components/country/usa/USAConsumerCharts'))
+const USAEmploymentCharts = lazy(() => import('../components/country/usa/USAEmploymentCharts'))
+const USAInflationCharts = lazy(() => import('../components/country/usa/USAInflationCharts'))
+const USAHousingCharts = lazy(() => import('../components/country/usa/USAHousingCharts'))
+const JapanPolicyCharts = lazy(() => import('../components/country/japan/JapanPolicyCharts'))
+const JapanEconomyCharts = lazy(() => import('../components/country/japan/JapanEconomyCharts'))
+const JapanConsumerCharts = lazy(() => import('../components/country/japan/JapanConsumerCharts'))
+const JapanEmploymentCharts = lazy(() => import('../components/country/japan/JapanEmploymentCharts'))
+const JapanInflationCharts = lazy(() => import('../components/country/japan/JapanInflationCharts'))
+const EurozonePolicyCharts = lazy(() => import('../components/country/eurozone/EurozonePolicyCharts'))
+const EurozoneEconomyCharts = lazy(() => import('../components/country/eurozone/EurozoneEconomyCharts'))
+const EurozoneConsumerCharts = lazy(() => import('../components/country/eurozone/EurozoneConsumerCharts'))
+const EurozoneEmploymentCharts = lazy(() => import('../components/country/eurozone/EurozoneEmploymentCharts'))
+const EurozoneInflationCharts = lazy(() => import('../components/country/eurozone/EurozoneInflationCharts'))
+const UKPolicyCharts = lazy(() => import('../components/country/uk/UKPolicyCharts'))
+const UKEconomyCharts = lazy(() => import('../components/country/uk/UKEconomyCharts'))
+const UKConsumerCharts = lazy(() => import('../components/country/uk/UKConsumerCharts'))
+const UKEmploymentCharts = lazy(() => import('../components/country/uk/UKEmploymentCharts'))
+const UKInflationCharts = lazy(() => import('../components/country/uk/UKInflationCharts'))
+const UKHousingCharts = lazy(() => import('../components/country/uk/UKHousingCharts'))
+const SwitzerlandPolicyCharts = lazy(() => import('../components/country/switzerland/SwitzerlandPolicyCharts'))
+const SwitzerlandEconomyCharts = lazy(() => import('../components/country/switzerland/SwitzerlandEconomyCharts'))
+const SwitzerlandInflationCharts = lazy(() => import('../components/country/switzerland/SwitzerlandInflationCharts'))
+const SwitzerlandConsumerCharts = lazy(() => import('../components/country/switzerland/SwitzerlandConsumerCharts'))
+const SwitzerlandEmploymentCharts = lazy(() => import('../components/country/switzerland/SwitzerlandEmploymentCharts'))
+const SwitzerlandHousingCharts = lazy(() => import('../components/country/switzerland/SwitzerlandHousingCharts'))
+const CanadaPolicyCharts = lazy(() => import('../components/country/canada/CanadaPolicyCharts'))
+const CanadaEconomyCharts = lazy(() => import('../components/country/canada/CanadaEconomyCharts'))
+const CanadaInflationCharts = lazy(() => import('../components/country/canada/CanadaInflationCharts'))
+const CanadaEmploymentCharts = lazy(() => import('../components/country/canada/CanadaEmploymentCharts'))
+const CanadaConsumerCharts = lazy(() => import('../components/country/canada/CanadaConsumerCharts'))
+const CanadaHousingCharts = lazy(() => import('../components/country/canada/CanadaHousingCharts'))
+const AustraliaPolicyCharts = lazy(() => import('../components/country/australia/AustraliaPolicyCharts'))
+const AustraliaInflationCharts = lazy(() => import('../components/country/australia/AustraliaInflationCharts'))
+const AustraliaEmploymentCharts = lazy(() => import('../components/country/australia/AustraliaEmploymentCharts'))
+const AustraliaConsumerCharts = lazy(() => import('../components/country/australia/AustraliaConsumerCharts'))
+const AustraliaEconomyCharts = lazy(() => import('../components/country/australia/AustraliaEconomyCharts'))
+const AustraliaHousingCharts = lazy(() => import('../components/country/australia/AustraliaHousingCharts'))
+const ChinaPolicyCharts = lazy(() => import('../components/country/china/ChinaPolicyCharts'))
+const ChinaHousingCharts = lazy(() => import('../components/country/china/ChinaHousingCharts'))
+const ChinaInflationCharts = lazy(() => import('../components/country/china/ChinaInflationCharts'))
+const ChinaConsumerCharts = lazy(() => import('../components/country/china/ChinaConsumerCharts'))
+const ChinaEmploymentCharts = lazy(() => import('../components/country/china/ChinaEmploymentCharts'))
+const ChinaEconomyCharts = lazy(() => import('../components/country/china/ChinaEconomyCharts'))
+const NewZealandPolicyCharts = lazy(() => import('../components/country/newzealand/NewZealandPolicyCharts'))
+const NewZealandInflationCharts = lazy(() => import('../components/country/newzealand/NewZealandInflationCharts'))
+const NewZealandEmploymentCharts = lazy(() => import('../components/country/newzealand/NewZealandEmploymentCharts'))
+const NewZealandConsumerCharts = lazy(() => import('../components/country/newzealand/NewZealandConsumerCharts'))
+const NewZealandEconomyCharts = lazy(() => import('../components/country/newzealand/NewZealandEconomyCharts'))
+const GlobalEconomyCharts = lazy(() => import('../components/country/global/GlobalEconomyCharts'))
 
 const { Title, Text } = Typography
 
@@ -372,6 +373,20 @@ function CountryDataCategory() {
   // メインコンテンツ
   const mainContent = (
     <>
+      <Suspense
+        fallback={
+          <div
+            style={{
+              minHeight: 400,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Spin size="large" tip="チャートを読み込み中..." />
+          </div>
+        }
+      >
       {isUSAPolicy ? (
         <USAPolicyCharts />
       ) : isUSAEconomy ? (
@@ -515,6 +530,7 @@ function CountryDataCategory() {
           />
         </Card>
       )}
+      </Suspense>
     </>
   )
 
@@ -722,6 +738,7 @@ function CountryDataCategory() {
                 title="ヘッドライン（抜粋）"
                 limit={20}
                 compact
+                priorityCategoryName={category.name}
               />
             )}
           </div>

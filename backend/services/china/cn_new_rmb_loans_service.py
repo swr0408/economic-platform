@@ -342,9 +342,12 @@ def _fetch_fmp_flow_actuals() -> Dict[str, float]:
         from sqlalchemy import text
 
         with SessionLocal() as session:
+            # SQLインジェクション対策: 値は直埋めせずバインドパラメータで渡す
             conditions = []
-            for pattern in FMP_EVENT_PATTERNS:
-                conditions.append(f"event ILIKE '%{pattern}%'")
+            pattern_params = {}
+            for i, pattern in enumerate(FMP_EVENT_PATTERNS):
+                conditions.append(f"event ILIKE :pat{i}")
+                pattern_params[f"pat{i}"] = f"%{pattern}%"
 
             query = text(f"""
                 SELECT datetime_utc, event, actual
@@ -355,7 +358,7 @@ def _fetch_fmp_flow_actuals() -> Dict[str, float]:
                   AND datetime_utc >= NOW() - INTERVAL '24 months'
                 ORDER BY datetime_utc DESC
             """)
-            rows = session.execute(query).fetchall()
+            rows = session.execute(query, pattern_params).fetchall()
 
             for row in rows:
                 dt_utc, event_name, actual = row
@@ -509,7 +512,7 @@ class CnNewRmbLoansService:
         if self._redis is None:
             try:
                 import redis
-                self._redis = redis.Redis(host="localhost", port=6379, db=0, socket_timeout=2)
+                self._redis = redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379/0"), socket_timeout=2, socket_connect_timeout=2)
                 self._redis.ping()
             except Exception:
                 self._redis = None

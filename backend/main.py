@@ -2,7 +2,19 @@
 Economic Platform API - メインエントリーポイント
 """
 
+import os
 from pathlib import Path
+
+# 診断: SIGUSR1 で全スレッドのスタックを stderr にダンプする。
+# py-spy/gdb が ptrace 不可のコンテナでも、CPU スピン中スレッドの発生箇所を特定できる。
+#   docker exec economic-platform-backend kill -USR1 <python pid>  → docker logs に traceback
+import faulthandler as _faulthandler
+import signal as _signal
+_faulthandler.enable()
+try:
+    _faulthandler.register(_signal.SIGUSR1, all_threads=True, chain=True)
+except (AttributeError, ValueError):
+    pass  # SIGUSR1 が無い環境 (Windows 等) では無視
 
 # プロジェクトルートの .env を最優先で読み込む
 # （他モジュールが import 時に環境変数を参照するため、最初に実行する必要がある）
@@ -11,13 +23,17 @@ load_dotenv(Path(__file__).parent.parent / ".env")
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.requests import Request
 from starlette.responses import Response
 
 # requests ライブラリにデフォルトタイムアウトを設定（import するだけで有効化）
-import core.http_defaults  # noqa: F401
+try:
+    import core.http_defaults  # noqa: F401
+except ImportError:
+    import backend.core.http_defaults  # noqa: F401
 
 try:
     from backend.config import SEASONALITY_DIR, SCREENSHOT_DIR, ALLOWED_ORIGINS
@@ -174,8 +190,11 @@ try:
     from backend.routers.auth import router as auth_router
     from backend.routers.visibility import router as visibility_router
     from backend.routers.admin_staleness import router as admin_staleness_router
+    from backend.routers.billing_admin import router as billing_admin_router
     from backend.core.auth.schema_init import init_auth_schema
     from backend.core.auth.visibility_schema_init import init_visibility_schema
+    from backend.core.billing.schema_init import init_billing_schema
+    from backend.scheduler.entitlement_scheduler import entitlement_scheduler
     from backend.core.auth.write_guard import WriteOperationGuardMiddleware
     from backend.core.auth.read_visibility_guard import ReadVisibilityGuardMiddleware
     from backend.services.discord.discord_news_listener import discord_news_listener
@@ -396,8 +415,11 @@ except ImportError as _ie:
     from routers.auth import router as auth_router
     from routers.visibility import router as visibility_router
     from routers.admin_staleness import router as admin_staleness_router
+    from routers.billing_admin import router as billing_admin_router
     from core.auth.schema_init import init_auth_schema
     from core.auth.visibility_schema_init import init_visibility_schema
+    from core.billing.schema_init import init_billing_schema
+    from scheduler.entitlement_scheduler import entitlement_scheduler
     from core.auth.write_guard import WriteOperationGuardMiddleware
     from core.auth.read_visibility_guard import ReadVisibilityGuardMiddleware
     from services.discord.discord_news_listener import discord_news_listener
@@ -423,7 +445,44 @@ class StaticCacheHeaderMiddleware(BaseHTTPMiddleware):
         return response
 
 
-app = FastAPI(title="Economic Platform API", version="1.0.0")
+# APIドキュメント公開制御 (本番では API サーフェス開示を防ぐため無効化する)
+# 本番 compose は API_DOCS_ENABLED=false を設定。ローカルはデフォルト有効。
+_docs_enabled = os.getenv("API_DOCS_ENABLED", "true").lower() in ("1", "true", "yes", "on")
+
+app = FastAPI(
+    title="Economic Platform API",
+    version="1.0.0",
+    docs_url="/docs" if _docs_enabled else None,
+    redoc_url="/redoc" if _docs_enabled else None,
+    openapi_url="/openapi.json" if _docs_enabled else None,
+)
+
+# 5xx エラー詳細マスク (本番では str(e) 由来の内部情報を応答に載せない)
+# ルーター内の detail=f"...{str(e)}" (51箇所) を個別修正せず一括で防ぐ。
+# 4xx の detail (バリデーション/NotFound等のユーザー向けメッセージ) は維持する。
+_mask_error_details = os.getenv("MASK_ERROR_DETAILS", "false").lower() in ("1", "true", "yes", "on")
+
+if _mask_error_details:
+    from fastapi import HTTPException as _FastAPIHTTPException
+    from fastapi.responses import JSONResponse as _JSONResponse
+    import logging as _logging
+
+    _err_logger = _logging.getLogger("error_mask")
+
+    @app.exception_handler(_FastAPIHTTPException)
+    async def _masked_http_exception_handler(request: Request, exc: _FastAPIHTTPException):
+        detail = exc.detail
+        if exc.status_code >= 500:
+            # 元の詳細はサーバーログにのみ残す
+            _err_logger.error(
+                f"[5xx masked] {request.method} {request.url.path}: {detail}"
+            )
+            detail = "Internal server error"
+        return _JSONResponse(
+            status_code=exc.status_code,
+            content={"detail": detail},
+            headers=getattr(exc, "headers", None),
+        )
 
 # CORS設定
 app.add_middleware(
@@ -445,6 +504,14 @@ app.add_middleware(WriteOperationGuardMiddleware)
 # 読み取り系の可視性 (special/master 限定指標) を制御するミドルウェア
 # 詳細は backend/core/auth/read_visibility_guard.py を参照
 app.add_middleware(ReadVisibilityGuardMiddleware)
+
+# レスポンス圧縮 (gzip)。ダッシュボード JSON は数百KB に達するため転送量を 70〜80% 削減する。
+# 最後に add するため最外層となり、可視性フィルタ等でボディが確定した後の最終応答のみを圧縮する
+# (内側のミドルウェアは非圧縮ボディを扱える)。データ内容・更新頻度には一切影響しない純粋な転送最適化。
+# minimum_size=1000: 小さい応答は圧縮オーバーヘッドの方が大きいので非圧縮のまま通す。
+# compresslevel=6: 圧縮はイベントループ上で同期実行されるため、既定の 9 ではなく 6 にして
+# CPU 負荷を抑える (圧縮率はほぼ同等で速度は大幅に向上 → ループを長く占有しない)。
+app.add_middleware(GZipMiddleware, minimum_size=1000, compresslevel=6)
 
 # 静的ファイル配信（シーズナリティ画像）
 if SEASONALITY_DIR.exists():
@@ -657,6 +724,7 @@ app.include_router(headlines_router)
 app.include_router(auth_router)
 app.include_router(visibility_router)
 app.include_router(admin_staleness_router)
+app.include_router(billing_admin_router)
 
 
 @app.get("/health")
@@ -700,6 +768,19 @@ async def startup_event():
         init_visibility_schema()
     except Exception as e:
         print(f"[startup] init_visibility_schema failed: {e}")
+
+    # 収益化スキーマ初期化 (invite_codes / entitlements / pro_pdf_archives)
+    try:
+        init_billing_schema()
+    except Exception as e:
+        print(f"[startup] init_billing_schema failed: {e}")
+
+    # Entitlement 期限切れスイープ スケジューラーを開始
+    try:
+        entitlement_scheduler.start()
+        print("Entitlement Scheduler started successfully")
+    except Exception as e:
+        print(f"Warning: Could not start Entitlement Scheduler: {e}")
 
     print(f"SEASONALITY_DIR: {SEASONALITY_DIR}")
     print(f"SEASONALITY_DIR exists: {SEASONALITY_DIR.exists()}")
@@ -1149,6 +1230,11 @@ async def shutdown_event():
         staleness_monitor_scheduler.shutdown()
     except Exception as e:
         print(f"Warning: Error shutting down Staleness Monitor Scheduler: {e}")
+
+    try:
+        entitlement_scheduler.shutdown()
+    except Exception as e:
+        print(f"Warning: Error shutting down Entitlement Scheduler: {e}")
 
     try:
         discord_news_listener.shutdown()

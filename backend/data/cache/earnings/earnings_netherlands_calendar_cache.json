@@ -17,7 +17,7 @@
       "eps_actual": null,
       "revenue_estimate": 5661197000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "ASML",
@@ -29,9 +29,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 8.01,
       "eps_actual": null,
-      "revenue_estimate": 10456440000.0,
+      "revenue_estimate": 10449480000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "ASM",
@@ -41,11 +41,11 @@
       "date": "2026-07-28",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 6.69,
+      "eps_estimate": 5.81,
       "eps_actual": null,
-      "revenue_estimate": 1098461000.0,
+      "revenue_estimate": 1100865000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "ING",
@@ -59,7 +59,7 @@
       "eps_actual": null,
       "revenue_estimate": 7131577000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "AD",
@@ -73,26 +73,26 @@
       "eps_actual": null,
       "revenue_estimate": 27331870000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "ADYEN",
       "name": "Adyen",
       "tier": "A",
       "country_code": "netherlands",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
+      "date": "2026-08-13",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 0.1995,
       "eps_actual": null,
-      "revenue_estimate": null,
+      "revenue_estimate": 1513227000.0,
       "revenue_actual": null,
-      "updated_from_date": null
+      "updated_from_date": "2026-06-17"
     }
   ],
   "next_7d_count": 0,
-  "next_30d_count": 1,
-  "last_updated": "2026-06-12T01:35:37.022658+00:00",
+  "next_30d_count": 2,
+  "last_updated": "2026-06-17T12:37:42.772137+00:00",
   "cached": false,
   "status": "ok"
 }

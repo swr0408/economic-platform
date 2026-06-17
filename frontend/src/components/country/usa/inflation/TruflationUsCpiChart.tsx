@@ -21,6 +21,7 @@ interface ScreenshotItem {
   label: string
   url: string | null
   exists: boolean
+  version?: number
 }
 
 interface ScreenshotData {
@@ -32,7 +33,6 @@ function TruflationUsCpiChart() {
   const [data, setData] = useState<ScreenshotData | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [imageKey] = useState(0)
 
   useEffect(() => {
     loadScreenshotUrls()
@@ -134,8 +134,8 @@ function TruflationUsCpiChart() {
           <div style={{ textAlign: 'center' }}>
             {currentScreenshot?.exists && currentScreenshot?.url ? (
               <Image
-                key={`${currentScreenshot.key}-${imageKey}`}
-                src={`${API_BASE_URL}${currentScreenshot.url}?t=${imageKey}`}
+                key={`${currentScreenshot.key}-${currentScreenshot.version ?? 0}`}
+                src={`${API_BASE_URL}${currentScreenshot.url}?v=${currentScreenshot.version ?? 0}`}
                 alt={`Truflation ${currentScreenshot.label}`}
                 style={{ maxWidth: '100%', height: 'auto' }}
                 preview={true}

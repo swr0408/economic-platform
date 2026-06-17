@@ -55,6 +55,60 @@ export default function CompareChart({
     const FREQ_RANK: Record<IndicatorFrequency, number> = {
       daily: 1, weekly: 2, monthly: 3, quarterly: 4, yearly: 5, irregular: 3,
     };
+    const RANK_TO_FREQ: Record<number, IndicatorFrequency> = {
+      1: 'daily', 2: 'weekly', 3: 'monthly', 4: 'quarterly', 5: 'yearly',
+    };
+
+    // 銘柄（マーケット）指標は連続価格なので、比較相手の頻度に合わせて足を落とせる。
+    // 月次指標と比較するなら月足(月末終値)、週次なら週足、日次ならそのまま日足。
+    // 経済指標は発表頻度が固定で再集計できないため、足を合わせる側は常に銘柄。
+    const isMarketIndicator = (ind: OverlayIndicator) => ind.apiEndpoint === '/api/market';
+
+    // 比較相手（非銘柄）の最も細かい頻度を銘柄の目標足とする。
+    // 非銘柄指標が無い（銘柄同士）の場合は日足のまま。
+    let marketTargetRank = Infinity;
+    for (const indicator of indicators) {
+      if (isMarketIndicator(indicator)) continue;
+      const rank = FREQ_RANK[indicator.frequency];
+      if (rank < marketTargetRank) marketTargetRank = rank;
+    }
+
+    // 各指標の実効頻度（銘柄は目標足へ丸める。目標が自身より粗い場合のみ）
+    const effFreq: Record<string, IndicatorFrequency> = {};
+    for (const indicator of indicators) {
+      if (
+        isMarketIndicator(indicator) &&
+        marketTargetRank !== Infinity &&
+        marketTargetRank > FREQ_RANK[indicator.frequency]
+      ) {
+        effFreq[indicator.id] = RANK_TO_FREQ[marketTargetRank];
+      } else {
+        effFreq[indicator.id] = indicator.frequency;
+      }
+    }
+
+    // 日足→指定頻度へダウンサンプリング（各期間の最終データ=終値を採用、実日付は保持）
+    const periodKey = (date: string, freq: IndicatorFrequency): string => {
+      const d = parseDate(date);
+      const y = d.getFullYear();
+      if (freq === 'yearly') return `${y}`;
+      if (freq === 'quarterly') return `${y}-Q${Math.floor(d.getMonth() / 3) + 1}`;
+      if (freq === 'monthly') return `${y}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+      if (freq === 'weekly') return `${Math.floor(d.getTime() / (7 * 86400000))}`;
+      return date; // daily
+    };
+    const downsample = (
+      series: { date: string; value: number | null }[],
+      freq: IndicatorFrequency
+    ): { date: string; value: number | null }[] => {
+      if (freq === 'daily' || freq === 'irregular') return series;
+      const sorted = [...series].sort((a, b) => getDateTimestamp(a.date) - getDateTimestamp(b.date));
+      const lastByPeriod = new Map<string, { date: string; value: number | null }>();
+      for (const pt of sorted) {
+        lastByPeriod.set(periodKey(pt.date, freq), pt); // 後勝ち=その期間の最終値（終値）
+      }
+      return [...lastByPeriod.values()];
+    };
 
     // 各指標のデータをタイムシフト適用済みで準備（ソート済み）
     // 全日付をYYYY-MM-DD形式に正規化（YYYY-Q# → YYYY-MM-DD 変換含む）
@@ -69,7 +123,11 @@ export default function CompareChart({
     for (const indicator of indicators) {
       const shift = timeShifts[indicator.id] || 0;
       const raw = dataMap[indicator.id] || [];
-      const shifted = shift !== 0 ? shiftDataByMonths(raw, shift) : raw;
+      // 銘柄は目標足へダウンサンプリングしてからシフト（シフト単位=月と整合）
+      const resampled = isMarketIndicator(indicator)
+        ? downsample(raw, effFreq[indicator.id])
+        : raw;
+      const shifted = shift !== 0 ? shiftDataByMonths(resampled, shift) : resampled;
       // 四半期形式(YYYY-Q#)等を常にYYYY-MM-DD形式に正規化
       const normalized = shifted.map(pt => ({
         ...pt,
@@ -80,10 +138,10 @@ export default function CompareChart({
       );
     }
 
-    // 最も細かい頻度を特定（ベースタイムラインの解像度）
+    // 最も細かい頻度を特定（実効頻度ベース＝ベースタイムラインの解像度）
     let finestRank = Infinity;
     for (const indicator of indicators) {
-      const rank = FREQ_RANK[indicator.frequency];
+      const rank = FREQ_RANK[effFreq[indicator.id]];
       if (rank < finestRank) finestRank = rank;
     }
 
@@ -140,8 +198,8 @@ export default function CompareChart({
     } else {
       // 日次/週次: まずfinest指標の日付でベースを構築
       const dateSet = new Set<string>();
-      const finestIndicators = indicators.filter(i => FREQ_RANK[i.frequency] <= finestRank);
-      const coarserIndicators = indicators.filter(i => FREQ_RANK[i.frequency] > finestRank);
+      const finestIndicators = indicators.filter(i => FREQ_RANK[effFreq[i.id]] <= finestRank);
+      const coarserIndicators = indicators.filter(i => FREQ_RANK[effFreq[i.id]] > finestRank);
 
       for (const indicator of finestIndicators) {
         for (const pt of shiftedSorted[indicator.id]) {
@@ -227,7 +285,7 @@ export default function CompareChart({
     const indicatorValues: Record<string, (number | null)[]> = {};
     for (const indicator of indicators) {
       const sorted = shiftedSorted[indicator.id];
-      const freqRank = FREQ_RANK[indicator.frequency];
+      const freqRank = FREQ_RANK[effFreq[indicator.id]];
       const shift = timeShifts[indicator.id] || 0;
       // シフトなし指標: 実データの最終日付を超えたら前方充填しない
       const lastDataDate = sorted.length > 0 ? sorted[sorted.length - 1].date : '';
@@ -280,7 +338,8 @@ export default function CompareChart({
 
     // MergedDataPoint配列を構築
     const renamedData: MergedDataPoint[] = unionDates.map((date, idx) => {
-      const point: MergedDataPoint = { date, value: null };
+      // dateValue: 時間軸(type=number, scale=time)用の数値タイムスタンプ
+      const point: MergedDataPoint = { date, value: null, dateValue: getDateTimestamp(date) };
       for (const indicator of indicators) {
         point[indicator.id] = indicatorValues[indicator.id][idx];
       }
@@ -420,6 +479,7 @@ export default function CompareChart({
         color={getOverlayColor(0)}
         name={indicators[0]?.name || ''}
         domain={['auto', 'auto']}
+        useTimeAxis={true}
         xAxisTickFormatter={useQuarterKey ? formatQuarterLabel : undefined}
         tooltipLabelFormatter={(dateStr) => {
           const d = parseDate(dateStr);

@@ -966,12 +966,12 @@
     "indicator": "M1/M2 Money Supply",
     "source": "PBOC",
     "total_records": 136,
-    "last_fetched": "2026-06-11T01:23:11.970226+09:00"
+    "last_fetched": "2026-06-12T18:01:15.184741+09:00"
   },
   "next_release": {
-    "date": "2026-06-13",
-    "datetime_utc": "2026-06-13T09:00:00+00:00",
-    "datetime_jst": "2026-06-13T18:00:00+09:00",
+    "date": "2026-06-12",
+    "datetime_utc": "2026-06-12T09:00:00+00:00",
+    "datetime_jst": "2026-06-12T18:00:00+09:00",
     "time_jst": "18:00",
     "label": "M2 Money Supply YoY (May)",
     "estimate": 8.6

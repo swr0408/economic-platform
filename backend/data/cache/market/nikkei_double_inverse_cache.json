@@ -5186,8 +5186,8 @@
     },
     {
       "date": "2025-11-21",
-      "sell_balance": 495560,
-      "buy_balance": 3148235,
+      "sell_balance": 495561,
+      "buy_balance": 3148236,
       "sell_change": 142506,
       "buy_change": -567144,
       "margin_ratio": 6.35,
@@ -5426,26 +5426,35 @@
       "buy_change": -309086,
       "margin_ratio": 3.57,
       "nikkei_close": 66588.12
+    },
+    {
+      "date": "2026-06-12",
+      "sell_balance": 1303125,
+      "buy_balance": 3843857,
+      "sell_change": 38231,
+      "buy_change": -668669,
+      "margin_ratio": 2.95,
+      "nikkei_close": 66020.04
     }
   ],
   "latest": {
-    "date": "2026-06-05",
-    "sell_balance": 1264894,
-    "buy_balance": 4512526,
-    "sell_change": 360556,
-    "buy_change": -309086,
-    "margin_ratio": 3.57,
-    "nikkei_close": 66588.12
+    "date": "2026-06-12",
+    "sell_balance": 1303125,
+    "buy_balance": 3843857,
+    "sell_change": 38231,
+    "buy_change": -668669,
+    "margin_ratio": 2.95,
+    "nikkei_close": 66020.04
   },
   "metadata": {
     "source": "CSV + yfinance (^N225)",
     "indicator": "Nikkei Double Inverse (1357) Margin Balance",
     "frequency": "weekly",
-    "data_count": 603,
+    "data_count": 604,
     "start_date": "2014-07-18",
-    "end_date": "2026-06-05"
+    "end_date": "2026-06-12"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-12T01:36:08.300001+09:00"
+  "last_updated": "2026-06-17T20:39:48.489631+09:00"
 }

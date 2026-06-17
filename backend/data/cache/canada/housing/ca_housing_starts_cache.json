@@ -2587,28 +2587,34 @@
     },
     {
       "date": "2026-02-01",
-      "value": 249.9,
-      "mom": 5.71,
-      "yoy": 12.36
+      "value": 249.8,
+      "mom": 5.64,
+      "yoy": 12.28
     },
     {
       "date": "2026-03-01",
-      "value": 239.7,
-      "mom": -4.08,
-      "yoy": 11.77
+      "value": 240.1,
+      "mom": -3.88,
+      "yoy": 11.93
     },
     {
       "date": "2026-04-01",
-      "value": 279.3,
-      "mom": 16.5,
-      "yoy": -0.89
+      "value": 278.4,
+      "mom": 15.95,
+      "yoy": -1.22
+    },
+    {
+      "date": "2026-05-01",
+      "value": 261.4,
+      "mom": -6.11,
+      "yoy": -6.22
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "value": 279.3,
-    "mom": 16.5,
-    "yoy": -0.89
+    "date": "2026-05-01",
+    "value": 261.4,
+    "mom": -6.11,
+    "yoy": -6.22
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -2619,14 +2625,14 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-06-15",
-    "datetime_utc": "2026-06-15T12:15:00+00:00",
-    "datetime_jst": "2026-06-15T21:15:00+09:00",
+    "date": "2026-07-16",
+    "datetime_utc": "2026-07-16T12:15:00+00:00",
+    "datetime_jst": "2026-07-16T21:15:00+09:00",
     "time_jst": "21:15",
-    "datetime_toronto": "2026-06-15T08:15:00-04:00",
+    "datetime_toronto": "2026-07-16T08:15:00-04:00",
     "time_toronto": "08:15",
-    "label": "Housing Starts (May)",
-    "estimate": 260.0
+    "label": "Housing Starts (Jun)",
+    "estimate": 220.0
   },
-  "last_updated": "2026-06-12T01:00:26.331891+09:00"
+  "last_updated": "2026-06-17T21:31:22.856798+09:00"
 }

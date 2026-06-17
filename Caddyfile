@@ -1,33 +1,54 @@
 # ============================================================================
-# Caddyfile - EconAlpha 本番向け最小構成
+# Caddyfile - EconAlpha 本番向け統一エントリポイント
 # ============================================================================
-# api.example.com → backend (FastAPI) へのリバースプロキシ。
+# 単一ドメインで SPA (frontend) と API (backend) を同一オリジン配信する。
+#   https://example.com/          → frontend (SPA 静的配信)
+#   https://example.com/api/*     → backend (FastAPI)
+#   https://example.com/static/*  → backend (画像等)
 # Caddy は自動 HTTPS (Let's Encrypt) を提供する。
 #
+# ※ 同一オリジン構成にする理由 (2026-06-12 セキュリティ監査 H-3):
+#   - フロントを :80 直公開すると認証Cookieが平文HTTPで流れる
+#   - フロントとAPIを別オリジンにすると SameSite=Lax Cookie がXHRに乗らず
+#     ログインが機能しない (SameSite=None化はCSRF面で劣化)
+#   → Caddy を唯一の公開ポートにし、同一オリジンで両方を配る
+#
 # 使い方:
-#   1. DNS で api.example.com を Lightsail VM の Static IP に向ける
-#   2. {$API_DOMAIN} を .env で設定する (例: API_DOMAIN=api.example.com)
+#   1. DNS で example.com を VM の Static IP に向ける
+#   2. .env に APP_DOMAIN=example.com を設定
 #   3. docker compose -f docker-compose.prod.yml up -d
 #
 # ローカルテスト (HTTPS なし):
-#   API_DOMAIN=:80 docker compose -f docker-compose.prod.yml up caddy backend
+#   APP_DOMAIN=:80 docker compose -f docker-compose.prod.yml up
 # ============================================================================
 
-{$API_DOMAIN:localhost} {
-	# FastAPI (backend コンテナ) へプロキシ
-	reverse_proxy backend:8000 {
-		# ヘルスチェック (オプション)
-		health_uri /health
-		health_interval 30s
-	}
-
-	# リクエストヘッダ付与
+{$APP_DOMAIN:localhost} {
+	# セキュリティヘッダ
 	header {
+		# HTTPS強制 (6ヶ月 + サブドメイン)。HTTPS運用が安定してから preload 追加を検討
+		Strict-Transport-Security "max-age=15552000; includeSubDomains"
 		X-Content-Type-Options nosniff
 		X-Frame-Options DENY
 		Referrer-Policy strict-origin-when-cross-origin
 		-Server
 	}
+
+	# API / バックエンド配信パス
+	@backend path /api/* /static/* /cache/* /health /health/*
+	handle @backend {
+		reverse_proxy backend:8000 {
+			health_uri /health
+			health_interval 30s
+		}
+	}
+
+	# それ以外は SPA (frontend コンテナの nginx)
+	handle {
+		reverse_proxy frontend-prod:80
+	}
+
+	# 圧縮
+	encode gzip zstd
 
 	# アクセスログ
 	log {

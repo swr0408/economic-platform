@@ -459,11 +459,15 @@
     {
       "date": "2026-06-03",
       "value": -0.6
+    },
+    {
+      "date": "2026-06-17",
+      "value": -2.8
     }
   ],
   "latest": {
-    "date": "2026-06-03",
-    "value": -0.6
+    "date": "2026-06-17",
+    "value": -2.8
   },
   "metadata": {
     "source": "GlobalDairyTrade",
@@ -472,5 +476,5 @@
     "unit": "%",
     "frequency": "irregular"
   },
-  "last_updated": "2026-06-12T09:34:22.006547+09:00"
+  "last_updated": "2026-06-17T09:31:40.936148+09:00"
 }

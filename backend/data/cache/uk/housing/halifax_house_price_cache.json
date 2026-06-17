@@ -1175,6 +1175,18 @@
       "value": -0.1,
       "forecast": null,
       "previous": null
+    },
+    {
+      "date": "2026-05-01",
+      "value": -0.1,
+      "forecast": -0.1,
+      "previous": -0.5
+    },
+    {
+      "date": "2026-06-01",
+      "value": -0.1,
+      "forecast": 0.1,
+      "previous": -0.1
     }
   ],
   "yoy": [
@@ -2353,20 +2365,32 @@
       "value": 0.4,
       "forecast": null,
       "previous": null
+    },
+    {
+      "date": "2026-05-01",
+      "value": 0.4,
+      "forecast": 0.6,
+      "previous": 0.8
+    },
+    {
+      "date": "2026-06-01",
+      "value": 0.5,
+      "forecast": 1.0,
+      "previous": 0.4
     }
   ],
   "latest_mom": {
-    "date": "2026-04-01",
+    "date": "2026-06-01",
     "value": -0.1,
-    "forecast": null,
-    "previous": null
+    "forecast": 0.1,
+    "previous": -0.1
   },
   "latest_yoy": {
-    "date": "2026-04-01",
-    "value": 0.4,
-    "forecast": null,
-    "previous": null
+    "date": "2026-06-01",
+    "value": 0.5,
+    "forecast": 1.0,
+    "previous": 0.4
   },
   "next_release": "2026-02-06T07:00:00+00:00",
-  "last_updated": "2026-06-12T10:47:52.581994+09:00"
+  "last_updated": "2026-06-17T21:48:16.625863+09:00"
 }

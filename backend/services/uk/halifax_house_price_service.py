@@ -746,6 +746,12 @@ class HalifaxHousePriceService:
                     if now > next_release_dt + timedelta(minutes=3):
                         return True
 
+            # max-age フォールバック（多層防御）: 次回発表日の推定ズレや
+            # PDF取得の連続失敗で発表日判定が発火しなくても、7日以上未更新なら
+            # 必ず再取得して永久凍結（取りこぼし）を防ぐ。他UK住宅サービスと同方針。
+            if (datetime.now(JST) - last_updated).total_seconds() > 7 * 24 * 3600:
+                return True
+
             return False
 
         except Exception as e:

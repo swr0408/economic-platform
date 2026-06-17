@@ -691,11 +691,15 @@
     {
       "date": "2026-04-01",
       "ytd": -1.6
+    },
+    {
+      "date": "2026-05-01",
+      "ytd": -4.1
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "ytd": -1.6
+    "date": "2026-05-01",
+    "ytd": -4.1
   },
   "metadata": {
     "indicator": "Fixed Asset Investment",
@@ -703,8 +707,8 @@
     "series": {
       "ytd": "固定資産投資 累計前年比 (%)"
     },
-    "total_records": 173,
-    "last_fetched": "2026-06-12T11:01:55.453123+09:00"
+    "total_records": 174,
+    "last_fetched": "2026-06-16T11:01:13.496000+09:00"
   },
   "next_release": {
     "date": "2026-06-16",

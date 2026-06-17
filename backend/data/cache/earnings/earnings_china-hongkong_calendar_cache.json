@@ -18,21 +18,21 @@
       "eps_actual": null,
       "revenue_estimate": 36914180000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "0700.HK",
       "name": "Tencent",
       "tier": "S",
       "country_code": "china-hongkong",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
+      "date": "2026-08-12",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 1.09,
       "eps_actual": null,
-      "revenue_estimate": null,
+      "revenue_estimate": 29919530000.0,
       "revenue_actual": null,
-      "updated_from_date": null
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "BABA",
@@ -149,7 +149,7 @@
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-06-12T01:35:37.092665+00:00",
+  "last_updated": "2026-06-17T12:37:42.846989+00:00",
   "cached": false,
   "status": "ok"
 }

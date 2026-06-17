@@ -30034,22 +30034,37 @@
       "date": "2026-06-12",
       "value": 2.0,
       "deposit_facility": 2.0
+    },
+    {
+      "date": "2026-06-13",
+      "value": 2.0,
+      "deposit_facility": 2.0
+    },
+    {
+      "date": "2026-06-14",
+      "value": 2.0,
+      "deposit_facility": 2.0
+    },
+    {
+      "date": "2026-06-15",
+      "value": 2.0,
+      "deposit_facility": 2.0
     }
   ],
   "latest": {
-    "date": "2026-06-12",
+    "date": "2026-06-15",
     "value": 2.0,
     "deposit_facility": 2.0
   },
   "next_release": {
-    "date": "2026-06-11",
-    "datetime_utc": "2026-06-11T12:15:00+00:00",
-    "datetime_jst": "2026-06-11T21:15:00+09:00",
+    "date": "2026-07-23",
+    "datetime_utc": "2026-07-23T12:15:00+00:00",
+    "datetime_jst": "2026-07-23T21:15:00+09:00",
     "time_jst": "21:15",
-    "datetime_cet": "2026-06-11T14:15:00+02:00",
+    "datetime_cet": "2026-07-23T14:15:00+02:00",
     "time_cet": "14:15",
-    "label": "Deposit Facility Rate (Jun)",
-    "estimate": 2.25
+    "label": "Deposit Facility Rate",
+    "estimate": null
   },
-  "last_updated": "2026-06-12T09:31:29.220501+09:00"
+  "last_updated": "2026-06-15T20:03:09.765348+09:00"
 }

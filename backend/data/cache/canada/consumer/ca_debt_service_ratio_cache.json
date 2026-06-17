@@ -842,34 +842,40 @@
     },
     {
       "date": "2025-01-01",
-      "value": 14.66,
-      "mortgage": 7.87,
+      "value": 14.68,
+      "mortgage": 7.88,
       "non_mortgage": 6.8
     },
     {
       "date": "2025-04-01",
-      "value": 14.7,
-      "mortgage": 7.88,
-      "non_mortgage": 6.82
+      "value": 14.78,
+      "mortgage": 7.93,
+      "non_mortgage": 6.86
     },
     {
       "date": "2025-07-01",
-      "value": 14.61,
-      "mortgage": 7.81,
-      "non_mortgage": 6.8
+      "value": 14.71,
+      "mortgage": 7.87,
+      "non_mortgage": 6.85
     },
     {
       "date": "2025-10-01",
-      "value": 14.57,
-      "mortgage": 7.77,
-      "non_mortgage": 6.81
+      "value": 14.68,
+      "mortgage": 7.83,
+      "non_mortgage": 6.85
+    },
+    {
+      "date": "2026-01-01",
+      "value": 14.75,
+      "mortgage": 7.84,
+      "non_mortgage": 6.91
     }
   ],
   "latest": {
-    "date": "2025-10-01",
-    "value": 14.57,
-    "mortgage": 7.77,
-    "non_mortgage": 6.81
+    "date": "2026-01-01",
+    "value": 14.75,
+    "mortgage": 7.84,
+    "non_mortgage": 6.91
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -880,5 +886,5 @@
     "frequency": "quarterly"
   },
   "next_release": null,
-  "last_updated": "2026-06-12T01:00:26.404126+09:00"
+  "last_updated": "2026-06-17T21:31:22.702201+09:00"
 }

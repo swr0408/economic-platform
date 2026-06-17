@@ -32,9 +32,11 @@ from io import BytesIO
 try:
     from backend.core.redis_client import redis_client
     from backend.services.japan.fmp_next_release_utils import get_next_release_from_fmp
+    from backend.services.japan.bsi_estat_source import download_bsi_excel
 except ImportError:
     from core.redis_client import redis_client
     from services.japan.fmp_next_release_utils import get_next_release_from_fmp
+    from services.japan.bsi_estat_source import download_bsi_excel
 
 
 class BSIComprehensiveService:
@@ -46,15 +48,19 @@ class BSIComprehensiveService:
     # FMP event pattern for next release
     INDICATOR_ID = "jp_bsi"
 
-    # Data source URL
-    DATA_URL = "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040283549&fileKind=0"
-
-    # Sheet information
+    # Sheet information.
+    # sheet_names: 現行の e-Stat ファイルは多シート構成（先頭が「目次」）で、
+    # インデックスがズレるためシート名で選択する。表記揺れ（全角ハイフン等）に
+    # 備えて候補を複数持つ。
     SHEET_INFO = {
-        0: {"name": "ref1", "title": "貴社の景況", "description": "Business Conditions Index"},
-        1: {"name": "ref2", "title": "国内の景況", "description": "Domestic Business Conditions"},
-        2: {"name": "ref3", "title": "設備投資", "description": "Capital Investment"},
-        3: {"name": "ref4", "title": "雇用", "description": "Employment"}
+        0: {"name": "ref1", "title": "貴社の景況", "description": "Business Conditions Index",
+            "sheet_names": ("参考-１", "参考‐１", "参考-1")},
+        1: {"name": "ref2", "title": "国内の景況", "description": "Domestic Business Conditions",
+            "sheet_names": ("参考-２", "参考‐２", "参考-2")},
+        2: {"name": "ref3", "title": "設備投資", "description": "Capital Investment",
+            "sheet_names": ("参考-３", "参考‐３", "参考-3")},
+        3: {"name": "ref4", "title": "雇用", "description": "Employment",
+            "sheet_names": ("参考-４", "参考‐４", "参考-4")},
     }
 
     # Column mapping for all sheets
@@ -156,17 +162,33 @@ class BSIComprehensiveService:
         if not openpyxl:
             raise ImportError("openpyxl is required for parsing Excel files")
 
-        print(f"Fetching BSI data from {self.DATA_URL} (sheet={sheet_index}, period={period_type})")
+        print(f"Fetching BSI data from e-Stat (sheet={sheet_index}, period={period_type})")
 
-        response = requests.get(self.DATA_URL, timeout=30)
-        response.raise_for_status()
+        # statInfId を動的解決して Excel を取得（旧固定 URL は 404 になるため）
+        content = download_bsi_excel()
 
-        wb = openpyxl.load_workbook(BytesIO(response.content), data_only=True)
+        wb = openpyxl.load_workbook(BytesIO(content), data_only=True)
 
-        if sheet_index >= len(wb.worksheets):
-            raise ValueError(f"Invalid sheet index: {sheet_index}")
-
-        sheet = wb.worksheets[sheet_index]
+        # 現行ファイルは多シート構成。参考-１〜４をシート名で選択する
+        # （worksheets[sheet_index] では「目次」とのズレで誤シートになる）。
+        # 旧来の単一/順序ファイルにも対応できるよう index フォールバックを残す。
+        sheet = None
+        sheet_names = self.SHEET_INFO.get(sheet_index, {}).get("sheet_names", ())
+        for name in sheet_names:
+            if name in wb.sheetnames:
+                sheet = wb[name]
+                break
+        if sheet is None:
+            if sheet_index >= len(wb.worksheets):
+                raise ValueError(
+                    f"Sheet {sheet_names} not found and index {sheet_index} out of range "
+                    f"(available: {wb.sheetnames})"
+                )
+            sheet = wb.worksheets[sheet_index]
+            print(
+                f"BSI: target sheet {sheet_names} not found; "
+                f"falling back to index {sheet_index} '{sheet.title}'"
+            )
 
         data = []
         current_year = None

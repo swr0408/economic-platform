@@ -13,6 +13,7 @@ import {
   useHeadlines, useCategories, useUnsaveHeadline,
   useCreateCategory, useDeleteCategory,
 } from '../hooks/useHeadlines'
+import { useIsMaster } from '../hooks/useIsMaster'
 import type { Category, Headline } from '../api/headlinesApi'
 
 const { Text } = Typography
@@ -71,8 +72,34 @@ function HeadlinesSavedPage() {
   const navigate = useNavigate()
   const { data: categories = [], isLoading: catLoading } = useCategories()
   const selectedCatId = categoryId ? parseInt(categoryId) : null
+  const isMaster = useIsMaster()
+  const deleteMutation = useDeleteCategory()
 
   const groups = buildCategoryGroups(categories)
+
+  // タグの×から直接カテゴリ削除 (master 限定)
+  const confirmDeleteCategory = (cat: Category, totalCount: number) => {
+    const hasChildren = categories.some(c => c.parent_id === cat.id)
+    const lines = [
+      totalCount > 0 ? `このカテゴリに保存されたヘッドライン ${totalCount}件 の保存も解除されます。` : '',
+      hasChildren ? '子カテゴリ（タグ）も一緒に削除されます。' : '',
+    ].filter(Boolean).join(' ')
+    Modal.confirm({
+      title: `カテゴリ「${cat.name}」を削除しますか？`,
+      content: lines || undefined,
+      okText: '削除',
+      okButtonProps: { danger: true },
+      cancelText: 'キャンセル',
+      onOk: () =>
+        deleteMutation.mutateAsync(cat.id).then(
+          () => {
+            message.success(`「${cat.name}」を削除しました`)
+            if (selectedCatId === cat.id) navigate('/saved')
+          },
+          (e: any) => { message.error(e.message) }
+        ),
+    })
+  }
 
   if (catLoading) {
     return <div style={{ textAlign: 'center', padding: 60 }}><Spin size="large" /></div>
@@ -127,6 +154,12 @@ function HeadlinesSavedPage() {
                     {/* 第2層 カテゴリ */}
                     <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', alignItems: 'center' }}>
                       <Tag
+                        closable={isMaster}
+                        onClose={(e) => {
+                          e.preventDefault()
+                          e.stopPropagation()
+                          confirmDeleteCategory(cat, totalCount)
+                        }}
                         style={{
                           cursor: 'pointer',
                           background: selectedCatId === cat.id ? cat.color : colors.bgTertiary,
@@ -143,6 +176,12 @@ function HeadlinesSavedPage() {
                       {node.children.map(child => (
                         <Tag
                           key={child.id}
+                          closable={isMaster}
+                          onClose={(e) => {
+                            e.preventDefault()
+                            e.stopPropagation()
+                            confirmDeleteCategory(child, child.headline_count)
+                          }}
                           style={{
                             cursor: 'pointer',
                             background: selectedCatId === child.id ? child.color : 'transparent',

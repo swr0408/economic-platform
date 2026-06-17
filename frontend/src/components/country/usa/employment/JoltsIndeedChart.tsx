@@ -90,6 +90,12 @@ const SERIES_NAMES = {
   indeed: 'Indeed求人件数指数（1M遅行）',
 }
 
+// Indeed右Y軸の余白（上下を独立に微調整できる）。値はIndeed値域に対する割合。
+// 上を大きくするほど Indeed 線のピークが下がり、右軸の上限指数が大きくなる。
+// 下を大きくするほど Indeed 線の谷が上がり、右軸の下限指数が小さくなる。
+const INDEED_TOP_HEADROOM_RATIO = 0.1
+const INDEED_BOTTOM_HEADROOM_RATIO = 0
+
 
 // =============================================================================
 // カスタムツールチップ
@@ -275,8 +281,12 @@ export default function JoltsIndeedChart({ data }: JoltsIndeedChartProps) {
 
     const jMin = Math.min(...joltsValues)
     const jMax = Math.max(...joltsValues)
-    const iMin = indeedValues.length > 0 ? Math.min(...indeedValues) : 0
-    const iMax = indeedValues.length > 0 ? Math.max(...indeedValues) : 0
+    const iMinRaw = indeedValues.length > 0 ? Math.min(...indeedValues) : 0
+    const iMaxRaw = indeedValues.length > 0 ? Math.max(...indeedValues) : 0
+    // 右Y軸（Indeed）の上下に余白を拡張（上下それぞれ独立に調整可能）
+    const iRangeRaw = iMaxRaw - iMinRaw
+    const iMax = iMaxRaw + iRangeRaw * INDEED_TOP_HEADROOM_RATIO
+    const iMin = iMinRaw - iRangeRaw * INDEED_BOTTOM_HEADROOM_RATIO
 
     // IndeedをJOLTSのスケールに変換
     const joltsRange = jMax - jMin

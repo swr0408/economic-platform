@@ -20,8 +20,10 @@ from pathlib import Path
 
 try:
     from backend.core.redis_client import redis_client
+    from backend.services.japan.estat_file_source import download_estat_excel
 except ImportError:
     from core.redis_client import redis_client
+    from services.japan.estat_file_source import download_estat_excel
 
 logger = logging.getLogger(__name__)
 
@@ -35,10 +37,17 @@ DATA_CACHE_FILE = CACHE_DIR / "japan_iip_forecast_cache.json"
 class JapanIIPForecastService:
     """Service for fetching Japan IIP Forecast data from METI Excel files"""
 
-    # METI Excel File Download URL
-    METI_IIP_FORECAST_URL = "https://www.meti.go.jp/statistics/tyo/iip/xls/b2020_ygzosm1je.xlsx"
+    # 取得元: e-Stat の「鉱工業（生産・出荷・在庫）指数 …月分速報」ファイル。
+    # 予測指数(生産予測指数)は確報には無く、速報ファイルの '予測指数_業種別' シートに
+    # 含まれる。www.meti.go.jp は当サーバ IP をブロックするため e-Stat へ移行。
+    ESTAT_STATS_CODE = "00550300"
+    ESTAT_TABLE_FILTER = "分速報"  # "…年…月分速報" に一致（確報・予測無しを除外）
+    ESTAT_FALLBACK_IDS = ("000040460889",)  # 2026年4月分速報
+    FORECAST_SHEET_NAME = "予測指数_業種別"
+    # 抽出対象の業種（総合＝製造工業）
+    TARGET_INDUSTRY = "製造工業"
 
-    # PDF reference URL for revision table
+    # PDF reference URL（参考表示用。METI 直アクセスはブロックされるため取得はしない）
     PDF_REFERENCE_URL = "https://www.meti.go.jp/statistics/tyo/iip/result/pdf/reference/rev_forecast.pdf"
 
     DATA_CACHE_KEY = "japan:iip_forecast:data"
@@ -196,9 +205,20 @@ class JapanIIPForecastService:
             return revision_data
 
     def _download_excel_file(self) -> Optional[bytes]:
-        """Download the Excel file from METI with retry logic.
-        Fast-fail: 1 attempt, 20s timeout — caller must handle failure with cache fallback.
+        """e-Stat から最新の「…月分速報」Excel を取得する（予測指数シートを含む）。
+
+        statInfId はリリース毎にローテートするため Data Catalog API で動的解決する。
+        取得不能時は None(呼び出し側がキャッシュにフォールバック)。
         """
+        return download_estat_excel(
+            stats_code=self.ESTAT_STATS_CODE,
+            table_name_filter=self.ESTAT_TABLE_FILTER,
+            fallback_stat_inf_ids=self.ESTAT_FALLBACK_IDS,
+            timeout=40,
+        )
+
+    def _download_excel_file_legacy_meti(self) -> Optional[bytes]:
+        """（旧）METI 直ダウンロード。IP ブロックで現在使用不可。参考のため残置。"""
         max_retries = 1
         timeout = 20
 
@@ -256,115 +276,93 @@ class JapanIIPForecastService:
         return None
 
     def _parse_excel_data(self, excel_content: bytes) -> Optional[Dict]:
-        """
-        Parse IIP Forecast data from Excel file
+        """e-Stat 速報ファイルの '予測指数_業種別' シートから生産予測指数を抽出する。
 
-        Expected structure:
-        - Column H: This Month (今月)
-        - Column I: Next Month (翌月)
+        シート構造（0-indexed 列）:
+          0: 時間軸コード, 1: 業種(JP), 2: 業種(EN), 3: 調査月(例 "2026年05月調査"),
+          4-6: 指数値[前月実績/当月見込み/翌月見込み],
+          7-9: 前月比[前月実績/当月見込み/翌月見込み], 10: 実現率
+        総合＝「製造工業」行のみを対象に、調査月ごとの
+          this_month = 前月比 当月見込み(列8), next_month = 前月比 翌月見込み(列9)
+        を時系列(古い順)で返す。forecast_month/next_month は最新調査の当月/翌月。
         """
         try:
             excel_file = io.BytesIO(excel_content)
             xl = pd.ExcelFile(excel_file)
-            logger.info(f"Available sheets: {xl.sheet_names}")
+            if self.FORECAST_SHEET_NAME not in xl.sheet_names:
+                logger.error(
+                    f"Forecast sheet '{self.FORECAST_SHEET_NAME}' not found "
+                    f"(sheets: {xl.sheet_names[:10]})"
+                )
+                return None
 
-            df = pd.read_excel(excel_file, sheet_name=0, header=None)
+            df = pd.read_excel(excel_file, sheet_name=self.FORECAST_SHEET_NAME, header=None)
             logger.info(f"Forecast sheet shape: {df.shape}")
 
-            THIS_MONTH_COL = 7  # H column (0-indexed)
-            NEXT_MONTH_COL = 8  # I column (0-indexed)
+            SURVEY_COL = 3       # 調査月
+            THIS_MONTH_COL = 8   # 前月比 当月見込み(%)
+            NEXT_MONTH_COL = 9   # 前月比 翌月見込み(%)
 
-            forecast_month = None
-            next_month = None
-
-            # Find the header row
-            header_row = None
-            for idx, row in df.iterrows():
-                if isinstance(row[0], str) and ('品目' in str(row[0]) or 'Item' in str(row[0])):
-                    header_row = idx
-                    break
-
-            if header_row is None:
-                header_row = 2
-                logger.warning(f"Could not find header row, using default row {header_row}")
-
-            logger.info(f"Using header row: {header_row}")
-
-            headers = df.iloc[header_row]
-            logger.info(f"Headers: {headers.tolist()[:10]}")
-
-            # Extract month information from headers
-            if not pd.isna(headers[THIS_MONTH_COL]):
-                header_val = str(headers[THIS_MONTH_COL])
-                match = re.search(r'(\d{4})[年/](\d{1,2})', header_val)
-                if match:
-                    year = int(match.group(1))
-                    month = int(match.group(2))
-                    forecast_month = f"{year}-{month:02d}-01"
-                    logger.info(f"Extracted forecast month: {forecast_month}")
-
-            if not pd.isna(headers[NEXT_MONTH_COL]):
-                header_val = str(headers[NEXT_MONTH_COL])
-                match = re.search(r'(\d{4})[年/](\d{1,2})', header_val)
-                if match:
-                    year = int(match.group(1))
-                    month = int(match.group(2))
-                    next_month = f"{year}-{month:02d}-01"
-                    logger.info(f"Extracted next month: {next_month}")
-
-            data_start_row = header_row + 1
+            def _num(v):
+                if pd.isna(v):
+                    return None
+                try:
+                    return float(v)
+                except (ValueError, TypeError):
+                    return None
 
             forecast_data = []
-            for idx in range(data_start_row, len(df)):
+            for idx in range(len(df)):
                 row = df.iloc[idx]
-
-                # Combine columns A, B, C for year-month label
-                year_month_parts = []
-                for col_idx in range(0, 3):
-                    if not pd.isna(row[col_idx]):
-                        value = str(row[col_idx]).strip()
-                        if value and value not in ['nan', '']:
-                            year_month_parts.append(value)
-
-                raw_item_name = ''.join(year_month_parts) if year_month_parts else None
-
-                if not raw_item_name:
+                industry = str(row[1]).strip() if not pd.isna(row[1]) else ""
+                if industry != self.TARGET_INDUSTRY:
                     continue
 
-                item_name = self._parse_year_month(raw_item_name)
-
-                if any(keyword in item_name for keyword in ['計', '小計', 'Total', 'Subtotal']):
+                raw_survey = str(row[SURVEY_COL]).strip() if not pd.isna(row[SURVEY_COL]) else ""
+                if not raw_survey:
+                    continue
+                item_name = self._parse_year_month(raw_survey)  # "2026年05月調査" -> "2026/05"
+                if not re.match(r"\d{4}/\d{2}", item_name):
                     continue
 
-                this_month_value = None
-                if not pd.isna(row[THIS_MONTH_COL]):
-                    try:
-                        this_month_value = float(row[THIS_MONTH_COL])
-                    except (ValueError, TypeError):
-                        pass
+                this_month_value = _num(row[THIS_MONTH_COL])
+                next_month_value = _num(row[NEXT_MONTH_COL])
+                if this_month_value is None and next_month_value is None:
+                    continue
 
-                next_month_value = None
-                if not pd.isna(row[NEXT_MONTH_COL]):
-                    try:
-                        next_month_value = float(row[NEXT_MONTH_COL])
-                    except (ValueError, TypeError):
-                        pass
+                forecast_data.append({
+                    "item_name": item_name,
+                    "this_month": this_month_value,
+                    "next_month": next_month_value,
+                })
 
-                if this_month_value is not None or next_month_value is not None:
-                    forecast_data.append({
-                        "item_name": item_name,
-                        "this_month": this_month_value,
-                        "next_month": next_month_value
-                    })
+            if not forecast_data:
+                logger.error("No 製造工業 forecast rows found in sheet")
+                return None
 
-            logger.info(f"Extracted {len(forecast_data)} forecast data points")
-            if forecast_data:
-                logger.info(f"Sample data (first 3 points): {forecast_data[:3]}")
+            # 時系列を古い順に整える（後段の reversed で最新が先頭になる）
+            forecast_data.sort(key=lambda x: x["item_name"])
+
+            # forecast_month/next_month: 最新調査の当月・翌月
+            latest_label = forecast_data[-1]["item_name"]  # "YYYY/MM"
+            forecast_month = None
+            next_month = None
+            m = re.match(r"(\d{4})/(\d{2})", latest_label)
+            if m:
+                y, mo = int(m.group(1)), int(m.group(2))
+                forecast_month = f"{y}-{mo:02d}-01"
+                ny, nmo = (y + 1, 1) if mo == 12 else (y, mo + 1)
+                next_month = f"{ny}-{nmo:02d}-01"
+
+            logger.info(
+                f"Extracted {len(forecast_data)} forecast points "
+                f"(latest survey {latest_label})"
+            )
 
             return {
                 "forecast_month": forecast_month,
                 "next_month": next_month,
-                "data": forecast_data
+                "data": forecast_data,
             }
 
         except Exception as e:
@@ -390,13 +388,10 @@ class JapanIIPForecastService:
             next_month = parsed_data.get('next_month')
             data_points = parsed_data.get('data', [])
 
-            # Download and parse PDF for revision table
+            # 補正値テーブルは METI の PDF 由来だが、METI 直アクセスは IP ブロックで
+            # 取得不能。フロントは revision_table が空なら非表示にするため、空で返す。
+            # （PDF 取得を試みると毎回 20s タイムアウトして無駄なので呼ばない）
             revision_table = {"columns": [], "rows": []}
-            pdf_content = self._download_pdf_file()
-            if pdf_content:
-                revision_table = self._parse_pdf_revisions(pdf_content)
-            else:
-                logger.warning("Could not download PDF, revision table will not be available")
 
             # Process data (reverse order so newest items are first)
             processed_data = []

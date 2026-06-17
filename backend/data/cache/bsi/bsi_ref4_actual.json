@@ -869,13 +869,34 @@
       "large_non_manufacturing": 31.2,
       "medium_all_industries": 37.4,
       "small_all_industries": 31.4
+    },
+    {
+      "date": "2026-03-01",
+      "year": 2026,
+      "quarter": "Q1",
+      "large_all_industries": 29.4,
+      "large_manufacturing": 22.6,
+      "large_non_manufacturing": 32.6,
+      "medium_all_industries": 38.2,
+      "small_all_industries": 29.5
+    },
+    {
+      "date": "2026-06-01",
+      "year": 2026,
+      "quarter": "Q2",
+      "large_all_industries": 25.7,
+      "large_manufacturing": 21.3,
+      "large_non_manufacturing": 27.8,
+      "medium_all_industries": 34.5,
+      "small_all_industries": 27.6
     }
   ],
   "sheet_name": "ref4",
-  "sheet_title": "雇用人員判断",
-  "sheet_description": "Employment Judgment",
+  "sheet_title": "雇用",
+  "sheet_description": "Employment",
   "period_type": "actual",
-  "last_updated": "2026-01-12T09:13:48.141767",
+  "last_updated": "2026-06-16T00:32:15.417136",
   "cached": false,
-  "source": "e-stat"
+  "source": "e-stat",
+  "next_release": null
 }

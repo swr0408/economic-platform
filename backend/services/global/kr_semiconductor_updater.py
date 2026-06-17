@@ -73,12 +73,17 @@ REVISION_MAX_PCT = 15.0
 # HTTP レイヤー
 # ============================================================
 
-def _build_session() -> requests.Session:
-    """WAFの間欠的な接続リセットに耐えるリトライ付きセッションを生成"""
-    # 政府系サイトの証明書チェーン問題を回避するため verify=False
-    urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+def _build_session(verify: bool = True) -> requests.Session:
+    """WAFの間欠的な接続リセットに耐えるリトライ付きセッションを生成
+
+    TLS検証はデフォルト有効。motir.go.kr の証明書チェーン問題で
+    SSLError になった場合のみ、呼び出し側 (_get_session) が
+    検証無効のセッションへ一度だけフォールバックする (M-5 対応)。
+    """
     session = requests.Session()
-    session.verify = False
+    if not verify:
+        urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+        session.verify = False
     session.headers.update({
         "User-Agent": USER_AGENT,
         "Accept": "text/html,application/xhtml+xml,*/*;q=0.8",
@@ -94,6 +99,23 @@ def _build_session() -> requests.Session:
     )
     session.mount("https://", HTTPAdapter(max_retries=retry))
     return session
+
+
+def _get_session() -> requests.Session:
+    """TLS検証ありで疎通確認し、証明書チェーン問題のときだけ検証なしへ降格"""
+    session = _build_session(verify=True)
+    try:
+        session.get(BASE_URL, timeout=30)
+        return session
+    except requests.exceptions.SSLError as e:
+        logger.warning(
+            f"[KrSemiconductor] TLS verification failed for {BASE_URL} "
+            f"({e}); falling back to verify=False (integrity degraded)"
+        )
+        return _build_session(verify=False)
+    except requests.RequestException:
+        # SSL以外の失敗 (WAFリセット等) は検証ありのまま返す (リトライは呼び出し側)
+        return session
 
 
 def _html_to_plain(html_text: str) -> str:
@@ -336,7 +358,7 @@ def update_history(force: bool = False) -> Dict[str, Any]:
     if not force and last_ref >= expected:
         return {"status": "skip", "last_ref": last_ref, "expected": expected}
 
-    session = _build_session()
+    session = _get_session()
     added: List[str] = []
     revised: List[str] = []
 

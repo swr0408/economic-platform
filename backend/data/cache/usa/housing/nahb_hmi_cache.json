@@ -2981,21 +2981,27 @@
       "value": 37.0,
       "mom": 3.0,
       "yoy": 3.0
+    },
+    {
+      "date": "2026-06-01",
+      "value": 35.0,
+      "mom": -2.0,
+      "yoy": 3.0
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": 37.0,
-    "mom": 3.0,
+    "date": "2026-06-01",
+    "value": 35.0,
+    "mom": -2.0,
     "yoy": 3.0
   },
   "next_release": {
-    "date": "2026-06-15",
-    "datetime_utc": "2026-06-15T14:00:00+00:00",
-    "datetime_jst": "2026-06-15T23:00:00+09:00",
+    "date": "2026-07-16",
+    "datetime_utc": "2026-07-16T14:00:00+00:00",
+    "datetime_jst": "2026-07-16T23:00:00+09:00",
     "time_jst": "23:00",
-    "label": "NAHB Housing Market Index (Jun)",
-    "estimate": 36
+    "label": "NAHB Housing Market Index (Jul)",
+    "estimate": null
   },
-  "last_updated": "2026-06-12T09:30:20.608449+09:00"
+  "last_updated": "2026-06-17T22:01:23.783729+09:00"
 }

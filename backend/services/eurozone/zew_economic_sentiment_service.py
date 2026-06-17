@@ -94,6 +94,18 @@ class ZEWEconomicSentimentService:
         # 2. FMP DBから速報データを取得
         fmp_data = self._load_from_fmp_db()
 
+        # ガード: ZEW取得が空（ネットワーク一時失敗等）の場合、FMP単独（直近約1年）で
+        # キャッシュを再構築すると 30 年超の全履歴が失われる。既存キャッシュの履歴を
+        # マージ土台に流用し、劣化データによる上書きを防ぐ（取りこぼし対策）。
+        if not zew_data.get("sentiment") and not zew_data.get("situation"):
+            prior = self._load_file_cache()
+            if prior and (prior.get("sentiment") or prior.get("situation")):
+                print("[ZEWEconomicSentiment] ZEW fetch empty -> reusing prior cached history as merge base")
+                zew_data = {
+                    "sentiment": prior.get("sentiment", []),
+                    "situation": prior.get("situation", []),
+                }
+
         # 3. データをマージ（ZEW < FMP の順で上書き）
         merged_data = self._merge_sources(zew_data, fmp_data)
 
@@ -175,20 +187,20 @@ class ZEWEconomicSentimentService:
 
         return self._parse_zew_excel(excel_content)
 
-    def _fetch_excel(self, url: str) -> Optional[bytes]:
-        """ExcelファイルをURLから取得"""
-        try:
-            headers = {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
-            }
-            response = requests.get(url, headers=headers, timeout=30, allow_redirects=True)
-            if response.status_code == 200:
-                return response.content
-            print(f"[ZEWEconomicSentiment] HTTP {response.status_code} from {url}")
-            return None
-        except Exception as e:
-            print(f"[ZEWEconomicSentiment] Error fetching Excel: {e}")
-            return None
+    def _fetch_excel(self, url: str, retries: int = 2) -> Optional[bytes]:
+        """ExcelファイルをURLから取得（一時的失敗に備え数回リトライ）"""
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+        }
+        for attempt in range(1, retries + 1):
+            try:
+                response = requests.get(url, headers=headers, timeout=30, allow_redirects=True)
+                if response.status_code == 200 and response.content:
+                    return response.content
+                print(f"[ZEWEconomicSentiment] HTTP {response.status_code} from {url} (attempt {attempt}/{retries})")
+            except Exception as e:
+                print(f"[ZEWEconomicSentiment] Error fetching Excel (attempt {attempt}/{retries}): {e}")
+        return None
 
     def _parse_zew_excel(self, excel_content: bytes) -> Dict[str, List[Dict[str, Any]]]:
         """
@@ -448,8 +460,16 @@ class ZEWEconomicSentimentService:
     # =========================================================================
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定（FMP発表日時ベース）"""
-        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
+        """キャッシュを更新すべきかどうかを判定（FMP発表日時ベース）。
+
+        主判定は発表日検知（発表当日に発火）。max_age_hours=24 は最終ネットで、
+        発表当日にZEW/FMP双方が一時失敗して不完全な最新値で last_updated が
+        進んでしまった場合でも、24時間以内に再取得して最新値を自己修復させる。
+        ZEW Excelは発表当日に値が載るため24hで十分（独自サービス×非FMP源泉の定石）。
+        """
+        return should_refresh_by_fmp_schedule(
+            self.ECONALPHA_ID, last_updated_str, max_age_hours=24
+        )
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込み"""

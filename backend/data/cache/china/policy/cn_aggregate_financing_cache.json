@@ -824,14 +824,14 @@
     "indicator": "Aggregate Financing to the Real Economy",
     "source": "PBOC",
     "total_records": 135,
-    "last_fetched": "2026-06-11T01:24:21.074449+09:00"
+    "last_fetched": "2026-06-12T18:02:03.680787+09:00"
   },
   "next_release": {
-    "date": "2026-06-13",
-    "datetime_utc": "2026-06-13T09:00:00+00:00",
-    "datetime_jst": "2026-06-13T18:00:00+09:00",
+    "date": "2026-06-12",
+    "datetime_utc": "2026-06-12T09:00:00+00:00",
+    "datetime_jst": "2026-06-12T18:00:00+09:00",
     "time_jst": "18:00",
     "label": "Total Social Financing (May)",
-    "estimate": null
+    "estimate": 1870
   }
 }

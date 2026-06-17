@@ -603,14 +603,14 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-06-11",
-    "datetime_utc": "2026-06-11T12:30:00+00:00",
-    "datetime_jst": "2026-06-11T21:30:00+09:00",
+    "date": "2026-07-10",
+    "datetime_utc": "2026-07-10T12:30:00+00:00",
+    "datetime_jst": "2026-07-10T21:30:00+09:00",
     "time_jst": "21:30",
-    "datetime_toronto": "2026-06-11T08:30:00-04:00",
+    "datetime_toronto": "2026-07-10T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "Building Permits MoM (Apr)",
-    "estimate": -3.5
+    "label": "Building Permits MoM (May)",
+    "estimate": null
   },
-  "last_updated": "2026-06-12T01:00:26.271721+09:00"
+  "last_updated": "2026-06-17T21:31:25.080561+09:00"
 }

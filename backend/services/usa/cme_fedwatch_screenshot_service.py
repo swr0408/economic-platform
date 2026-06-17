@@ -170,21 +170,42 @@ class CMEFedWatchScreenshotService:
             try:
                 logger.info(f"Capturing FedWatch screenshot with {browser_type}...")
                 page.goto(FEDWATCH_URL, wait_until="domcontentloaded")
+                page.wait_for_timeout(5_000)
 
-                # iframe が読み込まれるまで待機
-                page.wait_for_timeout(15_000)
-
-                # Cookie 同意バナーを閉じる
+                # Cookie 同意バナー(OneTrust)を先に閉じる。
+                # FedWatch ツールの QuikStrike iframe は同意+スクロールで遅延読み込みされるため、
+                # 同意を先に済ませてからスクロールして iframe を出現させる必要がある。
                 try:
                     cookie_btn = page.locator(
-                        'button:has-text("Accept"), button:has-text("Agree"), [id*="onetrust-accept"]'
+                        '#onetrust-accept-btn-handler, button:has-text("Accept"), '
+                        'button:has-text("Agree"), [id*="onetrust-accept"]'
                     ).first
-                    if cookie_btn.is_visible(timeout=3000):
+                    if cookie_btn.is_visible(timeout=5000):
                         cookie_btn.click()
-                        page.wait_for_timeout(1000)
+                        page.wait_for_timeout(1500)
                         logger.info("Cookie banner closed")
                 except Exception:
                     pass
+
+                # QuikStrike FedWatch iframe はスクロールで遅延読み込みされる。
+                # スクロールしながら iframe が出現するまでポーリング待機する
+                # (これが無いと iframe が読み込まれず、バナー等の誤キャプチャになる)。
+                qs_loaded = False
+                for _ in range(15):
+                    page.mouse.wheel(0, 800)
+                    page.wait_for_timeout(2500)
+                    for fr in page.frames:
+                        u = (fr.url or "").lower()
+                        if "quikstrike" in u and "integratedfedwatchtool" in u:
+                            qs_loaded = True
+                            break
+                    if qs_loaded:
+                        break
+                if qs_loaded:
+                    logger.info("QuikStrike FedWatch iframe loaded after scroll")
+                    page.wait_for_timeout(3000)  # 描画安定待ち
+                else:
+                    logger.warning("QuikStrike FedWatch iframe did not appear after scrolling")
 
                 screenshot_taken = False
 
@@ -289,43 +310,32 @@ class CMEFedWatchScreenshotService:
                 except Exception as e:
                     logger.warning(f"Error checking frames: {e}")
 
-                # iframe 内で見つからない場合、メインページで探す
+                # iframe 内で見つからない場合、メインページの「FedWatchツールiframe要素」だけを試す。
+                # 注意: 以前は [id*="fedwatch"] 等で CME の宣伝バナーに誤マッチして
+                # 無関係なバナー画像を保存していた → ツール本体の iframe 要素のみに限定する。
                 if not screenshot_taken:
-                    logger.info("Trying to find FedWatch content in main page...")
-                    main_selectors = [
-                        '[class*="fedwatch"]', '[class*="FedWatch"]',
-                        '[id*="fedwatch"]', '[id*="FedWatch"]',
-                        '[class*="probability"]',
-                        ".cme-fedwatch-tool", ".tool-container",
-                        '[class*="tool-wrapper"]',
-                        'iframe[src*="quikstrike"]', 'iframe[src*="fedwatch"]',
-                    ]
-                    for selector in main_selectors:
+                    logger.info("Trying to capture the FedWatch tool iframe element on main page...")
+                    for selector in ('iframe[src*="quikstrike"]', 'iframe[src*="IntegratedFedWatchTool"]'):
                         try:
-                            elements = page.locator(selector).all()
-                            for element in elements:
-                                if element.is_visible(timeout=2000):
-                                    box = element.bounding_box()
-                                    if box and box["width"] > 400 and box["height"] > 200:
-                                        element.screenshot(path=screenshot_path)
-                                        logger.info(f"Screenshot saved using main page selector: {selector}")
-                                        screenshot_taken = True
-                                        break
+                            element = page.locator(selector).first
+                            if element.is_visible(timeout=2000):
+                                box = element.bounding_box()
+                                if box and box["width"] > 400 and box["height"] > 300:
+                                    element.screenshot(path=screenshot_path)
+                                    logger.info(f"Screenshot saved using iframe element selector: {selector}")
+                                    screenshot_taken = True
+                                    break
                         except Exception:
                             continue
-                        if screenshot_taken:
-                            break
 
-                # 最後の手段: ページ中央部分をクリップ
+                # FedWatch ツールを取得できなかった場合は、誤った画像(宣伝バナー/ページクリップ)を
+                # 保存せず False を返す → 呼び出し側が last-good スクリーンショットを維持する。
                 if not screenshot_taken:
-                    logger.info("Using clip region for main content area...")
-                    page.screenshot(
-                        path=screenshot_path,
-                        clip={"x": 0, "y": 150, "width": 1920, "height": 900},
+                    logger.warning(
+                        "FedWatch tool not captured (iframe unavailable); "
+                        "keeping last-good screenshot instead of saving a misleading image"
                     )
-                    logger.info(f"Clipped screenshot saved to {screenshot_path}")
-
-                return True
+                return screenshot_taken
             except Exception as e:
                 logger.error(f"Error in FedWatch flow: {e}", exc_info=True)
                 return False

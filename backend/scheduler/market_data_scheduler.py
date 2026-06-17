@@ -257,22 +257,63 @@ def _refresh_cftc():
         logger.warning(f"[MarketScheduler] CFTC import failed: {e}")
 
 
-def _run_batch(services: list, label: str):
-    """サービスリストをまとめて実行"""
-    ok = 0
-    fail = 0
-    start = time.time()
-
+def _run_batch_inthread(services: list) -> tuple:
+    """従来のスレッド内逐次実行(プール不可時のフォールバック)。"""
+    ok = fail = 0
     for module_path, singleton_name, method_name in services:
         if method_name is None:
             _refresh_cftc()
             ok += 1
             continue
-
         if _refresh_service(module_path, singleton_name, method_name):
             ok += 1
         else:
             fail += 1
+    return ok, fail
+
+
+def _run_batch(services: list, label: str):
+    """サービスリストをまとめて実行。
+
+    各サービスの get_data は yfinance/stooq(read_html)/PDF解析など CPU バウンドな処理を含み、
+    スレッド内で逐次実行すると GIL を握ってメインの asyncio イベントループを飢えさせる
+    (全API遅延)。CPU バウンド処理を **別プロセス(共有 ProcessPool)** で実行し、
+    本関数(to_thread 実行)は結果を待つだけ(IPC=GIL解放)にすることで根本的に解消する。
+    プール不可時はスレッド内逐次実行にフォールバック(従来挙動)。
+    """
+    start = time.time()
+    try:
+        from services.dashboard.loaders.base import _get_refresh_pool
+    except ImportError:
+        from backend.services.dashboard.loaders.base import _get_refresh_pool
+
+    try:
+        pool = _get_refresh_pool()
+        futures = []
+        for module_path, singleton_name, method_name in services:
+            if method_name is None:
+                futures.append((singleton_name, pool.submit(_refresh_cftc)))
+            else:
+                futures.append(
+                    (singleton_name,
+                     pool.submit(_refresh_service, module_path, singleton_name, method_name))
+                )
+        ok = fail = 0
+        for name, fut in futures:
+            try:
+                res = fut.result()
+                # _refresh_service は bool、_refresh_cftc は None(=成功扱い)
+                fail += 1 if res is False else 0
+                ok += 0 if res is False else 1
+            except Exception as e:
+                logger.warning(f"[MarketScheduler] {name} (pool) failed: {e}")
+                fail += 1
+    except Exception as e:
+        logger.warning(
+            f"[MarketScheduler] process-pool batch failed ({e}); "
+            f"in-thread fallback for {label}"
+        )
+        ok, fail = _run_batch_inthread(services)
 
     elapsed = time.time() - start
     logger.info(

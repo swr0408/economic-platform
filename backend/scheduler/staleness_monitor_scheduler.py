@@ -30,14 +30,14 @@ class StalenessMonitorScheduler:
         self.scheduler = AsyncIOScheduler(timezone=JST)
         self._last_result: Dict[str, Any] = {}
 
-    def _run_scan(self) -> Dict[str, Any]:
+    def _log_and_notify(self, result: Dict[str, Any]) -> Dict[str, Any]:
+        """別プロセスで取得済みの結果をログ出力＋Discord通知する（再スキャンしない）。"""
         try:
             from backend.services.monitoring.staleness_monitor import log_stale_summary
         except ImportError:
             from services.monitoring.staleness_monitor import log_stale_summary
-        result = log_stale_summary()
-        # Discord 通知 (STUCK があるときのみ)。同期 I/O だが本メソッドは
-        # asyncio.to_thread 内で実行されるためブロック問題なし。
+        log_stale_summary(result)
+        # Discord 通知 (STUCK があるときのみ)。同期 I/O だが to_thread 内で実行される。
         try:
             self._post_to_discord(result)
         except Exception as e:
@@ -193,8 +193,15 @@ class StalenessMonitorScheduler:
     async def _scheduled_scan(self):
         try:
             logger.info("[StalenessMonitor] Daily cache staleness scan starting...")
-            # 同期 I/O はスレッドへ (イベントループをブロックしない)
-            self._last_result = await asyncio.to_thread(self._run_scan)
+            # 走査(~12秒のCPU/IO)は別プロセスで実行し、メインのイベントループ(GIL)を塞がない。
+            # ログ出力+Discord通知(軽量)は結果を受け取ってからスレッドで行う(再スキャンしない)。
+            try:
+                from backend.services.monitoring.staleness_monitor import scan_stale_caches_async
+            except ImportError:
+                from services.monitoring.staleness_monitor import scan_stale_caches_async
+            result = await scan_stale_caches_async()
+            self._last_result = result
+            await asyncio.to_thread(self._log_and_notify, result)
         except Exception as e:
             logger.error(f"[StalenessMonitor] Scan error: {e}")
 

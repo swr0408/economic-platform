@@ -175,7 +175,11 @@ class FrancePMIService:
             with SessionLocal() as session:
                 # country='FR'でフィルタリング
                 # 複数のパターンに対応
-                pattern_conditions = " OR ".join([f"event ILIKE '%{p}%'" for p in event_patterns])
+                # SQLインジェクション対策: 値は直埋めせずバインドパラメータで渡す
+                pattern_conditions = " OR ".join(
+                    [f"event ILIKE :pat{i}" for i in range(len(event_patterns))]
+                )
+                pattern_params = {f"pat{i}": f"%{p}%" for i, p in enumerate(event_patterns)}
                 query = text(f"""
                     SELECT datetime_utc, event, actual, estimate, previous
                     FROM economic_calendar_events
@@ -184,7 +188,7 @@ class FrancePMIService:
                       AND actual IS NOT NULL
                     ORDER BY datetime_utc ASC
                 """)
-                rows = session.execute(query).fetchall()
+                rows = session.execute(query, pattern_params).fetchall()
 
                 result = []
 

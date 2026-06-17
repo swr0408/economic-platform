@@ -262,9 +262,11 @@ class BOJMeetingExpectationsService:
             if img.mode != 'RGB':
                 img = img.convert('RGB')
 
-            # Increase image size for better OCR (3x scale for better accuracy)
+            # Increase image size for better OCR.
+            # ※ 3x にすると行が結合して一部の会合行を取りこぼす（9月・12月が消える）
+            #   問題があったため 2x に変更。2x で全 5 行を安定して捕捉できる。
             width, height = img.size
-            scale = 3
+            scale = 2
             img = img.resize((width * scale, height * scale), Image.Resampling.LANCZOS)
 
             # Convert to grayscale for better OCR
@@ -393,8 +395,8 @@ class BOJMeetingExpectationsService:
             meeting_date_re = re.compile(r'(20\d{2})/(\d{1,2})')
             # 小数 (2桁以上の小数部)
             decimal_re = re.compile(r'(\d+\.\d{2,})')
-            # パーセント (例: 18%, 56 %)
-            percent_re = re.compile(r'(\d+)\s*%')
+            # パーセント (例: 18%, 56 %, 全角 ％ も許容。確率は 0〜100 のため最大3桁)
+            percent_re = re.compile(r'(\d{1,3})\s*[%％]')
 
             # チャンク化: 日付行 + 続く非日付行をまとめる
             chunks: list[str] = []
@@ -438,47 +440,33 @@ class BOJMeetingExpectationsService:
                 if not all_decimals:
                     continue
 
-                # 降順ソートして役割を割り当て:
-                # 1番目 (最大): OIS rate (0.5 ~ 3.0 程度)
-                # 2番目: 利上げ織込み回数 (frequency) or difference
-                # 3番目 (最小): difference (0.0xxx)
-                # ※ 利上げ織込み回数は frequency として別途保持
-                desc = sorted(all_decimals, reverse=True)
-
-                ois_rate = desc[0] if desc else None
-                if ois_rate is None or not (0.3 <= ois_rate <= 3.0):
+                # 列順（表の左→右）で役割を割り当てる:
+                #   OIS気配値 → 対前会合差分 → (確率%) → 利上げ織込み回数
+                # OCR(Tesseract) は確率(%)列と回数列の認識が不安定で取りこぼすが、
+                # OIS と対前会合差分は安定して読める。後段で確率と回数を差分から
+                # 導出するため、ここでは OIS と差分のみを取得する。
+                # ※ 以前は最大値を OIS としていたが、政策金利が 1.0 付近だと
+                #   「利上げ織込み回数」(例 0.99) が OIS(例 0.9750) より大きくなり、
+                #   両者が入れ替わる不具合があった。OCR は概ね左→右の出現順を
+                #   保つため、出現順 + OIS の値域(0.3〜3.0) で割り当てる。
+                ois_idx = next(
+                    (i for i, v in enumerate(all_decimals) if 0.3 <= v <= 3.0),
+                    None,
+                )
+                if ois_idx is None:
                     continue
-
-                # difference と frequency を分離:
-                # difference は通常 0.01〜0.15 程度、frequency は 0.1〜5.0 程度
-                # テーブル上の順序: OIS → difference → probability → frequency
-                # ただし OCR の順序は保証されないので、サイズで判別
-                remaining = [v for v in desc if v != ois_rate]
-
-                difference = 0.0
-                frequency = None
-                if len(remaining) >= 2:
-                    # 小さい方が difference、大きい方が frequency
-                    difference = min(remaining)
-                    frequency = max(remaining)
-                elif len(remaining) == 1:
-                    v = remaining[0]
-                    # 0.2 未満なら difference、それ以上なら frequency
-                    if v < 0.2:
-                        difference = v
-                    else:
-                        frequency = v
-
-                probability = float(all_percents[0]) if all_percents else 0.0
+                ois_rate = all_decimals[ois_idx]
+                after = all_decimals[ois_idx + 1:]
+                # 差分は OIS の直後の小数。実値は概ね 0〜0.3。読めない場合は None。
+                difference = None
+                if after and 0.0 <= after[0] <= 0.6:
+                    difference = after[0]
 
                 entry: Dict[str, Any] = {
                     "meeting_date": meeting_date,
                     "ois_rate": round(ois_rate, 4),
-                    "difference": round(difference, 4),
-                    "probability": round(probability, 1),
+                    "difference": round(difference, 4) if difference is not None else None,
                 }
-                if frequency is not None:
-                    entry["frequency"] = round(frequency, 2)
 
                 meeting_data.append(entry)
 
@@ -495,6 +483,26 @@ class BOJMeetingExpectationsService:
                     unique_data.append(item)
 
             unique_data.sort(key=lambda x: x["meeting_date"])
+
+            # ── 確率(%) と 利上げ織込み回数(frequency) を「対前会合差分」から導出 ──
+            # 東京短資の表では各列が次の関係で算出されている（全行で検証済み）:
+            #   会合毎の政策変更織込み比率(%) = |対前会合差分| / 0.25 × 100   (25bp=1利上げ)
+            #   利上げ織込み回数(frequency)  = 先頭からの差分の累積 / 0.25
+            # OCR(Tesseract) は確率列・回数列の認識が不安定なので、安定して読める
+            # 差分列から再構成する。これにより Vision API キーが無くても表示値と一致する。
+            HIKE_STEP = 0.25
+            cum_diff = 0.0
+            for item in unique_data:
+                diff = item.get("difference")
+                if diff is None:
+                    # 差分が読めなかった行は誤った値を出さず欠損扱い（フロントは「-」）
+                    item["probability"] = None
+                    item["frequency"] = None
+                    continue
+                item["probability"] = round(min(abs(diff) / HIKE_STEP * 100.0, 100.0))
+                cum_diff += diff
+                item["frequency"] = round(cum_diff / HIKE_STEP, 2)
+
             logger.info(f"Parsed {len(unique_data)} meeting expectations from OCR")
 
             # Quality gate: OCR がほとんどの行を取りこぼした場合は失敗扱い
@@ -576,13 +584,31 @@ class BOJMeetingExpectationsService:
         if not image_data:
             return None, "fallback"
 
-        # Try Tesseract OCR
-        ocr_text = self._extract_text_with_tesseract(image_data)
-
-        # Fallback to Vision API if Tesseract fails
-        if not ocr_text and GOOGLE_CLOUD_VISION_API_KEY:
+        # OCR は Vision API を優先する。
+        # 東京短資の表は日本語＋細かい数値＋「%」記号を含み、Tesseract では
+        # 「%」列や桁を取りこぼしやすい（確率が読めず誤った 0% になる）。
+        # Vision API は日本語表の認識精度が高いため、キーがあれば先に使い、
+        # 未設定または失敗時のみ Tesseract にフォールバックする。
+        ocr_text = None
+        if GOOGLE_CLOUD_VISION_API_KEY:
             ocr_text = self._extract_text_with_vision_api(image_data)
-            ocr_source = f"{ocr_source}_vision"
+            if ocr_text:
+                ocr_source = f"{ocr_source}_vision"
+
+        if not ocr_text:
+            if GOOGLE_CLOUD_VISION_API_KEY:
+                logger.warning(
+                    "Vision API が空を返したため Tesseract にフォールバックします "
+                    "（確率(%)列の認識精度が落ちる場合があります）"
+                )
+            else:
+                logger.warning(
+                    "GOOGLE_CLOUD_VISION_API_KEY 未設定のため Tesseract を使用します "
+                    "（確率(%)列の認識精度が落ちます。精度向上には Vision API キーを設定してください）"
+                )
+            ocr_text = self._extract_text_with_tesseract(image_data)
+            if ocr_text:
+                ocr_source = f"{ocr_source}_tesseract"
 
         if not ocr_text:
             return None, "fallback"

@@ -35,16 +35,21 @@ class EStatCatalogService:
         survey_code: str,
         limit: int = 20,
         data_type: str = "XLS",
-        table_name_filter: Optional[str] = None
+        table_name_filter: Optional[str] = None,
+        updated_date: Optional[str] = None,
     ) -> List[Dict[str, str]]:
         """
         Get list of Excel download URLs for a given survey
 
         Args:
             survey_code: Survey code (e.g., "00100405" for consumer sentiment)
-            limit: Maximum number of results to return
+            limit: Maximum number of results to return (e-Stat caps at 100)
             data_type: File type filter ("XLS" for Excel files)
             table_name_filter: Optional filter string to match in TABLE_NAME
+            updated_date: Optional 公開（更新）日 filter, e.g. "20251001-20261231".
+                e-Stat はこの統計のカタログを古い順に返すことがあり、limit だけだと
+                最新リリースが取得できない。直近の更新日範囲を指定すると確実に
+                最新分のみを取得できる（四半期/月次の自動追従に必須）。
 
         Returns:
             List of dicts with 'url', 'title', 'release_date', 'table_name' keys
@@ -61,6 +66,8 @@ class EStatCatalogService:
                 "limit": limit,
                 "searchKind": 1  # Search by statsCode
             }
+            if updated_date:
+                params["updatedDate"] = updated_date
 
             logger.info(f"Querying e-Stat Data Catalog for survey: {survey_code}")
 

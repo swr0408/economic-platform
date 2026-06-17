@@ -16,7 +16,7 @@ import json
 import logging
 import re
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Dict, List, Any, Optional, Tuple
 from zoneinfo import ZoneInfo
 from pathlib import Path
@@ -47,9 +47,18 @@ HEADERS = {
     ),
 }
 
-MAX_RETRY = 10
-RETRY_BACKOFF = 3  # seconds
+MAX_RETRY = 3            # 旧10。502継続時の過剰な待機（最大165秒/URL）を防ぐ
+RETRY_BACKOFF = 3        # seconds
+MAX_BACKOFF = 8          # 1回あたりの待機上限（3,6,8s で打ち切り）
 SLEEP_BETWEEN_REQUESTS = 1.0
+
+# サーキットブレーカー: 源泉(gks.mof.gov.cn)が落ちている(502/接続不可)とき、
+# 1 URL でリトライを使い切ったら「源泉ダウン」とみなし、一定時間スクレイプを停止する。
+# これにより 502 が続く間に多数の URL を無駄打ちしてイベントループ/スレッドを
+# 数十分占有する事態を防ぐ。データは CSV 履歴にフォールバックするため取りこぼしは無く、
+# 源泉復旧後（クールダウン経過後）の次回 force_refresh で通常どおり取得される。
+SOURCE_DOWN_COOLDOWN_SEC = 3600  # 1時間
+_source_down_until: Optional[datetime] = None
 
 # 正規表現パターン
 # 収入: "国有土地使用权出让收入41518亿元，比上年下降14.7%"
@@ -100,12 +109,16 @@ def _parse_title_period(title: str) -> Optional[Tuple[int, int]]:
 
 
 def _fetch_with_retry(url: str) -> Optional[str]:
-    """HTTPリクエスト（リトライ付き、502対策で10回リトライ）"""
+    """HTTPリクエスト（リトライ付き＋源泉ダウン時のサーキットブレーカー）"""
+    global _source_down_until
+    # 源泉ダウン中は即諦める（同一スクレイプ内の残りURLや、クールダウン中の再実行を無駄打ちしない）
+    if _source_down_until and datetime.now(JST) < _source_down_until:
+        return None
     for attempt in range(MAX_RETRY):
         try:
             resp = requests.get(url, headers=HEADERS, timeout=30)
             if resp.status_code == 502:
-                wait = RETRY_BACKOFF * (attempt + 1)
+                wait = min(RETRY_BACKOFF * (attempt + 1), MAX_BACKOFF)
                 logger.warning(f"[LandSales] 502 on {url}, retry {attempt + 1}/{MAX_RETRY} in {wait}s")
                 time.sleep(wait)
                 continue
@@ -113,10 +126,15 @@ def _fetch_with_retry(url: str) -> Optional[str]:
             resp.encoding = resp.apparent_encoding or "utf-8"
             return resp.text
         except requests.exceptions.RequestException as e:
-            wait = RETRY_BACKOFF * (attempt + 1)
+            wait = min(RETRY_BACKOFF * (attempt + 1), MAX_BACKOFF)
             logger.warning(f"[LandSales] Error on {url}: {e}, retry {attempt + 1}/{MAX_RETRY} in {wait}s")
             time.sleep(wait)
-    logger.error(f"[LandSales] Failed after {MAX_RETRY} retries: {url}")
+    # リトライを使い切った = 源泉ダウンとみなしクールダウンを設定（残りURLの無駄打ちを止める）
+    _source_down_until = datetime.now(JST) + timedelta(seconds=SOURCE_DOWN_COOLDOWN_SEC)
+    logger.error(
+        f"[LandSales] Failed after {MAX_RETRY} retries: {url} "
+        f"— 源泉ダウンとみなし {SOURCE_DOWN_COOLDOWN_SEC}s スクレイプ停止"
+    )
     return None
 
 
@@ -300,6 +318,12 @@ class CnLandSalesIncomeService:
     def _scrape_mof(self) -> List[Dict[str, Any]]:
         """MOF統計データページからスクレイピング"""
         records = []
+        # 源泉ダウン中（前回502でブレーカー作動）はスクレイプを丸ごとスキップし、CSV履歴で代替
+        if _source_down_until and datetime.now(JST) < _source_down_until:
+            logger.info(
+                f"[LandSales] 源泉ダウン中 (〜{_source_down_until.strftime('%H:%M')}) のためスクレイプをスキップ（CSVキャッシュを使用）"
+            )
+            return records
         try:
             # インデックスページ（最大4ページ）からレポートリンクを収集
             report_links = self._collect_report_links()

@@ -148,6 +148,14 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
   const latest = data.latest
   const nextRelease = data.next_release
 
+  // 自発的離職率（JTSQUR）は平均時給に対し1か月遅行するため、最新月では null になりがち。
+  // 直近の有効値を探して表示する（平均時給と月がズレる場合はラベルに時点を併記）。
+  const latestQuits = sortedData.reduce<typeof sortedData[number] | null>((acc, d) => {
+    if (d.quits_rate === null || d.quits_rate === undefined) return acc
+    if (!acc || d.date > acc.date) return d
+    return acc
+  }, null)
+
   // 最新値の表示用アイテム
   const getLatestItems = () => {
     if (!latest) return []
@@ -156,7 +164,16 @@ export default function AverageHourlyEarningsChart({ data }: AverageHourlyEarnin
       case 'yoy':
         return [
           { label: SERIES_NAMES.yoy, value: latest.yoy, color: COLORS.yoy, format: 'percent' as const, decimals: 2 },
-          { label: SERIES_NAMES.quits_rate, value: latest.quits_rate, color: COLORS.quits_rate, format: 'number' as const, unit: '%', decimals: 1 },
+          {
+            label: latestQuits && latestQuits.date !== latest.date
+              ? `${SERIES_NAMES.quits_rate}（${formatDateLabel(latestQuits.date)}時点）`
+              : SERIES_NAMES.quits_rate,
+            value: latestQuits?.quits_rate ?? null,
+            color: COLORS.quits_rate,
+            format: 'number' as const,
+            unit: '%',
+            decimals: 1,
+          },
         ]
       case 'mom':
         return [

@@ -5,7 +5,10 @@ import {
   retranslateHeadline, fetchCategories, createCategory, updateCategory,
   deleteCategory, fetchAdminStatus, runRSSBackfill, fetchRSSLogs,
   seedCategories,
+  fetchReadMarker, setReadMarker, clearReadMarker,
+  reorderSavedHeadlines, reorderSidebarEntries,
   type HeadlinesParams, type SaveHeadlineParams, type ManualHeadlineParams,
+  type HeadlinesResponse, type SidebarOrderEntry, type Category,
 } from '../api/headlinesApi'
 
 // ========== Headlines ==========
@@ -73,6 +76,103 @@ export function useRetranslate() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ['headlines'] })
       qc.invalidateQueries({ queryKey: ['headline'] })
+    },
+  })
+}
+
+// ========== Saved headline reorder (master only) ==========
+
+export function useReorderSavedHeadlines() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: ({ categoryId, savedIds }: { categoryId: number; savedIds: number[] }) =>
+      reorderSavedHeadlines(categoryId, savedIds),
+    // 楽観的更新: キャッシュ上の sort_order を即時書き換えてドロップ直後に並びを反映
+    onMutate: async ({ categoryId, savedIds }) => {
+      await qc.cancelQueries({ queryKey: ['headlines'] })
+      const orderMap = new Map(savedIds.map((id, idx) => [id, idx]))
+      qc.setQueriesData<HeadlinesResponse>({ queryKey: ['headlines'] }, old => {
+        if (!old?.items) return old
+        return {
+          ...old,
+          items: old.items.map(item => ({
+            ...item,
+            saved_categories: item.saved_categories?.map(sc =>
+              sc.category_id === categoryId && orderMap.has(sc.saved_id)
+                ? { ...sc, sort_order: orderMap.get(sc.saved_id)! }
+                : sc
+            ),
+          })),
+        }
+      })
+    },
+    onSettled: () => {
+      qc.invalidateQueries({ queryKey: ['headlines'] })
+    },
+  })
+}
+
+export function useReorderSidebarEntries() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: ({ entries }: { entries: SidebarOrderEntry[] }) => reorderSidebarEntries(entries),
+    // 楽観的更新: saved_headlines.sort_order と categories.sort_order の両キャッシュを即時反映
+    onMutate: async ({ entries }) => {
+      await qc.cancelQueries({ queryKey: ['headlines'] })
+      await qc.cancelQueries({ queryKey: ['categories'] })
+      const savedOrder = new Map(entries.filter(e => e.type === 'saved').map(e => [e.id, e.sortOrder]))
+      const catOrder = new Map(entries.filter(e => e.type === 'category').map(e => [e.id, e.sortOrder]))
+      qc.setQueriesData<HeadlinesResponse>({ queryKey: ['headlines'] }, old => {
+        if (!old?.items) return old
+        return {
+          ...old,
+          items: old.items.map(item => ({
+            ...item,
+            saved_categories: item.saved_categories?.map(sc =>
+              savedOrder.has(sc.saved_id)
+                ? { ...sc, sort_order: savedOrder.get(sc.saved_id)! }
+                : sc
+            ),
+          })),
+        }
+      })
+      qc.setQueryData<Category[]>(['categories'], old =>
+        old?.map(c => (catOrder.has(c.id) ? { ...c, sort_order: catOrder.get(c.id)! } : c))
+      )
+    },
+    onSettled: () => {
+      qc.invalidateQueries({ queryKey: ['headlines'] })
+      qc.invalidateQueries({ queryKey: ['categories'] })
+    },
+  })
+}
+
+// ========== Read marker 「ここまで見た」 (master only) ==========
+
+export function useReadMarker(enabled: boolean = true) {
+  return useQuery({
+    queryKey: ['read-marker'],
+    queryFn: fetchReadMarker,
+    enabled,
+  })
+}
+
+export function useSetReadMarker() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: (headlineId: number) => setReadMarker(headlineId),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['read-marker'] })
+    },
+  })
+}
+
+export function useClearReadMarker() {
+  const qc = useQueryClient()
+  return useMutation({
+    mutationFn: clearReadMarker,
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ['read-marker'] })
     },
   })
 }

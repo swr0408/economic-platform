@@ -83,7 +83,7 @@ class TrimmedMeanPCEService:
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
                 if last_updated_str and not should_refresh_by_fmp_schedule(
-                    self.ECONALPHA_ID, last_updated_str
+                    self.ECONALPHA_ID, last_updated_str, max_age_hours=24
                 ):
                     return {
                         "data": cached_data.get("data", []),
@@ -100,7 +100,7 @@ class TrimmedMeanPCEService:
             if file_cache:
                 last_updated_str = file_cache.get("last_updated")
                 if last_updated_str and not should_refresh_by_fmp_schedule(
-                    self.ECONALPHA_ID, last_updated_str
+                    self.ECONALPHA_ID, last_updated_str, max_age_hours=24
                 ):
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
                     return {

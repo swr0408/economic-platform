@@ -1092,14 +1092,19 @@
     },
     {
       "date": "2025-12-01",
-      "value": -5.984,
-      "qoq_change": 2.373
+      "value": -5.639,
+      "qoq_change": 2.718
+    },
+    {
+      "date": "2026-03-01",
+      "value": -1.008,
+      "qoq_change": 4.631
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "value": -5.984,
-    "qoq_change": 2.373
+    "date": "2026-03-01",
+    "value": -1.008,
+    "qoq_change": 4.631
   },
   "metadata": {
     "source": "Stats NZ",
@@ -1109,5 +1114,5 @@
     "unit": "十億NZD",
     "frequency": "quarterly"
   },
-  "last_updated": "2026-06-12T09:34:36.110655+09:00"
+  "last_updated": "2026-06-17T09:31:51.976817+09:00"
 }

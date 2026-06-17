@@ -133,6 +133,19 @@ def _build_data() -> List[Dict[str, Any]]:
     except Exception as e:
         logger.warning(f"[GDP] Press release fetch/upsert failed: {e}")
 
+    # --- FMP economic_calendar から履歴を gap-fill（NBS蓄積に無い過去四半期のみ）---
+    # 履歴CSV未整備のため初期は数点しか無い。FMP実績(約1年)で過去を補完する。
+    try:
+        from services.china.nbs_db_utils import backfill_from_fmp_events
+        backfill_from_fmp_events(
+            DB_INDICATORS["yoy"], "GDP Growth Rate YoY", quarterly=True
+        )
+        backfill_from_fmp_events(
+            DB_INDICATORS["qoq"], "GDP Growth Rate QoQ", quarterly=True
+        )
+    except Exception as e:
+        logger.warning(f"[GDP] FMP backfill failed: {e}")
+
     # --- DBから全データ読み込み ---
     db_data = load_nbs_multi([DB_INDICATORS["yoy"], DB_INDICATORS["qoq"]])
     yoy_data = db_data.get(DB_INDICATORS["yoy"], {})
@@ -177,7 +190,7 @@ class CnGdpGrowthRateService:
         if self._redis is None:
             try:
                 import redis
-                self._redis = redis.Redis(host="localhost", port=6379, db=0, socket_timeout=2)
+                self._redis = redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379/0"), socket_timeout=2, socket_connect_timeout=2)
                 self._redis.ping()
             except Exception:
                 self._redis = None

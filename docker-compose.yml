@@ -44,7 +44,13 @@ services:
       context: .
       dockerfile: backend/Dockerfile.simple
     container_name: economic-platform-backend
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload --reload-dir /app/backend --reload-exclude '*.json' --reload-exclude '*.xlsx' --reload-exclude '*.csv' --reload-exclude 'data/*'
+    # init: true → tini を PID1 として起動し、孤児になった子プロセス(ゾンビ)を自動回収する。
+    # スクショ用 headless chromium がワーカー再起動(reload)時に孤児化し PID1 に引き取られても
+    # 回収されず Z(zombie) として溜まる事象への恒久対策 (2026-06-14)。
+    init: true
+    # --timeout-graceful-shutdown: リロード時に旧プロセスが "Waiting for connections
+    # to close" で永久ハングするのを防ぐ (2026-06-13 障害: 全リクエストがタイムアウト)
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --timeout-graceful-shutdown 30 --reload --reload-dir /app/backend --reload-exclude '*.json' --reload-exclude '*.xlsx' --reload-exclude '*.csv' --reload-exclude 'data/*'
     working_dir: /app/backend
     environment:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/economic_platform

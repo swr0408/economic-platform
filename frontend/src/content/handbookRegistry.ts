@@ -1534,6 +1534,16 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['VIX先物', 'VX1', 'VX2', 'VX3', 'フロントスプレッド', '曲率', 'M1-M3スロープ', 'カーブ', 'タームストラクチャー', 'コンタンゴ', 'バックワーデーション', 'Cboe', 'CFE', 'VXX', 'VIXY', 'UVXY', 'SVXY', 'インバースVIX', 'ロール', 'DTE', '月次限月', '週次限月', 'Settlement', 'VIX3M'],
   },
   {
+    indicatorId: 'vix-cross-ratio',
+    title: 'VIXクロスレシオの見方',
+    country: 'market',
+    category: 'equities',
+    summary: 'VIXを分母に、VVIX・SKEW・MOVE・VXN・OVX・GVZ を分子に置いたボラティリティの比率。VVIX/VIX（ボラのボラ）、SKEW/VIX（テールリスク）、MOVE/VIX（金利ボラ）、VXN/VIX（ハイテク集中）、OVX/VIX（原油）、GVZ/VIX（金）から、いま市場のどこにリスクが偏っているかを相対比較で読む。',
+    loadContent: loadMd('market/vix-cross-ratio.md'),
+    relatedIndicators: ['vix-futures-curve', 'implied-vol-premium', 'options-guide', 'fear-greed'],
+    tags: ['VIXクロスレシオ', 'クロスレシオ', 'VVIX', 'VVIX/VIX', 'SKEW', 'SKEW/VIX', 'MOVE', 'MOVE/VIX', 'VXN', 'VXN/VIX', 'OVX', 'OVX/VIX', 'GVZ', 'GVZ/VIX', 'ボラのボラ', 'vol-of-vol', 'テールリスク', '金利ボラ', '原油ボラ', '金ボラ', 'インプライドボラ', 'Cboe', 'MOVE指数', 'ICE BofA', 'VIX'],
+  },
+  {
     indicatorId: 'implied-vol-premium',
     title: 'インプライドボラプレミアム（VIX − HV）',
     country: 'market',

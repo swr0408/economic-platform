@@ -4,6 +4,8 @@
 
 キャッシュ更新判定: NBS発表日時ベース
 """
+import os
+from pathlib import Path
 from typing import Dict, Any, Optional, List
 from datetime import datetime
 from zoneinfo import ZoneInfo
@@ -13,6 +15,13 @@ from services.dashboard.loaders.base import BaseDashboardLoader
 
 JST = ZoneInfo("Asia/Tokyo")
 CST = ZoneInfo("Asia/Shanghai")
+
+# 失業率の手動更新CSV（NBS公式エクスポート）。total+youth をここから取り込む。
+# このファイルが更新されたら集約キャッシュを stale 化し、失業率サービスを再取得させる。
+_UNEMPLOYMENT_CSV = (
+    Path(__file__).parent.parent.parent.parent
+    / "data" / "csv_import" / "ChinaUnemployment Rate.csv"
+)
 
 
 class ChinaEmploymentLoader(BaseDashboardLoader):
@@ -37,10 +46,24 @@ class ChinaEmploymentLoader(BaseDashboardLoader):
     def get_expected_keys(self) -> List[str]:
         return self.EXPECTED_KEYS
 
+    def get_manual_csv_paths(self) -> List[Path]:
+        """手動更新CSVを宣言 → mtime がキャッシュより新しければ集約再構築。"""
+        return [_UNEMPLOYMENT_CSV]
+
+    def _csv_newer_than(self, last_updated_dt: datetime) -> bool:
+        """失業率の手動CSVが last_updated 以降に更新されていれば True。"""
+        try:
+            if not _UNEMPLOYMENT_CSV.exists():
+                return False
+            mtime = datetime.fromtimestamp(os.path.getmtime(_UNEMPLOYMENT_CSV), tz=JST)
+            return mtime > last_updated_dt
+        except Exception:
+            return False
 
     def _detect_stale_indicators(self, last_updated: Optional[str]) -> set:
         """
         発表日時を過ぎた指標を検出（FMPカレンダー自動判定）
+        ＋ 手動更新CSVが更新されていれば再取得。
         """
         if last_updated is None:
             return set()
@@ -49,6 +72,10 @@ class ChinaEmploymentLoader(BaseDashboardLoader):
             last_updated_dt = datetime.fromisoformat(last_updated)
             if last_updated_dt.tzinfo is None:
                 last_updated_dt = last_updated_dt.replace(tzinfo=JST)
+
+            # 手動更新CSV(NBS公式エクスポート)が更新されていれば再取得
+            if self._csv_newer_than(last_updated_dt):
+                return {"all"}
 
             now = datetime.now(JST)
             release_datetimes = self.get_release_datetimes()
@@ -59,7 +86,10 @@ class ChinaEmploymentLoader(BaseDashboardLoader):
 
         except Exception as e:
             print(f"Error detecting stale indicators: {e}")
-            return {"all"}
+            # エラー時に {"all"} を返すと、エラーが続く限り毎リクエストで全指標の
+            # 外部API一斉取得が走りイベントループ/executorを圧迫する (2026-06-13 障害)。
+            # 判定不能時はキャッシュ継続に倒す (各サービスのスケジューラが個別に更新する)。
+            return set()
 
         return set()
 

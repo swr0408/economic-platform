@@ -335,7 +335,9 @@ class MichiganConsumerSentimentService:
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
-        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
+        # 源泉(ミシガンCSV)が発表より遅れて反映されるため24hフォールバック
+        # （michigan_inflation_expectations と同じラグ特性）。
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str, max_age_hours=24)
 
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:

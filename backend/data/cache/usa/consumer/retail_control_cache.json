@@ -979,12 +979,17 @@
       "date": "2026-04-01",
       "mom": 0.5,
       "forecast": 0.1
+    },
+    {
+      "date": "2026-05-01",
+      "mom": 0.5,
+      "forecast": 0.5
     }
   ],
   "latest": {
-    "date": "2026-04-01",
+    "date": "2026-05-01",
     "mom": 0.5,
-    "forecast": 0.1
+    "forecast": 0.5
   },
   "next_release": {
     "date": "2026-06-17",
@@ -994,5 +999,5 @@
     "label": "Retail Sales Ex Gas/Autos MoM (May)",
     "estimate": 0.5
   },
-  "last_updated": "2026-06-12T10:33:56.748766+09:00"
+  "last_updated": "2026-06-17T21:41:16.704353+09:00"
 }

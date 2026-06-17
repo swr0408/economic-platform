@@ -42,6 +42,112 @@ DB_INDICATORS = {
     "youth": "cn_unemployment_youth",
 }
 
+# 手動更新CSV（NBS公式 月次エクスポート、転置ワイド形式）。
+# 若年(16-24歳)は NBS が本文/FMP/公開APIから外し data.stats.gov.cn(WAF) のみで
+# 配信するため自動取得不可。ここに公式エクスポートを置けば total+youth を取り込む。
+# ファイル mtime が更新されると china_employment ローダーが検知して再取得する。
+_MANUAL_CSV_PATH = str(
+    _BASE_DIR / "data" / "csv_import" / "ChinaUnemployment Rate.csv"
+)
+
+# CSV内の系列名（strip後の完全一致）→ DB系列キー
+_CSV_SERIES_MAP = {
+    "The Urban Surveyed Unemployment Rate (%)": "total",
+    "The Urban Surveyed Unemployment Rate of the Population Aged from 16 to 24(%)": "youth",
+}
+
+_MONTH_ABBR = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+    "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+}
+
+
+def _parse_month_header(h: str) -> Optional[str]:
+    """ヘッダの月表記 "May 2026" → "2026-05-01"。不正は None。"""
+    import re
+    m = re.match(r"([A-Za-z]+)\.?\s*(\d{4})", h.strip())
+    if not m:
+        return None
+    mon = _MONTH_ABBR.get(m.group(1)[:3].lower())
+    if not mon:
+        return None
+    return f"{int(m.group(2))}-{mon:02d}-01"
+
+
+def _parse_unemployment_csv() -> Dict[str, Dict[str, float]]:
+    """NBS公式 転置ワイドCSV を解析し {"total": {date:val}, "youth": {date:val}} を返す。
+
+    形式（PMI CSVと同形式・ヘッダー無しの転置）:
+      行1: Database：Monthly / 行2: Time：... / 行3: Indicators,May 2026,Apr 2026,...
+      行4+: 系列名,(各月の値) ...
+    値はパーセント数値（空セルはスキップ＝当月未発表）。
+    """
+    if not os.path.exists(_MANUAL_CSV_PATH):
+        return {}
+    try:
+        with open(_MANUAL_CSV_PATH, encoding="utf-8-sig") as f:
+            lines = [ln.rstrip("\n").rstrip("\r") for ln in f]
+    except Exception as e:
+        logger.warning(f"[Unemployment] Manual CSV read error: {e}")
+        return {}
+
+    # ヘッダ行（先頭セルが "Indicators"）を探す
+    header_idx = None
+    for i, l in enumerate(lines):
+        if l.split(",")[0].strip() == "Indicators":
+            header_idx = i
+            break
+    if header_idx is None:
+        return {}
+
+    headers = [c.strip() for c in lines[header_idx].split(",")]
+    dates = [_parse_month_header(h) for h in headers[1:]]
+
+    out: Dict[str, Dict[str, float]] = {"total": {}, "youth": {}}
+    for line in lines[header_idx + 1:]:
+        if not line.strip():
+            continue
+        parts = line.split(",")
+        key = _CSV_SERIES_MAP.get(parts[0].strip())
+        if not key:
+            continue
+        for i, raw in enumerate(parts[1:]):
+            if i >= len(dates) or not dates[i]:
+                continue
+            v = raw.strip()
+            if not v:
+                continue
+            try:
+                out[key][dates[i]] = round(float(v), 1)
+            except ValueError:
+                continue
+    return out
+
+
+def _import_manual_csv() -> None:
+    """手動更新CSVを DB に取り込む（DBと差分のある月のみ・冪等）。
+
+    差分のみ upsert することで、CSV未変更時の無駄なキャッシュ無効化を避ける。
+    """
+    csv_data = _parse_unemployment_csv()
+    if not csv_data:
+        return
+    from services.china.nbs_db_utils import load_nbs_data, upsert_nbs_data
+
+    for key in ("total", "youth"):
+        vals = csv_data.get(key) or {}
+        if not vals:
+            continue
+        existing = load_nbs_data(DB_INDICATORS[key])
+        diff = {d: v for d, v in vals.items() if existing.get(d) != v}
+        if diff:
+            upsert_nbs_data(DB_INDICATORS[key], diff, source="csv")
+            logger.info(
+                f"[Unemployment] Manual CSV {key}: upserted {len(diff)} changed/new "
+                f"({min(diff)}〜{max(diff)})"
+            )
+
+
 def _fetch_and_upsert_from_press_release() -> None:
     """「国民経済」プレスリリースの HTML から失業率をスクレイピングし、DB に UPSERT
 
@@ -99,11 +205,28 @@ def _build_data() -> List[Dict[str, Any]]:
     """
     from services.china.nbs_db_utils import load_nbs_multi
 
+    # --- 手動更新CSV(NBS公式エクスポート) → DB蓄積（total + youth、差分のみ）---
+    # youth(16-24歳)はこのCSVが唯一の取得源。total も公式値で補強。
+    try:
+        _import_manual_csv()
+    except Exception as e:
+        logger.warning(f"[Unemployment] Manual CSV import failed: {e}")
+
     # --- プレスリリース HTML → DB蓄積 ---
     try:
         _fetch_and_upsert_from_press_release()
     except Exception as e:
         logger.warning(f"[Unemployment] Press release fetch/upsert failed: {e}")
+
+    # --- FMP economic_calendar から total を gap-fill（欠損月のみ・最新フォールバック）---
+    # 全国城鎮調査失業率(total)は FMP "Unemployment Rate" に月次実績あり。
+    # HTMLスクレイピング失敗時の堅牢なフォールバック＋欠損月の補完。
+    # （youth は FMP 非搭載のため別途「分年龄组失业率」リリースから取得）
+    try:
+        from services.china.nbs_db_utils import backfill_from_fmp_events
+        backfill_from_fmp_events(DB_INDICATORS["total"], "Unemployment Rate")
+    except Exception as e:
+        logger.warning(f"[Unemployment] FMP backfill failed: {e}")
 
     # --- DBから全データ読み込み ---
     db_data = load_nbs_multi([DB_INDICATORS["total"], DB_INDICATORS["youth"]])
@@ -150,7 +273,7 @@ class CnUnemploymentRateService:
         if self._redis is None:
             try:
                 import redis
-                self._redis = redis.Redis(host="localhost", port=6379, db=0, socket_timeout=2)
+                self._redis = redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379/0"), socket_timeout=2, socket_connect_timeout=2)
                 self._redis.ping()
             except Exception:
                 self._redis = None

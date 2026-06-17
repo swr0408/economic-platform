@@ -118,6 +118,8 @@ class MichiganInflationExpectationsService:
         # ミシガン大学CSVからデータを取得
         result = self._fetch_from_michigan_csv()
         if result and any(result.get(k) for k in ["one_year", "five_year"]):
+            # CSVが遅延している月をFMP実績で補完（速報を先行表示）
+            result = self._supplement_from_fmp_db(result)
             latest = self._get_latest_values(result)
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
 
@@ -190,6 +192,91 @@ class MichiganInflationExpectationsService:
             import traceback
             traceback.print_exc()
             return {"one_year": [], "five_year": []}
+
+    def _supplement_from_fmp_db(
+        self,
+        data: Dict[str, List[Dict[str, Any]]]
+    ) -> Dict[str, List[Dict[str, Any]]]:
+        """CSVが遅延している月をFMP DB(economic_calendar_events)の実績で補完。
+
+        ミシガンCSV(tbmpx1px5.csv)は確報ベースで、当月値は月末の確報まで載らない
+        ラグがある。速報は月中(第2金曜頃)に公表されFMPに入るため、CSV最新月より
+        新しい月をFMP実績で補完して先行表示する。
+
+        CSV最新月より「後」の月のみ追加するため、CSVが追いついた月はCSV値が優先される
+        (上書きしない)。速報→確報で値が変わる場合は、その月の最新 datetime の actual を採用。
+        """
+        try:
+            from core.database import SessionLocal
+            from sqlalchemy import text
+            import re
+
+            # horizon → FMPイベント名(1年/5年は別イベント)
+            horizons = {
+                "one_year": "Michigan 1 Year Inflation Expectations",
+                "five_year": "Michigan 5 Year Inflation Expectations",
+            }
+            month_map = {
+                'Jan': '01', 'Feb': '02', 'Mar': '03', 'Apr': '04',
+                'May': '05', 'Jun': '06', 'Jul': '07', 'Aug': '08',
+                'Sep': '09', 'Oct': '10', 'Nov': '11', 'Dec': '12',
+            }
+
+            for horizon, event_pattern in horizons.items():
+                series = data.get(horizon, [])
+                if not series:
+                    continue
+
+                latest_date = max(item["date"] for item in series)  # "YYYY-MM-DD"
+
+                with SessionLocal() as session:
+                    rows = session.execute(text("""
+                        SELECT event, datetime_utc, actual
+                        FROM economic_calendar_events
+                        WHERE country = 'US'
+                          AND event ILIKE :pattern
+                          AND actual IS NOT NULL
+                          AND datetime_utc > :since
+                        ORDER BY datetime_utc ASC
+                    """), {
+                        "pattern": f"%{event_pattern}%",
+                        "since": f"{latest_date[:7]}-01",
+                    }).fetchall()
+
+                # 月ごとに最新 datetime の actual を採用(ORDER BY ASC → 後勝ち)
+                month_values: Dict[str, float] = {}
+                for event_name, dt, actual in rows:
+                    m = re.search(r'\((\w+)\)', event_name)
+                    if not m:
+                        continue
+                    mon = m.group(1)[:3].capitalize()
+                    if mon not in month_map:
+                        continue
+                    mm = month_map[mon]
+                    year = dt.year
+                    # 12月データが年明けに発表される場合の補正
+                    if mm == '12' and dt.month <= 2:
+                        year -= 1
+                    date_key = f"{year}-{mm}-01"
+                    if date_key <= latest_date:
+                        continue  # CSVに既にある月は補完しない(CSV優先)
+                    month_values[date_key] = float(actual)
+
+                if not month_values:
+                    continue
+
+                for date_key, value in sorted(month_values.items()):
+                    series.append({"date": date_key, "value": value})
+                    print(f"  Supplemented Michigan {horizon} from FMP DB: {date_key} = {value}")
+
+                series.sort(key=lambda x: x["date"])
+                data[horizon] = series
+
+            return data
+
+        except Exception as e:
+            print(f"Error supplementing Michigan from FMP DB: {e}")
+            return data
 
     def _process_monthly_data(
         self,

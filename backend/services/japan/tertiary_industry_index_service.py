@@ -28,12 +28,14 @@ try:
         get_next_release_from_fmp,
         should_refresh_by_fmp_schedule,
     )
+    from backend.services.japan.estat_file_source import download_estat_excel_matching_title
 except ImportError:
     from core.redis_client import redis_client
     from services.japan.fmp_next_release_utils import (
         get_next_release_from_fmp,
         should_refresh_by_fmp_schedule,
     )
+    from services.japan.estat_file_source import download_estat_excel_matching_title
 
 logger = logging.getLogger(__name__)
 
@@ -47,9 +49,16 @@ DATA_CACHE_FILE = CACHE_DIR / "tertiary_industry_index_cache.json"
 class TertiaryIndustryIndexService:
     """Service for fetching Japan Tertiary Industry Activity Index from METI Excel files"""
 
-    # METI Excel File URLs
-    METI_MOM_URL = "https://www.meti.go.jp/statistics/tyo/sanzi/result/excel/b2020_ksmj.xlsx"
-    METI_YOY_URL = "https://www.meti.go.jp/statistics/tyo/sanzi/result/excel/b2020_komj.xlsx"
+    # 取得元: e-Stat の「時系列データ」ファイル(METI 第3次産業活動指数, statsCode 00550360)。
+    # www.meti.go.jp は当サーバ IP をブロックするため e-Stat へ移行。
+    # MoM は '月次 季調済指数'、YoY は '月次 原指数' を使う。両者は同一 table_name
+    # 「時系列データ（…）」を共有し、区別はファイル先頭(ITAシート A1)のタイトルのみ。
+    ESTAT_STATS_CODE = "00550360"
+    ESTAT_TABLE_FILTER = "時系列データ"
+    ESTAT_MOM_TITLE = ("月次", "季調済")   # 季節調整済指数 → 前月比
+    ESTAT_YOY_TITLE = ("月次", "原指数")   # 原指数 → 前年比
+    ESTAT_MOM_FALLBACK_IDS = ("000040272409",)  # 月次 季調済指数
+    ESTAT_YOY_FALLBACK_IDS = ("000040272407",)  # 月次 原指数
 
     DATA_CACHE_KEY = "japan:tertiary_industry_index:data"
     ECONALPHA_ID = "jp_tertiary_industry_index"
@@ -172,9 +181,14 @@ class TertiaryIndustryIndexService:
 
             for row_idx in range(DATA_START_ROW, min(DATA_START_ROW + 20, len(df))):
                 row = df.iloc[row_idx]
+                item_code = str(row[ITEM_CODE_COL]).strip() if not pd.isna(row[ITEM_CODE_COL]) else ""
                 item_name = str(row[ITEM_NAME_COL]).strip() if not pd.isna(row[ITEM_NAME_COL]) else ""
-                # Target: 第三次産業総合 (K1D000000I) or similar total indicator
-                if "第三次産業総合" in item_name or "第三次産業活動指数" in item_name:
+                # Target: 第3次産業総合（品目コード K1D000000I）。e-Stat は全角「第３次産業総合」、
+                # 旧 METI は「第三次産業総合」と表記が異なるため、コードと両表記で照合する。
+                if (item_code == "K1D000000I"
+                        or "第三次産業総合" in item_name
+                        or "第３次産業総合" in item_name
+                        or "第三次産業活動指数" in item_name):
                     target_row_idx = row_idx
                     break
 
@@ -279,9 +293,14 @@ class TertiaryIndustryIndexService:
             target_row_idx = DATA_START_ROW
             for row_idx in range(DATA_START_ROW, min(DATA_START_ROW + 20, len(df))):
                 row = df.iloc[row_idx]
+                item_code = str(row[ITEM_CODE_COL]).strip() if not pd.isna(row[ITEM_CODE_COL]) else ""
                 item_name = str(row[ITEM_NAME_COL]).strip() if not pd.isna(row[ITEM_NAME_COL]) else ""
-                # Target: 第三次産業総合 (K1D000000I) or similar total indicator
-                if "第三次産業総合" in item_name or "第三次産業活動指数" in item_name:
+                # Target: 第3次産業総合（品目コード K1D000000I）。e-Stat は全角「第３次産業総合」、
+                # 旧 METI は「第三次産業総合」と表記が異なるため、コードと両表記で照合する。
+                if (item_code == "K1D000000I"
+                        or "第三次産業総合" in item_name
+                        or "第３次産業総合" in item_name
+                        or "第三次産業活動指数" in item_name):
                     target_row_idx = row_idx
                     break
 
@@ -365,12 +384,20 @@ class TertiaryIndustryIndexService:
         stays close to a single download even when METI is slow.
         """
         try:
-            logger.info("Fetching Japan Tertiary Industry Index data from METI Excel")
+            logger.info("Fetching Japan Tertiary Industry Index data from e-Stat")
 
             from concurrent.futures import ThreadPoolExecutor
             with ThreadPoolExecutor(max_workers=2) as executor:
-                fut_mom = executor.submit(self._download_excel_file, self.METI_MOM_URL)
-                fut_yoy = executor.submit(self._download_excel_file, self.METI_YOY_URL)
+                fut_mom = executor.submit(
+                    download_estat_excel_matching_title,
+                    self.ESTAT_STATS_CODE, self.ESTAT_TABLE_FILTER,
+                    self.ESTAT_MOM_TITLE, self.ESTAT_MOM_FALLBACK_IDS,
+                )
+                fut_yoy = executor.submit(
+                    download_estat_excel_matching_title,
+                    self.ESTAT_STATS_CODE, self.ESTAT_TABLE_FILTER,
+                    self.ESTAT_YOY_TITLE, self.ESTAT_YOY_FALLBACK_IDS,
+                )
                 mom_content = fut_mom.result()
                 yoy_content = fut_yoy.result()
 

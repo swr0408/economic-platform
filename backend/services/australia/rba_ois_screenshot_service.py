@@ -102,8 +102,9 @@ class RbaOisScreenshotService:
     def capture_all_screenshots(self, force_refresh: bool = False) -> Dict[str, Any]:
         """Capture all OIS screenshots.
 
-        3 枚を 1 ブラウザで連続撮影 (起動コスト削減)。プロセス共有セマフォ
-        (`browser_semaphore`) を 1 度だけ取得する。
+        MacroMicro の連続ロード抑制を避けるため 1 枚ごとに新しいブラウザを
+        起動する。プロセス共有セマフォ (`browser_semaphore`) は 1 度だけ取得し、
+        その中で順次撮影する。
         """
         CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -132,7 +133,10 @@ class RbaOisScreenshotService:
             to_capture.append((key, config, screenshot_path))
 
         # SWR: all files exist (but stale) → return stale URLs, update in background
-        if to_capture:
+        # force_refresh=True は明示的な再取得要求なので SWR をスキップし同期撮影する。
+        # （SWR を通すと all_files_exist=True で永久に stale を返し、background も
+        #  同一 task_key で再度 SWR に入り実撮影されない no-op ループになる）
+        if to_capture and not force_refresh:
             all_files_exist = all(sp.exists() for _, _, sp in to_capture)
             if all_files_exist:
                 for key, config, screenshot_path in to_capture:
@@ -152,45 +156,35 @@ class RbaOisScreenshotService:
                 )
                 return results
 
-        # 1 ブラウザで複数枚連続撮影
+        # MacroMicro は同一ブラウザで複数チャートを連続ロードすると 2 枚目以降が
+        # 描画されない (highcharts 未生成 → clip_selector not found) ため、
+        # 1 枚ごとに新しいブラウザを起動して各撮影を「初回ロード」にする。
+        # browser_semaphore は 1 度だけ取得し、その中で順次起動する。
         if to_capture:
-            try:
-                with browser_semaphore:
-                    with get_default_runner(config=self._build_config()) as runner:
-                        for key, config, screenshot_path in to_capture:
-                            try:
-                                logger.info(
-                                    f"[RbaOIS] Capturing {config['label']}..."
-                                )
-                                result = runner.screenshot(
-                                    self._build_request(config["url"], screenshot_path)
-                                )
-                                logger.info(
-                                    f"[RbaOIS] saved {key}: "
-                                    f"{result.path} ({result.size_bytes} bytes)"
-                                )
-                                results[key] = {
-                                    "success": True,
-                                    "url": f"/cache/australia/policy/{config['filename']}",
-                                    "cached": False,
-                                }
-                            except BrowserRunnerError as e:
-                                logger.error(
-                                    f"[RbaOIS] {key} capture failed: {e}"
-                                )
-                                results[key] = {
-                                    "success": False,
-                                    "url": None,
-                                    "cached": False,
-                                }
-            except BrowserRunnerError as e:
-                logger.error(f"[RbaOIS] runner setup failed: {e}")
-                for key, config, _ in to_capture:
-                    results[key] = {
-                        "success": False,
-                        "url": None,
-                        "cached": False,
-                    }
+            with browser_semaphore:
+                for key, config, screenshot_path in to_capture:
+                    try:
+                        logger.info(f"[RbaOIS] Capturing {config['label']}...")
+                        with get_default_runner(config=self._build_config()) as runner:
+                            result = runner.screenshot(
+                                self._build_request(config["url"], screenshot_path)
+                            )
+                        logger.info(
+                            f"[RbaOIS] saved {key}: "
+                            f"{result.path} ({result.size_bytes} bytes)"
+                        )
+                        results[key] = {
+                            "success": True,
+                            "url": f"/cache/australia/policy/{config['filename']}",
+                            "cached": False,
+                        }
+                    except BrowserRunnerError as e:
+                        logger.error(f"[RbaOIS] {key} capture failed: {e}")
+                        results[key] = {
+                            "success": False,
+                            "url": None,
+                            "cached": False,
+                        }
 
         results["last_updated"] = now.isoformat()
 

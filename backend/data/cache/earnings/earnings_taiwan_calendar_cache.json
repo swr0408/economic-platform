@@ -13,25 +13,25 @@
       "date": "2026-07-16",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 3.69,
+      "eps_estimate": 3.74,
       "eps_actual": null,
-      "revenue_estimate": 40024420000.0,
+      "revenue_estimate": 40053650000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "2317.TW",
       "name": "Hon Hai",
       "tier": "A",
       "country_code": "taiwan",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
+      "date": "2026-08-12",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 0.2601,
       "eps_actual": null,
-      "revenue_estimate": null,
+      "revenue_estimate": 74905890000.0,
       "revenue_actual": null,
-      "updated_from_date": null
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "2454.TW",
@@ -49,8 +49,8 @@
     }
   ],
   "next_7d_count": 0,
-  "next_30d_count": 0,
-  "last_updated": "2026-06-12T01:35:37.075388+00:00",
+  "next_30d_count": 1,
+  "last_updated": "2026-06-17T12:37:42.828730+00:00",
   "cached": false,
   "status": "ok"
 }

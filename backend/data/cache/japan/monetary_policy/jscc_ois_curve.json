@@ -1,136 +1,136 @@
 {
   "data": {
     "current": {
-      "date": "2026-06-11",
+      "date": "2026-06-17",
       "data": [
         {
           "tenor": "1M",
-          "rate": 0.95102
+          "rate": 0.9775
         },
         {
           "tenor": "1W",
-          "rate": 0.89875
+          "rate": 0.9775
         },
         {
           "tenor": "3M",
-          "rate": 0.969
+          "rate": 0.97995
         },
         {
           "tenor": "2W",
-          "rate": 0.9337
+          "rate": 0.9775
         },
         {
           "tenor": "6M",
-          "rate": 1.01875
+          "rate": 1.02153
         },
         {
           "tenor": "3W",
-          "rate": 0.945
+          "rate": 0.9775
         },
         {
           "tenor": "9M",
-          "rate": 1.08875
+          "rate": 1.087
         },
         {
           "tenor": "1Y",
-          "rate": 1.15469
+          "rate": 1.14879
         },
         {
           "tenor": "2M",
-          "rate": 0.96333
+          "rate": 0.97875
         },
         {
           "tenor": "4M",
-          "rate": 0.97977
+          "rate": 0.98772
         },
         {
           "tenor": "5M",
-          "rate": 0.99747
+          "rate": 1.00281
         },
         {
           "tenor": "7M",
-          "rate": 1.0432
+          "rate": 1.04382
         },
         {
           "tenor": "8M",
-          "rate": 1.06753
+          "rate": 1.06744
         },
         {
           "tenor": "10M",
-          "rate": 1.11123
+          "rate": 1.10757
         },
         {
           "tenor": "11M",
-          "rate": 1.13375
+          "rate": 1.12804
         }
       ]
     },
-    "last_updated": "2026-06-12T10:46:06.478606+09:00",
+    "last_updated": "2026-06-17T21:46:23.957954+09:00",
     "previous": {
-      "date": "2026-06-10",
+      "date": "2026-06-16",
       "data": [
         {
           "tenor": "1M",
-          "rate": 0.961
+          "rate": 0.9775
         },
         {
           "tenor": "1W",
-          "rate": 0.893
+          "rate": 0.9775
         },
         {
           "tenor": "3M",
-          "rate": 0.969
+          "rate": 0.9801
         },
         {
           "tenor": "2W",
-          "rate": 0.933
+          "rate": 0.9775
         },
         {
           "tenor": "6M",
-          "rate": 1.037
+          "rate": 1.02315
         },
         {
           "tenor": "3W",
-          "rate": 0.952
+          "rate": 0.9775
         },
         {
           "tenor": "9M",
-          "rate": 1.088
+          "rate": 1.09184
         },
         {
           "tenor": "1Y",
-          "rate": 1.169
+          "rate": 1.15625
         },
         {
           "tenor": "2M",
-          "rate": 0.944
+          "rate": 0.97885
         },
         {
           "tenor": "4M",
-          "rate": 0.962
+          "rate": 0.99065
         },
         {
           "tenor": "5M",
-          "rate": 0.987
+          "rate": 1.00432
         },
         {
           "tenor": "7M",
-          "rate": 1.051
+          "rate": 1.0458
         },
         {
           "tenor": "8M",
-          "rate": 1.074
+          "rate": 1.06932
         },
         {
           "tenor": "10M",
-          "rate": 1.123
+          "rate": 1.11434
         },
         {
           "tenor": "11M",
-          "rate": 1.124
+          "rate": 1.13563
         }
       ]
     }
   },
-  "last_updated": "2026-06-12T10:46:06.478634+09:00"
+  "last_updated": "2026-06-17T21:46:23.957975+09:00"
 }

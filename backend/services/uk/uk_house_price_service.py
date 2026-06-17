@@ -160,7 +160,10 @@ class UKHousePriceService:
             logger.info(f"[UK House Price] Fetching from Land Registry (from 2000-01-01 to {to_date})")
 
             headers = {
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                # Land Registry は英語版と Welsh 版の CSV を不定に返す。英語を明示要求する。
+                # (サーバが無視して Welsh を返す場合に備え、パーサーは両言語対応 — _parse_csv)
+                'Accept-Language': 'en-GB,en;q=0.9',
             }
 
             response = requests.get(self.BASE_URL, params=params, headers=headers, timeout=120)
@@ -176,6 +179,30 @@ class UKHousePriceService:
             import traceback
             traceback.print_exc()
             return None
+
+    # Land Registry CSV のカラム名（英語版 / Welsh 版）。
+    # サーバが言語を不定に切り替えるため両対応する (2026-06-17 障害)。
+    _PCT_PREFIX = {
+        "yearly": ("Percentage change (yearly)", "Newid canrannol (blynyddol)"),
+        "monthly": ("Percentage change (monthly)", "Newid canrannol (misol)"),
+    }
+    _TYPE_SUFFIX = {
+        "all": ("All property types", "Pob math o eiddo"),
+        "detached": ("Detached houses", "Tai ar wahân"),
+        "semi_detached": ("Semi-detached houses", "Tai pâr"),
+        "terraced": ("Terraced houses", "Tai teras"),
+        "flat": ("Flats and maisonettes", "Fflatiau a fflatiau deulawr"),
+    }
+
+    def _get_pct_value(self, row: Dict[str, Any], kind: str, type_key: str) -> str:
+        """行から変化率を取得（英語/Welsh のどちらのカラム名でも拾う）"""
+        en_prefix, cy_prefix = self._PCT_PREFIX[kind]
+        en_suffix, cy_suffix = self._TYPE_SUFFIX[type_key]
+        for col in (f"{en_prefix} {en_suffix}", f"{cy_prefix} {cy_suffix}"):
+            val = row.get(col)
+            if val is not None and val.strip():
+                return val.strip()
+        return ""
 
     def _parse_csv(self, csv_text: str) -> Optional[Dict[str, Any]]:
         """CSVデータをパースして構造化"""
@@ -202,27 +229,28 @@ class UKHousePriceService:
 
             for row in csv_reader:
                 # 日付を取得
-                date_str = row.get('Pivotable date', '').strip()
+                date_str = (row.get('Pivotable date') or '').strip()
                 if not date_str:
-                    date_str = row.get('Period', '').strip()
+                    date_str = (row.get('Period') or '').strip()
 
                 if not date_str:
                     continue
 
                 try:
-                    # 各物件タイプの前年比（YoY）を抽出
-                    all_str = row.get('Percentage change (yearly) All property types', '').strip()
-                    detached_str = row.get('Percentage change (yearly) Detached houses', '').strip()
-                    semi_str = row.get('Percentage change (yearly) Semi-detached houses', '').strip()
-                    terraced_str = row.get('Percentage change (yearly) Terraced houses', '').strip()
-                    flat_str = row.get('Percentage change (yearly) Flats and maisonettes', '').strip()
+                    # 各物件タイプの前年比（YoY）/前月比（MoM）を抽出。
+                    # Land Registry は英語版と Welsh 版の CSV を不定に返すため、
+                    # 両言語のカラム名を順に試す（_get_pct_value）。
+                    all_str = self._get_pct_value(row, "yearly", "all")
+                    detached_str = self._get_pct_value(row, "yearly", "detached")
+                    semi_str = self._get_pct_value(row, "yearly", "semi_detached")
+                    terraced_str = self._get_pct_value(row, "yearly", "terraced")
+                    flat_str = self._get_pct_value(row, "yearly", "flat")
 
-                    # 各物件タイプの前月比（MoM）を抽出
-                    all_mom_str = row.get('Percentage change (monthly) All property types', '').strip()
-                    detached_mom_str = row.get('Percentage change (monthly) Detached houses', '').strip()
-                    semi_mom_str = row.get('Percentage change (monthly) Semi-detached houses', '').strip()
-                    terraced_mom_str = row.get('Percentage change (monthly) Terraced houses', '').strip()
-                    flat_mom_str = row.get('Percentage change (monthly) Flats and maisonettes', '').strip()
+                    all_mom_str = self._get_pct_value(row, "monthly", "all")
+                    detached_mom_str = self._get_pct_value(row, "monthly", "detached")
+                    semi_mom_str = self._get_pct_value(row, "monthly", "semi_detached")
+                    terraced_mom_str = self._get_pct_value(row, "monthly", "terraced")
+                    flat_mom_str = self._get_pct_value(row, "monthly", "flat")
 
                     # YoYデータ追加
                     if all_str:

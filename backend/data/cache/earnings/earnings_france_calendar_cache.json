@@ -17,7 +17,7 @@
       "eps_actual": null,
       "revenue_estimate": 53929590000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "BNP",
@@ -31,7 +31,7 @@
       "eps_actual": null,
       "revenue_estimate": 15751630000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "MC",
@@ -45,7 +45,7 @@
       "eps_actual": null,
       "revenue_estimate": 45119350000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "SAF",
@@ -59,7 +59,7 @@
       "eps_actual": null,
       "revenue_estimate": 20195450000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "AIR",
@@ -71,9 +71,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.4248,
       "eps_actual": null,
-      "revenue_estimate": 20573270000.0,
+      "revenue_estimate": 20934500000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "SU",
@@ -85,9 +85,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 1.06,
       "eps_actual": null,
-      "revenue_estimate": 24145110000.0,
+      "revenue_estimate": 24273290000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "SAN",
@@ -97,11 +97,11 @@
       "date": "2026-07-30",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 1.2,
+      "eps_estimate": 1.09,
       "eps_actual": null,
       "revenue_estimate": 12874380000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "CS",
@@ -115,12 +115,12 @@
       "eps_actual": null,
       "revenue_estimate": 44767110000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     }
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-06-12T01:35:37.066917+00:00",
+  "last_updated": "2026-06-17T12:37:42.819554+00:00",
   "cached": false,
   "status": "ok"
 }

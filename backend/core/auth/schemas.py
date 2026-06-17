@@ -12,13 +12,17 @@ Role = Literal["master", "special", "general"]
 class RegisterRequest(BaseModel):
     """新規登録リクエスト
 
-    注意: role は受け付けない。常に 'general' で作成される。
-    昇格は DB 直接 or master 専用 API 経由で行う。
+    注意: role は直接受け付けない。通常は 'general' で作成される。
+    昇格は招待コードの role_to_grant または master 専用 API 経由で行う。
+
+    invite_code: REGISTRATION_MODE=invite のとき必須 (クローズドβ運用)。
+                 open のときも任意で受け付ける (コード付き登録は entitlement 付与)。
     """
 
     username: str = Field(..., min_length=3, max_length=64)
     password: str = Field(..., min_length=8, max_length=128)
     email: Optional[str] = Field(default=None, max_length=255)
+    invite_code: Optional[str] = Field(default=None, max_length=64)
 
     @field_validator("username")
     @classmethod

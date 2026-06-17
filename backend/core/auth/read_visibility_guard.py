@@ -20,6 +20,8 @@ read 系リクエストの可視性制御ミドルウェア
 """
 from __future__ import annotations
 
+import asyncio
+
 from typing import Any, Dict, Optional, Tuple
 
 from starlette.middleware.base import BaseHTTPMiddleware
@@ -28,6 +30,7 @@ from starlette.responses import JSONResponse, Response
 
 try:
     from backend.core.auth.cookies import extract_token_from_cookie
+    from backend.core.auth.guard_executor import AUTH_GUARD_EXECUTOR
     from backend.core.auth.revocation import get_force_logout_after, is_jti_revoked
     from backend.core.auth.security import decode_access_token
     from backend.services.visibility.path_resolver import resolve_indicator_code
@@ -38,6 +41,7 @@ try:
     )
 except ImportError:
     from core.auth.cookies import extract_token_from_cookie
+    from core.auth.guard_executor import AUTH_GUARD_EXECUTOR
     from core.auth.revocation import get_force_logout_after, is_jti_revoked
     from core.auth.security import decode_access_token
     from services.visibility.path_resolver import resolve_indicator_code
@@ -184,7 +188,11 @@ class ReadVisibilityGuardMiddleware(BaseHTTPMiddleware):
             return await call_next(request)
 
         # 認証チェック (会員制サイトのため /api/* GET は全て認証必須)
-        role, err, _payload = _extract_role(request)
+        # _extract_role は同期 Redis 呼び出しを含むため、イベントループ上で
+        # 直接実行せず専用スレッドプールに退避する (Redis 遅延時の全停止防止)
+        role, err, _payload = await asyncio.get_running_loop().run_in_executor(
+            AUTH_GUARD_EXECUTOR, _extract_role, request
+        )
         if err is not None:
             return err
 

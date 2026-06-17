@@ -1171,7 +1171,12 @@ class FMPReleaseScheduler:
         per_country: Dict[str, int] = {}
         for country in self._BULK_FETCH_COUNTRIES:
             try:
-                events = fmp_service.fetch_calendar(from_date, to_date, country=country)
+                # FMP は英国を ISO "GB" ではなく "UK" で返すため、API 呼び出しは
+                # マップ後のコードを使う。これを忘れると country="GB" で 0 件となり、
+                # UK の将来イベント・CPI/PPI が一切 populate されず物価系が永久凍結する
+                # (2026-06-17 障害)。バックフィル側 (_fetch_country_events) は元から対応済。
+                fmp_country = _FMP_COUNTRY_MAP.get(country, country)
+                events = fmp_service.fetch_calendar(from_date, to_date, country=fmp_country)
                 if not events:
                     continue
                 processed = [fmp_service.process_event(e) for e in events]

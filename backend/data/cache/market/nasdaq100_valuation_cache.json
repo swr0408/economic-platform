@@ -4259,16 +4259,30 @@
     {
       "date": "2026-05-01",
       "close": 27710.36,
-      "forward_pe": 24.77,
-      "forward_eps": 1118.71,
-      "earnings_yield": 0.040371,
+      "forward_pe": 24.76,
+      "forward_eps": 1119.16,
+      "earnings_yield": 0.040388,
       "yield_10y": 0.04378,
-      "yield_spread": -0.003409,
+      "yield_spread": -0.003392,
       "real_yield_10y": 0.0191,
-      "real_yield_spread": 0.021271,
-      "forward_pe_yoy": -3.97,
-      "forward_eps_yoy": 45.83,
-      "earnings_yield_yoy": 4.13
+      "real_yield_spread": 0.021288,
+      "forward_pe_yoy": -4.0,
+      "forward_eps_yoy": 45.89,
+      "earnings_yield_yoy": 4.17
+    },
+    {
+      "date": "2026-06-01",
+      "close": 30513.86,
+      "forward_pe": 24.38,
+      "forward_eps": 1251.59,
+      "earnings_yield": 0.041017,
+      "yield_10y": 0.04475,
+      "yield_spread": -0.003733,
+      "real_yield_10y": 0.0207,
+      "real_yield_spread": 0.020317,
+      "forward_pe_yoy": -9.54,
+      "forward_eps_yoy": 56.94,
+      "earnings_yield_yoy": 10.54
     }
   ],
   "monthly_table": [
@@ -7922,30 +7936,42 @@
     },
     {
       "date": "2026-05",
-      "forward_pe": 24.77,
-      "forward_eps": 1118.71,
+      "forward_pe": 24.76,
+      "forward_eps": 1119.16,
       "earnings_yield": 4.04,
       "close": 27710.36,
       "yield_10y": 4.38,
-      "forward_pe_mom": 7.79,
-      "forward_eps_mom": 7.03,
-      "earnings_yield_mom": -7.23,
+      "forward_pe_mom": 7.75,
+      "forward_eps_mom": 7.07,
+      "earnings_yield_mom": -7.19,
       "real_yield_10y": 1.91
+    },
+    {
+      "date": "2026-06",
+      "forward_pe": 24.38,
+      "forward_eps": 1251.59,
+      "earnings_yield": 4.1,
+      "close": 30513.86,
+      "yield_10y": 4.47,
+      "forward_pe_mom": -1.53,
+      "forward_eps_mom": 11.83,
+      "earnings_yield_mom": 1.56,
+      "real_yield_10y": 2.07
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "close": 27710.36,
-    "forward_pe": 24.77,
-    "forward_eps": 1118.71,
-    "earnings_yield": 0.040371,
-    "yield_10y": 0.04378,
-    "yield_spread": -0.003409,
-    "real_yield_10y": 0.0191,
-    "real_yield_spread": 0.021271,
-    "forward_pe_yoy": -3.97,
-    "forward_eps_yoy": 45.83,
-    "earnings_yield_yoy": 4.13
+    "date": "2026-06-01",
+    "close": 30513.86,
+    "forward_pe": 24.38,
+    "forward_eps": 1251.59,
+    "earnings_yield": 0.041017,
+    "yield_10y": 0.04475,
+    "yield_spread": -0.003733,
+    "real_yield_10y": 0.0207,
+    "real_yield_spread": 0.020317,
+    "forward_pe_yoy": -9.54,
+    "forward_eps_yoy": 56.94,
+    "earnings_yield_yoy": 10.54
   },
   "metadata": {
     "source": "Nasdaq 100 Valuation",
@@ -7953,11 +7979,11 @@
     "pe_source_url": "https://en.macromicro.me/series/23955/nasdaq-100-pe",
     "pe_source": "MacroMicro",
     "file_name": "nasdaq100_pe.csv",
-    "file_mtime": 1780323953.4697008,
-    "data_count": 305,
+    "file_mtime": 1781655592.0851274,
+    "data_count": 306,
     "date_range": {
       "start": "2001-01-02",
-      "end": "2026-05-01"
+      "end": "2026-06-01"
     },
     "series": [
       "forward_pe (予想PER)",
@@ -7971,5 +7997,5 @@
   },
   "cached": false,
   "source": "csv+yfinance",
-  "last_updated": "2026-06-12T09:10:22.470179+09:00"
+  "last_updated": "2026-06-17T15:43:10.589804+09:00"
 }

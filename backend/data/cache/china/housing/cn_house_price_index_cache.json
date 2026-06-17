@@ -1091,13 +1091,19 @@
       "value": -3.5,
       "forecast": -3.5,
       "previous": -3.4
+    },
+    {
+      "date": "2026-05-01",
+      "value": -3.5,
+      "forecast": -3.4,
+      "previous": -3.5
     }
   ],
   "latest": {
-    "date": "2026-04-01",
+    "date": "2026-05-01",
     "value": -3.5,
-    "forecast": -3.5,
-    "previous": -3.4
+    "forecast": -3.4,
+    "previous": -3.5
   },
   "next_release": {
     "date": "2026-06-16",
@@ -1107,5 +1113,5 @@
     "label": "House Price Index YoY (May)",
     "estimate": -3.4
   },
-  "last_updated": "2026-06-12T11:01:42.919872+09:00"
+  "last_updated": "2026-06-16T11:01:14.874955+09:00"
 }

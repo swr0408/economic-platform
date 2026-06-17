@@ -111,14 +111,38 @@ async function postJson<T>(url: string, body: unknown, token?: string | null): P
   return res.json() as Promise<T>
 }
 
+/**
+ * HTTP ステータスを保持するエラー。
+ * 「認証失敗(401)」と「一時的な障害(タイムアウト/ネットワーク断/5xx)」を
+ * 呼び出し側で区別し、後者で誤ってログアウトしないために使う。
+ */
+class HttpError extends Error {
+  status: number
+  constructor(status: number) {
+    super(`HTTP ${status}`)
+    this.status = status
+  }
+}
+
 async function getJson<T>(url: string, token?: string | null): Promise<T> {
   const headers: Record<string, string> = {}
   if (token) headers['Authorization'] = `Bearer ${token}`
   const res = await fetch(url, { headers, credentials: 'include' })
   if (!res.ok) {
-    throw new Error(`HTTP ${res.status}`)
+    throw new HttpError(res.status)
   }
   return res.json() as Promise<T>
+}
+
+/**
+ * `/api/auth/me` の検証エラーが「セッションを破棄すべき認証失敗」かどうかを判定する。
+ *
+ * true  … 401 (トークン失効/無効) → ローカルのセッションも破棄して再ログインを促す
+ * false … タイムアウト / ネットワーク断 / 5xx (バックエンド再起動・一時的な
+ *          イベントループ詰まり等) → 有効なトークンは保持し、誤ログアウトを防ぐ
+ */
+function isAuthFailure(error: unknown): boolean {
+  return error instanceof HttpError && error.status === 401
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -141,8 +165,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setUser(me)
           writeStored(stored, me)
         }
-      } catch {
-        if (!cancelled) {
+      } catch (e) {
+        // 401 のときだけセッション破棄。一時的な障害 (タイムアウト/5xx/ネットワーク断)
+        // では localStorage のトークンとユーザーをそのまま保持し、起動を続行する
+        // (バックエンド再起動中などに有効セッションを失わないため)。
+        if (!cancelled && isAuthFailure(e)) {
           setToken(null)
           setUser(null)
           writeStored(null, null)
@@ -200,10 +227,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const me = await getJson<AuthUser>('/api/auth/me', stored)
       setUser(me)
       writeStored(stored, me)
-    } catch {
-      setToken(null)
-      setUser(null)
-      writeStored(null, null)
+    } catch (e) {
+      // 401 のときだけセッション破棄。一時的な障害では誤ログアウトを防ぐためトークンを保持。
+      if (isAuthFailure(e)) {
+        setToken(null)
+        setUser(null)
+        writeStored(null, null)
+      }
     }
   }, [])
 

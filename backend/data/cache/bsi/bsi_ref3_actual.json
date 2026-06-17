@@ -869,13 +869,34 @@
       "large_non_manufacturing": 4.6,
       "medium_all_industries": 5.7,
       "small_all_industries": 9.4
+    },
+    {
+      "date": "2026-03-01",
+      "year": 2026,
+      "quarter": "Q1",
+      "large_all_industries": 3.9,
+      "large_manufacturing": 1.0,
+      "large_non_manufacturing": 5.2,
+      "medium_all_industries": 6.3,
+      "small_all_industries": 8.3
+    },
+    {
+      "date": "2026-06-01",
+      "year": 2026,
+      "quarter": "Q2",
+      "large_all_industries": 3.8,
+      "large_manufacturing": 1.6,
+      "large_non_manufacturing": 4.8,
+      "medium_all_industries": 5.9,
+      "small_all_industries": 10.4
     }
   ],
   "sheet_name": "ref3",
-  "sheet_title": "売上げ・収益（国内）",
-  "sheet_description": "Sales and Profits (Domestic)",
+  "sheet_title": "設備投資",
+  "sheet_description": "Capital Investment",
   "period_type": "actual",
-  "last_updated": "2026-01-12T09:13:46.604902",
+  "last_updated": "2026-06-16T00:32:07.126988",
   "cached": false,
-  "source": "e-stat"
+  "source": "e-stat",
+  "next_release": null
 }

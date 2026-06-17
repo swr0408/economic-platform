@@ -65,6 +65,12 @@ CREATE INDEX IF NOT EXISTS idx_saved_headlines_public_visible
     WHERE is_public_visible = TRUE;
 """
 
+# saved_headlines.sort_order 列の追加 (サイドバーの手動並び替え用、NULL=未並び替え)
+SAVED_HEADLINES_SORT_ORDER_DDL = """
+ALTER TABLE IF EXISTS public.saved_headlines
+    ADD COLUMN IF NOT EXISTS sort_order INTEGER;
+"""
+
 
 def ensure_visibility_schema() -> None:
     """visibility 関連テーブル/カラムを作成 (存在しない場合)."""
@@ -75,6 +81,7 @@ def ensure_visibility_schema() -> None:
             # saved_headlines が無くてもエラーにならないように IF EXISTS
             conn.execute(text(SAVED_HEADLINES_PUBLIC_FLAG_DDL))
             conn.execute(text(SAVED_HEADLINES_PUBLIC_FLAG_INDEX_DDL))
+            conn.execute(text(SAVED_HEADLINES_SORT_ORDER_DDL))
         logger.info("[visibility] indicator_visibility schema is ready")
     except Exception as e:
         logger.error(f"[visibility] failed to ensure visibility schema: {e}")

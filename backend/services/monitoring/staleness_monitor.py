@@ -24,10 +24,13 @@ country 指標について「実際に公表済みの最新 actual 日付」と�
 """
 from __future__ import annotations
 
+import asyncio
 import glob
 import json
+import multiprocessing
 import os
 import re
+from concurrent.futures import ProcessPoolExecutor
 from datetime import datetime, timedelta, timezone
 from statistics import median
 from typing import Any, Dict, List, Optional
@@ -114,6 +117,20 @@ _MANUAL_OVERRIDES = (
 # earnings (JSON だがカレンダーは将来日付のみ → 系列判定不能なので mtime で判定)
 _EARNINGS_CALENDAR_THRESHOLD = 8.0     # カレンダーは日次〜週次で再取得されるはず
 _EARNINGS_FINANCIALS_THRESHOLD = 120.0  # 決算は四半期
+
+# ---------------------------------------------------------------------------
+# 系列ベース判定の「期待リリース間隔」オーバーライド: (パス部分一致, 間隔日数)
+#
+# データ自体は日次 (営業日) でも、上流が週次でまとめて公表するソースは、
+# 日付間隔から推定した interval=1日 → 閾値 max(8, 2.5×1)=8日 となり、
+# 最新データ齢が 4〜10 日で振動するため毎週末に誤検知する (2026-06-13 に確認)。
+# 実際の公表サイクルを明示して閾値を引き上げる。
+# interval=7 ⇒ 閾値 max(8, 2.5×7)=17.5日 — 本物の凍結 (2サイクル超) は引き続き捕捉。
+# ---------------------------------------------------------------------------
+_INTERVAL_OVERRIDES = (
+    ("market/gold_premium_cache.json", 7.0),          # WGC GoldHub: 毎週火曜に前週金曜分まで公表
+    ("usa/employment/jolts_indeed_cache.json", 7.0),  # FRED IHLIDXUS: Indeed Hiring Lab が週次反映
+)
 
 
 def _parse_date(s: Any) -> Optional[datetime]:
@@ -372,6 +389,14 @@ def _scan_mtime_artifacts() -> List[Dict[str, Any]]:
     return rows
 
 
+# ファイル解析結果(系列日付 + last_updated)の mtime ベースキャッシュ。
+# scan_stale_caches は全 760+ キャッシュを json.load + 深い再帰走査するため 1回 ~12秒の
+# CPU(GIL占有)処理になり、イベントループを飢えさせて全APIが遅延する事象があった(2026-06-14)。
+# 解析結果はファイル内容(=mtime)にのみ依存するため、mtime 不変なら再解析せず再利用し、
+# 2回目以降のスキャンを大幅に高速化する(変更ファイルのみ再解析)。
+_FILE_PARSE_CACHE: Dict[str, Any] = {}  # path -> (mtime, all_dates, last_updated)
+
+
 def scan_stale_caches(now: Optional[datetime] = None,
                       include_ok: bool = False) -> Dict[str, Any]:
     """全キャッシュを走査して鮮度を判定する。
@@ -395,19 +420,36 @@ def scan_stale_caches(now: Optional[datetime] = None,
         # → mtime ベース (_scan_mtime_artifacts) で監視するためここでは除外
         if rel.startswith("earnings/"):
             continue
+        # mtime 不変なら前回の解析結果(系列日付 + last_updated)を再利用し、
+        # json.load + 深い再帰走査(高コスト)をスキップする。
         try:
-            obj = json.load(open(f, encoding="utf-8"))
-        except Exception as e:
-            rows.append({"file": rel, "category": "PARSE_ERROR", "error": str(e)})
-            continue
-        all_dates = [_to_naive_jst(d) for d in _find_series_dates(obj) if d]
+            mtime = os.path.getmtime(f)
+        except OSError:
+            mtime = None
+        cached = _FILE_PARSE_CACHE.get(f)
+        if cached is not None and mtime is not None and cached[0] == mtime:
+            all_dates, last_updated = cached[1], cached[2]
+        else:
+            try:
+                with open(f, encoding="utf-8") as _fh:
+                    obj = json.load(_fh)
+            except Exception as e:
+                rows.append({"file": rel, "category": "PARSE_ERROR", "error": str(e)})
+                continue
+            all_dates = [_to_naive_jst(d) for d in _find_series_dates(obj) if d]
+            last_updated = _to_naive_jst(_get_last_updated(obj))
+            if mtime is not None:
+                _FILE_PARSE_CACHE[f] = (mtime, all_dates, last_updated)
         # 将来日付 (予測値/プロジェクション) は「実績の鮮度」評価から除外する。
         # 例: CBO NAIRU(NROU) は 2036 年までの予測を含み、除外しないと latest が未来になり
         # FRED/CBO が更新を止めても永遠に stale 判定されない。実績の最新 (<=今日) で評価する。
         dates = [d for d in all_dates if d <= now_dt]
-        last_updated = _to_naive_jst(_get_last_updated(obj))
         latest = max(dates) if dates else None
         interval = _infer_interval_days(dates)
+        for sub, o_int in _INTERVAL_OVERRIDES:
+            if sub in rel:
+                interval = o_int
+                break
         dsl = (now_dt - latest).days if latest else None
         dsu = (now_dt - last_updated).days if last_updated else None
         cat = _categorize(dsl, dsu, interval)
@@ -457,9 +499,45 @@ def scan_stale_caches(now: Optional[datetime] = None,
     }
 
 
-def log_stale_summary() -> Dict[str, Any]:
-    """スケジューラから呼ぶ用: 結果をログに WARNING で出す。"""
-    result = scan_stale_caches()
+# ---- 別プロセス実行ラッパー（イベントループを塞がない）----
+# scan_stale_caches は 760+ キャッシュを走査する ~12秒の CPU/IO 処理。to_thread だと
+# json 解析等で GIL を握りメインのイベントループを飢えさせ、全API(ログイン含む)が遅延する
+# 事象があった(2026-06-14)。専用の子プロセス(spawn, 1ワーカー)で実行し、メインプロセスの
+# GIL/ループを一切塞がないようにする。子プロセスは再利用されるため _FILE_PARSE_CACHE も温まる。
+_scan_pool: Optional[ProcessPoolExecutor] = None
+
+
+def _get_scan_pool() -> ProcessPoolExecutor:
+    global _scan_pool
+    if _scan_pool is None:
+        # spawn: マルチスレッドな uvicorn ワーカーから fork する危険(ロック継承)を避ける
+        _scan_pool = ProcessPoolExecutor(
+            max_workers=1, mp_context=multiprocessing.get_context("spawn")
+        )
+    return _scan_pool
+
+
+async def scan_stale_caches_async(include_ok: bool = False) -> Dict[str, Any]:
+    """scan_stale_caches を別プロセスで実行する非同期版。
+
+    重い走査をメインのイベントループ(GIL)から切り離し、スキャン中もAPIが応答できるようにする。
+    子プロセスの起動/通信に失敗した場合はループを塞がないよう to_thread にフォールバックする。
+    """
+    loop = asyncio.get_event_loop()
+    try:
+        return await loop.run_in_executor(_get_scan_pool(), scan_stale_caches, None, include_ok)
+    except Exception as e:
+        logger.warning(f"[StalenessMonitor] process-pool scan failed ({e}); falling back to thread")
+        return await asyncio.to_thread(scan_stale_caches, None, include_ok)
+
+
+def log_stale_summary(result: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    """スケジューラから呼ぶ用: 結果をログに WARNING で出す。
+
+    result を渡すと再スキャンせずそれを使う（別プロセスで取得済みの結果をログ化する用途）。
+    """
+    if result is None:
+        result = scan_stale_caches()
     stuck = [r for r in result["items"] if r["category"] == "STUCK"]
     logger.warning(
         "[StalenessMonitor] flagged=%d %s (total=%d). "

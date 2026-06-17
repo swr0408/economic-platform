@@ -18,8 +18,10 @@ from pathlib import Path
 
 try:
     from backend.core.redis_client import redis_client
+    from backend.services.japan.estat_file_source import download_estat_excel
 except ImportError:
     from core.redis_client import redis_client
+    from services.japan.estat_file_source import download_estat_excel
 
 logger = logging.getLogger(__name__)
 
@@ -33,8 +35,12 @@ DATA_CACHE_FILE = CACHE_DIR / "japan_capacity_utilization_cache.json"
 class JapanCapacityUtilizationService:
     """Service for fetching Japan Capacity Utilization data from METI Excel files"""
 
-    # METI Excel File Download URL
-    METI_CAPACITY_URL = "https://www.meti.go.jp/statistics/tyo/iip/xls/b2020_ngsm1j.xlsx"
+    # 取得元: e-Stat の統計表ファイル(METI 製造工業生産能力・稼働率指数)。
+    # www.meti.go.jp は当サーバ IP をブロックして取得不能になったため e-Stat へ移行。
+    # 「業種別／月次／季節調整済指数（稼働率指数のみ）」の '稼働率Ｓ' シート(旧 METI と同構造)。
+    ESTAT_STATS_CODE = "00550320"
+    ESTAT_TABLE_FILTER = "月次／季節調整済指数（稼働率指数のみ）"
+    ESTAT_FALLBACK_IDS = ("000040067191",)
 
     DATA_CACHE_KEY = "japan:capacity_utilization:data"
 
@@ -42,65 +48,16 @@ class JapanCapacityUtilizationService:
         pass
 
     def _download_excel_file(self) -> Optional[bytes]:
+        """e-Stat から製造工業稼働率指数(季節調整済)の Excel を取得する。
+
+        statInfId はリリース毎にローテートするため Data Catalog API で動的解決する。
+        取得不能時は None(呼び出し側がキャッシュにフォールバック)。
         """
-        Download the Excel file from METI with retry logic.
-        Fast-fail: 1 attempt, 20s timeout — caller must handle failure with cache fallback.
-        """
-        max_retries = 1
-        timeout = 20
-
-        for attempt in range(max_retries):
-            try:
-                logger.info(f"Attempting to download Capacity Utilization Excel file from METI (attempt {attempt + 1}/{max_retries})")
-
-                session = requests.Session()
-                session.headers.update({
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-                    'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,*/*',
-                    'Accept-Language': 'ja,en-US;q=0.9,en;q=0.8',
-                    'Accept-Encoding': 'gzip, deflate, br',
-                    'Connection': 'keep-alive',
-                })
-
-                response = session.get(
-                    self.METI_CAPACITY_URL,
-                    timeout=timeout,
-                    stream=True,
-                    allow_redirects=True
-                )
-
-                if response.status_code == 200:
-                    content = b''
-                    for chunk in response.iter_content(chunk_size=8192):
-                        if chunk:
-                            content += chunk
-
-                    logger.info(f"Successfully downloaded Capacity Utilization Excel file ({len(content)} bytes)")
-                    return content
-                else:
-                    logger.warning(f"Download attempt {attempt + 1} failed: HTTP {response.status_code}")
-                    if attempt < max_retries - 1:
-                        import time
-                        time.sleep(5)
-                    continue
-
-            except requests.exceptions.Timeout as e:
-                logger.warning(f"Download attempt {attempt + 1} timed out: {e}")
-                if attempt < max_retries - 1:
-                    import time
-                    time.sleep(5)
-                continue
-
-            except Exception as e:
-                logger.error(f"Error downloading Capacity Utilization Excel file (attempt {attempt + 1}): {e}", exc_info=True)
-                if attempt < max_retries - 1:
-                    import time
-                    time.sleep(5)
-                    continue
-                return None
-
-        logger.error(f"Failed to download Capacity Utilization file after {max_retries} attempts")
-        return None
+        return download_estat_excel(
+            stats_code=self.ESTAT_STATS_CODE,
+            table_name_filter=self.ESTAT_TABLE_FILTER,
+            fallback_stat_inf_ids=self.ESTAT_FALLBACK_IDS,
+        )
 
     def _parse_excel_data(self, excel_content: bytes) -> Optional[List[Dict]]:
         """

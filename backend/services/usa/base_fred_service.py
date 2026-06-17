@@ -118,12 +118,32 @@ class BaseFREDService(ABC):
 
         if api_data:
             latest = api_data[-1] if api_data else None
+            now_str = datetime.now(JST).isoformat()
+
+            # FRED が更新遅延で古いデータを返した場合、last_updated を進めない。
+            # 発表当日にソース未反映のまま force_refresh されると、last_updated が
+            # 発表時刻より後になり staleness 判定が「更新済み」と誤認 → FRED が後から
+            # 反映しても再取得されず取りこぼす。データより新しくない取得では last_updated
+            # を維持し、反映まで再取得を続けさせる（fred_utils.FREDDataService と同方針）。
+            existing_cache = redis_client.get(self.DATA_CACHE_KEY)
+            existing_latest_date = None
+            if existing_cache and existing_cache.get("latest"):
+                existing_latest_date = existing_cache["latest"].get("date")
+            new_latest_date = latest.get("date") if latest else None
+
+            if existing_latest_date and new_latest_date and new_latest_date <= existing_latest_date:
+                # データ自体は更新（既存値の改定がありうる）が last_updated は維持
+                last_updated_val = existing_cache.get("last_updated", now_str)
+                print(f"  {self.__class__.__name__}: FRED data not newer "
+                      f"(latest={new_latest_date}), keeping last_updated={last_updated_val}")
+            else:
+                last_updated_val = now_str
 
             cache_payload = {
                 "data": api_data,
                 "latest": latest,
                 "latest_data_date": latest["date"] if latest else None,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated_val
             }
 
             # キャッシュに保存
@@ -136,7 +156,7 @@ class BaseFREDService(ABC):
                 latest=latest,
                 cached=False,
                 source="api",
-                last_updated=datetime.now(JST).isoformat()
+                last_updated=last_updated_val
             )
 
         # 取得失敗時はファイルキャッシュから返す

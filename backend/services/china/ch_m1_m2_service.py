@@ -739,7 +739,7 @@ class ChM1M2Service:
         if self._redis is None:
             try:
                 import redis
-                self._redis = redis.Redis(host="localhost", port=6379, db=0, socket_timeout=2)
+                self._redis = redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379/0"), socket_timeout=2, socket_connect_timeout=2)
                 self._redis.ping()
             except Exception:
                 self._redis = None

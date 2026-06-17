@@ -231,7 +231,7 @@ export default function CartsChart({ data }: CartsChartProps) {
               interval={AXIS_STYLE.interval}
             />
             <YAxis
-              tickFormatter={(v) => `$${v}B`}
+              tickFormatter={(v) => `$${Math.round(Number(v))}B`}
               tick={AXIS_STYLE.tick}
               domain={['dataMin - 10', 'dataMax + 10']}
             />

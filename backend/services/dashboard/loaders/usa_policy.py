@@ -14,6 +14,7 @@ from zoneinfo import ZoneInfo
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from services.dashboard.loaders.base import BaseDashboardLoader
+from core.redis_client import redis_client
 
 
 # タイムゾーン
@@ -268,21 +269,8 @@ class USAPolicyLoader(BaseDashboardLoader):
             CBO発表日時（JST）、取得できない場合はNone
         """
         try:
-            # CBOの次回発表予定日を設定
-            # 2026年は 2/11 に発表予定
             now = datetime.now(ET)
-            current_year = now.year
-
-            # 発表予定日（2月中旬、8月下旬が通常）
-            # 具体的な日付はCBOのPress Centerで確認
-            cbo_release_dates = [
-                # 2026年
-                datetime(2026, 2, 11, self.CBO_RELEASE_HOUR_ET, self.CBO_RELEASE_MINUTE_ET, tzinfo=ET),
-                # 2026年8月（予定、通常8月下旬）
-                datetime(2026, 8, 20, self.CBO_RELEASE_HOUR_ET, self.CBO_RELEASE_MINUTE_ET, tzinfo=ET),
-                # 2027年2月（予定）
-                datetime(2027, 2, 10, self.CBO_RELEASE_HOUR_ET, self.CBO_RELEASE_MINUTE_ET, tzinfo=ET),
-            ]
+            cbo_release_dates = self._cbo_release_dates_et()
 
             # 次回の発表日時を返す
             for release_date in cbo_release_dates:
@@ -383,6 +371,168 @@ class USAPolicyLoader(BaseDashboardLoader):
             print(f"Error getting SEP release datetime: {e}")
             return None
 
+    # =========================================================================
+    # 「直近に過ぎた発表日時」を返すヘルパー群
+    #   stale判定は「次回（未来）の発表日」ではなく「直近に過ぎた発表日」と
+    #   比較しなければ発火しない（旧実装は未来日と比較しており永久に不発だった）。
+    # =========================================================================
+
+    def _nth_weekday_of_month(self, year: int, month: int, n: int) -> datetime:
+        """その月のn番目の平日（営業日近似、米国の祝日は考慮しない）を返す"""
+        from calendar import monthrange
+        _, last_day = monthrange(year, month)
+        count = 0
+        for day in range(1, last_day + 1):
+            d = datetime(year, month, day)
+            if d.weekday() < 5:  # 平日
+                count += 1
+                if count == n:
+                    return d
+        return datetime(year, month, last_day)
+
+    def _expected_latest_budget_month(self, now_et: datetime) -> tuple:
+        """
+        現時点で公表済みであるべきMTSデータの対象月 (year, month) を返す。
+
+        MTSは「翌月の第8営業日 14:00 ET」に前月分を公表。
+        祝日で実際の発表が1日ほど後ろにずれ得るため、発表予定日に1日の猶予を加える。
+        """
+        eighth = self._nth_weekday_of_month(now_et.year, now_et.month, 8)
+        release_due = datetime(
+            eighth.year, eighth.month, eighth.day,
+            self.MTS_RELEASE_HOUR_ET, self.MTS_RELEASE_MINUTE_ET, tzinfo=ET
+        ) + timedelta(days=1)  # 祝日ズレ吸収
+
+        if now_et >= release_due:
+            # 当月分は公表済み → 前月が最新
+            y, m = now_et.year, now_et.month - 1
+        else:
+            # 当月分は未公表 → 前々月が最新
+            y, m = now_et.year, now_et.month - 2
+
+        while m <= 0:
+            m += 12
+            y -= 1
+        return (y, m)
+
+    def _federal_budget_is_behind(self) -> bool:
+        """
+        federal_budgetのキャッシュ最新月が、現時点で公表済みであるべき月に
+        追いついていなければTrue（祝日ズレに強く、データが進むまで再取得を促す）。
+        """
+        try:
+            from services.usa.federal_budget_service import federal_budget_service
+
+            cached = redis_client.get(federal_budget_service.CACHE_KEY)
+            if not cached:
+                # キャッシュ未生成は通常ロードに任せる（force不要）
+                return False
+            latest = cached.get("latest") or {}
+            date_str = latest.get("date")
+            if not date_str or len(date_str) < 7:
+                return False
+
+            cur = (int(date_str[:4]), int(date_str[5:7]))
+            exp = self._expected_latest_budget_month(datetime.now(ET))
+            return cur < exp
+        except Exception as e:
+            print(f"Error checking federal_budget freshness: {e}")
+            return False
+
+    def _get_last_fomc_release_datetime(self) -> Optional[datetime]:
+        """直近に過ぎたFOMC会合の発表日時（14:00 ET → JST）を返す"""
+        try:
+            from services.usa.fomc_schedule_service import fomc_schedule_service
+
+            schedule = fomc_schedule_service.get_schedule()
+            now = datetime.now(JST)
+            last_dt = None
+            for _year, meetings in schedule.items():
+                for meeting in meetings:
+                    date_str = meeting.get("date", "")
+                    if len(date_str) != 8:
+                        continue
+                    dt = datetime(
+                        int(date_str[:4]), int(date_str[4:6]), int(date_str[6:8]),
+                        self.FOMC_RELEASE_HOUR_ET, self.FOMC_RELEASE_MINUTE_ET, tzinfo=ET
+                    ).astimezone(JST)
+                    if dt <= now and (last_dt is None or dt > last_dt):
+                        last_dt = dt
+            return last_dt
+        except Exception as e:
+            print(f"Error getting last FOMC release datetime: {e}")
+            return None
+
+    def _get_last_sep_release_datetime(self) -> Optional[datetime]:
+        """直近に過ぎたSEP付きFOMC会合の発表日時（14:00 ET → JST）を返す"""
+        try:
+            from services.usa.fomc_schedule_service import fomc_schedule_service
+
+            schedule = fomc_schedule_service.get_schedule()
+            now = datetime.now(JST)
+            last_dt = None
+            for _year, meetings in schedule.items():
+                for meeting in meetings:
+                    if not meeting.get("has_sep", False):
+                        continue
+                    date_str = meeting.get("date", "")
+                    if len(date_str) != 8:
+                        continue
+                    dt = datetime(
+                        int(date_str[:4]), int(date_str[4:6]), int(date_str[6:8]),
+                        self.FOMC_RELEASE_HOUR_ET, self.FOMC_RELEASE_MINUTE_ET, tzinfo=ET
+                    ).astimezone(JST)
+                    if dt <= now and (last_dt is None or dt > last_dt):
+                        last_dt = dt
+            return last_dt
+        except Exception as e:
+            print(f"Error getting last SEP release datetime: {e}")
+            return None
+
+    def _cbo_release_dates_et(self) -> List[datetime]:
+        """CBO Budget and Economic Outlook の発表予定日（ET、昇順）"""
+        return [
+            # 2026年（年初見通し）
+            datetime(2026, 2, 11, self.CBO_RELEASE_HOUR_ET, self.CBO_RELEASE_MINUTE_ET, tzinfo=ET),
+            # 2026年8月（中間更新、通常8月下旬）
+            datetime(2026, 8, 20, self.CBO_RELEASE_HOUR_ET, self.CBO_RELEASE_MINUTE_ET, tzinfo=ET),
+            # 2027年2月（予定）
+            datetime(2027, 2, 10, self.CBO_RELEASE_HOUR_ET, self.CBO_RELEASE_MINUTE_ET, tzinfo=ET),
+        ]
+
+    def _get_last_cbo_release_datetime(self) -> Optional[datetime]:
+        """直近に過ぎたCBO発表日時（JST）を返す"""
+        try:
+            now = datetime.now(ET)
+            past = [d for d in self._cbo_release_dates_et() if d <= now]
+            if not past:
+                return None
+            return max(past).astimezone(JST)
+        except Exception as e:
+            print(f"Error getting last CBO release datetime: {e}")
+            return None
+
+    def _get_last_cre_loan_delinquency_release_datetime(self) -> Optional[datetime]:
+        """直近に過ぎたCREローン延滞率発表日時（四半期・21日頃 10:00 ET → JST）を返す"""
+        try:
+            now = datetime.now(ET)
+            release_months = [2, 5, 8, 11]
+            release_day_approx = 21
+            release_hour_et = 10
+
+            candidates = []
+            for year in (now.year - 1, now.year):
+                for month in release_months:
+                    d = datetime(year, month, release_day_approx, release_hour_et, 0, tzinfo=ET)
+                    if d <= now:
+                        candidates.append(d)
+            if not candidates:
+                return None
+            return max(candidates).astimezone(JST)
+        except Exception as e:
+            print(f"Error getting last CRE Loan Delinquency release datetime: {e}")
+            return None
+
     def _detect_stale_indicators(self, last_updated: Optional[str]) -> set:
         """
         発表日時を過ぎた指標を検出
@@ -405,12 +555,17 @@ class USAPolicyLoader(BaseDashboardLoader):
 
             now = datetime.now(JST)
 
-            # FOMC発表（政策金利）
-            fomc_release = self._get_fomc_release_datetime()
-            if fomc_release and last_updated_dt < fomc_release <= now:
+            # FOMC発表（政策金利）- 直近に過ぎた会合と比較
+            last_fomc = self._get_last_fomc_release_datetime()
+            if last_fomc and last_updated_dt < last_fomc <= now:
                 stale.add("policy_rate")
+                print(f"[stale] FOMC release detected: {last_fomc.isoformat()}")
+
+            # SEP発表 - 直近に過ぎたSEP付き会合と比較
+            last_sep = self._get_last_sep_release_datetime()
+            if last_sep and last_updated_dt < last_sep <= now:
                 stale.add("sep")
-                print(f"[stale] FOMC release detected: {fomc_release.isoformat()}")
+                print(f"[stale] SEP release detected: {last_sep.isoformat()}")
 
             # 日次更新（タームプレミアム、FedWatch）- 6:00 JST
             daily_release = self._get_daily_release_datetime()
@@ -426,27 +581,31 @@ class USAPolicyLoader(BaseDashboardLoader):
                 stale.add("sofr_volatility")
                 print(f"[stale] ON RRP/SOFR update detected: {on_rrp_release.isoformat()}")
 
-            # MTS発表（連邦財政収支）- 翌月第8営業日 2:00pm ET
-            mts_release = self._get_mts_release_datetime()
-            if mts_release and last_updated_dt < mts_release <= now:
+            # MTS発表（連邦財政収支）- 公表済みであるべき月にキャッシュが追いついて
+            # いなければstale。旧実装は next_release（未来の発表日）と比較しており
+            # 条件が永久に不成立で発火しなかった（祝日ズレにも強いデータ基準に変更）。
+            if self._federal_budget_is_behind():
                 stale.add("federal_budget")
-                print(f"[stale] MTS release detected: {mts_release.isoformat()}")
+                print("[stale] Federal budget cache behind latest expected month")
 
-            # CBO Outlook発表 - 年2回（2月・8月）10:00am ET
-            cbo_release = self._get_cbo_release_datetime()
-            if cbo_release and last_updated_dt < cbo_release <= now:
+            # CBO Outlook発表 - 直近に過ぎた発表日と比較
+            last_cbo = self._get_last_cbo_release_datetime()
+            if last_cbo and last_updated_dt < last_cbo <= now:
                 stale.add("cbo_projections")
-                print(f"[stale] CBO Outlook release detected: {cbo_release.isoformat()}")
+                print(f"[stale] CBO Outlook release detected: {last_cbo.isoformat()}")
 
-            # CREローン延滞率発表 - 四半期（2月・5月・8月・11月）
-            cre_release = self._get_cre_loan_delinquency_release_datetime()
-            if cre_release and last_updated_dt < cre_release <= now:
+            # CREローン延滞率発表 - 直近に過ぎた発表日と比較
+            last_cre = self._get_last_cre_loan_delinquency_release_datetime()
+            if last_cre and last_updated_dt < last_cre <= now:
                 stale.add("cre_loan_delinquency")
-                print(f"[stale] CRE Loan Delinquency release detected: {cre_release.isoformat()}")
+                print(f"[stale] CRE Loan Delinquency release detected: {last_cre.isoformat()}")
 
         except Exception as e:
             print(f"Error detecting stale indicators: {e}")
-            return {"all"}
+            # エラー時に {"all"} を返すと、エラーが続く限り毎リクエストで全指標の
+            # 外部API一斉取得が走りイベントループ/executorを圧迫する (2026-06-13 障害)。
+            # 判定不能時はキャッシュ継続に倒す (各サービスのスケジューラが個別に更新する)。
+            return set()
 
         return stale
 
@@ -543,14 +702,42 @@ class USAPolicyLoader(BaseDashboardLoader):
         return result
 
     def _get_policy_rate(self, service) -> list:
-        """政策金利データを取得"""
+        """政策金利データを取得。
+
+        政策金利は次の FOMC 変更まで据え置き(階段状)。最終データ点が過去の変更日のままだと
+        「いつ時点の現行金利か」が分かりにくいため、最終点を最新営業日まで**値据え置きで延長**する。
+        FOMC での変更は従来どおり stale 検知 → force_refresh で反映されるため、
+        変更を取りこぼして古い値を延長することはない。
+        """
         try:
             force_refresh = self._should_force_refresh("policy_rate")
             response = service.get_policy_rate(force_refresh=force_refresh)
-            return response.get("data", [])
+            return self._extend_to_latest_business_day(response.get("data", []), value_key="rate")
         except Exception as e:
             print(f"Error getting policy rate: {e}")
             return []
+
+    def _extend_to_latest_business_day(self, data: list, value_key: str = "rate") -> list:
+        """据え置き系列(政策金利等)の最終点を最新営業日まで値据え置きで延長する。
+
+        - 既に最新営業日まで点がある場合は何もしない(冪等)。
+        - 米国金利のため ET 基準の最新営業日(土日はスキップ)を採用。
+        - 元データは破壊せず新リストを返す。値は最後の点の値をそのまま複製(延長)。
+        """
+        if not data:
+            return data
+        try:
+            last = data[-1]
+            last_date = datetime.strptime(last["date"], "%Y-%m-%d").date()
+        except (KeyError, ValueError, TypeError):
+            return data
+        et_today = datetime.now(ZoneInfo("America/New_York")).date()
+        latest_bday = et_today
+        while latest_bday.weekday() >= 5:  # 5=土, 6=日
+            latest_bday -= timedelta(days=1)
+        if latest_bday <= last_date:
+            return data
+        return list(data) + [{"date": latest_bday.isoformat(), value_key: last.get(value_key)}]
 
     def _get_term_premium(self, service) -> list:
         """タームプレミアムデータを取得"""

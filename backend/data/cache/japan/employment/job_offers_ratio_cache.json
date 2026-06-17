@@ -65,13 +65,19 @@
       "value": 1.18,
       "forecast": 1.18,
       "previous": 1.19
+    },
+    {
+      "date": "2026-05-01",
+      "value": 1.18,
+      "forecast": 1.18,
+      "previous": 1.18
     }
   ],
   "latest": {
-    "date": "2026-04-01",
+    "date": "2026-05-01",
     "value": 1.18,
     "forecast": 1.18,
-    "previous": 1.19
+    "previous": 1.18
   },
   "next_release": {
     "date": "2026-06-29",
@@ -81,5 +87,5 @@
     "label": "Jobs/applications ratio (May)",
     "estimate": null
   },
-  "last_updated": "2026-05-30T17:30:12.541961+09:00"
+  "last_updated": "2026-06-15T20:02:09.534607+09:00"
 }

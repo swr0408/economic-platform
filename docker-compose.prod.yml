@@ -27,7 +27,10 @@ services:
     environment:
       POSTGRES_DB: economic_platform
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      # :? = 未設定なら起動失敗 (デフォルト 'postgres' での誤起動を防ぐ)
+      # ※ 既存ボリュームを初期化済みの場合、変更後は手動で
+      #   ALTER USER postgres WITH PASSWORD '<新パスワード>'; が必要
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set in .env}
       PGDATA: /var/lib/postgresql/data/pgdata
     expose:
       - "5432"
@@ -41,11 +44,19 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    mem_limit: 768m
+    # 現テーブル規模 (最大 economic_calendar_events ~3.2万行) には 512m で十分。
+    # 浮いた分を backend (Playwright/Chromium 起動でメモリを食う) へ回す
+    mem_limit: 512m
     cpus: 0.5
     restart: unless-stopped
 
   # ---------- Redis ----------
+  # 設計メモ (2026-06-12 監査 M-6):
+  #   本アプリは expire=0 (TTLなし) の「永続」キャッシュキーを多用するが、
+  #   全キーにファイルキャッシュのフォールバックがあるため、メモリ逼迫時に
+  #   allkeys-lru で追い出されても自己回復する (再構築コストのみ発生)。
+  #   現在の実使用 ~70MB / 770キーに対し maxmemory 192mb で十分な余裕。
+  #   used_memory が 150MB を超えたら maxmemory/mem_limit の引き上げを検討。
   redis:
     image: redis:7-alpine
     container_name: econalpha-prod-redis
@@ -76,17 +87,32 @@ services:
       context: .
       dockerfile: backend/Dockerfile.browser-worker
     container_name: econalpha-prod-backend
-    command: uvicorn main:app --host 0.0.0.0 --port 8000 --workers 1
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --workers 1 --timeout-graceful-shutdown 30
     working_dir: /app/backend
     environment:
-      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD:-postgres}@postgres:5432/economic_platform
+      # :? = 未設定なら起動失敗 (弱いデフォルトでの誤起動を防ぐフェイルセーフ)
+      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set in .env}@postgres:5432/economic_platform
       REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      # JWT署名鍵 (未設定だとコード内のデフォルト鍵 = トークン偽造可能になるため必須)
+      AUTH_JWT_SECRET: ${AUTH_JWT_SECRET:?AUTH_JWT_SECRET must be set in .env}
       SEASONALITY_DIR: /app/data/seasonality
       SCREENSHOT_DIR: /app/screenshots
       BROWSER_RUNNER_CONCURRENCY: ${BROWSER_RUNNER_CONCURRENCY:-1}
       PLAYWRIGHT_NO_SANDBOX: "1"
       ALLOWED_ORIGINS_EXTRA: ${ALLOWED_ORIGINS_EXTRA:-}
-      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      # 本番はHTTPS前提のため Secure Cookie をデフォルト有効化
+      COOKIE_SECURE: ${COOKIE_SECURE:-true}
+      # 本番ではAPIドキュメント(/docs, /openapi.json)を無効化
+      API_DOCS_ENABLED: ${API_DOCS_ENABLED:-false}
+      # 本番では5xxエラー詳細をマスクしログのみに出す
+      MASK_ERROR_DETAILS: ${MASK_ERROR_DETAILS:-true}
+      # 登録モード: open(誰でも) / invite(招待コード必須=クローズドβ) / closed(停止)
+      REGISTRATION_MODE: ${REGISTRATION_MODE:-invite}
+      # Pro PDFアーカイブ用 Object Storage (未設定の間はURL発行APIが503を返す)
+      LIGHTSAIL_BUCKET_NAME: ${LIGHTSAIL_BUCKET_NAME:-}
+      LIGHTSAIL_BUCKET_REGION: ${LIGHTSAIL_BUCKET_REGION:-}
+      LIGHTSAIL_ACCESS_KEY_ID: ${LIGHTSAIL_ACCESS_KEY_ID:-}
+      LIGHTSAIL_SECRET_ACCESS_KEY: ${LIGHTSAIL_SECRET_ACCESS_KEY:-}
       # API Keys
       FRED_API_KEY: ${FRED_API_KEY:-}
       FMP_API_KEY: ${FMP_API_KEY:-}
@@ -121,7 +147,11 @@ services:
     networks:
       - econalpha-network
     restart: unless-stopped
-    mem_limit: 768m
+    # Playwright (Chromium) 起動 + pandas + スレッドプールに 768m は OOM リスク
+    # (スクショ取得が OOM kill されると無音失敗 = 取りこぼしの温床)。
+    # postgres を 768m→512m に下げた分をこちらへ (2GB ホスト合計 ~1.95GB)。
+    # 4GB プランなら 1536m 推奨。
+    mem_limit: 1024m
     cpus: 1.0
     shm_size: 256m
 
@@ -132,8 +162,10 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: econalpha-prod-frontend
-    ports:
-      - "80:80"
+    # 公開ポートは Caddy のみ。frontend は内部ネットワーク経由で配信する
+    # (直接 :80 公開すると認証Cookieが平文HTTPで流れるため廃止 — 監査 H-3)
+    expose:
+      - "80"
     depends_on:
       - backend
     networks:
@@ -143,10 +175,13 @@ services:
     cpus: 0.25
 
   # ---------- Caddy (HTTPS リバースプロキシ) ----------
-  # API を HTTPS で公開する場合に使う。frontend-prod と port 80 が競合するため同時不可。
+  # 唯一の公開エントリポイント。同一オリジンで SPA(/) と API(/api) を配信し、
+  # 自動HTTPS + HSTS を付与する (Caddyfile 参照)。
   caddy:
     image: caddy:2-alpine
     container_name: econalpha-prod-caddy
+    environment:
+      APP_DOMAIN: ${APP_DOMAIN:-localhost}
     ports:
       - "80:80"
       - "443:443"
@@ -156,6 +191,7 @@ services:
       - caddy_config:/config
     depends_on:
       - backend
+      - frontend
     networks:
       - econalpha-network
     restart: unless-stopped

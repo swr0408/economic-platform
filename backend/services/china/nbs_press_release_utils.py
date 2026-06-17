@@ -67,6 +67,10 @@ QUARTER_END_MONTH = {1: 3, 2: 6, 3: 9, 4: 12}
 
 
 RE_QUARTER_NOYEAR = re.compile(r"(一|二|三|四)季度")
+# 年なし月次タイトル（「国民经济」総合レポート等）。
+# "5月份国民经济..." → 5 / "1—4月份国民经济..." → 末尾の "4月份" にマッチ=4。
+# 年付きパターンが全滅した場合のみ使う（年は発表日基準で推定）。
+RE_MONTH_NOYEAR = re.compile(r"(\d{1,2})月份")
 
 
 def _parse_release_period(title: str) -> Optional[Tuple[int, int]]:
@@ -86,12 +90,24 @@ def _parse_release_period(title: str) -> Optional[Tuple[int, int]]:
     m = RE_MONTH.search(title)
     if m:
         return (int(m.group(1)), int(m.group(2)))
-    # "一季度国民经济..." → (current_year, 3) - 年なしタイトル
+    # "一季度国民经济..." → (current_year, 3) - 年なし四半期タイトル
     m = RE_QUARTER_NOYEAR.search(title)
     if m:
         q = QUARTER_MAP.get(m.group(1))
         if q:
             return (datetime.now(JST).year, QUARTER_END_MONTH[q])
+    # "5月份国民经济..." / "1—4月份国民经济..." - 年なし月次タイトル
+    # 累計("1—4月份")は末月をデータ月とする。年は発表月基準で推定
+    # （対象月>発表月なら前年データ＝12月分が翌年1月発表など）。
+    m = RE_MONTH_NOYEAR.search(title)
+    if m:
+        month = int(m.group(1))
+        if 1 <= month <= 12:
+            now = datetime.now(JST)
+            year = now.year
+            if month > now.month:
+                year -= 1
+            return (year, month)
     return None
 
 

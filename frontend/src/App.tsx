@@ -26,9 +26,11 @@ import AdminVisibilityPage from './pages/AdminVisibilityPage'
 import ProtectedRoute from './components/auth/ProtectedRoute'
 import { HandbookProvider } from './contexts/HandbookContext'
 import { AuthProvider } from './contexts/AuthContext'
+import AppErrorBoundary from './components/common/AppErrorBoundary'
 
 function App() {
   return (
+    <AppErrorBoundary>
     <AuthProvider>
       <HandbookProvider>
         <BrowserRouter>
@@ -139,6 +141,7 @@ function App() {
         </BrowserRouter>
       </HandbookProvider>
     </AuthProvider>
+    </AppErrorBoundary>
   )
 }
 

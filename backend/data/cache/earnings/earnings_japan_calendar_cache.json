@@ -15,9 +15,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.2376,
       "eps_actual": null,
-      "revenue_estimate": 5953751000.0,
+      "revenue_estimate": 5959503000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "4063.T",
@@ -31,7 +31,7 @@
       "eps_actual": null,
       "revenue_estimate": 4369765000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "4519.T",
@@ -43,9 +43,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": null,
       "eps_actual": null,
-      "revenue_estimate": 2157458000.0,
+      "revenue_estimate": 2155682000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "6954.T",
@@ -57,9 +57,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.17,
       "eps_actual": null,
-      "revenue_estimate": 1471506000.0,
+      "revenue_estimate": 1472896000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "5803.T",
@@ -71,9 +71,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.103,
       "eps_actual": null,
-      "revenue_estimate": 4710895000.0,
+      "revenue_estimate": 4696920000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "8035.T",
@@ -87,7 +87,7 @@
       "eps_actual": null,
       "revenue_estimate": 4801425000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "6501.T",
@@ -101,7 +101,7 @@
       "eps_actual": null,
       "revenue_estimate": 15624260000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "8316.T",
@@ -115,7 +115,7 @@
       "eps_actual": null,
       "revenue_estimate": 8032685000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "8411.T",
@@ -129,7 +129,7 @@
       "eps_actual": null,
       "revenue_estimate": 5425295000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "7011.T",
@@ -141,9 +141,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.1559,
       "eps_actual": null,
-      "revenue_estimate": 7178120000.0,
+      "revenue_estimate": 7179271000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "9433.T",
@@ -157,7 +157,7 @@
       "eps_actual": null,
       "revenue_estimate": 9398888000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "8058.T",
@@ -167,11 +167,11 @@
       "date": "2026-08-03",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.3683,
+      "eps_estimate": 0.3688,
       "eps_actual": null,
-      "revenue_estimate": 26799580000.0,
+      "revenue_estimate": 26829700000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "6857.T",
@@ -183,9 +183,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.97,
       "eps_actual": null,
-      "revenue_estimate": 2080823000.0,
+      "revenue_estimate": 2095095000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "8306.T",
@@ -199,7 +199,7 @@
       "eps_actual": null,
       "revenue_estimate": 10067300000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "9984.T",
@@ -211,9 +211,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.06937,
       "eps_actual": null,
-      "revenue_estimate": 12226250000.0,
+      "revenue_estimate": 12307090000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "7203.T",
@@ -225,9 +225,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 4.46,
       "eps_actual": null,
-      "revenue_estimate": 81892300000.0,
+      "revenue_estimate": 80806000000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "6758.T",
@@ -239,9 +239,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.2849,
       "eps_actual": null,
-      "revenue_estimate": 17291960000.0,
+      "revenue_estimate": 17218460000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "6762.T",
@@ -253,14 +253,14 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.16,
       "eps_actual": null,
-      "revenue_estimate": 3978748000.0,
+      "revenue_estimate": 4024344000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     }
   ],
   "next_7d_count": 0,
   "next_30d_count": 1,
-  "last_updated": "2026-06-12T01:35:37.012228+00:00",
+  "last_updated": "2026-06-17T12:37:42.762523+00:00",
   "cached": false,
   "status": "ok"
 }

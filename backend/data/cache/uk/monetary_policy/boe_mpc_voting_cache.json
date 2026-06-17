@@ -1950,6 +1950,15 @@
     "date": "2026-04-30",
     "bank_rate": 0.0375
   },
-  "next_release": null,
-  "last_updated": "2026-06-11T11:30:04.434551+09:00"
+  "next_release": {
+    "date": "2026-06-18",
+    "datetime_utc": "2026-06-18T11:00:00+00:00",
+    "datetime_jst": "2026-06-18T20:00:00+09:00",
+    "time_jst": "20:00",
+    "datetime_london": "2026-06-18T12:00:00+01:00",
+    "time_london": "12:00",
+    "label": "BoE Interest Rate Decision",
+    "estimate": 3.75
+  },
+  "last_updated": "2026-06-17T17:31:26.108271+09:00"
 }

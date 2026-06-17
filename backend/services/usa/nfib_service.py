@@ -200,7 +200,8 @@ class NFIBService:
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
-        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
+        # 源泉(NFIB PDF)が発表時刻より遅れて掲載されるケースの凍結を防ぐ24hフォールバック。
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str, max_age_hours=24)
 
 
     def _fetch_from_pdf(self) -> Optional[Dict[str, Any]]:

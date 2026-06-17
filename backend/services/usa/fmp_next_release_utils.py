@@ -403,6 +403,7 @@ def should_refresh_by_fmp(
 def should_refresh_by_fmp_schedule(
     econalpha_id: str,
     last_updated_str: str,
+    max_age_hours: float = 7 * 24,
 ) -> bool:
     """
     FMPスケジュールに基づく3分方式の更新判定（DBキャッシュ利用版）
@@ -413,6 +414,10 @@ def should_refresh_by_fmp_schedule(
     Args:
         econalpha_id: EconAlpha指標ID
         last_updated_str: 最終更新日時のISO文字列
+        max_age_hours: max-ageフォールバックの上限（時間）。これを超えて未更新なら
+            発表日判定に関係なく強制リフレッシュ。デフォルト168h(7日)。
+            一次ソースが発表当日〜翌日に反映される指標（Cleveland Fed の Median CPI /
+            Dallas Fed の Trimmed Mean PCE 等）は24を指定して回復を早める。
 
     Returns:
         True: 更新が必要
@@ -428,13 +433,15 @@ def should_refresh_by_fmp_schedule(
 
         now = datetime.now(JST)
 
-        # 7日 max-age フォールバック:
+        # max-age フォールバック（デフォルト7日）:
         # FMP側のイベント欠落・bulk populate の国コード漏れ等で
         # economic_calendar_events に新イベントが入らなくなると、
-        # 以下のスケジュール判定は永久に False を返し続け、
-        # キャッシュが無期限凍結する（2026-06 KR/TW 凍結の長期化要因）。
-        # 週1回は必ずリフレッシュさせて自己回復可能にする。
-        if (now - last_updated).total_seconds() > 7 * 24 * 60 * 60:
+        # 以下のスケジュール判定は永久に False を返し続け、キャッシュが無期限凍結する
+        # （2026-06 KR/TW 凍結の長期化要因）。一定時間で必ずリフレッシュさせ自己回復可能にする。
+        # 発表直後はソース(Cleveland/Dallas Fed等)が未反映で、発表日判定が「更新済み」と
+        # 誤認して凍結するケース（median_cpi 2026-06）には、呼び出し側で短い max_age_hours
+        # （24h等）を指定して当日〜翌日に回復させる。
+        if (now - last_updated).total_seconds() > max_age_hours * 60 * 60:
             return True
 
         # マッピングからパターンと国コードを取得
@@ -449,7 +456,11 @@ def should_refresh_by_fmp_schedule(
         country = get_fmp_event_country(econalpha_id)
 
         with SessionLocal() as session:
-            pattern_conditions = " OR ".join([f"event ILIKE '%{p}%'" for p in patterns])
+            # SQLインジェクション対策: 値は直埋めせずバインドパラメータで渡す
+            pattern_conditions = " OR ".join(
+                [f"event ILIKE :pat{i}" for i in range(len(patterns))]
+            )
+            pattern_params = {f"pat{i}": f"%{p}%" for i, p in enumerate(patterns)}
 
             # 1. actual IS NOT NULLの直近イベント（従来の判定）
             query = text(f"""
@@ -462,7 +473,7 @@ def should_refresh_by_fmp_schedule(
                 ORDER BY datetime_utc DESC
                 LIMIT 1
             """)
-            row = session.execute(query, {"country": country}).fetchone()
+            row = session.execute(query, {"country": country, **pattern_params}).fetchone()
 
             if row:
                 dt_utc = row[0]
@@ -490,7 +501,7 @@ def should_refresh_by_fmp_schedule(
                 ORDER BY datetime_utc DESC
                 LIMIT 1
             """)
-            row_pending = session.execute(query_pending, {"country": country}).fetchone()
+            row_pending = session.execute(query_pending, {"country": country, **pattern_params}).fetchone()
 
             if row_pending:
                 dt_utc_pending = row_pending[0]

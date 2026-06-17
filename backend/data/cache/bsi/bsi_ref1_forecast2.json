@@ -869,13 +869,34 @@
       "large_non_manufacturing": 1.7,
       "medium_all_industries": 3.7,
       "small_all_industries": -3.4
+    },
+    {
+      "date": "2026-03-01",
+      "year": 2026,
+      "quarter": "Q1",
+      "large_all_industries": 5.6,
+      "large_manufacturing": 6.3,
+      "large_non_manufacturing": 5.3,
+      "medium_all_industries": 6.8,
+      "small_all_industries": -1.6
+    },
+    {
+      "date": "2026-06-01",
+      "year": 2026,
+      "quarter": "Q2",
+      "large_all_industries": 4.5,
+      "large_manufacturing": 5.8,
+      "large_non_manufacturing": 4.0,
+      "medium_all_industries": 6.4,
+      "small_all_industries": -3.4
     }
   ],
   "sheet_name": "ref1",
-  "sheet_title": "貴社の景況（現状判断）",
+  "sheet_title": "貴社の景況",
   "sheet_description": "Business Conditions Index",
   "period_type": "forecast2",
-  "last_updated": "2026-01-12T08:14:45.063360",
+  "last_updated": "2026-06-16T00:31:37.609831",
   "cached": false,
-  "source": "e-stat"
+  "source": "e-stat",
+  "next_release": null
 }

@@ -363,7 +363,7 @@ class EUInternationalTradeService:
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定（FMP発表日時ベース）"""
-        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str, max_age_hours=72)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込む"""

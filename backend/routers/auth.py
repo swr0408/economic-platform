@@ -16,10 +16,11 @@
 """
 from __future__ import annotations
 
+import os
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Response, status
+from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
 from sqlalchemy.orm import Session
 
 try:
@@ -33,6 +34,12 @@ try:
         require_role,
     )
     from backend.core.auth.models import ROLE_GENERAL, ROLE_MASTER, User
+    from backend.core.auth.rate_limit import (
+        enforce_login_rate_limit,
+        enforce_register_rate_limit,
+        record_login_failure,
+        record_login_success,
+    )
     from backend.core.auth.revocation import revoke_all_for_user, revoke_jti
     from backend.core.auth.schemas import (
         ChangePasswordRequest,
@@ -49,6 +56,11 @@ try:
         hash_password,
         verify_password,
     )
+    from backend.core.billing.entitlement_service import grant_entitlement
+    from backend.core.billing.invite_service import (
+        consume_invite_code,
+        validate_invite_code,
+    )
     from backend.core.database import get_db
 except ImportError:
     from core.auth.cookies import (
@@ -61,6 +73,12 @@ except ImportError:
         require_role,
     )
     from core.auth.models import ROLE_GENERAL, ROLE_MASTER, User
+    from core.auth.rate_limit import (
+        enforce_login_rate_limit,
+        enforce_register_rate_limit,
+        record_login_failure,
+        record_login_success,
+    )
     from core.auth.revocation import revoke_all_for_user, revoke_jti
     from core.auth.schemas import (
         ChangePasswordRequest,
@@ -76,6 +94,11 @@ except ImportError:
         get_token_expire_seconds,
         hash_password,
         verify_password,
+    )
+    from core.billing.entitlement_service import grant_entitlement
+    from core.billing.invite_service import (
+        consume_invite_code,
+        validate_invite_code,
     )
     from core.database import get_db
 
@@ -112,10 +135,41 @@ def _issue_token(user: User, response: Optional[Response] = None) -> TokenRespon
 )
 def register(
     payload: RegisterRequest,
+    request: Request,
     response: Response,
     db: Session = Depends(get_db),
 ):
-    """新規登録。常に role='general' で作成する。"""
+    """新規登録。
+
+    REGISTRATION_MODE 環境変数で挙動を切り替える (収益化計画 Phase 2 対応):
+      - open   (デフォルト): 従来通り誰でも登録可。invite_code があれば消費して権限付与
+      - invite : 有効な招待コードがないと登録不可 (クローズドβ)
+      - closed : 新規登録を完全停止
+    """
+    # ブルートフォース/大量登録対策 (IP単位)
+    enforce_register_rate_limit(request)
+
+    mode = os.getenv("REGISTRATION_MODE", "open").lower()
+    if mode == "closed":
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Registration is currently closed",
+        )
+
+    invite_info = None
+    if mode == "invite":
+        if not payload.invite_code:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="An invite code is required to register",
+            )
+        # 事前バリデーション (ユーザー作成前に無効コードを弾く。消費はまだしない)
+        if not validate_invite_code(payload.invite_code):
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Invalid or expired invite code",
+            )
+
     if db.query(User).filter(User.username == payload.username).first():
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
@@ -132,12 +186,40 @@ def register(
         username=payload.username,
         email=payload.email,
         password_hash=hash_password(payload.password),
-        role=ROLE_GENERAL,  # 自己申告による昇格を防ぐ
+        role=ROLE_GENERAL,  # 自己申告による昇格を防ぐ (昇格は招待コード/管理API経由)
         is_active=True,
     )
     db.add(user)
     db.commit()
     db.refresh(user)
+
+    # 招待コードの消費 + entitlement 付与 (open モードでもコード付きなら適用)
+    if payload.invite_code:
+        invite_info = consume_invite_code(payload.invite_code, user.id)
+        if invite_info is None and mode == "invite":
+            # 事前チェック後に上限へ達した稀な競合: 作成済みユーザーを無効化して拒否
+            user.is_active = False
+            db.commit()
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Invalid or expired invite code",
+            )
+        if invite_info is not None:
+            try:
+                grant_entitlement(
+                    user_id=user.id,
+                    plan_code=invite_info["plan_code"],
+                    entitlement_source=invite_info["entitlement_source"],
+                    valid_days=invite_info["valid_days"],
+                    memo="invite registration",
+                )
+                db.refresh(user)  # grant が role を更新した場合に反映
+            except Exception as e:
+                # entitlement 付与失敗は登録自体は成立させ、ログで追跡
+                import logging
+                logging.getLogger(__name__).error(
+                    f"[auth] entitlement grant failed for new user {user.id}: {e}"
+                )
 
     return _issue_token(user, response)
 
@@ -145,15 +227,20 @@ def register(
 @router.post("/login", response_model=TokenResponse)
 def login(
     payload: LoginRequest,
+    request: Request,
     response: Response,
     db: Session = Depends(get_db),
 ):
     """ログイン。ユーザー名+パスワードで JWT を発行する。"""
+    # ブルートフォース対策: IPレート制限 + 連続失敗ロックアウト
+    enforce_login_rate_limit(request, payload.username)
+
     user = db.query(User).filter(User.username == payload.username).first()
 
     # ユーザー不在とパスワード不一致はどちらも同じメッセージにする
     # (ユーザー存在の有無を漏らさない)
     if user is None or not verify_password(payload.password, user.password_hash):
+        record_login_failure(payload.username)
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid username or password",
@@ -164,6 +251,7 @@ def login(
             detail="User is inactive",
         )
 
+    record_login_success(payload.username)
     user.last_login_at = datetime.now(tz=timezone.utc)
     db.commit()
     db.refresh(user)

@@ -4,10 +4,10 @@
   "unit": "USD billion",
   "source": "MOTIE ICT 수출입 동향",
   "backfill_at": "2026-03-17T12:12:46.467972",
-  "total_months": 30,
+  "total_months": 31,
   "date_range": {
     "start": "2023-11",
-    "end": "2026-04"
+    "end": "2026-05"
   },
   "data": [
     {
@@ -279,7 +279,16 @@
       "published_at": "2026-05-14",
       "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/171830/view",
       "raw_text": "(반도체 : 319.1억 달러, 173.3%↑)"
+    },
+    {
+      "ref_month": "2026-05",
+      "value_usd_billion": 37.16,
+      "yoy_pct": 169.2,
+      "source_report": "ICT",
+      "published_at": "2026-06-15",
+      "source_url": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/171923/view",
+      "raw_text": "(반도체 : 371.6억 달러, 169.2%↑)"
     }
   ],
-  "last_auto_update_at": "2026-06-12T02:19:50.473206+09:00"
+  "last_auto_update_at": "2026-06-15T13:45:40.164807+09:00"
 }

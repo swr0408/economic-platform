@@ -23,9 +23,11 @@ from pathlib import Path
 try:
     from backend.core.redis_client import redis_client
     from backend.services.japan.fmp_next_release_utils import get_next_release_from_fmp
+    from backend.services.japan.estat_file_source import download_estat_excel
 except ImportError:
     from core.redis_client import redis_client
     from services.japan.fmp_next_release_utils import get_next_release_from_fmp
+    from services.japan.estat_file_source import download_estat_excel
 
 logger = logging.getLogger(__name__)
 
@@ -39,8 +41,13 @@ DATA_CACHE_FILE = CACHE_DIR / "japan_iip_cache.json"
 class JapanIIPService:
     """Service for fetching Japan Industrial Production Index data from METI Excel files"""
 
-    # METI Excel File Download URL (季節調整済み指数)
-    METI_IIP_URL = "https://www.meti.go.jp/statistics/tyo/iip/xls/b2020_gsm1j.xlsx"
+    # 取得元: e-Stat の統計表ファイル(METI 鉱工業生産・出荷・在庫指数)。
+    # www.meti.go.jp は当サーバ IP をブロックして取得不能になったため e-Stat へ移行。
+    # 「品目別／月次／季節調整済指数」の '生産' シート(= 旧 METI b2020_gsm1j.xlsx と同構造)。
+    ESTAT_STATS_CODE = "00550300"
+    ESTAT_TABLE_FILTER = "品目別／月次／季節調整済指数"
+    # 動的解決失敗時のフォールバック(安定した長期時系列テーブルの statInfId)
+    ESTAT_FALLBACK_IDS = ("000040172367",)
 
     DATA_CACHE_KEY = "japan:iip:data"
 
@@ -59,65 +66,16 @@ class JapanIIPService:
             return None
 
     def _download_excel_file(self) -> Optional[bytes]:
+        """e-Stat から IIP(季節調整済み生産指数)の Excel を取得する。
+
+        statInfId はリリース毎にローテートするため Data Catalog API で動的解決する。
+        取得不能時は None(呼び出し側がキャッシュにフォールバック)。
         """
-        Download the Excel file from METI with retry logic.
-        Fast-fail: 1 attempt, 20s timeout — caller must handle failure with cache fallback.
-        """
-        max_retries = 1
-        timeout = 20
-
-        for attempt in range(max_retries):
-            try:
-                logger.info(f"Attempting to download IIP Excel file from METI (attempt {attempt + 1}/{max_retries})")
-
-                session = requests.Session()
-                session.headers.update({
-                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-                    'Accept': 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,*/*',
-                    'Accept-Language': 'ja,en-US;q=0.9,en;q=0.8',
-                    'Accept-Encoding': 'gzip, deflate, br',
-                    'Connection': 'keep-alive',
-                })
-
-                response = session.get(
-                    self.METI_IIP_URL,
-                    timeout=timeout,
-                    stream=True,
-                    allow_redirects=True
-                )
-
-                if response.status_code == 200:
-                    content = b''
-                    for chunk in response.iter_content(chunk_size=8192):
-                        if chunk:
-                            content += chunk
-
-                    logger.info(f"Successfully downloaded IIP Excel file ({len(content)} bytes)")
-                    return content
-                else:
-                    logger.warning(f"Download attempt {attempt + 1} failed: HTTP {response.status_code}")
-                    if attempt < max_retries - 1:
-                        import time
-                        time.sleep(5)
-                    continue
-
-            except requests.exceptions.Timeout as e:
-                logger.warning(f"Download attempt {attempt + 1} timed out: {e}")
-                if attempt < max_retries - 1:
-                    import time
-                    time.sleep(5)
-                continue
-
-            except Exception as e:
-                logger.error(f"Error downloading IIP Excel file (attempt {attempt + 1}): {e}", exc_info=True)
-                if attempt < max_retries - 1:
-                    import time
-                    time.sleep(5)
-                    continue
-                return None
-
-        logger.error(f"Failed to download IIP file after {max_retries} attempts")
-        return None
+        return download_estat_excel(
+            stats_code=self.ESTAT_STATS_CODE,
+            table_name_filter=self.ESTAT_TABLE_FILTER,
+            fallback_stat_inf_ids=self.ESTAT_FALLBACK_IDS,
+        )
 
     def _parse_excel_data(self, excel_content: bytes) -> Optional[List[Dict]]:
         """

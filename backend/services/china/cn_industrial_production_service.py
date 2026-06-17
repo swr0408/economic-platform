@@ -93,6 +93,17 @@ def _build_data() -> List[Dict[str, Any]]:
     except Exception as e:
         logger.warning(f"[IP] Press release fetch/upsert failed: {e}")
 
+    # --- FMP economic_calendar から履歴を gap-fill（NBS蓄積に無い過去月のみ）---
+    # 履歴CSV未整備のため初期は数点しか無い。FMP実績(約1年)で過去を補完する。
+    # 中国IPは1-2月合算発表で単独1月が無いため skip_january=True。
+    try:
+        from services.china.nbs_db_utils import backfill_from_fmp_events
+        backfill_from_fmp_events(
+            DB_INDICATOR, "Industrial Production YoY", skip_january=True
+        )
+    except Exception as e:
+        logger.warning(f"[IP] FMP backfill failed: {e}")
+
     # --- DBから全データ読み込み ---
     yoy_data = load_nbs_data(DB_INDICATOR)
 
@@ -129,7 +140,7 @@ class CnIndustrialProductionService:
         if self._redis is None:
             try:
                 import redis
-                self._redis = redis.Redis(host="localhost", port=6379, db=0, socket_timeout=2)
+                self._redis = redis.from_url(os.getenv("REDIS_URL", "redis://localhost:6379/0"), socket_timeout=2, socket_connect_timeout=2)
                 self._redis.ping()
             except Exception:
                 self._redis = None

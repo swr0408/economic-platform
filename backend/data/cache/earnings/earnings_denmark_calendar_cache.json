@@ -13,11 +13,11 @@
       "date": "2026-07-17",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.562,
+      "eps_estimate": 0.56,
       "eps_actual": null,
-      "revenue_estimate": 2260362000.0,
+      "revenue_estimate": 2256540000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "DSV",
@@ -31,7 +31,7 @@
       "eps_actual": null,
       "revenue_estimate": 11511980000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "NOVO-B",
@@ -45,7 +45,7 @@
       "eps_actual": null,
       "revenue_estimate": 11209850000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "GMAB",
@@ -57,9 +57,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.34,
       "eps_actual": null,
-      "revenue_estimate": 1091184000.0,
+      "revenue_estimate": 1091206000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "MAERSK-B",
@@ -71,23 +71,23 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.05,
       "eps_actual": null,
-      "revenue_estimate": 13721790000.0,
+      "revenue_estimate": 13749870000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "VWS",
       "name": "Vestas",
       "tier": "A",
       "country_code": "denmark",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
+      "date": "2026-08-12",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 0.06,
       "eps_actual": null,
-      "revenue_estimate": null,
+      "revenue_estimate": 5220885000.0,
       "revenue_actual": null,
-      "updated_from_date": null
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "NZYM-B",
@@ -105,8 +105,8 @@
     }
   ],
   "next_7d_count": 0,
-  "next_30d_count": 0,
-  "last_updated": "2026-06-12T01:35:37.058322+00:00",
+  "next_30d_count": 1,
+  "last_updated": "2026-06-17T12:37:42.810284+00:00",
   "cached": false,
   "status": "ok"
 }

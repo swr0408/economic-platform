@@ -15,9 +15,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 5.39,
       "eps_actual": null,
-      "revenue_estimate": 48702090000.0,
+      "revenue_estimate": 48782420000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "BAC",
@@ -29,9 +29,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 1.1,
       "eps_actual": null,
-      "revenue_estimate": 30116580000.0,
+      "revenue_estimate": 30191020000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "GS",
@@ -41,11 +41,11 @@
       "date": "2026-07-14",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 13.71,
+      "eps_estimate": 13.74,
       "eps_actual": null,
-      "revenue_estimate": 15679740000.0,
+      "revenue_estimate": 15734730000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "WFC",
@@ -57,9 +57,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 1.71,
       "eps_actual": null,
-      "revenue_estimate": 21760070000.0,
+      "revenue_estimate": 21829050000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "MS",
@@ -69,11 +69,11 @@
       "date": "2026-07-15",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 2.71,
+      "eps_estimate": 2.76,
       "eps_actual": null,
-      "revenue_estimate": 19092100000.0,
+      "revenue_estimate": 19023950000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "JNJ",
@@ -87,7 +87,7 @@
       "eps_actual": null,
       "revenue_estimate": 24963500000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "NFLX",
@@ -101,7 +101,21 @@
       "eps_actual": null,
       "revenue_estimate": 12579730000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
+    },
+    {
+      "symbol": "UNH",
+      "name": "UnitedHealth",
+      "tier": "B",
+      "country_code": "usa",
+      "date": "2026-07-16",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 4.84,
+      "eps_actual": null,
+      "revenue_estimate": 110761300000.0,
+      "revenue_actual": null,
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "GE",
@@ -115,7 +129,7 @@
       "eps_actual": null,
       "revenue_estimate": 11770310000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "GOOGL",
@@ -125,11 +139,11 @@
       "date": "2026-07-22",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 2.85,
+      "eps_estimate": 2.86,
       "eps_actual": null,
       "revenue_estimate": 116813100000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "TSLA",
@@ -141,9 +155,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.45,
       "eps_actual": null,
-      "revenue_estimate": 24308760000.0,
+      "revenue_estimate": 24337040000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "V",
@@ -157,7 +171,7 @@
       "eps_actual": null,
       "revenue_estimate": 11369410000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "RTX",
@@ -171,7 +185,7 @@
       "eps_actual": null,
       "revenue_estimate": 22866880000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "MSFT",
@@ -185,7 +199,7 @@
       "eps_actual": null,
       "revenue_estimate": 87614680000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "META",
@@ -199,7 +213,7 @@
       "eps_actual": null,
       "revenue_estimate": 60180010000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "AAPL",
@@ -209,11 +223,11 @@
       "date": "2026-07-30",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 1.86,
+      "eps_estimate": 1.88,
       "eps_actual": null,
       "revenue_estimate": 108400600000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "AMZN",
@@ -225,9 +239,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 1.82,
       "eps_actual": null,
-      "revenue_estimate": 196245200000.0,
+      "revenue_estimate": 196241000000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "MA",
@@ -239,9 +253,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 4.76,
       "eps_actual": null,
-      "revenue_estimate": 9069325000.0,
+      "revenue_estimate": 9069347000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "ABBV",
@@ -251,11 +265,11 @@
       "date": "2026-07-30",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 3.79,
+      "eps_estimate": 3.78,
       "eps_actual": null,
       "revenue_estimate": 16777270000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "BRK-B",
@@ -269,21 +283,7 @@
       "eps_actual": null,
       "revenue_estimate": 96523500000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
-    },
-    {
-      "symbol": "UNH",
-      "name": "UnitedHealth",
-      "tier": "B",
-      "country_code": "usa",
-      "date": "2026-08-04",
-      "time": "--",
-      "fiscal_date_ending": "",
-      "eps_estimate": 4.84,
-      "eps_actual": null,
-      "revenue_estimate": 110761300000.0,
-      "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "MRK",
@@ -297,7 +297,7 @@
       "eps_actual": null,
       "revenue_estimate": 16362840000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "CAT",
@@ -311,7 +311,7 @@
       "eps_actual": null,
       "revenue_estimate": 19156090000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "LLY",
@@ -325,7 +325,7 @@
       "eps_actual": null,
       "revenue_estimate": 20490110000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "XOM",
@@ -337,9 +337,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 3.73,
       "eps_actual": null,
-      "revenue_estimate": 111011400000.0,
+      "revenue_estimate": 110245300000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "CVX",
@@ -353,7 +353,7 @@
       "eps_actual": null,
       "revenue_estimate": 63241430000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-11"
+      "updated_from_date": "2026-06-17"
     },
     {
       "symbol": "NVDA",
@@ -385,8 +385,8 @@
     }
   ],
   "next_7d_count": 0,
-  "next_30d_count": 0,
-  "last_updated": "2026-06-12T01:35:37.000814+00:00",
+  "next_30d_count": 9,
+  "last_updated": "2026-06-17T12:37:42.752035+00:00",
   "cached": false,
   "status": "ok"
 }

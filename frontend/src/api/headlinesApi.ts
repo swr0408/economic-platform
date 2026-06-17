@@ -47,6 +47,7 @@ export interface SavedCategory {
   category_parent_id: number | null
   note: string | null
   saved_at: string
+  sort_order: number | null
 }
 
 export interface HeadlinesResponse {
@@ -163,6 +164,44 @@ export async function fetchPublicHeadlines(params: {
   return resp.json()
 }
 
+// ========== Read marker 「ここまで見た」 (master only) ==========
+
+export interface ReadMarker {
+  headline_id: number | null
+  marked_published_at: string | null
+  updated_at: string | null
+}
+
+export async function fetchReadMarker(): Promise<ReadMarker | null> {
+  const resp = await fetch(`${API_BASE_URL}/api/headlines/read-marker`, {
+    headers: authHeaders(),
+  })
+  if (!resp.ok) throw new Error(`Failed to fetch read marker: ${resp.status}`)
+  const data = await resp.json()
+  return data.marker ?? null
+}
+
+export async function setReadMarker(headlineId: number): Promise<ReadMarker> {
+  const resp = await fetch(`${API_BASE_URL}/api/headlines/read-marker`, {
+    method: 'PUT',
+    headers: authHeaders({ 'Content-Type': 'application/json' }),
+    body: JSON.stringify({ headlineId }),
+  })
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({}))
+    throw new Error(err.detail || `Failed to set read marker: ${resp.status}`)
+  }
+  return resp.json()
+}
+
+export async function clearReadMarker(): Promise<void> {
+  const resp = await fetch(`${API_BASE_URL}/api/headlines/read-marker`, {
+    method: 'DELETE',
+    headers: authHeaders(),
+  })
+  if (!resp.ok) throw new Error(`Failed to clear read marker: ${resp.status}`)
+}
+
 // ========== Save / Unsave ==========
 
 export interface SaveHeadlineParams {
@@ -220,12 +259,19 @@ export async function unsaveHeadline(headlineId: number, savedId: number): Promi
   if (!resp.ok) throw new Error(`Failed to unsave headline: ${resp.status}`)
 }
 
-export async function retranslateHeadline(headlineId: number): Promise<void> {
+export interface RetranslateResult {
+  success: boolean
+  status?: 'done' | 'pending' | 'not_found'
+  headline_ja?: string
+}
+
+export async function retranslateHeadline(headlineId: number): Promise<RetranslateResult> {
   const resp = await fetch(`${API_BASE_URL}/api/headlines/${headlineId}/retranslate`, {
     method: 'POST',
     headers: authHeaders(),
   })
   if (!resp.ok) throw new Error(`Failed to retranslate headline: ${resp.status}`)
+  return resp.json()
 }
 
 // ========== Categories ==========
@@ -266,6 +312,33 @@ export async function deleteCategory(id: number): Promise<void> {
     headers: authHeaders(),
   })
   if (!resp.ok) throw new Error(`Failed to delete category: ${resp.status}`)
+}
+
+// ========== Saved headline reorder (master only) ==========
+
+export async function reorderSavedHeadlines(categoryId: number, savedIds: number[]): Promise<void> {
+  const resp = await fetch(`${API_BASE_URL}/api/categories/${categoryId}/headline-order`, {
+    method: 'PUT',
+    headers: authHeaders({ 'Content-Type': 'application/json' }),
+    body: JSON.stringify({ savedIds }),
+  })
+  if (!resp.ok) throw new Error(`Failed to reorder saved headlines: ${resp.status}`)
+}
+
+/** サイドバーセクション内の混在エントリ（直下ヘッドライン＋子カテゴリブロック）の並び順 */
+export interface SidebarOrderEntry {
+  type: 'saved' | 'category'
+  id: number
+  sortOrder: number
+}
+
+export async function reorderSidebarEntries(entries: SidebarOrderEntry[]): Promise<void> {
+  const resp = await fetch(`${API_BASE_URL}/api/headlines/sidebar-order`, {
+    method: 'PUT',
+    headers: authHeaders({ 'Content-Type': 'application/json' }),
+    body: JSON.stringify({ entries }),
+  })
+  if (!resp.ok) throw new Error(`Failed to reorder sidebar entries: ${resp.status}`)
 }
 
 // ========== Admin ==========

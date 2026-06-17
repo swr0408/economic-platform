@@ -118,7 +118,7 @@
     },
     {
       "date": "2022-Q2",
-      "value": 4.4
+      "value": 4.5
     },
     {
       "date": "2022-Q3",
@@ -154,11 +154,11 @@
     },
     {
       "date": "2024-Q3",
-      "value": 4.5
+      "value": 4.6
     },
     {
       "date": "2024-Q4",
-      "value": 4.1
+      "value": 4.2
     },
     {
       "date": "2025-Q1",
@@ -166,11 +166,11 @@
     },
     {
       "date": "2025-Q2",
-      "value": 3.9
+      "value": 4.0
     },
     {
       "date": "2025-Q3",
-      "value": 3.2
+      "value": 3.3
     },
     {
       "date": "2025-Q4",
@@ -178,12 +178,12 @@
     },
     {
       "date": "2026-Q1",
-      "value": 3.4
+      "value": 3.3
     }
   ],
   "latest": {
     "date": "2026-Q1",
-    "value": 3.4
+    "value": 3.3
   },
   "metadata": {
     "source": "Eurostat - Labour Cost Index",
@@ -196,5 +196,5 @@
     "description": "Wages and salaries (total)"
   },
   "next_release": null,
-  "last_updated": "2026-06-11T23:15:27.971051+09:00"
+  "last_updated": "2026-06-17T20:04:27.704097+09:00"
 }

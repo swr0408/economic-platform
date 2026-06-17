@@ -1,13 +1,6 @@
 {
   "data": [
     {
-      "date": "2022-11-30",
-      "receipts": 486.72,
-      "outlays": 508.03,
-      "deficit_surplus": -21.3,
-      "fiscal_year": "2023"
-    },
-    {
       "date": "2022-12-31",
       "receipts": 465.07,
       "outlays": 346.37,
@@ -293,13 +286,20 @@
       "outlays": 1224.06,
       "deficit_surplus": -614.52,
       "fiscal_year": "2026"
+    },
+    {
+      "date": "2026-05-31",
+      "receipts": 731.14,
+      "outlays": 1272.92,
+      "deficit_surplus": -541.78,
+      "fiscal_year": "2026"
     }
   ],
   "latest": {
-    "date": "2026-04-30",
-    "receipts": 609.55,
-    "outlays": 1224.06,
-    "deficit_surplus": -614.52,
+    "date": "2026-05-31",
+    "receipts": 731.14,
+    "outlays": 1272.92,
+    "deficit_surplus": -541.78,
     "fiscal_year": "2026"
   },
   "metadata": {
@@ -309,5 +309,5 @@
     "description": "連邦政府の月次財政収支（歳入・歳出・財政収支）",
     "release_schedule": "翌月の第8営業日"
   },
-  "last_updated": "2026-06-09T02:30:08.862418"
+  "last_updated": "2026-06-14T11:49:31.669693"
 }

@@ -1057,7 +1057,7 @@
     "datetime_cet": "2026-07-06T11:00:00+02:00",
     "time_cet": "11:00",
     "label": "Producer Price Index MoM (May)",
-    "estimate": null
+    "estimate": 0.7
   },
-  "last_updated": "2026-06-11T23:15:29.210039+09:00"
+  "last_updated": "2026-06-17T20:04:27.692119+09:00"
 }

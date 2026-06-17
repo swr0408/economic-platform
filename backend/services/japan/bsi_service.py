@@ -23,9 +23,11 @@ from io import BytesIO
 try:
     from backend.core.redis_client import redis_client
     from backend.services.japan.fmp_next_release_utils import get_next_release_from_fmp
+    from backend.services.japan.bsi_estat_source import download_bsi_excel
 except ImportError:
     from core.redis_client import redis_client
     from services.japan.fmp_next_release_utils import get_next_release_from_fmp
+    from services.japan.bsi_estat_source import download_bsi_excel
 
 
 class BSIService:
@@ -37,8 +39,9 @@ class BSIService:
     # FMP event pattern for next release
     INDICATOR_ID = "jp_bsi"
 
-    # Data source URL
-    DATA_URL = "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040283549&fileKind=0"
+    # 読み取り対象シート（参考-１ 時系列表：景気判断 BSI 企業規模別）。
+    # 現行ファイルは多シート構成で worksheets[0] は「目次」のため、シート名で選ぶ。
+    TARGET_SHEET_NAMES = ("参考-１", "参考‐１", "参考-1")
 
     def __init__(self):
         self.cache_dir = Path(__file__).parent.parent.parent / "data" / "cache" / "bsi"
@@ -118,13 +121,26 @@ class BSIService:
         if not openpyxl:
             raise ImportError("openpyxl is required for parsing Excel files")
 
-        print(f"Fetching BSI data from {self.DATA_URL}")
+        # statInfId を動的解決して Excel を取得（旧固定 URL は 404 になるため）
+        content = download_bsi_excel()
 
-        response = requests.get(self.DATA_URL, timeout=30)
-        response.raise_for_status()
+        wb = openpyxl.load_workbook(BytesIO(content), data_only=True)
 
-        wb = openpyxl.load_workbook(BytesIO(response.content), data_only=True)
-        sheet = wb.worksheets[0]
+        # 現行ファイルは多シート構成。景気判断 BSI 時系列は「参考-１」シート。
+        # worksheets[0]（目次）ではデータが取れないため、シート名で選択する。
+        # 旧来の単一シートファイルにも対応できるよう worksheets[0] にフォールバック。
+        sheet = None
+        for name in self.TARGET_SHEET_NAMES:
+            if name in wb.sheetnames:
+                sheet = wb[name]
+                break
+        if sheet is None:
+            sheet = wb.worksheets[0]
+            print(
+                f"BSI: target sheet {self.TARGET_SHEET_NAMES} not found; "
+                f"falling back to first sheet '{sheet.title}' "
+                f"(available: {wb.sheetnames})"
+            )
 
         data = []
         current_year = None

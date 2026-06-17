@@ -4284,23 +4284,28 @@
       "date": "2026-05-29",
       "value": 2578.0,
       "yoy": -0.77
+    },
+    {
+      "date": "2026-06-05",
+      "value": 2686.0,
+      "yoy": -0.78
     }
   ],
   "latest": {
-    "date": "2026-05-29",
-    "value": 2578.0,
-    "yoy": -0.77
+    "date": "2026-06-05",
+    "value": 2686.0,
+    "yoy": -0.78
   },
   "metadata": {
     "source": "EIA",
     "frequency": "weekly",
     "unit": "BCF",
     "series": "Working Gas in Underground Storage, Lower 48 States",
-    "data_count": 857,
+    "data_count": 858,
     "start_date": "2010-01-01",
-    "end_date": "2026-05-29"
+    "end_date": "2026-06-05"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-12T00:00:32.145200+09:00"
+  "last_updated": "2026-06-13T11:40:14.576601+09:00"
 }

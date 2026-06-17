@@ -804,7 +804,8 @@ export function StandardLineChart<T extends { date: string }>({
   xAxisFormatter = formatDateLabel,
   yAxisFormatter,
   tooltipLabelFormatter = formatDateLabel,
-  tooltipValueFormatter = (v) => v != null ? `${v.toFixed(2)}%` : 'N/A',
+  tooltipValueFormatter,
+  tooltipFormatter,
   yDomain = ['auto', 'auto'],
   showZeroLine = true,
   showFiftyLine = false,
@@ -816,6 +817,13 @@ export function StandardLineChart<T extends { date: string }>({
   right2YAxisFormatter,
   right2YDomain = ['auto', 'auto'],
 }: StandardLineChartProps<T>) {
+  // 値フォーマッタの解決: 新propを優先し、無ければ deprecated な tooltipFormatter を尊重、
+  // どちらも無い場合のみ従来の % デフォルトにフォールバック
+  const resolveValue: (value: number, dataKey: string) => string =
+    tooltipValueFormatter
+      ?? (tooltipFormatter
+        ? (v, dataKey) => tooltipFormatter(v, dataKey)[0]
+        : (v) => v != null ? `${v.toFixed(2)}%` : 'N/A')
   // 右Y軸を使用するlineがあるか確認
   const hasRightAxisLines = lines.some(line => line.yAxisId === 'right')
   const hasRight2AxisLines = lines.some(line => line.yAxisId === 'right2')
@@ -857,7 +865,7 @@ export function StandardLineChart<T extends { date: string }>({
               {item.name}
             </span>
             <span style={{ fontWeight: 500, color: item.color }}>
-              {tooltipValueFormatter(item.value, item.dataKey)}
+              {resolveValue(item.value, item.dataKey)}
             </span>
           </div>
         ))}
@@ -1036,12 +1044,20 @@ export function StandardBarChart<T extends { date: string }>({
   xAxisFormatter = formatDateLabel,
   yAxisFormatter,
   tooltipLabelFormatter = formatDateLabel,
-  tooltipValueFormatter = (v) => v != null ? `${v.toFixed(2)}%` : 'N/A',
+  tooltipValueFormatter,
+  tooltipFormatter,
   yDomain = ['auto', 'auto'],
   showZeroLine = true,
   showLegend = true,
   onLegendClick,
 }: StandardBarChartProps<T>) {
+  // 値フォーマッタの解決: 新propを優先し、無ければ deprecated な tooltipFormatter を尊重、
+  // どちらも無い場合のみ従来の % デフォルトにフォールバック
+  const resolveValue: (value: number, dataKey: string) => string =
+    tooltipValueFormatter
+      ?? (tooltipFormatter
+        ? (v, dataKey) => tooltipFormatter(v, dataKey)[0]
+        : (v) => v != null ? `${v.toFixed(2)}%` : 'N/A')
   // カスタムTooltipコンポーネント（数値にチャートの色を使用）
   const BarChartTooltip = ({ active, payload, label }: {
     active?: boolean
@@ -1080,7 +1096,7 @@ export function StandardBarChart<T extends { date: string }>({
               {item.name}
             </span>
             <span style={{ fontWeight: 500, color: item.color }}>
-              {tooltipValueFormatter(item.value, item.dataKey)}
+              {resolveValue(item.value, item.dataKey)}
             </span>
           </div>
         ))}

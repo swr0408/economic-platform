@@ -35,7 +35,18 @@ type ActiveLabelEvent =
 interface DataPoint {
   date: string
   value: number | null
+  dateValue?: number
   [key: string]: unknown
+}
+
+// 数値タイムスタンプ(ms) → 'YYYY-MM-DD'（時間軸モードのラベル/フォーマッタ用）
+function tsToDateStr(ts: number): string {
+  const d = new Date(ts)
+  if (isNaN(d.getTime())) return String(ts)
+  const yyyy = d.getFullYear()
+  const mm = String(d.getMonth() + 1).padStart(2, '0')
+  const dd = String(d.getDate()).padStart(2, '0')
+  return `${yyyy}-${mm}-${dd}`
 }
 
 interface AdditionalLine {
@@ -99,6 +110,9 @@ interface ZoomableChartProps {
   connectNulls?: boolean
   additionalLines?: AdditionalLine[]
   chartType?: 'line' | 'bar'
+  /** X軸を時間比例軸(type=number, scale=time)にする。data に dateValue(ms) が必要。
+   *  異頻度データ混在時に実日付位置で描画し、点の圧縮(つぶれ)を防ぐ。 */
+  useTimeAxis?: boolean
 }
 
 export default function ZoomableChart({
@@ -136,6 +150,7 @@ export default function ZoomableChart({
   responsiveMargin = false,
   additionalLines = [],
   chartType = 'line',
+  useTimeAxis = false,
 }: ZoomableChartProps) {
   const [refAreaLeft, setRefAreaLeft] = useState<string | null>(null)
   const [refAreaRight, setRefAreaRight] = useState<string | null>(null)
@@ -188,12 +203,17 @@ export default function ZoomableChart({
 
   const handleMouseUp = useCallback(() => {
     if (refAreaLeft && refAreaRight) {
-      const [newLeft, newRight] =
-        refAreaLeft <= refAreaRight ? [refAreaLeft, refAreaRight] : [refAreaRight, refAreaLeft]
+      // 時間軸モードでは activeLabel が数値(ms)なので数値順で大小比較する
+      const lte = useTimeAxis
+        ? Number(refAreaLeft) <= Number(refAreaRight)
+        : refAreaLeft <= refAreaRight
+      const [newLeft, newRight] = lte ? [refAreaLeft, refAreaRight] : [refAreaRight, refAreaLeft]
 
       // Zoom機能: 選択された範囲のデータのみ表示
-      const leftIndex = data.findIndex((item) => item.date === newLeft)
-      const rightIndex = data.findIndex((item) => item.date === newRight)
+      const matchKey = (item: DataPoint) =>
+        useTimeAxis ? String(item.dateValue) : item.date
+      const leftIndex = data.findIndex((item) => matchKey(item) === newLeft)
+      const rightIndex = data.findIndex((item) => matchKey(item) === newRight)
 
       if (leftIndex !== -1 && rightIndex !== -1) {
         const zoomedData = data.slice(leftIndex, rightIndex + 1)
@@ -202,7 +222,7 @@ export default function ZoomableChart({
     }
     setRefAreaLeft(null)
     setRefAreaRight(null)
-  }, [refAreaLeft, refAreaRight, data])
+  }, [refAreaLeft, refAreaRight, data, useTimeAxis])
 
   // 動的Y軸ティック計算（表示中のラインのみ考慮）
   const dynamicYAxisTicks = useMemo(() => {
@@ -391,9 +411,15 @@ export default function ZoomableChart({
         </defs>
         <CartesianGrid strokeDasharray="3 3" stroke={DARK_THEME.gridLine} fill={DARK_THEME.chartBg} />
         <XAxis
-          type="category"
-          dataKey="date"
-          tickFormatter={xAxisTickFormatter || formatMonthLabel}
+          type={useTimeAxis ? 'number' : 'category'}
+          dataKey={useTimeAxis ? 'dateValue' : 'date'}
+          scale={useTimeAxis ? 'time' : 'auto'}
+          domain={useTimeAxis ? ['dataMin', 'dataMax'] : undefined}
+          tickFormatter={
+            useTimeAxis
+              ? (v: number) => (xAxisTickFormatter || formatMonthLabel)(tsToDateStr(v))
+              : (xAxisTickFormatter || formatMonthLabel)
+          }
           axisLine={{ stroke: DARK_THEME.axisLine }}
           tickLine={{ stroke: DARK_THEME.axisLine }}
           tick={{ fill: DARK_THEME.textSecondary, fontSize: 11 }}
@@ -401,7 +427,7 @@ export default function ZoomableChart({
           height={60}
           label={xAxisLabel ? { value: xAxisLabel, position: 'bottom', offset: 10, fill: DARK_THEME.textSecondary } : undefined}
           allowDataOverflow={false}
-          interval={xAxisInterval}
+          interval={useTimeAxis ? undefined : xAxisInterval}
         />
         <YAxis
           yAxisId="left"
@@ -446,9 +472,11 @@ export default function ZoomableChart({
             content={({ active, payload, label }) => {
               if (!active || !payload || payload.length === 0) return null
 
+              // 時間軸モードでは label が数値(ms)なので日付文字列へ戻してから整形
+              const labelStr = useTimeAxis ? tsToDateStr(Number(label)) : String(label)
               const formattedLabel = tooltipLabelFormatter
-                ? tooltipLabelFormatter(String(label))
-                : formatMonthLabel(String(label))
+                ? tooltipLabelFormatter(labelStr)
+                : formatMonthLabel(labelStr)
 
               return (
                 <div
@@ -601,8 +629,8 @@ export default function ZoomableChart({
 
         {refAreaData && (
           <ReferenceArea
-            x1={refAreaData.x1}
-            x2={refAreaData.x2}
+            x1={useTimeAxis ? Number(refAreaData.x1) : refAreaData.x1}
+            x2={useTimeAxis ? Number(refAreaData.x2) : refAreaData.x2}
             strokeOpacity={0.3}
             fillOpacity={0.1}
           />

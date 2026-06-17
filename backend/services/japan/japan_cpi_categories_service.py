@@ -336,7 +336,7 @@ class JapanCPICategoriesService:
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定"""
-        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str)
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str, max_age_hours=72)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         try:
