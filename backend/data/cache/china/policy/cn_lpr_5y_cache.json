@@ -197,10 +197,22 @@
       "value": 3.5,
       "forecast": 3.5,
       "previous": 3.5
+    },
+    {
+      "date": "2026-05-20",
+      "value": 3.5,
+      "forecast": 3.5,
+      "previous": 3.5
+    },
+    {
+      "date": "2026-06-22",
+      "value": 3.5,
+      "forecast": 3.5,
+      "previous": 3.5
     }
   ],
   "latest": {
-    "date": "2026-04-20",
+    "date": "2026-06-22",
     "value": 3.5,
     "forecast": 3.5,
     "previous": 3.5
@@ -213,14 +225,14 @@
     "event_pattern": "Loan Prime Rate 5Y"
   },
   "next_release": {
-    "date": "2026-05-20",
-    "datetime_utc": "2026-05-20T01:15:00+00:00",
-    "datetime_jst": "2026-05-20T10:15:00+09:00",
+    "date": "2026-06-22",
+    "datetime_utc": "2026-06-22T01:15:00+00:00",
+    "datetime_jst": "2026-06-22T10:15:00+09:00",
     "time_jst": "10:15",
-    "datetime_cst": "2026-05-20T09:15:00+08:00",
+    "datetime_cst": "2026-06-22T09:15:00+08:00",
     "time_cst": "09:15",
-    "label": "Loan Prime Rate 5Y (May)",
+    "label": "Loan Prime Rate 5Y (Jun)",
     "estimate": 3.5
   },
-  "last_updated": "2026-05-20T10:15:48.268267+09:00"
+  "last_updated": "2026-06-22T10:15:15.188850+09:00"
 }

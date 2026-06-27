@@ -93,6 +93,12 @@ function MainLayout() {
             label: '可視性管理',
             onClick: () => navigate('/admin/visibility'),
           } as const,
+          {
+            key: 'admin-staleness',
+            icon: <ThunderboltOutlined />,
+            label: '鮮度モニタ',
+            onClick: () => navigate('/admin/staleness'),
+          } as const,
           { type: 'divider' as const },
         ]
       : []),

@@ -64,6 +64,7 @@ class UKPolicyLoader(BaseDashboardLoader):
         "boe_inflation_expectations",
         "boe_dmp_survey",
         "uk_public_sector_net_borrowing",
+        "uk_government_debt_to_gdp_ratio",
         "uk_qt",
     ]
 
@@ -141,6 +142,7 @@ class UKPolicyLoader(BaseDashboardLoader):
         from services.uk.boe_inflation_expectations_service import boe_inflation_expectations_service
         from services.uk.boe_dmp_survey_service import boe_dmp_survey_service
         from services.uk.ons_public_sector_net_borrowing_service import ons_public_sector_net_borrowing_service
+        from services.uk.uk_government_debt_to_gdp_ratio_service import uk_government_debt_to_gdp_ratio_service
         from services.uk.uk_qt_service import uk_qt_service
 
         result = {
@@ -156,6 +158,7 @@ class UKPolicyLoader(BaseDashboardLoader):
             "boe_inflation_expectations": None,
             "boe_dmp_survey": None,
             "uk_public_sector_net_borrowing": None,
+            "uk_government_debt_to_gdp_ratio": None,
             "uk_qt": None,
         }
 
@@ -174,6 +177,7 @@ class UKPolicyLoader(BaseDashboardLoader):
                 executor.submit(self._get_boe_inflation_expectations, boe_inflation_expectations_service): "boe_inflation_expectations",
                 executor.submit(self._get_boe_dmp_survey, boe_dmp_survey_service): "boe_dmp_survey",
                 executor.submit(self._get_uk_public_sector_net_borrowing, ons_public_sector_net_borrowing_service): "uk_public_sector_net_borrowing",
+                executor.submit(self._get_uk_government_debt_to_gdp_ratio, uk_government_debt_to_gdp_ratio_service): "uk_government_debt_to_gdp_ratio",
                 executor.submit(self._get_uk_qt, uk_qt_service): "uk_qt",
             }
 
@@ -395,6 +399,22 @@ class UKPolicyLoader(BaseDashboardLoader):
                 "metadata": {},
                 "next_release": None,
             }
+
+    def _get_uk_government_debt_to_gdp_ratio(self, service) -> dict:
+        """UK政府債務残高対GDP比データを取得"""
+        try:
+            force_refresh = self._should_force_refresh("uk_government_debt_to_gdp_ratio")
+            response = service.get_data(force_refresh=force_refresh)
+            return {
+                "data": response.get("data", []),
+                "mom_change": response.get("mom_change", []),
+                "latest": response.get("latest"),
+                "metadata": response.get("metadata", {}),
+                "next_release": response.get("next_release"),
+            }
+        except Exception as e:
+            print(f"Error getting UK Government Debt to GDP Ratio: {e}")
+            return {"data": [], "mom_change": [], "latest": None, "metadata": {}, "next_release": None}
 
     def _get_uk_qt(self, service) -> dict:
         """UK QT（APFギルト保有残高）データを取得"""

@@ -175,6 +175,17 @@ class GermanyConsumerConfidenceGfKService:
             year += 1
         return f"{year}-{month:02d}-01"
 
+    @staticmethod
+    def _prior_month(date_str: str) -> str:
+        """'YYYY-MM-01' の1か月前を 'YYYY-MM-01' で返す"""
+        year, month, _ = date_str.split("-")
+        year, month = int(year), int(month)
+        month -= 1
+        if month < 1:
+            month = 12
+            year -= 1
+        return f"{year}-{month:02d}-01"
+
     def _load_from_db(self) -> List[Dict[str, Any]]:
         """DBから履歴データを取得"""
         try:
@@ -198,31 +209,52 @@ class GermanyConsumerConfidenceGfKService:
                 """)
                 rows = session.execute(query).fetchall()
 
-                result = []
+                result_map: Dict[str, Dict[str, Any]] = {}  # date_str -> データ点（自身のactual）
+                revision_map: Dict[str, float] = {}         # 前月 date_str -> 改定値（翌月発表のprevious）
                 seen_dates = set()
+                seen_revisions = set()
 
-                for row in rows:
+                for row in rows:  # DESC順（新しい発表が先）
                     dt_utc, event_name, actual, estimate, previous = row
-                    if dt_utc:
-                        # イベント名から対象月を抽出（翌月予測のため）
-                        date_str = self._parse_target_month(event_name, dt_utc)
-                        if date_str in seen_dates:
-                            # 同じ対象月のデータが既にある場合はスキップ
-                            # （新しい発表データを優先するためDESC順で取得）
-                            continue
+                    if not dt_utc:
+                        continue
+
+                    # イベント名から対象月を抽出（翌月予測のため）
+                    date_str = self._parse_target_month(event_name, dt_utc)
+
+                    # 各対象月のデータ点（新しい発表を優先）
+                    if date_str not in seen_dates:
                         seen_dates.add(date_str)
-
-                        result.append({
+                        result_map[date_str] = {
                             "date": date_str,
-                            "value": float(actual) if actual else None,
-                            "forecast": float(estimate) if estimate else None,
-                            "previous": float(previous) if previous else None,
-                        })
+                            "value": float(actual) if actual is not None else None,
+                            "forecast": float(estimate) if estimate is not None else None,
+                            "previous": float(previous) if previous is not None else None,
+                        }
 
-                # 日付でソート（ASC）
-                result.sort(key=lambda x: x["date"])
+                    # GfKは翌月予測の発表時に前月を改定する。previous は対象月-1（前月）の
+                    # 改定値なので、前月のデータ点に書き戻す（最新発表の previous を優先）。
+                    if previous is not None:
+                        prior_date = self._prior_month(date_str)
+                        if prior_date not in seen_revisions:
+                            seen_revisions.add(prior_date)
+                            revision_map[prior_date] = float(previous)
 
-                print(f"[GermanyConsumerConfidenceGfK] Loaded {len(result)} records from DB")
+                # 改定適用: 前月以前の value を確報値（翌月発表の previous）で上書き。
+                # 該当月のデータ点が存在する場合のみ（previous だけの幻の月は作らない）。
+                applied = 0
+                for prior_date, revised in revision_map.items():
+                    point = result_map.get(prior_date)
+                    if point is not None and point.get("value") != revised:
+                        point["value"] = revised
+                        applied += 1
+
+                result = sorted(result_map.values(), key=lambda x: x["date"])
+
+                print(
+                    f"[GermanyConsumerConfidenceGfK] Loaded {len(result)} records from DB "
+                    f"({applied} prior-month revisions applied)"
+                )
                 return result
 
         except Exception as e:

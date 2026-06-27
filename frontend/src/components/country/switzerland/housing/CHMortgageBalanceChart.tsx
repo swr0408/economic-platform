@@ -240,9 +240,9 @@ export default function CHMortgageBalanceChart({ data }: CHMortgageBalanceChartP
           <StandardLineChart
             data={filteredData}
             lines={[{ dataKey: 'value', color: COLORS.value, name: '住宅ローン残高' }]}
-            yAxisFormatter={(v) => `${v.toFixed(1)}`}
+            yAxisFormatter={(v) => `${v.toFixed(0)}`}
             tooltipValueFormatter={(v) => `${v.toFixed(2)} BillionCHF`}
-            yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
+            yDomain={['dataMin - 20', 'dataMax + 20']}
             showZeroLine={false}
           />
         )}

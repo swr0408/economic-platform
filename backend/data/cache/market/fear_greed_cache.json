@@ -7928,49 +7928,49 @@
     },
     {
       "date": "2026-05-07",
-      "score": 66.4,
+      "score": 67.3,
       "rating": "greed",
       "sp500": 7337.11
     },
     {
       "date": "2026-05-08",
-      "score": 66.7,
+      "score": 67.3,
       "rating": "greed",
       "sp500": 7398.93
     },
     {
       "date": "2026-05-11",
-      "score": 65.4,
+      "score": 66.6,
       "rating": "greed",
       "sp500": 7412.84
     },
     {
       "date": "2026-05-12",
-      "score": 65.1,
+      "score": 65.7,
       "rating": "greed",
       "sp500": 7400.96
     },
     {
       "date": "2026-05-13",
-      "score": 64.0,
+      "score": 65.0,
       "rating": "greed",
       "sp500": 7444.25
     },
     {
       "date": "2026-05-14",
-      "score": 65.0,
+      "score": 65.9,
       "rating": "greed",
       "sp500": 7501.24
     },
     {
       "date": "2026-05-15",
-      "score": 63.0,
+      "score": 63.2,
       "rating": "greed",
       "sp500": 7408.5
     },
     {
       "date": "2026-05-18",
-      "score": 61.5,
+      "score": 61.6,
       "rating": "greed",
       "sp500": 7403.05
     },
@@ -7982,13 +7982,13 @@
     },
     {
       "date": "2026-05-20",
-      "score": 60.2,
+      "score": 60.3,
       "rating": "greed",
       "sp500": 7432.97
     },
     {
       "date": "2026-05-21",
-      "score": 57.9,
+      "score": 58.1,
       "rating": "greed",
       "sp500": 7445.72
     },
@@ -8006,13 +8006,13 @@
     },
     {
       "date": "2026-05-27",
-      "score": 60.5,
+      "score": 60.6,
       "rating": "greed",
       "sp500": 7520.36
     },
     {
       "date": "2026-05-28",
-      "score": 60.0,
+      "score": 60.1,
       "rating": "greed",
       "sp500": 7563.63
     },
@@ -8060,7 +8060,7 @@
     },
     {
       "date": "2026-06-09",
-      "score": 32.4,
+      "score": 32.5,
       "rating": "fear",
       "sp500": 7386.65
     },
@@ -8090,33 +8090,76 @@
     },
     {
       "date": "2026-06-16",
-      "score": 39.3,
+      "score": 39.1,
       "rating": "fear",
       "sp500": 7511.35
     },
     {
       "date": "2026-06-17",
-      "score": 39.3,
+      "score": 32.2,
+      "rating": "fear",
+      "sp500": 7420.1
+    },
+    {
+      "date": "2026-06-18",
+      "score": 37.6,
+      "rating": "fear",
+      "sp500": 7500.58
+    },
+    {
+      "date": "2026-06-19",
+      "score": 37.6,
       "rating": "fear",
       "sp500": null
+    },
+    {
+      "date": "2026-06-22",
+      "score": 32.0,
+      "rating": "fear",
+      "sp500": 7472.79
+    },
+    {
+      "date": "2026-06-23",
+      "score": 27.5,
+      "rating": "fear",
+      "sp500": 7365.46
+    },
+    {
+      "date": "2026-06-24",
+      "score": 26.0,
+      "rating": "fear",
+      "sp500": 7358.22
+    },
+    {
+      "date": "2026-06-25",
+      "score": 24.4,
+      "rating": "extreme fear",
+      "sp500": 7357.49
+    },
+    {
+      "date": "2026-06-26",
+      "score": 24.8,
+      "rating": "extreme fear",
+      "sp500": 7354.02
     }
   ],
   "latest": {
-    "date": "2026-06-17",
-    "score": 39.3,
-    "rating": "fear",
-    "previous_close": 39.3,
-    "previous_1_week": 26.9,
-    "previous_1_month": 63.0,
-    "previous_1_year": 57.4
+    "date": "2026-06-26",
+    "score": 24.8,
+    "rating": "extreme fear",
+    "previous_close": 25.5,
+    "previous_1_week": 37.6,
+    "previous_1_month": 60.9,
+    "previous_1_year": 63.0,
+    "sp500": 7354.02
   },
   "metadata": {
     "source": "CNN Fear & Greed Index",
-    "data_count": 1350,
+    "data_count": 1357,
     "start_date": "2021-02-01",
-    "end_date": "2026-06-17"
+    "end_date": "2026-06-26"
   },
   "cached": false,
   "source": "api",
-  "last_updated": "2026-06-17T15:42:59.825110+09:00"
+  "last_updated": "2026-06-27T19:35:17.207390+09:00"
 }

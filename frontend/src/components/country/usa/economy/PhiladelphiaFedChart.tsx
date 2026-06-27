@@ -4,8 +4,8 @@
  * 共通モジュールを使用してリファクタリング済み
  */
 import { useState, useMemo } from 'react'
-import { Tabs, Button, Tooltip } from 'antd'
-import { AreaChartOutlined } from '@ant-design/icons'
+import { Tabs, Button, Tooltip, Switch } from 'antd'
+import { AreaChartOutlined, InfoCircleOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
@@ -42,15 +42,22 @@ const SERIES_CONFIG = {
   general_activity_future: { name: '一般活動期待', color: '#91CAFF', strokeWidth: 2 },
   new_orders_current: { name: '新規受注', color: '#389e0d', strokeWidth: 2 },
   new_orders_future: { name: '新規受注期待', color: '#b7eb8f', strokeWidth: 2 },
-  prices_paid_current: { name: '支払価格', color: '#cf1322', strokeWidth: 2 },
-  prices_paid_future: { name: '支払価格期待', color: '#ffa39e', strokeWidth: 2 },
+  prices_paid_current: { name: '投入価格', color: '#cf1322', strokeWidth: 2 },
+  prices_paid_future: { name: '投入価格期待', color: '#ffa39e', strokeWidth: 2 },
   employment_current: { name: '雇用', color: '#d46b08', strokeWidth: 2 },
   employment_future: { name: '雇用期待', color: '#ffd591', strokeWidth: 2 },
-  capex_current: { name: '設備投資（ソフトウェア・機械設備）', color: '#9346ff', strokeWidth: 2 },
+  // 製造業BOSには「現況設備投資」設問が無いため、この系列のみ非製造業景況調査
+  // (NMBOS, FRED: CEBNDIF066MSFRBPHI) 由来。発表が製造業より約1週間遅れる。
+  // 専用トグル（下記 showNonmfgCapex）でのみ表示制御する。
+  capex_current: { name: '設備投資・ソフト/機械設備（非製造業・現況）', color: '#9346ff', strokeWidth: 2 },
   capex_future: { name: '設備投資期待', color: '#d3adf7', strokeWidth: 2 },
 }
 
+// 専用トグルで制御する非製造業由来の系列キー
+const NONMFG_CAPEX_KEY = 'capex_current'
+
 // 初期非表示シリーズ（一般活動指数のみ表示）
+// capex_current は専用トグルで lines への含有自体を制御するためここには含めない
 const INITIAL_HIDDEN_SERIES = new Set([
   'general_activity_future',
   'new_orders_current',
@@ -59,7 +66,6 @@ const INITIAL_HIDDEN_SERIES = new Set([
   'prices_paid_future',
   'employment_current',
   'employment_future',
-  'capex_current',
   'capex_future',
 ])
 
@@ -70,6 +76,8 @@ const INITIAL_HIDDEN_SERIES = new Set([
 export default function PhiladelphiaFedChart({ data }: PhiladelphiaFedChartProps) {
   const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
   const [activeTab, setActiveTab] = useState<string>('timeseries')
+  // 非製造業由来の現況設備投資を表示するか（既定OFF）
+  const [showNonmfgCapex, setShowNonmfgCapex] = useState<boolean>(false)
   const { hiddenSeries, handleLegendClick } = useHiddenSeries(INITIAL_HIDDEN_SERIES)
 
   // データを日付昇順にソート
@@ -117,13 +125,16 @@ export default function PhiladelphiaFedChart({ data }: PhiladelphiaFedChartProps
   const latestData = data.latest
 
   // StandardLineChart用のlines配列を生成
-  const lines = Object.entries(SERIES_CONFIG).map(([key, config]) => ({
-    dataKey: key,
-    color: config.color,
-    name: config.name,
-    hide: hiddenSeries.has(key),
-    strokeWidth: config.strokeWidth,
-  }))
+  // 非製造業由来の現況設備投資は専用トグルがONのときのみ含める
+  const lines = Object.entries(SERIES_CONFIG)
+    .filter(([key]) => key !== NONMFG_CAPEX_KEY || showNonmfgCapex)
+    .map(([key, config]) => ({
+      dataKey: key,
+      color: config.color,
+      name: config.name,
+      hide: hiddenSeries.has(key),
+      strokeWidth: config.strokeWidth,
+    }))
 
   return (
     <div id="philadelphia-fed-chart">
@@ -158,14 +169,29 @@ export default function PhiladelphiaFedChart({ data }: PhiladelphiaFedChartProps
                 <>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
                     <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
-                    <Tooltip title="比較ページを開く">
-                      <Button
-                        icon={<AreaChartOutlined />}
-                        onClick={() => window.open('/compare?s=philadelphia_fed', '_blank')}
-                      >
-                        データ比較
-                      </Button>
-                    </Tooltip>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                        <Switch
+                          size="small"
+                          checked={showNonmfgCapex}
+                          onChange={setShowNonmfgCapex}
+                        />
+                        <span style={{ fontSize: 12, color: '#595959' }}>設備投資・ソフト/機械設備（非製造業・現況）</span>
+                        <Tooltip
+                          title="内容は「機械設備・ソフトウェア」の現況設備投資です（前月比の拡散指数）。ただしこの系列のみ非製造業景況調査（NMBOS, FRED: CEBNDIF066MSFRBPHI, 対象=サービス業）由来です。製造業調査には現況設備投資の設問が無いため代替表示しています。発表が製造業より約1週間遅く（第4火曜）、最新月は遅れて反映されます。"
+                        >
+                          <InfoCircleOutlined style={{ fontSize: 12, color: '#8c8c8c' }} />
+                        </Tooltip>
+                      </div>
+                      <Tooltip title="比較ページを開く">
+                        <Button
+                          icon={<AreaChartOutlined />}
+                          onClick={() => window.open('/compare?s=philadelphia_fed', '_blank')}
+                        >
+                          データ比較
+                        </Button>
+                      </Tooltip>
+                    </div>
                   </div>
 
                   <StandardLineChart

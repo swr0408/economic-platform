@@ -2,7 +2,6 @@ import { Spin, Alert, Button } from 'antd'
 import { useNewZealandInflationDashboard } from '../../../hooks/useDashboardData'
 import NzCpiChart from './inflation/NzCpiChart'
 import NzCpiItemChart from './inflation/NzCpiItemChart'
-import NzTradedNontradedChart from './inflation/NzTradedNontradedChart'
 import NzPpiChart from './inflation/NzPpiChart'
 import NzInflationExpectationsChart from './inflation/NzInflationExpectationsChart'
 import NzAnzBusinessSentimentPriceChart from './inflation/NzAnzBusinessSentimentPriceChart'
@@ -49,11 +48,6 @@ export default function NewZealandInflationCharts() {
       {/* CPI 項目別 */}
       <NzCpiItemChart
         data={dashboardData?.nz_cpi_item ?? null}
-      />
-
-      {/* 貿易財/非貿易財 */}
-      <NzTradedNontradedChart
-        data={dashboardData?.nz_traded_nontraded ?? null}
       />
 
       {/* PPI */}

@@ -40,7 +40,10 @@ class ONSGDPService:
     DATA_CACHE_KEY = "uk:ons_gdp:data"
 
     # ONS Time Series API - ABMI series (Real GDP, seasonally adjusted)
-    ABMI_CSV_URL = "https://www.ons.gov.uk/generator?format=csv&uri=/economy/grossdomesticproductgdp/timeseries/abmi/ukea"
+    # データセットは pn2 (Quarterly National Accounts) を使用。
+    # 旧 ukea (UK Economic Accounts) は更新が約1四半期遅い（次回反映が QNA 確報まで遅延し
+    # 直近四半期が取りこぼされる）ため、最も速報性の高い pn2 に切替。
+    ABMI_CSV_URL = "https://www.ons.gov.uk/generator?format=csv&uri=/economy/grossdomesticproductgdp/timeseries/abmi/pn2"
 
     # FMPカレンダー検索パターン（indicator_event_mappingで定義されたもの）
     FMP_EVENT_PATTERNS = ["GDP Growth Rate QoQ", "GDP Growth Rate YoY", "Gross Domestic Product QoQ"]

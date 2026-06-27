@@ -78,7 +78,7 @@ export default function UKPublicSectorNetBorrowingChart({ data }: UKPublicSector
     return formattedData
   }, [data, dataType])
 
-  // 単位フォーマット
+  // 単位フォーマット（ツールチップ/詳細表示用：高精度）
   const formatValue = (value: number) => {
     // PSNB Ex, CGNB: パーセント表示
     if (dataType === 'psnb_ex' || dataType === 'cgnb') {
@@ -87,6 +87,20 @@ export default function UKPublicSectorNetBorrowingChart({ data }: UKPublicSector
     // PSND Ex, PSND/GDP: £ million → £ billion変換
     const billion = value / 1000
     return `£${billion.toFixed(2)}B`
+  }
+
+  // Y軸ティック用フォーマット（コンパクト：軸幅でのクリップを防ぐ）
+  const formatAxisValue = (value: number) => {
+    // パーセント系は小数なし
+    if (dataType === 'psnb_ex' || dataType === 'cgnb') {
+      return `${Math.round(value)}%`
+    }
+    // £ million → 兆(T)/十億(B) のコンパクト表記
+    const billion = value / 1000
+    if (Math.abs(billion) >= 1000) {
+      return `£${(billion / 1000).toFixed(1)}T`
+    }
+    return `£${Math.round(billion)}B`
   }
 
   // 期間フィルタリング
@@ -152,14 +166,6 @@ export default function UKPublicSectorNetBorrowingChart({ data }: UKPublicSector
     return <LoadingChart title="公的部門純借入（イギリス）" />
   }
 
-  if (!hasData) {
-    return (
-      <ChartContainer title="公的部門純借入（イギリス）" showPeriodSelector={false} showDataSource={false}>
-        <NoDataMessage />
-      </ChartContainer>
-    )
-  }
-
   return (
     <div id="uk-public-sector-net-borrowing-chart">
       <ChartContainer
@@ -220,72 +226,76 @@ export default function UKPublicSectorNetBorrowingChart({ data }: UKPublicSector
                       </Button>
                     </Tooltip>
                   </div>
-                  <ZoomableChart
-                    data={filteredData}
-                    dataKey="value"
-                    color={COLORS[dataType]}
-                    name={getDataLabel()}
-                    height={450}
-                    tickFormatter={formatValue}
-                    xAxisTickFormatter={formatDateLabel}
-                    enableDynamicTicks={true}
-                    showZeroLine={true}
-                    showFiftyLine={false}
-                    connectNulls={true}
-                    hideLegend={true}
-                    showDefaultTooltip={false}
-                    domain={['dataMin - 5', 'dataMax + 5']}
-                  >
-                    <RechartsTooltip
-                      content={({ active, payload, label }) => {
-                        if (!active || !payload || payload.length === 0) return null
-                        return (
-                          <div
-                            style={{
-                              backgroundColor: DARK_THEME.bgTertiary,
-                              border: `1px solid ${DARK_THEME.borderLight}`,
-                              borderRadius: 8,
-                              padding: '12px 16px',
-                              boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
-                            }}
-                          >
-                            <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, color: DARK_THEME.textPrimary }}>
-                              {formatDateLabel(String(label))}
-                            </div>
-                            {payload.map((item, index) => (
-                              <div
-                                key={index}
-                                style={{
-                                  display: 'flex',
-                                  justifyContent: 'space-between',
-                                  alignItems: 'center',
-                                  marginBottom: 4,
-                                  fontSize: 13,
-                                }}
-                              >
-                                <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
-                                  <span
-                                    style={{
-                                      display: 'inline-block',
-                                      width: 10,
-                                      height: 10,
-                                      borderRadius: 2,
-                                      backgroundColor: item.color || COLORS[dataType],
-                                      marginRight: 6,
-                                    }}
-                                  />
-                                  {item.name}
-                                </span>
-                                <span style={{ fontWeight: 500, color: item.color || COLORS[dataType] }}>
-                                  {formatValue(item.value as number)}
-                                </span>
+                  {hasData ? (
+                    <ZoomableChart
+                      data={filteredData}
+                      dataKey="value"
+                      color={COLORS[dataType]}
+                      name={getDataLabel()}
+                      height={450}
+                      tickFormatter={formatAxisValue}
+                      xAxisTickFormatter={formatDateLabel}
+                      enableDynamicTicks={true}
+                      showZeroLine={true}
+                      showFiftyLine={false}
+                      connectNulls={true}
+                      hideLegend={true}
+                      showDefaultTooltip={false}
+                      domain={['dataMin - 5', 'dataMax + 5']}
+                    >
+                      <RechartsTooltip
+                        content={({ active, payload, label }) => {
+                          if (!active || !payload || payload.length === 0) return null
+                          return (
+                            <div
+                              style={{
+                                backgroundColor: DARK_THEME.bgTertiary,
+                                border: `1px solid ${DARK_THEME.borderLight}`,
+                                borderRadius: 8,
+                                padding: '12px 16px',
+                                boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+                              }}
+                            >
+                              <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, color: DARK_THEME.textPrimary }}>
+                                {formatDateLabel(String(label))}
                               </div>
-                            ))}
-                          </div>
-                        )
-                      }}
-                    />
-                  </ZoomableChart>
+                              {payload.map((item, index) => (
+                                <div
+                                  key={index}
+                                  style={{
+                                    display: 'flex',
+                                    justifyContent: 'space-between',
+                                    alignItems: 'center',
+                                    marginBottom: 4,
+                                    fontSize: 13,
+                                  }}
+                                >
+                                  <span style={{ display: 'flex', alignItems: 'center', marginRight: 16, color: '#f1f5f9' }}>
+                                    <span
+                                      style={{
+                                        display: 'inline-block',
+                                        width: 10,
+                                        height: 10,
+                                        borderRadius: 2,
+                                        backgroundColor: item.color || COLORS[dataType],
+                                        marginRight: 6,
+                                      }}
+                                    />
+                                    {item.name}
+                                  </span>
+                                  <span style={{ fontWeight: 500, color: item.color || COLORS[dataType] }}>
+                                    {formatValue(item.value as number)}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          )
+                        }}
+                      />
+                    </ZoomableChart>
+                  ) : (
+                    <NoDataMessage />
+                  )}
                 </>
               ),
             },

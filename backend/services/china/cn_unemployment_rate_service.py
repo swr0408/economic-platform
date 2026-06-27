@@ -46,7 +46,17 @@ DB_INDICATORS = {
 # 若年(16-24歳)は NBS が本文/FMP/公開APIから外し data.stats.gov.cn(WAF) のみで
 # 配信するため自動取得不可。ここに公式エクスポートを置けば total+youth を取り込む。
 # ファイル mtime が更新されると china_employment ローダーが検知して再取得する。
+#
+# 配置先は他の中国手動更新CSV (中国固定資産投資.csv 等) と同じ
+# data/manual_update/monthly/china/ に統一。旧 data/csv_import/ にファイルが
+# 残っていれば後方互換で読む（移行猶予）。系列名(英語)の完全一致だけが必須で
+# ファイル名は任意。
 _MANUAL_CSV_PATH = str(
+    _BASE_DIR / "data" / "manual_update" / "monthly" / "china" / "中国失業率.csv"
+)
+# 後方互換: 旧配置 (data/csv_import/ChinaUnemployment Rate.csv)。新パスが
+# 存在しない場合のみフォールバックで読む。
+_MANUAL_CSV_PATH_LEGACY = str(
     _BASE_DIR / "data" / "csv_import" / "ChinaUnemployment Rate.csv"
 )
 
@@ -82,10 +92,12 @@ def _parse_unemployment_csv() -> Dict[str, Dict[str, float]]:
       行4+: 系列名,(各月の値) ...
     値はパーセント数値（空セルはスキップ＝当月未発表）。
     """
-    if not os.path.exists(_MANUAL_CSV_PATH):
+    # 新配置を優先し、無ければ旧配置(csv_import)へフォールバック
+    path = _MANUAL_CSV_PATH if os.path.exists(_MANUAL_CSV_PATH) else _MANUAL_CSV_PATH_LEGACY
+    if not os.path.exists(path):
         return {}
     try:
-        with open(_MANUAL_CSV_PATH, encoding="utf-8-sig") as f:
+        with open(path, encoding="utf-8-sig") as f:
             lines = [ln.rstrip("\n").rstrip("\r") for ln in f]
     except Exception as e:
         logger.warning(f"[Unemployment] Manual CSV read error: {e}")

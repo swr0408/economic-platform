@@ -93,6 +93,7 @@ try:
     from backend.routers.japan.tertiary_industry_index import router as japan_tertiary_industry_index_router
     from backend.routers.japan.bei import router as japan_bei_router
     from backend.routers.japan.price_di_spread import router as japan_price_di_spread_router
+    from backend.routers.japan.inflation_outlook import router as japan_inflation_outlook_router
     from backend.routers.japan.price_pass_through_rate import router as japan_price_pass_through_rate_router
     from backend.routers.japan.boj_current_account_balance import router as japan_boj_current_account_balance_router
     from backend.routers.eurozone.ecb_rates import router as eurozone_ecb_rates_router
@@ -268,6 +269,7 @@ except ImportError as _ie:
     from routers.japan.balance_of_trade import router as japan_balance_of_trade_router
     from routers.japan.terms_of_trade import router as japan_terms_of_trade_router
     from routers.japan.price_di_spread import router as japan_price_di_spread_router
+    from routers.japan.inflation_outlook import router as japan_inflation_outlook_router
     from routers.japan.price_pass_through_rate import router as japan_price_pass_through_rate_router
     from routers.japan.boj_current_account_balance import router as japan_boj_current_account_balance_router
     from routers.eurozone.ecb_rates import router as eurozone_ecb_rates_router
@@ -604,6 +606,7 @@ app.include_router(japan_current_account_router)
 app.include_router(japan_balance_of_trade_router)
 app.include_router(japan_terms_of_trade_router)
 app.include_router(japan_price_di_spread_router)
+app.include_router(japan_inflation_outlook_router)
 app.include_router(japan_price_pass_through_rate_router)
 app.include_router(japan_boj_current_account_balance_router)
 app.include_router(eurozone_ecb_rates_router)

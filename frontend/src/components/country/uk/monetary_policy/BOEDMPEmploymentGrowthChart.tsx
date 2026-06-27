@@ -91,11 +91,12 @@ export default function BOEDMPEmploymentGrowthChart({ data }: BOEDMPEmploymentGr
             <Tooltip
               labelFormatter={formatDateLabel}
               contentStyle={TOOLTIP_STYLE}
-              formatter={(value: unknown) => {
-                if (value === null || value === undefined) return ['n.a.', '']
+              formatter={(value: unknown, name: unknown) => {
+                const label = name as string
+                if (value === null || value === undefined) return ['n.a.', label]
                 const numValue = typeof value === 'number' ? value : null
-                if (numValue === null) return ['n.a.', '']
-                return [`${numValue.toFixed(2)}%`, '']
+                if (numValue === null) return ['n.a.', label]
+                return [`${numValue.toFixed(2)}%`, label]
               }}
             />
             <Legend wrapperStyle={{ color: DARK_THEME.textPrimary }} />

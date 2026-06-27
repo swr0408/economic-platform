@@ -76,6 +76,12 @@ MONTH_TO_QUARTER = {
 # RBA G1 Historical Data (Trimmed Mean QoQ, Weighted Median QoQ)
 RBA_G1_URL = "https://www.rba.gov.au/statistics/tables/xls/g01hist.xlsx"
 
+# RBA G1 長期履歴シードCSV (1982-06～)
+# RBAサイトはAkamaiで当サーバIPを403ブロックするため、長期履歴は静的CSVでシード。
+# 直近四半期は RBA G1 ライブ取得(成功時) と ABS API(Phase3 WM YoY) が上書き補完。
+CSV_DIR = Path(__file__).parent.parent.parent / "data" / "csv_import"
+RBA_G1_SEED_CSV = CSV_DIR / "au_cpi_underlying_rba_g1.csv"
+
 # FMPイベントパターン
 FMP_EVENT_PATTERNS = ["CPI", "Consumer Price Index"]
 
@@ -166,6 +172,52 @@ class AbsQuarterlyCpiService:
 
         except Exception as e:
             logger.error(f"Error parsing SDMX data: {e}")
+
+        return result
+
+    def _load_seed_csv(self) -> Dict[str, Dict[str, float]]:
+        """RBA G1 長期履歴シードCSVを読み込む
+
+        RBAサイトがIPブロック(403)のため、RBA G1の長期TM/WM(QoQ+YoY, 1982-06～)を
+        静的CSVから供給する。_fetch_rba_g1_qoq と同じ形式で返す。
+
+        Returns:
+            { "2025-12-01": {"trimmed_mean_qoq":.., "weighted_median_qoq":..,
+                             "trimmed_mean_yoy":.., "weighted_median_yoy":..}, ... }
+        """
+        result: Dict[str, Dict[str, float]] = {}
+        try:
+            if not RBA_G1_SEED_CSV.exists():
+                logger.warning(f"RBA G1 seed CSV not found: {RBA_G1_SEED_CSV}")
+                return result
+
+            import csv
+            with open(RBA_G1_SEED_CSV, "r", encoding="utf-8") as f:
+                reader = csv.DictReader(f)
+                for row in reader:
+                    date_str = (row.get("date") or "").strip()
+                    if not date_str:
+                        continue
+                    point: Dict[str, float] = {}
+                    for key, decimals in [
+                        ("trimmed_mean_qoq", 2),
+                        ("weighted_median_qoq", 2),
+                        ("trimmed_mean_yoy", 1),
+                        ("weighted_median_yoy", 1),
+                    ]:
+                        raw_val = (row.get(key) or "").strip()
+                        if raw_val == "":
+                            continue
+                        try:
+                            point[key] = round(float(raw_val), decimals)
+                        except (ValueError, TypeError):
+                            pass
+                    if point:
+                        result[date_str] = point
+
+            logger.info(f"RBA G1 seed CSV: loaded {len(result)} quarterly data points")
+        except Exception as e:
+            logger.error(f"Error loading RBA G1 seed CSV: {e}")
 
         return result
 
@@ -416,8 +468,15 @@ class AbsQuarterlyCpiService:
             cpi_sa_yoy_obs = self._parse_sdmx_observations(raw_sa_yoy)
             logger.info(f"CPI SA YoY: {len(cpi_sa_yoy_obs)} observations")
 
-        # 4. RBA G1 Excel (Trimmed Mean QoQ / Weighted Median QoQ)
-        rba_g1_qoq = self._fetch_rba_g1_qoq()
+        # 4. RBA G1 (Trimmed Mean QoQ/YoY / Weighted Median QoQ/YoY)
+        #    長期履歴は静的シードCSV(1982-06～)をベースに、ライブExcel取得が
+        #    成功すれば直近分を上書き(RBAは現状Akamaiで403のためシードが主経路)。
+        rba_g1_qoq = self._load_seed_csv()
+        live_g1 = self._fetch_rba_g1_qoq()
+        if live_g1:
+            for date_str, vals in live_g1.items():
+                rba_g1_qoq.setdefault(date_str, {}).update(vals)
+            logger.info(f"RBA G1 live overlay: {len(live_g1)} points merged onto seed")
 
         if cpi_q_obs or cpi_m_yoy_obs or cpi_sa_yoy_obs or rba_g1_qoq:
             data_points = self._merge_data(cpi_q_obs, cpi_m_yoy_obs, cpi_sa_yoy_obs, rba_g1_qoq)
@@ -478,7 +537,7 @@ class AbsQuarterlyCpiService:
     def _get_next_release(self) -> Optional[Dict[str, str]]:
         """FMPから次回発表日を取得"""
         try:
-            from services.usa.fmp_next_release_utils import get_next_release_by_pattern
+            from services.australia.fmp_next_release_utils import get_next_release_by_pattern
 
             return get_next_release_by_pattern(FMP_EVENT_PATTERNS[0], "AU")
         except Exception as e:

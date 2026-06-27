@@ -13,11 +13,11 @@
       "date": "2026-06-29",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.514,
+      "eps_estimate": 0.398,
       "eps_actual": null,
-      "revenue_estimate": 5661197000.0,
+      "revenue_estimate": 5645526000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "ASML",
@@ -27,11 +27,11 @@
       "date": "2026-07-15",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 8.01,
+      "eps_estimate": 8.03,
       "eps_actual": null,
-      "revenue_estimate": 10449480000.0,
+      "revenue_estimate": 10430580000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "ASM",
@@ -41,11 +41,11 @@
       "date": "2026-07-28",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 5.81,
+      "eps_estimate": 5.79,
       "eps_actual": null,
-      "revenue_estimate": 1100865000.0,
+      "revenue_estimate": 1097747000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "ING",
@@ -57,9 +57,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.74,
       "eps_actual": null,
-      "revenue_estimate": 7131577000.0,
+      "revenue_estimate": 7155477000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "AD",
@@ -69,11 +69,11 @@
       "date": "2026-08-05",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.75,
+      "eps_estimate": 0.72,
       "eps_actual": null,
-      "revenue_estimate": 27331870000.0,
+      "revenue_estimate": 26957300000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "ADYEN",
@@ -83,16 +83,16 @@
       "date": "2026-08-13",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.1995,
+      "eps_estimate": 0.1982,
       "eps_actual": null,
-      "revenue_estimate": 1513227000.0,
+      "revenue_estimate": 1507794000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     }
   ],
-  "next_7d_count": 0,
+  "next_7d_count": 1,
   "next_30d_count": 2,
-  "last_updated": "2026-06-17T12:37:42.772137+00:00",
+  "last_updated": "2026-06-27T13:49:18.732363+00:00",
   "cached": false,
   "status": "ok"
 }

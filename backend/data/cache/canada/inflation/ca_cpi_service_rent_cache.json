@@ -2431,15 +2431,23 @@
       "services": 1.65,
       "shelter": 1.77,
       "rent": 3.6
+    },
+    {
+      "date": "2026-05-01",
+      "all_items": 3.23,
+      "ex_food_energy": 1.61,
+      "services": 1.97,
+      "shelter": 1.71,
+      "rent": 3.53
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "all_items": 2.82,
-    "ex_food_energy": 1.49,
-    "services": 1.65,
-    "shelter": 1.77,
-    "rent": 3.6
+    "date": "2026-05-01",
+    "all_items": 3.23,
+    "ex_food_energy": 1.61,
+    "services": 1.97,
+    "shelter": 1.71,
+    "rent": 3.53
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -2451,14 +2459,14 @@
     "base_year": "2002=100"
   },
   "next_release": {
-    "date": "2026-06-22",
-    "datetime_utc": "2026-06-22T12:30:00+00:00",
-    "datetime_jst": "2026-06-22T21:30:00+09:00",
+    "date": "2026-07-20",
+    "datetime_utc": "2026-07-20T12:30:00+00:00",
+    "datetime_jst": "2026-07-20T21:30:00+09:00",
     "time_jst": "21:30",
-    "datetime_toronto": "2026-06-22T08:30:00-04:00",
+    "datetime_toronto": "2026-07-20T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "CPI MoM (May)",
-    "estimate": null
+    "label": "CPI YoY (Jun)",
+    "estimate": 2.4
   },
-  "last_updated": "2026-06-17T21:31:24.171629+09:00"
+  "last_updated": "2026-06-27T11:46:20.685974+09:00"
 }

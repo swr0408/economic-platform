@@ -9,7 +9,7 @@
     {
       "date": "2000-02-01",
       "value": 8788.97,
-      "mom_change": 49.17,
+      "mom_change": 49.16,
       "yoy_change": null
     },
     {
@@ -50,38 +50,38 @@
     },
     {
       "date": "2000-09-01",
-      "value": 8985.6,
-      "mom_change": -3.4,
+      "value": 8985.61,
+      "mom_change": -3.39,
       "yoy_change": null
     },
     {
       "date": "2000-10-01",
       "value": 8960.45,
-      "mom_change": -25.15,
+      "mom_change": -25.16,
       "yoy_change": null
     },
     {
       "date": "2000-11-01",
-      "value": 8902.92,
-      "mom_change": -57.53,
+      "value": 8902.91,
+      "mom_change": -57.54,
       "yoy_change": null
     },
     {
       "date": "2000-12-01",
       "value": 8944.4,
-      "mom_change": 41.48,
+      "mom_change": 41.49,
       "yoy_change": null
     },
     {
       "date": "2001-01-01",
-      "value": 8957.88,
-      "mom_change": 13.48,
+      "value": 8957.89,
+      "mom_change": 13.49,
       "yoy_change": 2.5
     },
     {
       "date": "2001-02-01",
       "value": 8954.1,
-      "mom_change": -3.78,
+      "mom_change": -3.79,
       "yoy_change": 1.88
     },
     {
@@ -99,7 +99,7 @@
     {
       "date": "2001-05-01",
       "value": 9007.85,
-      "mom_change": -7.06,
+      "mom_change": -7.07,
       "yoy_change": 1.56
     },
     {
@@ -111,7 +111,7 @@
     {
       "date": "2001-07-01",
       "value": 9024.45,
-      "mom_change": 19.61,
+      "mom_change": 19.62,
       "yoy_change": 0.36
     },
     {
@@ -134,19 +134,19 @@
     },
     {
       "date": "2001-11-01",
-      "value": 9078.62,
-      "mom_change": 32.64,
+      "value": 9078.63,
+      "mom_change": 32.65,
       "yoy_change": 1.97
     },
     {
       "date": "2001-12-01",
       "value": 9064.96,
-      "mom_change": -13.65,
+      "mom_change": -13.66,
       "yoy_change": 1.35
     },
     {
       "date": "2002-01-01",
-      "value": 9083.22,
+      "value": 9083.21,
       "mom_change": 18.25,
       "yoy_change": 1.4
     },
@@ -182,7 +182,7 @@
     },
     {
       "date": "2002-07-01",
-      "value": 9167.07,
+      "value": 9167.06,
       "mom_change": 5.92,
       "yoy_change": 1.58
     },
@@ -206,26 +206,26 @@
     },
     {
       "date": "2002-11-01",
-      "value": 9283.76,
-      "mom_change": 49.07,
+      "value": 9283.74,
+      "mom_change": 49.06,
       "yoy_change": 2.26
     },
     {
       "date": "2002-12-01",
-      "value": 9327.65,
-      "mom_change": 43.89,
+      "value": 9327.64,
+      "mom_change": 43.9,
       "yoy_change": 2.9
     },
     {
       "date": "2003-01-01",
-      "value": 9378.7,
+      "value": 9378.69,
       "mom_change": 51.05,
       "yoy_change": 3.25
     },
     {
       "date": "2003-02-01",
       "value": 9406.04,
-      "mom_change": 27.34,
+      "mom_change": 27.35,
       "yoy_change": 3.06
     },
     {
@@ -248,7 +248,7 @@
     },
     {
       "date": "2003-06-01",
-      "value": 9352.17,
+      "value": 9352.16,
       "mom_change": -23.2,
       "yoy_change": 2.09
     },
@@ -267,7 +267,7 @@
     {
       "date": "2003-09-01",
       "value": 9408.28,
-      "mom_change": 7.95,
+      "mom_change": 7.94,
       "yoy_change": 1.98
     },
     {
@@ -278,26 +278,26 @@
     },
     {
       "date": "2003-11-01",
-      "value": 9428.12,
-      "mom_change": -3.94,
+      "value": 9428.11,
+      "mom_change": -3.96,
       "yoy_change": 1.56
     },
     {
       "date": "2003-12-01",
       "value": 9460.11,
-      "mom_change": 31.99,
+      "mom_change": 32.0,
       "yoy_change": 1.42
     },
     {
       "date": "2004-01-01",
       "value": 9460.51,
-      "mom_change": 0.41,
+      "mom_change": 0.4,
       "yoy_change": 0.87
     },
     {
       "date": "2004-02-01",
       "value": 9465.46,
-      "mom_change": 4.94,
+      "mom_change": 4.95,
       "yoy_change": 0.63
     },
     {
@@ -309,13 +309,13 @@
     {
       "date": "2004-04-01",
       "value": 9508.88,
-      "mom_change": 9.83,
+      "mom_change": 9.82,
       "yoy_change": 1.61
     },
     {
       "date": "2004-05-01",
       "value": 9524.5,
-      "mom_change": 15.63,
+      "mom_change": 15.62,
       "yoy_change": 1.59
     },
     {
@@ -338,7 +338,7 @@
     },
     {
       "date": "2004-09-01",
-      "value": 9591.35,
+      "value": 9591.34,
       "mom_change": 56.13,
       "yoy_change": 1.95
     },
@@ -350,14 +350,14 @@
     },
     {
       "date": "2004-11-01",
-      "value": 9683.58,
-      "mom_change": 37.99,
+      "value": 9683.59,
+      "mom_change": 38.0,
       "yoy_change": 2.71
     },
     {
       "date": "2004-12-01",
       "value": 9692.51,
-      "mom_change": 8.92,
+      "mom_change": 8.91,
       "yoy_change": 2.46
     },
     {
@@ -368,7 +368,7 @@
     },
     {
       "date": "2005-02-01",
-      "value": 9775.02,
+      "value": 9775.03,
       "mom_change": 29.84,
       "yoy_change": 3.27
     },
@@ -380,7 +380,7 @@
     },
     {
       "date": "2005-04-01",
-      "value": 9855.25,
+      "value": 9855.24,
       "mom_change": 38.86,
       "yoy_change": 3.64
     },
@@ -422,19 +422,19 @@
     },
     {
       "date": "2005-11-01",
-      "value": 9942.14,
-      "mom_change": 9.31,
+      "value": 9942.12,
+      "mom_change": 9.29,
       "yoy_change": 2.67
     },
     {
       "date": "2005-12-01",
-      "value": 9957.4,
-      "mom_change": 15.25,
+      "value": 9957.39,
+      "mom_change": 15.27,
       "yoy_change": 2.73
     },
     {
       "date": "2006-01-01",
-      "value": 9958.04,
+      "value": 9958.05,
       "mom_change": 0.65,
       "yoy_change": 2.18
     },
@@ -452,7 +452,7 @@
     },
     {
       "date": "2006-04-01",
-      "value": 10041.62,
+      "value": 10041.61,
       "mom_change": 7.28,
       "yoy_change": 1.89
     },
@@ -501,13 +501,13 @@
     {
       "date": "2006-12-01",
       "value": 10282.31,
-      "mom_change": 52.66,
+      "mom_change": 52.65,
       "yoy_change": 3.26
     },
     {
       "date": "2007-01-01",
       "value": 10279.9,
-      "mom_change": -2.42,
+      "mom_change": -2.41,
       "yoy_change": 3.23
     },
     {
@@ -549,7 +549,7 @@
     {
       "date": "2007-08-01",
       "value": 10484.55,
-      "mom_change": 37.72,
+      "mom_change": 37.73,
       "yoy_change": 3.0
     },
     {
@@ -567,31 +567,31 @@
     {
       "date": "2007-11-01",
       "value": 10561.47,
-      "mom_change": 57.35,
+      "mom_change": 57.36,
       "yoy_change": 3.24
     },
     {
       "date": "2007-12-01",
       "value": 10582.21,
-      "mom_change": 20.73,
+      "mom_change": 20.74,
       "yoy_change": 2.92
     },
     {
       "date": "2008-01-01",
-      "value": 10609.23,
-      "mom_change": 27.02,
+      "value": 10609.21,
+      "mom_change": 27.0,
       "yoy_change": 3.2
     },
     {
       "date": "2008-02-01",
-      "value": 10649.31,
-      "mom_change": 40.07,
+      "value": 10649.3,
+      "mom_change": 40.09,
       "yoy_change": 3.31
     },
     {
       "date": "2008-03-01",
       "value": 10669.87,
-      "mom_change": 20.56,
+      "mom_change": 20.57,
       "yoy_change": 3.22
     },
     {
@@ -644,20 +644,20 @@
     },
     {
       "date": "2008-12-01",
-      "value": 10789.09,
-      "mom_change": 8.18,
-      "yoy_change": 1.95
+      "value": 10789.11,
+      "mom_change": 8.22,
+      "yoy_change": 1.96
     },
     {
       "date": "2009-01-01",
-      "value": 10790.96,
-      "mom_change": 1.87,
+      "value": 10790.93,
+      "mom_change": 1.81,
       "yoy_change": 1.71
     },
     {
       "date": "2009-02-01",
       "value": 10804.97,
-      "mom_change": 14.01,
+      "mom_change": 14.05,
       "yoy_change": 1.46
     },
     {
@@ -699,43 +699,43 @@
     {
       "date": "2009-09-01",
       "value": 10810.13,
-      "mom_change": 20.7,
+      "mom_change": 20.69,
       "yoy_change": 0.3
     },
     {
       "date": "2009-10-01",
-      "value": 10820.56,
-      "mom_change": 10.43,
+      "value": 10820.55,
+      "mom_change": 10.42,
       "yoy_change": 0.31
     },
     {
       "date": "2009-11-01",
-      "value": 10850.69,
+      "value": 10850.68,
       "mom_change": 30.13,
       "yoy_change": 0.65
     },
     {
       "date": "2009-12-01",
-      "value": 10887.34,
-      "mom_change": 36.64,
+      "value": 10887.38,
+      "mom_change": 36.7,
       "yoy_change": 0.91
     },
     {
       "date": "2010-01-01",
-      "value": 10937.19,
-      "mom_change": 49.85,
-      "yoy_change": 1.36
+      "value": 10937.13,
+      "mom_change": 49.75,
+      "yoy_change": 1.35
     },
     {
       "date": "2010-02-01",
-      "value": 10920.81,
-      "mom_change": -16.38,
+      "value": 10920.82,
+      "mom_change": -16.32,
       "yoy_change": 1.07
     },
     {
       "date": "2010-03-01",
-      "value": 10925.67,
-      "mom_change": 4.87,
+      "value": 10925.68,
+      "mom_change": 4.86,
       "yoy_change": 1.44
     },
     {
@@ -746,1162 +746,1168 @@
     },
     {
       "date": "2010-05-01",
-      "value": 10938.84,
-      "mom_change": 1.33,
+      "value": 10938.85,
+      "mom_change": 1.34,
       "yoy_change": 1.54
     },
     {
       "date": "2010-06-01",
-      "value": 10992.8,
+      "value": 10992.81,
       "mom_change": 53.96,
       "yoy_change": 2.21
     },
     {
       "date": "2010-07-01",
-      "value": 11018.98,
+      "value": 11018.99,
       "mom_change": 26.18,
       "yoy_change": 2.03
     },
     {
       "date": "2010-08-01",
-      "value": 11060.91,
-      "mom_change": 41.92,
+      "value": 11060.92,
+      "mom_change": 41.93,
       "yoy_change": 2.52
     },
     {
       "date": "2010-09-01",
-      "value": 11087.34,
-      "mom_change": 26.43,
+      "value": 11087.33,
+      "mom_change": 26.41,
       "yoy_change": 2.56
     },
     {
       "date": "2010-10-01",
-      "value": 11104.47,
-      "mom_change": 17.13,
+      "value": 11104.45,
+      "mom_change": 17.12,
       "yoy_change": 2.62
     },
     {
       "date": "2010-11-01",
-      "value": 11163.1,
-      "mom_change": 58.63,
+      "value": 11163.09,
+      "mom_change": 58.64,
       "yoy_change": 2.88
     },
     {
       "date": "2010-12-01",
-      "value": 11169.25,
-      "mom_change": 6.15,
+      "value": 11169.33,
+      "mom_change": 6.24,
       "yoy_change": 2.59
     },
     {
       "date": "2011-01-01",
-      "value": 11202.15,
-      "mom_change": 32.9,
+      "value": 11202.0,
+      "mom_change": 32.68,
       "yoy_change": 2.42
     },
     {
       "date": "2011-02-01",
-      "value": 11176.25,
-      "mom_change": -25.9,
+      "value": 11176.29,
+      "mom_change": -25.71,
       "yoy_change": 2.34
     },
     {
       "date": "2011-03-01",
-      "value": 11215.1,
-      "mom_change": 38.85,
+      "value": 11215.12,
+      "mom_change": 38.82,
       "yoy_change": 2.65
     },
     {
       "date": "2011-04-01",
-      "value": 11182.46,
+      "value": 11182.47,
       "mom_change": -32.64,
       "yoy_change": 2.24
     },
     {
       "date": "2011-05-01",
-      "value": 11172.71,
-      "mom_change": -9.74,
+      "value": 11172.73,
+      "mom_change": -9.75,
       "yoy_change": 2.14
     },
     {
       "date": "2011-06-01",
-      "value": 11205.67,
+      "value": 11205.68,
       "mom_change": 32.95,
       "yoy_change": 1.94
     },
     {
       "date": "2011-07-01",
-      "value": 11209.67,
-      "mom_change": 4.0,
+      "value": 11209.66,
+      "mom_change": 3.99,
       "yoy_change": 1.73
     },
     {
       "date": "2011-08-01",
-      "value": 11218.68,
-      "mom_change": 9.01,
+      "value": 11218.69,
+      "mom_change": 9.02,
       "yoy_change": 1.43
     },
     {
       "date": "2011-09-01",
-      "value": 11246.0,
-      "mom_change": 27.32,
+      "value": 11245.98,
+      "mom_change": 27.3,
       "yoy_change": 1.43
     },
     {
       "date": "2011-10-01",
-      "value": 11249.29,
+      "value": 11249.27,
       "mom_change": 3.29,
       "yoy_change": 1.3
     },
     {
       "date": "2011-11-01",
       "value": 11252.76,
-      "mom_change": 3.47,
+      "mom_change": 3.49,
       "yoy_change": 0.8
     },
     {
       "date": "2011-12-01",
-      "value": 11231.69,
-      "mom_change": -21.07,
+      "value": 11231.81,
+      "mom_change": -20.95,
       "yoy_change": 0.56
     },
     {
       "date": "2012-01-01",
-      "value": 11308.91,
-      "mom_change": 77.22,
+      "value": 11308.67,
+      "mom_change": 76.86,
       "yoy_change": 0.95
     },
     {
       "date": "2012-02-01",
-      "value": 11271.87,
-      "mom_change": -37.04,
+      "value": 11271.96,
+      "mom_change": -36.71,
       "yoy_change": 0.86
     },
     {
       "date": "2012-03-01",
-      "value": 11333.34,
-      "mom_change": 61.47,
+      "value": 11333.39,
+      "mom_change": 61.43,
       "yoy_change": 1.05
     },
     {
       "date": "2012-04-01",
-      "value": 11321.97,
-      "mom_change": -11.37,
+      "value": 11322.01,
+      "mom_change": -11.38,
       "yoy_change": 1.25
     },
     {
       "date": "2012-05-01",
       "value": 11364.04,
-      "mom_change": 42.07,
+      "mom_change": 42.03,
       "yoy_change": 1.71
     },
     {
       "date": "2012-06-01",
-      "value": 11338.59,
-      "mom_change": -25.45,
+      "value": 11338.6,
+      "mom_change": -25.43,
       "yoy_change": 1.19
     },
     {
       "date": "2012-07-01",
-      "value": 11348.54,
-      "mom_change": 9.95,
+      "value": 11348.53,
+      "mom_change": 9.93,
       "yoy_change": 1.24
     },
     {
       "date": "2012-08-01",
-      "value": 11360.78,
-      "mom_change": 12.24,
+      "value": 11360.79,
+      "mom_change": 12.26,
       "yoy_change": 1.27
     },
     {
       "date": "2012-09-01",
-      "value": 11390.0,
-      "mom_change": 29.22,
+      "value": 11389.97,
+      "mom_change": 29.18,
       "yoy_change": 1.28
     },
     {
       "date": "2012-10-01",
-      "value": 11391.07,
+      "value": 11391.04,
       "mom_change": 1.07,
       "yoy_change": 1.26
     },
     {
       "date": "2012-11-01",
       "value": 11385.1,
-      "mom_change": -5.96,
+      "mom_change": -5.94,
       "yoy_change": 1.18
     },
     {
       "date": "2012-12-01",
-      "value": 11396.61,
-      "mom_change": 11.5,
+      "value": 11396.76,
+      "mom_change": 11.66,
       "yoy_change": 1.47
     },
     {
       "date": "2013-01-01",
-      "value": 11470.43,
-      "mom_change": 73.82,
+      "value": 11470.09,
+      "mom_change": 73.33,
       "yoy_change": 1.43
     },
     {
       "date": "2013-02-01",
-      "value": 11468.6,
-      "mom_change": -1.83,
+      "value": 11468.74,
+      "mom_change": -1.35,
       "yoy_change": 1.75
     },
     {
       "date": "2013-03-01",
-      "value": 11434.96,
-      "mom_change": -33.64,
+      "value": 11435.05,
+      "mom_change": -33.69,
       "yoy_change": 0.9
     },
     {
       "date": "2013-04-01",
-      "value": 11467.23,
-      "mom_change": 32.26,
+      "value": 11467.29,
+      "mom_change": 32.24,
       "yoy_change": 1.28
     },
     {
       "date": "2013-05-01",
-      "value": 11457.64,
-      "mom_change": -9.59,
+      "value": 11457.62,
+      "mom_change": -9.66,
       "yoy_change": 0.82
     },
     {
       "date": "2013-06-01",
-      "value": 11470.19,
-      "mom_change": 12.56,
+      "value": 11470.2,
+      "mom_change": 12.58,
       "yoy_change": 1.16
     },
     {
       "date": "2013-07-01",
-      "value": 11457.32,
-      "mom_change": -12.87,
+      "value": 11457.3,
+      "mom_change": -12.9,
       "yoy_change": 0.96
     },
     {
       "date": "2013-08-01",
       "value": 11459.63,
-      "mom_change": 2.3,
+      "mom_change": 2.33,
       "yoy_change": 0.87
     },
     {
       "date": "2013-09-01",
-      "value": 11474.19,
-      "mom_change": 14.56,
+      "value": 11474.15,
+      "mom_change": 14.52,
       "yoy_change": 0.74
     },
     {
       "date": "2013-10-01",
-      "value": 11470.63,
-      "mom_change": -3.55,
+      "value": 11470.59,
+      "mom_change": -3.56,
       "yoy_change": 0.7
     },
     {
       "date": "2013-11-01",
-      "value": 11449.23,
-      "mom_change": -21.4,
+      "value": 11449.22,
+      "mom_change": -21.37,
       "yoy_change": 0.56
     },
     {
       "date": "2013-12-01",
-      "value": 11418.99,
-      "mom_change": -30.24,
+      "value": 11419.16,
+      "mom_change": -30.06,
       "yoy_change": 0.2
     },
     {
       "date": "2014-01-01",
-      "value": 11453.72,
-      "mom_change": 34.73,
+      "value": 11453.34,
+      "mom_change": 34.19,
       "yoy_change": -0.15
     },
     {
       "date": "2014-02-01",
-      "value": 11478.83,
-      "mom_change": 25.11,
+      "value": 11478.87,
+      "mom_change": 25.53,
       "yoy_change": 0.09
     },
     {
       "date": "2014-03-01",
-      "value": 11532.09,
-      "mom_change": 53.26,
+      "value": 11532.19,
+      "mom_change": 53.32,
       "yoy_change": 0.85
     },
     {
       "date": "2014-04-01",
-      "value": 11537.82,
-      "mom_change": 5.73,
+      "value": 11537.87,
+      "mom_change": 5.69,
       "yoy_change": 0.62
     },
     {
       "date": "2014-05-01",
-      "value": 11512.86,
-      "mom_change": -24.96,
+      "value": 11512.84,
+      "mom_change": -25.04,
       "yoy_change": 0.48
     },
     {
       "date": "2014-06-01",
-      "value": 11528.7,
-      "mom_change": 15.85,
+      "value": 11528.76,
+      "mom_change": 15.92,
       "yoy_change": 0.51
     },
     {
       "date": "2014-07-01",
-      "value": 11545.35,
-      "mom_change": 16.65,
+      "value": 11545.3,
+      "mom_change": 16.54,
       "yoy_change": 0.77
     },
     {
       "date": "2014-08-01",
-      "value": 11548.78,
-      "mom_change": 3.42,
+      "value": 11548.75,
+      "mom_change": 3.45,
       "yoy_change": 0.78
     },
     {
       "date": "2014-09-01",
-      "value": 11547.17,
-      "mom_change": -1.61,
+      "value": 11547.13,
+      "mom_change": -1.62,
       "yoy_change": 0.64
     },
     {
       "date": "2014-10-01",
-      "value": 11542.41,
+      "value": 11542.37,
       "mom_change": -4.76,
       "yoy_change": 0.63
     },
     {
       "date": "2014-11-01",
-      "value": 11542.14,
-      "mom_change": -0.27,
+      "value": 11542.1,
+      "mom_change": -0.26,
       "yoy_change": 0.81
     },
     {
       "date": "2014-12-01",
-      "value": 11598.64,
-      "mom_change": 56.5,
+      "value": 11598.8,
+      "mom_change": 56.7,
       "yoy_change": 1.57
     },
     {
       "date": "2015-01-01",
-      "value": 11608.77,
-      "mom_change": 10.12,
+      "value": 11608.41,
+      "mom_change": 9.61,
       "yoy_change": 1.35
     },
     {
       "date": "2015-02-01",
-      "value": 11673.67,
-      "mom_change": 64.91,
+      "value": 11673.66,
+      "mom_change": 65.25,
       "yoy_change": 1.7
     },
     {
       "date": "2015-03-01",
-      "value": 11693.43,
-      "mom_change": 19.76,
+      "value": 11693.52,
+      "mom_change": 19.86,
       "yoy_change": 1.4
     },
     {
       "date": "2015-04-01",
-      "value": 11692.06,
-      "mom_change": -1.38,
+      "value": 11692.1,
+      "mom_change": -1.41,
       "yoy_change": 1.34
     },
     {
       "date": "2015-05-01",
       "value": 11733.56,
-      "mom_change": 41.51,
+      "mom_change": 41.46,
       "yoy_change": 1.92
     },
     {
       "date": "2015-06-01",
-      "value": 11727.47,
-      "mom_change": -6.1,
+      "value": 11727.54,
+      "mom_change": -6.02,
       "yoy_change": 1.72
     },
     {
       "date": "2015-07-01",
-      "value": 11760.57,
-      "mom_change": 33.1,
+      "value": 11760.5,
+      "mom_change": 32.96,
       "yoy_change": 1.86
     },
     {
       "date": "2015-08-01",
-      "value": 11764.71,
-      "mom_change": 4.14,
+      "value": 11764.65,
+      "mom_change": 4.15,
       "yoy_change": 1.87
     },
     {
       "date": "2015-09-01",
-      "value": 11783.95,
-      "mom_change": 19.25,
+      "value": 11783.91,
+      "mom_change": 19.26,
       "yoy_change": 2.05
     },
     {
       "date": "2015-10-01",
-      "value": 11861.01,
-      "mom_change": 77.06,
+      "value": 11860.89,
+      "mom_change": 76.98,
       "yoy_change": 2.76
     },
     {
       "date": "2015-11-01",
       "value": 11893.63,
-      "mom_change": 32.62,
+      "mom_change": 32.74,
       "yoy_change": 3.05
     },
     {
       "date": "2015-12-01",
-      "value": 11907.69,
-      "mom_change": 14.06,
+      "value": 11907.86,
+      "mom_change": 14.23,
       "yoy_change": 2.66
     },
     {
       "date": "2016-01-01",
-      "value": 11912.98,
-      "mom_change": 5.29,
+      "value": 11912.64,
+      "mom_change": 4.78,
       "yoy_change": 2.62
     },
     {
       "date": "2016-02-01",
       "value": 11926.28,
-      "mom_change": 13.3,
+      "mom_change": 13.64,
       "yoy_change": 2.16
     },
     {
       "date": "2016-03-01",
-      "value": 11941.63,
-      "mom_change": 15.35,
+      "value": 11941.72,
+      "mom_change": 15.44,
       "yoy_change": 2.12
     },
     {
       "date": "2016-04-01",
-      "value": 11948.11,
-      "mom_change": 6.48,
+      "value": 11948.09,
+      "mom_change": 6.37,
       "yoy_change": 2.19
     },
     {
       "date": "2016-05-01",
-      "value": 11941.73,
-      "mom_change": -6.37,
+      "value": 11941.79,
+      "mom_change": -6.3,
       "yoy_change": 1.77
     },
     {
       "date": "2016-06-01",
-      "value": 11962.88,
-      "mom_change": 21.15,
+      "value": 11963.02,
+      "mom_change": 21.22,
       "yoy_change": 2.01
     },
     {
       "date": "2016-07-01",
-      "value": 11996.07,
-      "mom_change": 33.19,
+      "value": 11996.04,
+      "mom_change": 33.02,
       "yoy_change": 2.0
     },
     {
       "date": "2016-08-01",
-      "value": 11956.02,
-      "mom_change": -40.05,
+      "value": 11955.84,
+      "mom_change": -40.2,
       "yoy_change": 1.63
     },
     {
       "date": "2016-09-01",
-      "value": 11942.39,
-      "mom_change": -13.63,
+      "value": 11942.37,
+      "mom_change": -13.47,
       "yoy_change": 1.34
     },
     {
       "date": "2016-10-01",
-      "value": 11961.37,
-      "mom_change": 18.98,
+      "value": 11961.16,
+      "mom_change": 18.79,
       "yoy_change": 0.85
     },
     {
       "date": "2016-11-01",
-      "value": 11987.38,
-      "mom_change": 26.0,
+      "value": 11987.36,
+      "mom_change": 26.2,
       "yoy_change": 0.79
     },
     {
       "date": "2016-12-01",
-      "value": 12017.66,
-      "mom_change": 30.28,
+      "value": 12017.89,
+      "mom_change": 30.53,
       "yoy_change": 0.92
     },
     {
       "date": "2017-01-01",
-      "value": 12039.62,
-      "mom_change": 21.96,
+      "value": 12039.27,
+      "mom_change": 21.38,
       "yoy_change": 1.06
     },
     {
       "date": "2017-02-01",
       "value": 12015.12,
-      "mom_change": -24.5,
+      "mom_change": -24.15,
       "yoy_change": 0.74
     },
     {
       "date": "2017-03-01",
-      "value": 12075.49,
-      "mom_change": 60.37,
+      "value": 12075.6,
+      "mom_change": 60.48,
       "yoy_change": 1.12
     },
     {
       "date": "2017-04-01",
-      "value": 12132.79,
-      "mom_change": 57.3,
-      "yoy_change": 1.55
+      "value": 12132.68,
+      "mom_change": 57.08,
+      "yoy_change": 1.54
     },
     {
       "date": "2017-05-01",
-      "value": 12164.63,
-      "mom_change": 31.84,
+      "value": 12164.8,
+      "mom_change": 32.12,
       "yoy_change": 1.87
     },
     {
       "date": "2017-06-01",
-      "value": 12197.16,
-      "mom_change": 32.53,
+      "value": 12197.37,
+      "mom_change": 32.57,
       "yoy_change": 1.96
     },
     {
       "date": "2017-07-01",
-      "value": 12232.92,
-      "mom_change": 35.76,
+      "value": 12232.96,
+      "mom_change": 35.58,
       "yoy_change": 1.97
     },
     {
       "date": "2017-08-01",
-      "value": 12282.15,
-      "mom_change": 49.23,
+      "value": 12281.89,
+      "mom_change": 48.94,
       "yoy_change": 2.73
     },
     {
       "date": "2017-09-01",
       "value": 12321.75,
-      "mom_change": 39.6,
+      "mom_change": 39.86,
       "yoy_change": 3.18
     },
     {
       "date": "2017-10-01",
-      "value": 12325.78,
-      "mom_change": 4.03,
+      "value": 12325.44,
+      "mom_change": 3.69,
       "yoy_change": 3.05
     },
     {
       "date": "2017-11-01",
-      "value": 12368.44,
-      "mom_change": 42.66,
+      "value": 12368.38,
+      "mom_change": 42.94,
       "yoy_change": 3.18
     },
     {
       "date": "2017-12-01",
-      "value": 12397.94,
-      "mom_change": 29.5,
+      "value": 12398.18,
+      "mom_change": 29.79,
       "yoy_change": 3.16
     },
     {
       "date": "2018-01-01",
-      "value": 12437.84,
-      "mom_change": 39.9,
+      "value": 12437.5,
+      "mom_change": 39.32,
       "yoy_change": 3.31
     },
     {
       "date": "2018-02-01",
-      "value": 12421.78,
-      "mom_change": -16.06,
+      "value": 12421.73,
+      "mom_change": -15.77,
       "yoy_change": 3.38
     },
     {
       "date": "2018-03-01",
-      "value": 12442.15,
-      "mom_change": 20.37,
+      "value": 12442.24,
+      "mom_change": 20.5,
       "yoy_change": 3.04
     },
     {
       "date": "2018-04-01",
-      "value": 12460.28,
-      "mom_change": 18.13,
+      "value": 12460.08,
+      "mom_change": 17.85,
       "yoy_change": 2.7
     },
     {
       "date": "2018-05-01",
-      "value": 12451.93,
-      "mom_change": -8.35,
+      "value": 12452.26,
+      "mom_change": -7.82,
       "yoy_change": 2.36
     },
     {
       "date": "2018-06-01",
-      "value": 12521.81,
-      "mom_change": 69.88,
+      "value": 12522.19,
+      "mom_change": 69.93,
       "yoy_change": 2.66
     },
     {
       "date": "2018-07-01",
-      "value": 12523.0,
-      "mom_change": 1.19,
+      "value": 12523.13,
+      "mom_change": 0.94,
       "yoy_change": 2.37
     },
     {
       "date": "2018-08-01",
-      "value": 12586.16,
-      "mom_change": 63.16,
-      "yoy_change": 2.48
+      "value": 12585.81,
+      "mom_change": 62.68,
+      "yoy_change": 2.47
     },
     {
       "date": "2018-09-01",
-      "value": 12601.66,
-      "mom_change": 15.5,
+      "value": 12601.67,
+      "mom_change": 15.86,
       "yoy_change": 2.27
     },
     {
       "date": "2018-10-01",
-      "value": 12625.37,
-      "mom_change": 23.7,
+      "value": 12624.95,
+      "mom_change": 23.28,
       "yoy_change": 2.43
     },
     {
       "date": "2018-11-01",
-      "value": 12644.66,
-      "mom_change": 19.29,
+      "value": 12644.55,
+      "mom_change": 19.59,
       "yoy_change": 2.23
     },
     {
       "date": "2018-12-01",
-      "value": 12670.09,
-      "mom_change": 25.43,
-      "yoy_change": 2.2
+      "value": 12670.29,
+      "mom_change": 25.74,
+      "yoy_change": 2.19
     },
     {
       "date": "2019-01-01",
-      "value": 12715.04,
-      "mom_change": 44.95,
+      "value": 12714.66,
+      "mom_change": 44.37,
       "yoy_change": 2.23
     },
     {
       "date": "2019-02-01",
-      "value": 12725.09,
-      "mom_change": 10.05,
+      "value": 12724.94,
+      "mom_change": 10.29,
       "yoy_change": 2.44
     },
     {
       "date": "2019-03-01",
-      "value": 12748.61,
-      "mom_change": 23.53,
+      "value": 12748.63,
+      "mom_change": 23.69,
       "yoy_change": 2.46
     },
     {
       "date": "2019-04-01",
-      "value": 12785.4,
-      "mom_change": 36.78,
+      "value": 12785.19,
+      "mom_change": 36.56,
       "yoy_change": 2.61
     },
     {
       "date": "2019-05-01",
-      "value": 12791.34,
-      "mom_change": 5.94,
+      "value": 12791.89,
+      "mom_change": 6.7,
       "yoy_change": 2.73
     },
     {
       "date": "2019-06-01",
-      "value": 12804.24,
-      "mom_change": 12.9,
+      "value": 12804.82,
+      "mom_change": 12.93,
       "yoy_change": 2.26
     },
     {
       "date": "2019-07-01",
-      "value": 12837.43,
-      "mom_change": 33.19,
+      "value": 12837.52,
+      "mom_change": 32.69,
       "yoy_change": 2.51
     },
     {
       "date": "2019-08-01",
-      "value": 12883.33,
-      "mom_change": 45.9,
+      "value": 12882.98,
+      "mom_change": 45.46,
       "yoy_change": 2.36
     },
     {
       "date": "2019-09-01",
-      "value": 12903.16,
-      "mom_change": 19.83,
+      "value": 12903.23,
+      "mom_change": 20.25,
       "yoy_change": 2.39
     },
     {
       "date": "2019-10-01",
-      "value": 12854.45,
-      "mom_change": -48.71,
+      "value": 12853.95,
+      "mom_change": -49.28,
       "yoy_change": 1.81
     },
     {
       "date": "2019-11-01",
-      "value": 12874.48,
-      "mom_change": 20.03,
+      "value": 12874.32,
+      "mom_change": 20.37,
       "yoy_change": 1.82
     },
     {
       "date": "2019-12-01",
-      "value": 12924.02,
-      "mom_change": 49.54,
+      "value": 12924.07,
+      "mom_change": 49.75,
       "yoy_change": 2.0
     },
     {
       "date": "2020-01-01",
-      "value": 12931.29,
-      "mom_change": 7.27,
+      "value": 12930.99,
+      "mom_change": 6.92,
       "yoy_change": 1.7
     },
     {
       "date": "2020-02-01",
-      "value": 12930.69,
-      "mom_change": -0.6,
-      "yoy_change": 1.62
+      "value": 12930.28,
+      "mom_change": -0.71,
+      "yoy_change": 1.61
     },
     {
       "date": "2020-03-01",
-      "value": 12925.43,
-      "mom_change": -5.25,
+      "value": 12925.29,
+      "mom_change": -4.99,
       "yoy_change": 1.39
     },
     {
       "date": "2020-04-01",
-      "value": 12346.66,
-      "mom_change": -578.78,
+      "value": 12346.37,
+      "mom_change": -578.92,
       "yoy_change": -3.43
     },
     {
       "date": "2020-05-01",
-      "value": 12050.26,
-      "mom_change": -296.4,
+      "value": 12051.52,
+      "mom_change": -294.85,
       "yoy_change": -5.79
     },
     {
       "date": "2020-06-01",
-      "value": 12279.63,
-      "mom_change": 229.37,
+      "value": 12280.25,
+      "mom_change": 228.73,
       "yoy_change": -4.1
     },
     {
       "date": "2020-07-01",
-      "value": 12416.7,
-      "mom_change": 137.07,
+      "value": 12416.69,
+      "mom_change": 136.43,
       "yoy_change": -3.28
     },
     {
       "date": "2020-08-01",
-      "value": 12552.72,
-      "mom_change": 136.02,
+      "value": 12552.33,
+      "mom_change": 135.64,
       "yoy_change": -2.57
     },
     {
       "date": "2020-09-01",
-      "value": 12520.07,
-      "mom_change": -32.65,
+      "value": 12520.21,
+      "mom_change": -32.12,
       "yoy_change": -2.97
     },
     {
       "date": "2020-10-01",
-      "value": 12658.9,
-      "mom_change": 138.83,
+      "value": 12658.4,
+      "mom_change": 138.19,
       "yoy_change": -1.52
     },
     {
       "date": "2020-11-01",
-      "value": 12742.32,
-      "mom_change": 83.42,
+      "value": 12742.19,
+      "mom_change": 83.79,
       "yoy_change": -1.03
     },
     {
       "date": "2020-12-01",
-      "value": 12797.93,
-      "mom_change": 55.61,
+      "value": 12797.76,
+      "mom_change": 55.57,
       "yoy_change": -0.98
     },
     {
       "date": "2021-01-01",
-      "value": 12841.08,
-      "mom_change": 43.15,
+      "value": 12840.8,
+      "mom_change": 43.04,
       "yoy_change": -0.7
     },
     {
       "date": "2021-02-01",
-      "value": 12893.72,
-      "mom_change": 52.64,
+      "value": 12892.95,
+      "mom_change": 52.14,
       "yoy_change": -0.29
     },
     {
       "date": "2021-03-01",
-      "value": 12952.78,
-      "mom_change": 59.06,
+      "value": 12952.47,
+      "mom_change": 59.52,
       "yoy_change": 0.21
     },
     {
       "date": "2021-04-01",
-      "value": 12947.87,
-      "mom_change": -4.91,
+      "value": 12947.11,
+      "mom_change": -5.36,
       "yoy_change": 4.87
     },
     {
       "date": "2021-05-01",
-      "value": 13035.21,
-      "mom_change": 87.34,
-      "yoy_change": 8.17
+      "value": 13037.88,
+      "mom_change": 90.77,
+      "yoy_change": 8.18
     },
     {
       "date": "2021-06-01",
-      "value": 13060.18,
-      "mom_change": 24.97,
+      "value": 13060.88,
+      "mom_change": 23.01,
       "yoy_change": 6.36
     },
     {
       "date": "2021-07-01",
-      "value": 13085.52,
-      "mom_change": 25.34,
-      "yoy_change": 5.39
+      "value": 13085.32,
+      "mom_change": 24.43,
+      "yoy_change": 5.38
     },
     {
       "date": "2021-08-01",
-      "value": 12953.14,
-      "mom_change": -132.38,
+      "value": 12952.66,
+      "mom_change": -132.66,
       "yoy_change": 3.19
     },
     {
       "date": "2021-09-01",
-      "value": 12827.4,
-      "mom_change": -125.74,
-      "yoy_change": 2.45
+      "value": 12827.59,
+      "mom_change": -125.07,
+      "yoy_change": 2.46
     },
     {
       "date": "2021-10-01",
-      "value": 12778.83,
-      "mom_change": -48.57,
+      "value": 12778.31,
+      "mom_change": -49.29,
       "yoy_change": 0.95
     },
     {
       "date": "2021-11-01",
-      "value": 13144.17,
-      "mom_change": 365.34,
+      "value": 13144.05,
+      "mom_change": 365.74,
       "yoy_change": 3.15
     },
     {
       "date": "2021-12-01",
-      "value": 13227.23,
-      "mom_change": 83.06,
+      "value": 13226.88,
+      "mom_change": 82.83,
       "yoy_change": 3.35
     },
     {
       "date": "2022-01-01",
-      "value": 13291.68,
-      "mom_change": 64.45,
+      "value": 13291.45,
+      "mom_change": 64.58,
       "yoy_change": 3.51
     },
     {
       "date": "2022-02-01",
-      "value": 13367.18,
-      "mom_change": 75.5,
+      "value": 13366.02,
+      "mom_change": 74.57,
       "yoy_change": 3.67
     },
     {
       "date": "2022-03-01",
-      "value": 13388.15,
-      "mom_change": 20.98,
+      "value": 13387.54,
+      "mom_change": 21.52,
       "yoy_change": 3.36
     },
     {
       "date": "2022-04-01",
-      "value": 13450.2,
-      "mom_change": 62.04,
-      "yoy_change": 3.88
+      "value": 13448.76,
+      "mom_change": 61.21,
+      "yoy_change": 3.87
     },
     {
       "date": "2022-05-01",
-      "value": 13482.51,
-      "mom_change": 32.31,
-      "yoy_change": 3.43
+      "value": 13486.97,
+      "mom_change": 38.21,
+      "yoy_change": 3.44
     },
     {
       "date": "2022-06-01",
-      "value": 13585.32,
-      "mom_change": 102.82,
+      "value": 13586.0,
+      "mom_change": 99.03,
       "yoy_change": 4.02
     },
     {
       "date": "2022-07-01",
-      "value": 13594.34,
-      "mom_change": 9.02,
+      "value": 13593.97,
+      "mom_change": 7.97,
       "yoy_change": 3.89
     },
     {
       "date": "2022-08-01",
-      "value": 13666.64,
-      "mom_change": 72.3,
+      "value": 13666.02,
+      "mom_change": 72.04,
       "yoy_change": 5.51
     },
     {
       "date": "2022-09-01",
-      "value": 13673.94,
-      "mom_change": 7.3,
+      "value": 13674.14,
+      "mom_change": 8.12,
       "yoy_change": 6.6
     },
     {
       "date": "2022-10-01",
-      "value": 13713.75,
-      "mom_change": 39.82,
+      "value": 13713.19,
+      "mom_change": 39.05,
       "yoy_change": 7.32
     },
     {
       "date": "2022-11-01",
-      "value": 13781.59,
-      "mom_change": 67.83,
+      "value": 13781.45,
+      "mom_change": 68.26,
       "yoy_change": 4.85
     },
     {
       "date": "2022-12-01",
-      "value": 13778.93,
-      "mom_change": -2.66,
+      "value": 13778.3,
+      "mom_change": -3.15,
       "yoy_change": 4.17
     },
     {
       "date": "2023-01-01",
-      "value": 13800.17,
-      "mom_change": 21.25,
+      "value": 13800.05,
+      "mom_change": 21.75,
       "yoy_change": 3.83
     },
     {
       "date": "2023-02-01",
-      "value": 13839.96,
-      "mom_change": 39.79,
+      "value": 13838.91,
+      "mom_change": 38.85,
       "yoy_change": 3.54
     },
     {
       "date": "2023-03-01",
-      "value": 13928.76,
-      "mom_change": 88.8,
+      "value": 13928.66,
+      "mom_change": 89.76,
       "yoy_change": 4.04
     },
     {
       "date": "2023-04-01",
-      "value": 13930.42,
-      "mom_change": 1.66,
-      "yoy_change": 3.57
+      "value": 13927.12,
+      "mom_change": -1.54,
+      "yoy_change": 3.56
     },
     {
       "date": "2023-05-01",
-      "value": 14010.0,
-      "mom_change": 79.57,
-      "yoy_change": 3.91
+      "value": 14015.34,
+      "mom_change": 88.23,
+      "yoy_change": 3.92
     },
     {
       "date": "2023-06-01",
-      "value": 14032.88,
-      "mom_change": 22.88,
-      "yoy_change": 3.29
+      "value": 14033.86,
+      "mom_change": 18.51,
+      "yoy_change": 3.3
     },
     {
       "date": "2023-07-01",
-      "value": 14029.07,
-      "mom_change": -3.8,
+      "value": 14028.79,
+      "mom_change": -5.07,
       "yoy_change": 3.2
     },
     {
       "date": "2023-08-01",
-      "value": 14102.12,
-      "mom_change": 73.04,
+      "value": 14101.52,
+      "mom_change": 72.73,
       "yoy_change": 3.19
     },
     {
       "date": "2023-09-01",
-      "value": 14095.36,
-      "mom_change": -6.75,
+      "value": 14095.59,
+      "mom_change": -5.93,
       "yoy_change": 3.08
     },
     {
       "date": "2023-10-01",
-      "value": 14152.42,
-      "mom_change": 57.05,
+      "value": 14151.85,
+      "mom_change": 56.26,
       "yoy_change": 3.2
     },
     {
       "date": "2023-11-01",
-      "value": 14200.7,
-      "mom_change": 48.29,
+      "value": 14200.52,
+      "mom_change": 48.67,
       "yoy_change": 3.04
     },
     {
       "date": "2023-12-01",
-      "value": 14147.85,
-      "mom_change": -52.85,
+      "value": 14147.14,
+      "mom_change": -53.38,
       "yoy_change": 2.68
     },
     {
       "date": "2024-01-01",
-      "value": 14144.47,
-      "mom_change": -3.38,
-      "yoy_change": 2.49
+      "value": 14144.39,
+      "mom_change": -2.76,
+      "yoy_change": 2.5
     },
     {
       "date": "2024-02-01",
-      "value": 14252.17,
-      "mom_change": 107.69,
+      "value": 14251.4,
+      "mom_change": 107.01,
       "yoy_change": 2.98
     },
     {
       "date": "2024-03-01",
-      "value": 14228.96,
-      "mom_change": -23.21,
+      "value": 14229.43,
+      "mom_change": -21.97,
       "yoy_change": 2.16
     },
     {
       "date": "2024-04-01",
-      "value": 14268.85,
-      "mom_change": 39.9,
-      "yoy_change": 2.43
+      "value": 14264.1,
+      "mom_change": 34.66,
+      "yoy_change": 2.42
     },
     {
       "date": "2024-05-01",
-      "value": 14288.35,
-      "mom_change": 19.5,
+      "value": 14293.87,
+      "mom_change": 29.78,
       "yoy_change": 1.99
     },
     {
       "date": "2024-06-01",
-      "value": 14326.88,
-      "mom_change": 38.52,
+      "value": 14328.2,
+      "mom_change": 34.33,
       "yoy_change": 2.1
     },
     {
       "date": "2024-07-01",
-      "value": 14377.0,
-      "mom_change": 50.13,
+      "value": 14376.87,
+      "mom_change": 48.67,
       "yoy_change": 2.48
     },
     {
       "date": "2024-08-01",
-      "value": 14410.26,
-      "mom_change": 33.26,
+      "value": 14409.71,
+      "mom_change": 32.84,
       "yoy_change": 2.19
     },
     {
       "date": "2024-09-01",
-      "value": 14446.48,
-      "mom_change": 36.22,
+      "value": 14446.69,
+      "mom_change": 36.98,
       "yoy_change": 2.49
     },
     {
       "date": "2024-10-01",
-      "value": 14445.27,
-      "mom_change": -1.22,
+      "value": 14444.94,
+      "mom_change": -1.75,
       "yoy_change": 2.07
     },
     {
       "date": "2024-11-01",
-      "value": 14463.99,
-      "mom_change": 18.73,
+      "value": 14463.89,
+      "mom_change": 18.96,
       "yoy_change": 1.85
     },
     {
       "date": "2024-12-01",
-      "value": 14511.83,
-      "mom_change": 47.84,
+      "value": 14511.08,
+      "mom_change": 47.19,
       "yoy_change": 2.57
     },
     {
       "date": "2025-01-01",
-      "value": 14543.14,
-      "mom_change": 31.31,
+      "value": 14542.68,
+      "mom_change": 31.59,
       "yoy_change": 2.82
     },
     {
       "date": "2025-02-01",
-      "value": 14469.09,
-      "mom_change": -74.05,
+      "value": 14467.96,
+      "mom_change": -74.72,
       "yoy_change": 1.52
     },
     {
       "date": "2025-03-01",
-      "value": 14498.08,
-      "mom_change": 28.99,
+      "value": 14498.24,
+      "mom_change": 30.28,
       "yoy_change": 1.89
     },
     {
       "date": "2025-04-01",
-      "value": 14608.44,
-      "mom_change": 110.36,
-      "yoy_change": 2.38
+      "value": 14600.4,
+      "mom_change": 102.16,
+      "yoy_change": 2.36
     },
     {
       "date": "2025-05-01",
-      "value": 14587.21,
-      "mom_change": -21.23,
-      "yoy_change": 2.09
+      "value": 14591.38,
+      "mom_change": -9.02,
+      "yoy_change": 2.08
     },
     {
       "date": "2025-06-01",
-      "value": 14581.17,
-      "mom_change": -6.04,
-      "yoy_change": 1.77
+      "value": 14580.91,
+      "mom_change": -10.48,
+      "yoy_change": 1.76
     },
     {
       "date": "2025-07-01",
-      "value": 14615.13,
-      "mom_change": 33.95,
-      "yoy_change": 1.66
+      "value": 14613.17,
+      "mom_change": 32.26,
+      "yoy_change": 1.64
     },
     {
       "date": "2025-08-01",
-      "value": 14602.21,
-      "mom_change": -12.92,
-      "yoy_change": 1.33
+      "value": 14600.0,
+      "mom_change": -13.17,
+      "yoy_change": 1.32
     },
     {
       "date": "2025-09-01",
-      "value": 14611.4,
-      "mom_change": 9.19,
-      "yoy_change": 1.14
+      "value": 14609.77,
+      "mom_change": 9.77,
+      "yoy_change": 1.13
     },
     {
       "date": "2025-10-01",
-      "value": 14645.27,
-      "mom_change": 33.88,
+      "value": 14643.61,
+      "mom_change": 33.83,
       "yoy_change": 1.38
     },
     {
       "date": "2025-11-01",
-      "value": 14606.4,
-      "mom_change": -38.87,
+      "value": 14604.92,
+      "mom_change": -38.69,
       "yoy_change": 0.98
     },
     {
       "date": "2025-12-01",
-      "value": 14664.16,
-      "mom_change": 57.76,
-      "yoy_change": 1.05
+      "value": 14662.14,
+      "mom_change": 57.22,
+      "yoy_change": 1.04
     },
     {
       "date": "2026-01-01",
-      "value": 14703.82,
-      "mom_change": 39.66,
-      "yoy_change": 1.1
+      "value": 14696.85,
+      "mom_change": 34.71,
+      "yoy_change": 1.06
     },
     {
       "date": "2026-02-01",
-      "value": 14732.66,
-      "mom_change": 28.84,
-      "yoy_change": 1.82
+      "value": 14719.75,
+      "mom_change": 22.9,
+      "yoy_change": 1.74
     },
     {
       "date": "2026-03-01",
-      "value": 14755.99,
-      "mom_change": 23.33,
-      "yoy_change": 1.78
+      "value": 14739.15,
+      "mom_change": 19.4,
+      "yoy_change": 1.66
     },
     {
       "date": "2026-04-01",
-      "value": 14737.36,
-      "mom_change": -18.63,
-      "yoy_change": 0.88
+      "value": 14698.5,
+      "mom_change": -40.65,
+      "yoy_change": 0.67
+    },
+    {
+      "date": "2026-05-01",
+      "value": 14738.84,
+      "mom_change": 40.34,
+      "yoy_change": 1.01
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "value": 14737.36,
-    "mom_change": -18.63,
-    "yoy_change": 0.88
+    "date": "2026-05-01",
+    "value": 14738.84,
+    "mom_change": 40.34,
+    "yoy_change": 1.01
   },
   "metadata": {
     "source": "Australian Bureau of Statistics",
@@ -1910,5 +1916,5 @@
     "unit": "thousands"
   },
   "next_release": null,
-  "last_updated": "2026-06-14T11:48:22.230232+09:00"
+  "last_updated": "2026-06-25T15:23:26.488686+09:00"
 }

@@ -329,7 +329,7 @@ export default function SpainHICPCPIChart({ data }: SpainHICPCPIChartProps) {
                           { dataKey: 'core_cpi_yoy', color: COLORS.core_cpi, name: 'コアCPI（前年比）' },
                           { dataKey: 'hicp_yoy', color: COLORS.hicp, name: 'HICP（前年比）' },
                         ]}
-                        yAxisFormatter={(v) => `${v}%`}
+                        yAxisFormatter={(v) => `${Number(v).toFixed(1)}%`}
                         yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
                         showZeroLine={true}
                       />
@@ -360,7 +360,7 @@ export default function SpainHICPCPIChart({ data }: SpainHICPCPIChartProps) {
                               ? { dataKey: 'core_cpi_mom', color: COLORS.core_cpi, name: 'コアCPI（前月比）' }
                               : { dataKey: 'hicp_mom', color: COLORS.hicp, name: 'HICP（前月比）' },
                         ]}
-                        yAxisFormatter={(v) => `${v}%`}
+                        yAxisFormatter={(v) => `${Number(v).toFixed(1)}%`}
                         yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
                       />
                     </>

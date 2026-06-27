@@ -734,14 +734,21 @@
       "two_year": 2.37,
       "five_year": 2.31,
       "ten_year": 2.3
+    },
+    {
+      "date": "2026-04-01",
+      "one_year": 3.41,
+      "two_year": 2.53,
+      "five_year": 2.22,
+      "ten_year": 2.19
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "one_year": 2.59,
-    "two_year": 2.37,
-    "five_year": 2.31,
-    "ten_year": 2.3
+    "date": "2026-04-01",
+    "one_year": 3.41,
+    "two_year": 2.53,
+    "five_year": 2.22,
+    "ten_year": 2.19
   },
   "metadata": {
     "source": "RBNZ",
@@ -756,6 +763,15 @@
       "ten_year": "SOE.Q.E230.na"
     }
   },
-  "next_release": null,
-  "last_updated": "2026-02-25T18:14:22.743830+09:00"
+  "next_release": {
+    "date": "2026-08-07",
+    "datetime_utc": "2026-08-07T03:00:00+00:00",
+    "datetime_jst": "2026-08-07T12:00:00+09:00",
+    "time_jst": "12:00",
+    "datetime_auckland": "2026-08-07T15:00:00+12:00",
+    "time_auckland": "15:00",
+    "label": "Inflation Expectations (Q3)",
+    "estimate": 1.8
+  },
+  "last_updated": "2026-06-26T21:09:01.755256+09:00"
 }

@@ -15,9 +15,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 2.95,
       "eps_actual": null,
-      "revenue_estimate": 53929590000.0,
+      "revenue_estimate": 55869310000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "BNP",
@@ -27,11 +27,11 @@
       "date": "2026-07-23",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 1.66,
+      "eps_estimate": 1.93,
       "eps_actual": null,
       "revenue_estimate": 15751630000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "MC",
@@ -43,9 +43,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 2.55,
       "eps_actual": null,
-      "revenue_estimate": 45119350000.0,
+      "revenue_estimate": 44790150000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "SAF",
@@ -55,11 +55,11 @@
       "date": "2026-07-28",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 1.49,
+      "eps_estimate": 1.48,
       "eps_actual": null,
-      "revenue_estimate": 20195450000.0,
+      "revenue_estimate": 20104130000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "AIR",
@@ -73,7 +73,7 @@
       "eps_actual": null,
       "revenue_estimate": 20934500000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "SU",
@@ -87,7 +87,7 @@
       "eps_actual": null,
       "revenue_estimate": 24273290000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "SAN",
@@ -101,7 +101,7 @@
       "eps_actual": null,
       "revenue_estimate": 12874380000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "CS",
@@ -111,16 +111,16 @@
       "date": "2026-07-30",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 2.67,
+      "eps_estimate": 2.5,
       "eps_actual": null,
-      "revenue_estimate": 44767110000.0,
+      "revenue_estimate": 43554970000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     }
   ],
   "next_7d_count": 0,
-  "next_30d_count": 0,
-  "last_updated": "2026-06-17T12:37:42.819554+00:00",
+  "next_30d_count": 2,
+  "last_updated": "2026-06-27T13:49:18.794956+00:00",
   "cached": false,
   "status": "ok"
 }

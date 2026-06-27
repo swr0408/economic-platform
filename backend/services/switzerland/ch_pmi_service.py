@@ -251,29 +251,34 @@ class ChPmiService:
         """
         サービス業PMIをCSV + スクレイピング + DBから取得
 
-        優先順位: スクレイピング最新 > DB履歴 > CSV履歴
+        優先順位: 手動CSV（検証済み）> スクレイピング最新 > DB履歴
+
+        注意: procure.chのサービス業PMIは記事/PDFが月表記に揺れがあり
+        （製造業の月を見出しに付けるためサービス値の月ラベルがズレることがある）、
+        スクレイピングは脆弱。手動CSVを正本（最優先）とし、スクレイピング/DBは
+        CSV未収録の月のみを補完する（将来の自動延伸用）。
         """
         result = []
 
         try:
-            # 1. CSVから履歴データを取得
-            csv_data = self._load_from_csv(SERVICES_CSV)
-            for item in csv_data:
-                result.append(item)
-
-            # 2. DBから履歴データを取得
+            # 1. DBから履歴データ（最下層）
             db_data = self._load_services_from_db()
             for item in db_data:
                 result.append(item)
 
-            # 3. スクレイピングから最新データを取得し、DBに保存
+            # 2. スクレイピングから最新データを取得し、DBに保存（CSV未収録月の補完用）
             scraped_data = self._scrape_services_pmi()
             for item in scraped_data:
                 result.append(item)
                 # DBに保存（DB積み上げ方式）
                 self._save_services_to_db(item)
 
-            # 日付でマージ（後から追加されたものを優先）
+            # 3. 手動CSV（検証済み・正本）を最後に重ねて最優先にする
+            csv_data = self._load_from_csv(SERVICES_CSV)
+            for item in csv_data:
+                result.append(item)
+
+            # 日付でマージ（後から追加されたものを優先 = CSV > scrape > DB）
             merged = {}
             for item in result:
                 merged[item["date"]] = item
@@ -499,46 +504,51 @@ class ChPmiService:
 
             soup = BeautifulSoup(resp.text, "html.parser")
 
-            # 記事リンクを収集
+            # 記事リンクを収集（絶対URLに正規化してから重複排除）
+            # 注意: 相対hrefのまま重複判定し絶対URLで格納すると、同一記事が
+            #       二重登録され article_links[:N] の実効カバー月数が半減する罠
             article_links = []
             for link in soup.find_all("a", href=re.compile(r"/magazin/.*pmi", re.IGNORECASE)):
                 href = link.get("href", "")
-                if href and href not in article_links:
-                    # 相対URLを絶対URLに変換
-                    if href.startswith("/"):
-                        href = f"https://www.procure.ch{href}"
+                if not href:
+                    continue
+                if href.startswith("/"):
+                    href = f"https://www.procure.ch{href}"
+                if href not in article_links:
                     article_links.append(href)
 
             print(f"[CHPmi] Found {len(article_links)} PMI article links")
 
-            # 直近6記事のみ処理（最新データ取得が目的）
-            for article_url in article_links[:6]:
+            # 直近12記事を処理（CSV未収録月の補完が目的）
+            for article_url in article_links[:12]:
                 try:
                     article_resp = requests.get(article_url, headers=headers, timeout=30)
                     article_resp.raise_for_status()
                     article_soup = BeautifulSoup(article_resp.text, "html.parser")
 
                     # 記事本文を取得
-                    article_body = article_soup.find("article") or article_soup.find("main") or article_soup
-                    text_content = article_body.get_text()
+                    # 注意: ページにより<article>/<main>が本文を含まずナビのみの
+                    #       テンプレートがあり取りこぼす→段落<p>結合を本文とし、
+                    #       無ければ全文にフォールバック。空白も正規化しておく
+                    paragraphs = [p.get_text(" ", strip=True) for p in article_soup.find_all("p")]
+                    text_content = " ".join(paragraphs) if paragraphs else article_soup.get_text(" ", strip=True)
+                    text_content = re.sub(r"\s+", " ", text_content)
 
-                    # サービス業PMI（Dienstleistungs-PMI）を探す
-                    if "Dienstleistungs-PMI" not in text_content and "Services PMI" not in text_content:
+                    # サービス業PMIへの言及があるか
+                    if not re.search(r"Dienstleistungs-?PMI|Dienstleistungssektor|Services\s+PMI", text_content, re.IGNORECASE):
                         continue
 
                     # サービス業PMI固有の値を抽出
-                    # パターン: "Dienstleistungs-PMI notiert ... bei 53,8" のような形式
-                    # 注意: "2,4 Punkte höher bei 53,8" のように変化量が先に来る場合がある
+                    # 表現ゆれに対応: "bei 57,2" / "mit 54,8 Punkten" / "auf 53,8 Punkte" /
+                    #                "Dienstleistungssektor ... bei XX,X"
+                    # [^.]{0,80}? で同一文に限定し、製造業の数値や変化量を誤取得しない。
+                    # \d{2}[.,]\d で2桁始まりに限定し "2,4 Punkte höher" 等の変化量を除外。
                     value = None
                     patterns = [
-                        # "bei 53,8" パターン（最も信頼性が高い）
-                        r'Dienstleistungs-PMI\s+.*?bei\s+(\d{2}[.,]\d+)',
-                        # "auf 53,8 Punkte" パターン
-                        r'Dienstleistungs-PMI\s+.*?auf\s+(\d{2}[.,]\d+)\s*Punkt',
-                        # "Dienstleistungs-PMI: 53.8" パターン
-                        r'Dienstleistungs-PMI[:\s]+(\d{2}[.,]\d+)',
-                        # Services PMI パターン
-                        r'Services\s+PMI\s+.*?bei\s+(\d{2}[.,]\d+)',
+                        r'Dienstleistungs-?PMI[^.]{0,80}?(?:bei|mit|auf)\s+(\d{2}[.,]\d)',
+                        r'Dienstleistungssektor[^.]{0,80}?(?:bei|mit|auf)\s+(\d{2}[.,]\d)',
+                        r'Dienstleistungs-?PMI[:\s]+(\d{2}[.,]\d)',
+                        r'Services\s+PMI[^.]{0,80}?(?:bei|mit|auf|at)\s+(\d{2}[.,]\d)',
                     ]
 
                     for pattern in patterns:
@@ -709,11 +719,11 @@ class ChPmiService:
                     INSERT INTO economic_calendar_events (
                         provider, event_key, country, currency, event, event_period,
                         datetime_raw, datetime_utc, has_time, impact,
-                        previous, estimate, actual, unit
+                        previous, estimate, actual, unit, raw_json
                     ) VALUES (
                         :provider, :event_key, :country, :currency, :event, :event_period,
                         :datetime_raw, :datetime_utc, :has_time, :impact,
-                        :previous, :estimate, :actual, :unit
+                        :previous, :estimate, :actual, :unit, :raw_json
                     )
                     ON CONFLICT (provider, event_key) DO UPDATE SET
                         actual = EXCLUDED.actual,
@@ -735,6 +745,11 @@ class ChPmiService:
                     "estimate": item.get("forecast"),
                     "actual": item["value"],
                     "unit": "index",
+                    "raw_json": json.dumps({
+                        "date": item["date"],
+                        "value": item["value"],
+                        "source": "procure.ch scrape",
+                    }),
                 })
                 session.commit()
 

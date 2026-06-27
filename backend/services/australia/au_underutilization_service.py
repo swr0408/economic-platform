@@ -1,17 +1,20 @@
 """
 オーストラリア アンダー・ユーティライゼーション（不足雇用含む）サービス
 
-データソース:
-- ABS 6202.0 Labour Force, Australia, Table 23
-- Excel URL: latest-release 経由で取得
-- Series ID: A85255726K (Underutilisation rate, Persons, Seasonally Adjusted)
-- Series ID: A85255725J (Underemployment rate, Persons, Seasonally Adjusted)
-- Series ID: A84423050A (Unemployment rate, Persons, Seasonally Adjusted)
-- 3系列を1つのExcelファイルから取得（Data2, Data3, Data4シート）
+データソース: ABS SDMX API（LF_UNDER dataflow）
+- 月次・季節調整済（TSEST=20）、Persons（SEX=3）、Total age（AGE=1599）、Australia（REGION=AUS）
+- M24 = Underutilisation rate
+- M23 = Underemployment rate (proportion of labour force)
+- M13 = Unemployment rate
 
-発表スケジュール: 毎月（Labour Force Survey, 通常第3木曜日）
+【移行ノート】旧実装は ABS Excel「Table 23」(6202023.xlsx) を latest-release から
+スクレイプしていたが、ABS がテーブルを X28/X29 にリネームし旧URLが HTTP 404 となり
+取得不能になった（March で固着）。脆い Excel URL/レイアウト依存を排し、他のAU雇用
+指標（失業率/参加率等）と同じ SDMX API 方式に統一。LF_UNDER は同一系列を提供し、
+テーブル再番号付けの影響を受けない。
+
+発表スケジュール: 毎月（Labour Force Survey）
 """
-import io
 import json
 import logging
 from datetime import datetime
@@ -32,26 +35,23 @@ CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "australia"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "au_underutilization_cache.json"
 
-# ABS Excel URL (固定: latest-release は常に最新版を指す)
-EXCEL_URL = "https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia/latest-release/6202023.xlsx"
+# ABS SDMX API（LF_UNDER dataflow）
+ABS_API_BASE = "https://data.api.abs.gov.au/rest/data"
+LF_UNDER_DATAFLOW = "ABS,LF_UNDER"
+# 次元順: PARM_ITEM.SEX.AGE.TSEST.REGION.FREQ
+# M24=Underutilisation / M23=Underemployment / M13=Unemployment rate
+# SEX=3 Persons, AGE=1599 Total, TSEST=20 Seasonally Adjusted, REGION=AUS, FREQ=M
+LF_UNDER_KEY = "M24+M23+M13.3.1599.20.AUS.M"
+LF_UNDER_URL = (
+    f"{ABS_API_BASE}/{LF_UNDER_DATAFLOW}/{LF_UNDER_KEY}"
+    f"?startPeriod=2000-01&dimensionAtObservation=AllDimensions"
+)
 
-# 対象Series ID（すべて Seasonally Adjusted, Persons）
-SERIES_CONFIG = {
-    "underutilisation": {
-        "series_id": "A85255726K",
-        "sheet": "Data4",
-        "label": "Underutilisation rate",
-    },
-    "underemployment": {
-        "series_id": "A85255725J",
-        "sheet": "Data2",
-        "label": "Underemployment rate",
-    },
-    "unemployment": {
-        "series_id": "A84423050A",
-        "sheet": "Data3",
-        "label": "Unemployment rate",
-    },
+# PARM_ITEM コード → 出力フィールド名
+PARM_TO_FIELD = {
+    "M24": "underutilisation",
+    "M23": "underemployment",
+    "M13": "unemployment",
 }
 
 # FMPイベントパターン（失業率と同じ発表日）
@@ -67,82 +67,71 @@ class AuUnderutilizationService:
     def __init__(self):
         pass
 
-    def _fetch_excel(self) -> Optional[bytes]:
-        """ABS ExcelファイルをダウンロードしてBytesを返す"""
+    def _fetch_sdmx(self, url: str) -> Optional[Dict[str, Any]]:
+        """ABS SDMX APIからデータを取得"""
         try:
-            logger.info(f"Downloading ABS 6202.0 Table 23 Excel from {EXCEL_URL}")
+            logger.info(f"Fetching ABS LF_UNDER data from {url}")
             response = requests.get(
-                EXCEL_URL,
-                headers={"User-Agent": "Mozilla/5.0 (economic-platform)"},
-                timeout=90,
+                url,
+                headers={
+                    "Accept": "application/vnd.sdmx.data+json",
+                    "User-Agent": "Mozilla/5.0 (economic-platform)",
+                },
+                timeout=30,
             )
             if response.status_code != 200:
-                logger.error(f"ABS Excel download returned HTTP {response.status_code}")
+                logger.error(f"ABS API returned HTTP {response.status_code} for {url}")
                 return None
-            return response.content
+            return response.json()
         except Exception as e:
-            logger.error(f"Error downloading ABS Excel: {e}")
+            logger.error(f"Error fetching ABS LF_UNDER data: {e}")
             return None
 
-    def _parse_series_from_sheet(self, wb, sheet_name: str, series_id: str) -> List[Dict[str, Any]]:
-        """指定シートからSeries IDに対応するデータを抽出"""
+    def _parse_sdmx(self, raw_data: Dict[str, Any]) -> Dict[str, List[Dict[str, Any]]]:
+        """SDMX JSONを {field: [{"date","value"}, ...]} 形式に変換"""
+        result: Dict[str, List[Dict[str, Any]]] = {f: [] for f in PARM_TO_FIELD.values()}
         try:
-            ws = wb[sheet_name]
+            data = raw_data.get("data", {})
+            datasets = data.get("dataSets", [])
+            structures = data.get("structures", [])
+            if not datasets or not structures:
+                return result
 
-            # 対象列を特定（Series ID行 = Row 10）
-            target_col = None
-            for col in range(1, ws.max_column + 1):
-                cell_val = ws.cell(row=10, column=col).value
-                if cell_val == series_id:
-                    target_col = col
-                    break
+            dimensions = structures[0].get("dimensions", {}).get("observation", [])
+            dim_ids = [d.get("id", "") for d in dimensions]
+            lookups = {
+                d.get("id", ""): {str(i): v.get("id", "") for i, v in enumerate(d.get("values", []))}
+                for d in dimensions
+            }
+            if "PARM_ITEM" not in dim_ids or "TIME_PERIOD" not in dim_ids:
+                logger.warning("[AuUnderutil] PARM_ITEM/TIME_PERIOD dimension not found")
+                return result
+            pi = dim_ids.index("PARM_ITEM")
+            ti = dim_ids.index("TIME_PERIOD")
 
-            if target_col is None:
-                logger.warning(f"Could not find Series ID {series_id} in sheet {sheet_name}")
-                return []
-
-            # データ行は Row 11 から
-            observations = []
-            for row in range(11, ws.max_row + 1):
-                date_val = ws.cell(row=row, column=1).value
-                if date_val is None:
+            observations = datasets[0].get("observations", {})
+            for obs_key, obs_value in observations.items():
+                if not obs_value or obs_value[0] is None:
                     continue
-                if not isinstance(date_val, datetime):
+                idxs = obs_key.split(":")
+                parm = lookups.get("PARM_ITEM", {}).get(idxs[pi])
+                field = PARM_TO_FIELD.get(parm)
+                if not field:
                     continue
+                tp = lookups.get("TIME_PERIOD", {}).get(idxs[ti])
+                if not tp:
+                    continue
+                result[field].append({
+                    "date": f"{tp}-01",
+                    "value": round(float(obs_value[0]), 2),
+                })
 
-                value = ws.cell(row=row, column=target_col).value
-                if value is not None:
-                    date_str = f"{date_val.year}-{date_val.month:02d}-01"
-                    observations.append({
-                        "date": date_str,
-                        "value": round(float(value), 2),
-                    })
-
-            return observations
-
+            for field in result:
+                result[field].sort(key=lambda x: x["date"])
+                logger.info(f"[AuUnderutil] Parsed {len(result[field])} {field} observations")
         except Exception as e:
-            logger.error(f"Error parsing sheet {sheet_name} for series {series_id}: {e}")
-            return []
-
-    def _parse_excel(self, excel_bytes: bytes) -> Dict[str, List[Dict[str, Any]]]:
-        """Excelファイルから3系列を抽出"""
-        try:
-            import openpyxl
-            wb = openpyxl.load_workbook(io.BytesIO(excel_bytes), data_only=True)
-
-            result = {}
-            for key, config in SERIES_CONFIG.items():
-                observations = self._parse_series_from_sheet(
-                    wb, config["sheet"], config["series_id"]
-                )
-                result[key] = observations
-                logger.info(f"Parsed {len(observations)} {config['label']} observations from {config['sheet']}")
-
-            return result
-
-        except Exception as e:
-            logger.error(f"Error parsing ABS Excel: {e}")
-            return {"underutilisation": [], "underemployment": [], "unemployment": []}
+            logger.error(f"Error parsing ABS LF_UNDER SDMX: {e}")
+        return result
 
     def _build_data_points(self, parsed: Dict[str, List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
         """3系列のデータを日付でマージ"""
@@ -177,33 +166,55 @@ class AuUnderutilizationService:
 
     def get_au_underutilization_data(self, force_refresh: bool = False) -> Dict[str, Any]:
         """アンダー・ユーティライゼーションデータを取得（キャッシュ付き）"""
+        existing_cached_data = redis_client.get(self.DATA_CACHE_KEY)
+
         if not force_refresh:
-            cached_data = redis_client.get(self.DATA_CACHE_KEY)
-            if cached_data:
-                last_updated_str = cached_data.get("last_updated")
+            if existing_cached_data:
+                last_updated_str = existing_cached_data.get("last_updated")
                 if last_updated_str and not self._should_refresh(last_updated_str):
                     return {
-                        "data": cached_data.get("data", []),
-                        "latest": cached_data.get("latest"),
-                        "metadata": cached_data.get("metadata", {}),
-                        "next_release": cached_data.get("next_release"),
+                        "data": existing_cached_data.get("data", []),
+                        "latest": existing_cached_data.get("latest"),
+                        "metadata": existing_cached_data.get("metadata", {}),
+                        "next_release": existing_cached_data.get("next_release"),
                         "cached": True,
                         "source": "redis",
                     }
 
-        excel_bytes = self._fetch_excel()
-        if excel_bytes:
-            parsed = self._parse_excel(excel_bytes)
+        raw_data = self._fetch_sdmx(LF_UNDER_URL)
+        if raw_data:
+            parsed = self._parse_sdmx(raw_data)
             if parsed.get("underutilisation"):
                 data_points = self._build_data_points(parsed)
                 if data_points:
                     latest = data_points[-1]
+
+                    # API遅延ガード: force_refresh時に最新日付が進んでいなければ
+                    # キャッシュを書き換えない（次のスケジューラ波でリトライ）
+                    if force_refresh and existing_cached_data:
+                        existing_date = (existing_cached_data.get("latest") or {}).get("date")
+                        new_date = latest.get("date") if latest else None
+                        if existing_date and new_date and new_date <= existing_date:
+                            logger.warning(
+                                f"[AuUnderutil] force_refresh requested but API returned "
+                                f"same/older period ({new_date} <= cached {existing_date}). "
+                                f"Skipping cache write to allow retry on next scheduler tick."
+                            )
+                            return {
+                                "data": existing_cached_data.get("data", []),
+                                "latest": existing_cached_data.get("latest"),
+                                "metadata": existing_cached_data.get("metadata", {}),
+                                "next_release": existing_cached_data.get("next_release"),
+                                "cached": True,
+                                "source": "redis (api lag detected)",
+                            }
+
                     next_release = self._get_next_release()
                     result = {
                         "data": data_points,
                         "latest": latest,
                         "metadata": {
-                            "source": "Australian Bureau of Statistics",
+                            "source": "Australian Bureau of Statistics (LF_UNDER)",
                             "indicator": "Underutilisation Rate (Labour Force, Seasonally Adjusted)",
                             "frequency": "monthly",
                             "unit": "%",
@@ -213,7 +224,7 @@ class AuUnderutilizationService:
                     cache_payload = {**result, "last_updated": datetime.now(JST).isoformat()}
                     redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
                     self._save_file_cache(cache_payload)
-                    return {**result, "cached": False, "source": "abs_excel"}
+                    return {**result, "cached": False, "source": "abs_api"}
 
         file_cache = self._load_file_cache()
         if file_cache:
@@ -280,7 +291,7 @@ class AuUnderutilizationService:
         cached_data = redis_client.get(self.DATA_CACHE_KEY) if data_exists else None
         return {
             "indicator": "AU Underutilization Rate",
-            "source": "ABS (6202.0 Labour Force, Table 23)",
+            "source": "ABS SDMX (LF_UNDER)",
             "cache_key": self.DATA_CACHE_KEY,
             "exists": data_exists,
             "last_updated": cached_data.get("last_updated") if cached_data else None,

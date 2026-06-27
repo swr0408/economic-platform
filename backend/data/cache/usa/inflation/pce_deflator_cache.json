@@ -2702,57 +2702,66 @@
     },
     {
       "date": "2026-01-01",
-      "value": 2.86,
-      "yoy": 2.86,
-      "mom": 0.33,
-      "index": 129.0,
-      "annualized_3m": 3.58,
-      "annualized_6m": 3.24
+      "value": 2.88,
+      "yoy": 2.88,
+      "mom": 0.35,
+      "index": 129.02,
+      "annualized_3m": 3.64,
+      "annualized_6m": 3.27
     },
     {
       "date": "2026-02-01",
-      "value": 2.86,
-      "yoy": 2.86,
+      "value": 2.87,
+      "yoy": 2.87,
       "mom": 0.4,
-      "index": 129.52,
-      "annualized_3m": 4.34,
-      "annualized_6m": 3.53
+      "index": 129.54,
+      "annualized_3m": 4.4,
+      "annualized_6m": 3.56
     },
     {
       "date": "2026-03-01",
-      "value": 3.53,
-      "yoy": 3.53,
-      "mom": 0.66,
-      "index": 130.38,
-      "annualized_3m": 5.73,
-      "annualized_6m": 4.36
+      "value": 3.54,
+      "yoy": 3.54,
+      "mom": 0.67,
+      "index": 130.4,
+      "annualized_3m": 5.8,
+      "annualized_6m": 4.4
     },
     {
       "date": "2026-04-01",
-      "value": 3.77,
-      "yoy": 3.77,
-      "mom": 0.4,
-      "index": 130.9,
-      "annualized_3m": 6.02,
-      "annualized_6m": 4.79
+      "value": 3.8,
+      "yoy": 3.8,
+      "mom": 0.41,
+      "index": 130.94,
+      "annualized_3m": 6.08,
+      "annualized_6m": 4.86
+    },
+    {
+      "date": "2026-05-01",
+      "value": 4.07,
+      "yoy": 4.07,
+      "mom": 0.45,
+      "index": 131.53,
+      "annualized_3m": 6.29,
+      "annualized_6m": 5.34
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "value": 3.77,
-    "yoy": 3.77,
-    "mom": 0.4,
-    "index": 130.9,
-    "annualized_3m": 6.02,
-    "annualized_6m": 4.79
+    "date": "2026-05-01",
+    "value": 4.07,
+    "yoy": 4.07,
+    "mom": 0.45,
+    "index": 131.53,
+    "annualized_3m": 6.29,
+    "annualized_6m": 5.34
   },
   "next_release": {
     "date": "2026-06-25",
     "datetime_utc": "2026-06-25T12:30:00+00:00",
     "datetime_jst": "2026-06-25T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "Personal Income MoM (May)",
-    "estimate": null
+    "label": "Core PCE Price Index MoM (May)",
+    "estimate": 0.3
   },
-  "last_updated": "2026-06-12T09:30:07.767344+09:00"
+  "last_updated": "2026-06-25T22:55:34.391733+09:00"
 }

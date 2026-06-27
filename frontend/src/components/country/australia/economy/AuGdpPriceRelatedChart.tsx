@@ -83,6 +83,29 @@ type ViewMode =
   | 'consumption_table'
   | 'consumption_yoy'
 
+// 第一階層: データ種別（前期比 / テーブル / 前年比）
+type DataKind = 'qoq' | 'table' | 'yoy'
+const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
+  { mode: 'qoq', label: '前期比' },
+  { mode: 'table', label: 'テーブル' },
+  { mode: 'yoy', label: '前年比' },
+]
+
+// 第二階層: 項目種別（消費 / デフレーター / 設備投資 / 純輸出寄与）
+type ItemType = 'consumption' | 'deflator' | 'gfcf' | 'net_exports'
+// 純輸出は寄与（前期比ベース）のみのため、前期比のときだけ第二階層に出す
+const ITEM_OPTIONS_QOQ: { mode: ItemType; label: string }[] = [
+  { mode: 'consumption', label: '消費' },
+  { mode: 'deflator', label: 'デフレーター' },
+  { mode: 'gfcf', label: '設備投資' },
+  { mode: 'net_exports', label: '純輸出寄与' },
+]
+const ITEM_OPTIONS_BASE: { mode: ItemType; label: string }[] = [
+  { mode: 'consumption', label: '消費' },
+  { mode: 'deflator', label: 'デフレーター' },
+  { mode: 'gfcf', label: '設備投資' },
+]
+
 // 四半期日付フォーマッター（2025-01-01 → 2025/Q1）
 const formatQuarterLabel = (dateStr: string): string => {
   if (!dateStr) return ''
@@ -94,7 +117,26 @@ const formatQuarterLabel = (dateStr: string): string => {
 
 export default function AuGdpPriceRelatedChart({ data }: AuGdpPriceRelatedChartProps) {
   const [activeTab, setActiveTab] = useState<string>('timeseries')
-  const [viewMode, setViewMode] = useState<ViewMode>('deflator_qoq')
+  // 第一階層: データ種別 / 第二階層: 項目種別
+  const [dataKind, setDataKind] = useState<DataKind>('qoq')
+  const [itemType, setItemType] = useState<ItemType>('consumption')
+
+  // 第一階層+第二階層から既存のviewMode文字列を導出（描画ロジックを再利用）
+  const viewMode = useMemo<ViewMode>(() => {
+    if (itemType === 'net_exports') return 'net_exports'
+    return `${itemType}_${dataKind}` as ViewMode
+  }, [itemType, dataKind])
+
+  // 第二階層で表示する項目（前期比のみ純輸出寄与を含む）
+  const itemOptions = dataKind === 'qoq' ? ITEM_OPTIONS_QOQ : ITEM_OPTIONS_BASE
+
+  // データ種別切替: テーブル/前年比では純輸出寄与が無いため消費へフォールバック
+  const handleDataKindChange = useCallback((kind: DataKind) => {
+    if (kind !== 'qoq' && itemType === 'net_exports') {
+      setItemType('consumption')
+    }
+    setDataKind(kind)
+  }, [itemType])
 
   // ビューモード毎の期間管理
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(viewMode, {
@@ -262,7 +304,7 @@ export default function AuGdpPriceRelatedChart({ data }: AuGdpPriceRelatedChartP
     }
   }
 
-  const isTableMode = viewMode === 'deflator_table' || viewMode === 'gfcf_table' || viewMode === 'consumption_table'
+  const isTableMode = dataKind === 'table'
 
   return (
     <div id="au-gdp-price-related-chart">
@@ -297,23 +339,23 @@ export default function AuGdpPriceRelatedChart({ data }: AuGdpPriceRelatedChartP
               label: '時系列',
               children: (
                 <>
-                  {/* ビューモード切替 */}
-                  <ViewModeButtonGroup
-                    currentMode={viewMode}
-                    onChange={(mode) => setViewMode(mode as ViewMode)}
-                    options={[
-                      { mode: 'consumption_qoq', label: '消費前期比' },
-                      { mode: 'consumption_table', label: '消費（テーブル）' },
-                      { mode: 'consumption_yoy', label: '消費前年比' },
-                      { mode: 'deflator_qoq', label: 'デフレーター前期比' },
-                      { mode: 'deflator_table', label: 'デフレーター（テーブル）' },
-                      { mode: 'deflator_yoy', label: 'デフレーター前年比' },
-                      { mode: 'gfcf_qoq', label: '設備投資前期比' },
-                      { mode: 'gfcf_table', label: '設備投資（テーブル）' },
-                      { mode: 'gfcf_yoy', label: '設備投資前年比' },
-                      { mode: 'net_exports', label: '純輸出寄与' },
-                    ]}
-                  />
+                  {/* 第一階層: データ種別（前期比 / テーブル / 前年比） */}
+                  <div style={{ marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      currentMode={dataKind}
+                      onChange={handleDataKindChange}
+                      options={DATA_KIND_OPTIONS}
+                    />
+                  </div>
+
+                  {/* 第二階層: 項目種別（消費 / デフレーター / 設備投資 / 純輸出寄与） */}
+                  <div style={{ marginBottom: 8 }}>
+                    <ViewModeButtonGroup
+                      currentMode={itemType}
+                      onChange={setItemType}
+                      options={itemOptions}
+                    />
+                  </div>
 
                   {/* 期間セレクター（テーブル以外で表示） */}
                   {!isTableMode && (

@@ -56,6 +56,16 @@ CPI_M_CAT_YOY_URL = f"{ABS_API_BASE}/{CPI_M_DATAFLOW}/{CPI_M_CAT_YOY_KEY}?dimens
 CPI_M_CAT_INDEX_KEY = f"1.{CATEGORY_INDICES}.10.50.M"
 CPI_M_CAT_INDEX_URL = f"{ABS_API_BASE}/{CPI_M_DATAFLOW}/{CPI_M_CAT_INDEX_KEY}?dimensionAtObservation=AllDimensions"
 
+# 旧 CPI_M dataflow（2025-09 で更新停止）。完全な履歴 2018-09〜2025-09 を持つため
+# 履歴ソースとして併用する。v2.0.0 は一部カテゴリ（goods/services/food 等）の履歴が
+# 2025-04〜と短いため、旧dataflowでマージ補完する。
+# 注意: index の base は両dataflowで異なる（v2.0.0 は 2025-09=100 へリベース、旧は別base）。
+# YoYは base 非依存なので連結可（重複は新優先）。MoM は dataflow ごとに算出してから
+# マージし、base が違う境界（2025-09→2025-10）を跨いだ計算を避ける。
+CPI_M_LEGACY_DATAFLOW = "ABS,CPI_M,"
+CPI_M_LEGACY_CAT_YOY_URL = f"{ABS_API_BASE}/{CPI_M_LEGACY_DATAFLOW}/{CPI_M_CAT_YOY_KEY}?dimensionAtObservation=AllDimensions"
+CPI_M_LEGACY_CAT_INDEX_URL = f"{ABS_API_BASE}/{CPI_M_LEGACY_DATAFLOW}/{CPI_M_CAT_INDEX_KEY}?dimensionAtObservation=AllDimensions"
+
 # INDEX code → フィールド名マッピング
 INDEX_TO_FIELD = {
     "104101": "goods",
@@ -67,7 +77,8 @@ INDEX_TO_FIELD = {
 }
 
 # FMPイベントパターン（月次CPIと同じ）
-FMP_EVENT_PATTERNS = ["Monthly CPI Indicator"]
+# "Inflation Rate MoM" がFMPのAU CPI発表イベント実名に一致（発表時刻照合用）。
+FMP_EVENT_PATTERNS = ["Monthly CPI Indicator", "Inflation Rate MoM"]
 
 
 class AbsCpiCategoriesService:
@@ -198,9 +209,13 @@ class AbsCpiCategoriesService:
     def _merge_data(
         self,
         yoy_obs: List[Dict[str, Any]],
-        index_obs: List[Dict[str, Any]],
+        mom_maps: Dict[str, Dict[str, float]],
     ) -> List[Dict[str, Any]]:
-        """YoYデータとIndex Numbers（→MoM計算）をマージ"""
+        """YoY観測値と（事前算出済みの）MoMマップをマージして時系列を構築。
+
+        yoy_obs は新旧dataflowを連結したリスト（後勝ち＝新dataflowが重複月を上書き）。
+        mom_maps は dataflow ごとに算出してマージ済み（base差の境界跨ぎを避けるため）。
+        """
         parsed_points: Dict[str, Dict[str, Any]] = {}
 
         fields = list(INDEX_TO_FIELD.values())
@@ -214,7 +229,7 @@ class AbsCpiCategoriesService:
                 parsed_points[date_str] = point
             return parsed_points[date_str]
 
-        # Phase 1: YoY data
+        # Phase 1: YoY data（後勝ちで新dataflow優先）
         for obs in yoy_obs:
             if obs["measure"] != "3":
                 continue
@@ -225,8 +240,7 @@ class AbsCpiCategoriesService:
             point = ensure_point(date_str)
             point[f"{field}_yoy"] = round(obs["value"], 2)
 
-        # Phase 2: MoM from Index Numbers
-        mom_maps = self._compute_mom_from_index(index_obs)
+        # Phase 2: MoM（事前算出済みマップ）
         for field, mom_map in mom_maps.items():
             for tp, mom_val in mom_map.items():
                 date_str = f"{tp}-01"
@@ -254,24 +268,36 @@ class AbsCpiCategoriesService:
                         "source": "redis",
                     }
 
-        # ABS APIからデータ取得（2段階フェッチ）
-        yoy_obs = []
-        index_obs = []
+        # ABS APIからデータ取得（新旧2 dataflow をマージ）
+        # 旧 CPI_M = 履歴(2018-09〜2025-09)、新 CPI v2.0.0 = 直近。一部カテゴリの
+        # 履歴が新dataflowで短い問題を、旧dataflowで補完する。
+        def _fetch(url: str) -> List[Dict[str, Any]]:
+            raw = self._fetch_sdmx(url)
+            return self._parse_sdmx_observations(raw) if raw else []
 
-        # 1. YoY (measure=3)
-        raw_yoy = self._fetch_sdmx(CPI_M_CAT_YOY_URL)
-        if raw_yoy:
-            yoy_obs = self._parse_sdmx_observations(raw_yoy)
-            logger.info(f"CPI Categories YoY: {len(yoy_obs)} observations")
+        legacy_yoy = _fetch(CPI_M_LEGACY_CAT_YOY_URL)
+        legacy_index = _fetch(CPI_M_LEGACY_CAT_INDEX_URL)
+        new_yoy = _fetch(CPI_M_CAT_YOY_URL)
+        new_index = _fetch(CPI_M_CAT_INDEX_URL)
+        logger.info(
+            f"CPI Categories obs — legacy(yoy={len(legacy_yoy)},index={len(legacy_index)}) "
+            f"new(yoy={len(new_yoy)},index={len(new_index)})"
+        )
 
-        # 2. Index Numbers (measure=1) → MoM計算用
-        raw_index = self._fetch_sdmx(CPI_M_CAT_INDEX_URL)
-        if raw_index:
-            index_obs = self._parse_sdmx_observations(raw_index)
-            logger.info(f"CPI Categories Index: {len(index_obs)} observations")
+        # YoY: 旧→新 の順に連結（_merge_data Phase1 の後勝ちで重複月は新が優先）
+        yoy_obs = legacy_yoy + new_yoy
 
-        if yoy_obs or index_obs:
-            data_points = self._merge_data(yoy_obs, index_obs)
+        # MoM: index の base が両dataflowで異なるため、dataflow ごとに MoM を算出してから
+        # マージ（新優先）。これで base 差の境界(2025-09→2025-10)を跨いだ誤計算を避ける。
+        mom_legacy = self._compute_mom_from_index(legacy_index)
+        mom_new = self._compute_mom_from_index(new_index)
+        mom_maps: Dict[str, Dict[str, float]] = {
+            field: {**mom_legacy.get(field, {}), **mom_new.get(field, {})}
+            for field in INDEX_TO_FIELD.values()
+        }
+
+        if yoy_obs or any(mom_maps.values()):
+            data_points = self._merge_data(yoy_obs, mom_maps)
 
             if data_points:
                 latest = data_points[-1] if data_points else None
@@ -289,9 +315,22 @@ class AbsCpiCategoriesService:
                     "next_release": next_release,
                 }
 
+                # 発表時刻レース対策（ラグガード）: 取得データが新月へ進んでいない場合は
+                # last_updated を発表直前に据え置き、ABS SDMX反映後の再取得を促す。
+                from services.australia.fmp_next_release_utils import resolve_last_updated_after_fetch
+                _prev_cache = redis_client.get(self.DATA_CACHE_KEY)
+                _prev_latest = _prev_cache.get("latest") if isinstance(_prev_cache, dict) else None
+                _resolved_last_updated = resolve_last_updated_after_fetch(
+                    FMP_EVENT_PATTERNS,
+                    latest.get("date") if isinstance(latest, dict) else None,
+                    _prev_latest.get("date") if isinstance(_prev_latest, dict) else None,
+                    _prev_cache.get("last_updated") if isinstance(_prev_cache, dict) else None,
+                    country="AU",
+                )
+
                 cache_payload = {
                     **result,
-                    "last_updated": datetime.now(JST).isoformat(),
+                    "last_updated": _resolved_last_updated,
                 }
                 redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
                 self._save_file_cache(cache_payload)
@@ -329,7 +368,7 @@ class AbsCpiCategoriesService:
     def _get_next_release(self) -> Optional[Dict[str, str]]:
         """FMPから次回発表日を取得"""
         try:
-            from services.usa.fmp_next_release_utils import get_next_release_by_pattern
+            from services.australia.fmp_next_release_utils import get_next_release_by_pattern
 
             return get_next_release_by_pattern(FMP_EVENT_PATTERNS[0], "AU")
         except Exception as e:
@@ -343,6 +382,17 @@ class AbsCpiCategoriesService:
             if last_updated.tzinfo is None:
                 last_updated = last_updated.replace(tzinfo=JST)
             now = datetime.now(JST)
+
+            # 発表認識型: FMP発表(=ABS公式発表)が last_updated より後にあれば更新。
+            # ラグガードで last_updated を発表直前に据え置いた場合も再取得を促す。
+            try:
+                from services.australia.fmp_next_release_utils import should_refresh_by_pattern
+                for pattern in FMP_EVENT_PATTERNS:
+                    if should_refresh_by_pattern(pattern, last_updated_str, country="AU"):
+                        return True
+            except Exception as e:
+                logger.warning(f"Error checking FMP refresh: {e}")
+
             if (now - last_updated).total_seconds() >= 7 * 24 * 3600:
                 return True
             return False

@@ -1,7 +1,7 @@
 /**
  * 中国 Caixin PMI チャートコンポーネント
  *
- * 2系列: 財新製造業PMI + 財新サービス業PMI
+ * 2系列: RatingDog製造業PMI + RatingDogサービス業PMI
  * 折れ線グラフ（50ラインをゼロ線として表示）
  *
  * データソース: S&P Global / Caixin
@@ -143,7 +143,7 @@ export default function CnCaixinPmiChart({ data }: Props) {
   return (
     <div id="caixin-pmi">
       <ChartContainer
-        title="Caixin PMI"
+        title="RatingDog中国PMI（旧Caixin PMI）"
         showDataSource={true}
         dataSource="S&P Global / Caixin"
         sourceUrl="https://www.pmi.spglobal.com/Public/Release/PressReleases"
@@ -218,8 +218,8 @@ export default function CnCaixinPmiChart({ data }: Props) {
                   <StandardLineChart
                     data={filteredData}
                     lines={[
-                      { dataKey: 'manufacturing', color: COLOR_MFG, name: '財新製造業PMI', hide: hiddenSeries.has('manufacturing') },
-                      { dataKey: 'services', color: COLOR_SVC, name: '財新サービス業PMI', hide: hiddenSeries.has('services') },
+                      { dataKey: 'manufacturing', color: COLOR_MFG, name: '製造業PMI', hide: hiddenSeries.has('manufacturing') },
+                      { dataKey: 'services', color: COLOR_SVC, name: 'サービス業PMI', hide: hiddenSeries.has('services') },
                     ]}
                     xAxisFormatter={formatDateLabel}
                     yAxisFormatter={(v: number) => `${v}`}

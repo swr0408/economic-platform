@@ -586,6 +586,16 @@ class BEAScheduleService:
         with open(cache_path, 'w', encoding='utf-8') as f:
             json.dump(cache_data, f, ensure_ascii=False, indent=2)
 
+    def update_personal_income_cache(self) -> bool:
+        """Personal Incomeスケジュールキャッシュを強制更新（BEAから再取得＆保存）"""
+        try:
+            schedule = self.fetch_personal_income_schedule_from_bea()
+            self._save_personal_income_cache(schedule)
+            return True
+        except Exception as e:
+            print(f"Error updating BEA personal income schedule cache: {e}")
+            return False
+
     def get_next_personal_income_release(self) -> Optional[Dict[str, str]]:
         """
         次回のPersonal Income発表を取得

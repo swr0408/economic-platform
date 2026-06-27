@@ -180,6 +180,118 @@ class VixFuturesCurveService:
         return out
 
     # ------------------------------------------------------------------
+    # Daily settlement endpoint (当日確定値で履歴CSVラグを前倒し)
+    # ------------------------------------------------------------------
+    def _fetch_settlement_rows(self, dt: date) -> Optional[List[Tuple[date, float]]]:
+        """settlement CSV (dt 時点の確定済み最新settlement) を {expiry: price} 行で返す。
+
+        フォーマット: Product,Symbol,Expiration Date,Price
+        Product == 'VX' の行のみ採用。取得失敗/空は None。
+        """
+        url = DAILY_SETTLEMENT_URL.format(date=dt.isoformat())
+        try:
+            resp = requests.get(url, timeout=15)
+        except Exception as e:
+            logger.warning(f"settlement取得失敗 {dt}: {e}")
+            return None
+        if resp.status_code != 200:
+            return None
+        rows: List[Tuple[date, float]] = []
+        try:
+            reader = csv.DictReader(io.StringIO(resp.text))
+            for row in reader:
+                if (row.get("Product") or "").strip() != "VX":
+                    continue
+                exp_str = (row.get("Expiration Date") or "").strip()
+                price_str = (row.get("Price") or "").strip()
+                if not exp_str or not price_str:
+                    continue
+                try:
+                    exp = datetime.fromisoformat(exp_str).date()
+                    price = float(price_str)
+                except Exception:
+                    continue
+                if price <= 0:
+                    continue
+                rows.append((exp, price))
+        except Exception as e:
+            logger.warning(f"settlement解析失敗 {dt}: {e}")
+            return None
+        return rows or None
+
+    def _resolve_latest_settlement(self) -> Optional[Tuple[date, List[Tuple[date, float]]]]:
+        """settlement の as-of セマンティクス (dt 以前の最新確定settlementを返す) を利用し、
+        「確定済みの最新トレード日」と そのVX settle一覧 を解決する。
+
+        dt=今日 を要求しても米場が未引けなら前営業日の値が返るため、
+        候補日と その前営業日 の内容が一致する間は「未確定」とみなして遡る。
+        内容が変化した最初の候補日を確定トレード日とする。
+        """
+        today = datetime.now(JST).date()
+        cand = today
+        for _ in range(MAX_LOOKBACK_DAYS + 2):
+            if cand.weekday() >= 5:
+                cand -= timedelta(days=1)
+                continue
+            rows_cand = self._fetch_settlement_rows(cand)
+            if rows_cand is None:
+                cand -= timedelta(days=1)
+                continue
+            prev = cand - timedelta(days=1)
+            while prev.weekday() >= 5:
+                prev -= timedelta(days=1)
+            rows_prev = self._fetch_settlement_rows(prev)
+            if rows_prev is None or frozenset(rows_cand) != frozenset(rows_prev):
+                # cand と prev で内容が異なる = cand 当日に新しい settlement が出た
+                return cand, rows_cand
+            # cand は未確定 (prev と同一内容) → prev を次の候補へ
+            cand = prev
+        return None
+
+    def _merge_latest_settlement(
+        self, contract_settles: List[Tuple[date, Dict[date, float]]]
+    ) -> Optional[date]:
+        """確定済み最新settlementを標準月次限月のみマージ。追加したトレード日を返す。
+
+        settlement CSV はウィークリーVXも含むため、履歴と同じ M1/M2/M3 定義を保つには
+        list_vx_expiries 由来の標準月次満期に一致する行だけを採用する。
+        既存トレード日は上書きしない (冪等)。
+        """
+        settles_by_exp: Dict[date, Dict[date, float]] = {exp: s for exp, s in contract_settles}
+        monthly_exps = set(settles_by_exp.keys())
+
+        last_hist = max(
+            (max(s.keys()) for _, s in contract_settles if s), default=None
+        )
+
+        resolved = self._resolve_latest_settlement()
+        if not resolved:
+            return None
+        td, rows = resolved
+
+        if last_hist is not None and td <= last_hist:
+            return None  # 履歴CSVが既に同等以上に新しい
+
+        # 適用候補を先に収集 (M1/M2/M3 が揃わない場合は一切マージしない)
+        pending: List[Tuple[Dict[date, float], float]] = []
+        for exp, price in rows:
+            if exp in monthly_exps and exp >= td:
+                s = settles_by_exp[exp]
+                if td not in s:
+                    pending.append((s, round(price, 4)))
+        if len(pending) < 3:
+            logger.info(
+                f"settlement前倒し: trade_date={td} で標準月次が{len(pending)}限月のみ → 前倒し見送り"
+            )
+            return None
+        for s, price in pending:
+            s[td] = price
+        logger.info(
+            f"settlement前倒し: trade_date={td} を{len(pending)}限月マージ (履歴last={last_hist})"
+        )
+        return td
+
+    # ------------------------------------------------------------------
     # Build full dataset
     # ------------------------------------------------------------------
     def _build_full_dataset(self) -> Dict[str, Any]:
@@ -205,6 +317,16 @@ class VixFuturesCurveService:
 
         if not contract_settles:
             return {"data": [], "latest": None, "metadata": {}, "cached": False, "source": "error", "last_updated": None}
+
+        # 当日settlementエンドポイントで前倒し:
+        # 限月別履歴CSV (cdn.cboe.com) は当日取引分の追記が翌米国午前まで遅れるため、
+        # settlement CSV (www-api.cboe.com) の確定済み最新トレード日を合成1行として
+        # 標準月次限月にマージし、約1営業日のラグを解消する。
+        settlement_trade_date: Optional[date] = None
+        try:
+            settlement_trade_date = self._merge_latest_settlement(contract_settles)
+        except Exception as e:
+            logger.warning(f"settlement前倒しマージ失敗(履歴のみで継続): {e}")
 
         # 全 trade_date 集合
         all_trade_dates: set = set()
@@ -270,6 +392,9 @@ class VixFuturesCurveService:
                 "data_points": len(rows),
                 "contracts_loaded": len(contract_settles),
                 "backfill_start": BACKFILL_START.isoformat(),
+                "settlement_frontrun_date": (
+                    settlement_trade_date.isoformat() if settlement_trade_date else None
+                ),
             },
             "cached": False,
             "source": "api",

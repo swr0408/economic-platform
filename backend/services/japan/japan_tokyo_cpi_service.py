@@ -385,8 +385,12 @@ class JapanTokyoCPIService:
         return combined
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定"""
-        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str, max_age_hours=72)
+        """キャッシュを更新すべきかどうかを判定
+
+        max_age_hours=24: e-Statは東京CPI公表当日(8:30 JST)に必ず反映されるため、
+        FMPカレンダーに発表イベントが欠落していてもmax-ageネットで翌日には追従させる。
+        """
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str, max_age_hours=24)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         try:

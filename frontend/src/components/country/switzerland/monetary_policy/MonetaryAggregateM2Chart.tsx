@@ -11,7 +11,7 @@
  * - 月次（Monthly）- 20日以降の最初の営業日 09:00（チューリッヒ時間）
  */
 import { useMemo, useState } from 'react'
-import { Button, Tooltip, Radio } from 'antd'
+import { Button, Tooltip } from 'antd'
 import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
@@ -26,6 +26,7 @@ import {
 import {
   NoDataMessage,
   StandardLineChart,
+  ViewModeButtonGroup,
 } from '../../usa/common/ChartComponents'
 import {
   LATEST_VALUE_BOX_STYLE,
@@ -54,6 +55,11 @@ const COLORS = {
 
 // 表示モード
 type ViewMode = 'value' | 'yoy'
+
+const VIEW_MODE_OPTIONS: { mode: ViewMode; label: string }[] = [
+  { mode: 'value', label: '原数値' },
+  { mode: 'yoy', label: '前年比' },
+]
 
 export default function MonetaryAggregateM2Chart({ data }: MonetaryAggregateM2ChartProps) {
   // 表示モード（原数値 / 前年比）
@@ -147,21 +153,9 @@ export default function MonetaryAggregateM2Chart({ data }: MonetaryAggregateM2Ch
           )}
         </div>
 
-        {/* コントロールバー */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, marginTop: 8, flexWrap: 'wrap', gap: 8 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
-            <Radio.Group
-              value={viewMode}
-              onChange={(e) => setViewMode(e.target.value)}
-              size="small"
-              optionType="button"
-              buttonStyle="solid"
-            >
-              <Radio.Button value="value">原数値</Radio.Button>
-              <Radio.Button value="yoy">前年比</Radio.Button>
-            </Radio.Group>
-          </div>
+        {/* 上段: 表示モード + データ比較ボタン */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8, marginTop: 8 }}>
+          <ViewModeButtonGroup options={VIEW_MODE_OPTIONS} currentMode={viewMode} onChange={setViewMode} />
           <Tooltip title="比較ページを開く（貨幣総量M2）">
             <Button
               icon={<AreaChartOutlined />}
@@ -170,6 +164,11 @@ export default function MonetaryAggregateM2Chart({ data }: MonetaryAggregateM2Ch
               データ比較
             </Button>
           </Tooltip>
+        </div>
+
+        {/* 期間セレクター */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+          <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
         </div>
 
         {/* グラフ */}

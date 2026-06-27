@@ -1851,87 +1851,11 @@
     {
       "date": "2026-02-01",
       "value": 409
-    },
-    {
-      "date": "2026-02-06",
-      "value": 412
-    },
-    {
-      "date": "2026-02-13",
-      "value": 409
-    },
-    {
-      "date": "2026-02-20",
-      "value": 409
-    },
-    {
-      "date": "2026-02-27",
-      "value": 407
-    },
-    {
-      "date": "2026-03-06",
-      "value": 411
-    },
-    {
-      "date": "2026-03-13",
-      "value": 412
-    },
-    {
-      "date": "2026-03-20",
-      "value": 414
-    },
-    {
-      "date": "2026-03-27",
-      "value": 409
-    },
-    {
-      "date": "2026-04-02",
-      "value": 411
-    },
-    {
-      "date": "2026-04-10",
-      "value": 411
-    },
-    {
-      "date": "2026-04-17",
-      "value": 410
-    },
-    {
-      "date": "2026-04-24",
-      "value": 407
-    },
-    {
-      "date": "2026-05-01",
-      "value": 408
-    },
-    {
-      "date": "2026-05-08",
-      "value": 410
-    },
-    {
-      "date": "2026-05-15",
-      "value": 415
-    },
-    {
-      "date": "2026-05-22",
-      "value": 425
-    },
-    {
-      "date": "2026-05-29",
-      "value": 429
-    },
-    {
-      "date": "2026-06-05",
-      "value": 431
-    },
-    {
-      "date": "2026-06-12",
-      "value": 433
     }
   ],
   "latest": {
-    "date": "2026-06-12",
-    "value": 433
+    "date": "2026-02-01",
+    "value": 409
   },
   "metadata": {
     "source": "EIA / Baker Hughes",
@@ -1939,11 +1863,11 @@
     "unit": "rigs",
     "series": "U.S. Crude Oil Rotary Rigs in Operation",
     "eia_series": "E_ERTRRO_XR0_NUS_C",
-    "data_count": 482,
+    "data_count": 463,
     "start_date": "1987-08-01",
-    "end_date": "2026-06-12"
+    "end_date": "2026-02-01"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-17T18:22:47.710645+09:00"
+  "last_updated": "2026-06-27T18:51:45.926221+09:00"
 }

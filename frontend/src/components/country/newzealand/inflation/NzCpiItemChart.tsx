@@ -130,25 +130,25 @@ export default function NzCpiItemChart({ data }: NzCpiItemChartProps) {
         <LatestValueBox
           items={[
             {
-              label: 'Food',
+              label: '食料',
               value: latest?.food_yoy,
               color: COLORS.food,
               format: 'percent',
             },
             {
-              label: 'Rentals',
+              label: '家賃',
               value: latest?.rentals_yoy,
               color: COLORS.rentals,
               format: 'percent',
             },
             {
-              label: 'Electricity',
+              label: '電気',
               value: latest?.electricity_yoy,
               color: COLORS.electricity,
               format: 'percent',
             },
             {
-              label: 'Gas',
+              label: 'ガス',
               value: latest?.gas_yoy,
               color: COLORS.gas,
               format: 'percent',
@@ -185,11 +185,11 @@ export default function NzCpiItemChart({ data }: NzCpiItemChartProps) {
                   <StandardLineChart
                     data={filteredData}
                     lines={[
-                      { dataKey: 'food_yoy', color: COLORS.food, name: 'Food', hide: hiddenSeries.has('food_yoy') },
-                      { dataKey: 'rentals_yoy', color: COLORS.rentals, name: 'Rentals', hide: hiddenSeries.has('rentals_yoy'), yAxisId: 'right' },
-                      { dataKey: 'purchase_housing_yoy', color: COLORS.purchase_housing, name: 'Purchase of Housing', hide: hiddenSeries.has('purchase_housing_yoy') },
-                      { dataKey: 'electricity_yoy', color: COLORS.electricity, name: 'Electricity', hide: hiddenSeries.has('electricity_yoy') },
-                      { dataKey: 'gas_yoy', color: COLORS.gas, name: 'Gas', hide: hiddenSeries.has('gas_yoy') },
+                      { dataKey: 'food_yoy', color: COLORS.food, name: '食料', hide: hiddenSeries.has('food_yoy') },
+                      { dataKey: 'rentals_yoy', color: COLORS.rentals, name: '家賃', hide: hiddenSeries.has('rentals_yoy'), yAxisId: 'right' },
+                      { dataKey: 'purchase_housing_yoy', color: COLORS.purchase_housing, name: '住宅購入', hide: hiddenSeries.has('purchase_housing_yoy') },
+                      { dataKey: 'electricity_yoy', color: COLORS.electricity, name: '電気', hide: hiddenSeries.has('electricity_yoy') },
+                      { dataKey: 'gas_yoy', color: COLORS.gas, name: 'ガス', hide: hiddenSeries.has('gas_yoy') },
                     ]}
                     yAxisFormatter={(v) => `${v}%`}
                     tooltipValueFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toFixed(1)}%`}

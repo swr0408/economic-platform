@@ -866,6 +866,13 @@
       }
     }
   },
-  "next_release": null,
-  "last_updated": "2026-06-16T08:48:41.816852+09:00"
+  "next_release": {
+    "date": "2026-08-16",
+    "datetime_utc": "2026-08-16T23:50:00+00:00",
+    "datetime_jst": "2026-08-17T08:50:00+09:00",
+    "time_jst": "08:50",
+    "label": "GDP Growth Rate QoQ (Q2)",
+    "estimate": 0.3
+  },
+  "last_updated": "2026-06-23T10:11:39.142120+09:00"
 }

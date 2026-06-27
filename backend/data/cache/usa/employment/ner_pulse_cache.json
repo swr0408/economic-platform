@@ -1,8 +1,12 @@
 {
   "data": [
     {
+      "week_ending": "2026-06-06",
+      "change": 30750.0
+    },
+    {
       "week_ending": "2026-05-30",
-      "change": 25500.0
+      "change": 26500.0
     },
     {
       "week_ending": "2026-05-23",
@@ -43,15 +47,11 @@
     {
       "week_ending": "2026-03-21",
       "change": 26000.0
-    },
-    {
-      "week_ending": "2026-03-14",
-      "change": 15250.0
     }
   ],
   "latest": {
-    "week_ending": "2026-05-30",
-    "change": 25500.0
+    "week_ending": "2026-06-06",
+    "change": 30750.0
   },
-  "last_updated": "2026-06-16T23:22:38.296172+09:00"
+  "last_updated": "2026-06-27T18:53:48.857862+09:00"
 }

@@ -39,8 +39,10 @@ DATA_CACHE_FILE = CACHE_DIR / "eu_government_debt_to_gdp_ratio_cache.json"
 
 # 取得対象の国コード（Eurostat geo codes）
 # 注意: ギリシャは "EL"（"GR" ではない）
+# 内部キー "ea20" はフロント契約のため維持。コードのみ EA20→EA21 に更新
+# (2026-01ブルガリア加盟で公式ユーロ圏集計が移行。EA21は2000-Q1〜の全履歴あり)。
 GEO_CODES = {
-    "ea20": {"code": "EA20", "label": "ユーロ圏"},
+    "ea20": {"code": "EA21", "label": "ユーロ圏"},
     "de": {"code": "DE", "label": "ドイツ"},
     "fr": {"code": "FR", "label": "フランス"},
     "it": {"code": "IT", "label": "イタリア"},

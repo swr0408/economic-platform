@@ -17,9 +17,16 @@ If not available, it will return cached data or an error message.
 このサービスは backend.services.browser.PlaywrightRunner 経由に統一済み
 (ARM64 / OCI 対応)。以前の async_playwright 直接利用 + ThreadPoolExecutor
 ラッパーはすべて削除。
-- URL 存在チェック: 軽量な requests.head() に置き換え (browser 起動不要)
 - 記事スクレイピング: ExtractRequest + html_selectors=("blockquote",) で
   outerHTML を取得 → BeautifulSoup で blockquote テキストを抽出
+
+[2026-06-21 修正]
+- URL 存在の事前チェック (旧 requests.head) は廃止。BRC が requests に
+  HTTP 403 (ボット対策) を返し常に失敗していたため。候補月 (期待月→前月) を
+  実ブラウザで直接スクレイプし、成功した月を採用する。
+- get_brc_commentary に鮮度判定 (data_month vs 期待月) + スロットル + 劣化ガードを
+  追加し、無条件キャッシュ返しによる凍結を解消。
+- FMP発表スケジューラの BRC 小売売上高 release に related_services で相乗り更新。
 """
 
 import json
@@ -28,9 +35,11 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
-import requests
-
 logger = logging.getLogger(__name__)
+
+# キャッシュが「あるべき最新月」より古いとき、再スクレイプを試みる最小間隔（時間）。
+# BRC が未公開・スクレイプ失敗のときに毎リクエストでブラウザを起動しないためのスロットル。
+_STALE_RETRY_HOURS = 12
 
 CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "uk" / "consumer"
 CACHE_FILE = CACHE_DIR / "brc_commentary_cache.json"
@@ -112,70 +121,25 @@ def _check_dependencies() -> bool:
         return False
 
 
-def _check_url_exists(url: str) -> bool:
+def _now_iso() -> str:
+    return datetime.now().isoformat()
+
+
+def _candidate_periods() -> List[Tuple[int, int]]:
     """
-    Check if a URL is accessible (returns HTTP 200).
+    スクレイプを試す (year, month) 候補を「期待される最新月 → 前月」の順で返す。
 
-    旧実装は Playwright で page.goto してステータスを見ていたが、
-    ブラウザ起動コストを避けるため軽量な requests.head に差し替え。
-    HEAD が拒否されるケースに備えて 405/403 のときは GET にフォールバック。
-    """
-    try:
-        resp = requests.head(
-            url,
-            headers={"User-Agent": _USER_AGENT},
-            timeout=15,
-            allow_redirects=True,
-        )
-        if resp.status_code == 200:
-            return True
-        if resp.status_code in (403, 405):
-            # HEAD が許可されていない可能性 → GET で確認
-            resp = requests.get(
-                url,
-                headers={"User-Agent": _USER_AGENT},
-                timeout=15,
-                allow_redirects=True,
-            )
-            return resp.status_code == 200
-        return False
-    except Exception as exc:
-        logger.warning("Failed to check URL: %s - %s", url, exc)
-        return False
-
-
-def _find_latest_report_url() -> Optional[Tuple[str, int, int]]:
-    """
-    Find the latest report URL by trying expected data periods.
-
-    Returns:
-        tuple: (url, data_year, data_month) or None if not found
+    旧実装は requests.head でURL存在を事前確認していたが、BRC が requests に
+    HTTP 403（ボット対策）を返すため常に失敗していた。Playwright 実ブラウザは
+    403 を回避できるので、事前 HEAD を廃止し、候補URLを実ブラウザで直接
+    スクレイプして成功したものを採用する（_scrape_report_commentary 側で判定）。
     """
     data_year, data_month = _get_expected_data_period()
-
-    # Try current expected month first
-    url = _build_report_url(data_year, data_month)
-    logger.info("Trying report URL: %s", url)
-    if _check_url_exists(url):
-        logger.info("Found report URL: %s", url)
-        return (url, data_year, data_month)
-
-    # Try previous month as fallback
     if data_month == 1:
-        prev_year = data_year - 1
-        prev_month = 12
+        prev_year, prev_month = data_year - 1, 12
     else:
-        prev_year = data_year
-        prev_month = data_month - 1
-
-    url = _build_report_url(prev_year, prev_month)
-    logger.info("Trying fallback report URL: %s", url)
-    if _check_url_exists(url):
-        logger.info("Found fallback report URL: %s", url)
-        return (url, prev_year, prev_month)
-
-    logger.warning("Could not find report URL")
-    return None
+        prev_year, prev_month = data_year, data_month - 1
+    return [(data_year, data_month), (prev_year, prev_month)]
 
 
 def _scrape_report_commentary(url: str) -> Optional[List[str]]:
@@ -305,63 +269,57 @@ def scrape_brc_commentary() -> Dict[str, Any]:
             "data_year": None,
             "data_month": None,
             "url": None,
-            "last_updated": datetime.now().isoformat(),
+            "last_updated": _now_iso(),
             "error": "Required dependencies not available (beautifulsoup4, deep-translator, playwright)"
         }
 
-    # Find latest report URL
-    logger.info("Finding latest report URL...")
-    report_info = _find_latest_report_url()
+    # 期待される最新月 → 前月の順に、実ブラウザで直接スクレイプを試す。
+    # 最初に blockquote を取得できた月を採用する（事前のURL存在確認は廃止）。
+    last_error: Optional[str] = None
+    for data_year, data_month in _candidate_periods():
+        url = _build_report_url(data_year, data_month)
+        month_name = MONTH_NAMES_FULL.get(data_month, "unknown")
+        logger.info("Fetching BRC commentary: %s %d at %s", month_name, data_year, url)
 
-    if not report_info:
+        try:
+            english_texts = _scrape_report_commentary(url)
+        except Exception as exc:
+            english_texts = None
+            last_error = str(exc)
+            logger.warning("Scrape attempt failed for %s: %s", url, exc)
+
+        if not english_texts:
+            continue
+
+        # Known speaker names for report page blockquotes
+        speaker_names = ["Helen Dickinson (BRC)", "Linda Ellett (KPMG)"]
+
+        commentaries = []
+        for i, en_text in enumerate(english_texts):
+            speaker = speaker_names[i] if i < len(speaker_names) else f"Commentator {i + 1}"
+            ja_text = _translate_to_japanese(en_text)
+            commentaries.append({
+                "en": en_text,
+                "ja": ja_text,
+                "speaker": speaker
+            })
+
         return {
-            "commentaries": None,
-            "data_year": None,
-            "data_month": None,
-            "url": None,
-            "last_updated": datetime.now().isoformat(),
-            "error": "Failed to find latest report URL"
-        }
-
-    url, data_year, data_month = report_info
-    month_name = MONTH_NAMES_FULL.get(data_month, "unknown")
-
-    logger.info("Fetching BRC commentary from report page: %s %d at %s", month_name, data_year, url)
-
-    # Scrape all commentaries from report page
-    english_texts = _scrape_report_commentary(url)
-
-    if not english_texts:
-        return {
-            "commentaries": None,
+            "commentaries": commentaries,
             "data_year": data_year,
             "data_month": data_month,
             "url": url,
-            "last_updated": datetime.now().isoformat(),
-            "error": "Failed to scrape commentary from report page"
+            "last_updated": _now_iso(),
+            "source": "report_page"
         }
 
-    # Known speaker names for report page blockquotes
-    speaker_names = ["Helen Dickinson (BRC)", "Linda Ellett (KPMG)"]
-
-    # Translate each commentary
-    commentaries = []
-    for i, en_text in enumerate(english_texts):
-        speaker = speaker_names[i] if i < len(speaker_names) else f"Commentator {i + 1}"
-        ja_text = _translate_to_japanese(en_text)
-        commentaries.append({
-            "en": en_text,
-            "ja": ja_text,
-            "speaker": speaker
-        })
-
     return {
-        "commentaries": commentaries,
-        "data_year": data_year,
-        "data_month": data_month,
-        "url": url,
-        "last_updated": datetime.now().isoformat(),
-        "source": "report_page"
+        "commentaries": None,
+        "data_year": None,
+        "data_month": None,
+        "url": None,
+        "last_updated": _now_iso(),
+        "error": last_error or "Failed to scrape commentary from BRC report pages"
     }
 
 
@@ -387,65 +345,147 @@ def _save_cache(data: Dict[str, Any]) -> None:
         logger.warning("Failed to save cache: %s", exc)
 
 
-def get_brc_commentary() -> Dict[str, Any]:
-    """Get BRC commentary with caching"""
-    # まずキャッシュを確認
-    cached_data = _load_cache()
-    if cached_data:
-        return cached_data
+def _period_key(year: Optional[int], month: Optional[int]) -> Optional[int]:
+    """(year, month) を比較可能な単一の整数に変換"""
+    if not year or not month:
+        return None
+    return year * 12 + (month - 1)
 
-    # 依存パッケージがない場合はエラーを返す
+
+def _cache_is_current(cached: Optional[Dict[str, Any]]) -> bool:
+    """キャッシュが「あるべき最新月」に追いついているか"""
+    if not cached or not cached.get("commentaries"):
+        return False
+    ck = _period_key(cached.get("data_year"), cached.get("data_month"))
+    if ck is None:
+        return False
+    ey, em = _get_expected_data_period()
+    return ck >= _period_key(ey, em)
+
+
+def _retry_due(cached: Optional[Dict[str, Any]], hours: int = _STALE_RETRY_HOURS) -> bool:
+    """前回の取得/試行から十分時間が経過し、再スクレイプして良いか"""
+    if not cached:
+        return True
+    ts = cached.get("last_attempt") or cached.get("last_updated")
+    if not ts:
+        return True
+    try:
+        last = datetime.fromisoformat(ts)
+    except (TypeError, ValueError):
+        return True
+    return (datetime.now() - last).total_seconds() >= hours * 3600
+
+
+def _deps_error() -> Dict[str, Any]:
+    return {
+        "commentaries": None,
+        "data_year": None,
+        "data_month": None,
+        "url": None,
+        "last_updated": _now_iso(),
+        "error": "Required dependencies not available (beautifulsoup4, deep-translator, playwright)"
+    }
+
+
+def get_brc_commentary() -> Dict[str, Any]:
+    """
+    Get BRC commentary（鮮度判定つき）。
+
+    - キャッシュが「あるべき最新月」に追いついていればそのまま返す（無駄なスクレイプをしない）。
+    - 古い／無い場合のみ再スクレイプ。ただし _STALE_RETRY_HOURS のスロットルで
+      未公開・失敗時の連続ブラウザ起動を防ぐ。
+    - スクレイプが空（失敗）なら既存の良いキャッシュは上書きしない（劣化ガード）。
+    """
+    cached = _load_cache()
+
+    # 追いついていれば即返し
+    if _cache_is_current(cached):
+        return cached
+
     if not _check_dependencies():
-        return {
-            "commentaries": None,
-            "data_year": None,
-            "data_month": None,
-            "url": None,
-            "last_updated": datetime.now().isoformat(),
-            "error": "Required dependencies not available (beautifulsoup4, deep-translator, playwright)"
-        }
+        # 依存が無ければ、既存キャッシュがあればそれを返す
+        return cached if (cached and cached.get("commentaries")) else _deps_error()
+
+    # 古い／無い。スロットル中なら既存キャッシュを返す
+    if cached and cached.get("commentaries") and not _retry_due(cached):
+        return cached
 
     try:
-        logger.info("Cache miss, scraping fresh commentary...")
+        logger.info("BRC commentary stale/missing — scraping fresh commentary...")
         data = scrape_brc_commentary()
-        _save_cache(data)
-        return data
     except Exception as exc:
         logger.error("Failed to get BRC commentary: %s", exc)
-        return {
-            "commentaries": None,
-            "data_year": None,
-            "data_month": None,
-            "url": None,
-            "last_updated": datetime.now().isoformat(),
-            "error": str(exc)
-        }
+        data = None
+
+    if data and data.get("commentaries"):
+        _save_cache(data)
+        return data
+
+    # 失敗 → 劣化ガード: 既存の良いキャッシュは保持し、試行時刻だけ更新してスロットル
+    if cached and cached.get("commentaries"):
+        cached["last_attempt"] = _now_iso()
+        _save_cache(cached)
+        return cached
+
+    # 既存キャッシュも無い → エラーペイロードを保存して返す
+    fallback = data or _deps_error()
+    _save_cache(fallback)
+    return fallback
 
 
-def refresh_brc_commentary() -> Dict[str, Any]:
-    """Force refresh BRC commentary (bypass cache)"""
+def refresh_brc_commentary(force_refresh: bool = True) -> Dict[str, Any]:
+    """
+    Force refresh BRC commentary (bypass cache)。
+
+    スクレイプが空（失敗）の場合は既存の良いキャッシュを破壊しない（劣化ガード）。
+    """
     if not _check_dependencies():
-        return {
-            "commentaries": None,
-            "data_year": None,
-            "data_month": None,
-            "url": None,
-            "last_updated": datetime.now().isoformat(),
-            "error": "Required dependencies not available (beautifulsoup4, deep-translator, playwright)"
-        }
+        cached = _load_cache()
+        return cached if (cached and cached.get("commentaries")) else _deps_error()
 
     try:
         logger.info("Force refreshing BRC commentary...")
         data = scrape_brc_commentary()
-        _save_cache(data)
-        return data
     except Exception as exc:
         logger.error("Failed to refresh BRC commentary: %s", exc)
-        return {
-            "commentaries": None,
-            "data_year": None,
-            "data_month": None,
-            "url": None,
-            "last_updated": datetime.now().isoformat(),
-            "error": str(exc)
-        }
+        data = None
+
+    if data and data.get("commentaries"):
+        _save_cache(data)
+        return data
+
+    # 劣化ガード: 失敗時は既存キャッシュを保持
+    cached = _load_cache()
+    if cached and cached.get("commentaries"):
+        cached["last_attempt"] = _now_iso()
+        _save_cache(cached)
+        return cached
+
+    fallback = data or {
+        "commentaries": None, "data_year": None, "data_month": None,
+        "url": None, "last_updated": _now_iso(),
+        "error": "Failed to refresh BRC commentary",
+    }
+    _save_cache(fallback)
+    return fallback
+
+
+class _BRCCommentaryService:
+    """
+    FMP発表スケジューラの related_services から呼べるようにする薄いラッパー。
+    （スケジューラは `instance.fetch_method(force_refresh=True)` を期待する）
+    """
+
+    def get_data(self, force_refresh: bool = False) -> Dict[str, Any]:
+        if force_refresh:
+            return refresh_brc_commentary()
+        return get_brc_commentary()
+
+    def invalidate_cache(self) -> bool:
+        # refresh_brc_commentary は常に再スクレイプ（force）するためキャッシュ削除は不要。
+        # ファイルを消すと劣化ガード（失敗時に旧データ保持）の安全網を失うので no-op。
+        return True
+
+
+brc_commentary_service = _BRCCommentaryService()

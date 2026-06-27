@@ -1,30 +1,36 @@
 /**
- * 日本 価格DIスプレッドテーブルコンポーネント
+ * 日本 価格DIスプレッド（日銀短観）チャートコンポーネント
  *
- * 販売価格判断DI - 仕入価格判断DI で計算
- * 企業のマージン（採算）とインフレ転嫁状況を表す
- *
+ * 販売価格判断DI - 仕入価格判断DI で計算（長期時系列・折れ線）
+ * 企業のマージン（採算）とインフレ転嫁状況を表す。
  * - マイナス幅が大きいほど、企業のマージンが圧縮されている
- * - プラスになると、コスト上昇を価格転嫁できている状態
+ * - プラスは、コスト上昇を価格転嫁できている状態
  *
  * データソース:
- * - 日銀短観（BOJ Tankan Survey）
- * - 販売価格判断DI: A12シート
- * - 仕入価格判断DI: A13シート
+ * - 日銀短観（BOJ Tankan Survey）販売価格判断DI(A12) / 仕入価格判断DI(A13)
+ * - /api/japan/price-di-spread （zenyo過去ファイルを蓄積した長期履歴）
  *
- * 発表スケジュール:
- * - 四半期（4月、7月、10月、12月）
+ * 発表スケジュール: 四半期（4月、7月、10月、12月）
  */
 
 import { useEffect, useState, useMemo } from 'react'
-import { Table } from 'antd'
+import { Tabs } from 'antd'
 import { CalendarOutlined } from '@ant-design/icons'
-import type { ColumnsType } from 'antd/es/table'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
-import DataTablePagination from '../../../common/DataTablePagination'
+import PeriodSelector from '../../../common/PeriodSelector'
 
 import { TEXT_COLORS } from '../../usa/common/chartConstants'
+import {
+  useSortedData,
+  usePeriodFiltering,
+  useHiddenSeries,
+  type PeriodType,
+} from '../../usa/common/useChartData'
+import {
+  NoDataMessage,
+  StandardLineChart,
+} from '../../usa/common/ChartComponents'
 
 // =============================================================================
 // 型定義
@@ -32,8 +38,6 @@ import { TEXT_COLORS } from '../../usa/common/chartConstants'
 
 interface PriceDISpreadDataPoint {
   date: string
-  value: number
-  spread: number
   large_manufacturing_spread: number | null
   all_industries_spread: number | null
   large_manufacturing_selling: number | null
@@ -52,91 +56,64 @@ interface NextRelease {
 interface PriceDISpreadResponse {
   data: PriceDISpreadDataPoint[]
   latest: PriceDISpreadDataPoint | null
-  metadata: {
-    source: string
-    description: string
-    unit: string
-    frequency: string
-  }
   next_release?: NextRelease
   cached: boolean
   source: string
   last_updated: string
 }
 
-interface TableRow {
-  key: string
-  quarter: string
-  large_manufacturing_selling: number | null
-  large_manufacturing_purchase: number | null
-  large_manufacturing_spread: number | null
-  all_industries_selling: number | null
-  all_industries_purchase: number | null
-  all_industries_spread: number | null
-}
-
 // =============================================================================
 // 定数
 // =============================================================================
 
-const INITIAL_ROW_COUNT = 5
-const INCREMENT_COUNT = 10
+// 既定表示はスプレッド2本。販売/仕入DIの内訳は凡例クリックで表示。
+const SERIES: { key: keyof PriceDISpreadDataPoint; name: string; color: string; defaultHidden?: boolean }[] = [
+  { key: 'large_manufacturing_spread', name: '大企業製造業 スプレッド', color: '#cf1322' },
+  { key: 'all_industries_spread', name: '全産業 スプレッド', color: '#fa8c16' },
+  { key: 'large_manufacturing_selling', name: '大企業製造業 販売価格DI', color: '#389e0d', defaultHidden: true },
+  { key: 'large_manufacturing_purchase', name: '大企業製造業 仕入価格DI', color: '#722ed1', defaultHidden: true },
+  { key: 'all_industries_selling', name: '全産業 販売価格DI', color: '#13c2c2', defaultHidden: true },
+  { key: 'all_industries_purchase', name: '全産業 仕入価格DI', color: '#2f54eb', defaultHidden: true },
+]
+
+const INITIAL_HIDDEN = SERIES.filter((s) => s.defaultHidden).map((s) => s.key as string)
 
 // =============================================================================
-// ユーティリティ関数
+// ユーティリティ
 // =============================================================================
 
-// 四半期日付をフォーマット（例：2025Q4）
-function formatQuarterDate(dateStr: string): string {
+function formatQuarterLabel(dateStr: string): string {
   const date = new Date(dateStr)
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-
-  let quarter: number
-  if (month <= 3) quarter = 1
-  else if (month <= 6) quarter = 2
-  else if (month <= 9) quarter = 3
-  else quarter = 4
-
-  return `${year}Q${quarter}`
+  const year = date.getFullYear() % 100
+  const quarter = Math.floor(date.getMonth() / 3) + 1
+  return `'${year.toString().padStart(2, '0')} Q${quarter}`
 }
 
-// 次回発表日時のフォーマット
 function formatNextRelease(nextRelease: NextRelease | null | undefined): string | null {
   if (!nextRelease) return null
   if (nextRelease.datetime_jst) {
     const dt = new Date(nextRelease.datetime_jst)
-    const month = dt.getMonth() + 1
-    const day = dt.getDate()
-    const hours = dt.getHours().toString().padStart(2, '0')
-    const minutes = dt.getMinutes().toString().padStart(2, '0')
-    return `${month}/${day} ${hours}:${minutes}`
+    return `${dt.getMonth() + 1}/${dt.getDate()} ${dt.getHours().toString().padStart(2, '0')}:${dt.getMinutes().toString().padStart(2, '0')}`
   }
   if (nextRelease.time_jst && nextRelease.date) {
     const dt = new Date(nextRelease.date)
-    const month = dt.getMonth() + 1
-    const day = dt.getDate()
-    return `${month}/${day} ${nextRelease.time_jst}`
+    return `${dt.getMonth() + 1}/${dt.getDate()} ${nextRelease.time_jst}`
   }
   if (nextRelease.date) {
     const dt = new Date(nextRelease.date)
-    const month = dt.getMonth() + 1
-    const day = dt.getDate()
-    return `${month}/${day}`
+    return `${dt.getMonth() + 1}/${dt.getDate()}`
   }
   return null
 }
 
 // =============================================================================
-// API呼び出し関数
+// API
 // =============================================================================
 
 async function fetchPriceDISpreadData(): Promise<PriceDISpreadResponse | null> {
   try {
     const response = await fetch('/api/japan/price-di-spread')
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
     return await response.json()
   } catch (error) {
     console.error('Failed to fetch price DI spread data:', error)
@@ -151,9 +128,9 @@ async function fetchPriceDISpreadData(): Promise<PriceDISpreadResponse | null> {
 export default function JapanPriceDISpreadChart() {
   const [data, setData] = useState<PriceDISpreadResponse | null>(null)
   const [loading, setLoading] = useState(true)
-  const [visibleRowCount, setVisibleRowCount] = useState(INITIAL_ROW_COUNT)
+  const [currentPeriod, setCurrentPeriod] = useState<PeriodType>(10)
+  const { hiddenSeries, handleLegendClick } = useHiddenSeries(INITIAL_HIDDEN)
 
-  // データ取得
   useEffect(() => {
     const loadData = async () => {
       setLoading(true)
@@ -164,176 +141,103 @@ export default function JapanPriceDISpreadChart() {
     loadData()
   }, [])
 
-  const handleShowMore = () => {
-    const totalCount = data?.data?.length ?? 0
-    setVisibleRowCount((prev) => Math.min(prev + INCREMENT_COUNT, totalCount))
-  }
-
-  const handleReset = () => {
-    setVisibleRowCount(INITIAL_ROW_COUNT)
-  }
-
-  // DI値のレンダリング（色分け）
-  const renderDIValue = (val: number | null | undefined) => {
-    if (val === null || val === undefined) return '-'
-    const color = val > 0 ? '#3f8600' : val < 0 ? '#cf1322' : undefined
-    return <span style={{ color, fontWeight: 500 }}>{val.toFixed(1)}</span>
-  }
-
-  // スプレッド値のレンダリング（色分け、強調）
-  const renderSpreadValue = (val: number | null | undefined) => {
-    if (val === null || val === undefined) return '-'
-    const color = val >= 0 ? '#3f8600' : '#cf1322'
-    return <span style={{ color, fontWeight: 600 }}>{val.toFixed(1)}</span>
-  }
-
-  // カラム定義
-  const columns: ColumnsType<TableRow> = [
-    {
-      title: '期間',
-      dataIndex: 'quarter',
-      key: 'quarter',
-      align: 'center',
-      width: 90,
-      fixed: 'left',
-    },
-    {
-      title: '大企業製造業',
-      children: [
-        {
-          title: '販売価格DI',
-          dataIndex: 'large_manufacturing_selling',
-          key: 'large_manufacturing_selling',
-          width: 100,
-          align: 'center' as const,
-          render: renderDIValue,
-        },
-        {
-          title: '仕入価格DI',
-          dataIndex: 'large_manufacturing_purchase',
-          key: 'large_manufacturing_purchase',
-          width: 100,
-          align: 'center' as const,
-          render: renderDIValue,
-        },
-        {
-          title: 'スプレッド',
-          dataIndex: 'large_manufacturing_spread',
-          key: 'large_manufacturing_spread',
-          width: 100,
-          align: 'center' as const,
-          render: renderSpreadValue,
-        },
-      ],
-    },
-    {
-      title: '全産業',
-      children: [
-        {
-          title: '販売価格DI',
-          dataIndex: 'all_industries_selling',
-          key: 'all_industries_selling',
-          width: 100,
-          align: 'center' as const,
-          render: renderDIValue,
-        },
-        {
-          title: '仕入価格DI',
-          dataIndex: 'all_industries_purchase',
-          key: 'all_industries_purchase',
-          width: 100,
-          align: 'center' as const,
-          render: renderDIValue,
-        },
-        {
-          title: 'スプレッド',
-          dataIndex: 'all_industries_spread',
-          key: 'all_industries_spread',
-          width: 100,
-          align: 'center' as const,
-          render: renderSpreadValue,
-        },
-      ],
-    },
-  ]
-
-  // テーブルデータを変換
-  const tableData = useMemo<TableRow[]>(() => {
+  const chartData = useMemo(() => {
     if (!data?.data) return []
+    return data.data.map((p) => ({
+      date: p.date,
+      large_manufacturing_spread: p.large_manufacturing_spread,
+      all_industries_spread: p.all_industries_spread,
+      large_manufacturing_selling: p.large_manufacturing_selling,
+      large_manufacturing_purchase: p.large_manufacturing_purchase,
+      all_industries_selling: p.all_industries_selling,
+      all_industries_purchase: p.all_industries_purchase,
+    }))
+  }, [data])
 
-    return data.data
-      .sort((a, b) => b.date.localeCompare(a.date))
-      .slice(0, visibleRowCount)
-      .map((point) => ({
-        key: point.date,
-        quarter: formatQuarterDate(point.date),
-        large_manufacturing_selling: point.large_manufacturing_selling,
-        large_manufacturing_purchase: point.large_manufacturing_purchase,
-        large_manufacturing_spread: point.large_manufacturing_spread,
-        all_industries_selling: point.all_industries_selling,
-        all_industries_purchase: point.all_industries_purchase,
-        all_industries_spread: point.all_industries_spread,
-      }))
-  }, [data, visibleRowCount])
+  const sortedData = useSortedData(chartData)
+  const filteredData = usePeriodFiltering(sortedData, {
+    selectedPeriod: currentPeriod,
+    defaultStartYear: 2018,
+  })
 
-  const totalCount = data?.data?.length ?? 0
+  // 表示中（非表示でない）の系列のみでY軸範囲を決める。
+  // 既定で隠れている内訳DI（販売/仕入=40〜52）を含めるとスプレッド線が潰れるため。
+  const yDomain = useMemo<[number, number]>(() => {
+    const visibleKeys = SERIES.filter((s) => !hiddenSeries.has(s.key as string)).map((s) => s.key)
+    const values = filteredData.flatMap((d) =>
+      visibleKeys.map((k) => d[k as keyof typeof d] as number | null).filter(
+        (v): v is number => typeof v === 'number'
+      )
+    )
+    if (values.length === 0) return [-30, 10]
+    return [Math.floor((Math.min(...values) - 3) / 5) * 5, Math.ceil((Math.max(...values) + 3) / 5) * 5]
+  }, [filteredData, hiddenSeries])
 
-  // ローディング
   if (loading) {
     return <LoadingChart title="価格DIスプレッド" />
   }
 
-  // データなし
   if (!data || !data.data || data.data.length === 0) {
     return (
-      <ChartContainer title="価格DIスプレッド" showPeriodSelector={false} showDataSource={false}>
-        <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>データがありません</div>
+      <ChartContainer title="価格DIスプレッド（販売価格DI - 仕入価格DI）" showPeriodSelector={false} showDataSource={false}>
+        <NoDataMessage />
       </ChartContainer>
     )
   }
 
   const nextReleaseFormatted = formatNextRelease(data.next_release)
+  const lines = SERIES.map((s) => ({
+    dataKey: s.key as string,
+    color: s.color,
+    name: s.name,
+    strokeWidth: s.defaultHidden ? 1.5 : 2.5,
+    hide: hiddenSeries.has(s.key as string),
+  }))
 
   return (
-    <div id="japan-price-di-spread-table">
+    <div id="japan-price-di-spread-chart">
       <ChartContainer
         title="価格DIスプレッド（販売価格DI - 仕入価格DI）"
         showPeriodSelector={false}
         dataSource="日本銀行（BOJ）短観"
         sourceUrl="https://www.boj.or.jp/statistics/tk/index.htm"
+        handbookId="price-di-spread"
         extra={
           nextReleaseFormatted && (
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: 6,
-              fontSize: 12,
-              color: TEXT_COLORS.secondary,
-            }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: TEXT_COLORS.secondary }}>
               <CalendarOutlined />
               <span>次回発表: {nextReleaseFormatted}</span>
             </div>
           )
         }
       >
-        {/* テーブル */}
-        <Table
-          columns={columns}
-          dataSource={tableData}
-          pagination={false}
-          size="small"
-          bordered
-          scroll={{ x: 'max-content' }}
-        />
-
-        {/* ページネーション */}
-        <DataTablePagination
-          currentCount={visibleRowCount}
-          totalCount={totalCount}
-          initialCount={INITIAL_ROW_COUNT}
-          incrementCount={INCREMENT_COUNT}
-          onShowMore={handleShowMore}
-          onReset={handleReset}
+        <Tabs
+          defaultActiveKey="timeseries"
+          style={{ marginTop: 8 }}
+          items={[
+            {
+              key: 'timeseries',
+              label: '時系列',
+              children: (
+                <>
+                  <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
+                  </div>
+                  <StandardLineChart
+                    data={filteredData}
+                    lines={lines}
+                    yAxisFormatter={(v) => `${v.toFixed(0)}`}
+                    yDomain={yDomain}
+                    showZeroLine={true}
+                    xAxisFormatter={formatQuarterLabel}
+                    tooltipLabelFormatter={formatQuarterLabel}
+                    tooltipValueFormatter={(v) => `${v.toFixed(1)} %pt`}
+                    onLegendClick={handleLegendClick}
+                  />
+                </>
+              ),
+            },
+          ]}
         />
       </ChartContainer>
     </div>

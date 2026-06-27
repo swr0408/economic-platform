@@ -235,7 +235,7 @@ export default function ECBPPIChart({ data }: ECBPPIChartProps) {
                         lines={[
                           { dataKey: 'ppi_yoy', color: COLORS.ppi, name: 'PPI（前年比）' },
                         ]}
-                        yAxisFormatter={(v) => `${v}%`}
+                        yAxisFormatter={(v) => `${Number(v).toFixed(1)}%`}
                         yDomain={['dataMin - 1', 'dataMax + 1']}
                         showZeroLine={true}
                       />
@@ -259,7 +259,7 @@ export default function ECBPPIChart({ data }: ECBPPIChartProps) {
                         bars={[
                           { dataKey: 'ppi_mom', color: COLORS.ppi, name: 'PPI（前月比）' },
                         ]}
-                        yAxisFormatter={(v) => `${v}%`}
+                        yAxisFormatter={(v) => `${Number(v).toFixed(1)}%`}
                         yDomain={['dataMin - 1', 'dataMax + 1']}
                       />
                     </>

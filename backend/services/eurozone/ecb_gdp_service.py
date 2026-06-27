@@ -59,8 +59,11 @@ class ECBGDPService:
     DATAFLOW = "MNA"
 
     # シリーズキー
-    SERIES_KEY_QOQ = "Q.Y.I9.W2.S1.S1.B.B1GQ._Z._Z._Z.EUR.LR.G1"
-    SERIES_KEY_YOY = "Q.Y.I9.W2.S1.S1.B.B1GQ._Z._Z._Z.EUR.LR.GY"
+    # I10 = Euro area 21 (fixed composition as of 2026-01-01)。2026年ブルガリア加盟で
+    # 公式ユーロ圏集計が I9(EA20)→I10(EA21) に移行。I9は更新継続するが旧構成で公式値と
+    # 僅かに乖離→I10へ(履歴1995-Q2〜で欠落なし)。詳細は ecb_current_account_service 参照。
+    SERIES_KEY_QOQ = "Q.Y.I10.W2.S1.S1.B.B1GQ._Z._Z._Z.EUR.LR.G1"
+    SERIES_KEY_YOY = "Q.Y.I10.W2.S1.S1.B.B1GQ._Z._Z._Z.EUR.LR.GY"
 
     DATA_CACHE_KEY = "economy:ecb_gdp:data"
     ECONALPHA_ID = "euro_gdp"

@@ -152,7 +152,7 @@ export default function NzPpiChart({ data }: NzPpiChartProps) {
         title="生産者物価指数（PPI）"
         showPeriodSelector={false}
         dataSource="Stats NZ"
-        sourceUrl="https://www.stats.govt.nz/information-releases/business-price-indexes-december-2025-quarter/"
+        sourceUrl="https://www.stats.govt.nz/insights/?filters=Business+price+indexes%2CInformation+releases"
         handbookId="nz-ppi"
       >
         {/* 最新値表示 */}

@@ -159,7 +159,7 @@ export default function BOEBankRateChart({ data }: BOEBankRateChartProps) {
                             }}
                           >
                             <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, color: DARK_THEME.textPrimary }}>
-                              {formatDateLabel(String(label))}
+                              {String(label).replace(/-/g, '/')}
                             </div>
                             {payload.map((item, index) => (
                               <div

@@ -50,13 +50,14 @@ class ECBUnemploymentService:
 
     # Series key
     # Key structure: DATAFLOW/Frequency.Area.Adjustment.Indicator.Population.Age.Unit
-    # M = Monthly, I9 = Euro Area (changing composition)
+    # M = Monthly, I10 = Euro area 21 (fixed composition as of 2026-01-01)
     # S = Seasonally adjusted
     # UNEHRT = Unemployment rate
     # TOTAL0 = Total (all persons)
     # 15_74 = Age 15-74
     # T = Thousands of persons
-    SERIES_KEY = "M.I9.S.UNEHRT.TOTAL0.15_74.T"
+    # 2026年ブルガリア加盟で公式集計が I9(EA20)→I10(EA21) に移行。履歴2000-01〜で欠落なし。
+    SERIES_KEY = "M.I10.S.UNEHRT.TOTAL0.15_74.T"
 
     def __init__(self):
         pass

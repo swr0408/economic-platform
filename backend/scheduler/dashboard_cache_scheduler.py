@@ -185,12 +185,34 @@ class DashboardCacheScheduler:
             logger.warning(f"[DashboardCache] Event scan error: {e}")
             return set()
 
+    def _sync_fmp_calendar_recent(self) -> None:
+        """直近のFMPカレンダー（±数日）を即同期して actual を取り込む。
+
+        economic_calendar_events の actual は calendar_scheduler の定期同期まで
+        未取込（当日フラッシュ発表は翌朝07:00まで NULL）。発表検知時にFMPを即同期し、
+        サービスが `actual IS NOT NULL` で当日分を落とすのを防ぐ。同期SQLのため
+        呼び出し側はワーカースレッドで実行する。
+        """
+        try:
+            from datetime import date
+            from services.calendar.calendar_scheduler import calendar_scheduler
+            today = date.today()
+            calendar_scheduler.sync_range(today - timedelta(days=2), today + timedelta(days=1))
+        except Exception as e:
+            logger.warning(f"[DashboardCache] FMP calendar recent sync failed: {e}")
+
     async def _event_driven_poll(self):
         """イベント駆動ポーリング: 直近に発表があった国のダッシュボードのみ更新"""
         # 同期 SQLAlchemy クエリのためワーカースレッドへ退避（イベントループ保護）
         countries = await asyncio.to_thread(self._find_countries_with_recent_releases)
         if not countries:
             return
+
+        # 発表検知時はFMPカレンダーを即同期して当日発表の actual を取り込む
+        # （定期同期待ちだと actual=NULL のまま更新され当月分が欠落する）。
+        # 同期で新たに actual が判明する国もあるため再検出して和集合を取る。
+        await asyncio.to_thread(self._sync_fmp_calendar_recent)
+        countries |= await asyncio.to_thread(self._find_countries_with_recent_releases)
 
         logger.info(f"[DashboardCache] Event-driven: releases detected for {countries}")
 

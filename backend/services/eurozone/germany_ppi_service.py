@@ -93,7 +93,13 @@ class GermanyPPIService:
             cached_data = redis_client.get(self.DATA_CACHE_KEY)
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str):
+                # 取りこぼし対策: TTL/発表日判定が有効でも、キャッシュが劣化状態
+                # （Destatis確報が消えFMP速報のみ）なら再取得して長期履歴を回復する。
+                if (
+                    last_updated_str
+                    and not self._should_refresh(last_updated_str)
+                    and not self._is_cache_degraded(cached_data.get("data", []))
+                ):
                     return {
                         "data": cached_data.get("data", []),
                         "metadata": cached_data.get("metadata", {}),
@@ -111,6 +117,19 @@ class GermanyPPIService:
 
         # 3. FMP DBから速報データを取得
         fmp_data = self._load_from_fmp_db()
+
+        # 劣化上書きガード:
+        # Destatisが一時的に失敗（空）した場合、FMP速報のみ（直近約14ヶ月）で
+        # 2015年〜の長期履歴を上書き破壊しないよう、直近の良好キャッシュを
+        # ベースとして再利用する。FMP速報は最新月の補完としてこの上に乗る。
+        if not destatis_data:
+            prior_data = self._load_prior_data()
+            if prior_data:
+                print(
+                    f"[GermanyPPI] Destatis returned no data; reusing prior cache "
+                    f"({len(prior_data)} records) as base to avoid degraded overwrite"
+                )
+                history_data = prior_data
 
         # データをマージ（履歴DB → Destatis → FMP の順で上書き）
         merged_data = self._merge_three_sources(history_data, destatis_data, fmp_data)
@@ -177,6 +196,16 @@ class GermanyPPIService:
         # germany_ppi_historyテーブルは現在未作成
         # Destatis APIから2015年以降のデータを取得可能なため、
         # historyテーブルは不要
+        return []
+
+    def _load_prior_data(self) -> List[Dict[str, Any]]:
+        """直近の良好キャッシュ（Redis優先、無ければファイル）のデータ配列を返す"""
+        cached = redis_client.get(self.DATA_CACHE_KEY)
+        if cached and isinstance(cached.get("data"), list) and cached["data"]:
+            return cached["data"]
+        file_cache = self._load_file_cache()
+        if file_cache and isinstance(file_cache.get("data"), list):
+            return file_cache["data"]
         return []
 
     def _load_from_destatis(self) -> List[Dict[str, Any]]:
@@ -380,7 +409,11 @@ class GermanyPPIService:
             return None
 
     def _fetch_ppi_monthly(self) -> Optional[Dict]:
-        """PPIデータを取得 (Table: 61241-0002)"""
+        """PPIデータを取得 (Table: 61241-0002)
+
+        Destatis APIは一時的な失敗（タイムアウト/5xx/レート制限）が起こり得るため、
+        最大3回リトライする。空のまま返すと劣化キャッシュ上書きを誘発するため重要。
+        """
         data = {
             'name': '61241-0002',
             'area': 'all',
@@ -391,24 +424,38 @@ class GermanyPPIService:
             'endyear': str(datetime.now().year)
         }
 
-        response = self._make_request('data/table', data)
-        if not response or response.status_code != 200:
-            print(f"[GermanyPPI] Failed to fetch PPI data: {response.status_code if response else 'No response'}")
-            return None
+        for attempt in range(3):
+            response = self._make_request('data/table', data)
+            if not response or response.status_code != 200:
+                print(f"[GermanyPPI] Failed to fetch PPI data (attempt {attempt + 1}/3): "
+                      f"{response.status_code if response else 'No response'}")
+                continue
 
-        content_type = response.headers.get('Content-Type', '')
+            content_type = response.headers.get('Content-Type', '')
 
-        if 'json' in content_type:
-            result = response.json()
-            status = result.get('Status', {})
-            if status.get('Code') == 0:
-                csv_content = result.get('Object', {}).get('Content', '')
-                return self._parse_ppi_csv(csv_content)
+            if 'json' in content_type:
+                result = response.json()
+                status = result.get('Status', {})
+                if status.get('Code') == 0:
+                    csv_content = result.get('Object', {}).get('Content', '')
+                    parsed = self._parse_ppi_csv(csv_content)
+                    if parsed.get('data'):
+                        return parsed
+                    print(f"[GermanyPPI] Empty parse (attempt {attempt + 1}/3)")
+                    continue
+                else:
+                    # job=trueの非同期処理待ち等。リトライで解消し得る
+                    print(f"[GermanyPPI] API status (attempt {attempt + 1}/3): {status.get('Content')}")
+                    continue
             else:
-                print(f"[GermanyPPI] API error: {status.get('Content')}")
-                return None
-        else:
-            return self._parse_ppi_csv(response.text)
+                parsed = self._parse_ppi_csv(response.text)
+                if parsed.get('data'):
+                    return parsed
+                print(f"[GermanyPPI] Empty parse (attempt {attempt + 1}/3)")
+                continue
+
+        print("[GermanyPPI] All Destatis fetch attempts failed")
+        return None
 
     def _parse_ppi_csv(self, csv_content: str) -> Dict:
         """PPI CSVをパース"""
@@ -466,13 +513,35 @@ class GermanyPPIService:
     # キャッシュ関連メソッド
     # =====================================================================
 
+    # 確報ソース(Destatis)が公表当日に反映されるため、TTLは短め(36h)にして
+    # 発表時刻レース等の凍結を1.5日以内に自己回復させる。
+    MAX_AGE_HOURS = 36
+
+    # Destatis確報の最小期待件数(2015-01〜で約130件)。これを下回る場合は
+    # FMP速報のみの劣化キャッシュとみなす。
+    MIN_HEALTHY_INDEX_RECORDS = 24
+
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定"""
         return should_refresh_by_pattern(
             self.FMP_EVENT_PATTERN,
             last_updated_str,
-            country=self.FMP_COUNTRY
+            country=self.FMP_COUNTRY,
+            max_age_hours=self.MAX_AGE_HOURS,
         )
+
+    def _is_cache_degraded(self, data: List[Dict[str, Any]]) -> bool:
+        """
+        キャッシュが劣化状態（Destatis確報を失いFMP速報のみ）かを判定。
+
+        正常キャッシュは2015年以降のDestatis確報(ppi_index付き)を約130件持つ。
+        Destatis一時失敗時にFMP速報のみ(ppi_index無し・直近約14ヶ月)で上書き
+        されると長期履歴とindex値が消える。これを検知して再取得を促す。
+        """
+        if not data:
+            return True
+        index_records = sum(1 for d in data if d.get("ppi_index") is not None)
+        return index_records < self.MIN_HEALTHY_INDEX_RECORDS
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込む"""

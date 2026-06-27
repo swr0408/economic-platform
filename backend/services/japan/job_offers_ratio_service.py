@@ -30,6 +30,7 @@ from services.japan.fmp_next_release_utils import (
     get_next_release_from_fmp,
     should_refresh_by_fmp_schedule,
 )
+from services.japan.estat_file_source import download_estat_excel_matching_title
 
 logger = logging.getLogger(__name__)
 
@@ -52,10 +53,21 @@ class JobOffersRatioService:
     # e-Stat Excel File Download URL
     ESTAT_EXCEL_URL = "https://www.e-stat.go.jp/stat-search/file-download"
 
-    # 一般職業紹介状況 長期時系列表のstatInfId（優先順）
+    # e-Stat Data Catalog API で現行 statInfId を動的解決するためのパラメータ。
+    # statInfId はリリース毎にローテートし旧 ID は 404 になる（固定 ID 直叩きだと
+    # 長期時系列が取れず DB(FMP) の直近 1 年分のみに痩せる）ため動的解決する。
+    # 政府統計コード 00450222 = 職業安定業務統計（一般職業紹介状況）
+    ESTAT_STATS_CODE = "00450222"
+    ESTAT_TABLE_FILTER = "有効求人倍率"
+    # 同コード下に「パートを含む/除く/パート」の 3 ファイルが並ぶため、データシート
+    # A1 タイトルで「パートタイムを含む一般」を選別する。
+    ESTAT_TITLE_SUBSTRINGS = ["パートタイムを含む一般"]
+
+    # API 失敗時の既知 statInfId（新しい順）
     FALLBACK_STAT_INF_IDS = [
-        "000040391059",  # 長期時系列表 3 有効求人倍率（パートタイムを含む一般）- 最新版
-        "000031942496",  # 長期時系列表 3 有効求人倍率（実数及び季節調整値）- 旧版
+        "000040457545",  # 長期時系列表 3-1 有効求人倍率（パートタイムを含む一般）- 現行(.xlsx)
+        "000040391059",  # 旧・新フォーマット版（現在は 404）
+        "000031942496",  # 長期時系列表 3 有効求人倍率（実数及び季節調整値）- 旧版(.xls)
     ]
 
     def __init__(self):
@@ -171,11 +183,11 @@ class JobOffersRatioService:
     def _load_from_estat(self) -> List[Dict[str, Any]]:
         """e-Statから長期時系列データを取得"""
         try:
-            excel_path = self._download_excel_file()
-            if not excel_path:
+            excel_content = self._download_excel_content()
+            if not excel_content:
                 return []
 
-            return self._parse_excel_file(excel_path)
+            return self._parse_excel_file(excel_content)
 
         except Exception as e:
             logger.error(f"Error loading from e-Stat: {e}")
@@ -183,45 +195,34 @@ class JobOffersRatioService:
             traceback.print_exc()
             return []
 
-    def _download_excel_file(self) -> Optional[Path]:
-        """e-Statから有効求人倍率Excelをダウンロード"""
-        last_error = None
+    def _download_excel_content(self) -> Optional[bytes]:
+        """e-Statから有効求人倍率Excelをダウンロード（現行statInfIdを動的解決）。
 
-        for stat_inf_id in self.FALLBACK_STAT_INF_IDS:
-            try:
-                params = {
-                    "statInfId": stat_inf_id,
-                    "fileKind": 0
-                }
+        Data Catalog API で現行 statInfId を解決し、A1 タイトルで
+        「パートタイムを含む一般」のファイルを選別して内容(bytes)を返す。
+        """
+        try:
+            content = download_estat_excel_matching_title(
+                self.ESTAT_STATS_CODE,
+                self.ESTAT_TABLE_FILTER,
+                self.ESTAT_TITLE_SUBSTRINGS,
+                self.FALLBACK_STAT_INF_IDS,
+                timeout=60,
+            )
+            if content:
+                logger.info(f"Downloaded job offers ratio Excel ({len(content)} bytes) from e-Stat")
+            else:
+                logger.warning("e-Stat download returned no matching file for job offers ratio")
+            return content
+        except Exception as e:
+            logger.error(f"Error downloading job offers ratio Excel: {e}")
+            return None
 
-                logger.info(f"Attempting to download job offers ratio data with statInfId: {stat_inf_id}")
-
-                response = requests.get(self.ESTAT_EXCEL_URL, params=params, timeout=60)
-
-                if response.status_code == 200 and len(response.content) > 1000:
-                    # Save Excel file
-                    excel_path = self.temp_dir / "job_offers_ratio_timeseries.xlsx"
-                    excel_path.write_bytes(response.content)
-
-                    logger.info(f"Successfully downloaded {len(response.content)} bytes using statInfId: {stat_inf_id}")
-                    return excel_path
-                else:
-                    logger.warning(f"statInfId {stat_inf_id} returned status {response.status_code}, trying next...")
-                    last_error = f"HTTP {response.status_code}"
-
-            except Exception as e:
-                logger.warning(f"Error with statInfId {stat_inf_id}: {e}, trying next...")
-                last_error = str(e)
-                continue
-
-        logger.error(f"All statInfIds failed. Last error: {last_error}")
-        return None
-
-    def _parse_excel_file(self, excel_path: Path) -> List[Dict[str, Any]]:
+    def _parse_excel_file(self, excel_content: bytes) -> List[Dict[str, Any]]:
         """
         有効求人倍率Excelを解析
 
-        Excel structure (statInfId: 000040391059):
+        Excel structure (statInfId: 000040457545, sheet 0 = パートタイムを含む一般):
         - Row 0: Title (有効求人倍率（パートタイムを含む一般）)
         - Row 3: Headers (西暦, 和暦, 1月, 2月, ... 12月, ... 季節調整値)
         - Row 5+: Data (1963年〜)
@@ -230,9 +231,9 @@ class JobOffersRatioService:
         - Column 20-31: 1月〜12月の季節調整値
         """
         try:
-            logger.info(f"Parsing job offers ratio Excel file: {excel_path}")
+            logger.info("Parsing job offers ratio Excel file from e-Stat content")
 
-            df = pd.read_excel(excel_path, sheet_name=0, header=None)
+            df = pd.read_excel(BytesIO(excel_content), sheet_name=0, header=None)
             logger.info(f"Excel shape: {df.shape}")
 
             series_data = []

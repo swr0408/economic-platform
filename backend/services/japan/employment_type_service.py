@@ -91,10 +91,40 @@ class EmploymentTypeService:
             if mhlw_data:
                 self._save_to_history_db(mhlw_data)
 
+            now = datetime.now(JST)
+
+            # --- ラグガード（取りこぼし恒久対策） ---
+            # 発表が過ぎているはずの最新四半期に到達できていない場合、
+            # ソース取得失敗（パーサー破損・404 等）でDBへサイレント・フォールバック
+            # している可能性が高い。その状態で last_updated を now に進めると
+            # 「最新で取得済み」と誤認され、最大2.5四半期(~228日)気づかれず凍結する。
+            # → データが期待最新期に未達なら last_updated を前進させず（旧値を維持）、
+            #   WARNING を残して再取得を促し、鮮度監視に早期に表面化させる。
+            merged_latest = self._merged_latest_date(merged_data)
+            expected_latest = self._expected_latest_survey_date(now)
+            is_behind = (
+                expected_latest is not None
+                and (merged_latest is None or merged_latest < expected_latest)
+            )
+
+            if is_behind:
+                prev = redis_client.get(self.DATA_CACHE_KEY) or self._load_file_cache()
+                prev_lu = prev.get("last_updated") if prev else None
+                # 旧 last_updated を維持（無ければ now にせず据え置きの基準を作る）
+                last_updated_value = prev_lu or now.isoformat()
+                logger.warning(
+                    "Employment type behind expected period: latest=%s expected=%s "
+                    "(MHLW fetch likely failed → DB fallback). Keeping last_updated=%s "
+                    "to force retry and surface staleness.",
+                    merged_latest, expected_latest, last_updated_value,
+                )
+            else:
+                last_updated_value = now.isoformat()
+
             cache_payload = {
                 "regular_employee": merged_data.get("regular_employee"),
                 "part_time": merged_data.get("part_time"),
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated_value
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -222,21 +252,79 @@ class EmploymentTypeService:
         雇用形態別D.I.データを処理
 
         Excel structure (図３値 sheet):
-        Row 4 (index 3): 年（和暦）- 4列ごとに配置
-          - 例: "平成19年" (col 1), 20 (col 5), 21 (col 9)...
-          - 例: "令和元年" (col 50), "２" (col 53), "３" (col 57)...
-        Row 5 (index 4): 月 - 2, 5, 8, 11 の繰り返し
-        Row 6 (index 5): 正社員等 D.I.
-        Row 7 (index 6): パートタイム D.I.
+        - 月行: 2, 5, 8, 11 の繰り返し
+        - 月行の1つ下: 正社員等 D.I.
+        - その下: パートタイム D.I.
+        - 月行の上: 年行（西暦 "2007" / 和暦 "平成19年" のどちらか）
+
+        2026年にMHLWが先頭に西暦年行を追加し全行が1つ下にずれたため、
+        行番号をハードコードせず、月行(値が全て{2,5,8,11})を基準に
+        構造で動的検出する。西暦年行があればそれを優先使用する。
         """
+        zen2han = str.maketrans('０１２３４５６７８９', '0123456789')
         try:
             logger.info(f"Processing employment type dataframe with shape: {df.shape}")
 
-            # Get rows
-            year_row = df.iloc[3]  # Row 4 (0-indexed = 3)
-            month_row = df.iloc[4]  # Row 5 (0-indexed = 4)
-            regular_row = df.iloc[5]  # Row 6 (0-indexed = 5)
-            part_time_row = df.iloc[6]  # Row 7 (0-indexed = 6)
+            # 1) 月行を特定: 非NULL値が全て {2, 5, 8, 11} の行
+            month_idx = None
+            for i in range(len(df)):
+                row = df.iloc[i]
+                ok = True
+                cnt = 0
+                for v in row.iloc[1:]:
+                    if pd.isna(v):
+                        continue
+                    try:
+                        n = int(float(str(v).translate(zen2han)))
+                    except (ValueError, TypeError):
+                        ok = False
+                        break
+                    if n not in (2, 5, 8, 11):
+                        ok = False
+                        break
+                    cnt += 1
+                if ok and cnt >= 4:
+                    month_idx = i
+                    break
+
+            if month_idx is None:
+                logger.warning("Could not locate month row in 図３値 sheet (layout may have changed)")
+                return []
+
+            regular_idx = month_idx + 1
+            part_idx = month_idx + 2
+            if part_idx >= len(df):
+                logger.warning("Data rows below month row are missing in 図３値 sheet")
+                return []
+
+            # 2) 年行を特定: 月行より上で西暦年(1990-2100)の行を優先、無ければ直上の和暦行
+            year_idx = None
+            year_western = False
+            for i in range(month_idx):
+                row = df.iloc[i]
+                west = 0
+                tot = 0
+                for v in row.iloc[1:]:
+                    if pd.isna(v):
+                        continue
+                    try:
+                        n = int(float(v))
+                    except (ValueError, TypeError):
+                        continue
+                    tot += 1
+                    if 1990 <= n <= 2100:
+                        west += 1
+                if tot > 0 and west >= 3 and west >= tot * 0.8:
+                    year_idx = i
+                    year_western = True
+                    break
+            if year_idx is None:
+                year_idx = month_idx - 1  # legacy 和暦 row
+
+            year_row = df.iloc[year_idx]
+            month_row = df.iloc[month_idx]
+            regular_row = df.iloc[regular_idx]
+            part_time_row = df.iloc[part_idx]
 
             data_points = []
             current_year = None
@@ -252,35 +340,38 @@ class EmploymentTypeService:
 
                     # Parse year if present (年が設定されている列)
                     if pd.notna(year_val):
-                        year_str = str(year_val).strip().replace('\n', '')
-
-                        # 令和パターン: "令和元年", "令和２年", "２", "３"...
-                        if '令和' in year_str:
-                            era_base = 2018  # 令和元年 = 2019
-                            if '元年' in year_str:
-                                current_year = 2019
-                            else:
-                                year_match = re.search(r'令和(\d+)年?', year_str)
-                                if year_match:
-                                    era_year = int(year_match.group(1))
-                                    current_year = era_base + era_year
-
-                        # 平成パターン: "平成19年", "平成20年"...
-                        elif '平成' in year_str:
-                            era_base = 1988  # 平成元年 = 1989
-                            year_match = re.search(r'平成(\d+)年?', year_str)
-                            if year_match:
-                                era_year = int(year_match.group(1))
-                                current_year = era_base + era_year
-
-                        # 数字のみ: 前の元号の続き
+                        if year_western:
+                            # 西暦年行: そのまま使用（4列ごとに設定、空欄は前方補完）
+                            try:
+                                current_year = int(float(year_val))
+                            except (ValueError, TypeError):
+                                pass
                         else:
-                            # 全角数字を半角に変換
-                            year_str_normalized = year_str.translate(str.maketrans('０１２３４５６７８９', '0123456789'))
-                            num_match = re.search(r'(\d+)', year_str_normalized)
-                            if num_match and era_base is not None:
-                                era_year = int(num_match.group(1))
-                                current_year = era_base + era_year
+                            year_str = str(year_val).strip().replace('\n', '')
+
+                            # 令和パターン: "令和元年", "令和２年", "２", "３"...
+                            if '令和' in year_str:
+                                era_base = 2018  # 令和元年 = 2019
+                                if '元年' in year_str:
+                                    current_year = 2019
+                                else:
+                                    year_match = re.search(r'令和(\d+)年?', year_str)
+                                    if year_match:
+                                        current_year = era_base + int(year_match.group(1))
+
+                            # 平成パターン: "平成19年", "平成20年"...
+                            elif '平成' in year_str:
+                                era_base = 1988  # 平成元年 = 1989
+                                year_match = re.search(r'平成(\d+)年?', year_str)
+                                if year_match:
+                                    current_year = era_base + int(year_match.group(1))
+
+                            # 数字のみ: 前の元号の続き
+                            else:
+                                year_str_normalized = year_str.translate(zen2han)
+                                num_match = re.search(r'(\d+)', year_str_normalized)
+                                if num_match and era_base is not None:
+                                    current_year = era_base + int(num_match.group(1))
 
                     # Skip if no year determined yet
                     if current_year is None:
@@ -290,9 +381,7 @@ class EmploymentTypeService:
                     if pd.isna(month_val):
                         continue
 
-                    month_str = str(month_val).strip()
-                    # 全角数字を半角に変換
-                    month_str = month_str.translate(str.maketrans('０１２３４５６７８９', '0123456789'))
+                    month_str = str(month_val).strip().translate(zen2han)
                     month_match = re.search(r'(\d+)', month_str)
                     if not month_match:
                         continue
@@ -493,6 +582,38 @@ class EmploymentTypeService:
             }
 
         return result
+
+    def _merged_latest_date(self, merged_data: Dict[str, Any]) -> Optional[str]:
+        """マージ済みデータの最新日付（regular/part_time の最大）を返す"""
+        latest = None
+        for key in ("regular_employee", "part_time"):
+            series = merged_data.get(key) or {}
+            item = series.get("latest")
+            d = item.get("date") if item else None
+            if d and (latest is None or d > latest):
+                latest = d
+        return latest
+
+    def _expected_latest_survey_date(self, now: datetime) -> Optional[str]:
+        """
+        この時点で取得済みであるべき最新の調査月（YYYY-MM-01）を返す。
+
+        労働経済動向調査: 調査月 2/5/8/11 → 発表は翌月（3/6/9/12）。
+        発表月の最中は配信ラグ（404）があり得るため誤検知を避け、
+        「発表月が完全に終わった調査」のみを期待対象とする（保守的判定）。
+        例: 5月調査(6月発表)は7月以降に初めて期待対象となる。
+        """
+        candidates = []
+        for year in range(now.year - 1, now.year + 1):
+            for survey_month in (2, 5, 8, 11):
+                release_month = survey_month + 1  # 3,6,9,12
+                # 発表月が「完全に過ぎた」= 翌月以降になっているか
+                settled = (now.year > year) or (
+                    now.year == year and now.month > release_month
+                )
+                if settled:
+                    candidates.append(f"{year}-{survey_month:02d}-01")
+        return max(candidates) if candidates else None
 
     def _save_to_history_db(self, data: Dict[str, Any]) -> None:
         """MHLWから取得したデータをHistory DBに保存"""

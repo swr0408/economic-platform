@@ -47,7 +47,7 @@ class UKEconomyLoader(BaseDashboardLoader):
         期待されるデータキーのリストを返す
         キャッシュに含まれていなければ自動的に再取得する
         """
-        return ["ons_gdp", "ons_gva", "ons_production", "cbi_industrial_trends", "uk_pmi", "uk_trade_balance", "uk_current_account", "uk_government_debt_to_gdp_ratio"]
+        return ["ons_gdp", "ons_gva", "ons_production", "cbi_industrial_trends", "uk_pmi", "uk_trade_balance", "uk_current_account"]
 
 
     def _detect_stale_indicators(self, last_updated: Optional[str]) -> set:
@@ -112,7 +112,6 @@ class UKEconomyLoader(BaseDashboardLoader):
         from services.uk.uk_pmi_service import uk_pmi_service
         from services.uk.uk_trade_balance_service import uk_trade_balance_service
         from services.uk.uk_current_account_service import uk_current_account_service
-        from services.uk.uk_government_debt_to_gdp_ratio_service import uk_government_debt_to_gdp_ratio_service
 
         result = {
             "ons_gdp": None,
@@ -122,7 +121,6 @@ class UKEconomyLoader(BaseDashboardLoader):
             "uk_pmi": None,
             "uk_trade_balance": None,
             "uk_current_account": None,
-            "uk_government_debt_to_gdp_ratio": None,
         }
 
         # 並列でデータを取得
@@ -135,7 +133,6 @@ class UKEconomyLoader(BaseDashboardLoader):
                 executor.submit(self._get_uk_pmi, uk_pmi_service): "uk_pmi",
                 executor.submit(self._get_uk_trade_balance, uk_trade_balance_service): "uk_trade_balance",
                 executor.submit(self._get_uk_current_account, uk_current_account_service): "uk_current_account",
-                executor.submit(self._get_uk_government_debt_to_gdp_ratio, uk_government_debt_to_gdp_ratio_service): "uk_government_debt_to_gdp_ratio",
             }
 
             for future in as_completed(futures):
@@ -254,20 +251,4 @@ class UKEconomyLoader(BaseDashboardLoader):
             }
         except Exception as e:
             print(f"Error getting UK Trade Balance: {e}")
-            return {"data": [], "mom_change": [], "latest": None, "metadata": {}, "next_release": None}
-
-    def _get_uk_government_debt_to_gdp_ratio(self, service) -> dict:
-        """UK政府債務残高対GDP比データを取得"""
-        try:
-            force_refresh = self._should_force_refresh("uk_government_debt_to_gdp_ratio")
-            response = service.get_data(force_refresh=force_refresh)
-            return {
-                "data": response.get("data", []),
-                "mom_change": response.get("mom_change", []),
-                "latest": response.get("latest"),
-                "metadata": response.get("metadata", {}),
-                "next_release": response.get("next_release"),
-            }
-        except Exception as e:
-            print(f"Error getting UK Government Debt to GDP Ratio: {e}")
             return {"data": [], "mom_change": [], "latest": None, "metadata": {}, "next_release": None}

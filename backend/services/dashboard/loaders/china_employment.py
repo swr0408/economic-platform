@@ -18,10 +18,18 @@ CST = ZoneInfo("Asia/Shanghai")
 
 # 失業率の手動更新CSV（NBS公式エクスポート）。total+youth をここから取り込む。
 # このファイルが更新されたら集約キャッシュを stale 化し、失業率サービスを再取得させる。
+# 配置先は他の中国手動更新CSVと同じ data/manual_update/monthly/china/ に統一。
+# 旧 data/csv_import/ は後方互換のフォールバック。
+_DATA_ROOT = Path(__file__).parent.parent.parent.parent / "data"
 _UNEMPLOYMENT_CSV = (
-    Path(__file__).parent.parent.parent.parent
-    / "data" / "csv_import" / "ChinaUnemployment Rate.csv"
+    _DATA_ROOT / "manual_update" / "monthly" / "china" / "中国失業率.csv"
 )
+_UNEMPLOYMENT_CSV_LEGACY = _DATA_ROOT / "csv_import" / "ChinaUnemployment Rate.csv"
+
+
+def _resolved_unemployment_csv() -> Path:
+    """新配置を優先し、無ければ旧配置を返す（mtime 監視・宣言の共通解決）。"""
+    return _UNEMPLOYMENT_CSV if _UNEMPLOYMENT_CSV.exists() else _UNEMPLOYMENT_CSV_LEGACY
 
 
 class ChinaEmploymentLoader(BaseDashboardLoader):
@@ -48,14 +56,15 @@ class ChinaEmploymentLoader(BaseDashboardLoader):
 
     def get_manual_csv_paths(self) -> List[Path]:
         """手動更新CSVを宣言 → mtime がキャッシュより新しければ集約再構築。"""
-        return [_UNEMPLOYMENT_CSV]
+        return [_resolved_unemployment_csv()]
 
     def _csv_newer_than(self, last_updated_dt: datetime) -> bool:
         """失業率の手動CSVが last_updated 以降に更新されていれば True。"""
         try:
-            if not _UNEMPLOYMENT_CSV.exists():
+            csv_path = _resolved_unemployment_csv()
+            if not csv_path.exists():
                 return False
-            mtime = datetime.fromtimestamp(os.path.getmtime(_UNEMPLOYMENT_CSV), tz=JST)
+            mtime = datetime.fromtimestamp(os.path.getmtime(csv_path), tz=JST)
             return mtime > last_updated_dt
         except Exception:
             return False

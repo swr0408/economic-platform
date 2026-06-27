@@ -15,9 +15,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 2.1,
       "eps_actual": null,
-      "revenue_estimate": 15466890000.0,
+      "revenue_estimate": 15461360000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "ULVR",
@@ -31,7 +31,7 @@
       "eps_actual": null,
       "revenue_estimate": 29717650000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "GSK",
@@ -45,7 +45,7 @@
       "eps_actual": null,
       "revenue_estimate": 11064920000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "RIO",
@@ -57,9 +57,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 3.96,
       "eps_actual": null,
-      "revenue_estimate": 32928870000.0,
+      "revenue_estimate": 32627870000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "SHEL",
@@ -69,11 +69,11 @@
       "date": "2026-07-30",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 2.7,
+      "eps_estimate": 2.68,
       "eps_actual": null,
       "revenue_estimate": 85178080000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "RR",
@@ -83,11 +83,11 @@
       "date": "2026-07-30",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.2848,
+      "eps_estimate": 0.284,
       "eps_actual": null,
       "revenue_estimate": 13863450000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "HSBA",
@@ -101,7 +101,7 @@
       "eps_actual": null,
       "revenue_estimate": 18675560000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "BP",
@@ -111,11 +111,11 @@
       "date": "2026-08-04",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 1.5,
+      "eps_estimate": 1.49,
       "eps_actual": null,
       "revenue_estimate": 61792100000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "NG",
@@ -133,8 +133,8 @@
     }
   ],
   "next_7d_count": 0,
-  "next_30d_count": 0,
-  "last_updated": "2026-06-17T12:37:42.781449+00:00",
+  "next_30d_count": 1,
+  "last_updated": "2026-06-27T13:49:18.744801+00:00",
   "cached": false,
   "status": "ok"
 }

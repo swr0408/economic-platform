@@ -17,6 +17,7 @@ Eurostat APIから Consumer Confidence Indicator データを取得
 キャッシュ方式: FMP発表日時ベース判定方式
 """
 import json
+import re
 import requests
 from datetime import datetime
 from typing import Dict, List, Any, Optional
@@ -27,7 +28,14 @@ from core.redis_client import redis_client
 from services.eurozone.fmp_next_release_utils import (
     get_next_release_by_pattern,
     should_refresh_by_pattern,
+    resolve_last_updated_after_fetch,
 )
+
+# 月略称 → 月番号（FMPイベントラベル "(Jun)" 等の解析用）
+_MONTH_ABBR = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+    "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+}
 
 
 JST = ZoneInfo("Asia/Tokyo")
@@ -79,11 +87,28 @@ class EurostatConsumerConfidenceService:
                         "last_updated": last_updated_str,
                     }
 
+        # 取得前の最新月（発表時刻レース ラグガード用）
+        prev_cache = redis_client.get(self.DATA_CACHE_KEY) or {}
+        prev_latest_date = (prev_cache.get("latest") or {}).get("date")
+        prev_last_updated = prev_cache.get("last_updated")
+
         # Eurostat APIから取得
         api_result = self._fetch_from_eurostat()
         if api_result:
+            # 速報値補完: Eurostat `ei_bsco_m` はDG ECFINフラッシュに数時間〜数日ラグがある。
+            # FMP（economic_calendar_events）にあるフラッシュ実値で、Eurostat最新月より先の
+            # 月を補完する（同一スケール=DG ECFIN消費者信頼感バランス、検証済 May -19.0 一致）。
+            api_result = self._supplement_from_fmp(api_result)
+
             next_release = get_next_release_by_pattern(self.FMP_EVENT_PATTERN)
             latest = api_result[-1] if api_result else None
+
+            # 発表時刻レース対策: 取得データが新月に未反映なら last_updated を発表直前に据え置き、
+            # 次回ポーリングで再取得を促す（旧月を「発表消化済み」として翌月まで凍結させない）。
+            new_latest_date = (latest or {}).get("date")
+            resolved_last_updated = resolve_last_updated_after_fetch(
+                self.FMP_EVENT_PATTERN, new_latest_date, prev_latest_date, prev_last_updated,
+            )
 
             cache_payload = {
                 "data": api_result,
@@ -91,13 +116,13 @@ class EurostatConsumerConfidenceService:
                 "metadata": {
                     "source": "Eurostat",
                     "dataset": self.DATASET,
-                    "indicator": "Consumer Confidence Indicator - Euro Area 20",
+                    "indicator": "Consumer Confidence Indicator - Euro Area 21",
                     "unit": "Balance",
                     "adjustment": "Seasonally adjusted",
-                    "description": "消費者信頼感指数（ユーロ圏20カ国）",
+                    "description": "消費者信頼感指数（ユーロ圏21カ国）",
                 },
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": resolved_last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -109,7 +134,7 @@ class EurostatConsumerConfidenceService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "eurostat_api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": resolved_last_updated,
             }
 
         # ファイルキャッシュフォールバック
@@ -190,6 +215,79 @@ class EurostatConsumerConfidenceService:
         except (KeyError, ValueError, IndexError) as e:
             print(f"[EurostatConsumerConfidence] Parse error: {e}")
             return None
+
+    def _supplement_from_fmp(self, eurostat_data: List[Dict]) -> List[Dict]:
+        """FMP（economic_calendar_events）の速報(フラッシュ)実値で Eurostat 最新月より
+        先の月を補完する。
+
+        Eurostat `ei_bsco_m` はDG ECFINフラッシュに数時間〜数日ラグするため、発表済みの
+        当月フラッシュが反映されない。FMPは同じDG ECFIN消費者信頼感を当月フラッシュとして
+        持つ（イベント例: "Consumer Confidence (Jun)" actual=-17.7）。Eurostat最新月より
+        後の月だけを追記し、Eurostatが後日確報を出したらそちらが優先される（追記しない）。
+        """
+        if not eurostat_data:
+            return eurostat_data
+        try:
+            latest_eurostat = eurostat_data[-1]["date"]  # "YYYY-MM"
+            existing = {d["date"] for d in eurostat_data}
+
+            from core.database import SessionLocal
+            from sqlalchemy import text
+
+            with SessionLocal() as session:
+                rows = session.execute(
+                    text("""
+                        SELECT datetime_utc, event, actual
+                        FROM economic_calendar_events
+                        WHERE country = 'EU'
+                          AND event ILIKE '%Consumer Confidence%'
+                          AND actual IS NOT NULL
+                          AND datetime_utc >= NOW() - INTERVAL '120 days'
+                        ORDER BY datetime_utc ASC
+                    """)
+                ).fetchall()
+
+            # ref月 → 値（同一refは後勝ち=確報優先）
+            by_month: Dict[str, float] = {}
+            for dt_utc, event, actual in rows:
+                ref = self._parse_ref_month(event, dt_utc)
+                if ref and actual is not None:
+                    by_month[ref] = float(actual)
+
+            added = []
+            for ref, val in by_month.items():
+                if ref not in existing and ref > latest_eurostat:
+                    eurostat_data.append({"date": ref, "value": val})
+                    added.append(ref)
+
+            if added:
+                eurostat_data.sort(key=lambda x: x["date"])
+                print(f"[EurostatConsumerConfidence] FMP flash supplement added: {added}")
+
+            return eurostat_data
+        except Exception as e:
+            print(f"[EurostatConsumerConfidence] FMP supplement error: {e}")
+            return eurostat_data
+
+    @staticmethod
+    def _parse_ref_month(label: str, release_dt: datetime) -> Optional[str]:
+        """イベントラベルの "(Jun)" 等から参照月 "YYYY-MM" を復元。
+
+        消費者信頼感のフラッシュは当月分（"(Jun)" は6月発表=6月分）だが、確報は
+        翌月に前月分を出すこともある（"(Dec)" を1月に発表）。ラベル月が発表月より
+        先行している場合は前年と判定する。
+        """
+        m = re.search(r"\(([A-Za-z]{3})\)", label or "")
+        if not m:
+            return None
+        mon = _MONTH_ABBR.get(m.group(1).lower())
+        if not mon:
+            return None
+        year = release_dt.year
+        # 例: ラベル Dec を 1月に発表 → mon(12) > release.month(1)+1 → 前年
+        if mon > release_dt.month + 1:
+            year -= 1
+        return f"{year:04d}-{mon:02d}"
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定"""

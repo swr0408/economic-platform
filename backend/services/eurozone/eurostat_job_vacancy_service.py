@@ -57,7 +57,7 @@ class EurostatJobVacancyService:
         "nace_r2": "B-S",      # Industry, construction and services
         "sizeclas": "TOTAL",   # All sizes
         "indic_em": "JVR",     # Job vacancy rate
-        "geo": "EA20"          # Euro area - 20 countries
+        "geo": "EA21"          # Euro area - 21 countries (2026-01ブルガリア加盟でEA20→EA21)
     }
 
     DATA_CACHE_KEY = "eurozone:eurostat_job_vacancy:data"

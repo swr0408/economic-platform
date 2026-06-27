@@ -52,11 +52,12 @@ class ECBUnitLabourCostService:
 
     # Series key for Labour Cost Index
     # Q = Quarterly
-    # I9 = Euro Area 20 (fixed composition)
+    # I10 = Euro area 21 (fixed composition as of 2026-01-01)
     # Y = Calendar and seasonally adjusted data
     # LCI_T = Total labour costs
     # BTS = Industry, construction and services (total economy)
-    SERIES_KEY = "Q.I9.Y.LCI_T.BTS"
+    # 2026年ブルガリア加盟で I9(EA20)→I10(EA21) に移行。履歴2010-Q1〜で欠落なし。
+    SERIES_KEY = "Q.I10.Y.LCI_T.BTS"
 
     DATA_CACHE_KEY = "eurozone:labour_cost_index:data"
     ECONALPHA_ID = "eu_labor_cost_index"  # DBマッピング（indicator_event_mapping）に合わせる

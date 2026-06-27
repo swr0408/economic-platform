@@ -1263,12 +1263,12 @@
       },
       {
         "date": "2026-04-01",
-        "value": 3.4
+        "value": 3.3
       }
     ],
     "latest": {
       "date": "2026-04-01",
-      "value": 3.4
+      "value": 3.3
     }
   },
   "general": {
@@ -2535,12 +2535,12 @@
       },
       {
         "date": "2026-04-01",
-        "value": 3.7
+        "value": 3.6
       }
     ],
     "latest": {
       "date": "2026-04-01",
-      "value": 3.7
+      "value": 3.6
     }
   },
   "part_time_wage": {
@@ -3807,12 +3807,12 @@
       },
       {
         "date": "2026-04-01",
-        "value": 2.8
+        "value": 2.9
       }
     ],
     "latest": {
       "date": "2026-04-01",
-      "value": 2.8
+      "value": 2.9
     }
   },
   "part_time_hourly": {
@@ -3871,12 +3871,12 @@
       },
       {
         "date": "2026-04-01",
-        "value": 4.9
+        "value": 4.7
       }
     ],
     "latest": {
       "date": "2026-04-01",
-      "value": 4.9
+      "value": 4.7
     }
   },
   "next_release": {
@@ -3887,5 +3887,5 @@
     "label": "Average Cash Earnings YoY (May)",
     "estimate": null
   },
-  "last_updated": "2026-06-15T20:02:09.514133+09:00"
+  "last_updated": "2026-06-25T17:31:38.287918+09:00"
 }

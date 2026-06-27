@@ -25,6 +25,7 @@ from core.redis_client import redis_client
 from services.switzerland.fmp_next_release_utils import (
     get_next_release_by_pattern,
     should_refresh_by_pattern,
+    resolve_last_updated_after_fetch,
 )
 
 
@@ -71,6 +72,19 @@ class ChSnbRateService:
         if db_result:
             latest = db_result[-1] if db_result else None
 
+            # 発表時刻レース対策（ラグガード）: 最新会合日が前回から進んでいない
+            # （FMP actual未populate等）場合は last_updated を発表直前に据え置き、
+            # 反映後の次ポーリングでの再取得を促す。
+            _prev_cache = redis_client.get(self.DATA_CACHE_KEY)
+            _prev_latest = _prev_cache.get("latest") if isinstance(_prev_cache, dict) else None
+            _resolved_last_updated = resolve_last_updated_after_fetch(
+                self.FMP_EVENT_PATTERN,
+                latest.get("date") if isinstance(latest, dict) else None,
+                _prev_latest.get("date") if isinstance(_prev_latest, dict) else None,
+                _prev_cache.get("last_updated") if isinstance(_prev_cache, dict) else None,
+                country="CH",
+            )
+
             cache_payload = {
                 "data": db_result,
                 "latest": latest,
@@ -79,7 +93,7 @@ class ChSnbRateService:
                     "indicator": "SNB Policy Rate",
                     "description": "スイス国立銀行政策金利",
                 },
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": _resolved_last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -91,7 +105,7 @@ class ChSnbRateService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "database",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": _resolved_last_updated,
             }
 
         # ファイルキャッシュフォールバック

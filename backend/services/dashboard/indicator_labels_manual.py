@@ -313,7 +313,6 @@ INDICATOR_LABELS_MANUAL: dict[str, str] = {
     "test_unemp": "テスト: 失業率",
     "test_response": "テスト: レスポンス",
     "nz_inflation_expectations": "インフレ期待",
-    "nz_traded_nontraded": "貿易財 / 非貿易財",
     "nz_cpi_item": "CPI項目別",
     "nz_central_bank_balance_sheet": "中銀バランスシート",
     "nz_bank_balance_sheet": "銀行バランスシート",

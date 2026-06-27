@@ -340,10 +340,25 @@ class AbsMonthlyCpiService:
                     "next_release": next_release,
                 }
 
+                # 発表時刻レース対策（ラグガード）: 取得データが新月へ進んでいない場合は
+                # last_updated を発表直前に据え置き、ABS SDMX反映後の再取得を促す。
+                # （発表 11:30 AEST ちょうどの再構築がABS APIの新月反映を先行すると、
+                #  now刻みで should_refresh が「消化済み」と誤判定して凍結するため）
+                from services.australia.fmp_next_release_utils import resolve_last_updated_after_fetch
+                _prev_cache = redis_client.get(self.DATA_CACHE_KEY)
+                _prev_latest = _prev_cache.get("latest") if isinstance(_prev_cache, dict) else None
+                _resolved_last_updated = resolve_last_updated_after_fetch(
+                    FMP_EVENT_PATTERNS,
+                    latest.get("date") if isinstance(latest, dict) else None,
+                    _prev_latest.get("date") if isinstance(_prev_latest, dict) else None,
+                    _prev_cache.get("last_updated") if isinstance(_prev_cache, dict) else None,
+                    country="AU",
+                )
+
                 # キャッシュ保存
                 cache_payload = {
                     **result,
-                    "last_updated": datetime.now(JST).isoformat(),
+                    "last_updated": _resolved_last_updated,
                 }
                 redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
                 self._save_file_cache(cache_payload)
@@ -381,7 +396,7 @@ class AbsMonthlyCpiService:
     def _get_next_release(self) -> Optional[Dict[str, str]]:
         """FMPから次回発表日を取得"""
         try:
-            from services.usa.fmp_next_release_utils import get_next_release_by_pattern
+            from services.australia.fmp_next_release_utils import get_next_release_by_pattern
 
             return get_next_release_by_pattern(FMP_EVENT_PATTERNS[0], "AU")
         except Exception as e:
@@ -396,6 +411,16 @@ class AbsMonthlyCpiService:
                 last_updated = last_updated.replace(tzinfo=JST)
 
             now = datetime.now(JST)
+
+            # 発表認識型: FMP発表(=ABS公式発表)が last_updated より後にあれば更新。
+            # ラグガードで last_updated を発表直前に据え置いた場合も、ここで再取得を促す。
+            try:
+                from services.australia.fmp_next_release_utils import should_refresh_by_pattern
+                for pattern in FMP_EVENT_PATTERNS:
+                    if should_refresh_by_pattern(pattern, last_updated_str, country="AU"):
+                        return True
+            except Exception as e:
+                logger.warning(f"Error checking FMP refresh: {e}")
 
             # 7日以上経過
             if (now - last_updated).total_seconds() >= 7 * 24 * 3600:

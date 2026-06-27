@@ -1,815 +1,5 @@
 {
   "snapshots": {
-    "2026-01-10": {
-      "date": "2026-01-10",
-      "data": [
-        {
-          "date": "15/10/2025",
-          "sort_date": "2025-10-15",
-          "contract": "OCT 25",
-          "settle": 98.0675,
-          "implied_rate": 1.9325
-        },
-        {
-          "date": "19/11/2025",
-          "sort_date": "2025-11-19",
-          "contract": "NOV 25",
-          "settle": 98.0675,
-          "implied_rate": 1.9325
-        },
-        {
-          "date": "17/12/2025",
-          "sort_date": "2025-12-17",
-          "contract": "DEC 25",
-          "settle": 98.065,
-          "implied_rate": 1.935
-        },
-        {
-          "date": "21/01/2026",
-          "sort_date": "2026-01-21",
-          "contract": "JAN 26",
-          "settle": 98.0775,
-          "implied_rate": 1.9225
-        },
-        {
-          "date": "18/02/2026",
-          "sort_date": "2026-02-18",
-          "contract": "FEB 26",
-          "settle": 98.075,
-          "implied_rate": 1.925
-        },
-        {
-          "date": "18/03/2026",
-          "sort_date": "2026-03-18",
-          "contract": "MAR 26",
-          "settle": 98.0725,
-          "implied_rate": 1.9275
-        },
-        {
-          "date": "15/04/2026",
-          "sort_date": "2026-04-15",
-          "contract": "APR 26",
-          "settle": 98.095,
-          "implied_rate": 1.905
-        },
-        {
-          "date": "20/05/2026",
-          "sort_date": "2026-05-20",
-          "contract": "MAY 26",
-          "settle": 98.11,
-          "implied_rate": 1.89
-        },
-        {
-          "date": "17/06/2026",
-          "sort_date": "2026-06-17",
-          "contract": "JUN 26",
-          "settle": 98.095,
-          "implied_rate": 1.905
-        },
-        {
-          "date": "16/09/2026",
-          "sort_date": "2026-09-16",
-          "contract": "SEP 26",
-          "settle": 98.095,
-          "implied_rate": 1.905
-        },
-        {
-          "date": "16/12/2026",
-          "sort_date": "2026-12-16",
-          "contract": "DEC 26",
-          "settle": 98.0625,
-          "implied_rate": 1.9375
-        },
-        {
-          "date": "17/03/2027",
-          "sort_date": "2027-03-17",
-          "contract": "MAR 27",
-          "settle": 98.005,
-          "implied_rate": 1.995
-        }
-      ],
-      "last_updated": "2026-01-10T23:08:11.496222+09:00"
-    },
-    "2026-01-11": {
-      "date": "2026-01-11",
-      "data": [
-        {
-          "date": "15/10/2025",
-          "sort_date": "2025-10-15",
-          "contract": "OCT 25",
-          "settle": 98.0675,
-          "implied_rate": 1.9325
-        },
-        {
-          "date": "19/11/2025",
-          "sort_date": "2025-11-19",
-          "contract": "NOV 25",
-          "settle": 98.0675,
-          "implied_rate": 1.9325
-        },
-        {
-          "date": "17/12/2025",
-          "sort_date": "2025-12-17",
-          "contract": "DEC 25",
-          "settle": 98.065,
-          "implied_rate": 1.935
-        },
-        {
-          "date": "21/01/2026",
-          "sort_date": "2026-01-21",
-          "contract": "JAN 26",
-          "settle": 98.0775,
-          "implied_rate": 1.9225
-        },
-        {
-          "date": "18/02/2026",
-          "sort_date": "2026-02-18",
-          "contract": "FEB 26",
-          "settle": 98.075,
-          "implied_rate": 1.925
-        },
-        {
-          "date": "18/03/2026",
-          "sort_date": "2026-03-18",
-          "contract": "MAR 26",
-          "settle": 98.0725,
-          "implied_rate": 1.9275
-        },
-        {
-          "date": "15/04/2026",
-          "sort_date": "2026-04-15",
-          "contract": "APR 26",
-          "settle": 98.095,
-          "implied_rate": 1.905
-        },
-        {
-          "date": "20/05/2026",
-          "sort_date": "2026-05-20",
-          "contract": "MAY 26",
-          "settle": 98.11,
-          "implied_rate": 1.89
-        },
-        {
-          "date": "17/06/2026",
-          "sort_date": "2026-06-17",
-          "contract": "JUN 26",
-          "settle": 98.095,
-          "implied_rate": 1.905
-        },
-        {
-          "date": "16/09/2026",
-          "sort_date": "2026-09-16",
-          "contract": "SEP 26",
-          "settle": 98.095,
-          "implied_rate": 1.905
-        },
-        {
-          "date": "16/12/2026",
-          "sort_date": "2026-12-16",
-          "contract": "DEC 26",
-          "settle": 98.0625,
-          "implied_rate": 1.9375
-        },
-        {
-          "date": "17/03/2027",
-          "sort_date": "2027-03-17",
-          "contract": "MAR 27",
-          "settle": 98.005,
-          "implied_rate": 1.995
-        }
-      ],
-      "last_updated": "2026-01-11T00:08:34.839069+09:00"
-    },
-    "2026-01-27": {
-      "date": "2026-01-27",
-      "data": [
-        {
-          "date": "19/11/2025",
-          "sort_date": "2025-11-19",
-          "contract": "NOV 25",
-          "settle": 98.0675,
-          "implied_rate": 1.9325
-        },
-        {
-          "date": "17/12/2025",
-          "sort_date": "2025-12-17",
-          "contract": "DEC 25",
-          "settle": 98.065,
-          "implied_rate": 1.935
-        },
-        {
-          "date": "21/01/2026",
-          "sort_date": "2026-01-21",
-          "contract": "JAN 26",
-          "settle": 98.07,
-          "implied_rate": 1.93
-        },
-        {
-          "date": "18/02/2026",
-          "sort_date": "2026-02-18",
-          "contract": "FEB 26",
-          "settle": 98.075,
-          "implied_rate": 1.925
-        },
-        {
-          "date": "18/03/2026",
-          "sort_date": "2026-03-18",
-          "contract": "MAR 26",
-          "settle": 98.075,
-          "implied_rate": 1.925
-        },
-        {
-          "date": "15/04/2026",
-          "sort_date": "2026-04-15",
-          "contract": "APR 26",
-          "settle": 98.09,
-          "implied_rate": 1.91
-        },
-        {
-          "date": "20/05/2026",
-          "sort_date": "2026-05-20",
-          "contract": "MAY 26",
-          "settle": 98.1025,
-          "implied_rate": 1.8975
-        },
-        {
-          "date": "17/06/2026",
-          "sort_date": "2026-06-17",
-          "contract": "JUN 26",
-          "settle": 98.095,
-          "implied_rate": 1.905
-        },
-        {
-          "date": "15/07/2026",
-          "sort_date": "2026-07-15",
-          "contract": "JUL 26",
-          "settle": 98.12,
-          "implied_rate": 1.88
-        },
-        {
-          "date": "16/09/2026",
-          "sort_date": "2026-09-16",
-          "contract": "SEP 26",
-          "settle": 98.095,
-          "implied_rate": 1.905
-        },
-        {
-          "date": "16/12/2026",
-          "sort_date": "2026-12-16",
-          "contract": "DEC 26",
-          "settle": 98.0625,
-          "implied_rate": 1.9375
-        },
-        {
-          "date": "17/03/2027",
-          "sort_date": "2027-03-17",
-          "contract": "MAR 27",
-          "settle": 98.0,
-          "implied_rate": 2.0
-        }
-      ],
-      "last_updated": "2026-01-27T23:56:53.391444+09:00"
-    },
-    "2026-02-06": {
-      "date": "2026-02-06",
-      "data": [
-        {
-          "date": "18/03/2026",
-          "sort_date": "2026-03-18",
-          "contract": "MAR 26",
-          "settle": 98.0625,
-          "implied_rate": 1.9375
-        },
-        {
-          "date": "15/04/2026",
-          "sort_date": "2026-04-15",
-          "contract": "APR 26",
-          "settle": 98.065,
-          "implied_rate": 1.935
-        },
-        {
-          "date": "17/06/2026",
-          "sort_date": "2026-06-17",
-          "contract": "JUN 26",
-          "settle": 98.0725,
-          "implied_rate": 1.9275
-        },
-        {
-          "date": "16/09/2026",
-          "sort_date": "2026-09-16",
-          "contract": "SEP 26",
-          "settle": 98.11,
-          "implied_rate": 1.89
-        },
-        {
-          "date": "16/12/2026",
-          "sort_date": "2026-12-16",
-          "contract": "DEC 26",
-          "settle": 98.135,
-          "implied_rate": 1.865
-        },
-        {
-          "date": "17/03/2027",
-          "sort_date": "2027-03-17",
-          "contract": "MAR 27",
-          "settle": 98.1225,
-          "implied_rate": 1.8775
-        },
-        {
-          "date": "15/09/2027",
-          "sort_date": "2027-09-15",
-          "contract": "SEP 27",
-          "settle": 98.0175,
-          "implied_rate": 1.9825
-        },
-        {
-          "date": "15/12/2027",
-          "sort_date": "2027-12-15",
-          "contract": "DEC 27",
-          "settle": 97.9575,
-          "implied_rate": 2.0425
-        },
-        {
-          "date": "15/03/2028",
-          "sort_date": "2028-03-15",
-          "contract": "MAR 28",
-          "settle": 97.895,
-          "implied_rate": 2.105
-        },
-        {
-          "date": "21/06/2028",
-          "sort_date": "2028-06-21",
-          "contract": "JUN 28",
-          "settle": 97.835,
-          "implied_rate": 2.165
-        },
-        {
-          "date": "20/09/2028",
-          "sort_date": "2028-09-20",
-          "contract": "SEP 28",
-          "settle": 97.7725,
-          "implied_rate": 2.2275
-        },
-        {
-          "date": "20/12/2028",
-          "sort_date": "2028-12-20",
-          "contract": "DEC 28",
-          "settle": 97.7175,
-          "implied_rate": 2.2825
-        }
-      ],
-      "last_updated": "2026-02-06T20:23:02.795106+09:00"
-    },
-    "2026-04-18": {
-      "date": "2026-04-18",
-      "data": [
-        {
-          "date": "17/06/2026",
-          "sort_date": "2026-06-17",
-          "contract": "JUN 26",
-          "settle": 98.0525,
-          "implied_rate": 1.9475
-        },
-        {
-          "date": "16/09/2026",
-          "sort_date": "2026-09-16",
-          "contract": "SEP 26",
-          "settle": 97.86,
-          "implied_rate": 2.14
-        },
-        {
-          "date": "16/12/2026",
-          "sort_date": "2026-12-16",
-          "contract": "DEC 26",
-          "settle": 97.7125,
-          "implied_rate": 2.2875
-        },
-        {
-          "date": "17/03/2027",
-          "sort_date": "2027-03-17",
-          "contract": "MAR 27",
-          "settle": 97.6525,
-          "implied_rate": 2.3475
-        },
-        {
-          "date": "16/06/2027",
-          "sort_date": "2027-06-16",
-          "contract": "JUN 27",
-          "settle": 97.6175,
-          "implied_rate": 2.3825
-        },
-        {
-          "date": "15/09/2027",
-          "sort_date": "2027-09-15",
-          "contract": "SEP 27",
-          "settle": 97.615,
-          "implied_rate": 2.385
-        },
-        {
-          "date": "15/12/2027",
-          "sort_date": "2027-12-15",
-          "contract": "DEC 27",
-          "settle": 97.635,
-          "implied_rate": 2.365
-        },
-        {
-          "date": "15/03/2028",
-          "sort_date": "2028-03-15",
-          "contract": "MAR 28",
-          "settle": 97.6425,
-          "implied_rate": 2.3575
-        },
-        {
-          "date": "21/06/2028",
-          "sort_date": "2028-06-21",
-          "contract": "JUN 28",
-          "settle": 97.6175,
-          "implied_rate": 2.3825
-        },
-        {
-          "date": "20/09/2028",
-          "sort_date": "2028-09-20",
-          "contract": "SEP 28",
-          "settle": 97.58,
-          "implied_rate": 2.42
-        },
-        {
-          "date": "20/12/2028",
-          "sort_date": "2028-12-20",
-          "contract": "DEC 28",
-          "settle": 97.54,
-          "implied_rate": 2.46
-        },
-        {
-          "date": "21/03/2029",
-          "sort_date": "2029-03-21",
-          "contract": "MAR 29",
-          "settle": 97.5,
-          "implied_rate": 2.5
-        }
-      ],
-      "last_updated": "2026-04-18T01:18:19.733350+09:00"
-    },
-    "2026-05-01": {
-      "date": "2026-05-01",
-      "data": [
-        {
-          "date": "20/05/2026",
-          "sort_date": "2026-05-20",
-          "contract": "MAY 26",
-          "settle": 98.0625,
-          "implied_rate": 1.9375
-        },
-        {
-          "date": "17/06/2026",
-          "sort_date": "2026-06-17",
-          "contract": "JUN 26",
-          "settle": 98.06,
-          "implied_rate": 1.94
-        },
-        {
-          "date": "16/09/2026",
-          "sort_date": "2026-09-16",
-          "contract": "SEP 26",
-          "settle": 97.735,
-          "implied_rate": 2.265
-        },
-        {
-          "date": "16/12/2026",
-          "sort_date": "2026-12-16",
-          "contract": "DEC 26",
-          "settle": 97.4375,
-          "implied_rate": 2.5625
-        },
-        {
-          "date": "17/03/2027",
-          "sort_date": "2027-03-17",
-          "contract": "MAR 27",
-          "settle": 97.32,
-          "implied_rate": 2.68
-        },
-        {
-          "date": "16/06/2027",
-          "sort_date": "2027-06-16",
-          "contract": "JUN 27",
-          "settle": 97.285,
-          "implied_rate": 2.715
-        },
-        {
-          "date": "15/09/2027",
-          "sort_date": "2027-09-15",
-          "contract": "SEP 27",
-          "settle": 97.315,
-          "implied_rate": 2.685
-        },
-        {
-          "date": "15/12/2027",
-          "sort_date": "2027-12-15",
-          "contract": "DEC 27",
-          "settle": 97.3875,
-          "implied_rate": 2.6125
-        },
-        {
-          "date": "15/03/2028",
-          "sort_date": "2028-03-15",
-          "contract": "MAR 28",
-          "settle": 97.45,
-          "implied_rate": 2.55
-        },
-        {
-          "date": "21/06/2028",
-          "sort_date": "2028-06-21",
-          "contract": "JUN 28",
-          "settle": 97.46,
-          "implied_rate": 2.54
-        },
-        {
-          "date": "20/09/2028",
-          "sort_date": "2028-09-20",
-          "contract": "SEP 28",
-          "settle": 97.455,
-          "implied_rate": 2.545
-        },
-        {
-          "date": "20/12/2028",
-          "sort_date": "2028-12-20",
-          "contract": "DEC 28",
-          "settle": 97.44,
-          "implied_rate": 2.56
-        }
-      ],
-      "last_updated": "2026-05-01T00:31:18.742190+09:00"
-    },
-    "2026-05-12": {
-      "date": "2026-05-12",
-      "data": [
-        {
-          "date": "20/05/2026",
-          "sort_date": "2026-05-20",
-          "contract": "MAY 26",
-          "settle": 98.0625,
-          "implied_rate": 1.9375
-        },
-        {
-          "date": "17/06/2026",
-          "sort_date": "2026-06-17",
-          "contract": "JUN 26",
-          "settle": 98.0625,
-          "implied_rate": 1.9375
-        },
-        {
-          "date": "16/09/2026",
-          "sort_date": "2026-09-16",
-          "contract": "SEP 26",
-          "settle": 97.755,
-          "implied_rate": 2.245
-        },
-        {
-          "date": "16/12/2026",
-          "sort_date": "2026-12-16",
-          "contract": "DEC 26",
-          "settle": 97.44,
-          "implied_rate": 2.56
-        },
-        {
-          "date": "17/03/2027",
-          "sort_date": "2027-03-17",
-          "contract": "MAR 27",
-          "settle": 97.3025,
-          "implied_rate": 2.6975
-        },
-        {
-          "date": "16/06/2027",
-          "sort_date": "2027-06-16",
-          "contract": "JUN 27",
-          "settle": 97.2425,
-          "implied_rate": 2.7575
-        },
-        {
-          "date": "15/09/2027",
-          "sort_date": "2027-09-15",
-          "contract": "SEP 27",
-          "settle": 97.255,
-          "implied_rate": 2.745
-        },
-        {
-          "date": "15/12/2027",
-          "sort_date": "2027-12-15",
-          "contract": "DEC 27",
-          "settle": 97.31,
-          "implied_rate": 2.69
-        },
-        {
-          "date": "15/03/2028",
-          "sort_date": "2028-03-15",
-          "contract": "MAR 28",
-          "settle": 97.365,
-          "implied_rate": 2.635
-        },
-        {
-          "date": "21/06/2028",
-          "sort_date": "2028-06-21",
-          "contract": "JUN 28",
-          "settle": 97.38,
-          "implied_rate": 2.62
-        },
-        {
-          "date": "20/09/2028",
-          "sort_date": "2028-09-20",
-          "contract": "SEP 28",
-          "settle": 97.38,
-          "implied_rate": 2.62
-        },
-        {
-          "date": "20/12/2028",
-          "sort_date": "2028-12-20",
-          "contract": "DEC 28",
-          "settle": 97.3675,
-          "implied_rate": 2.6325
-        }
-      ],
-      "last_updated": "2026-05-12T23:38:33.616442+09:00"
-    },
-    "2026-05-13": {
-      "date": "2026-05-13",
-      "data": [
-        {
-          "date": "20/05/2026",
-          "sort_date": "2026-05-20",
-          "contract": "MAY 26",
-          "settle": 98.0625,
-          "implied_rate": 1.9375
-        },
-        {
-          "date": "17/06/2026",
-          "sort_date": "2026-06-17",
-          "contract": "JUN 26",
-          "settle": 98.0625,
-          "implied_rate": 1.9375
-        },
-        {
-          "date": "16/09/2026",
-          "sort_date": "2026-09-16",
-          "contract": "SEP 26",
-          "settle": 97.68,
-          "implied_rate": 2.32
-        },
-        {
-          "date": "16/12/2026",
-          "sort_date": "2026-12-16",
-          "contract": "DEC 26",
-          "settle": 97.4325,
-          "implied_rate": 2.5675
-        },
-        {
-          "date": "17/03/2027",
-          "sort_date": "2027-03-17",
-          "contract": "MAR 27",
-          "settle": 97.295,
-          "implied_rate": 2.705
-        },
-        {
-          "date": "16/06/2027",
-          "sort_date": "2027-06-16",
-          "contract": "JUN 27",
-          "settle": 97.2375,
-          "implied_rate": 2.7625
-        },
-        {
-          "date": "15/09/2027",
-          "sort_date": "2027-09-15",
-          "contract": "SEP 27",
-          "settle": 97.2475,
-          "implied_rate": 2.7525
-        },
-        {
-          "date": "15/03/2028",
-          "sort_date": "2028-03-15",
-          "contract": "MAR 28",
-          "settle": 97.355,
-          "implied_rate": 2.645
-        },
-        {
-          "date": "21/06/2028",
-          "sort_date": "2028-06-21",
-          "contract": "JUN 28",
-          "settle": 97.37,
-          "implied_rate": 2.63
-        },
-        {
-          "date": "20/09/2028",
-          "sort_date": "2028-09-20",
-          "contract": "SEP 28",
-          "settle": 97.3675,
-          "implied_rate": 2.6325
-        },
-        {
-          "date": "20/12/2028",
-          "sort_date": "2028-12-20",
-          "contract": "DEC 28",
-          "settle": 97.3575,
-          "implied_rate": 2.6425
-        },
-        {
-          "date": "21/03/2029",
-          "sort_date": "2029-03-21",
-          "contract": "MAR 29",
-          "settle": 97.34,
-          "implied_rate": 2.66
-        }
-      ],
-      "last_updated": "2026-05-13T14:41:41.599932+09:00"
-    },
-    "2026-05-14": {
-      "date": "2026-05-14",
-      "data": [
-        {
-          "date": "20/05/2026",
-          "sort_date": "2026-05-20",
-          "contract": "MAY 26",
-          "settle": 98.0625,
-          "implied_rate": 1.9375
-        },
-        {
-          "date": "17/06/2026",
-          "sort_date": "2026-06-17",
-          "contract": "JUN 26",
-          "settle": 98.0625,
-          "implied_rate": 1.9375
-        },
-        {
-          "date": "16/09/2026",
-          "sort_date": "2026-09-16",
-          "contract": "SEP 26",
-          "settle": 97.765,
-          "implied_rate": 2.235
-        },
-        {
-          "date": "16/12/2026",
-          "sort_date": "2026-12-16",
-          "contract": "DEC 26",
-          "settle": 97.455,
-          "implied_rate": 2.545
-        },
-        {
-          "date": "17/03/2027",
-          "sort_date": "2027-03-17",
-          "contract": "MAR 27",
-          "settle": 97.3025,
-          "implied_rate": 2.6975
-        },
-        {
-          "date": "16/06/2027",
-          "sort_date": "2027-06-16",
-          "contract": "JUN 27",
-          "settle": 97.2325,
-          "implied_rate": 2.7675
-        },
-        {
-          "date": "15/09/2027",
-          "sort_date": "2027-09-15",
-          "contract": "SEP 27",
-          "settle": 97.2425,
-          "implied_rate": 2.7575
-        },
-        {
-          "date": "15/12/2027",
-          "sort_date": "2027-12-15",
-          "contract": "DEC 27",
-          "settle": 97.295,
-          "implied_rate": 2.705
-        },
-        {
-          "date": "15/03/2028",
-          "sort_date": "2028-03-15",
-          "contract": "MAR 28",
-          "settle": 97.35,
-          "implied_rate": 2.65
-        },
-        {
-          "date": "21/06/2028",
-          "sort_date": "2028-06-21",
-          "contract": "JUN 28",
-          "settle": 97.365,
-          "implied_rate": 2.635
-        },
-        {
-          "date": "20/09/2028",
-          "sort_date": "2028-09-20",
-          "contract": "SEP 28",
-          "settle": 97.36,
-          "implied_rate": 2.64
-        },
-        {
-          "date": "20/12/2028",
-          "sort_date": "2028-12-20",
-          "contract": "DEC 28",
-          "settle": 97.35,
-          "implied_rate": 2.65
-        }
-      ],
-      "last_updated": "2026-05-14T00:30:54.259894+09:00"
-    },
     "2026-05-16": {
       "date": "2026-05-16",
       "data": [
@@ -2251,6 +1441,501 @@
         }
       ],
       "last_updated": "2026-06-17T11:24:23.061801+09:00"
+    },
+    "2026-06-18": {
+      "date": "2026-06-18",
+      "data": [
+        {
+          "date": "15/07/2026",
+          "sort_date": "2026-07-15",
+          "contract": "JUL 26",
+          "settle": 97.985,
+          "implied_rate": 2.015
+        },
+        {
+          "date": "16/09/2026",
+          "sort_date": "2026-09-16",
+          "contract": "SEP 26",
+          "settle": 97.78,
+          "implied_rate": 2.22
+        },
+        {
+          "date": "16/06/2027",
+          "sort_date": "2027-06-16",
+          "contract": "JUN 27",
+          "settle": 97.1775,
+          "implied_rate": 2.8225
+        }
+      ],
+      "last_updated": "2026-06-18T07:39:36.166227+09:00"
+    },
+    "2026-06-19": {
+      "date": "2026-06-19",
+      "data": [
+        {
+          "date": "15/07/2026",
+          "sort_date": "2026-07-15",
+          "contract": "JUL 26",
+          "settle": 97.985,
+          "implied_rate": 2.015
+        },
+        {
+          "date": "16/09/2026",
+          "sort_date": "2026-09-16",
+          "contract": "SEP 26",
+          "settle": 97.78,
+          "implied_rate": 2.22
+        },
+        {
+          "date": "16/12/2026",
+          "sort_date": "2026-12-16",
+          "contract": "DEC 26",
+          "settle": 97.5625,
+          "implied_rate": 2.4375
+        },
+        {
+          "date": "17/03/2027",
+          "sort_date": "2027-03-17",
+          "contract": "MAR 27",
+          "settle": 97.4475,
+          "implied_rate": 2.5525
+        },
+        {
+          "date": "16/06/2027",
+          "sort_date": "2027-06-16",
+          "contract": "JUN 27",
+          "settle": 97.3925,
+          "implied_rate": 2.6075
+        }
+      ],
+      "last_updated": "2026-06-19T07:53:05.021153+09:00"
+    },
+    "2026-06-21": {
+      "date": "2026-06-21",
+      "data": [
+        {
+          "date": "15/07/2026",
+          "sort_date": "2026-07-15",
+          "contract": "JUL 26",
+          "settle": 97.985,
+          "implied_rate": 2.015
+        },
+        {
+          "date": "16/09/2026",
+          "sort_date": "2026-09-16",
+          "contract": "SEP 26",
+          "settle": 97.7825,
+          "implied_rate": 2.2175
+        },
+        {
+          "date": "16/06/2027",
+          "sort_date": "2027-06-16",
+          "contract": "JUN 27",
+          "settle": 97.1775,
+          "implied_rate": 2.8225
+        }
+      ],
+      "last_updated": "2026-06-21T11:27:43.226676+09:00"
+    },
+    "2026-06-22": {
+      "date": "2026-06-22",
+      "data": [
+        {
+          "date": "15/07/2026",
+          "sort_date": "2026-07-15",
+          "contract": "JUL 26",
+          "settle": 97.985,
+          "implied_rate": 2.015
+        },
+        {
+          "date": "16/09/2026",
+          "sort_date": "2026-09-16",
+          "contract": "SEP 26",
+          "settle": 97.79,
+          "implied_rate": 2.21
+        },
+        {
+          "date": "16/12/2026",
+          "sort_date": "2026-12-16",
+          "contract": "DEC 26",
+          "settle": 97.5725,
+          "implied_rate": 2.4275
+        },
+        {
+          "date": "17/03/2027",
+          "sort_date": "2027-03-17",
+          "contract": "MAR 27",
+          "settle": 97.4525,
+          "implied_rate": 2.5475
+        },
+        {
+          "date": "16/06/2027",
+          "sort_date": "2027-06-16",
+          "contract": "JUN 27",
+          "settle": 97.41,
+          "implied_rate": 2.59
+        },
+        {
+          "date": "15/09/2027",
+          "sort_date": "2027-09-15",
+          "contract": "SEP 27",
+          "settle": 97.415,
+          "implied_rate": 2.585
+        },
+        {
+          "date": "15/12/2027",
+          "sort_date": "2027-12-15",
+          "contract": "DEC 27",
+          "settle": 97.445,
+          "implied_rate": 2.555
+        },
+        {
+          "date": "15/03/2028",
+          "sort_date": "2028-03-15",
+          "contract": "MAR 28",
+          "settle": 97.4875,
+          "implied_rate": 2.5125
+        },
+        {
+          "date": "21/06/2028",
+          "sort_date": "2028-06-21",
+          "contract": "JUN 28",
+          "settle": 97.505,
+          "implied_rate": 2.495
+        },
+        {
+          "date": "20/09/2028",
+          "sort_date": "2028-09-20",
+          "contract": "SEP 28",
+          "settle": 97.5025,
+          "implied_rate": 2.4975
+        },
+        {
+          "date": "20/12/2028",
+          "sort_date": "2028-12-20",
+          "contract": "DEC 28",
+          "settle": 97.4925,
+          "implied_rate": 2.5075
+        },
+        {
+          "date": "21/03/2029",
+          "sort_date": "2029-03-21",
+          "contract": "MAR 29",
+          "settle": 97.4725,
+          "implied_rate": 2.5275
+        }
+      ],
+      "last_updated": "2026-06-22T22:00:17.756898+09:00"
+    },
+    "2026-06-23": {
+      "date": "2026-06-23",
+      "data": [
+        {
+          "date": "17/03/2027",
+          "sort_date": "2027-03-17",
+          "contract": "MAR 27",
+          "settle": 97.485,
+          "implied_rate": 2.515
+        }
+      ],
+      "last_updated": "2026-06-23T10:37:02.589067+09:00"
+    },
+    "2026-06-24": {
+      "date": "2026-06-24",
+      "data": [
+        {
+          "date": "15/07/2026",
+          "sort_date": "2026-07-15",
+          "contract": "JUL 26",
+          "settle": 97.985,
+          "implied_rate": 2.015
+        },
+        {
+          "date": "16/09/2026",
+          "sort_date": "2026-09-16",
+          "contract": "SEP 26",
+          "settle": 97.7975,
+          "implied_rate": 2.2025
+        },
+        {
+          "date": "16/12/2026",
+          "sort_date": "2026-12-16",
+          "contract": "DEC 26",
+          "settle": 97.615,
+          "implied_rate": 2.385
+        },
+        {
+          "date": "17/03/2027",
+          "sort_date": "2027-03-17",
+          "contract": "MAR 27",
+          "settle": 97.5225,
+          "implied_rate": 2.4775
+        },
+        {
+          "date": "16/06/2027",
+          "sort_date": "2027-06-16",
+          "contract": "JUN 27",
+          "settle": 97.485,
+          "implied_rate": 2.515
+        },
+        {
+          "date": "15/09/2027",
+          "sort_date": "2027-09-15",
+          "contract": "SEP 27",
+          "settle": 97.49,
+          "implied_rate": 2.51
+        },
+        {
+          "date": "15/12/2027",
+          "sort_date": "2027-12-15",
+          "contract": "DEC 27",
+          "settle": 97.5225,
+          "implied_rate": 2.4775
+        },
+        {
+          "date": "15/03/2028",
+          "sort_date": "2028-03-15",
+          "contract": "MAR 28",
+          "settle": 97.565,
+          "implied_rate": 2.435
+        },
+        {
+          "date": "21/06/2028",
+          "sort_date": "2028-06-21",
+          "contract": "JUN 28",
+          "settle": 97.585,
+          "implied_rate": 2.415
+        },
+        {
+          "date": "20/09/2028",
+          "sort_date": "2028-09-20",
+          "contract": "SEP 28",
+          "settle": 97.5875,
+          "implied_rate": 2.4125
+        },
+        {
+          "date": "20/12/2028",
+          "sort_date": "2028-12-20",
+          "contract": "DEC 28",
+          "settle": 97.5775,
+          "implied_rate": 2.4225
+        },
+        {
+          "date": "21/03/2029",
+          "sort_date": "2029-03-21",
+          "contract": "MAR 29",
+          "settle": 97.5575,
+          "implied_rate": 2.4425
+        }
+      ],
+      "last_updated": "2026-06-24T21:40:06.376578+09:00"
+    },
+    "2026-06-25": {
+      "date": "2026-06-25",
+      "data": [
+        {
+          "date": "15/07/2026",
+          "sort_date": "2026-07-15",
+          "contract": "JUL 26",
+          "settle": 97.985,
+          "implied_rate": 2.015
+        },
+        {
+          "date": "16/09/2026",
+          "sort_date": "2026-09-16",
+          "contract": "SEP 26",
+          "settle": 97.7975,
+          "implied_rate": 2.2025
+        },
+        {
+          "date": "16/12/2026",
+          "sort_date": "2026-12-16",
+          "contract": "DEC 26",
+          "settle": 97.6175,
+          "implied_rate": 2.3825
+        },
+        {
+          "date": "16/06/2027",
+          "sort_date": "2027-06-16",
+          "contract": "JUN 27",
+          "settle": 97.4975,
+          "implied_rate": 2.5025
+        },
+        {
+          "date": "15/12/2027",
+          "sort_date": "2027-12-15",
+          "contract": "DEC 27",
+          "settle": 97.54,
+          "implied_rate": 2.46
+        },
+        {
+          "date": "15/03/2028",
+          "sort_date": "2028-03-15",
+          "contract": "MAR 28",
+          "settle": 97.5775,
+          "implied_rate": 2.4225
+        },
+        {
+          "date": "21/06/2028",
+          "sort_date": "2028-06-21",
+          "contract": "JUN 28",
+          "settle": 97.6,
+          "implied_rate": 2.4
+        },
+        {
+          "date": "20/09/2028",
+          "sort_date": "2028-09-20",
+          "contract": "SEP 28",
+          "settle": 97.6025,
+          "implied_rate": 2.3975
+        },
+        {
+          "date": "20/12/2028",
+          "sort_date": "2028-12-20",
+          "contract": "DEC 28",
+          "settle": 97.595,
+          "implied_rate": 2.405
+        },
+        {
+          "date": "21/03/2029",
+          "sort_date": "2029-03-21",
+          "contract": "MAR 29",
+          "settle": 97.5775,
+          "implied_rate": 2.4225
+        },
+        {
+          "date": "20/06/2029",
+          "sort_date": "2029-06-20",
+          "contract": "JUN 29",
+          "settle": 97.5575,
+          "implied_rate": 2.4425
+        },
+        {
+          "date": "19/09/2029",
+          "sort_date": "2029-09-19",
+          "contract": "SEP 29",
+          "settle": 97.5375,
+          "implied_rate": 2.4625
+        }
+      ],
+      "last_updated": "2026-06-25T15:46:23.646299+09:00"
+    },
+    "2026-06-26": {
+      "date": "2026-06-26",
+      "data": [
+        {
+          "date": "15/07/2026",
+          "sort_date": "2026-07-15",
+          "contract": "JUL 26",
+          "settle": 97.985,
+          "implied_rate": 2.015
+        },
+        {
+          "date": "16/09/2026",
+          "sort_date": "2026-09-16",
+          "contract": "SEP 26",
+          "settle": 97.8025,
+          "implied_rate": 2.1975
+        },
+        {
+          "date": "16/12/2026",
+          "sort_date": "2026-12-16",
+          "contract": "DEC 26",
+          "settle": 97.635,
+          "implied_rate": 2.365
+        },
+        {
+          "date": "17/03/2027",
+          "sort_date": "2027-03-17",
+          "contract": "MAR 27",
+          "settle": 97.5625,
+          "implied_rate": 2.4375
+        },
+        {
+          "date": "16/06/2027",
+          "sort_date": "2027-06-16",
+          "contract": "JUN 27",
+          "settle": 97.5375,
+          "implied_rate": 2.4625
+        },
+        {
+          "date": "15/09/2027",
+          "sort_date": "2027-09-15",
+          "contract": "SEP 27",
+          "settle": 97.545,
+          "implied_rate": 2.455
+        },
+        {
+          "date": "15/12/2027",
+          "sort_date": "2027-12-15",
+          "contract": "DEC 27",
+          "settle": 97.5725,
+          "implied_rate": 2.4275
+        },
+        {
+          "date": "15/03/2028",
+          "sort_date": "2028-03-15",
+          "contract": "MAR 28",
+          "settle": 97.61,
+          "implied_rate": 2.39
+        },
+        {
+          "date": "21/06/2028",
+          "sort_date": "2028-06-21",
+          "contract": "JUN 28",
+          "settle": 97.625,
+          "implied_rate": 2.375
+        },
+        {
+          "date": "20/09/2028",
+          "sort_date": "2028-09-20",
+          "contract": "SEP 28",
+          "settle": 97.625,
+          "implied_rate": 2.375
+        },
+        {
+          "date": "20/12/2028",
+          "sort_date": "2028-12-20",
+          "contract": "DEC 28",
+          "settle": 97.61,
+          "implied_rate": 2.39
+        },
+        {
+          "date": "21/03/2029",
+          "sort_date": "2029-03-21",
+          "contract": "MAR 29",
+          "settle": 97.59,
+          "implied_rate": 2.41
+        }
+      ],
+      "last_updated": "2026-06-26T17:17:08.102301+09:00"
+    },
+    "2026-06-27": {
+      "date": "2026-06-27",
+      "data": [
+        {
+          "date": "15/07/2026",
+          "sort_date": "2026-07-15",
+          "contract": "JUL 26",
+          "settle": 97.985,
+          "implied_rate": 2.015
+        },
+        {
+          "date": "16/09/2026",
+          "sort_date": "2026-09-16",
+          "contract": "SEP 26",
+          "settle": 97.8025,
+          "implied_rate": 2.1975
+        },
+        {
+          "date": "16/06/2027",
+          "sort_date": "2027-06-16",
+          "contract": "JUN 27",
+          "settle": 97.5175,
+          "implied_rate": 2.4825
+        }
+      ],
+      "last_updated": "2026-06-27T15:13:21.518708+09:00"
     }
   }
 }

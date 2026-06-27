@@ -18,8 +18,9 @@ DBからS&P Global PMI（製造業・サービス業・総合）データを取�
 キャッシュ方式: FMP発表日時ベース判定方式
 """
 import json
+import re
 from datetime import datetime
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Tuple
 from zoneinfo import ZoneInfo
 from pathlib import Path
 
@@ -29,6 +30,18 @@ from core.redis_client import redis_client
 JST = ZoneInfo("Asia/Tokyo")
 LONDON = ZoneInfo("Europe/London")
 UTC = ZoneInfo("UTC")
+
+# FMPのPMIイベントは「リリース日」で記録され、参照月は event 名のサフィックス
+# (例: "S&P Global Manufacturing PMI (May)") に入る。リリースは参照月の約1ヶ月後なので、
+# datetime_utc の月をそのまま使うと全データが1ヶ月後方にずれる。ラベルから参照月を復元する。
+# 過去の蓄積分(ラベル無し)は datetime_utc が参照月初に記録されているため、そのまま使う。
+_MONTH_ABBR = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+    "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+}
+_LABEL_MONTH_RE = re.compile(
+    r"\((Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\)", re.IGNORECASE
+)
 
 CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "uk" / "economy"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
@@ -42,9 +55,11 @@ class UKPMIService:
     ECONALPHA_ID = "uk_pmi"
 
     # FMPカレンダー検索パターン（製造業・サービス・総合）
-    # FMPでは3指標が同時発表されるため、製造業には全パターンを含む
+    # 各系列は自分のイベント名のみにマッチさせる。
+    # （以前は manufacturing が3指標すべてを OR でマッチしており、月次パーティション
+    #  で Composite/Services の値を製造業として誤選択していた＝値が混入するバグ）
     FMP_EVENT_PATTERNS = {
-        "manufacturing": ["S&P Global Manufacturing PMI", "S&P Global Services PMI", "S&P Global Composite PMI"],
+        "manufacturing": ["S&P Global Manufacturing PMI"],
         "services": ["S&P Global Services PMI"],
         "composite": ["S&P Global Composite PMI"],
     }
@@ -137,8 +152,93 @@ class UKPMIService:
             print(f"[UK PMI] Error getting next release: {e}")
             return None
 
+    @staticmethod
+    def _reference_date(dt_utc: datetime, event: str) -> str:
+        """イベントの参照月（YYYY-MM-01）を決定する。
+
+        - ラベル付き("... (May)")はリリース日に記録されているため、ラベルの月を
+          参照月とし、年はリリース年からロールオーバーを考慮して復元する。
+        - ラベル無し(過去の蓄積分)は datetime_utc の月を参照月とする。
+        """
+        m = _LABEL_MONTH_RE.search(event or "")
+        if m:
+            ref_month = _MONTH_ABBR[m.group(1).lower()]
+            ref_year = dt_utc.year
+            # リリースは参照月の約1ヶ月後。参照月がリリース月より大きければ前年(12月→1月)。
+            if ref_month > dt_utc.month:
+                ref_year -= 1
+            return f"{ref_year:04d}-{ref_month:02d}-01"
+        return dt_utc.strftime("%Y-%m-01")
+
+    @staticmethod
+    def _prior_month(date_str: str) -> str:
+        """YYYY-MM-01 形式の前月を返す。"""
+        year, month, _ = date_str.split("-")
+        year, month = int(year), int(month)
+        month -= 1
+        if month == 0:
+            month = 12
+            year -= 1
+        return f"{year:04d}-{month:02d}-01"
+
+    def _aggregate_by_reference_month(self, rows) -> Dict[str, Optional[float]]:
+        """イベント行(datetime_utc, event, actual, previous)を参照月ごとに集約する。
+
+        優先順位（高い方を採用、同順位は新しいリリース=改定値を優先）:
+          4: ラベル付き確報 actual（参照月の翌月以降にリリース＝確定値）
+          3: ラベル無し actual（過去蓄積分。datetime_utc が参照月初）
+          2: previous フィールド由来（翌月リリースの previous = 当月の確定値。FMPが
+             当月の actual を populate していない欠落月を実値で補完。捏造ではない）
+          1: ラベル付き速報 actual（参照月内にリリース＝flash/暫定値）
+
+        FMPには稀に「参照月内にリリースされた非Flashラベル」の不正行（前月のflash値が
+        混入）が存在するため、Flashキーワードでなく**リリース時期**で速報/確報を判定する。
+        """
+        # date_str -> (priority, datetime_utc, value)
+        best: Dict[str, Tuple[int, datetime, float]] = {}
+
+        def consider(date_str: str, priority: int, dt_utc: datetime, value: Optional[float]):
+            if value is None:
+                return
+            existing = best.get(date_str)
+            if existing is None or (priority, dt_utc) > (existing[0], existing[1]):
+                best[date_str] = (priority, dt_utc, value)
+
+        for row in rows:
+            dt_utc, event, actual, previous = row
+            if not dt_utc:
+                continue
+            labeled = bool(_LABEL_MONTH_RE.search(event or ""))
+            ref_date = self._reference_date(dt_utc, event)
+            ref_year, ref_month = int(ref_date[:4]), int(ref_date[5:7])
+            # 確報=参照月が終わった後にリリース。参照月内のリリースは速報(flash/暫定)。
+            released_after_ref = (dt_utc.year, dt_utc.month) > (ref_year, ref_month)
+            if not labeled:
+                actual_priority = 3
+            elif released_after_ref:
+                actual_priority = 4
+            else:
+                actual_priority = 1
+            # 当月の actual
+            consider(
+                ref_date,
+                actual_priority,
+                dt_utc,
+                float(actual) if actual is not None else None,
+            )
+            # previous = 前月の確定値（欠落補完用フォールバック）
+            if previous is not None:
+                consider(
+                    self._prior_month(ref_date),
+                    2,
+                    dt_utc,
+                    float(previous),
+                )
+
+        return {d: v[2] for d, v in best.items()}
+
     def _load_from_db(self, pmi_type: str) -> List[Dict[str, Any]]:
-        """DBから特定のPMI系列データを取得"""
+        """DBから特定のPMI系列データを取得（参照月ベースで集約）"""
         try:
             from core.database import SessionLocal
             from sqlalchemy import text
@@ -157,39 +257,14 @@ class UKPMIService:
                     [f"event ILIKE :pattern{i}" for i in range(len(event_patterns))]
                 )
 
-                # Flash（速報）とFinal（確報）の両方を取得し、同月は確報を優先
+                # actual と previous の両方を取得（previous は欠落補完に使う）。
+                # 参照月の決定とFlash/Final・改定の集約は Python 側で行う。
                 query = text(f"""
-                    WITH ranked_events AS (
-                        SELECT
-                            datetime_utc,
-                            actual,
-                            estimate,
-                            previous,
-                            event,
-                            -- Flash < Final の優先度（同月は確報を優先）
-                            CASE
-                                WHEN event ILIKE '%Final%' THEN 2
-                                WHEN event ILIKE '%Flash%' THEN 1
-                                ELSE 1
-                            END as priority,
-                            ROW_NUMBER() OVER (
-                                PARTITION BY DATE_TRUNC('month', datetime_utc)
-                                ORDER BY
-                                    CASE
-                                        WHEN event ILIKE '%Final%' THEN 2
-                                        WHEN event ILIKE '%Flash%' THEN 1
-                                        ELSE 1
-                                    END DESC,
-                                    datetime_utc DESC
-                            ) as rn
-                        FROM economic_calendar_events
-                        WHERE country = 'UK'
-                          AND ({pattern_conditions})
-                          AND actual IS NOT NULL
-                    )
-                    SELECT datetime_utc, actual, estimate, previous, event
-                    FROM ranked_events
-                    WHERE rn = 1
+                    SELECT datetime_utc, event, actual, previous
+                    FROM economic_calendar_events
+                    WHERE country = 'UK'
+                      AND ({pattern_conditions})
+                      AND (actual IS NOT NULL OR previous IS NOT NULL)
                     ORDER BY datetime_utc ASC
                 """)
 
@@ -199,25 +274,12 @@ class UKPMIService:
 
                 rows = session.execute(query, params).fetchall()
 
-                result = []
-                seen_dates = set()
+                value_by_date = self._aggregate_by_reference_month(rows)
 
-                for row in rows:
-                    dt_utc, actual, estimate, previous, event = row
-                    if dt_utc:
-                        # 月初日に正規化
-                        date_str = dt_utc.strftime("%Y-%m-01")
-                        if date_str in seen_dates:
-                            continue
-                        seen_dates.add(date_str)
-
-                        result.append({
-                            "date": date_str,
-                            "value": float(actual) if actual else None,
-                            "forecast": float(estimate) if estimate else None,
-                            "previous": float(previous) if previous else None,
-                            "is_flash": "Flash" in event if event else False,
-                        })
+                result = [
+                    {"date": date_str, "value": value}
+                    for date_str, value in sorted(value_by_date.items())
+                ]
 
                 print(f"[UK PMI] Loaded {len(result)} {pmi_type} records from DB")
                 return result

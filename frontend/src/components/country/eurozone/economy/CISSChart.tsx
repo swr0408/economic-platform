@@ -64,7 +64,7 @@ export default function CISSChart({ data }: CISSChartProps) {
 
   if (!hasData) {
     return (
-      <ChartContainer title="システミックストレス指標（CISS）" showPeriodSelector={false} showDataSource={false}>
+      <ChartContainer title="システミックストレス指標（CISS）" showPeriodSelector={false} showDataSource={false} handbookId="ecb-ciss">
         <NoDataMessage />
       </ChartContainer>
     )
@@ -77,6 +77,7 @@ export default function CISSChart({ data }: CISSChartProps) {
         showPeriodSelector={false}
         dataSource="European Central Bank"
         sourceUrl="https://data.ecb.europa.eu/data/datasets/CISS"
+        handbookId="ecb-ciss"
       >
         {/* 最新値表示 */}
         <SimpleLatestValueBox

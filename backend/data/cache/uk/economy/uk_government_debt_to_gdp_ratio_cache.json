@@ -1018,7 +1018,7 @@
     },
     {
       "date": "2014-05-01",
-      "value": 79.2
+      "value": 79.3
     },
     {
       "date": "2014-06-01",
@@ -1326,7 +1326,7 @@
     },
     {
       "date": "2020-10-01",
-      "value": 98.0
+      "value": 98.1
     },
     {
       "date": "2020-11-01",
@@ -1450,11 +1450,11 @@
     },
     {
       "date": "2023-05-01",
-      "value": 94.0
+      "value": 94.1
     },
     {
       "date": "2023-06-01",
-      "value": 94.8
+      "value": 94.9
     },
     {
       "date": "2023-07-01",
@@ -1582,15 +1582,19 @@
     },
     {
       "date": "2026-02-01",
-      "value": 92.8
+      "value": 92.9
     },
     {
       "date": "2026-03-01",
-      "value": 93.7
+      "value": 93.8
     },
     {
       "date": "2026-04-01",
-      "value": 94.2
+      "value": 94.1
+    },
+    {
+      "date": "2026-05-01",
+      "value": 95.1
     }
   ],
   "mom_change": [
@@ -2608,11 +2612,11 @@
     },
     {
       "date": "2014-05-01",
-      "value": 0.4
+      "value": 0.5
     },
     {
       "date": "2014-06-01",
-      "value": 0.7
+      "value": 0.6
     },
     {
       "date": "2014-07-01",
@@ -2916,11 +2920,11 @@
     },
     {
       "date": "2020-10-01",
-      "value": -0.1
+      "value": 0.0
     },
     {
       "date": "2020-11-01",
-      "value": -0.1
+      "value": -0.2
     },
     {
       "date": "2020-12-01",
@@ -3040,7 +3044,7 @@
     },
     {
       "date": "2023-05-01",
-      "value": 0.8
+      "value": 0.9
     },
     {
       "date": "2023-06-01",
@@ -3048,7 +3052,7 @@
     },
     {
       "date": "2023-07-01",
-      "value": -1.0
+      "value": -1.1
     },
     {
       "date": "2023-08-01",
@@ -3172,7 +3176,7 @@
     },
     {
       "date": "2026-02-01",
-      "value": 0.1
+      "value": 0.2
     },
     {
       "date": "2026-03-01",
@@ -3180,21 +3184,25 @@
     },
     {
       "date": "2026-04-01",
-      "value": 0.5
+      "value": 0.3
+    },
+    {
+      "date": "2026-05-01",
+      "value": 1.0
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "value": 94.2
+    "date": "2026-05-01",
+    "value": 95.1
   },
   "metadata": {
     "title": "PS: Net Debt (excluding public sector banks) as a % of GDP: NSA",
     "cdid": "HF6X",
     "unit": "% of GDP",
     "source": "Office for National Statistics",
-    "release_date": "2026-05-21T23:00:00.000Z",
+    "release_date": "2026-06-18T23:00:00.000Z",
     "description": "PS: Net Debt (excluding public sector banks) as a % of GDP: NSA"
   },
-  "ons_next_release": "19 June 2026",
-  "last_updated": "2026-06-16T14:03:35.339408+09:00"
+  "ons_next_release": "21 July 2026",
+  "last_updated": "2026-06-27T11:46:17.776936+09:00"
 }

@@ -574,8 +574,14 @@ def update_category(category_id: int, name: str = None, color: str = None, sort_
         return False
     with get_db_connection() as conn:
         with conn.cursor() as cur:
-            cur.execute(f"UPDATE categories SET {', '.join(updates)} WHERE id = %(id)s", params)
-            conn.commit()
+            try:
+                cur.execute(f"UPDATE categories SET {', '.join(updates)} WHERE id = %(id)s", params)
+                conn.commit()
+            except psycopg2.errors.UniqueViolation:
+                # 同じ親の下に同名へ改名 → UNIQUE(parent_id, name) 違反。
+                # create_category と同様に 500 ではなく 409 へ変換できるよう ValueError を送出。
+                conn.rollback()
+                raise ValueError("同じ階層に同名のカテゴリが既に存在します")
             return cur.rowcount > 0
 
 

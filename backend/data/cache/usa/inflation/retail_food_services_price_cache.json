@@ -542,11 +542,11 @@
     "carts_nowcast": 4.65
   },
   "next_release": {
-    "date": "2026-06-17",
-    "datetime_jst": "2026-06-17T21:30:00+09:00",
+    "date": "2026-07-09",
+    "datetime_jst": "2026-07-09T21:30:00+09:00",
     "time_jst": "21:30",
-    "label": "May 2026 (Final)",
-    "type": "final"
+    "label": "June 2026 (Preliminary)",
+    "type": "preliminary"
   },
-  "last_updated": "2026-06-17T21:47:00.230205+09:00"
+  "last_updated": "2026-06-27T18:52:53.628769+09:00"
 }

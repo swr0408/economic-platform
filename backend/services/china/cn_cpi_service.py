@@ -24,6 +24,8 @@ DB指標ID:
   cn_cpi_core_yoy, cn_cpi_core_mom
 """
 import os
+import re
+import glob
 import json
 import logging
 from pathlib import Path
@@ -56,6 +58,129 @@ DB_INDICATORS = {
     "core_yoy": "cn_cpi_core_yoy",
     "core_mom": "cn_cpi_core_mom",
 }
+
+# ---------------------------------------------------------------------------
+# 手動更新CSV (NBS データ照会 data.stats.gov.cn のエクスポート、転置ワイド)
+#
+# data.stats.gov.cn は当サーバIPが WAF 403 で遮断されており自動取得不可。
+# 作業者がブラウザ等で取得した CSV をここに置けば長期履歴を補填できる。
+# ファイル名は china_cpi_*.csv（例: china_cpi_2000~2015.csv）。年範囲ごとに
+# 分割されていてよく、重複月は非空値が後勝ちで上書きされる（冪等）。
+#
+# 形式上の注意:
+#   - 値は「前年同月=100」の指数（例 101.6 = +1.6%）→ 取り込み時に -100 して
+#     既存DB(YoY%)と同じスケールへ変換する。
+#   - 区切りはカンマだが各セル末尾にタブが付く。品目別行はラベル内に
+#     カンマを含む（"... , Excluding Food and Energy"）ため、各行の末尾
+#     N列(=日付数)を値、残りをラベルとして扱う方式で頑健にパースする。
+#   - コアCPI(Excluding Food and Energy)は NBS 当表でも 2021年以降のみ存在。
+#     総合CPIは 2000年まで遡及できる。品目別(Food&Tobacco等)は press release の
+#     食品/非食品とは定義が異なるため取り込まない（総合とコアのみ対象）。
+_MANUAL_CSV_GLOB = str(_BASE_DIR / "data" / "csv_import" / "china_cpi_*.csv")
+
+# 正規化ラベル(タブ除去・空白圧縮・小文字) → DB系列キー
+_CSV_LABEL_MAP = {
+    "consumer price index (the same month last year=100)": DB_INDICATORS["cpi_yoy"],
+    "consumer price indices (the same month last year=100) , excluding food and energy":
+        DB_INDICATORS["core_yoy"],
+}
+
+_MONTH_ABBR = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+    "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+}
+
+
+def _parse_query_month(h: str) -> Optional[str]:
+    """ヘッダの月表記 "May 2026" → "2026-05-01"。不正は None。"""
+    m = re.match(r"([A-Za-z]+)\.?\s*(\d{4})", h.strip())
+    if not m:
+        return None
+    mon = _MONTH_ABBR.get(m.group(1)[:3].lower())
+    return f"{int(m.group(2))}-{mon:02d}-01" if mon else None
+
+
+def _norm_label(s: str) -> str:
+    return re.sub(r"\s+", " ", s.replace("\t", " ")).strip().lower()
+
+
+def _parse_cpi_query_csv(path: str) -> Dict[str, Dict[str, float]]:
+    """NBS データ照会CSV を解析し {db_indicator: {date: yoy%}} を返す。
+
+    値は「前年同月=100」指数なので -100 して YoY% に変換する。
+    対象は総合CPI(cn_cpi_yoy)とコアCPI(cn_cpi_core_yoy)のみ。
+    """
+    try:
+        with open(path, encoding="utf-8-sig") as f:
+            lines = [ln.rstrip("\n").rstrip("\r") for ln in f]
+    except Exception as e:
+        logger.warning(f"[CPI] Manual CSV read error ({path}): {e}")
+        return {}
+
+    header_idx = next(
+        (i for i, l in enumerate(lines) if l.split(",")[0].strip().startswith("Indicators")),
+        None,
+    )
+    if header_idx is None:
+        return {}
+
+    header = lines[header_idx].split(",")
+    valid_dates = [d for d in (_parse_query_month(c) for c in header[1:]) if d]
+    n = len(valid_dates)
+    if n == 0:
+        return {}
+
+    out: Dict[str, Dict[str, float]] = {}
+    for line in lines[header_idx + 1:]:
+        if not line.strip() or line.startswith("Note") or line.startswith("Data Source"):
+            continue
+        parts = line.split(",")
+        # 末尾カンマ由来の空セルを除去 → 末尾 n 列を値、残りをラベルとする
+        while parts and parts[-1].strip() == "":
+            parts.pop()
+        if len(parts) < n:
+            continue
+        vals = parts[-n:]
+        db_key = _CSV_LABEL_MAP.get(_norm_label(",".join(parts[:-n])))
+        if not db_key:
+            continue
+        for date_str, raw in zip(valid_dates, vals):
+            v = raw.replace("\t", "").strip()
+            if not v:
+                continue
+            try:
+                out.setdefault(db_key, {})[date_str] = round(float(v) - 100, 1)
+            except ValueError:
+                continue
+    return out
+
+
+def _import_manual_csv() -> None:
+    """手動更新CSV(NBS データ照会)を DB に取り込む(差分のみ・冪等)。
+
+    複数ファイル(年範囲分割)をマージし、非空値が後勝ち。既存DBと差分のある
+    月のみ upsert することで、CSV未変更時の無駄なキャッシュ無効化を避ける。
+    """
+    from services.china.nbs_db_utils import load_nbs_data, upsert_nbs_data
+
+    merged: Dict[str, Dict[str, float]] = {}
+    for path in sorted(glob.glob(_MANUAL_CSV_GLOB)):
+        parsed = _parse_cpi_query_csv(path)
+        for db_key, vals in parsed.items():
+            merged.setdefault(db_key, {}).update(vals)
+
+    for db_key, vals in merged.items():
+        if not vals:
+            continue
+        existing = load_nbs_data(db_key)
+        diff = {d: v for d, v in vals.items() if existing.get(d) != v}
+        if diff:
+            upsert_nbs_data(db_key, diff, source="csv")
+            logger.info(
+                f"[CPI] Manual CSV {db_key}: upserted {len(diff)} changed/new "
+                f"({min(diff)}〜{max(diff)})"
+            )
+
 
 def _extract_cpi_from_excel(
     excel_data: bytes, period: Optional[tuple],
@@ -118,6 +243,12 @@ def _build_data() -> List[Dict[str, Any]]:
     3. 日付をキーにマージして出力
     """
     from services.china.nbs_db_utils import load_nbs_multi
+
+    # --- 手動更新CSV(NBS データ照会の長期履歴) → DB蓄積（総合は2000年〜・差分のみ）---
+    try:
+        _import_manual_csv()
+    except Exception as e:
+        logger.warning(f"[CPI] Manual CSV import failed: {e}")
 
     # --- プレスリリース Excel → DB蓄積 ---
     try:

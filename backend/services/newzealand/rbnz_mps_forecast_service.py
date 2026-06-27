@@ -25,11 +25,17 @@ Excel構造（各シート共通パターン）:
 - Row 6+: データ（Col 2=日付, Col 3+=値）
 
 発表スケジュール: 2/5/8/11月（MPS発行時）
-ファイル更新を自動検知: ファイルのmtime変更でキャッシュを更新
+
+データ取得:
+- 一次: RBNZ公式サイトから最新MPS Data Packを自動ダウンロード（sitemap→詳細ページ→CDN直リンク）
+- 取得済みファイルは data/excel/mps*data.xlsx に保存し、mtime変更でキャッシュ更新
+- 手動配置も従来どおり可（自動取得が失敗してもファイルがあれば動作）
 """
+import io
 import json
 import logging
 import os
+import re
 from datetime import datetime
 from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
@@ -53,6 +59,39 @@ EXCEL_DIR = Path(__file__).parent.parent.parent / "data" / "excel"
 
 # ファイル名パターン: mps---data.xlsx（置き換え時に自動検知）
 MPS_EXCEL_GLOB = "mps*data.xlsx"
+
+# --- RBNZ自動ダウンロード設定 ---
+# RBNZはCloudflare配下で requests/httpx の TLSフィンガープリントをブロックするため、
+# curl/wget の CLI で取得する（_cli_fetch）。下記ヘッダはcurl/wgetの -H/--header に渡す。
+# 起点は安定取得できる sitemap.xml → MPS詳細ページ → /-/media/ CDN直リンク（xlsx）。
+RBNZ_BASE = "https://www.rbnz.govt.nz"
+RBNZ_SITEMAP_URL = f"{RBNZ_BASE}/sitemap.xml"
+RBNZ_BROWSER_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Upgrade-Insecure-Requests": "1",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "none",
+}
+# 自動チェックのレート制限（秒）。ダッシュボード再構築毎のネットワーク発火を防ぐ。
+AUTO_CHECK_INTERVAL_SEC = 12 * 3600
+AUTO_CHECK_KEY = "newzealand:nz_mps:auto_check_ts"
+
+MONTH_NAME_TO_IDX = {
+    "january": 1, "february": 2, "march": 3, "april": 4, "may": 5, "june": 6,
+    "july": 7, "august": 8, "september": 9, "october": 10, "november": 11, "december": 12,
+}
+MONTH_IDX_TO_ABBR = {
+    1: "jan", 2: "feb", 3: "mar", 4: "apr", 5: "may", 6: "jun",
+    7: "jul", 8: "aug", 9: "sep", 10: "oct", 11: "nov", 12: "dec",
+}
+# Data Pack検証用の必須シート（本物のMPSデータパックか確認）
+REQUIRED_SHEETS = ["i.1", "Projections", "2.15", "6.4"]
 
 
 # --- シート定義 ---
@@ -184,8 +223,199 @@ class RbnzMpsForecastService:
         """ファイルの最終更新日時を取得"""
         return os.path.getmtime(filepath)
 
+    # ========================================================================
+    # RBNZ自動ダウンロード（取りこぼし防止）
+    # ========================================================================
+
+    def _cli_fetch(self, url: str, retries: int = 1) -> Optional[bytes]:
+        """curl または wget（利用可能な方）でURLを取得し bytes を返す。
+
+        RBNZはCloudflare配下で requests/httpx の TLSフィンガープリントをブロックするため
+        CLIツールで取得する（姉妹の `rbnz_policy_rate_service._download_via_cli` と同方式）。
+        環境によりcurl/wgetのどちらが入るか異なる（本番Dockerfile.simpleはwgetのみ、
+        別構成はcurlのみ）ため両対応。Cloudflareは断続的に403を返すので軽くリトライ＋バックオフ。
+        全体は12時間に1回のレート制限下で呼ばれるため、失敗しても次回チェックで回復すれば十分。
+        """
+        import shutil
+        import subprocess
+        import tempfile
+        import time
+
+        ua = RBNZ_BROWSER_HEADERS["User-Agent"]
+        accept = RBNZ_BROWSER_HEADERS["Accept"]
+        accept_lang = RBNZ_BROWSER_HEADERS["Accept-Language"]
+
+        with tempfile.NamedTemporaryFile(suffix=".bin", delete=False) as tmp:
+            tmp_path = tmp.name
+        try:
+            downloaders = []
+            if shutil.which("curl"):
+                downloaders.append((
+                    "curl",
+                    ["curl", "-fL", "-o", tmp_path,
+                     "-H", f"User-Agent: {ua}", "-H", f"Accept: {accept}",
+                     "-H", f"Accept-Language: {accept_lang}",
+                     "--max-time", "90", "-s", url],
+                ))
+            if shutil.which("wget"):
+                downloaders.append((
+                    "wget",
+                    ["wget", "-q", "-O", tmp_path,
+                     f"--header=User-Agent: {ua}", f"--header=Accept: {accept}",
+                     f"--header=Accept-Language: {accept_lang}",
+                     "--timeout=90", url],
+                ))
+            if not downloaders:
+                logger.warning("[MPS auto] neither curl nor wget is available")
+                return None
+
+            for attempt in range(retries + 1):
+                if attempt > 0:
+                    time.sleep(3)  # バックオフ（Cloudflareブロック誘発を避ける）
+                for name, cmd in downloaders:
+                    try:
+                        proc = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+                    except Exception as e:
+                        logger.warning(f"[MPS auto] {name} error for {url}: {e}")
+                        continue
+                    if proc.returncode == 0 and os.path.getsize(tmp_path) > 0:
+                        with open(tmp_path, "rb") as f:
+                            return f.read()
+                    logger.warning(
+                        f"[MPS auto] {name} failed for {url} "
+                        f"(exit {proc.returncode}, attempt {attempt + 1}/{retries + 1})"
+                    )
+            return None
+        finally:
+            try:
+                os.remove(tmp_path)
+            except Exception:
+                pass
+
+    def _parse_mps_from_filename(self, name: str) -> Optional[tuple[int, int]]:
+        """ファイル名からMPSの(年, 月index)を抽出（例: mpsmay26-data.xlsx → (2026, 5)）"""
+        n = name.lower()
+        for idx, abbr in MONTH_IDX_TO_ABBR.items():
+            m = re.search(rf"mps{abbr}(\d{{2}})", n)
+            if m:
+                return (2000 + int(m.group(1)), idx)
+        return None
+
+    def _discover_latest_datapack(self) -> Optional[tuple[str, int, int]]:
+        """sitemap → 最新MPS詳細ページ → Data Pack xlsx URL を解決。
+
+        Returns:
+            (datapack_url, year, month_idx) または None
+        """
+        sitemap_bytes = self._cli_fetch(RBNZ_SITEMAP_URL, retries=1)
+        if not sitemap_bytes:
+            logger.warning("[MPS auto] sitemap fetch failed")
+            return None
+        sitemap_text = sitemap_bytes.decode("utf-8", errors="replace")
+
+        # MPSレポート詳細ページ（filtered-listing-page配下のみ。eventsやweb-versionは除外）
+        detail_urls = re.findall(
+            r"<loc>(https://www\.rbnz\.govt\.nz/monetary-policy/monetary-policy-statement/"
+            r"monetary-policy-statement-filtered-listing-page/\d{4}/[a-z]+-\d+/"
+            r"monetary-policy-statement-[a-z]+-\d{4})</loc>",
+            sitemap_text, re.I,
+        )
+        candidates = []
+        for u in detail_urls:
+            if u.lower().endswith("/web-version"):
+                continue
+            m = re.search(r"/(\d{4})/[a-z]+-\d+/monetary-policy-statement-([a-z]+)-(\d{4})", u, re.I)
+            if not m:
+                continue
+            month_idx = MONTH_NAME_TO_IDX.get(m.group(2).lower())
+            if not month_idx:
+                continue
+            candidates.append((int(m.group(3)), month_idx, u))
+
+        if not candidates:
+            logger.warning("[MPS auto] no MPS detail pages found in sitemap")
+            return None
+
+        candidates.sort()
+        year, month_idx, detail_url = candidates[-1]
+
+        # 詳細ページから Data Pack xlsx リンクを抽出（パスセグメントは日付から導出不能なため必須）
+        page_bytes = self._cli_fetch(detail_url, retries=1)
+        if not page_bytes:
+            logger.warning(f"[MPS auto] detail page fetch failed: {detail_url}")
+            return None
+        page_text = page_bytes.decode("utf-8", errors="replace")
+        m = re.search(r"(/-/media/[^\"']+mps[a-z]+\d{2}-data\.xlsx)", page_text, re.I)
+        if not m:
+            logger.warning(f"[MPS auto] data pack link not found on {detail_url}")
+            return None
+        return (RBNZ_BASE + m.group(1), year, month_idx)
+
+    def _validate_datapack(self, content: bytes) -> bool:
+        """ダウンロードしたxlsxが本物のMPSデータパックか検証（必須シート存在確認）"""
+        try:
+            import openpyxl
+            wb = openpyxl.load_workbook(io.BytesIO(content), data_only=True, read_only=True)
+            sheets = set(wb.sheetnames)
+            wb.close()
+            missing = [s for s in REQUIRED_SHEETS if s not in sheets]
+            if missing:
+                logger.warning(f"[MPS auto] downloaded xlsx missing required sheets: {missing}")
+                return False
+            return True
+        except Exception as e:
+            logger.warning(f"[MPS auto] validation failed: {e}")
+            return False
+
+    def _maybe_auto_update(self, force_refresh: bool = False) -> None:
+        """RBNZ最新MPS Data Packを自動取得して data/excel に配置（レート制限付き・best-effort）。
+
+        失敗しても既存ファイルでの動作は維持される（取得経路の追加であって置換ではない）。
+        """
+        try:
+            # レート制限: force_refresh以外は直近チェック済みならスキップ
+            if not force_refresh and redis_client.get(AUTO_CHECK_KEY):
+                return
+            # 先にキー設定（失敗時の連打防止・TTLで自然回復）
+            redis_client.set(AUTO_CHECK_KEY, datetime.now(JST).isoformat(), expire=AUTO_CHECK_INTERVAL_SEC)
+
+            current = self._find_mps_excel()
+            current_ym = self._parse_mps_from_filename(current.name) if current else None
+
+            discovered = self._discover_latest_datapack()
+            if not discovered:
+                return
+            datapack_url, year, month_idx = discovered
+
+            # 既に最新（以上）を保持していれば何もしない
+            if current_ym and (year, month_idx) <= current_ym:
+                return
+
+            filename = datapack_url.rsplit("/", 1)[-1]
+            target = EXCEL_DIR / filename
+            if target.exists():
+                return  # 既にDL済み（mtime検知は別途get_*で処理）
+
+            content = self._cli_fetch(datapack_url, retries=1)
+            if not content:
+                logger.warning(f"[MPS auto] data pack download failed: {datapack_url}")
+                return
+            if not self._validate_datapack(content):
+                return
+
+            EXCEL_DIR.mkdir(parents=True, exist_ok=True)
+            with open(target, "wb") as f:
+                f.write(content)
+            logger.info(f"[MPS auto] downloaded new MPS data pack: {filename} ({year}-{month_idx:02d})")
+        except Exception as e:
+            logger.warning(f"[MPS auto] auto-update error: {e}")
+
     def get_nz_economic_forecast_data(self, force_refresh: bool = False) -> Dict[str, Any]:
         """MPS経済見通しデータを取得"""
+
+        # 新しいMPS Data Packが公表されていれば自動取得（レート制限付き・best-effort）。
+        # 取得できた場合はファイルmtimeが変わり、下のキャッシュ判定で自動的に再パースされる。
+        self._maybe_auto_update(force_refresh=force_refresh)
 
         excel_path = self._find_mps_excel()
         if excel_path is None:
@@ -333,14 +563,20 @@ class RbnzMpsForecastService:
         return indicators
 
     def _parse_date(self, date_val) -> Optional[str]:
-        """日付をYYYY-MM-DD形式に変換"""
+        """日付をYYYY-MM-DD形式に変換
+
+        注: simple/multi_*シート(i.1,2.10,2.11,5.1,5.2)のCol2は文字列の
+        DD/MM/YYYY形式(NZ式、例 '01/03/2008'=2008年3月1日=Q1)。pandas既定は
+        米国式MM/DD/YYYYで '01/03/2008' を1月3日と誤解釈するため dayfirst=True 必須。
+        (Projectionsシートは datetime 型なのでこの分岐に来ない)
+        """
         if pd.isna(date_val):
             return None
         if isinstance(date_val, datetime):
             return date_val.strftime("%Y-%m-%d")
         if isinstance(date_val, str):
             try:
-                dt = pd.to_datetime(date_val)
+                dt = pd.to_datetime(date_val, dayfirst=True)
                 return dt.strftime("%Y-%m-%d")
             except Exception:
                 return None

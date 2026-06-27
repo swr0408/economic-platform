@@ -1155,21 +1155,45 @@
     {
       "date": "2026-01-01",
       "value": -16.0,
-      "forecast": -17.0,
+      "forecast": -16.0,
       "previous": -17.0
+    },
+    {
+      "date": "2026-02-01",
+      "value": -19.0,
+      "forecast": -15.0,
+      "previous": -16.0
+    },
+    {
+      "date": "2026-03-01",
+      "value": -21.0,
+      "forecast": -24.0,
+      "previous": -19.0
+    },
+    {
+      "date": "2026-04-01",
+      "value": -25.0,
+      "forecast": -24.0,
+      "previous": -21.0
     },
     {
       "date": "2026-05-01",
       "value": -23.0,
       "forecast": -28.0,
       "previous": -25.0
+    },
+    {
+      "date": "2026-06-01",
+      "value": -23.0,
+      "forecast": -24.0,
+      "previous": -23.0
     }
   ],
   "latest": {
-    "date": "2026-05-01",
+    "date": "2026-06-01",
     "value": -23.0,
-    "forecast": -28.0,
-    "previous": -25.0
+    "forecast": -24.0,
+    "previous": -23.0
   },
-  "last_updated": "2026-06-17T20:04:29.758019+09:00"
+  "last_updated": "2026-06-28T00:31:20.969182+09:00"
 }

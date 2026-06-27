@@ -2375,11 +2375,15 @@
     {
       "date": "2026-06-03",
       "value": 219958.0
+    },
+    {
+      "date": "2026-06-17",
+      "value": 225775.0
     }
   ],
   "latest": {
-    "date": "2026-06-03",
-    "value": 219958.0
+    "date": "2026-06-17",
+    "value": 225775.0
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -2389,5 +2393,5 @@
     "unit": "millions CAD",
     "frequency": "weekly"
   },
-  "last_updated": "2026-06-17T21:31:26.100096+09:00"
+  "last_updated": "2026-06-27T11:46:21.213547+09:00"
 }

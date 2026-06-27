@@ -97,7 +97,7 @@ class CaBosService:
                     "source": "Bank of Canada",
                     "survey": "Business Outlook Survey (BOS)",
                     "description": "カナダ企業景況感調査（BOS）",
-                    "unit": "% (Balance of Opinion)",
+                    "unit": "Balance of Opinion (pt, net)",
                     "frequency": "quarterly",
                 },
                 "next_release": next_release,

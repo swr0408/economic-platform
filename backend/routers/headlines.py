@@ -250,7 +250,11 @@ def api_update_category(
     _master=Depends(_require_master),
 ):
     """カテゴリ更新 (master 限定)"""
-    success = update_category(category_id, name=body.name, color=body.color, sort_order=body.sort_order)
+    try:
+        success = update_category(category_id, name=body.name, color=body.color, sort_order=body.sort_order)
+    except ValueError as e:
+        # 同名衝突 (UNIQUE 違反) は作成時と同様 409 で返す
+        raise HTTPException(status_code=409, detail=str(e))
     if not success:
         raise HTTPException(status_code=404, detail="Category not found")
     return {"success": True}

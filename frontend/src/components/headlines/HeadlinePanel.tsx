@@ -70,11 +70,16 @@ function HeadlineItem({ item, compact, showCategoryTags = true, sectionCategoryI
   const unsaveMutation = useUnsaveHeadline()
   const [confirmDeleteId, setConfirmDeleteId] = useState<number | null>(null)
   const [copied, setCopied] = useState(false)
+  const [expanded, setExpanded] = useState(false)
   const isMaster = useIsMaster()
+
+  const text = item.headline_ja || item.headline_raw || ''
+  // 長文（120文字超 or 3行以上）は折り畳み表示にする
+  const newlineCount = (text.match(/\n/g) || []).length
+  const isLong = text.length > 120 || newlineCount >= 2
 
   const handleCopy = async (e: React.MouseEvent) => {
     e.stopPropagation()
-    const text = item.headline_ja || item.headline_raw || ''
     try {
       if (navigator.clipboard?.writeText) {
         await navigator.clipboard.writeText(text)
@@ -126,15 +131,37 @@ function HeadlineItem({ item, compact, showCategoryTags = true, sectionCategoryI
         setConfirmDeleteId(null)
       }}
     >
-      {/* Main text */}
+      {/* Main text（改行を保持。長文は3行で折り畳み） */}
       <div style={{
         color: colors.textPrimary,
         fontSize: compact ? 11 : 12,
         lineHeight: 1.5,
         wordBreak: 'break-word',
+        whiteSpace: 'pre-wrap',
+        ...(isLong && !expanded ? {
+          display: '-webkit-box',
+          WebkitLineClamp: 3,
+          WebkitBoxOrient: 'vertical' as const,
+          overflow: 'hidden',
+        } : {}),
       }}>
-        {item.headline_ja || item.headline_raw}
+        {text}
       </div>
+      {isLong && (
+        <span
+          onClick={(e) => { e.stopPropagation(); setExpanded(v => !v) }}
+          style={{
+            color: colors.accent,
+            fontSize: compact ? 10 : 11,
+            cursor: 'pointer',
+            display: 'inline-block',
+            marginTop: 2,
+            userSelect: 'none',
+          }}
+        >
+          {expanded ? '折りたたむ ▲' : '続きを表示 ▼'}
+        </span>
+      )}
 
       {/* Meta row */}
       <div style={{

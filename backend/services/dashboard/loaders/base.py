@@ -37,14 +37,30 @@ logger = logging.getLogger(__name__)
 _REFRESH_POOL: Optional[ProcessPoolExecutor] = None
 
 
+def _init_refresh_worker() -> None:
+    """リフレッシュ子プロセス起動時の初期化(ProcessPoolExecutor initializer)。
+
+    spawn 子は core.database を再 import して main と同じ大きさの接続プールを抱え、
+    main + 子3 で Postgres の max_connections(100) を食い潰す(2026-06-18 障害の真因)。
+    子はバッチ用途なので接続プールを小さく作り直し、常駐 idle 接続を抑える。
+    """
+    try:
+        from core.database import configure_pool_for_worker
+    except ImportError:
+        from backend.core.database import configure_pool_for_worker
+    configure_pool_for_worker()
+
+
 def _get_refresh_pool() -> ProcessPoolExecutor:
     """ダッシュボード更新用の共有プロセスプール(spawn, 子プロセス再利用)。"""
     global _REFRESH_POOL
     if _REFRESH_POOL is None:
         # spawn: マルチスレッドな uvicorn ワーカーから fork する危険(ロック継承)を避ける。
         # dashboard SWR/ブロッキング再取得 と market_data_scheduler バッチで共有する共通プール。
+        # initializer で子の DB プールを縮小し、全プロセス合計を max_connections 内に収める。
         _REFRESH_POOL = ProcessPoolExecutor(
-            max_workers=3, mp_context=_multiprocessing.get_context("spawn")
+            max_workers=3, mp_context=_multiprocessing.get_context("spawn"),
+            initializer=_init_refresh_worker,
         )
     return _REFRESH_POOL
 

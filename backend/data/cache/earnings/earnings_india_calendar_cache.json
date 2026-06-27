@@ -10,28 +10,28 @@
       "name": "HDFC Bank",
       "tier": "S",
       "country_code": "india",
-      "date": "2026-07-17",
+      "date": "2026-07-18",
       "time": "--",
       "fiscal_date_ending": "",
       "eps_estimate": 0.39,
       "eps_actual": null,
       "revenue_estimate": 5059729000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "ICICIBANK.NS",
       "name": "ICICI Bank",
       "tier": "S",
       "country_code": "india",
-      "date": "2026-07-17",
+      "date": "2026-07-18",
       "time": "--",
       "fiscal_date_ending": "",
       "eps_estimate": 0.4,
       "eps_actual": null,
       "revenue_estimate": 3395172000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "INFY.NS",
@@ -43,9 +43,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.21,
       "eps_actual": null,
-      "revenue_estimate": 5106534000.0,
+      "revenue_estimate": 5102479000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "LT.NS",
@@ -59,21 +59,21 @@
       "eps_actual": null,
       "revenue_estimate": 7257143000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "M&M.NS",
       "name": "Mahindra & Mahindra",
       "tier": "A",
       "country_code": "india",
-      "date": "2026-07-31",
+      "date": "2026-07-30",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.3543,
+      "eps_estimate": 0.3544,
       "eps_actual": null,
-      "revenue_estimate": 4194996000.0,
+      "revenue_estimate": 4235509000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "RELIANCE.NS",
@@ -147,8 +147,8 @@
     }
   ],
   "next_7d_count": 0,
-  "next_30d_count": 2,
-  "last_updated": "2026-06-17T12:37:42.856720+00:00",
+  "next_30d_count": 3,
+  "last_updated": "2026-06-27T13:49:18.844602+00:00",
   "cached": false,
   "status": "ok"
 }

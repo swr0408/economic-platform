@@ -86,11 +86,24 @@ class ONSWagesService:
         if api_result:
             latest = api_result["data"][-1] if api_result["data"] else None
 
+            # 発表時刻レース対策（ラグガード）: 取得データが新月に進んでいない場合は
+            # last_updated を発表直前に据え置き、ONS反映後の再取得を促す。
+            from services.uk.fmp_next_release_utils import resolve_last_updated_after_fetch
+            _prev_cache = redis_client.get(self.DATA_CACHE_KEY)
+            _prev_latest = _prev_cache.get("latest") if isinstance(_prev_cache, dict) else None
+            _resolved_last_updated = resolve_last_updated_after_fetch(
+                getattr(self, "FMP_EVENT_PATTERNS", None) or getattr(self, "FMP_EVENT_PATTERN", None),
+                latest.get("date") if isinstance(latest, dict) else None,
+                _prev_latest.get("date") if isinstance(_prev_latest, dict) else None,
+                _prev_cache.get("last_updated") if isinstance(_prev_cache, dict) else None,
+                country="GB",
+            )
+
             cache_payload = {
                 "data": api_result["data"],
                 "latest": latest,
                 "metadata": api_result.get("metadata", {}),
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": _resolved_last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -102,7 +115,7 @@ class ONSWagesService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "ons_api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": _resolved_last_updated,
             }
 
         # ファイルキャッシュフォールバック

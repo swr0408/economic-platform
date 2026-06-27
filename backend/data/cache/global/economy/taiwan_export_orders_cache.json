@@ -729,7 +729,7 @@
     {
       "date": "2026-02-01",
       "value": 23.8,
-      "forecast": null,
+      "forecast": 53.0,
       "previous": 60.1
     },
     {
@@ -743,13 +743,19 @@
       "value": 48.1,
       "forecast": 51.0,
       "previous": 65.9
+    },
+    {
+      "date": "2026-05-01",
+      "value": 47.2,
+      "forecast": 51.0,
+      "previous": 48.1
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "value": 48.1,
+    "date": "2026-05-01",
+    "value": 47.2,
     "forecast": 51.0,
-    "previous": 65.9
+    "previous": 48.1
   },
   "metadata": {
     "source": "MOEA (Ministry of Economic Affairs, Taiwan)",
@@ -759,5 +765,5 @@
     "frequency": "monthly"
   },
   "next_release": null,
-  "last_updated": "2026-06-17T20:05:03.813558+09:00"
+  "last_updated": "2026-06-28T00:32:11.749642+09:00"
 }

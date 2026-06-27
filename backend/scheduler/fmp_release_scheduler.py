@@ -487,6 +487,14 @@ FMP_INDICATOR_CONFIGS = [
         "service_module": "services.uk.brc_retail_sales_service",
         "service_instance": "brc_retail_sales_service",
         "fetch_method": "get_brc_retail_sales_data",
+        # BRC解説（コメンタリー）は同じレポート由来なので発表トリガに相乗りで更新する
+        "related_services": [
+            {
+                "service_module": "services.uk.brc_commentary_service",
+                "service_instance": "brc_commentary_service",
+                "fetch_method": "get_data",
+            },
+        ],
     },
     {
         # FMP: "CBI Industrial Trends Orders (May)" — country は FMP では "UK"

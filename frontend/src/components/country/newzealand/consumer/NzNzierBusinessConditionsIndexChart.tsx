@@ -186,7 +186,7 @@ export default function NzNzierBusinessConditionsIndexChart({ data }: NzNzierBus
         showPeriodSelector={false}
         showDataSource={true}
         dataSource="NZIER"
-        sourceUrl="https://www.nzier.org.nz/publications/nziers-qsbo-shows-a-strong-rebound-in-confidence-as-recovery-starts-to-gain-traction"
+        sourceUrl="https://www.nzier.org.nz/news/tag/quarterly-survey-of-business-opinion"
       >
         {/* 最新値表示 */}
         <LatestValueBox

@@ -35,6 +35,24 @@ CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "japan" / "
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "price_pass_through_rate_cache.json"
 
+# 手動インポート用ディレクトリ（中小企業庁サイトのIPブロック時の確実な取得経路）
+# chusho.meti.go.jp(METI/Akamai)が当サーバIPをブロックしPDF DLが ReadTimeout する場合、
+# ここに `YYYYMM.pdf`（調査月。例: 202603.pdf）を手動配置すると取り込まれる。
+MANUAL_PDF_DIR = (
+    Path(__file__).parent.parent.parent
+    / "data" / "manual_update" / "japan" / "price_pass_through"
+)
+
+# ブロック回避のためのブラウザ相当ヘッダー（Akamaiアンチボット対策）
+_BROWSER_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+        "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    ),
+    "Accept": "application/pdf,application/xhtml+xml,*/*;q=0.8",
+    "Accept-Language": "ja,en-US;q=0.8,en;q=0.6",
+}
+
 # ---------------------------------------------------------------------------
 # PDF URL パターン（調査月ベース）
 # ---------------------------------------------------------------------------
@@ -88,11 +106,48 @@ class PricePassThroughRateService:
             }
 
         result = self._wrap_response(data)
+
+        # --- ラグガード（サイレント凍結防止） ---
+        # 公表が過ぎているはずの最新調査期に未達なら、ソース取得失敗
+        # （IPブロック等）でDBが古いままの可能性が高い。その状態で
+        # last_updated を now に進めると「更新済み」と誤認され、半年次は
+        # 鮮度監視閾値(~455日)まで気づかれず凍結する。→ last_updated を
+        # 前進させず WARNING を出し、再取得を促し監視に早期表面化させる。
+        expected = self._expected_latest_survey_date(datetime.now(JST))
+        latest_date = (result.get("latest") or {}).get("date")
+        if expected and (latest_date is None or latest_date < expected):
+            prev = redis_client.get(self.DATA_CACHE_KEY) or self._load_file_cache()
+            prev_lu = prev.get("last_updated") if prev else None
+            if prev_lu:
+                result["last_updated"] = prev_lu
+            print(
+                f"[PricePassThrough] WARNING behind expected: latest={latest_date} "
+                f"expected={expected} (source likely blocked / not yet published). "
+                f"Keeping last_updated={result['last_updated']}"
+            )
+
         redis_client.set(self.DATA_CACHE_KEY, result, expire=0)
         self._save_file_cache(result)
         result["cached"] = False
         result["source"] = "database"
         return result
+
+    def _expected_latest_survey_date(self, now: datetime) -> Optional[str]:
+        """この時点で公表済みであるべき最新の調査期（YYYY-MM-01）を返す。
+
+        価格交渉促進月間フォローアップ調査:
+        - 3月調査 → 公表は同年6月下旬 → 誤検知回避のため翌7月以降に期待対象
+        - 9月調査 → 公表は同年12月       → 翌年1月以降に期待対象
+        """
+        candidates: List[str] = []
+        for year in range(now.year - 1, now.year + 1):
+            # 3月調査（6月下旬公表）: 7月以降を「公表確定」とみなす
+            if now.year > year or (now.year == year and now.month >= 7):
+                candidates.append(f"{year}-03-01")
+            # 9月調査（12月公表）: 翌年1月以降を「公表確定」とみなす
+            if now.year > year:
+                candidates.append(f"{year}-09-01")
+        return max(candidates) if candidates else None
 
     # ------------------------------------------------------------------
     # DB操作
@@ -183,7 +238,17 @@ class PricePassThroughRateService:
     # ------------------------------------------------------------------
 
     def _fetch_and_store_new_periods(self) -> None:
-        """未取得の候補期をPDFから取得してDBに保存"""
+        """未取得の候補期を取得してDBに保存
+
+        取得戦略（chusho.meti.go.jp の Akamai アンチボットBAN対策）:
+          1. 手動配置PDF（MANUAL_PDF_DIR）を先に取り込む = ブロック時の確実な経路
+          2. ネット取得は **1実行につき最新の未取得期1本のみ** に制限する。
+             従来は最大4本(各2.5MB)を連続DLしており、これがAkamaiのIP BANを
+             誘発・維持していた。半年次なので新規期は通常1つで十分。
+        """
+        # 1) 手動配置PDFを取り込む（ネット不要・ブロックに左右されない）
+        self._import_manual_pdfs()
+
         existing_dates = set()
         try:
             from core.database import get_db_connection
@@ -197,26 +262,68 @@ class PricePassThroughRateService:
             return
 
         candidates = self._get_candidate_periods(existing_dates)
-        for year, month in candidates:
-            record = self._fetch_and_parse_pdf(year, month)
-            if record:
-                if self._upsert_record(record):
-                    print(f"[PricePassThrough] Stored in DB: {record['survey_period']}")
+        if not candidates:
+            return
+
+        # 2) 最新の未取得期のみネット取得（candidates は昇順 → 末尾が最新）
+        year, month = candidates[-1]
+        record = self._fetch_and_parse_pdf(year, month)
+        if record and self._upsert_record(record):
+            print(f"[PricePassThrough] Stored in DB: {record['survey_period']}")
+
+    def _import_manual_pdfs(self) -> None:
+        """手動配置されたPDF(YYYYMM.pdf)を取り込む
+
+        中小企業庁サイトがIPブロックでDL不可のとき、`MANUAL_PDF_DIR` に
+        調査月名のPDF（例: 202603.pdf / 202609.pdf）を置けば、
+        既存ネット取得と同じパーサーで解析しDBへ upsert する。
+        """
+        try:
+            if not MANUAL_PDF_DIR.exists():
+                return
+            for pdf_path in sorted(MANUAL_PDF_DIR.glob("*.pdf")):
+                m = re.search(r"(20\d{2})(03|09)", pdf_path.stem)
+                if not m:
+                    print(f"[PricePassThrough] Manual PDF name not YYYYMM(03|09): {pdf_path.name}")
+                    continue
+                year, month = int(m.group(1)), int(m.group(2))
+                try:
+                    record = self._parse_pdf(pdf_path.read_bytes(), year, month)
+                except Exception as e:
+                    print(f"[PricePassThrough] Manual PDF parse error {pdf_path.name}: {e}")
+                    continue
+                if record and self._upsert_record(record):
+                    print(f"[PricePassThrough] Manual PDF imported: {record['survey_period']} "
+                          f"(total={record['total']}%)")
+        except Exception as e:
+            print(f"[PricePassThrough] Manual import error: {e}")
 
     def _get_candidate_periods(self, existing_dates: set) -> List[tuple]:
-        """取得すべき候補期を返す"""
+        """取得すべき候補期を返す（昇順）
+
+        公表ウィンドウが開始した未取得期のみを対象とする。未調査の将来期
+        （例: 6月時点の当年9月調査）を含めると無駄なDL（404/timeout）で
+        Akamai BANを誘発するため除外する。
+        - 3月調査 → 6月下旬公表（6月1日以降を fetchable とみなす）
+        - 9月調査 → 12月公表    （12月1日以降を fetchable とみなす）
+        """
         now = datetime.now(JST)
         candidates = []
 
-        # 2026-03 以降の未取得期をチェック
         start_year = 2026
-        for year in range(start_year, now.year + 2):
-            for month in SURVEY_MONTHS:
+        for year in range(start_year, now.year + 1):
+            for month in SURVEY_MONTHS:  # [3, 9]
+                pub_month = 6 if month == 3 else 12
+                published_started = (now.year > year) or (
+                    now.year == year and now.month >= pub_month
+                )
+                if not published_started:
+                    continue
                 date_str = f"{year}-{month:02d}-01"
                 if date_str not in existing_dates:
                     candidates.append((year, month))
 
-        return candidates[:4]  # 最大4期
+        return candidates  # 昇順（末尾が最新の fetchable 未取得期）
 
     # ------------------------------------------------------------------
     # PDF取得・解析
@@ -237,10 +344,13 @@ class PricePassThroughRateService:
 
         try:
             print(f"[PricePassThrough] Fetching PDF: {url}")
+            # ブラウザ相当ヘッダーで単発取得（バースト禁止＝Akamai BAN回避）。
+            # connect 15s / read 90s。失敗時はリトライせず即フォールバック
+            # （連続再取得がBANを誘発するため）。
             resp = requests.get(
                 url,
-                timeout=180,
-                headers={"User-Agent": "Mozilla/5.0 (EconAlpha)"},
+                timeout=(15, 90),
+                headers=_BROWSER_HEADERS,
             )
             if resp.status_code != 200:
                 print(f"[PricePassThrough] HTTP {resp.status_code} for {url}")

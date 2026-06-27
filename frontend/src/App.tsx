@@ -23,6 +23,7 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage'
 import ChangePasswordPage from './pages/ChangePasswordPage'
 import AdminUsersPage from './pages/AdminUsersPage'
 import AdminVisibilityPage from './pages/AdminVisibilityPage'
+import AdminStalenessPage from './pages/AdminStalenessPage'
 import ProtectedRoute from './components/auth/ProtectedRoute'
 import { HandbookProvider } from './contexts/HandbookContext'
 import { AuthProvider } from './contexts/AuthContext'
@@ -133,6 +134,16 @@ function App() {
                 element={
                   <ProtectedRoute allowedRoles={['master']}>
                     <AdminVisibilityPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* master 限定: キャッシュ鮮度モニタ / ワンクリック更新 */}
+              <Route
+                path="admin/staleness"
+                element={
+                  <ProtectedRoute allowedRoles={['master']}>
+                    <AdminStalenessPage />
                   </ProtectedRoute>
                 }
               />

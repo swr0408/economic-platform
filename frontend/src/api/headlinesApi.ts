@@ -303,7 +303,10 @@ export async function updateCategory(
     headers: authHeaders({ 'Content-Type': 'application/json' }),
     body: JSON.stringify(params),
   })
-  if (!resp.ok) throw new Error(`Failed to update category: ${resp.status}`)
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({}))
+    throw new Error(err.detail || `Failed to update category: ${resp.status}`)
+  }
 }
 
 export async function deleteCategory(id: number): Promise<void> {

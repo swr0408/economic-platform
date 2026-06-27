@@ -240,7 +240,7 @@ export default function ECBInflationExpectationsChart({ data }: ECBInflationExpe
                         name: '5年先',
                       },
                     ]}
-                    yAxisFormatter={(v) => `${v}%`}
+                    yAxisFormatter={(v) => `${Number(v).toFixed(1)}%`}
                     yDomain={['dataMin - 0.3', 'dataMax + 0.3']}
                     showZeroLine={false}
                   />

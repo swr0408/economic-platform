@@ -15,9 +15,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 3.14,
       "eps_actual": null,
-      "revenue_estimate": 3869376000.0,
+      "revenue_estimate": 3809400000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "ENB",
@@ -29,9 +29,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.44,
       "eps_actual": null,
-      "revenue_estimate": 7968517000.0,
+      "revenue_estimate": 7853613000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "SHOP",
@@ -43,9 +43,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.39,
       "eps_actual": null,
-      "revenue_estimate": 3369658000.0,
+      "revenue_estimate": 3325143000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "BAM",
@@ -57,9 +57,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.44,
       "eps_actual": null,
-      "revenue_estimate": 1443499000.0,
+      "revenue_estimate": 1418848000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "CNQ",
@@ -69,11 +69,11 @@
       "date": "2026-08-06",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 1.38,
+      "eps_estimate": 1.36,
       "eps_actual": null,
-      "revenue_estimate": 9113941000.0,
+      "revenue_estimate": 8981263000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "RY",
@@ -106,7 +106,7 @@
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-06-17T12:37:42.865714+00:00",
+  "last_updated": "2026-06-27T13:49:18.856623+00:00",
   "cached": false,
   "status": "ok"
 }

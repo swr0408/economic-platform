@@ -3,7 +3,7 @@
 FREDからデータを取得し、フィラデルフィア連銀サイトから発表スケジュールを半年ごとに取得
 
 データソース:
-- FRED: 10個のシリーズ（一般活動指数、新規受注、支払価格、従業員数、設備投資など）
+- FRED: 10個のシリーズ（一般活動指数、新規受注、投入価格、従業員数、設備投資など）
 - Philadelphia Fed Schedule: https://www.philadelphiafed.org/calendar-of-events
 
 発表スケジュール:
@@ -44,12 +44,14 @@ SERIES_IDS = {
     "general_activity_future": "GAFDFSA066MSFRBPHI",     # 一般活動指数（将来）
     "new_orders_current": "NOCDFSA066MSFRBPHI",          # 新規受注指数（現況）
     "new_orders_future": "NOFDFSA066MSFRBPHI",           # 新規受注指数（将来）
-    "prices_paid_current": "PPCDFSA066MSFRBPHI",         # 支払価格指数（現況）
-    "prices_paid_future": "PPFDFSA066MSFRBPHI",          # 支払価格指数（将来）
+    "prices_paid_current": "PPCDFSA066MSFRBPHI",         # 投入価格指数（現況, Prices Paid=投入物の支払価格）
+    "prices_paid_future": "PPFDFSA066MSFRBPHI",          # 投入価格指数（将来）
     "employment_current": "NECDFSA066MSFRBPHI",          # 従業員数指数（現況）
     "employment_future": "NEFDFSA066MSFRBPHI",           # 従業員数指数（将来）
-    "capex_current": "CEBNDIF066MSFRBPHI",               # 設備投資指数（現況）
-    "capex_future": "CEFDFSA066MSFRBPHI",                # 設備投資指数（将来）
+    # capex_current のみ非製造業景況調査(NMBOS)由来。製造業調査に現況設備投資の
+    # 設問が無いための代替。発表が製造業より約1週間遅く最新月が遅れて入る。
+    "capex_current": "CEBNDIF066MSFRBPHI",               # 設備投資指数（非製造業・現況）
+    "capex_future": "CEFDFSA066MSFRBPHI",                # 設備投資指数（製造業・将来）
 }
 
 # シリーズの表示設定
@@ -58,11 +60,11 @@ SERIES_CONFIG = {
     "general_activity_future": {"name": "一般活動期待指数", "color": "#fa541c", "group": "general"},
     "new_orders_current": {"name": "新規受注指数", "color": "#52c41a", "group": "orders"},
     "new_orders_future": {"name": "新規受注期待指数", "color": "#faad14", "group": "orders"},
-    "prices_paid_current": {"name": "支払価格指数", "color": "#722ed1", "group": "prices"},
-    "prices_paid_future": {"name": "支払価格期待指数", "color": "#eb2f96", "group": "prices"},
+    "prices_paid_current": {"name": "投入価格指数", "color": "#722ed1", "group": "prices"},
+    "prices_paid_future": {"name": "投入価格期待指数", "color": "#eb2f96", "group": "prices"},
     "employment_current": {"name": "従業員数指数", "color": "#13c2c2", "group": "employment"},
     "employment_future": {"name": "従業員数期待指数", "color": "#2f54eb", "group": "employment"},
-    "capex_current": {"name": "設備投資指数", "color": "#a0d911", "group": "capex"},
+    "capex_current": {"name": "設備投資・ソフト/機械設備（非製造業・現況）", "color": "#a0d911", "group": "capex"},
     "capex_future": {"name": "設備投資期待指数", "color": "#ff7a45", "group": "capex"},
 }
 

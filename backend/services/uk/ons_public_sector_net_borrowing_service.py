@@ -20,6 +20,7 @@ Office for National Statisticsからイギリスの公的部門純借入デー�
 """
 import csv
 import json
+import time
 import requests
 from datetime import datetime
 from io import StringIO
@@ -191,37 +192,46 @@ class ONSPublicSectorNetBorrowingService:
             country=self.FMP_COUNTRY
         )
 
+    SERIES_KEYS = ("psnb_ex", "cgnb", "psnd_ex", "psnd_gdp")
+
     def _fetch_all_series(self) -> Optional[Dict[str, List[Dict]]]:
-        """全シリーズのデータを取得"""
+        """全シリーズのデータを取得
+
+        ONSへ連続アクセスすると後続が一過性に失敗することがあるため、
+        系列間に小休止を挟む。さらに空で返った系列は直近キャッシュで補完し、
+        部分フェッチで全履歴を空に上書きする劣化を防ぐ（劣化上書きガード）。
+        """
         try:
-            result = {
-                "psnb_ex": [],
-                "cgnb": [],
-                "psnd_ex": [],
-                "psnd_gdp": [],
-            }
+            result = {key: [] for key in self.SERIES_KEYS}
 
-            # PSNB Ex (£m)
-            psnb_data = self._fetch_ons_csv(self.PSNB_EX_URL, "PSNB Ex")
-            if psnb_data:
-                result["psnb_ex"] = psnb_data
+            series_specs = [
+                ("psnb_ex", self.PSNB_EX_URL, "PSNB Ex"),
+                ("cgnb", self.CGNB_URL, "CGNB"),
+                ("psnd_ex", self.PSND_EX_URL, "PSND Ex"),
+                ("psnd_gdp", self.PSND_GDP_URL, "PSND/GDP"),
+            ]
 
-            # Central Government Net Borrowing (£m)
-            cgnb_data = self._fetch_ons_csv(self.CGNB_URL, "CGNB")
-            if cgnb_data:
-                result["cgnb"] = cgnb_data
+            for idx, (key, url, name) in enumerate(series_specs):
+                if idx > 0:
+                    # ONSへの連続バーストを避ける
+                    time.sleep(1.0)
+                data = self._fetch_ons_csv(url, name)
+                if data:
+                    result[key] = data
 
-            # PSND Ex (£m)
-            psnd_data = self._fetch_ons_csv(self.PSND_EX_URL, "PSND Ex")
-            if psnd_data:
-                result["psnd_ex"] = psnd_data
+            # 劣化上書きガード: 空で返った系列は直近キャッシュを再利用
+            if not all(result[key] for key in self.SERIES_KEYS):
+                prior = self._load_prior_cache()
+                if prior:
+                    for key in self.SERIES_KEYS:
+                        if not result[key] and prior.get(key):
+                            result[key] = prior[key]
+                            print(
+                                f"[PSNB] {key}: fetch empty -> reuse prior cache "
+                                f"({len(prior[key])} points)"
+                            )
 
-            # PSND as % of GDP
-            psnd_gdp_data = self._fetch_ons_csv(self.PSND_GDP_URL, "PSND/GDP")
-            if psnd_gdp_data:
-                result["psnd_gdp"] = psnd_gdp_data
-
-            if any([result["psnb_ex"], result["cgnb"], result["psnd_ex"], result["psnd_gdp"]]):
+            if any(result[key] for key in self.SERIES_KEYS):
                 return result
 
             return None
@@ -232,25 +242,40 @@ class ONSPublicSectorNetBorrowingService:
             traceback.print_exc()
             return None
 
-    def _fetch_ons_csv(self, url: str, series_name: str) -> List[Dict[str, Any]]:
-        """ONSからCSVデータを取得してパース"""
+    def _load_prior_cache(self) -> Optional[Dict[str, Any]]:
+        """直近の有効なキャッシュ（Redis優先、無ければファイル）を取得"""
         try:
-            print(f"[PSNB] Fetching {series_name} from ONS...")
-
-            headers = {
-                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-            }
-            response = requests.get(url, headers=headers, timeout=30)
-            response.raise_for_status()
-
-            return self._parse_monthly_csv(response.text, series_name)
-
-        except requests.exceptions.RequestException as e:
-            print(f"[PSNB] Request error for {series_name}: {e}")
-            return []
+            cached = redis_client.get(self.DATA_CACHE_KEY)
+            if cached and any(cached.get(key) for key in self.SERIES_KEYS):
+                return cached
         except Exception as e:
-            print(f"[PSNB] Error fetching {series_name}: {e}")
-            return []
+            print(f"[PSNB] Failed to load redis prior cache: {e}")
+        return self._load_file_cache()
+
+    def _fetch_ons_csv(self, url: str, series_name: str) -> List[Dict[str, Any]]:
+        """ONSからCSVデータを取得してパース（一過性失敗に備えてリトライ）"""
+        headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+        }
+        for attempt in range(3):
+            try:
+                print(f"[PSNB] Fetching {series_name} from ONS... (attempt {attempt + 1})")
+                response = requests.get(url, headers=headers, timeout=30)
+                response.raise_for_status()
+
+                parsed = self._parse_monthly_csv(response.text, series_name)
+                if parsed:
+                    return parsed
+                print(f"[PSNB] {series_name}: parsed 0 points, retrying...")
+            except requests.exceptions.RequestException as e:
+                print(f"[PSNB] Request error for {series_name} (attempt {attempt + 1}): {e}")
+            except Exception as e:
+                print(f"[PSNB] Error fetching {series_name} (attempt {attempt + 1}): {e}")
+
+            if attempt < 2:
+                time.sleep(2.0 * (attempt + 1))
+
+        return []
 
     def _parse_monthly_csv(self, csv_text: str, series_name: str) -> List[Dict[str, Any]]:
         """ONS CSVデータをパース（月次データ）"""

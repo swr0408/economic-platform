@@ -6,10 +6,10 @@
 - Tab 1b (All ADIs, Residential Property)
 - https://www.apra.gov.au/quarterly-authorised-deposit-taking-institution-statistics
 
-取得系列:
-- Row 17: Total credit outstanding ($M)
-- Row 68: Loans 30-89 days past due ($M)
-- Row 70: Non-performing loans total ($M) (= 90+ days past due or impaired)
+取得系列（行はラベルで動的検出。APRAは版により行を前後挿入するため固定番号は不可）:
+- "Total credit oustanding" 行: Total credit outstanding ($M)
+- "Loans 30-89 days past due" 行: 30-89日延滞 ($M)
+- "Non-performing loans" 行: 不良債権合計 ($M) (= 90+ days past due or impaired)
 → 計算: past_due_30_89_pct, non_performing_pct, total_arrears_pct
 
 発表スケジュール: 四半期（2/5/8/11月頃）
@@ -17,8 +17,9 @@
 import io
 import json
 import logging
+import re
 from datetime import datetime
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Callable
 from zoneinfo import ZoneInfo
 from pathlib import Path
 
@@ -36,20 +37,32 @@ CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "au_housing_loan_arrears_cache.json"
 
 # APRA Property Exposures Excel URL
-# Note: ファイル名のURLは四半期ごとに更新される
-# 最新版は常に APRA のページから取得する
+# Note: ファイル名・パスは四半期ごとに変わる（/sites/default/files/ → /system/files/ 等）。
+# 最新版は APRA の統計ページをスクレイプして動的に解決し、失敗時のみ下記フォールバックを使う。
+APRA_STATS_PAGE_URL = "https://www.apra.gov.au/quarterly-authorised-deposit-taking-institution-statistics"
+APRA_BASE = "https://www.apra.gov.au"
 APRA_PROPERTY_EXPOSURES_URLS = [
-    "https://www.apra.gov.au/sites/default/files/2025-12/Quarterly authorised deposit-taking institution property exposures statistics September 2025.xlsx",
+    "https://www.apra.gov.au/system/files/2026-05/Quarterly authorised deposit-taking institution property exposures statistics December 2025.xlsx",
     "https://www.apra.gov.au/sites/default/files/2025-09/Quarterly authorised deposit-taking institution property exposures statistics June 2025.xlsx",
 ]
 
 # 対象シート
 SHEET_NAME = "Tab 1b"
 
-# 対象行（1-indexed）
-ROW_TOTAL_CREDIT = 17    # Total credit outstanding
-ROW_PAST_DUE_30_89 = 68  # Loans 30-89 days past due
-ROW_NON_PERFORMING = 70   # Non-performing loans (total)
+# 行ラベル検出パターン（固定行番号はAPRAの行挿入で容易にズレるため使わない）
+def _norm_label(v: Any) -> str:
+    return re.sub(r"\s+", " ", str(v)).strip().lower() if v is not None else ""
+
+def _is_total_credit(lbl: str) -> bool:
+    # "Total credit oustanding"（APRA原文の綴り誤りを含む）。"Total credit limits" は除外。
+    return "total credit" in lbl and ("outstanding" in lbl or "oustanding" in lbl)
+
+def _is_past_due_30_89(lbl: str) -> bool:
+    return "30-89" in lbl and "past due" in lbl
+
+def _is_non_performing(lbl: str) -> bool:
+    # 合計行のみ（"Non-performing loans - selected characteristics" や内訳 "Term loans" は除外）
+    return lbl == "non-performing loans"
 
 
 class AuHousingLoanArrearsService:
@@ -60,9 +73,46 @@ class AuHousingLoanArrearsService:
     def __init__(self):
         pass
 
+    def _discover_urls(self) -> List[str]:
+        """APRA統計ページから最新のProperty Exposures Excel URLを発見
+
+        ファイル名・パスは四半期ごとに変わるため、ページ内のxlsxリンクを走査して
+        "property exposures" を含み "historical" を含まないものを返す。
+        """
+        try:
+            response = requests.get(
+                APRA_STATS_PAGE_URL,
+                headers={"User-Agent": "Mozilla/5.0 (economic-platform)"},
+                timeout=60,
+            )
+            if response.status_code != 200:
+                logger.warning(f"APRA stats page HTTP {response.status_code}")
+                return []
+            links = re.findall(r'href=["\']([^"\']+\.xlsx)["\']', response.text, re.I)
+            found: List[str] = []
+            for href in links:
+                low = href.lower()
+                if "property" not in low or "exposure" not in low:
+                    continue
+                if "historical" in low:
+                    continue
+                # 相対パスを絶対URL化（%20等のエンコードはそのままrequestsが扱える）
+                url = href if href.startswith("http") else APRA_BASE + href
+                if url not in found:
+                    found.append(url)
+            if found:
+                logger.info(f"Discovered {len(found)} APRA property exposures URL(s): {found[0]}")
+            return found
+        except Exception as e:
+            logger.warning(f"Failed to discover APRA URLs: {e}")
+            return []
+
     def _fetch_excel(self) -> Optional[bytes]:
-        """APRA Property Exposures Excelをダウンロード"""
-        for url in APRA_PROPERTY_EXPOSURES_URLS:
+        """APRA Property Exposures Excelをダウンロード（発見URL優先・フォールバック付き）"""
+        urls = self._discover_urls() + [
+            u for u in APRA_PROPERTY_EXPOSURES_URLS
+        ]
+        for url in urls:
             try:
                 logger.info(f"Downloading APRA Property Exposures from {url}")
                 response = requests.get(
@@ -116,19 +166,46 @@ class AuHousingLoanArrearsService:
 
             logger.info(f"Found {len(dates)} quarters: {dates[0]} to {dates[-1]}")
 
-            # 各行のデータを読み取り
+            # ラベルで対象行を動的検出（col1のラベルを走査）
+            def find_row(pred: Callable[[str], bool]) -> Optional[int]:
+                for r in range(1, ws.max_row + 1):
+                    if pred(_norm_label(ws.cell(row=r, column=1).value)):
+                        return r
+                return None
+
+            row_total = find_row(_is_total_credit)
+            row_past_due = find_row(_is_past_due_30_89)
+            row_npl = find_row(_is_non_performing)
+
+            if not (row_total and row_past_due and row_npl):
+                logger.error(
+                    f"Required rows not found by label: "
+                    f"total_credit={row_total}, past_due={row_past_due}, npl={row_npl}"
+                )
+                return []
+            logger.info(
+                f"Detected rows: total_credit={row_total}, "
+                f"past_due_30_89={row_past_due}, non_performing={row_npl}"
+            )
+
+            # 各列（四半期）のデータを読み取り
             data_points = []
             for i, (date_str, col) in enumerate(zip(dates, date_cols)):
-                total_credit = ws.cell(row=ROW_TOTAL_CREDIT, column=col).value
-                past_due_30_89 = ws.cell(row=ROW_PAST_DUE_30_89, column=col).value
-                non_performing = ws.cell(row=ROW_NON_PERFORMING, column=col).value
+                total_credit = ws.cell(row=row_total, column=col).value
+                past_due_30_89 = ws.cell(row=row_past_due, column=col).value
+                non_performing = ws.cell(row=row_npl, column=col).value
 
-                if total_credit is None or total_credit == 0:
+                # 数値変換（APRAの "*"（秘匿）等の非数値はNone扱い）
+                def _num(v: Any) -> Optional[float]:
+                    if isinstance(v, (int, float)):
+                        return float(v)
+                    return None
+
+                total_credit_f = _num(total_credit)
+                if not total_credit_f:  # None または 0
                     continue
-
-                total_credit_f = float(total_credit)
-                past_due_30_89_f = float(past_due_30_89) if past_due_30_89 is not None else 0
-                non_performing_f = float(non_performing) if non_performing is not None else 0
+                past_due_30_89_f = _num(past_due_30_89) or 0.0
+                non_performing_f = _num(non_performing) or 0.0
 
                 # パーセンテージ計算
                 past_due_30_89_pct = round((past_due_30_89_f / total_credit_f) * 100, 3)

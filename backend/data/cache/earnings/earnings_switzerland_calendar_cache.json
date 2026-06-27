@@ -15,9 +15,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.75,
       "eps_actual": null,
-      "revenue_estimate": 9437642000.0,
+      "revenue_estimate": 9439864000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "NOVN",
@@ -31,7 +31,7 @@
       "eps_actual": null,
       "revenue_estimate": 14135930000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "ROG",
@@ -45,7 +45,7 @@
       "eps_actual": null,
       "revenue_estimate": 38586210000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "NESN",
@@ -55,11 +55,11 @@
       "date": "2026-07-23",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 2.76,
+      "eps_estimate": 2.67,
       "eps_actual": null,
       "revenue_estimate": 54825020000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "UBSG",
@@ -71,9 +71,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.8,
       "eps_actual": null,
-      "revenue_estimate": 13077440000.0,
+      "revenue_estimate": 13095330000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "ZURN",
@@ -87,7 +87,7 @@
       "eps_actual": null,
       "revenue_estimate": 24332510000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "CFR",
@@ -105,8 +105,8 @@
     }
   ],
   "next_7d_count": 0,
-  "next_30d_count": 1,
-  "last_updated": "2026-06-17T12:37:42.791101+00:00",
+  "next_30d_count": 4,
+  "last_updated": "2026-06-27T13:49:18.757685+00:00",
   "cached": false,
   "status": "ok"
 }

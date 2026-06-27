@@ -91,7 +91,7 @@ export default function FranceBusinessConfidenceChart({ data }: FranceBusinessCo
   return (
     <div id="france-business-confidence-chart">
       <ChartContainer
-        title="フランスINSEE企業景況感（フランス）"
+        title="フランス企業信頼感（INSEE）"
         showPeriodSelector={false}
         dataSource="INSEE"
         sourceUrl="https://www.insee.fr/en/recherche?q=Business+indicator&debut=0"

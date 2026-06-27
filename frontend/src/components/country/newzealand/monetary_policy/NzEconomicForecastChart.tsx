@@ -64,6 +64,12 @@ const INDICATOR_CONFIGS: IndicatorConfig[] = [
   { key: 'neutral_ocr', name_jp: 'OCR & 中立OCRスイート', name_en: 'OCR & Neutral OCR Suite', type: 'multi_series', unit: '%' },
 ]
 
+// 指標キー → データハンドブックID（該当指標のみヘルプアイコンを表示）
+const HANDBOOK_ID_BY_KEY: Record<string, string> = {
+  output_gap: 'nz-output-gap',
+  neutral_ocr: 'nz-neutral-ocr',
+}
+
 // simple型の色
 const LATEST_COLOR = '#00BFFF'
 const PREVIOUS_COLOR = '#ff7875'
@@ -212,6 +218,7 @@ export default function NzEconomicForecastChart({ data }: NzEconomicForecastChar
             showDataSource={true}
             dataSource="RBNZ"
             sourceUrl="https://www.rbnz.govt.nz/hub/publications/monetary-policy-statement"
+            handbookId={HANDBOOK_ID_BY_KEY[currentConfig.key]}
           >
             <ZoomableChart
               data={filteredData}

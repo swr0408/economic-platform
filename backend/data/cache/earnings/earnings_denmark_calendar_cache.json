@@ -13,11 +13,11 @@
       "date": "2026-07-17",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.56,
+      "eps_estimate": 0.553,
       "eps_actual": null,
-      "revenue_estimate": 2256540000.0,
+      "revenue_estimate": 2239278000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "DSV",
@@ -27,11 +27,11 @@
       "date": "2026-07-30",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 1.21,
+      "eps_estimate": 1.2,
       "eps_actual": null,
-      "revenue_estimate": 11511980000.0,
+      "revenue_estimate": 11522480000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "NOVO-B",
@@ -43,9 +43,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.83,
       "eps_actual": null,
-      "revenue_estimate": 11209850000.0,
+      "revenue_estimate": 11155530000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "GMAB",
@@ -55,11 +55,11 @@
       "date": "2026-08-06",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.34,
+      "eps_estimate": 0.33,
       "eps_actual": null,
-      "revenue_estimate": 1091206000.0,
+      "revenue_estimate": 1094349000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "MAERSK-B",
@@ -71,9 +71,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.05,
       "eps_actual": null,
-      "revenue_estimate": 13749870000.0,
+      "revenue_estimate": 13811720000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "VWS",
@@ -87,26 +87,26 @@
       "eps_actual": null,
       "revenue_estimate": 5220885000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "NZYM-B",
       "name": "Novonesis",
       "tier": "A",
       "country_code": "denmark",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
+      "date": "2026-08-20",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 0.769,
       "eps_actual": null,
-      "revenue_estimate": null,
+      "revenue_estimate": 1290227000.0,
       "revenue_actual": null,
-      "updated_from_date": null
+      "updated_from_date": "2026-06-27"
     }
   ],
   "next_7d_count": 0,
   "next_30d_count": 1,
-  "last_updated": "2026-06-17T12:37:42.810284+00:00",
+  "last_updated": "2026-06-27T13:49:18.782759+00:00",
   "cached": false,
   "status": "ok"
 }

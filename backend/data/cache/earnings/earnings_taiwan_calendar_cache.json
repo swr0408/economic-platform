@@ -13,11 +13,11 @@
       "date": "2026-07-16",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 3.74,
+      "eps_estimate": 3.77,
       "eps_actual": null,
-      "revenue_estimate": 40053650000.0,
+      "revenue_estimate": 40053450000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "2317.TW",
@@ -31,7 +31,7 @@
       "eps_actual": null,
       "revenue_estimate": 74905890000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "2454.TW",
@@ -50,7 +50,7 @@
   ],
   "next_7d_count": 0,
   "next_30d_count": 1,
-  "last_updated": "2026-06-17T12:37:42.828730+00:00",
+  "last_updated": "2026-06-27T13:49:18.807794+00:00",
   "cached": false,
   "status": "ok"
 }

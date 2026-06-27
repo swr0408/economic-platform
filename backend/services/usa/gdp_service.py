@@ -5,8 +5,10 @@ FRED API (A191RL1Q225SBEA) からデータを取得
 キャッシュ方式: last_updated判定（TTLなし）
 更新タイミング: BEA発表スケジュールに基づいて自動更新
 """
+import json
 import os
 from datetime import datetime
+from pathlib import Path
 from typing import List, Dict, Any, Optional
 from zoneinfo import ZoneInfo
 
@@ -20,6 +22,10 @@ JST = ZoneInfo("Asia/Tokyo")
 # FRED シリーズID
 GDP_GROWTH_SERIES_ID = "A191RL1Q225SBEA"  # Real GDP Growth Rate (Quarterly, SAAR)
 
+# ファイルキャッシュ（鮮度モニタが走査できるよう redis に加えて JSON も書く）
+_CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "economy"
+_DATA_CACHE_FILE = _CACHE_DIR / "gdp_growth_rate_cache.json"
+
 
 class GDPService:
     """GDP成長率サービス"""
@@ -32,6 +38,15 @@ class GDPService:
 
     def __init__(self):
         self.api_key = os.environ.get("FRED_API_KEY", "")
+
+    def _save_file_cache(self, payload: Dict[str, Any]) -> None:
+        """redis に加えて JSON ファイルにも保存（鮮度モニタの走査対象にするため）"""
+        try:
+            _CACHE_DIR.mkdir(parents=True, exist_ok=True)
+            with open(_DATA_CACHE_FILE, "w", encoding="utf-8") as f:
+                json.dump(payload, f, ensure_ascii=False, indent=2)
+        except Exception as e:
+            print(f"[GDPService] Failed to save file cache: {e}")
 
     def _is_cache_expired(self, cached_data: Dict[str, Any]) -> bool:
         last_updated = cached_data.get("last_updated")
@@ -93,6 +108,7 @@ class GDPService:
             }
             # TTLなし（last_updated判定方式）
             redis_client.set(self.CACHE_KEY, cache_payload, expire=0)
+            self._save_file_cache(cache_payload)
 
             return {
                 "data": api_data,

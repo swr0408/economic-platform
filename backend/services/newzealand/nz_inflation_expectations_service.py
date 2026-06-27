@@ -33,6 +33,13 @@ import io
 
 from core.redis_client import redis_client
 
+# RBNZ Cloudflare 403 対策の共通フェッチャ (curl/wget 自動選択・リトライ付き)
+# cloudscraper は RBNZ Cloudflare に 403 で弾かれるため CLI 経由に統一する。
+try:
+    from services.newzealand._rbnz_fetch import fetch_rbnz_xlsx
+except ImportError:
+    from backend.services.newzealand._rbnz_fetch import fetch_rbnz_xlsx
+
 logger = logging.getLogger(__name__)
 
 JST = ZoneInfo("Asia/Tokyo")
@@ -50,17 +57,6 @@ SERIES = {
     "five_year": "SOE.Q.E220.na",
     "ten_year": "SOE.Q.E230.na",
 }
-
-_scraper = None
-
-def _get_scraper():
-    """cloudscraper インスタンスを遅延初期化"""
-    global _scraper
-    if _scraper is None:
-        import cloudscraper
-        _scraper = cloudscraper.create_scraper()
-    return _scraper
-
 
 class NzInflationExpectationsService:
     """NZ インフレ期待サービス"""
@@ -158,14 +154,17 @@ class NzInflationExpectationsService:
         """RBNZ Excelからインフレ期待データを取得"""
         try:
             print(f"[NzInflExp] Downloading: {EXCEL_URL}")
-            resp = _get_scraper().get(EXCEL_URL, timeout=60)
-            if resp.status_code != 200 or len(resp.content) < 5000:
-                print(f"[NzInflExp] Download failed: HTTP {resp.status_code}, {len(resp.content)} bytes")
+            content = fetch_rbnz_xlsx(EXCEL_URL, timeout=60)
+            if content is None:
+                logger.error(
+                    "[NzInflExp] ERROR: hm14 download failed (all methods) — "
+                    "serving stale cache. Check Cloudflare block on rbnz.govt.nz"
+                )
                 return None
 
-            print(f"[NzInflExp] Downloaded: {len(resp.content)} bytes")
+            print(f"[NzInflExp] Downloaded: {len(content)} bytes")
 
-            df = pd.read_excel(io.BytesIO(resp.content), sheet_name="Data", header=None, engine="openpyxl")
+            df = pd.read_excel(io.BytesIO(content), sheet_name="Data", header=None, engine="openpyxl")
             print(f"[NzInflExp] Data sheet shape: {df.shape}")
 
             # Row 4 から系列IDで列インデックスを特定

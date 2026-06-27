@@ -627,14 +627,14 @@
     },
     {
       "date": "2026-06-01",
-      "crude_oil_yoy": 5.3,
-      "crude_oil_close": 75.27
+      "crude_oil_yoy": -3.15,
+      "crude_oil_close": 69.23
     }
   ],
   "latest": {
     "date": "2026-06-01",
-    "crude_oil_yoy": 5.3,
-    "crude_oil_close": 75.27
+    "crude_oil_yoy": -3.15,
+    "crude_oil_close": 69.23
   },
   "metadata": {
     "source": "yfinance (CL=F)",
@@ -647,5 +647,5 @@
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-17T15:43:12.646705+09:00"
+  "last_updated": "2026-06-27T19:35:34.995119+09:00"
 }

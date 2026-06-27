@@ -55,14 +55,36 @@ class ChPPIService:
     BFS_ASSET_URL = "https://dam-api.bfs.admin.ch/hub/api/dam/assets/36390908/master"
 
     # Excel内の列インデックス（0-indexed）
-    # Column 2: 日付
-    # Column 11: % Vormonat (MoM)
-    # Column 12: % Vorjahr (YoY)
+    # 注意: BFSは指数の基準改定ごとに新しい基準列（例 "Dez 2025 = 100"）を挿入し
+    #       % Vormonat / % Vorjahr 列が右にずれる。固定インデックスは破綻するため
+    #       ヘッダー行のラベルから動的に列を解決する（下記は解決失敗時のフォールバック）。
+    # Header row labels: "Datum"=日付, "% Vormonat"=MoM, "% Vorjahr"=YoY
     HEADER_ROW = 6
     DATA_START_ROW = 7
     COL_DATE = 2
-    COL_MOM = 11
-    COL_YOY = 12
+    COL_MOM = 12
+    COL_YOY = 13
+
+    @classmethod
+    def _resolve_columns(cls, df) -> Dict[str, int]:
+        """ヘッダー行のラベルから日付/MoM/YoY列を動的解決（挿入列でのズレ対策）"""
+        cols = {"date": cls.COL_DATE, "mom": cls.COL_MOM, "yoy": cls.COL_YOY}
+        try:
+            header = df.iloc[cls.HEADER_ROW]
+            for c in range(df.shape[1]):
+                label = header.iloc[c]
+                if not isinstance(label, str):
+                    continue
+                norm = label.strip().lower()
+                if norm == "datum":
+                    cols["date"] = c
+                elif norm == "% vormonat":
+                    cols["mom"] = c
+                elif norm == "% vorjahr":
+                    cols["yoy"] = c
+        except Exception as e:
+            print(f"[ChPPI] Column resolve failed, using defaults: {e}")
+        return cols
 
     def __init__(self):
         pass
@@ -158,13 +180,17 @@ class ChPPIService:
             # INDEX_m シートを読み込み（月次データ）
             df = pd.read_excel(excel_data, sheet_name='INDEX_m', header=None)
 
+            # ヘッダーラベルから列を動的解決（基準改定の挿入列でのズレ対策）
+            cols = self._resolve_columns(df)
+            print(f"[ChPPI] Resolved columns: {cols}")
+
             result = []
             current_date = datetime.now(JST).date()
 
             for i in range(self.DATA_START_ROW, len(df)):
-                date_val = df.iloc[i, self.COL_DATE]
-                mom_val = df.iloc[i, self.COL_MOM]
-                yoy_val = df.iloc[i, self.COL_YOY]
+                date_val = df.iloc[i, cols["date"]]
+                mom_val = df.iloc[i, cols["mom"]]
+                yoy_val = df.iloc[i, cols["yoy"]]
 
                 # 日付が有効かチェック
                 if not isinstance(date_val, datetime):

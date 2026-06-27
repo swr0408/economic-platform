@@ -76,6 +76,16 @@ interface MergedItem {
   gold_price: number | null
 }
 
+// 日付文字列から ISO週（月曜始まり）のキー(YYYY-MM-DD)を算出
+function isoWeekKey(dateStr: string): string {
+  const d = new Date(dateStr)
+  const day = d.getDay()
+  const diff = d.getDate() - day + (day === 0 ? -6 : 1)
+  const weekStart = new Date(d)
+  weekStart.setDate(diff)
+  return weekStart.toISOString().slice(0, 10)
+}
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function PremiumTooltip({ active, payload, label, hiddenSeries }: {
   active?: boolean
@@ -172,71 +182,58 @@ export default function GoldPremiumChart() {
     refetchOnMount: false,
   })
 
-  // 金価格を週足に変換（金曜日の終値 or 週の最終営業日）
-  const goldWeeklyMap = useMemo(() => {
-    const map = new Map<string, number>()
+  // 金価格を週足に変換（週の最終営業日の終値）— 週キーで保持
+  const goldWeeklyByWeek = useMemo(() => {
+    const map = new Map<string, { date: string; close: number }>()
     if (!goldData?.data) return map
-
-    // 日付をDateオブジェクトにして週単位でグループ
-    const weekBuckets = new Map<string, { date: string; close: number }>()
     for (const item of goldData.data) {
-      const d = new Date(item.date)
-      // ISO week start（月曜日）を計算
-      const day = d.getDay()
-      const diff = d.getDate() - day + (day === 0 ? -6 : 1)
-      const weekStart = new Date(d)
-      weekStart.setDate(diff)
-      const weekKey = weekStart.toISOString().slice(0, 10)
-
-      const existing = weekBuckets.get(weekKey)
+      const weekKey = isoWeekKey(item.date)
+      const existing = map.get(weekKey)
       if (!existing || item.date > existing.date) {
-        weekBuckets.set(weekKey, { date: item.date, close: item.close })
+        map.set(weekKey, { date: item.date, close: item.close })
       }
-    }
-
-    // 各週の最終日の終値をその週のデータポイントの日付にマッピング
-    for (const [, { date, close }] of weekBuckets) {
-      map.set(date, close)
     }
     return map
   }, [goldData])
 
-  // プレミアムデータを週足にサンプリングしてマージ
+  // プレミアム＋金価格を週足でマージ（両ソースの週を和集合）。
+  // プレミアム(WGC)は公表ラグがあるため、プレミアム未更新の直近週でも
+  // 金価格(yfinance)は最新営業日まで描画する。
   const chartData = useMemo(() => {
-    if (!premiumData?.data) return [] as MergedItem[]
-
-    // プレミアムデータを週足にダウンサンプリング（金曜日 or 週最終営業日を採用）
-    const weekBuckets = new Map<string, PremiumItem>()
-    for (const item of premiumData.data) {
-      const d = new Date(item.date)
-      const day = d.getDay()
-      const diff = d.getDate() - day + (day === 0 ? -6 : 1)
-      const weekStart = new Date(d)
-      weekStart.setDate(diff)
-      const weekKey = weekStart.toISOString().slice(0, 10)
-
-      const existing = weekBuckets.get(weekKey)
+    // プレミアムを週足にダウンサンプリング（週の最終営業日を採用）
+    const premByWeek = new Map<string, PremiumItem>()
+    for (const item of premiumData?.data ?? []) {
+      const weekKey = isoWeekKey(item.date)
+      const existing = premByWeek.get(weekKey)
       if (!existing || item.date > existing.date) {
-        weekBuckets.set(weekKey, item)
+        premByWeek.set(weekKey, item)
       }
     }
 
-    // 週足のマージデータを構築
-    const result: MergedItem[] = []
-    const sortedWeeks = Array.from(weekBuckets.entries()).sort((a, b) => a[0].localeCompare(b[0]))
+    if (premByWeek.size === 0 && goldWeeklyByWeek.size === 0) return [] as MergedItem[]
 
-    for (const [, premItem] of sortedWeeks) {
-      const goldPrice = goldWeeklyMap.get(premItem.date) ?? null
+    // 両ソースの週キーを和集合し時系列にソート
+    const allWeeks = Array.from(
+      new Set([...premByWeek.keys(), ...goldWeeklyByWeek.keys()])
+    ).sort()
+
+    const result: MergedItem[] = []
+    for (const weekKey of allWeeks) {
+      const prem = premByWeek.get(weekKey)
+      const gold = goldWeeklyByWeek.get(weekKey)
+      // x軸日付: プレミアムがあればその日付、無ければ金価格の最終営業日
+      const date = prem?.date ?? gold?.date
+      if (!date) continue
       result.push({
-        date: premItem.date,
-        china: premItem.china,
-        india: premItem.india,
-        gold_price: goldPrice,
+        date,
+        china: prem?.china ?? null,
+        india: prem?.india ?? null,
+        gold_price: gold?.close ?? null,
       })
     }
 
     return result
-  }, [premiumData, goldWeeklyMap])
+  }, [premiumData, goldWeeklyByWeek])
 
   const filteredData = useMemo(() => {
     if (selectedPeriod === 'all') return chartData

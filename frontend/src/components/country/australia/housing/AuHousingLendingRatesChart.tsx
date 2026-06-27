@@ -113,6 +113,7 @@ export default function AuHousingLendingRatesChart({ data }: AuHousingLendingRat
         showPeriodSelector={false}
         dataSource="RBA"
         sourceUrl="https://www.rba.gov.au/statistics/tables/#interest-rates"
+        handbookId="au-housing-lending-rates"
       >
         {/* 最新値表示 */}
         <div style={LATEST_VALUE_BOX_STYLE}>
@@ -181,7 +182,7 @@ export default function AuHousingLendingRatesChart({ data }: AuHousingLendingRat
                   <StandardLineChart
                     data={filteredData}
                     lines={currentLines}
-                    yAxisFormatter={(v) => `${v}%`}
+                    yAxisFormatter={(v) => `${v.toFixed(1)}%`}
                     yDomain={['dataMin - 0.3', 'dataMax + 0.3']}
                     tooltipValueFormatter={(v) => `${v.toFixed(2)}%`}
                     onLegendClick={handleLegendClick}

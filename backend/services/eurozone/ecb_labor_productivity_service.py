@@ -10,8 +10,8 @@ ECB Data APIから労働生産性データを取得
 データソース:
 - ECB Data API (MNA dataflow)
 - Series Keys:
-  - per_hour: Q.Y.I9.W0.S1.S1._Z.LPR_HW._Z._T._Z.IX.LR.N
-  - per_person: Q.Y.I9.W0.S1.S1._Z.LPR_PS._Z._T._Z.IX.LR.N
+  - per_hour: Q.Y.I10.W0.S1.S1._Z.LPR_HW._Z._T._Z.IX.LR.N
+  - per_person: Q.Y.I10.W0.S1.S1._Z.LPR_PS._Z._T._Z.IX.LR.N
 
 発表スケジュール:
 - 2月・5月・8月・11月: 10日〜18日
@@ -56,8 +56,8 @@ class ECBLaborProductivityService:
     # LPR_PS = Labor productivity per person
     # IX = Index, LR = Chain linked volumes, N = Seasonally adjusted
     SERIES_KEYS = {
-        "per_hour": "Q.Y.I9.W0.S1.S1._Z.LPR_HW._Z._T._Z.IX.LR.N",
-        "per_person": "Q.Y.I9.W0.S1.S1._Z.LPR_PS._Z._T._Z.IX.LR.N",
+        "per_hour": "Q.Y.I10.W0.S1.S1._Z.LPR_HW._Z._T._Z.IX.LR.N",
+        "per_person": "Q.Y.I10.W0.S1.S1._Z.LPR_PS._Z._T._Z.IX.LR.N",
     }
 
     DATA_CACHE_KEY = "eurozone:labor_productivity:data"

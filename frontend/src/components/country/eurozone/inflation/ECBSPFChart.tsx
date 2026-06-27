@@ -263,7 +263,7 @@ export default function ECBSPFChart({ data }: ECBSPFChartProps) {
                         name: '5年先',
                       },
                     ]}
-                    yAxisFormatter={(v) => `${v}%`}
+                    yAxisFormatter={(v) => `${Number(v).toFixed(1)}%`}
                     yDomain={['dataMin - 0.2', 'dataMax + 0.2']}
                     showZeroLine={false}
                     xAxisFormatter={(dateStr: string) => formatSPFDate(dateStr)}

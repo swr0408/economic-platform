@@ -225,7 +225,7 @@ export default function ECBHICPBreakdownChart({ data }: ECBHICPBreakdownChartPro
                       { dataKey: 'services', color: COLORS.services, name: 'サービス', yAxisId: 'left' },
                       { dataKey: 'energy', color: COLORS.energy, name: 'エネルギー（右軸）', yAxisId: 'right' },
                     ]}
-                    yAxisFormatter={(v) => `${v}%`}
+                    yAxisFormatter={(v) => `${Number(v).toFixed(1)}%`}
                     yDomain={['dataMin - 1', 'dataMax + 1']}
                     showZeroLine={true}
                     showRightYAxis={true}

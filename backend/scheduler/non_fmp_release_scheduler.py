@@ -91,10 +91,14 @@ NON_FMP_INDICATOR_CONFIGS = [
         },
     },
     {
-        # 発表: 半年ごと（3月調査・9月調査の結果を数ヶ月後にPDF公開）
+        # 発表: 半年ごと（3月調査→6月下旬公表 / 9月調査→12月公表）
         # 毎週金曜 15:50 JST に新規PDF公開をチェック
         # 出典: 中小企業庁 価格交渉促進月間フォローアップ調査
         # ※ FMP未登録のため非FMPスケジューラーで管理
+        # ※ 配布元 chusho.meti.go.jp は Akamai アンチボットで連続DLするとIP BAN
+        #    されるため、バーストを避ける:
+        #      update_iterations=1（3回取得しない）/ skip_polling_retry（15-60分の
+        #      再取得をしない）。サービス側も1実行=1本DLに制限済み。
         "name_ja": "価格転嫁率（中小企業庁）",
         "country": "JP",
         "category": "price",
@@ -102,6 +106,8 @@ NON_FMP_INDICATOR_CONFIGS = [
         "service_instance": "price_pass_through_rate_service",
         "fetch_method": "get_data",
         "schedule_type": "weekly",
+        "update_iterations": 1,
+        "skip_polling_retry": True,
         "schedule_config": {
             "day_of_week": 4,  # 金曜日
             "hour": 15,
@@ -109,35 +115,39 @@ NON_FMP_INDICATOR_CONFIGS = [
         },
     },
     {
-        # 3月・9月は毎営業日もチェック（公表月のため）
-        "name_ja": "価格転嫁率（中小企業庁）3月チェック",
+        # 公表月（6月）は毎日チェック ※従来は調査月の3月を誤指定していた
+        "name_ja": "価格転嫁率（中小企業庁）6月チェック",
         "country": "JP",
         "category": "price",
         "service_module": "services.japan.price_pass_through_rate_service",
         "service_instance": "price_pass_through_rate_service",
         "fetch_method": "get_data",
         "schedule_type": "cron_range",
+        "update_iterations": 1,
+        "skip_polling_retry": True,
         "schedule_config": {
             "day_start": 1,
-            "day_end": 31,
-            "month": 3,
+            "day_end": 30,
+            "month": 6,
             "hour": 15,
             "minute": 50,
         },
     },
     {
-        # 9月も毎営業日チェック
-        "name_ja": "価格転嫁率（中小企業庁）9月チェック",
+        # 公表月（12月）は毎日チェック ※従来は調査月の9月を誤指定していた
+        "name_ja": "価格転嫁率（中小企業庁）12月チェック",
         "country": "JP",
         "category": "price",
         "service_module": "services.japan.price_pass_through_rate_service",
         "service_instance": "price_pass_through_rate_service",
         "fetch_method": "get_data",
         "schedule_type": "cron_range",
+        "update_iterations": 1,
+        "skip_polling_retry": True,
         "schedule_config": {
             "day_start": 1,
-            "day_end": 30,
-            "month": 9,
+            "day_end": 31,
+            "month": 12,
             "hour": 15,
             "minute": 50,
         },

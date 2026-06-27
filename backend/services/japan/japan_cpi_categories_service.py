@@ -335,8 +335,13 @@ class JapanCPICategoriesService:
         return result
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定"""
-        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str, max_age_hours=72)
+        """キャッシュを更新すべきかどうかを判定
+
+        max_age_hours=24: e-Statは全国CPI公表当日(8:30 JST)に必ず反映されるため、
+        FMPカレンダーに全国CPIの発表イベントが欠落していてもmax-ageネットで翌日には
+        追従させる(過去にFMPが中旬の全国CPIリリースを取りこぼし数日凍結した実績あり)。
+        """
+        return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str, max_age_hours=24)
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         try:

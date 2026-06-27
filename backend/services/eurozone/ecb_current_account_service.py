@@ -51,10 +51,21 @@ DATA_CACHE_FILE = CACHE_DIR / "ecb_current_account_cache.json"
 class ECBCurrentAccountService:
     """ECB 経常収支サービス（XLSダウンロード方式）"""
 
-    # ECB SDW XLSダウンロードURL
+    # ECB SDW XLSダウンロードURL (旧ホストは廃止済み=下記APIフォールバックが実質主経路)
     # BPS.M.I9.N.CA.H.X1.T.N.EUR._Z._T._X._X.N.ALL
     ECB_SDW_XLS_URL = "https://sdw.ecb.europa.eu/quickviewexport.do"
-    SERIES_KEY = "BPS.M.I9.N.CA.H.X1.T.N.EUR._Z._T._X._X.N.ALL"
+    SERIES_KEY = "BPS.M.U2.N.CA.H.X1.T.N.EUR._Z._T._X._X.N.ALL"
+
+    # ECB Data Portal BPS dataflow のシリーズキー (経常収支 残高 月次 非調整)。
+    # REF_AREA (3番目の次元) のみ可変。フォールバック連鎖:
+    #   U2  = Euro area changing composition (evergreen=拡大に自動追従、再凍結しない) ← 第一候補
+    #   I10 = Euro area 21 (fixed) as of 2026-01-01 (現スナップショット)
+    #   I9  = Euro area 20 (fixed) as of 2023-01-01 (~2025-12で凍結。最終フォールバック)
+    # 2026-01-01 のユーロ圏 20→21 拡大で ECB が固定構成コードを I9→I10 にロールし、
+    # I9 ハードコードのまま 2025-12 で凍結した (プロバイダ識別子ドリフト)。
+    # changing-composition の U2 を主経路にして将来の拡大 (EA22…) でも止まらないようにする。
+    SERIES_KEY_TEMPLATE = "M.N.{ref_area}.W1.S1.S1.T.B.CA._Z._Z._Z.EUR._T._X.N.ALL"
+    REF_AREA_FALLBACK = ["U2", "I10", "I9"]
 
     DATA_CACHE_KEY = "economy:ecb_current_account:data"
     ECONALPHA_ID = "eu_current_account_balance"
@@ -275,34 +286,46 @@ class ECBCurrentAccountService:
         """ECB Data APIからデータを取得（フォールバック）
 
         注: 旧 SDW ホスト sdw.ecb.europa.eu は廃止 (DNS解決不可) のため、
-        実質このAPIフォールバックが主経路。新 Data Portal の BPS dataflow は
-        次元順が変わっており (FREQ.ADJUSTMENT.REF_AREA.COUNTERPART_AREA.
-        REF_SECTOR.COUNTERPART_SECTOR.FLOW_STOCK_ENTRY.ACCOUNTING_ENTRY.
-        INT_ACC_ITEM. ... )、ユーロ圏(I9)・経常収支(CA)・残高(B)・月次(M)・
-        非調整(N) の正しいキーは下記。旧キー (M.I9.N.CA.H.X1...) は 400 を返す。
+        実質このAPIフォールバックが主経路。REF_AREA を U2→I10→I9 の順に試し、
+        データが取れた最初のシリーズを採用する (`REF_AREA_FALLBACK` 参照)。
         """
-        # ECB Data Portal (新) のシリーズキー: 経常収支 残高 ユーロ圏 月次
-        legacy_key = "M.N.I9.W1.S1.S1.T.B.CA._Z._Z._Z.EUR._T._X.N.ALL"
-        url = f"https://data-api.ecb.europa.eu/service/data/BPS/{legacy_key}"
+        for ref_area in self.REF_AREA_FALLBACK:
+            series_key = self.SERIES_KEY_TEMPLATE.format(ref_area=ref_area)
+            result = self._fetch_series_from_api(series_key, ref_area, start_date)
+            if result:
+                print(f"[ECB CurrentAccount] Using REF_AREA={ref_area}, {len(result)} points (latest {result[-1]['date']})")
+                return result
+            print(f"[ECB CurrentAccount] REF_AREA={ref_area} yielded no data, trying next")
+
+        print("[ECB CurrentAccount] All REF_AREA candidates exhausted")
+        return None
+
+    def _fetch_series_from_api(self, series_key: str, ref_area: str, start_date: str) -> Optional[List[Dict]]:
+        """単一の BPS シリーズキーを ECB Data API から取得してパース"""
+        url = f"https://data-api.ecb.europa.eu/service/data/BPS/{series_key}"
         params = {
             "startPeriod": start_date[:7],  # YYYY-MM形式
             "format": "jsondata"
         }
 
         try:
-            print(f"[ECB CurrentAccount] Fetching (API fallback): {url}")
+            print(f"[ECB CurrentAccount] Fetching (API): {url}")
             response = requests.get(url, params=params, timeout=30)
             response.raise_for_status()
+
+            if not response.content.strip():
+                # 200 + 空ボディ = データ無し (廃止/未公開の REF_AREA)
+                return None
 
             data = response.json()
 
             if "dataSets" not in data or len(data["dataSets"]) == 0:
-                print(f"[ECB CurrentAccount] No data sets found")
+                print(f"[ECB CurrentAccount] No data sets found (REF_AREA={ref_area})")
                 return None
 
             dataset = data["dataSets"][0]
-            if "series" not in dataset:
-                print(f"[ECB CurrentAccount] No series found")
+            if "series" not in dataset or not dataset["series"]:
+                print(f"[ECB CurrentAccount] No series found (REF_AREA={ref_area})")
                 return None
 
             series_data = list(dataset["series"].values())[0]
@@ -316,7 +339,7 @@ class ECBCurrentAccountService:
                     break
 
             if not time_dimension:
-                print(f"[ECB CurrentAccount] No time dimension found")
+                print(f"[ECB CurrentAccount] No time dimension found (REF_AREA={ref_area})")
                 return None
 
             time_values = time_dimension.get("values", [])
@@ -337,14 +360,13 @@ class ECBCurrentAccountService:
                         })
 
             result.sort(key=lambda x: x["date"])
-            print(f"[ECB CurrentAccount] Fetched {len(result)} data points (API fallback)")
-            return result
+            return result if result else None
 
         except requests.exceptions.RequestException as e:
-            print(f"[ECB CurrentAccount] API fallback request error: {e}")
+            print(f"[ECB CurrentAccount] API request error (REF_AREA={ref_area}): {e}")
             return None
         except (KeyError, ValueError, IndexError) as e:
-            print(f"[ECB CurrentAccount] API fallback parse error: {e}")
+            print(f"[ECB CurrentAccount] API parse error (REF_AREA={ref_area}): {e}")
             return None
 
     def _should_refresh(self, last_updated_str: str) -> bool:

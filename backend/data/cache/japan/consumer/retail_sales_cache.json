@@ -1445,7 +1445,7 @@
         "date": "2025-12-01",
         "value": -2.0,
         "forecast": 0.3,
-        "previous": null
+        "previous": 0.7
       },
       {
         "date": "2026-01-01",
@@ -4249,8 +4249,8 @@
       {
         "date": "2025-12-01",
         "value": -0.9,
-        "forecast": 0.9,
-        "previous": 5.0
+        "forecast": 0.7,
+        "previous": 1.1
       },
       {
         "date": "2026-01-01",
@@ -4290,7 +4290,7 @@
     "datetime_jst": "2026-06-29T08:50:00+09:00",
     "time_jst": "08:50",
     "label": "Retail Sales YoY (May)",
-    "estimate": null
+    "estimate": 3.2
   },
-  "last_updated": "2026-06-17T22:01:37.704690+09:00"
+  "last_updated": "2026-06-28T00:31:19.054020+09:00"
 }

@@ -68,7 +68,7 @@ class ECBProductionService:
         params = {
             "format": "JSON",
             "lang": "en",
-            "geo": "EA20",         # Euro Area (20 countries)
+            "geo": "EA21",         # Euro Area (21 countries; 2026-01でEA20→EA21移行)
             "unit": "I21",         # Index, 2021=100
             "s_adj": s_adj,        # Seasonal adjustment
             "nace_r2": "B-D",      # Industry (except construction)

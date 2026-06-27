@@ -1053,7 +1053,7 @@
     {
       "date": "2025-10-01",
       "value": 52.4,
-      "forecast": 50.8,
+      "forecast": 50.7,
       "previous": 50.0
     },
     {
@@ -1065,7 +1065,7 @@
     {
       "date": "2025-12-01",
       "value": 54.4,
-      "forecast": 52.3,
+      "forecast": 52.2,
       "previous": 52.6
     },
     {
@@ -1110,8 +1110,8 @@
     "datetime_utc": "2026-07-06T14:00:00+00:00",
     "datetime_jst": "2026-07-06T23:00:00+09:00",
     "time_jst": "23:00",
-    "label": "ISM Non-Manufacturing Prices (Jun)",
+    "label": "ISM Non-Manufacturing PMI (Jun)",
     "estimate": null
   },
-  "last_updated": "2026-06-17T21:45:51.903520+09:00"
+  "last_updated": "2026-06-27T22:53:25.499517+09:00"
 }

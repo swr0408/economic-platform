@@ -5,55 +5,15 @@
       "last_rate_change": 0.0,
       "last_meeting_date": "2026-06-16",
       "next_meeting_date": "2026-08-11",
-      "settlement_date": "2026-06-16",
-      "settlement_price": 95.61,
-      "market_expectation_pct": 25,
+      "settlement_date": "2026-06-26",
+      "settlement_price": 95.62,
+      "market_expectation_pct": 19,
       "future_cash_rate": 4.6,
       "future_rate_change": 0.25,
       "expiry_month": 8,
       "expiry_year": 2026
     },
     "probability_history": [
-      {
-        "date": "2026-05-27",
-        "prob_no_change": 57,
-        "prob_change": 43
-      },
-      {
-        "date": "2026-05-28",
-        "prob_no_change": 50,
-        "prob_change": 50
-      },
-      {
-        "date": "2026-05-29",
-        "prob_no_change": 57,
-        "prob_change": 43
-      },
-      {
-        "date": "2026-06-01",
-        "prob_no_change": 53,
-        "prob_change": 47
-      },
-      {
-        "date": "2026-06-02",
-        "prob_no_change": 50,
-        "prob_change": 50
-      },
-      {
-        "date": "2026-06-03",
-        "prob_no_change": 41,
-        "prob_change": 59
-      },
-      {
-        "date": "2026-06-04",
-        "prob_no_change": 44,
-        "prob_change": 56
-      },
-      {
-        "date": "2026-06-05",
-        "prob_no_change": 50,
-        "prob_change": 50
-      },
       {
         "date": "2026-06-08",
         "prob_no_change": 50,
@@ -88,6 +48,46 @@
         "date": "2026-06-16",
         "prob_no_change": 75,
         "prob_change": 25
+      },
+      {
+        "date": "2026-06-17",
+        "prob_no_change": 72,
+        "prob_change": 28
+      },
+      {
+        "date": "2026-06-18",
+        "prob_no_change": 72,
+        "prob_change": 28
+      },
+      {
+        "date": "2026-06-19",
+        "prob_no_change": 66,
+        "prob_change": 34
+      },
+      {
+        "date": "2026-06-22",
+        "prob_no_change": 69,
+        "prob_change": 31
+      },
+      {
+        "date": "2026-06-23",
+        "prob_no_change": 72,
+        "prob_change": 28
+      },
+      {
+        "date": "2026-06-24",
+        "prob_no_change": 69,
+        "prob_change": 31
+      },
+      {
+        "date": "2026-06-25",
+        "prob_no_change": 81,
+        "prob_change": 19
+      },
+      {
+        "date": "2026-06-26",
+        "prob_no_change": 81,
+        "prob_change": 19
       }
     ],
     "probability_meta": {
@@ -95,7 +95,7 @@
       "future_rate_change": 0.25
     },
     "yield_curve": {
-      "settlement_date": "2026-06-16",
+      "settlement_date": "2026-06-26",
       "target_rate": 4.35,
       "data": [
         {
@@ -108,70 +108,70 @@
         },
         {
           "month": "Aug-26",
-          "implied_yield": 4.39
+          "implied_yield": 4.38
         },
         {
           "month": "Sep-26",
-          "implied_yield": 4.42
+          "implied_yield": 4.395
         },
         {
           "month": "Oct-26",
-          "implied_yield": 4.425
+          "implied_yield": 4.405
         },
         {
           "month": "Nov-26",
-          "implied_yield": 4.46
+          "implied_yield": 4.435
         },
         {
           "month": "Dec-26",
-          "implied_yield": 4.475
+          "implied_yield": 4.44
         },
         {
           "month": "Jan-27",
-          "implied_yield": 4.475
+          "implied_yield": 4.44
         },
         {
           "month": "Feb-27",
-          "implied_yield": 4.475
-        },
-        {
-          "month": "Mar-27",
-          "implied_yield": 4.47
-        },
-        {
-          "month": "Apr-27",
-          "implied_yield": 4.45
-        },
-        {
-          "month": "May-27",
           "implied_yield": 4.425
         },
         {
-          "month": "Jun-27",
+          "month": "Mar-27",
           "implied_yield": 4.41
         },
         {
-          "month": "Jul-27",
+          "month": "Apr-27",
           "implied_yield": 4.385
         },
         {
-          "month": "Aug-27",
+          "month": "May-27",
           "implied_yield": 4.36
         },
         {
+          "month": "Jun-27",
+          "implied_yield": 4.345
+        },
+        {
+          "month": "Jul-27",
+          "implied_yield": 4.32
+        },
+        {
+          "month": "Aug-27",
+          "implied_yield": 4.29
+        },
+        {
           "month": "Sep-27",
-          "implied_yield": 4.335
+          "implied_yield": 4.265
         },
         {
           "month": "Oct-27",
-          "implied_yield": 4.31
+          "implied_yield": 4.24
         },
         {
           "month": "Nov-27",
-          "implied_yield": 4.28
+          "implied_yield": 4.21
         }
       ]
     }
   },
-  "last_updated": "2026-06-17T10:31:25.289739+09:00"
+  "last_updated": "2026-06-27T11:46:23.685808+09:00"
 }

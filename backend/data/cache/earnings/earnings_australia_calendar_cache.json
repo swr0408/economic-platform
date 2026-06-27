@@ -15,23 +15,23 @@
       "fiscal_date_ending": "",
       "eps_estimate": 3.96,
       "eps_actual": null,
-      "revenue_estimate": 32928870000.0,
+      "revenue_estimate": 32627870000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-17"
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "BHP.AX",
       "name": "BHP",
       "tier": "A",
       "country_code": "australia",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
+      "date": "2026-08-17",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 2.76,
       "eps_actual": null,
-      "revenue_estimate": null,
+      "revenue_estimate": 30056910000.0,
       "revenue_actual": null,
-      "updated_from_date": null
+      "updated_from_date": "2026-06-27"
     },
     {
       "symbol": "CBA.AX",
@@ -120,7 +120,7 @@
   ],
   "next_7d_count": 0,
   "next_30d_count": 0,
-  "last_updated": "2026-06-17T12:37:42.875114+00:00",
+  "last_updated": "2026-06-27T13:49:18.868515+00:00",
   "cached": false,
   "status": "ok"
 }

@@ -44,15 +44,17 @@ interface ChartDataPoint {
   date: string
   value: number
   qoq_diff: number | null
+  yoy_diff: number | null
   [key: string]: unknown
 }
 
 // データ種別
-type DataKind = 'value' | 'qoq'
+type DataKind = 'value' | 'qoq' | 'yoy'
 
 const DATA_KIND_OPTIONS: { mode: DataKind; label: string }[] = [
   { mode: 'value', label: '原数値' },
   { mode: 'qoq', label: '前期増減幅' },
+  { mode: 'yoy', label: '前年同期差分' },
 ]
 
 // 表示形式
@@ -66,6 +68,7 @@ const DISPLAY_MODE_OPTIONS: { mode: DisplayMode; label: string }[] = [
 const COLORS = {
   value: '#1890ff',
   qoq: '#52c41a',
+  yoy: '#fa8c16',
 }
 
 export default function CnCurrentAccountChart({ data }: Props) {
@@ -76,6 +79,7 @@ export default function CnCurrentAccountChart({ data }: Props) {
   const { currentPeriod, setCurrentPeriod } = useViewModePeriodManagement(dataKind, {
     value: 10 as PeriodType,
     qoq: 3 as PeriodType,
+    yoy: 10 as PeriodType,
   })
 
   // チャート用データ変換
@@ -89,11 +93,19 @@ export default function CnCurrentAccountChart({ data }: Props) {
       })
     }
 
+    const yoyMap = new Map<string, number>()
+    if (data.yoy_diff) {
+      data.yoy_diff.forEach(item => {
+        yoyMap.set(item.date, item.value)
+      })
+    }
+
     return data.data
       .map(item => ({
         date: item.date,
         value: item.value,
         qoq_diff: qoqMap.get(item.date) ?? null,
+        yoy_diff: yoyMap.get(item.date) ?? null,
       }))
       .sort((a, b) => a.date.localeCompare(b.date))
   }, [data])
@@ -111,6 +123,13 @@ export default function CnCurrentAccountChart({ data }: Props) {
     10
   )
 
+  // テーブル用データ（前年同期差分）
+  const yoyTableData = useQuarterlyTableData(
+    chartData,
+    (item) => item.yoy_diff,
+    10
+  )
+
   const hasData = chartData.length > 0
 
   // 最新値
@@ -122,10 +141,12 @@ export default function CnCurrentAccountChart({ data }: Props) {
   const currentValue = useMemo(() => {
     if (!latest) return null
     if (dataKind === 'value') return latest.value
-    return latest.qoq_diff
+    if (dataKind === 'qoq') return latest.qoq_diff
+    return latest.yoy_diff
   }, [latest, dataKind])
 
-  const currentColor = dataKind === 'value' ? COLORS.value : COLORS.qoq
+  const currentColor =
+    dataKind === 'value' ? COLORS.value : dataKind === 'qoq' ? COLORS.qoq : COLORS.yoy
 
   if (data === null) {
     return (
@@ -147,7 +168,8 @@ export default function CnCurrentAccountChart({ data }: Props) {
 
   const getLabel = () => {
     if (dataKind === 'value') return '経常収支'
-    return '前期増減幅'
+    if (dataKind === 'qoq') return '前期増減幅'
+    return '前年同期差分'
   }
 
   const getUnit = () => {
@@ -201,25 +223,35 @@ export default function CnCurrentAccountChart({ data }: Props) {
                     </Tooltip>
                   </div>
 
-                  {/* 下段: 表示形式（qoqのときのみ） */}
-                  {dataKind === 'qoq' && (
+                  {/* 下段: 表示形式（増減幅ビューのとき） */}
+                  {(dataKind === 'qoq' || dataKind === 'yoy') && (
                     <div style={{ marginBottom: 8 }}>
                       <ViewModeButtonGroup options={DISPLAY_MODE_OPTIONS} currentMode={displayMode} onChange={setDisplayMode} />
                     </div>
                   )}
 
                   {/* 期間セレクター */}
-                  {!(dataKind === 'qoq' && displayMode === 'heatmap') && (
+                  {!((dataKind === 'qoq' || dataKind === 'yoy') && displayMode === 'heatmap') && (
                     <PeriodSelector onPeriodChange={setCurrentPeriod} selectedPeriod={currentPeriod} />
                   )}
 
-                  {/* ヒートマップ */}
+                  {/* ヒートマップ: 前期増減幅 */}
                   {dataKind === 'qoq' && displayMode === 'heatmap' && (
                     <QuarterlyTable
                       data={qoqTableData}
                       decimals={1}
                       showLegend={false}
                       helperText="※ 直近10年間の前期増減幅データ（単位: 億USD）"
+                    />
+                  )}
+
+                  {/* ヒートマップ: 前年同期差分 */}
+                  {dataKind === 'yoy' && displayMode === 'heatmap' && (
+                    <QuarterlyTable
+                      data={yoyTableData}
+                      decimals={1}
+                      showLegend={false}
+                      helperText="※ 直近10年間の前年同期差分データ（単位: 億USD）"
                     />
                   )}
 
@@ -241,6 +273,18 @@ export default function CnCurrentAccountChart({ data }: Props) {
                       data={filteredData}
                       bars={[
                         { dataKey: 'qoq_diff', color: COLORS.qoq, name: '前期増減幅（億USD）' },
+                      ]}
+                      yAxisFormatter={(v) => `${v}`}
+                      tooltipValueFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toFixed(1)} 億USD`}
+                    />
+                  )}
+
+                  {/* チャート: 前年同期差分 */}
+                  {dataKind === 'yoy' && displayMode === 'chart' && (
+                    <StandardBarChart
+                      data={filteredData}
+                      bars={[
+                        { dataKey: 'yoy_diff', color: COLORS.yoy, name: '前年同期差分（億USD）' },
                       ]}
                       yAxisFormatter={(v) => `${v}`}
                       tooltipValueFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toFixed(1)} 億USD`}

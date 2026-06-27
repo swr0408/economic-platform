@@ -273,3 +273,106 @@ def invalidate_next_release_cache(event_pattern: str, country: str = "CA") -> bo
     """
     cache_key = f"fmp:next_release:pattern:{country}:{event_pattern.lower().replace(' ', '_')}"
     return redis_client.delete(cache_key)
+
+
+def _get_last_release_datetime(event_patterns, country: str = "CA") -> Optional[datetime]:
+    """直近（過去）の発表 datetime（JST）を返す。actual有無を問わず最新の過去発表。
+
+    複数パターンを渡した場合は最も新しい発表時刻を採用する。
+    """
+    if isinstance(event_patterns, str):
+        event_patterns = [event_patterns]
+    try:
+        from core.database import SessionLocal
+        from sqlalchemy import text, bindparam
+
+        valid_countries = [country]
+        best = None
+        with SessionLocal() as session:
+            for pattern in event_patterns:
+                query = text("""
+                    SELECT datetime_utc
+                    FROM economic_calendar_events
+                    WHERE country IN :countries
+                      AND event ILIKE :pattern
+                      AND datetime_utc <= NOW()
+                    ORDER BY datetime_utc DESC
+                    LIMIT 1
+                """).bindparams(bindparam("countries", expanding=True))
+                row = session.execute(
+                    query, {"countries": valid_countries, "pattern": f"%{pattern}%"}
+                ).fetchone()
+                if row:
+                    dt_utc = row[0]
+                    if dt_utc.tzinfo is None:
+                        dt_utc = dt_utc.replace(tzinfo=UTC)
+                    dt_jst = dt_utc.astimezone(JST)
+                    if best is None or dt_jst > best:
+                        best = dt_jst
+        return best
+    except Exception as e:
+        print(f"[CA FMP Utils] _get_last_release_datetime error: {e}")
+        return None
+
+
+def resolve_last_updated_after_fetch(
+    event_patterns,
+    new_latest_date: Optional[str],
+    prev_latest_date: Optional[str],
+    prev_last_updated: Optional[str],
+    country: str = "CA",
+    retry_window_hours: float = 36.0,
+) -> str:
+    """発表時刻レース対策のラグガード付き last_updated を決定する。
+
+    背景: ダッシュボード更新はFMP発表時刻（=StatCan公式発表時刻 08:30 ET）に発火するが、
+    StatCanのCSV一括zip（18100004-eng.zip等）への新月反映が数分遅れることがある。発表時刻
+    ちょうど〜直後の取得で旧月をキャッシュし `last_updated=now(≧発表時刻)` を刻むと
+    should_refresh_by_pattern が「発表消化済み」と判断し、次回発表（翌月）まで再取得しない
+    （凍結）。WDS APIは発表時刻に即更新されるためサービス間で取りこぼし差が出る（2026-06-22
+    ca_cpi がApril凍結／ca_cpi_service_rent はMay取得の不整合が発生）。
+
+    対策: 取得データの最新期間が前回から進んでおらず（=ソース未反映）、かつ直近発表が
+    retry_window_hours 以内で、前回キャッシュがその発表をまだ消化していない場合は、
+    last_updated を「直近発表時刻の直前」に据え置く。これにより should_refresh_by_pattern
+    が再取得を促し続け、StatCan反映後の最初のポーリングで新月を取り込める。
+    データが前進した／発表から時間が経過した／前回が消化済み の各ケースは now を返す
+    （過剰フェッチ・無限フェッチを防止）。
+
+    Returns: ISO形式の last_updated 文字列。
+    """
+    now = datetime.now(JST)
+    now_iso = now.isoformat()
+
+    # 比較不能 or データが前進 → 通常どおり now（発表消化）
+    if not new_latest_date or not prev_latest_date or new_latest_date > prev_latest_date:
+        return now_iso
+
+    # ここに来る = 取得データが前回から前進していない（同一 or 後退）
+    last_release = _get_last_release_datetime(event_patterns, country)
+    if not last_release or now < last_release:
+        return now_iso
+
+    # 発表から時間が経過しすぎ → 据え置かない（無限フェッチ防止）
+    age_hours = (now - last_release).total_seconds() / 3600.0
+    if age_hours > retry_window_hours:
+        return now_iso
+
+    # 前回キャッシュが既にこの発表を消化済み（last_updated≧発表）なら据え置かない
+    if prev_last_updated:
+        try:
+            plu = datetime.fromisoformat(prev_last_updated)
+            if plu.tzinfo is None:
+                plu = plu.replace(tzinfo=JST)
+            if plu >= last_release:
+                return now_iso
+        except Exception:
+            pass
+
+    # 発表直後だがソース未反映 → 消化扱いにせず、発表直前に据え置いて再取得を促す
+    print(
+        f"[CA FMP Utils] lag-guard: source not yet advanced past release "
+        f"({last_release.isoformat()}); holding last_updated to retry "
+        f"(latest={new_latest_date})"
+    )
+    return (last_release - timedelta(seconds=1)).isoformat()

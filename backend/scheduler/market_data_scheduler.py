@@ -136,6 +136,10 @@ JP_CLOSE_SERVICES = [
     # Valuation (JP)
     ("services.market.nikkei225_valuation_service", "nikkei225_valuation_service", "get_data"),
     ("services.market.topix_valuation_service", "topix_valuation_service", "get_data"),
+    # NT倍率 (東京指数系: 日経225×TOPIX。TOPIXソース=Stooqが朝の US_CLOSE 時点では
+    # 前営業日東京EOD未反映のことがあるため、夕方の東京クローズ後バッチでも再取得して
+    # 最新営業日への追従を早める。US_CLOSE にも残置=取りこぼし二重防御。)
+    ("services.market.nt_magnification_service", "nt_magnification_service", "get_data"),
     # MOF 対外証券売買 (月水金 08:50 発表 → 16:30でも十分)
     ("services.market.mof_securities_trading_service", "mof_securities_trading_service", "get_data"),
     # 電子部品 (METI月次)

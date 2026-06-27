@@ -44,9 +44,11 @@ class ECBEmploymentService:
     # ECB Data API
     ECB_API_BASE = "https://data-api.ecb.europa.eu/service/data"
     DATAFLOW = "MNA"
-    # Q = Quarterly, Y = Euro Area, I9 = Euro Area 19
+    # Q = Quarterly, Y = Euro Area, I10 = Euro area 21 (fixed, as of 2026-01-01)
     # EMP = Employment, PS = Number of persons, N = Seasonally adjusted
-    SERIES_KEY = "Q.Y.I9.W2.S1.S1._Z.EMP._Z._T._Z.PS._Z.N"
+    # 2026年ブルガリア加盟で I9(EA20)→I10(EA21) に移行(I9は旧構成のまま、雇用は水準が
+    # 約360万人ズレる)。履歴1995-Q1〜で欠落なし。詳細は ecb_current_account_service 参照。
+    SERIES_KEY = "Q.Y.I10.W2.S1.S1._Z.EMP._Z._T._Z.PS._Z.N"
 
     DATA_CACHE_KEY = "eurozone:employment:data"
     ECONALPHA_ID = "ecb_employment"

@@ -26,6 +26,7 @@ from core.redis_client import redis_client
 from services.switzerland.fmp_next_release_utils import (
     get_next_release_by_pattern,
     should_refresh_by_pattern,
+    resolve_last_updated_after_fetch,
 )
 
 
@@ -71,6 +72,19 @@ class ChInflationForecastService:
         latest = self._fetch_latest_release()
 
         if latest:
+            # 発表時刻レース対策（ラグガード）: 最新発表日が前回から進んでいない
+            # （SNB画像が未公開等）場合は last_updated を発表直前に据え置き、
+            # 公開後の次ポーリングでの再取得を促す。
+            _prev_cache = redis_client.get(self.DATA_CACHE_KEY)
+            _prev_latest = _prev_cache.get("latest") if isinstance(_prev_cache, dict) else None
+            _resolved_last_updated = resolve_last_updated_after_fetch(
+                self.FMP_EVENT_PATTERN,
+                latest.get("release_date") if isinstance(latest, dict) else None,
+                _prev_latest.get("release_date") if isinstance(_prev_latest, dict) else None,
+                _prev_cache.get("last_updated") if isinstance(_prev_cache, dict) else None,
+                country="CH",
+            )
+
             cache_payload = {
                 "latest": latest,
                 "metadata": {
@@ -78,7 +92,7 @@ class ChInflationForecastService:
                     "indicator": "SNB Inflation Forecast",
                     "description": "SNBインフレ見通し（条件付き予測）",
                 },
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": _resolved_last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -89,7 +103,7 @@ class ChInflationForecastService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "snb",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": _resolved_last_updated,
             }
 
         # ファイルキャッシュフォールバック
@@ -222,6 +236,17 @@ class ChInflationForecastService:
         observed_ok = self._download_image(observed_url, observed_local)
         forecast_ok = self._download_image(forecast_url, forecast_local)
 
+        # 標準PNG(p2/p3)が未公開(404)なら、PDF(publications0)埋め込みチャートで補完。
+        # SNBはPDFを発表時刻に公開するが、個別チャートPNGは後追いのことがあるため
+        # (2026-06-18の6月会合で実測: PDFのみ公開、p2/p3は404)。
+        if not (observed_ok and forecast_ok):
+            pdf_res = self._fetch_from_pdf(
+                release_date, observed_local, forecast_local,
+                need_observed=not observed_ok, need_forecast=not forecast_ok,
+            )
+            observed_ok = observed_ok or pdf_res.get("observed", False)
+            forecast_ok = forecast_ok or pdf_res.get("forecast", False)
+
         if observed_ok or forecast_ok:
             # 日付を整形
             formatted_date = f"{release_date[:4]}-{release_date[4:6]}-{release_date[6:]}"
@@ -254,6 +279,91 @@ class ChInflationForecastService:
         except Exception as e:
             print(f"[ChInflationForecast] Error downloading {url}: {e}")
             return False
+
+    def _fetch_from_pdf(
+        self,
+        release_date: str,
+        observed_local: Path,
+        forecast_local: Path,
+        need_observed: bool,
+        need_forecast: bool,
+    ) -> Dict[str, bool]:
+        """標準PNG(p2/p3)が未公開のとき、SNBプレスリリースPDF(publications0)に
+        埋め込まれたチャート画像を抽出してフォールバックする。
+
+        SNBはPDFを発表時刻に公開するが、個別チャートPNGの公開は後追いのことがある
+        (2026-06-18の6月会合で実測)。PDF埋め込み画像は website 配信PNGと同一チャート
+        (寸法一致を確認済み)。判定: p2(observed)/p3(forecast)は幅≈2141の横長PNG。
+        forecast(扇形予測)はobservedより縦が高くアスペクト比が小さいため、幅の広い
+        候補のうちアスペクト比 最小=forecast / 最大=observed とする。
+        """
+        result = {"observed": False, "forecast": False}
+        try:
+            import fitz  # PyMuPDF
+        except Exception as e:
+            print(f"[ChInflationForecast] PDF fallback: PyMuPDF unavailable: {e}")
+            return result
+
+        urls = self._generate_image_urls(release_date)
+        base = urls["observed_url"].rsplit("/publications", 1)[0]
+        pdf_url = f"{base}/publications0_en/pre_{release_date}.en.pdf"
+
+        try:
+            with httpx.Client(timeout=30.0) as client:
+                resp = client.get(pdf_url)
+            if resp.status_code != 200:
+                print(f"[ChInflationForecast] PDF fallback: PDF not available ({resp.status_code})")
+                return result
+            doc = fitz.open(stream=resp.content, filetype="pdf")
+        except Exception as e:
+            print(f"[ChInflationForecast] PDF fallback download/open error: {e}")
+            return result
+
+        wide = []  # (aspect, width, height, png_bytes)
+        try:
+            for page in doc:
+                for img in page.get_images(full=True):
+                    try:
+                        info = doc.extract_image(img[0])
+                    except Exception:
+                        continue
+                    if info.get("ext") != "png":
+                        continue
+                    w, h = info.get("width", 0), info.get("height", 0)
+                    # p1(幅1890)やロゴを除外し、p2/p3(幅≈2141)の横長チャートのみ採用
+                    if not w or not h or w < 2000:
+                        continue
+                    wide.append((w / h, w, h, info["image"]))
+        finally:
+            doc.close()
+
+        if not wide:
+            print("[ChInflationForecast] PDF fallback: no chart images found in PDF")
+            return result
+
+        wide.sort(key=lambda t: t[0])  # アスペクト比 昇順
+        forecast_img = wide[0]                       # 最小=forecast(縦長)
+        observed_img = wide[-1]                       # 最大=observed(横長)
+
+        if need_forecast:
+            try:
+                forecast_local.write_bytes(forecast_img[3])
+                result["forecast"] = True
+                print(f"[ChInflationForecast] PDF fallback: forecast extracted "
+                      f"({forecast_img[1]}x{forecast_img[2]})")
+            except Exception as e:
+                print(f"[ChInflationForecast] PDF fallback forecast save error: {e}")
+
+        if need_observed and observed_img is not forecast_img:
+            try:
+                observed_local.write_bytes(observed_img[3])
+                result["observed"] = True
+                print(f"[ChInflationForecast] PDF fallback: observed extracted "
+                      f"({observed_img[1]}x{observed_img[2]})")
+            except Exception as e:
+                print(f"[ChInflationForecast] PDF fallback observed save error: {e}")
+
+        return result
 
     def get_image(self, filename: str) -> Optional[bytes]:
         """キャッシュされた画像を取得"""

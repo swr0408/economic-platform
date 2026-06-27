@@ -5707,7 +5707,7 @@
       "topix_vol_pcr": null,
       "topix_oi_pcr": 4.3948,
       "nikkei225": 27232.87,
-      "topix_idx": 1992.16
+      "topix_idx": 1992.15
     },
     {
       "date": "2022-02-18",
@@ -8743,7 +8743,7 @@
       "topix_vol_pcr": 0.0962,
       "topix_oi_pcr": 2.6638,
       "nikkei225": 27813.26,
-      "topix_idx": 2080.87
+      "topix_idx": 2080.86
     },
     {
       "date": "2023-04-06",
@@ -11515,7 +11515,7 @@
       "topix_vol_pcr": null,
       "topix_oi_pcr": null,
       "nikkei225": 39232.8,
-      "topix_idx": 2892.04
+      "topix_idx": 2892.05
     },
     {
       "date": "2024-04-16",
@@ -11889,7 +11889,7 @@
       "topix_vol_pcr": 0.4955,
       "topix_oi_pcr": 1.6259,
       "nikkei225": 38490.17,
-      "topix_idx": 2892.04
+      "topix_idx": 2892.05
     },
     {
       "date": "2024-06-06",
@@ -11944,7 +11944,7 @@
       "topix_vol_pcr": 0.9887,
       "topix_oi_pcr": 1.6153,
       "nikkei225": 38876.71,
-      "topix_idx": 2899.01
+      "topix_idx": 2899.02
     },
     {
       "date": "2024-06-13",
@@ -17302,29 +17302,106 @@
       "topix_oi_pcr": 2.5083,
       "nikkei225": 69902.25,
       "topix_idx": 425.5
+    },
+    {
+      "date": "2026-06-18",
+      "nk225_vol_pcr": 1.5855,
+      "nk225_oi_pcr": 1.9499,
+      "nk225mini_vol_pcr": 2.1726,
+      "nk225mini_oi_pcr": 2.439,
+      "topix_vol_pcr": null,
+      "topix_oi_pcr": 2.5862,
+      "nikkei225": 71053.49,
+      "topix_idx": 432.3
+    },
+    {
+      "date": "2026-06-19",
+      "nk225_vol_pcr": 1.2888,
+      "nk225_oi_pcr": 1.9444,
+      "nk225mini_vol_pcr": 1.8404,
+      "nk225mini_oi_pcr": 1.5684,
+      "topix_vol_pcr": 8.4677,
+      "topix_oi_pcr": 2.5378,
+      "nikkei225": 71250.06,
+      "topix_idx": 429.7
+    },
+    {
+      "date": "2026-06-22",
+      "nk225_vol_pcr": 1.8834,
+      "nk225_oi_pcr": 1.9552,
+      "nk225mini_vol_pcr": 3.5003,
+      "nk225mini_oi_pcr": 1.9832,
+      "topix_vol_pcr": null,
+      "topix_oi_pcr": null,
+      "nikkei225": 72353.96,
+      "topix_idx": 434.5
+    },
+    {
+      "date": "2026-06-23",
+      "nk225_vol_pcr": 1.945,
+      "nk225_oi_pcr": 2.0064,
+      "nk225mini_vol_pcr": 2.2122,
+      "nk225mini_oi_pcr": 1.863,
+      "topix_vol_pcr": 0.75,
+      "topix_oi_pcr": 2.5502,
+      "nikkei225": 69788.38,
+      "topix_idx": 422.8
+    },
+    {
+      "date": "2026-06-24",
+      "nk225_vol_pcr": 2.8939,
+      "nk225_oi_pcr": 2.019,
+      "nk225mini_vol_pcr": 1.0459,
+      "nk225mini_oi_pcr": 1.4455,
+      "topix_vol_pcr": 0.616,
+      "topix_oi_pcr": 2.5327,
+      "nikkei225": 69174.97,
+      "topix_idx": 419.9
+    },
+    {
+      "date": "2026-06-25",
+      "nk225_vol_pcr": 1.3134,
+      "nk225_oi_pcr": 2.0004,
+      "nk225mini_vol_pcr": 1.4252,
+      "nk225mini_oi_pcr": 1.7883,
+      "topix_vol_pcr": 0.6493,
+      "topix_oi_pcr": 2.5548,
+      "nikkei225": 72366.34,
+      "topix_idx": 425.9
+    },
+    {
+      "date": "2026-06-26",
+      "nk225_vol_pcr": 2.0488,
+      "nk225_oi_pcr": 2.0144,
+      "nk225mini_vol_pcr": 1.465,
+      "nk225mini_oi_pcr": 1.3784,
+      "topix_vol_pcr": 1.9,
+      "topix_oi_pcr": 2.5538,
+      "nikkei225": 69360.88,
+      "topix_idx": 420.4
     }
   ],
   "latest": {
-    "date": "2026-06-17",
-    "nk225_vol_pcr": 1.5057,
-    "nk225_oi_pcr": 1.9715,
-    "nk225mini_vol_pcr": 2.1574,
-    "nk225mini_oi_pcr": 2.1293,
-    "topix_vol_pcr": null,
-    "topix_oi_pcr": 2.5083,
-    "nikkei225": 69902.25,
-    "topix_idx": 425.5
+    "date": "2026-06-26",
+    "nk225_vol_pcr": 2.0488,
+    "nk225_oi_pcr": 2.0144,
+    "nk225mini_vol_pcr": 1.465,
+    "nk225mini_oi_pcr": 1.3784,
+    "topix_vol_pcr": 1.9,
+    "topix_oi_pcr": 2.5538,
+    "nikkei225": 69360.88,
+    "topix_idx": 420.4
   },
   "metadata": {
     "source": "JPX / yfinance",
-    "data_count": 1573,
-    "nk225_count": 1573,
-    "nk225mini_count": 744,
-    "topix_count": 1082,
+    "data_count": 1580,
+    "nk225_count": 1580,
+    "nk225mini_count": 751,
+    "topix_count": 1088,
     "start_date": "2020-01-06",
-    "end_date": "2026-06-17"
+    "end_date": "2026-06-26"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-17T20:39:41.872981+09:00"
+  "last_updated": "2026-06-27T19:36:23.480605+09:00"
 }

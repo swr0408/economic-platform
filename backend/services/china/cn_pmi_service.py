@@ -85,7 +85,9 @@ MFG_EXCEL_COLUMNS = {
     "新出口订单": "cn_pmi_mfg_new_export_orders",
     "在手订单": "cn_pmi_mfg_in_hand_orders",
     "出厂价格": "cn_pmi_mfg_producer_prices",
-    "原材料购进价格": "cn_pmi_mfg_raw_material_price",
+    # Excel実列は「主要原材料购进价格」（「主要」付き）。完全一致でないと
+    # 抽出されず凍結するため正確なヘッダー名で登録する。
+    "主要原材料购进价格": "cn_pmi_mfg_raw_material_price",
 }
 
 # 非製造業シート（シート2「非制造业」）
@@ -273,6 +275,49 @@ def _build_nmf_sub_data() -> List[Dict[str, Any]]:
     return result
 
 
+def _fetch_pmi_sectors_from_html() -> None:
+    """非製造業の業種別商務活動指数(服务业/建筑业)をPMIプレスリリースHTMLから取得しDB蓄積
+
+    非製造業Excelシートには総合「商务活动」しか無く、服务业/建筑业の内訳が
+    含まれないため、本文HTMLからスクレイプする。取りこぼし耐性のため直近6件を
+    新→旧順に巡回し、DBに既に当該月のservicesがあればHTML取得をスキップ。冪等。
+    """
+    from services.china.nbs_press_release_utils import (
+        find_recent_releases,
+        scrape_pmi_sectors_from_html,
+        _data_exists_in_db,
+    )
+    from services.china.nbs_db_utils import upsert_nbs_data
+
+    sector_map = {
+        "services": "cn_pmi_nmf_services",
+        "construction": "cn_pmi_nmf_construction",
+    }
+
+    # PMI発表は他カテゴリと混在しており6ヶ月分が2ページを超えるため max_pages=4。
+    releases = find_recent_releases("pmi", max_pages=4, limit=6)
+    for release in releases:
+        period = release["period"]
+        if not period:
+            continue
+        date_str = f"{period[0]:04d}-{period[1]:02d}-01"
+
+        # servicesがDBに既にあれば当該月は取得済みとみなしスキップ
+        if _data_exists_in_db("cn_pmi_nmf_services", date_str):
+            continue
+
+        scraped = scrape_pmi_sectors_from_html(release["url"])
+        if not scraped:
+            logger.warning(f"[NBS-PMI] No sector data scraped from {release['title']}")
+            continue
+
+        for key, db_id in sector_map.items():
+            val = scraped.get(key)
+            if val is not None:
+                count = upsert_nbs_data(db_id, {date_str: round(val, 1)}, source="api")
+                logger.info(f"[NBS-PMI] {db_id}={val} for {date_str}, DB upserted {count}")
+
+
 def _get_next_release() -> Optional[Dict[str, Any]]:
     """FMPから次回発表日を取得"""
     try:
@@ -346,6 +391,22 @@ class CnPmiService:
             )
         except Exception as e:
             logger.warning(f"[PMI] Press release fetch/upsert failed: {e}")
+
+        # 非製造業の業種別(服务业/建筑业)商務活動指数はExcelに列が無く本文HTMLのみ。
+        try:
+            _fetch_pmi_sectors_from_html()
+        except Exception as e:
+            logger.warning(f"[PMI] Sector (services/construction) fetch failed: {e}")
+
+        # 総合PMI（综合PMI产出指数）はプレスリリース添付Excelの
+        # 制造业/非制造业シートに列が無く抽出できないため、FMP "NBS General PMI"
+        # の actual から gap-fill する（製造業/非製造業のみExcel経由で更新され、
+        # 総合だけ初期CSV以降凍結するのを防ぐ）。冪等・既存値は上書きしない。
+        try:
+            from services.china.nbs_db_utils import backfill_from_fmp_events
+            backfill_from_fmp_events("cn_pmi_composite", "NBS General PMI")
+        except Exception as e:
+            logger.warning(f"[PMI] Composite FMP backfill failed: {e}")
 
         headline_data = _build_headline_data()
         mfg_sub_data = _build_mfg_sub_data()

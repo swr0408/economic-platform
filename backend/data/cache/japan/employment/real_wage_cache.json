@@ -1263,12 +1263,12 @@
       },
       {
         "date": "2026-04-01",
-        "value": 1.9
+        "value": 2.0
       }
     ],
     "latest": {
       "date": "2026-04-01",
-      "value": 1.9
+      "value": 2.0
     }
   },
   "common": {
@@ -2535,12 +2535,12 @@
       },
       {
         "date": "2026-04-01",
-        "value": 2.1
+        "value": 2.2
       }
     ],
     "latest": {
       "date": "2026-04-01",
-      "value": 2.1
+      "value": 2.2
     }
   },
   "next_release": {
@@ -2551,5 +2551,5 @@
     "label": "Average Cash Earnings YoY (May)",
     "estimate": null
   },
-  "last_updated": "2026-06-15T20:02:09.354009+09:00"
+  "last_updated": "2026-06-27T17:32:54.305340+09:00"
 }

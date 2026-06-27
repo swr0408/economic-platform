@@ -61,6 +61,19 @@ class CalendarScheduler:
             replace_existing=True,
         )
 
+        # 時間内差分同期（毎時 JST :05）。
+        # 定期同期が日次のみだと、07:00以降に発表される指標
+        # （日本フラッシュPMI 09:30 JST 等）の actual が翌朝まで未取込となり、
+        # サービスが `actual IS NOT NULL` で落として凍結する。
+        # 毎時の軽量再同期で当日発表の actual を最大でも約1時間以内に取り込む。
+        self.scheduler.add_job(
+            self._sync_recent,
+            CronTrigger(minute=5, timezone=JST),
+            id="calendar_sync_hourly",
+            name="Calendar Sync (Hourly Recent)",
+            replace_existing=True,
+        )
+
         # 週1回の将来データ取得（毎週月曜 JST 6:30）
         # 次回発表日の予想値・発表時刻を事前に取得
         self.scheduler.add_job(
@@ -73,7 +86,7 @@ class CalendarScheduler:
 
         self.scheduler.start()
         self._is_running = True
-        print("[CalendarScheduler] Started - Monthly sync on 1st/15th, daily recent at 7:00, weekly future on Mon 6:30 JST")
+        print("[CalendarScheduler] Started - Monthly sync on 1st/15th, daily recent at 7:00, hourly recent at :05, weekly future on Mon 6:30 JST")
 
     def stop(self):
         """スケジューラーを停止"""

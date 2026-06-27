@@ -1448,12 +1448,12 @@
     {
       "date": "2025-04-01",
       "regular_pay": 1.5,
-      "total_pay": 1.4
+      "total_pay": 1.3
     },
     {
       "date": "2025-05-01",
       "regular_pay": 1.1,
-      "total_pay": 0.9
+      "total_pay": 0.8
     },
     {
       "date": "2025-06-01",
@@ -1503,13 +1503,18 @@
     {
       "date": "2026-03-01",
       "regular_pay": 0.1,
-      "total_pay": 0.8
+      "total_pay": 1.1
+    },
+    {
+      "date": "2026-04-01",
+      "regular_pay": 0.1,
+      "total_pay": 1.2
     }
   ],
   "latest": {
-    "date": "2026-03-01",
+    "date": "2026-04-01",
     "regular_pay": 0.1,
-    "total_pay": 0.8
+    "total_pay": 1.2
   },
   "metadata": {
     "regular_pay_title": "AWE: Whole Economy Real Terms Year on Year three Month Growth (%): Seasonally Adjusted Regular Pay",
@@ -1517,10 +1522,10 @@
     "total_pay_title": "AWE: Whole Economy Real Terms Year on Year Three Month Growth (%): Seasonally Adjusted Total Pay",
     "total_pay_cdid": "A3WW",
     "unit": "%",
-    "release_date": "19-05-2026",
-    "next_release_ons": "18 June 2026",
+    "release_date": "18-06-2026",
+    "next_release_ons": "21 July 2026",
     "source": "Office for National Statistics",
     "description": "イギリス実質平均週給（前年比）"
   },
-  "last_updated": "2026-06-11T08:59:39.735240+09:00"
+  "last_updated": "2026-06-25T19:15:03.040903+09:00"
 }

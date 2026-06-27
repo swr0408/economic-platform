@@ -61,7 +61,11 @@ class EurozonePMIService:
     EVENT_PATTERNS = {
         "manufacturing": ["HCOB Manufacturing PMI", "Manufacturing PMI"],
         "services": ["HCOB Services PMI", "Services PMI"],
-        "composite": ["HCOB Composite PMI"],
+        # 2026年3月以降、FMPは総合の実値を "S&P Global Composite PMI" 名で登録し
+        # "HCOB Composite PMI" 側は actual=None になった（製造業/サービス業は汎用名で
+        # 拾えていたが総合だけフォールバックが無く2026-02で凍結）。汎用名を追加して両系統を拾う。
+        # country='EU' フィルタがあるため "Composite PMI" 部分一致でも他国は混入しない。
+        "composite": ["HCOB Composite PMI", "Composite PMI"],
     }
 
     def __init__(self):

@@ -215,7 +215,7 @@ export default function EUImportPricesChart({ data }: EUImportPricesChartProps) 
             lines={[
               { dataKey: 'yoy', color: COLORS.import_prices, name: '輸入物価（前年比）' },
             ]}
-            yAxisFormatter={(v) => `${v}%`}
+            yAxisFormatter={(v) => `${Number(v).toFixed(1)}%`}
             yDomain={['dataMin - 1', 'dataMax + 1']}
             showZeroLine={true}
             showLegend={false}
@@ -237,7 +237,7 @@ export default function EUImportPricesChart({ data }: EUImportPricesChartProps) 
             bars={[
               { dataKey: 'mom', color: COLORS.import_prices, name: '輸入物価（前月比）' },
             ]}
-            yAxisFormatter={(v) => `${v}%`}
+            yAxisFormatter={(v) => `${Number(v).toFixed(1)}%`}
             yDomain={['dataMin - 1', 'dataMax + 1']}
           />
         )}

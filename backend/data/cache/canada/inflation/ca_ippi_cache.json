@@ -1148,14 +1148,14 @@
     },
     {
       "date": "2025-12-01",
-      "yoy": 4.13,
-      "mom": -0.74,
-      "index": 133.6
+      "yoy": 4.05,
+      "mom": -0.82,
+      "index": 133.5
     },
     {
       "date": "2026-01-01",
       "yoy": 5.6,
-      "mom": 2.99,
+      "mom": 3.07,
       "index": 137.6
     },
     {
@@ -1166,22 +1166,28 @@
     },
     {
       "date": "2026-03-01",
-      "yoy": 8.37,
-      "mom": 2.82,
-      "index": 142.4
+      "yoy": 8.52,
+      "mom": 2.96,
+      "index": 142.6
     },
     {
       "date": "2026-04-01",
-      "yoy": 11.43,
-      "mom": 2.04,
-      "index": 145.3
+      "yoy": 11.12,
+      "mom": 1.61,
+      "index": 144.9
+    },
+    {
+      "date": "2026-05-01",
+      "yoy": 13.56,
+      "mom": 1.17,
+      "index": 146.6
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "yoy": 11.43,
-    "mom": 2.04,
-    "index": 145.3
+    "date": "2026-05-01",
+    "yoy": 13.56,
+    "mom": 1.17,
+    "index": 146.6
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -1193,14 +1199,14 @@
     "base_year": "2020=100"
   },
   "next_release": {
-    "date": "2026-06-18",
-    "datetime_utc": "2026-06-18T12:30:00+00:00",
-    "datetime_jst": "2026-06-18T21:30:00+09:00",
+    "date": "2026-07-24",
+    "datetime_utc": "2026-07-24T12:30:00+00:00",
+    "datetime_jst": "2026-07-24T21:30:00+09:00",
     "time_jst": "21:30",
-    "datetime_toronto": "2026-06-18T08:30:00-04:00",
+    "datetime_toronto": "2026-07-24T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "Producer Price Index YoY (May)",
-    "estimate": 14.0
+    "label": "Producer Price Index YoY (Jun)",
+    "estimate": 8.5
   },
-  "last_updated": "2026-06-17T21:31:25.754705+09:00"
+  "last_updated": "2026-06-27T11:46:19.598444+09:00"
 }

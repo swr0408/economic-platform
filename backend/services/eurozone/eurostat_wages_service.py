@@ -59,7 +59,7 @@ class EurostatWagesService:
         "unit": "PCH_SM",      # Percentage change compared to same period in previous year
         "nace_r2": "B-S",      # Industry, construction and services
         "lcstruct": "D11",     # Wages and salaries (total)
-        "geo": "EA20"          # Euro area - 20 countries (from 2023)
+        "geo": "EA21"          # Euro area - 21 countries (2026-01ブルガリア加盟でEA20→EA21)
     }
 
     DATA_CACHE_KEY = "eurozone:eurostat_wages:data"

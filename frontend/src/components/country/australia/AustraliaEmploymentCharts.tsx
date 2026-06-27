@@ -64,6 +64,13 @@ export default function AustraliaEmploymentCharts() {
         />
       </div>
 
+      {/* AU Underutilization */}
+      <div id="underutilization">
+        <AuUnderutilizationChart
+          data={dashboardData?.au_underutilization ?? null}
+        />
+      </div>
+
       {/* AU Participation Rate */}
       <div id="participation-rate">
         <AuParticipationRateChart
@@ -89,13 +96,6 @@ export default function AustraliaEmploymentCharts() {
       <div id="anz-job-advertisements">
         <AuAnzJobAdvertisementsChart
           data={dashboardData?.au_anz_job_advertisements ?? null}
-        />
-      </div>
-
-      {/* AU Underutilization */}
-      <div id="underutilization">
-        <AuUnderutilizationChart
-          data={dashboardData?.au_underutilization ?? null}
         />
       </div>
     </div>

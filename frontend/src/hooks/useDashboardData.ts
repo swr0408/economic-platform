@@ -3982,6 +3982,7 @@ export interface UKPolicyData {
   boe_inflation_expectations: BOEInflationExpectationsData | null
   boe_dmp_survey: BOEDMPSurveyData | null
   uk_public_sector_net_borrowing: UKPublicSectorNetBorrowingData | null
+  uk_government_debt_to_gdp_ratio: UKGovernmentDebtToGdpRatioData | null
   uk_qt: UKQTData | null
 }
 
@@ -4302,7 +4303,6 @@ export interface UKEconomyDashboardData {
   uk_pmi: UKPMIData | null
   uk_trade_balance: UKTradeBalanceData | null
   uk_current_account: UKCurrentAccountData | null
-  uk_government_debt_to_gdp_ratio: UKGovernmentDebtToGdpRatioData | null
 }
 
 /**
@@ -9100,20 +9100,6 @@ export interface NzCpiItemData {
   next_release?: { date: string; label?: string; time_jst?: string } | null
 }
 
-// NZ 貿易財/非貿易財データの型
-export interface NzTradedNontradedItem {
-  date: string
-  tradable_yoy: number | null
-  non_tradable_yoy: number | null
-}
-
-export interface NzTradedNontradedData {
-  data: NzTradedNontradedItem[]
-  latest: NzTradedNontradedItem | null
-  metadata: Record<string, unknown>
-  next_release?: { date: string; label?: string; time_jst?: string } | null
-}
-
 // NZ インフレ期待データの型
 export interface NzInflationExpectationsItem {
   date: string
@@ -9160,7 +9146,6 @@ export interface NzAnzBusinessOutlookPriceData {
 export interface NewZealandInflationData {
   nz_cpi: NzCpiData | null
   nz_cpi_item: NzCpiItemData | null
-  nz_traded_nontraded: NzTradedNontradedData | null
   nz_ppi: NzPpiData | null
   nz_inflation_expectations: NzInflationExpectationsData | null
   nz_anz_business_outlook_price: NzAnzBusinessOutlookPriceData | null

@@ -406,3 +406,34 @@ def scrape_unemployment_from_html(release_url: str) -> Dict[str, float]:
     except Exception as e:
         logger.error(f"[NBS-PR] Unemployment scraping failed: {e}")
         return {}
+
+
+def scrape_pmi_sectors_from_html(release_url: str) -> Dict[str, float]:
+    """PMI プレスリリース HTML から非製造業の業種別商務活動指数を抽出
+
+    非製造業 Excel シートには総合の「商务活动」しか無く、服务业/建筑业の
+    内訳が含まれないため、HTML 本文から抽出する。
+    本文例: "服务业商务活动指数为50.3%" / "建筑业商务活动指数为48.8%"
+
+    Returns:
+        {"services": float, "construction": float}（見つからない分は欠落）
+    """
+    try:
+        resp = requests.get(release_url, headers=HEADERS, timeout=15)
+        resp.encoding = "utf-8"
+        soup = BeautifulSoup(resp.text, "html.parser")
+        content = soup.find("div", class_="TRS_Editor") or soup
+        text = content.get_text("", strip=False)
+
+        result: Dict[str, float] = {}
+        m = re.search(r"服务业商务活动指数为(\d+\.?\d*)%", text)
+        if m:
+            result["services"] = float(m.group(1))
+        m = re.search(r"建筑业商务活动指数为(\d+\.?\d*)%", text)
+        if m:
+            result["construction"] = float(m.group(1))
+        return result
+
+    except Exception as e:
+        logger.error(f"[NBS-PR] PMI sectors scraping failed: {e}")
+        return {}

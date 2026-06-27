@@ -1154,22 +1154,46 @@
     },
     {
       "date": "2026-01-01",
-      "value": -19.0,
-      "forecast": -27.0,
-      "previous": -31.0
+      "value": -30.0,
+      "forecast": -33.0,
+      "previous": -32.0
+    },
+    {
+      "date": "2026-02-01",
+      "value": -28.0,
+      "forecast": -28.0,
+      "previous": -30.0
+    },
+    {
+      "date": "2026-03-01",
+      "value": -27.0,
+      "forecast": -29.0,
+      "previous": -28.0
+    },
+    {
+      "date": "2026-04-01",
+      "value": -38.0,
+      "forecast": -30.0,
+      "previous": -27.0
     },
     {
       "date": "2026-05-01",
       "value": -41.0,
       "forecast": -40.0,
       "previous": -38.0
+    },
+    {
+      "date": "2026-06-01",
+      "value": -45.0,
+      "forecast": -35.0,
+      "previous": -41.0
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": -41.0,
-    "forecast": -40.0,
-    "previous": -38.0
+    "date": "2026-06-01",
+    "value": -45.0,
+    "forecast": -35.0,
+    "previous": -41.0
   },
-  "last_updated": "2026-06-17T20:04:29.315514+09:00"
+  "last_updated": "2026-06-28T00:31:20.866051+09:00"
 }

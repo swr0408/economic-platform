@@ -212,7 +212,7 @@ export default function EurostatWagesChart({ data }: EurostatWagesChartProps) {
                     ]}
                     xAxisFormatter={(date) => date.replace('-', ' ')}
                     tooltipLabelFormatter={formatQuarterDateJP}
-                    yAxisFormatter={(v) => `${v}%`}
+                    yAxisFormatter={(v) => `${Number(v).toFixed(1)}%`}
                     tooltipValueFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toFixed(2)}%`}
                     yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
                     showZeroLine={true}

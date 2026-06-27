@@ -2383,19 +2383,23 @@
     {
       "date": "2026-06-16",
       "value": 9.4
+    },
+    {
+      "date": "2026-06-23",
+      "value": 10.0
     }
   ],
   "latest": {
-    "date": "2026-06-16",
-    "value": 9.4
+    "date": "2026-06-23",
+    "value": 10.0
   },
   "next_release": {
-    "date": "2026-06-23",
-    "datetime_utc": "2026-06-23T12:55:00+00:00",
-    "datetime_jst": "2026-06-23T21:55:00+09:00",
+    "date": "2026-06-30",
+    "datetime_utc": "2026-06-30T12:55:00+00:00",
+    "datetime_jst": "2026-06-30T21:55:00+09:00",
     "time_jst": "21:55",
-    "label": "Redbook YoY (Jun/20)",
+    "label": "Redbook YoY (Jun/27)",
     "estimate": null
   },
-  "last_updated": "2026-06-17T21:41:16.705697+09:00"
+  "last_updated": "2026-06-28T00:30:04.453604+09:00"
 }

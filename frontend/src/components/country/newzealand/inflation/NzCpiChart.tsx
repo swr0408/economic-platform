@@ -158,24 +158,25 @@ export default function NzCpiChart({ data }: NzCpiChartProps) {
         showPeriodSelector={false}
         dataSource="Stats NZ"
         sourceUrl="https://www.stats.govt.nz/indicators/consumers-price-index-cpi/"
+        handbookId="traded-nontraded"
       >
         {/* 最新値表示 */}
         <LatestValueBox
           items={[
             {
-              label: 'All Groups（YoY）',
+              label: '総合（前年比）',
               value: latest?.all_yoy,
               color: COLORS.all,
               format: 'percent',
             },
             {
-              label: 'Tradable（YoY）',
+              label: '貿易財（前年比）',
               value: latest?.tradable_yoy,
               color: COLORS.tradable,
               format: 'percent',
             },
             {
-              label: 'Non-Tradable（YoY）',
+              label: '非貿易財（前年比）',
               value: latest?.non_tradable_yoy,
               color: COLORS.non_tradable,
               format: 'percent',
@@ -227,9 +228,9 @@ export default function NzCpiChart({ data }: NzCpiChartProps) {
                       <StandardLineChart
                         data={filteredData}
                         lines={[
-                          { dataKey: 'all_yoy', color: COLORS.all, name: 'All Groups（前年比）', hide: hiddenSeries.has('all_yoy') },
-                          { dataKey: 'tradable_yoy', color: COLORS.tradable, name: 'Tradable（前年比）', hide: hiddenSeries.has('tradable_yoy') },
-                          { dataKey: 'non_tradable_yoy', color: COLORS.non_tradable, name: 'Non-Tradable（前年比）', hide: hiddenSeries.has('non_tradable_yoy') },
+                          { dataKey: 'all_yoy', color: COLORS.all, name: '総合（前年比）', hide: hiddenSeries.has('all_yoy') },
+                          { dataKey: 'tradable_yoy', color: COLORS.tradable, name: '貿易財（前年比）', hide: hiddenSeries.has('tradable_yoy') },
+                          { dataKey: 'non_tradable_yoy', color: COLORS.non_tradable, name: '非貿易財（前年比）', hide: hiddenSeries.has('non_tradable_yoy') },
                         ]}
                         yAxisFormatter={(v) => `${v}%`}
                         tooltipValueFormatter={(v) => `${v >= 0 ? '+' : ''}${v.toFixed(1)}%`}
@@ -249,9 +250,9 @@ export default function NzCpiChart({ data }: NzCpiChartProps) {
                       <StandardBarChart
                         data={filteredData}
                         bars={[
-                          { dataKey: 'all_qoq', color: COLORS.all, name: 'All Groups（前期比）' },
-                          { dataKey: 'tradable_qoq', color: COLORS.tradable, name: 'Tradable（前期比）' },
-                          { dataKey: 'non_tradable_qoq', color: COLORS.non_tradable, name: 'Non-Tradable（前期比）' },
+                          { dataKey: 'all_qoq', color: COLORS.all, name: '総合（前期比）' },
+                          { dataKey: 'tradable_qoq', color: COLORS.tradable, name: '貿易財（前期比）' },
+                          { dataKey: 'non_tradable_qoq', color: COLORS.non_tradable, name: '非貿易財（前期比）' },
                         ]}
                         yAxisFormatter={(v) => `${v}%`}
                         yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
@@ -267,9 +268,9 @@ export default function NzCpiChart({ data }: NzCpiChartProps) {
                     <QuarterlyTableWithDataTypes
                       data={qoqTableData}
                       dataTypes={[
-                        { type: 'all_qoq', label: 'All Groups（QoQ）', color: COLORS.all },
-                        { type: 'tradable_qoq', label: 'Tradable（QoQ）', color: COLORS.tradable },
-                        { type: 'non_tradable_qoq', label: 'Non-Tradable（QoQ）', color: COLORS.non_tradable },
+                        { type: 'all_qoq', label: '総合（前期比）', color: COLORS.all },
+                        { type: 'tradable_qoq', label: '貿易財（前期比）', color: COLORS.tradable },
+                        { type: 'non_tradable_qoq', label: '非貿易財（前期比）', color: COLORS.non_tradable },
                       ]}
                       selectedType={tableDataType}
                       onTypeChange={setTableDataType}

@@ -146,7 +146,7 @@ class ECBPPIService:
             url = f"{self.EUROSTAT_API_BASE}/{self.EUROSTAT_DATASET}"
             params = {
                 "format": "JSON",
-                "geo": "EA20",  # Euro area 20 countries
+                "geo": "EA21",  # Euro area 21 countries (2026-01でEA20→EA21移行)
                 "nace_r2": "B-E36",  # Total Industry (except construction)
                 "s_adj": "NSA",  # Not seasonally adjusted
                 "unit": "I21",  # Index 2021=100

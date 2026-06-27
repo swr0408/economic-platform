@@ -4069,13 +4069,13 @@
       },
       {
         "date": "2026-06-01",
-        "value": 3.4
+        "value": 3.3
       }
     ]
   },
   "latest": {
     "one_year": 4.6,
-    "five_year": 3.4,
+    "five_year": 3.3,
     "date": "2026-06-01"
   },
   "next_release": {
@@ -4086,5 +4086,5 @@
     "label": "Michigan Inflation Expectations (Jul)",
     "estimate": null
   },
-  "last_updated": "2026-06-17T00:31:40.916091+09:00"
+  "last_updated": "2026-06-27T17:32:38.056723+09:00"
 }

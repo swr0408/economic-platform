@@ -199,10 +199,11 @@ class EUImportPricesService:
         Returns:
             インデックスデータポイントのリスト
         """
-        # ei_isin_m: M.I2021.NSA.B-D.IS-IMPR.EA20
+        # ei_isin_m: M.I2021.NSA.B-D.IS-IMPR.EA21
         # M = Monthly, I2021 = Index 2021=100, NSA = Not seasonally adjusted
-        # B-D = Industry, IS-IMPR = Import prices, EA20 = Euro area 20
-        series_key = "M.I2021.NSA.B-D.IS-IMPR.EA20"
+        # B-D = Industry, IS-IMPR = Import prices, EA21 = Euro area 21
+        # 2026-01ブルガリア加盟で公式集計がEA20→EA21に移行(EA21は2000-01〜の全履歴あり)
+        series_key = "M.I2021.NSA.B-D.IS-IMPR.EA21"
         url = f"{self.EUROSTAT_API_BASE}/{self.DATASET}/{series_key}"
 
         params = {

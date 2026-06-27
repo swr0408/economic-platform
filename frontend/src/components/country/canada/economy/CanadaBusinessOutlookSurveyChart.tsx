@@ -140,7 +140,7 @@ export default function CanadaBusinessOutlookSurveyChart({ data }: CanadaBusines
           date={latestValue?.date}
           format="number"
           decimals={0}
-          unit="%"
+          unit="pt"
           valueColor={latestDisplay.color}
           nextRelease={data.next_release ?? null}
         />
@@ -163,9 +163,10 @@ export default function CanadaBusinessOutlookSurveyChart({ data }: CanadaBusines
           <StandardLineChart
             data={filteredData}
             lines={getSentimentLines()}
-            yAxisFormatter={(v) => `${v}%`}
+            yAxisFormatter={(v) => `${v}`}
             yDomain={['dataMin - 5', 'dataMax + 5']}
             showZeroLine={true}
+            tooltipValueFormatter={(v) => (v != null ? `${v}pt` : 'N/A')}
             onLegendClick={handleLegendClick}
           />
         )}
@@ -174,9 +175,10 @@ export default function CanadaBusinessOutlookSurveyChart({ data }: CanadaBusines
           <StandardLineChart
             data={filteredData}
             lines={getPriceLines()}
-            yAxisFormatter={(v) => `${v}%`}
+            yAxisFormatter={(v) => `${v}`}
             yDomain={['dataMin - 5', 'dataMax + 5']}
             showZeroLine={true}
+            tooltipValueFormatter={(v) => (v != null ? `${v}pt` : 'N/A')}
             onLegendClick={handleLegendClick}
           />
         )}

@@ -4617,6 +4617,15 @@
     "data_start": "2015-01-01",
     "description": "ユーロ圏消費者物価調和指数（HICP）"
   },
-  "next_release": null,
-  "last_updated": "2026-06-17T20:04:33.291988+09:00"
+  "next_release": {
+    "date": "2026-07-01",
+    "datetime_utc": "2026-07-01T09:00:00+00:00",
+    "datetime_jst": "2026-07-01T18:00:00+09:00",
+    "time_jst": "18:00",
+    "datetime_cet": "2026-07-01T11:00:00+02:00",
+    "time_cet": "11:00",
+    "label": "HICP MoM (Jun)",
+    "estimate": null
+  },
+  "last_updated": "2026-06-27T22:45:43.357587+09:00"
 }

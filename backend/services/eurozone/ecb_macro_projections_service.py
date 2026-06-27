@@ -145,8 +145,15 @@ class ECBMacroProjectionsService:
         }
     }
 
-    # ヴィンテージシーズンマッピング
-    # 最新ヴィンテージは「既に発表済み」のものを使用
+    # 発表月→シーズンコードのマッピング
+    # ECBは3月・6月・9月・12月の理事会（各月の初旬〜中旬）で見通しを公表する
+    # W=Winter/March, G=Spring/June, S=Summer/September, A=Autumn/December
+    SEASON_BY_RELEASE_MONTH = {3: 'W', 6: 'G', 9: 'S', 12: 'A'}
+
+    # ヴィンテージシーズンマッピング（静的フォールバック用）
+    # 動的探索（_resolve_available_vintages）が失敗した場合のみ使用する。
+    # 各発表月いっぱいは前四半期のヴィンテージを保持する保守的な対応表のため、
+    # 通常は動的探索で公開済みの最新ヴィンテージを優先する。
     # W=Winter/March, G=Spring/June, S=Summer/September, A=Autumn/December
     VINTAGE_SEASONS = {
         1: ('A', 'S'),   # 1月: 最新=12月(Autumn), 前回=9月(Summer) - Winterはまだ未発表
@@ -173,10 +180,103 @@ class ECBMacroProjectionsService:
     FMP_EVENT_PATTERN = "ECB Interest Rate Decision"
 
     def __init__(self):
-        pass
+        # 解決済みヴィンテージの日次メモ化（API過剰プローブ防止）。キー=(year, month, day)
+        self._vintage_cache: Dict[tuple, Dict[str, Any]] = {}
+
+    def _vintage_has_data(self, vintage: str) -> bool:
+        """ヴィンテージがECB APIで公開済みかを軽量チェック（リトライなし・短timeout）
+
+        未公開のヴィンテージはECB APIが404を返すため、これで発表済みかを判別できる。
+        通常のリトライ付き取得を使うと未公開ヴィンテージで無駄に待機するため専用実装。
+        """
+        url = f"{self.ECB_API_BASE}/{self.DATAFLOW}/A.U2.YER.A.{vintage}.0000"
+        try:
+            response = requests.get(
+                url,
+                params={'format': 'jsondata', 'lastNObservations': 1},
+                timeout=15,
+            )
+            if response.status_code != 200:
+                return False
+            data = response.json()
+            return bool(data.get('dataSets'))
+        except Exception:
+            return False
+
+    def _candidate_vintages(self, reference_date: datetime) -> List[tuple]:
+        """現時点で発表済みの可能性があるヴィンテージを新しい順に列挙
+
+        各発表点（3/6/9/12月）について、参照日がその発表月以降であれば候補に含める。
+        発表月の初旬（理事会前）はAPIが未公開＝404のため、最終的な採否はプローブで決める。
+        戻り値: (season, year_2digit, vintage) のリスト（新しい順）
+        """
+        current_year = reference_date.year
+        current_month = reference_date.month
+        candidates: List[tuple] = []
+        # 現在年から過去3年分の発表点を新しい順に生成
+        for year in range(current_year, current_year - 3, -1):
+            for rel_month in (12, 9, 6, 3):
+                if year < current_year or current_month >= rel_month:
+                    season = self.SEASON_BY_RELEASE_MONTH[rel_month]
+                    year2 = year % 100
+                    candidates.append((season, year2, f"{season}{year2:02d}"))
+        return candidates
+
+    def _resolve_available_vintages(self, reference_date: datetime) -> List[tuple]:
+        """ECB APIで実際に公開済みの最新2ヴィンテージを新しい順に解決"""
+        available: List[tuple] = []
+        for candidate in self._candidate_vintages(reference_date):
+            if self._vintage_has_data(candidate[2]):
+                available.append(candidate)
+                if len(available) >= 2:
+                    break
+        return available
 
     def _get_vintage_codes(self, reference_date: Optional[datetime] = None) -> Dict[str, Any]:
-        """現在の月に基づいてヴィンテージコードを取得"""
+        """利用可能な最新ヴィンテージコードを取得
+
+        ECB APIで実際に公開済みのヴィンテージを動的に解決する。
+        ECBは発表月の初旬〜中旬の理事会で見通しを公表するため、固定の月マッピングだと
+        発表月いっぱい前四半期の見通しを表示し続けてしまう（凍結に見える）問題を回避する。
+        プローブが失敗した場合のみ従来の静的マッピングにフォールバックする。
+        """
+        if reference_date is None:
+            reference_date = datetime.now()
+
+        cache_key = (reference_date.year, reference_date.month, reference_date.day)
+        if cache_key in self._vintage_cache:
+            return self._vintage_cache[cache_key]
+
+        try:
+            available = self._resolve_available_vintages(reference_date)
+        except Exception as e:
+            print(f"[ECB MPD] Vintage probing failed, using static mapping: {e}")
+            available = []
+
+        if len(available) >= 2:
+            (latest_season, _, latest_vintage) = available[0]
+            (previous_season, _, previous_vintage) = available[1]
+            result = {
+                'latest_season': latest_season,
+                'previous_season': previous_season,
+                'latest_vintage': latest_vintage,
+                'previous_vintage': previous_vintage,
+                'latest_season_name': self._get_season_name(latest_season),
+                'previous_season_name': self._get_season_name(previous_season),
+            }
+            print(
+                f"[ECB MPD] Resolved vintages dynamically: latest={latest_vintage}, "
+                f"previous={previous_vintage}"
+            )
+        else:
+            print("[ECB MPD] Falling back to static vintage mapping")
+            result = self._get_vintage_codes_static(reference_date)
+
+        self._vintage_cache[cache_key] = result
+        return result
+
+    def _get_vintage_codes_static(self, reference_date: Optional[datetime] = None) -> Dict[str, Any]:
+        """現在の月に基づいてヴィンテージコードを取得（静的フォールバック）"""
         if reference_date is None:
             reference_date = datetime.now()
 

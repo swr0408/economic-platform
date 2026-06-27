@@ -1,1586 +1,8 @@
 {
   "data": [
     {
-      "date": "1978-02-01",
-      "underutilisation": 9.2,
-      "underemployment": 2.55,
-      "unemployment": 6.64
-    },
-    {
-      "date": "1978-03-01",
-      "underutilisation": 8.73,
-      "underemployment": 2.43,
-      "unemployment": 6.3
-    },
-    {
-      "date": "1978-04-01",
-      "underutilisation": 8.86,
-      "underemployment": 2.59,
-      "unemployment": 6.27
-    },
-    {
-      "date": "1978-05-01",
-      "underutilisation": 8.83,
-      "underemployment": 2.62,
-      "unemployment": 6.21
-    },
-    {
-      "date": "1978-06-01",
-      "underutilisation": 8.97,
-      "underemployment": 2.66,
-      "unemployment": 6.3
-    },
-    {
-      "date": "1978-07-01",
-      "underutilisation": 8.96,
-      "underemployment": 2.74,
-      "unemployment": 6.22
-    },
-    {
-      "date": "1978-08-01",
-      "underutilisation": 9.21,
-      "underemployment": 2.72,
-      "unemployment": 6.49
-    },
-    {
-      "date": "1978-09-01",
-      "underutilisation": 8.91,
-      "underemployment": 2.66,
-      "unemployment": 6.25
-    },
-    {
-      "date": "1978-10-01",
-      "underutilisation": 8.77,
-      "underemployment": 2.61,
-      "unemployment": 6.16
-    },
-    {
-      "date": "1978-11-01",
-      "underutilisation": 8.85,
-      "underemployment": 2.52,
-      "unemployment": 6.33
-    },
-    {
-      "date": "1978-12-01",
-      "underutilisation": 8.9,
-      "underemployment": 2.49,
-      "unemployment": 6.41
-    },
-    {
-      "date": "1979-01-01",
-      "underutilisation": 8.93,
-      "underemployment": 2.56,
-      "unemployment": 6.37
-    },
-    {
-      "date": "1979-02-01",
-      "underutilisation": 8.9,
-      "underemployment": 2.64,
-      "unemployment": 6.26
-    },
-    {
-      "date": "1979-03-01",
-      "underutilisation": 8.82,
-      "underemployment": 2.52,
-      "unemployment": 6.3
-    },
-    {
-      "date": "1979-04-01",
-      "underutilisation": 9.35,
-      "underemployment": 2.85,
-      "unemployment": 6.5
-    },
-    {
-      "date": "1979-05-01",
-      "underutilisation": 8.96,
-      "underemployment": 2.75,
-      "unemployment": 6.2
-    },
-    {
-      "date": "1979-06-01",
-      "underutilisation": 8.99,
-      "underemployment": 2.74,
-      "unemployment": 6.25
-    },
-    {
-      "date": "1979-07-01",
-      "underutilisation": 9.0,
-      "underemployment": 2.73,
-      "unemployment": 6.27
-    },
-    {
-      "date": "1979-08-01",
-      "underutilisation": 8.79,
-      "underemployment": 2.67,
-      "unemployment": 6.12
-    },
-    {
-      "date": "1979-09-01",
-      "underutilisation": 8.91,
-      "underemployment": 2.68,
-      "unemployment": 6.23
-    },
-    {
-      "date": "1979-10-01",
-      "underutilisation": 9.06,
-      "underemployment": 2.68,
-      "unemployment": 6.38
-    },
-    {
-      "date": "1979-11-01",
-      "underutilisation": 8.84,
-      "underemployment": 2.8,
-      "unemployment": 6.04
-    },
-    {
-      "date": "1979-12-01",
-      "underutilisation": 9.01,
-      "underemployment": 2.89,
-      "unemployment": 6.12
-    },
-    {
-      "date": "1980-01-01",
-      "underutilisation": 9.02,
-      "underemployment": 2.88,
-      "unemployment": 6.15
-    },
-    {
-      "date": "1980-02-01",
-      "underutilisation": 8.84,
-      "underemployment": 2.85,
-      "unemployment": 6.0
-    },
-    {
-      "date": "1980-03-01",
-      "underutilisation": 8.86,
-      "underemployment": 2.92,
-      "unemployment": 5.94
-    },
-    {
-      "date": "1980-04-01",
-      "underutilisation": 8.97,
-      "underemployment": 2.86,
-      "unemployment": 6.11
-    },
-    {
-      "date": "1980-05-01",
-      "underutilisation": 9.07,
-      "underemployment": 2.83,
-      "unemployment": 6.25
-    },
-    {
-      "date": "1980-06-01",
-      "underutilisation": 9.25,
-      "underemployment": 2.92,
-      "unemployment": 6.32
-    },
-    {
-      "date": "1980-07-01",
-      "underutilisation": 8.95,
-      "underemployment": 2.88,
-      "unemployment": 6.07
-    },
-    {
-      "date": "1980-08-01",
-      "underutilisation": 9.16,
-      "underemployment": 2.98,
-      "unemployment": 6.18
-    },
-    {
-      "date": "1980-09-01",
-      "underutilisation": 9.15,
-      "underemployment": 3.01,
-      "unemployment": 6.14
-    },
-    {
-      "date": "1980-10-01",
-      "underutilisation": 9.0,
-      "underemployment": 2.94,
-      "unemployment": 6.06
-    },
-    {
-      "date": "1980-11-01",
-      "underutilisation": 8.76,
-      "underemployment": 2.91,
-      "unemployment": 5.85
-    },
-    {
-      "date": "1980-12-01",
-      "underutilisation": 8.84,
-      "underemployment": 2.79,
-      "unemployment": 6.05
-    },
-    {
-      "date": "1981-01-01",
-      "underutilisation": 8.78,
-      "underemployment": 2.86,
-      "unemployment": 5.92
-    },
-    {
-      "date": "1981-02-01",
-      "underutilisation": 8.43,
-      "underemployment": 2.81,
-      "unemployment": 5.62
-    },
-    {
-      "date": "1981-03-01",
-      "underutilisation": 8.61,
-      "underemployment": 2.86,
-      "unemployment": 5.75
-    },
-    {
-      "date": "1981-04-01",
-      "underutilisation": 8.33,
-      "underemployment": 2.77,
-      "unemployment": 5.55
-    },
-    {
-      "date": "1981-05-01",
-      "underutilisation": 8.38,
-      "underemployment": 2.79,
-      "unemployment": 5.59
-    },
-    {
-      "date": "1981-06-01",
-      "underutilisation": 8.03,
-      "underemployment": 2.66,
-      "unemployment": 5.37
-    },
-    {
-      "date": "1981-07-01",
-      "underutilisation": 8.73,
-      "underemployment": 2.9,
-      "unemployment": 5.82
-    },
-    {
-      "date": "1981-08-01",
-      "underutilisation": 8.55,
-      "underemployment": 2.7,
-      "unemployment": 5.85
-    },
-    {
-      "date": "1981-09-01",
-      "underutilisation": 8.53,
-      "underemployment": 2.71,
-      "unemployment": 5.81
-    },
-    {
-      "date": "1981-10-01",
-      "underutilisation": 8.66,
-      "underemployment": 2.78,
-      "unemployment": 5.87
-    },
-    {
-      "date": "1981-11-01",
-      "underutilisation": 8.81,
-      "underemployment": 2.82,
-      "unemployment": 6.0
-    },
-    {
-      "date": "1981-12-01",
-      "underutilisation": 8.94,
-      "underemployment": 2.91,
-      "unemployment": 6.03
-    },
-    {
-      "date": "1982-01-01",
-      "underutilisation": 8.95,
-      "underemployment": 2.97,
-      "unemployment": 5.98
-    },
-    {
-      "date": "1982-02-01",
-      "underutilisation": 9.17,
-      "underemployment": 2.87,
-      "unemployment": 6.31
-    },
-    {
-      "date": "1982-03-01",
-      "underutilisation": 9.27,
-      "underemployment": 2.94,
-      "unemployment": 6.32
-    },
-    {
-      "date": "1982-04-01",
-      "underutilisation": 9.36,
-      "underemployment": 3.03,
-      "unemployment": 6.33
-    },
-    {
-      "date": "1982-05-01",
-      "underutilisation": 9.76,
-      "underemployment": 3.17,
-      "unemployment": 6.59
-    },
-    {
-      "date": "1982-06-01",
-      "underutilisation": 9.88,
-      "underemployment": 3.11,
-      "unemployment": 6.77
-    },
-    {
-      "date": "1982-07-01",
-      "underutilisation": 10.12,
-      "underemployment": 3.24,
-      "unemployment": 6.88
-    },
-    {
-      "date": "1982-08-01",
-      "underutilisation": 10.44,
-      "underemployment": 3.43,
-      "unemployment": 7.01
-    },
-    {
-      "date": "1982-09-01",
-      "underutilisation": 10.85,
-      "underemployment": 3.42,
-      "unemployment": 7.43
-    },
-    {
-      "date": "1982-10-01",
-      "underutilisation": 12.18,
-      "underemployment": 3.88,
-      "unemployment": 8.3
-    },
-    {
-      "date": "1982-11-01",
-      "underutilisation": 12.77,
-      "underemployment": 4.09,
-      "unemployment": 8.68
-    },
-    {
-      "date": "1982-12-01",
-      "underutilisation": 13.35,
-      "underemployment": 3.95,
-      "unemployment": 9.4
-    },
-    {
-      "date": "1983-01-01",
-      "underutilisation": 13.08,
-      "underemployment": 3.78,
-      "unemployment": 9.3
-    },
-    {
-      "date": "1983-02-01",
-      "underutilisation": 13.54,
-      "underemployment": 3.88,
-      "unemployment": 9.66
-    },
-    {
-      "date": "1983-03-01",
-      "underutilisation": 14.0,
-      "underemployment": 4.05,
-      "unemployment": 9.95
-    },
-    {
-      "date": "1983-04-01",
-      "underutilisation": 13.95,
-      "underemployment": 3.8,
-      "unemployment": 10.15
-    },
-    {
-      "date": "1983-05-01",
-      "underutilisation": 14.48,
-      "underemployment": 4.15,
-      "unemployment": 10.32
-    },
-    {
-      "date": "1983-06-01",
-      "underutilisation": 14.31,
-      "underemployment": 4.1,
-      "unemployment": 10.2
-    },
-    {
-      "date": "1983-07-01",
-      "underutilisation": 14.47,
-      "underemployment": 3.94,
-      "unemployment": 10.52
-    },
-    {
-      "date": "1983-08-01",
-      "underutilisation": 14.13,
-      "underemployment": 3.91,
-      "unemployment": 10.22
-    },
-    {
-      "date": "1983-09-01",
-      "underutilisation": 14.19,
-      "underemployment": 3.85,
-      "unemployment": 10.34
-    },
-    {
-      "date": "1983-10-01",
-      "underutilisation": 13.66,
-      "underemployment": 3.65,
-      "unemployment": 10.01
-    },
-    {
-      "date": "1983-11-01",
-      "underutilisation": 13.29,
-      "underemployment": 3.63,
-      "unemployment": 9.65
-    },
-    {
-      "date": "1983-12-01",
-      "underutilisation": 12.85,
-      "underemployment": 3.4,
-      "unemployment": 9.46
-    },
-    {
-      "date": "1984-01-01",
-      "underutilisation": 13.09,
-      "underemployment": 3.59,
-      "unemployment": 9.5
-    },
-    {
-      "date": "1984-02-01",
-      "underutilisation": 12.94,
-      "underemployment": 3.55,
-      "unemployment": 9.39
-    },
-    {
-      "date": "1984-03-01",
-      "underutilisation": 12.78,
-      "underemployment": 3.58,
-      "unemployment": 9.21
-    },
-    {
-      "date": "1984-04-01",
-      "underutilisation": 13.04,
-      "underemployment": 3.67,
-      "unemployment": 9.37
-    },
-    {
-      "date": "1984-05-01",
-      "underutilisation": 12.53,
-      "underemployment": 3.59,
-      "unemployment": 8.94
-    },
-    {
-      "date": "1984-06-01",
-      "underutilisation": 12.6,
-      "underemployment": 3.51,
-      "unemployment": 9.1
-    },
-    {
-      "date": "1984-07-01",
-      "underutilisation": 12.5,
-      "underemployment": 3.58,
-      "unemployment": 8.92
-    },
-    {
-      "date": "1984-08-01",
-      "underutilisation": 12.28,
-      "underemployment": 3.45,
-      "unemployment": 8.83
-    },
-    {
-      "date": "1984-09-01",
-      "underutilisation": 12.27,
-      "underemployment": 3.54,
-      "unemployment": 8.73
-    },
-    {
-      "date": "1984-10-01",
-      "underutilisation": 12.25,
-      "underemployment": 3.56,
-      "unemployment": 8.7
-    },
-    {
-      "date": "1984-11-01",
-      "underutilisation": 12.14,
-      "underemployment": 3.46,
-      "unemployment": 8.68
-    },
-    {
-      "date": "1984-12-01",
-      "underutilisation": 11.76,
-      "underemployment": 3.24,
-      "unemployment": 8.52
-    },
-    {
-      "date": "1985-01-01",
-      "underutilisation": 12.0,
-      "underemployment": 3.45,
-      "unemployment": 8.55
-    },
-    {
-      "date": "1985-02-01",
-      "underutilisation": 11.93,
-      "underemployment": 3.54,
-      "unemployment": 8.39
-    },
-    {
-      "date": "1985-03-01",
-      "underutilisation": 11.96,
-      "underemployment": 3.29,
-      "unemployment": 8.67
-    },
-    {
-      "date": "1985-04-01",
-      "underutilisation": 11.71,
-      "underemployment": 3.3,
-      "unemployment": 8.4
-    },
-    {
-      "date": "1985-05-01",
-      "underutilisation": 11.52,
-      "underemployment": 3.14,
-      "unemployment": 8.38
-    },
-    {
-      "date": "1985-06-01",
-      "underutilisation": 11.7,
-      "underemployment": 3.13,
-      "unemployment": 8.57
-    },
-    {
-      "date": "1985-07-01",
-      "underutilisation": 11.54,
-      "underemployment": 3.23,
-      "unemployment": 8.31
-    },
-    {
-      "date": "1985-08-01",
-      "underutilisation": 11.43,
-      "underemployment": 3.27,
-      "unemployment": 8.16
-    },
-    {
-      "date": "1985-09-01",
-      "underutilisation": 11.23,
-      "underemployment": 3.18,
-      "unemployment": 8.06
-    },
-    {
-      "date": "1985-10-01",
-      "underutilisation": 11.16,
-      "underemployment": 3.31,
-      "unemployment": 7.85
-    },
-    {
-      "date": "1985-11-01",
-      "underutilisation": 11.22,
-      "underemployment": 3.26,
-      "unemployment": 7.95
-    },
-    {
-      "date": "1985-12-01",
-      "underutilisation": 10.9,
-      "underemployment": 3.11,
-      "unemployment": 7.78
-    },
-    {
-      "date": "1986-01-01",
-      "underutilisation": 11.06,
-      "underemployment": 3.25,
-      "unemployment": 7.8
-    },
-    {
-      "date": "1986-02-01",
-      "underutilisation": 11.42,
-      "underemployment": 3.42,
-      "unemployment": 8.0
-    },
-    {
-      "date": "1986-03-01",
-      "underutilisation": 11.36,
-      "underemployment": 3.43,
-      "unemployment": 7.93
-    },
-    {
-      "date": "1986-04-01",
-      "underutilisation": 11.6,
-      "underemployment": 3.7,
-      "unemployment": 7.9
-    },
-    {
-      "date": "1986-05-01",
-      "underutilisation": 11.41,
-      "underemployment": 3.56,
-      "unemployment": 7.85
-    },
-    {
-      "date": "1986-06-01",
-      "underutilisation": 11.39,
-      "underemployment": 3.74,
-      "unemployment": 7.65
-    },
-    {
-      "date": "1986-07-01",
-      "underutilisation": 11.78,
-      "underemployment": 3.68,
-      "unemployment": 8.11
-    },
-    {
-      "date": "1986-08-01",
-      "underutilisation": 11.89,
-      "underemployment": 3.65,
-      "unemployment": 8.24
-    },
-    {
-      "date": "1986-09-01",
-      "underutilisation": 12.04,
-      "underemployment": 3.7,
-      "unemployment": 8.34
-    },
-    {
-      "date": "1986-10-01",
-      "underutilisation": 11.87,
-      "underemployment": 3.56,
-      "unemployment": 8.31
-    },
-    {
-      "date": "1986-11-01",
-      "underutilisation": 12.14,
-      "underemployment": 3.82,
-      "unemployment": 8.32
-    },
-    {
-      "date": "1986-12-01",
-      "underutilisation": 12.26,
-      "underemployment": 3.89,
-      "unemployment": 8.36
-    },
-    {
-      "date": "1987-01-01",
-      "underutilisation": 11.98,
-      "underemployment": 3.79,
-      "unemployment": 8.19
-    },
-    {
-      "date": "1987-02-01",
-      "underutilisation": 12.04,
-      "underemployment": 3.83,
-      "unemployment": 8.21
-    },
-    {
-      "date": "1987-03-01",
-      "underutilisation": 12.28,
-      "underemployment": 3.85,
-      "unemployment": 8.43
-    },
-    {
-      "date": "1987-04-01",
-      "underutilisation": 12.17,
-      "underemployment": 3.87,
-      "unemployment": 8.3
-    },
-    {
-      "date": "1987-05-01",
-      "underutilisation": 12.18,
-      "underemployment": 3.98,
-      "unemployment": 8.2
-    },
-    {
-      "date": "1987-06-01",
-      "underutilisation": 12.09,
-      "underemployment": 4.08,
-      "unemployment": 8.01
-    },
-    {
-      "date": "1987-07-01",
-      "underutilisation": 12.09,
-      "underemployment": 4.01,
-      "unemployment": 8.07
-    },
-    {
-      "date": "1987-08-01",
-      "underutilisation": 12.27,
-      "underemployment": 4.17,
-      "unemployment": 8.1
-    },
-    {
-      "date": "1987-09-01",
-      "underutilisation": 11.75,
-      "underemployment": 3.99,
-      "unemployment": 7.76
-    },
-    {
-      "date": "1987-10-01",
-      "underutilisation": 12.04,
-      "underemployment": 3.96,
-      "unemployment": 8.09
-    },
-    {
-      "date": "1987-11-01",
-      "underutilisation": 11.96,
-      "underemployment": 4.03,
-      "unemployment": 7.93
-    },
-    {
-      "date": "1987-12-01",
-      "underutilisation": 11.72,
-      "underemployment": 3.99,
-      "unemployment": 7.73
-    },
-    {
-      "date": "1988-01-01",
-      "underutilisation": 11.7,
-      "underemployment": 4.07,
-      "unemployment": 7.63
-    },
-    {
-      "date": "1988-02-01",
-      "underutilisation": 11.45,
-      "underemployment": 4.03,
-      "unemployment": 7.42
-    },
-    {
-      "date": "1988-03-01",
-      "underutilisation": 11.3,
-      "underemployment": 3.8,
-      "unemployment": 7.5
-    },
-    {
-      "date": "1988-04-01",
-      "underutilisation": 11.74,
-      "underemployment": 3.82,
-      "unemployment": 7.91
-    },
-    {
-      "date": "1988-05-01",
-      "underutilisation": 10.75,
-      "underemployment": 3.3,
-      "unemployment": 7.45
-    },
-    {
-      "date": "1988-06-01",
-      "underutilisation": 11.53,
-      "underemployment": 3.95,
-      "unemployment": 7.58
-    },
-    {
-      "date": "1988-07-01",
-      "underutilisation": 10.43,
-      "underemployment": 3.68,
-      "unemployment": 6.75
-    },
-    {
-      "date": "1988-08-01",
-      "underutilisation": 10.67,
-      "underemployment": 3.6,
-      "unemployment": 7.07
-    },
-    {
-      "date": "1988-09-01",
-      "underutilisation": 10.59,
-      "underemployment": 3.66,
-      "unemployment": 6.93
-    },
-    {
-      "date": "1988-10-01",
-      "underutilisation": 10.53,
-      "underemployment": 3.72,
-      "unemployment": 6.82
-    },
-    {
-      "date": "1988-11-01",
-      "underutilisation": 10.27,
-      "underemployment": 3.66,
-      "unemployment": 6.61
-    },
-    {
-      "date": "1988-12-01",
-      "underutilisation": 10.84,
-      "underemployment": 4.0,
-      "unemployment": 6.83
-    },
-    {
-      "date": "1989-01-01",
-      "underutilisation": 10.62,
-      "underemployment": 3.82,
-      "unemployment": 6.81
-    },
-    {
-      "date": "1989-02-01",
-      "underutilisation": 10.57,
-      "underemployment": 3.93,
-      "unemployment": 6.64
-    },
-    {
-      "date": "1989-03-01",
-      "underutilisation": 10.06,
-      "underemployment": 3.71,
-      "unemployment": 6.34
-    },
-    {
-      "date": "1989-04-01",
-      "underutilisation": 9.95,
-      "underemployment": 3.75,
-      "unemployment": 6.2
-    },
-    {
-      "date": "1989-05-01",
-      "underutilisation": 10.09,
-      "underemployment": 3.81,
-      "unemployment": 6.28
-    },
-    {
-      "date": "1989-06-01",
-      "underutilisation": 9.68,
-      "underemployment": 3.67,
-      "unemployment": 6.01
-    },
-    {
-      "date": "1989-07-01",
-      "underutilisation": 9.9,
-      "underemployment": 3.86,
-      "unemployment": 6.04
-    },
-    {
-      "date": "1989-08-01",
-      "underutilisation": 9.9,
-      "underemployment": 3.96,
-      "unemployment": 5.94
-    },
-    {
-      "date": "1989-09-01",
-      "underutilisation": 10.24,
-      "underemployment": 4.21,
-      "unemployment": 6.03
-    },
-    {
-      "date": "1989-10-01",
-      "underutilisation": 9.8,
-      "underemployment": 3.88,
-      "unemployment": 5.92
-    },
-    {
-      "date": "1989-11-01",
-      "underutilisation": 9.8,
-      "underemployment": 4.01,
-      "unemployment": 5.79
-    },
-    {
-      "date": "1989-12-01",
-      "underutilisation": 9.94,
-      "underemployment": 4.09,
-      "unemployment": 5.85
-    },
-    {
-      "date": "1990-01-01",
-      "underutilisation": 10.35,
-      "underemployment": 4.24,
-      "unemployment": 6.11
-    },
-    {
-      "date": "1990-02-01",
-      "underutilisation": 10.43,
-      "underemployment": 4.04,
-      "unemployment": 6.39
-    },
-    {
-      "date": "1990-03-01",
-      "underutilisation": 10.33,
-      "underemployment": 4.14,
-      "unemployment": 6.19
-    },
-    {
-      "date": "1990-04-01",
-      "underutilisation": 10.48,
-      "underemployment": 4.2,
-      "unemployment": 6.28
-    },
-    {
-      "date": "1990-05-01",
-      "underutilisation": 10.75,
-      "underemployment": 4.24,
-      "unemployment": 6.5
-    },
-    {
-      "date": "1990-06-01",
-      "underutilisation": 10.93,
-      "underemployment": 4.32,
-      "unemployment": 6.61
-    },
-    {
-      "date": "1990-07-01",
-      "underutilisation": 11.49,
-      "underemployment": 4.39,
-      "unemployment": 7.1
-    },
-    {
-      "date": "1990-08-01",
-      "underutilisation": 11.68,
-      "underemployment": 4.47,
-      "unemployment": 7.21
-    },
-    {
-      "date": "1990-09-01",
-      "underutilisation": 12.19,
-      "underemployment": 4.81,
-      "unemployment": 7.37
-    },
-    {
-      "date": "1990-10-01",
-      "underutilisation": 12.48,
-      "underemployment": 4.84,
-      "unemployment": 7.64
-    },
-    {
-      "date": "1990-11-01",
-      "underutilisation": 13.01,
-      "underemployment": 5.06,
-      "unemployment": 7.95
-    },
-    {
-      "date": "1990-12-01",
-      "underutilisation": 13.21,
-      "underemployment": 5.19,
-      "unemployment": 8.02
-    },
-    {
-      "date": "1991-01-01",
-      "underutilisation": 13.62,
-      "underemployment": 5.22,
-      "unemployment": 8.4
-    },
-    {
-      "date": "1991-02-01",
-      "underutilisation": 14.15,
-      "underemployment": 5.53,
-      "unemployment": 8.62
-    },
-    {
-      "date": "1991-03-01",
-      "underutilisation": 14.99,
-      "underemployment": 5.8,
-      "unemployment": 9.19
-    },
-    {
-      "date": "1991-04-01",
-      "underutilisation": 15.77,
-      "underemployment": 5.91,
-      "unemployment": 9.86
-    },
-    {
-      "date": "1991-05-01",
-      "underutilisation": 14.85,
-      "underemployment": 5.35,
-      "unemployment": 9.5
-    },
-    {
-      "date": "1991-06-01",
-      "underutilisation": 15.73,
-      "underemployment": 6.17,
-      "unemployment": 9.56
-    },
-    {
-      "date": "1991-07-01",
-      "underutilisation": 16.01,
-      "underemployment": 6.34,
-      "unemployment": 9.68
-    },
-    {
-      "date": "1991-08-01",
-      "underutilisation": 15.9,
-      "underemployment": 6.11,
-      "unemployment": 9.79
-    },
-    {
-      "date": "1991-09-01",
-      "underutilisation": 16.11,
-      "underemployment": 6.08,
-      "unemployment": 10.03
-    },
-    {
-      "date": "1991-10-01",
-      "underutilisation": 16.08,
-      "underemployment": 6.09,
-      "unemployment": 9.99
-    },
-    {
-      "date": "1991-11-01",
-      "underutilisation": 16.46,
-      "underemployment": 6.26,
-      "unemployment": 10.2
-    },
-    {
-      "date": "1991-12-01",
-      "underutilisation": 16.6,
-      "underemployment": 6.13,
-      "unemployment": 10.48
-    },
-    {
-      "date": "1992-01-01",
-      "underutilisation": 16.71,
-      "underemployment": 6.36,
-      "unemployment": 10.35
-    },
-    {
-      "date": "1992-02-01",
-      "underutilisation": 17.02,
-      "underemployment": 6.62,
-      "unemployment": 10.4
-    },
-    {
-      "date": "1992-03-01",
-      "underutilisation": 17.05,
-      "underemployment": 6.56,
-      "unemployment": 10.5
-    },
-    {
-      "date": "1992-04-01",
-      "underutilisation": 17.33,
-      "underemployment": 6.85,
-      "unemployment": 10.47
-    },
-    {
-      "date": "1992-05-01",
-      "underutilisation": 17.49,
-      "underemployment": 6.87,
-      "unemployment": 10.62
-    },
-    {
-      "date": "1992-06-01",
-      "underutilisation": 17.57,
-      "underemployment": 6.76,
-      "unemployment": 10.81
-    },
-    {
-      "date": "1992-07-01",
-      "underutilisation": 17.99,
-      "underemployment": 6.86,
-      "unemployment": 11.14
-    },
-    {
-      "date": "1992-08-01",
-      "underutilisation": 17.74,
-      "underemployment": 7.02,
-      "unemployment": 10.72
-    },
-    {
-      "date": "1992-09-01",
-      "underutilisation": 17.79,
-      "underemployment": 7.17,
-      "unemployment": 10.62
-    },
-    {
-      "date": "1992-10-01",
-      "underutilisation": 18.13,
-      "underemployment": 7.04,
-      "unemployment": 11.09
-    },
-    {
-      "date": "1992-11-01",
-      "underutilisation": 18.16,
-      "underemployment": 7.02,
-      "unemployment": 11.14
-    },
-    {
-      "date": "1992-12-01",
-      "underutilisation": 18.12,
-      "underemployment": 6.9,
-      "unemployment": 11.22
-    },
-    {
-      "date": "1993-01-01",
-      "underutilisation": 17.78,
-      "underemployment": 6.95,
-      "unemployment": 10.83
-    },
-    {
-      "date": "1993-02-01",
-      "underutilisation": 17.88,
-      "underemployment": 6.87,
-      "unemployment": 11.01
-    },
-    {
-      "date": "1993-03-01",
-      "underutilisation": 17.82,
-      "underemployment": 6.96,
-      "unemployment": 10.86
-    },
-    {
-      "date": "1993-04-01",
-      "underutilisation": 17.73,
-      "underemployment": 6.97,
-      "unemployment": 10.77
-    },
-    {
-      "date": "1993-05-01",
-      "underutilisation": 17.65,
-      "underemployment": 6.86,
-      "unemployment": 10.79
-    },
-    {
-      "date": "1993-06-01",
-      "underutilisation": 17.78,
-      "underemployment": 6.79,
-      "unemployment": 10.99
-    },
-    {
-      "date": "1993-07-01",
-      "underutilisation": 17.73,
-      "underemployment": 6.78,
-      "unemployment": 10.95
-    },
-    {
-      "date": "1993-08-01",
-      "underutilisation": 17.76,
-      "underemployment": 6.78,
-      "unemployment": 10.98
-    },
-    {
-      "date": "1993-09-01",
-      "underutilisation": 17.93,
-      "underemployment": 7.19,
-      "unemployment": 10.74
-    },
-    {
-      "date": "1993-10-01",
-      "underutilisation": 17.85,
-      "underemployment": 6.89,
-      "unemployment": 10.96
-    },
-    {
-      "date": "1993-11-01",
-      "underutilisation": 17.54,
-      "underemployment": 6.59,
-      "unemployment": 10.95
-    },
-    {
-      "date": "1993-12-01",
-      "underutilisation": 17.45,
-      "underemployment": 6.69,
-      "unemployment": 10.76
-    },
-    {
-      "date": "1994-01-01",
-      "underutilisation": 17.24,
-      "underemployment": 6.67,
-      "unemployment": 10.57
-    },
-    {
-      "date": "1994-02-01",
-      "underutilisation": 17.03,
-      "underemployment": 6.63,
-      "unemployment": 10.4
-    },
-    {
-      "date": "1994-03-01",
-      "underutilisation": 17.03,
-      "underemployment": 6.67,
-      "unemployment": 10.35
-    },
-    {
-      "date": "1994-04-01",
-      "underutilisation": 16.5,
-      "underemployment": 6.44,
-      "unemployment": 10.06
-    },
-    {
-      "date": "1994-05-01",
-      "underutilisation": 16.37,
-      "underemployment": 6.61,
-      "unemployment": 9.77
-    },
-    {
-      "date": "1994-06-01",
-      "underutilisation": 16.32,
-      "underemployment": 6.5,
-      "unemployment": 9.82
-    },
-    {
-      "date": "1994-07-01",
-      "underutilisation": 16.08,
-      "underemployment": 6.45,
-      "unemployment": 9.63
-    },
-    {
-      "date": "1994-08-01",
-      "underutilisation": 15.95,
-      "underemployment": 6.5,
-      "unemployment": 9.44
-    },
-    {
-      "date": "1994-09-01",
-      "underutilisation": 15.29,
-      "underemployment": 5.93,
-      "unemployment": 9.35
-    },
-    {
-      "date": "1994-10-01",
-      "underutilisation": 15.51,
-      "underemployment": 6.42,
-      "unemployment": 9.09
-    },
-    {
-      "date": "1994-11-01",
-      "underutilisation": 15.52,
-      "underemployment": 6.38,
-      "unemployment": 9.14
-    },
-    {
-      "date": "1994-12-01",
-      "underutilisation": 15.49,
-      "underemployment": 6.55,
-      "unemployment": 8.94
-    },
-    {
-      "date": "1995-01-01",
-      "underutilisation": 15.22,
-      "underemployment": 6.36,
-      "unemployment": 8.86
-    },
-    {
-      "date": "1995-02-01",
-      "underutilisation": 15.3,
-      "underemployment": 6.48,
-      "unemployment": 8.82
-    },
-    {
-      "date": "1995-03-01",
-      "underutilisation": 15.05,
-      "underemployment": 6.44,
-      "unemployment": 8.62
-    },
-    {
-      "date": "1995-04-01",
-      "underutilisation": 14.71,
-      "underemployment": 6.44,
-      "unemployment": 8.27
-    },
-    {
-      "date": "1995-05-01",
-      "underutilisation": 14.78,
-      "underemployment": 6.3,
-      "unemployment": 8.47
-    },
-    {
-      "date": "1995-06-01",
-      "underutilisation": 14.86,
-      "underemployment": 6.51,
-      "unemployment": 8.35
-    },
-    {
-      "date": "1995-07-01",
-      "underutilisation": 15.04,
-      "underemployment": 6.61,
-      "unemployment": 8.43
-    },
-    {
-      "date": "1995-08-01",
-      "underutilisation": 15.03,
-      "underemployment": 6.71,
-      "unemployment": 8.32
-    },
-    {
-      "date": "1995-09-01",
-      "underutilisation": 15.06,
-      "underemployment": 6.69,
-      "unemployment": 8.36
-    },
-    {
-      "date": "1995-10-01",
-      "underutilisation": 15.12,
-      "underemployment": 6.55,
-      "unemployment": 8.58
-    },
-    {
-      "date": "1995-11-01",
-      "underutilisation": 14.88,
-      "underemployment": 6.43,
-      "unemployment": 8.45
-    },
-    {
-      "date": "1995-12-01",
-      "underutilisation": 14.85,
-      "underemployment": 6.7,
-      "unemployment": 8.15
-    },
-    {
-      "date": "1996-01-01",
-      "underutilisation": 14.86,
-      "underemployment": 6.41,
-      "unemployment": 8.46
-    },
-    {
-      "date": "1996-02-01",
-      "underutilisation": 15.03,
-      "underemployment": 6.7,
-      "unemployment": 8.33
-    },
-    {
-      "date": "1996-03-01",
-      "underutilisation": 15.08,
-      "underemployment": 6.66,
-      "unemployment": 8.42
-    },
-    {
-      "date": "1996-04-01",
-      "underutilisation": 15.18,
-      "underemployment": 6.6,
-      "unemployment": 8.58
-    },
-    {
-      "date": "1996-05-01",
-      "underutilisation": 14.98,
-      "underemployment": 6.56,
-      "unemployment": 8.41
-    },
-    {
-      "date": "1996-06-01",
-      "underutilisation": 15.07,
-      "underemployment": 6.82,
-      "unemployment": 8.25
-    },
-    {
-      "date": "1996-07-01",
-      "underutilisation": 15.26,
-      "underemployment": 6.69,
-      "unemployment": 8.57
-    },
-    {
-      "date": "1996-08-01",
-      "underutilisation": 15.31,
-      "underemployment": 6.59,
-      "unemployment": 8.72
-    },
-    {
-      "date": "1996-09-01",
-      "underutilisation": 15.01,
-      "underemployment": 6.43,
-      "unemployment": 8.58
-    },
-    {
-      "date": "1996-10-01",
-      "underutilisation": 15.23,
-      "underemployment": 6.47,
-      "unemployment": 8.76
-    },
-    {
-      "date": "1996-11-01",
-      "underutilisation": 15.09,
-      "underemployment": 6.61,
-      "unemployment": 8.47
-    },
-    {
-      "date": "1996-12-01",
-      "underutilisation": 15.25,
-      "underemployment": 6.62,
-      "unemployment": 8.63
-    },
-    {
-      "date": "1997-01-01",
-      "underutilisation": 15.23,
-      "underemployment": 6.66,
-      "unemployment": 8.57
-    },
-    {
-      "date": "1997-02-01",
-      "underutilisation": 15.54,
-      "underemployment": 6.84,
-      "unemployment": 8.7
-    },
-    {
-      "date": "1997-03-01",
-      "underutilisation": 15.51,
-      "underemployment": 6.92,
-      "unemployment": 8.59
-    },
-    {
-      "date": "1997-04-01",
-      "underutilisation": 15.48,
-      "underemployment": 6.91,
-      "unemployment": 8.57
-    },
-    {
-      "date": "1997-05-01",
-      "underutilisation": 15.5,
-      "underemployment": 6.95,
-      "unemployment": 8.55
-    },
-    {
-      "date": "1997-06-01",
-      "underutilisation": 15.28,
-      "underemployment": 6.95,
-      "unemployment": 8.33
-    },
-    {
-      "date": "1997-07-01",
-      "underutilisation": 15.48,
-      "underemployment": 6.89,
-      "unemployment": 8.59
-    },
-    {
-      "date": "1997-08-01",
-      "underutilisation": 15.31,
-      "underemployment": 6.85,
-      "unemployment": 8.47
-    },
-    {
-      "date": "1997-09-01",
-      "underutilisation": 14.75,
-      "underemployment": 6.69,
-      "unemployment": 8.07
-    },
-    {
-      "date": "1997-10-01",
-      "underutilisation": 14.98,
-      "underemployment": 6.95,
-      "unemployment": 8.03
-    },
-    {
-      "date": "1997-11-01",
-      "underutilisation": 14.89,
-      "underemployment": 6.9,
-      "unemployment": 7.99
-    },
-    {
-      "date": "1997-12-01",
-      "underutilisation": 14.74,
-      "underemployment": 6.83,
-      "unemployment": 7.91
-    },
-    {
-      "date": "1998-01-01",
-      "underutilisation": 14.73,
-      "underemployment": 6.86,
-      "unemployment": 7.87
-    },
-    {
-      "date": "1998-02-01",
-      "underutilisation": 14.53,
-      "underemployment": 6.76,
-      "unemployment": 7.77
-    },
-    {
-      "date": "1998-03-01",
-      "underutilisation": 14.62,
-      "underemployment": 6.73,
-      "unemployment": 7.88
-    },
-    {
-      "date": "1998-04-01",
-      "underutilisation": 14.59,
-      "underemployment": 6.99,
-      "unemployment": 7.6
-    },
-    {
-      "date": "1998-05-01",
-      "underutilisation": 14.61,
-      "underemployment": 6.84,
-      "unemployment": 7.77
-    },
-    {
-      "date": "1998-06-01",
-      "underutilisation": 14.67,
-      "underemployment": 6.84,
-      "unemployment": 7.83
-    },
-    {
-      "date": "1998-07-01",
-      "underutilisation": 14.7,
-      "underemployment": 6.72,
-      "unemployment": 7.97
-    },
-    {
-      "date": "1998-08-01",
-      "underutilisation": 14.66,
-      "underemployment": 6.91,
-      "unemployment": 7.76
-    },
-    {
-      "date": "1998-09-01",
-      "underutilisation": 14.24,
-      "underemployment": 6.6,
-      "unemployment": 7.63
-    },
-    {
-      "date": "1998-10-01",
-      "underutilisation": 14.25,
-      "underemployment": 6.94,
-      "unemployment": 7.31
-    },
-    {
-      "date": "1998-11-01",
-      "underutilisation": 14.35,
-      "underemployment": 6.73,
-      "unemployment": 7.63
-    },
-    {
-      "date": "1998-12-01",
-      "underutilisation": 13.96,
-      "underemployment": 6.78,
-      "unemployment": 7.18
-    },
-    {
-      "date": "1999-01-01",
-      "underutilisation": 13.75,
-      "underemployment": 6.63,
-      "unemployment": 7.12
-    },
-    {
-      "date": "1999-02-01",
-      "underutilisation": 13.71,
-      "underemployment": 6.59,
-      "unemployment": 7.12
-    },
-    {
-      "date": "1999-03-01",
-      "underutilisation": 13.61,
-      "underemployment": 6.6,
-      "unemployment": 7.01
-    },
-    {
-      "date": "1999-04-01",
-      "underutilisation": 13.78,
-      "underemployment": 6.8,
-      "unemployment": 6.98
-    },
-    {
-      "date": "1999-05-01",
-      "underutilisation": 13.78,
-      "underemployment": 6.76,
-      "unemployment": 7.03
-    },
-    {
-      "date": "1999-06-01",
-      "underutilisation": 13.57,
-      "underemployment": 6.92,
-      "unemployment": 6.65
-    },
-    {
-      "date": "1999-07-01",
-      "underutilisation": 13.32,
-      "underemployment": 6.65,
-      "unemployment": 6.68
-    },
-    {
-      "date": "1999-08-01",
-      "underutilisation": 13.31,
-      "underemployment": 6.4,
-      "unemployment": 6.91
-    },
-    {
-      "date": "1999-09-01",
-      "underutilisation": 13.11,
-      "underemployment": 6.07,
-      "unemployment": 7.04
-    },
-    {
-      "date": "1999-10-01",
-      "underutilisation": 13.17,
-      "underemployment": 6.39,
-      "unemployment": 6.78
-    },
-    {
-      "date": "1999-11-01",
-      "underutilisation": 12.95,
-      "underemployment": 6.51,
-      "unemployment": 6.44
-    },
-    {
-      "date": "1999-12-01",
-      "underutilisation": 13.04,
-      "underemployment": 6.36,
-      "unemployment": 6.68
-    },
-    {
       "date": "2000-01-01",
-      "underutilisation": 13.15,
+      "underutilisation": 13.14,
       "underemployment": 6.38,
       "unemployment": 6.77
     },
@@ -1617,7 +39,7 @@
     {
       "date": "2000-07-01",
       "underutilisation": 11.66,
-      "underemployment": 5.7,
+      "underemployment": 5.71,
       "unemployment": 5.95
     },
     {
@@ -1628,7 +50,7 @@
     },
     {
       "date": "2000-09-01",
-      "underutilisation": 12.08,
+      "underutilisation": 12.07,
       "underemployment": 6.11,
       "unemployment": 5.96
     },
@@ -1652,7 +74,7 @@
     },
     {
       "date": "2001-01-01",
-      "underutilisation": 12.77,
+      "underutilisation": 12.76,
       "underemployment": 6.63,
       "unemployment": 6.14
     },
@@ -1726,7 +148,7 @@
       "date": "2002-01-01",
       "underutilisation": 13.5,
       "underemployment": 6.58,
-      "unemployment": 6.91
+      "unemployment": 6.92
     },
     {
       "date": "2002-02-01",
@@ -1804,7 +226,7 @@
       "date": "2003-02-01",
       "underutilisation": 12.78,
       "underemployment": 6.82,
-      "unemployment": 5.96
+      "unemployment": 5.95
     },
     {
       "date": "2003-03-01",
@@ -1940,7 +362,7 @@
     },
     {
       "date": "2005-01-01",
-      "underutilisation": 11.89,
+      "underutilisation": 11.88,
       "underemployment": 6.81,
       "unemployment": 5.07
     },
@@ -1965,7 +387,7 @@
     {
       "date": "2005-05-01",
       "underutilisation": 11.86,
-      "underemployment": 6.76,
+      "underemployment": 6.77,
       "unemployment": 5.1
     },
     {
@@ -2006,7 +428,7 @@
     },
     {
       "date": "2005-12-01",
-      "underutilisation": 11.74,
+      "underutilisation": 11.75,
       "underemployment": 6.68,
       "unemployment": 5.07
     },
@@ -2084,9 +506,9 @@
     },
     {
       "date": "2007-01-01",
-      "underutilisation": 10.89,
+      "underutilisation": 10.88,
       "underemployment": 6.33,
-      "unemployment": 4.56
+      "unemployment": 4.55
     },
     {
       "date": "2007-02-01",
@@ -2156,7 +578,7 @@
     },
     {
       "date": "2008-01-01",
-      "underutilisation": 10.23,
+      "underutilisation": 10.24,
       "underemployment": 6.01,
       "unemployment": 4.22
     },
@@ -2181,7 +603,7 @@
     {
       "date": "2008-05-01",
       "underutilisation": 10.21,
-      "underemployment": 5.94,
+      "underemployment": 5.95,
       "unemployment": 4.27
     },
     {
@@ -2234,7 +656,7 @@
     },
     {
       "date": "2009-02-01",
-      "underutilisation": 12.56,
+      "underutilisation": 12.55,
       "underemployment": 7.25,
       "unemployment": 5.3
     },
@@ -2372,7 +794,7 @@
     },
     {
       "date": "2011-01-01",
-      "underutilisation": 11.85,
+      "underutilisation": 11.84,
       "underemployment": 6.84,
       "unemployment": 5.0
     },
@@ -2415,7 +837,7 @@
     {
       "date": "2011-08-01",
       "underutilisation": 12.03,
-      "underemployment": 6.75,
+      "underemployment": 6.76,
       "unemployment": 5.27
     },
     {
@@ -2444,8 +866,8 @@
     },
     {
       "date": "2012-01-01",
-      "underutilisation": 12.21,
-      "underemployment": 7.16,
+      "underutilisation": 12.2,
+      "underemployment": 7.15,
       "unemployment": 5.05
     },
     {
@@ -2487,7 +909,7 @@
     {
       "date": "2012-08-01",
       "underutilisation": 12.07,
-      "underemployment": 6.91,
+      "underemployment": 6.92,
       "unemployment": 5.16
     },
     {
@@ -2516,15 +938,15 @@
     },
     {
       "date": "2013-01-01",
-      "underutilisation": 12.38,
-      "underemployment": 6.99,
+      "underutilisation": 12.37,
+      "underemployment": 6.98,
       "unemployment": 5.39
     },
     {
       "date": "2013-02-01",
       "underutilisation": 12.44,
       "underemployment": 7.05,
-      "unemployment": 5.4
+      "unemployment": 5.39
     },
     {
       "date": "2013-03-01",
@@ -2612,13 +1034,13 @@
     },
     {
       "date": "2014-05-01",
-      "underutilisation": 13.69,
+      "underutilisation": 13.7,
       "underemployment": 7.77,
       "unemployment": 5.93
     },
     {
       "date": "2014-06-01",
-      "underutilisation": 13.98,
+      "underutilisation": 13.97,
       "underemployment": 7.93,
       "unemployment": 6.05
     },
@@ -2656,7 +1078,7 @@
       "date": "2014-12-01",
       "underutilisation": 14.55,
       "underemployment": 8.44,
-      "unemployment": 6.1
+      "unemployment": 6.11
     },
     {
       "date": "2015-01-01",
@@ -2666,7 +1088,7 @@
     },
     {
       "date": "2015-02-01",
-      "underutilisation": 14.67,
+      "underutilisation": 14.68,
       "underemployment": 8.52,
       "unemployment": 6.15
     },
@@ -2678,7 +1100,7 @@
     },
     {
       "date": "2015-04-01",
-      "underutilisation": 14.43,
+      "underutilisation": 14.44,
       "underemployment": 8.32,
       "unemployment": 6.11
     },
@@ -2698,7 +1120,7 @@
       "date": "2015-07-01",
       "underutilisation": 14.92,
       "underemployment": 8.65,
-      "unemployment": 6.28
+      "unemployment": 6.27
     },
     {
       "date": "2015-08-01",
@@ -2709,7 +1131,7 @@
     {
       "date": "2015-09-01",
       "underutilisation": 14.95,
-      "underemployment": 8.78,
+      "underemployment": 8.77,
       "unemployment": 6.17
     },
     {
@@ -2726,7 +1148,7 @@
     },
     {
       "date": "2015-12-01",
-      "underutilisation": 14.19,
+      "underutilisation": 14.2,
       "underemployment": 8.45,
       "unemployment": 5.74
     },
@@ -2738,7 +1160,7 @@
     },
     {
       "date": "2016-02-01",
-      "underutilisation": 14.06,
+      "underutilisation": 14.07,
       "underemployment": 8.37,
       "unemployment": 5.69
     },
@@ -2793,19 +1215,19 @@
     {
       "date": "2016-11-01",
       "underutilisation": 14.25,
-      "underemployment": 8.49,
+      "underemployment": 8.48,
       "unemployment": 5.77
     },
     {
       "date": "2016-12-01",
       "underutilisation": 14.41,
       "underemployment": 8.57,
-      "unemployment": 5.83
+      "unemployment": 5.84
     },
     {
       "date": "2017-01-01",
       "underutilisation": 14.43,
-      "underemployment": 8.75,
+      "underemployment": 8.74,
       "unemployment": 5.68
     },
     {
@@ -2829,18 +1251,18 @@
     {
       "date": "2017-05-01",
       "underutilisation": 14.28,
-      "underemployment": 8.74,
+      "underemployment": 8.73,
       "unemployment": 5.55
     },
     {
       "date": "2017-06-01",
       "underutilisation": 14.05,
-      "underemployment": 8.43,
+      "underemployment": 8.42,
       "unemployment": 5.62
     },
     {
       "date": "2017-07-01",
-      "underutilisation": 14.12,
+      "underutilisation": 14.11,
       "underemployment": 8.51,
       "unemployment": 5.61
     },
@@ -2852,19 +1274,19 @@
     },
     {
       "date": "2017-09-01",
-      "underutilisation": 13.98,
+      "underutilisation": 13.97,
       "underemployment": 8.51,
       "unemployment": 5.46
     },
     {
       "date": "2017-10-01",
-      "underutilisation": 13.86,
+      "underutilisation": 13.85,
       "underemployment": 8.45,
       "unemployment": 5.4
     },
     {
       "date": "2017-11-01",
-      "underutilisation": 13.98,
+      "underutilisation": 13.97,
       "underemployment": 8.52,
       "unemployment": 5.45
     },
@@ -2872,13 +1294,13 @@
       "date": "2017-12-01",
       "underutilisation": 14.08,
       "underemployment": 8.47,
-      "unemployment": 5.61
+      "unemployment": 5.62
     },
     {
       "date": "2018-01-01",
-      "underutilisation": 14.23,
-      "underemployment": 8.7,
-      "unemployment": 5.53
+      "underutilisation": 14.21,
+      "underemployment": 8.69,
+      "unemployment": 5.52
     },
     {
       "date": "2018-02-01",
@@ -2889,36 +1311,36 @@
     {
       "date": "2018-03-01",
       "underutilisation": 14.1,
-      "underemployment": 8.58,
+      "underemployment": 8.57,
       "unemployment": 5.53
     },
     {
       "date": "2018-04-01",
-      "underutilisation": 13.98,
+      "underutilisation": 13.97,
       "underemployment": 8.43,
       "unemployment": 5.54
     },
     {
       "date": "2018-05-01",
-      "underutilisation": 13.97,
+      "underutilisation": 13.96,
       "underemployment": 8.53,
       "unemployment": 5.43
     },
     {
       "date": "2018-06-01",
-      "underutilisation": 13.94,
+      "underutilisation": 13.93,
       "underemployment": 8.59,
       "unemployment": 5.34
     },
     {
       "date": "2018-07-01",
       "underutilisation": 13.78,
-      "underemployment": 8.49,
+      "underemployment": 8.48,
       "unemployment": 5.3
     },
     {
       "date": "2018-08-01",
-      "underutilisation": 13.4,
+      "underutilisation": 13.39,
       "underemployment": 8.15,
       "unemployment": 5.24
     },
@@ -2931,7 +1353,7 @@
     {
       "date": "2018-10-01",
       "underutilisation": 13.22,
-      "underemployment": 8.22,
+      "underemployment": 8.21,
       "unemployment": 5.0
     },
     {
@@ -2949,7 +1371,7 @@
     {
       "date": "2019-01-01",
       "underutilisation": 13.13,
-      "underemployment": 8.09,
+      "underemployment": 8.08,
       "unemployment": 5.05
     },
     {
@@ -2961,18 +1383,18 @@
     {
       "date": "2019-03-01",
       "underutilisation": 13.28,
-      "underemployment": 8.2,
+      "underemployment": 8.19,
       "unemployment": 5.09
     },
     {
       "date": "2019-04-01",
-      "underutilisation": 13.67,
+      "underutilisation": 13.66,
       "underemployment": 8.45,
       "unemployment": 5.22
     },
     {
       "date": "2019-05-01",
-      "underutilisation": 13.92,
+      "underutilisation": 13.91,
       "underemployment": 8.72,
       "unemployment": 5.19
     },
@@ -2984,13 +1406,13 @@
     },
     {
       "date": "2019-07-01",
-      "underutilisation": 13.68,
+      "underutilisation": 13.67,
       "underemployment": 8.4,
       "unemployment": 5.28
     },
     {
       "date": "2019-08-01",
-      "underutilisation": 13.73,
+      "underutilisation": 13.72,
       "underemployment": 8.47,
       "unemployment": 5.26
     },
@@ -3003,7 +1425,7 @@
     {
       "date": "2019-10-01",
       "underutilisation": 13.75,
-      "underemployment": 8.45,
+      "underemployment": 8.44,
       "unemployment": 5.3
     },
     {
@@ -3014,7 +1436,7 @@
     },
     {
       "date": "2019-12-01",
-      "underutilisation": 13.3,
+      "underutilisation": 13.31,
       "underemployment": 8.27,
       "unemployment": 5.04
     },
@@ -3026,7 +1448,7 @@
     },
     {
       "date": "2020-02-01",
-      "underutilisation": 13.65,
+      "underutilisation": 13.66,
       "underemployment": 8.55,
       "unemployment": 5.11
     },
@@ -3039,7 +1461,7 @@
     {
       "date": "2020-04-01",
       "underutilisation": 19.87,
-      "underemployment": 13.56,
+      "underemployment": 13.57,
       "unemployment": 6.3
     },
     {
@@ -3056,26 +1478,26 @@
     },
     {
       "date": "2020-07-01",
-      "underutilisation": 18.63,
+      "underutilisation": 18.62,
       "underemployment": 11.19,
       "unemployment": 7.44
     },
     {
       "date": "2020-08-01",
       "underutilisation": 17.88,
-      "underemployment": 11.09,
+      "underemployment": 11.08,
       "unemployment": 6.8
     },
     {
       "date": "2020-09-01",
-      "underutilisation": 18.13,
+      "underutilisation": 18.12,
       "underemployment": 11.19,
       "unemployment": 6.93
     },
     {
       "date": "2020-10-01",
-      "underutilisation": 17.19,
-      "underemployment": 10.24,
+      "underutilisation": 17.18,
+      "underemployment": 10.23,
       "unemployment": 6.95
     },
     {
@@ -3086,21 +1508,21 @@
     },
     {
       "date": "2020-12-01",
-      "underutilisation": 15.09,
+      "underutilisation": 15.1,
       "underemployment": 8.54,
-      "unemployment": 6.55
+      "unemployment": 6.56
     },
     {
       "date": "2021-01-01",
       "underutilisation": 14.36,
-      "underemployment": 8.09,
-      "unemployment": 6.27
+      "underemployment": 8.08,
+      "unemployment": 6.28
     },
     {
       "date": "2021-02-01",
-      "underutilisation": 14.22,
+      "underutilisation": 14.21,
       "underemployment": 8.37,
-      "unemployment": 5.84
+      "unemployment": 5.85
     },
     {
       "date": "2021-03-01",
@@ -3110,20 +1532,20 @@
     },
     {
       "date": "2021-04-01",
-      "underutilisation": 13.27,
-      "underemployment": 7.79,
-      "unemployment": 5.47
+      "underutilisation": 13.26,
+      "underemployment": 7.8,
+      "unemployment": 5.46
     },
     {
       "date": "2021-05-01",
-      "underutilisation": 12.83,
+      "underutilisation": 12.82,
       "underemployment": 7.72,
-      "unemployment": 5.11
+      "unemployment": 5.1
     },
     {
       "date": "2021-06-01",
       "underutilisation": 12.94,
-      "underemployment": 7.92,
+      "underemployment": 7.91,
       "unemployment": 5.03
     },
     {
@@ -3134,7 +1556,7 @@
     },
     {
       "date": "2021-08-01",
-      "underutilisation": 13.73,
+      "underutilisation": 13.72,
       "underemployment": 9.15,
       "unemployment": 4.58
     },
@@ -3146,14 +1568,14 @@
     },
     {
       "date": "2021-10-01",
-      "underutilisation": 14.6,
+      "underutilisation": 14.59,
       "underemployment": 9.36,
       "unemployment": 5.24
     },
     {
       "date": "2021-11-01",
-      "underutilisation": 12.16,
-      "underemployment": 7.53,
+      "underutilisation": 12.15,
+      "underemployment": 7.52,
       "unemployment": 4.63
     },
     {
@@ -3166,31 +1588,31 @@
       "date": "2022-01-01",
       "underutilisation": 10.72,
       "underemployment": 6.56,
-      "unemployment": 4.16
+      "unemployment": 4.17
     },
     {
       "date": "2022-02-01",
       "underutilisation": 10.65,
-      "underemployment": 6.63,
+      "underemployment": 6.62,
       "unemployment": 4.03
     },
     {
       "date": "2022-03-01",
       "underutilisation": 10.3,
-      "underemployment": 6.33,
-      "unemployment": 3.97
+      "underemployment": 6.32,
+      "unemployment": 3.98
     },
     {
       "date": "2022-04-01",
       "underutilisation": 10.02,
-      "underemployment": 6.16,
-      "unemployment": 3.86
+      "underemployment": 6.17,
+      "unemployment": 3.85
     },
     {
       "date": "2022-05-01",
-      "underutilisation": 9.93,
-      "underemployment": 6.0,
-      "unemployment": 3.94
+      "underutilisation": 9.92,
+      "underemployment": 5.99,
+      "unemployment": 3.93
     },
     {
       "date": "2022-06-01",
@@ -3212,129 +1634,129 @@
     },
     {
       "date": "2022-09-01",
-      "underutilisation": 9.61,
+      "underutilisation": 9.6,
       "underemployment": 6.0,
-      "unemployment": 3.61
+      "unemployment": 3.6
     },
     {
       "date": "2022-10-01",
-      "underutilisation": 9.46,
+      "underutilisation": 9.45,
       "underemployment": 6.02,
       "unemployment": 3.44
     },
     {
       "date": "2022-11-01",
       "underutilisation": 9.42,
-      "underemployment": 5.91,
-      "unemployment": 3.51
+      "underemployment": 5.9,
+      "unemployment": 3.52
     },
     {
       "date": "2022-12-01",
-      "underutilisation": 9.73,
-      "underemployment": 6.2,
+      "underutilisation": 9.72,
+      "underemployment": 6.19,
       "unemployment": 3.53
     },
     {
       "date": "2023-01-01",
-      "underutilisation": 9.83,
-      "underemployment": 6.17,
+      "underutilisation": 9.82,
+      "underemployment": 6.16,
       "unemployment": 3.66
     },
     {
       "date": "2023-02-01",
-      "underutilisation": 9.53,
-      "underemployment": 5.92,
-      "unemployment": 3.6
+      "underutilisation": 9.52,
+      "underemployment": 5.91,
+      "unemployment": 3.61
     },
     {
       "date": "2023-03-01",
       "underutilisation": 9.82,
       "underemployment": 6.23,
-      "unemployment": 3.58
+      "unemployment": 3.59
     },
     {
       "date": "2023-04-01",
-      "underutilisation": 9.84,
-      "underemployment": 6.12,
-      "unemployment": 3.72
+      "underutilisation": 9.83,
+      "underemployment": 6.14,
+      "unemployment": 3.7
     },
     {
       "date": "2023-05-01",
-      "underutilisation": 10.05,
+      "underutilisation": 10.04,
       "underemployment": 6.46,
       "unemployment": 3.58
     },
     {
       "date": "2023-06-01",
       "underutilisation": 10.01,
-      "underemployment": 6.49,
+      "underemployment": 6.48,
       "unemployment": 3.52
     },
     {
       "date": "2023-07-01",
-      "underutilisation": 10.19,
-      "underemployment": 6.47,
+      "underutilisation": 10.18,
+      "underemployment": 6.46,
       "unemployment": 3.72
     },
     {
       "date": "2023-08-01",
-      "underutilisation": 10.3,
+      "underutilisation": 10.29,
       "underemployment": 6.61,
       "unemployment": 3.68
     },
     {
       "date": "2023-09-01",
-      "underutilisation": 9.95,
+      "underutilisation": 9.94,
       "underemployment": 6.38,
       "unemployment": 3.57
     },
     {
       "date": "2023-10-01",
       "underutilisation": 10.22,
-      "underemployment": 6.44,
+      "underemployment": 6.43,
       "unemployment": 3.78
     },
     {
       "date": "2023-11-01",
       "underutilisation": 10.52,
-      "underemployment": 6.6,
+      "underemployment": 6.59,
       "unemployment": 3.93
     },
     {
       "date": "2023-12-01",
-      "underutilisation": 10.58,
-      "underemployment": 6.59,
+      "underutilisation": 10.56,
+      "underemployment": 6.58,
       "unemployment": 3.99
     },
     {
       "date": "2024-01-01",
-      "underutilisation": 10.78,
-      "underemployment": 6.7,
+      "underutilisation": 10.77,
+      "underemployment": 6.68,
       "unemployment": 4.09
     },
     {
       "date": "2024-02-01",
       "underutilisation": 10.35,
-      "underemployment": 6.62,
-      "unemployment": 3.73
+      "underemployment": 6.61,
+      "unemployment": 3.74
     },
     {
       "date": "2024-03-01",
       "underutilisation": 10.32,
-      "underemployment": 6.44,
-      "unemployment": 3.88
+      "underemployment": 6.43,
+      "unemployment": 3.9
     },
     {
       "date": "2024-04-01",
-      "underutilisation": 10.64,
-      "underemployment": 6.53,
-      "unemployment": 4.11
+      "underutilisation": 10.63,
+      "underemployment": 6.56,
+      "unemployment": 4.07
     },
     {
       "date": "2024-05-01",
-      "underutilisation": 10.72,
+      "underutilisation": 10.71,
       "underemployment": 6.72,
-      "unemployment": 4.0
+      "unemployment": 3.99
     },
     {
       "date": "2024-06-01",
@@ -3350,15 +1772,15 @@
     },
     {
       "date": "2024-08-01",
-      "underutilisation": 10.65,
-      "underemployment": 6.52,
+      "underutilisation": 10.64,
+      "underemployment": 6.51,
       "unemployment": 4.13
     },
     {
       "date": "2024-09-01",
-      "underutilisation": 10.3,
+      "underutilisation": 10.29,
       "underemployment": 6.27,
-      "unemployment": 4.03
+      "unemployment": 4.02
     },
     {
       "date": "2024-10-01",
@@ -3369,44 +1791,44 @@
     {
       "date": "2024-11-01",
       "underutilisation": 9.96,
-      "underemployment": 6.03,
-      "unemployment": 3.93
+      "underemployment": 6.02,
+      "unemployment": 3.94
     },
     {
       "date": "2024-12-01",
       "underutilisation": 9.97,
-      "underemployment": 5.98,
-      "unemployment": 3.99
+      "underemployment": 5.97,
+      "unemployment": 4.0
     },
     {
       "date": "2025-01-01",
       "underutilisation": 10.08,
       "underemployment": 5.96,
-      "unemployment": 4.12
+      "unemployment": 4.13
     },
     {
       "date": "2025-02-01",
-      "underutilisation": 9.97,
-      "underemployment": 5.92,
-      "unemployment": 4.06
+      "underutilisation": 9.98,
+      "underemployment": 5.91,
+      "unemployment": 4.07
     },
     {
       "date": "2025-03-01",
-      "underutilisation": 9.91,
-      "underemployment": 5.85,
-      "unemployment": 4.06
-    },
-    {
-      "date": "2025-04-01",
-      "underutilisation": 10.09,
-      "underemployment": 6.01,
+      "underutilisation": 9.92,
+      "underemployment": 5.84,
       "unemployment": 4.08
     },
     {
+      "date": "2025-04-01",
+      "underutilisation": 10.08,
+      "underemployment": 6.03,
+      "unemployment": 4.05
+    },
+    {
       "date": "2025-05-01",
-      "underutilisation": 9.97,
-      "underemployment": 5.88,
-      "unemployment": 4.1
+      "underutilisation": 9.95,
+      "underemployment": 5.87,
+      "unemployment": 4.08
     },
     {
       "date": "2025-06-01",
@@ -3422,74 +1844,86 @@
     },
     {
       "date": "2025-08-01",
-      "underutilisation": 9.97,
+      "underutilisation": 9.96,
       "underemployment": 5.71,
       "unemployment": 4.25
     },
     {
       "date": "2025-09-01",
       "underutilisation": 10.39,
-      "underemployment": 5.94,
-      "unemployment": 4.46
+      "underemployment": 5.93,
+      "unemployment": 4.45
     },
     {
       "date": "2025-10-01",
       "underutilisation": 10.05,
-      "underemployment": 5.72,
+      "underemployment": 5.71,
       "unemployment": 4.33
     },
     {
       "date": "2025-11-01",
       "underutilisation": 10.5,
-      "underemployment": 6.18,
+      "underemployment": 6.17,
       "unemployment": 4.32
     },
     {
       "date": "2025-12-01",
       "underutilisation": 9.83,
       "underemployment": 5.72,
-      "unemployment": 4.11
+      "unemployment": 4.12
     },
     {
       "date": "2026-01-01",
       "underutilisation": 9.98,
-      "underemployment": 5.91,
-      "unemployment": 4.07
+      "underemployment": 5.9,
+      "unemployment": 4.08
     },
     {
       "date": "2026-02-01",
-      "underutilisation": 10.15,
-      "underemployment": 5.87,
-      "unemployment": 4.28
+      "underutilisation": 10.16,
+      "underemployment": 5.86,
+      "unemployment": 4.3
     },
     {
       "date": "2026-03-01",
-      "underutilisation": 10.19,
-      "underemployment": 5.93,
-      "unemployment": 4.26
+      "underutilisation": 10.2,
+      "underemployment": 5.92,
+      "unemployment": 4.28
+    },
+    {
+      "date": "2026-04-01",
+      "underutilisation": 10.27,
+      "underemployment": 5.79,
+      "unemployment": 4.48
+    },
+    {
+      "date": "2026-05-01",
+      "underutilisation": 10.22,
+      "underemployment": 5.87,
+      "unemployment": 4.36
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "underutilisation": 10.19,
-    "underemployment": 5.93,
-    "unemployment": 4.26
+    "date": "2026-05-01",
+    "underutilisation": 10.22,
+    "underemployment": 5.87,
+    "unemployment": 4.36
   },
   "metadata": {
-    "source": "Australian Bureau of Statistics",
+    "source": "Australian Bureau of Statistics (LF_UNDER)",
     "indicator": "Underutilisation Rate (Labour Force, Seasonally Adjusted)",
     "frequency": "monthly",
     "unit": "%"
   },
   "next_release": {
-    "date": "2026-05-21",
-    "datetime_utc": "2026-05-21T01:30:00+00:00",
-    "datetime_jst": "2026-05-21T10:30:00+09:00",
+    "date": "2026-07-16",
+    "datetime_utc": "2026-07-16T01:30:00+00:00",
+    "datetime_jst": "2026-07-16T10:30:00+09:00",
     "time_jst": "10:30",
-    "datetime_sydney": "2026-05-21T11:30:00+10:00",
+    "datetime_sydney": "2026-07-16T11:30:00+10:00",
     "time_sydney": "11:30",
-    "label": "Unemployment Rate (Apr)",
-    "estimate": 4.3
+    "label": "Unemployment Rate (Jun)",
+    "estimate": 4.4
   },
-  "last_updated": "2026-05-20T10:01:06.687320+09:00"
+  "last_updated": "2026-06-25T15:17:41.792312+09:00"
 }

@@ -2,7 +2,7 @@
   "employment_qoq": [
     {
       "date": "2015-Q2",
-      "value": 0.3
+      "value": 0.29
     },
     {
       "date": "2015-Q3",
@@ -18,19 +18,19 @@
     },
     {
       "date": "2016-Q2",
-      "value": 0.43
+      "value": 0.44
     },
     {
       "date": "2016-Q3",
-      "value": 0.34
+      "value": 0.29
     },
     {
       "date": "2016-Q4",
-      "value": 0.35
+      "value": 0.36
     },
     {
       "date": "2017-Q1",
-      "value": 0.4
+      "value": 0.41
     },
     {
       "date": "2017-Q2",
@@ -46,27 +46,27 @@
     },
     {
       "date": "2018-Q1",
-      "value": 0.47
+      "value": 0.45
     },
     {
       "date": "2018-Q2",
-      "value": 0.5
+      "value": 0.48
     },
     {
       "date": "2018-Q3",
-      "value": 0.28
+      "value": 0.26
     },
     {
       "date": "2018-Q4",
-      "value": 0.28
+      "value": 0.27
     },
     {
       "date": "2019-Q1",
-      "value": 0.52
+      "value": 0.5
     },
     {
       "date": "2019-Q2",
-      "value": 0.33
+      "value": 0.31
     },
     {
       "date": "2019-Q3",
@@ -74,7 +74,7 @@
     },
     {
       "date": "2019-Q4",
-      "value": 0.19
+      "value": 0.17
     },
     {
       "date": "2020-Q1",
@@ -82,11 +82,11 @@
     },
     {
       "date": "2020-Q2",
-      "value": -2.87
+      "value": -2.84
     },
     {
       "date": "2020-Q3",
-      "value": 1.07
+      "value": 1.05
     },
     {
       "date": "2020-Q4",
@@ -94,19 +94,19 @@
     },
     {
       "date": "2021-Q1",
-      "value": -0.05
+      "value": -0.06
     },
     {
       "date": "2021-Q2",
-      "value": 0.86
+      "value": 0.85
     },
     {
       "date": "2021-Q3",
-      "value": 1.15
+      "value": 1.13
     },
     {
       "date": "2021-Q4",
-      "value": 0.57
+      "value": 0.56
     },
     {
       "date": "2022-Q1",
@@ -114,15 +114,15 @@
     },
     {
       "date": "2022-Q2",
-      "value": 0.53
+      "value": 0.52
     },
     {
       "date": "2022-Q3",
-      "value": 0.27
+      "value": 0.28
     },
     {
       "date": "2022-Q4",
-      "value": 0.41
+      "value": 0.4
     },
     {
       "date": "2023-Q1",
@@ -130,7 +130,7 @@
     },
     {
       "date": "2023-Q2",
-      "value": 0.34
+      "value": 0.33
     },
     {
       "date": "2023-Q3",
@@ -138,7 +138,7 @@
     },
     {
       "date": "2023-Q4",
-      "value": 0.37
+      "value": 0.38
     },
     {
       "date": "2024-Q1",
@@ -154,15 +154,15 @@
     },
     {
       "date": "2024-Q4",
-      "value": 0.13
+      "value": 0.14
     },
     {
       "date": "2025-Q1",
-      "value": 0.23
+      "value": 0.24
     },
     {
       "date": "2025-Q2",
-      "value": 0.12
+      "value": 0.13
     },
     {
       "date": "2025-Q3",
@@ -180,7 +180,7 @@
   "employment_yoy": [
     {
       "date": "2016-Q1",
-      "value": 1.35
+      "value": 1.34
     },
     {
       "date": "2016-Q2",
@@ -188,71 +188,71 @@
     },
     {
       "date": "2016-Q3",
-      "value": 1.44
+      "value": 1.4
     },
     {
       "date": "2016-Q4",
-      "value": 1.44
+      "value": 1.41
     },
     {
       "date": "2017-Q1",
-      "value": 1.52
+      "value": 1.51
     },
     {
       "date": "2017-Q2",
-      "value": 1.5
+      "value": 1.49
     },
     {
       "date": "2017-Q3",
-      "value": 1.62
+      "value": 1.65
     },
     {
       "date": "2017-Q4",
-      "value": 1.61
+      "value": 1.62
     },
     {
       "date": "2018-Q1",
-      "value": 1.68
+      "value": 1.66
     },
     {
       "date": "2018-Q2",
-      "value": 1.76
+      "value": 1.73
     },
     {
       "date": "2018-Q3",
-      "value": 1.58
-    },
-    {
-      "date": "2018-Q4",
       "value": 1.53
     },
     {
+      "date": "2018-Q4",
+      "value": 1.47
+    },
+    {
       "date": "2019-Q1",
-      "value": 1.59
+      "value": 1.52
     },
     {
       "date": "2019-Q2",
-      "value": 1.42
+      "value": 1.35
     },
     {
       "date": "2019-Q3",
-      "value": 1.27
+      "value": 1.22
     },
     {
       "date": "2019-Q4",
-      "value": 1.17
+      "value": 1.11
     },
     {
       "date": "2020-Q1",
-      "value": 0.42
+      "value": 0.38
     },
     {
       "date": "2020-Q2",
-      "value": -2.79
+      "value": -2.78
     },
     {
       "date": "2020-Q3",
-      "value": -1.87
+      "value": -1.88
     },
     {
       "date": "2020-Q4",
@@ -260,35 +260,35 @@
     },
     {
       "date": "2021-Q1",
-      "value": -1.31
+      "value": -1.32
     },
     {
       "date": "2021-Q2",
-      "value": 2.47
+      "value": 2.43
     },
     {
       "date": "2021-Q3",
-      "value": 2.55
+      "value": 2.52
     },
     {
       "date": "2021-Q4",
-      "value": 2.55
+      "value": 2.51
     },
     {
       "date": "2022-Q1",
-      "value": 3.14
+      "value": 3.1
     },
     {
       "date": "2022-Q2",
-      "value": 2.8
+      "value": 2.76
     },
     {
       "date": "2022-Q3",
-      "value": 1.9
+      "value": 1.89
     },
     {
       "date": "2022-Q4",
-      "value": 1.73
+      "value": 1.72
     },
     {
       "date": "2023-Q1",
@@ -296,19 +296,19 @@
     },
     {
       "date": "2023-Q2",
-      "value": 1.52
+      "value": 1.51
     },
     {
       "date": "2023-Q3",
-      "value": 1.44
+      "value": 1.42
     },
     {
       "date": "2023-Q4",
-      "value": 1.41
+      "value": 1.4
     },
     {
       "date": "2024-Q1",
-      "value": 1.1
+      "value": 1.09
     },
     {
       "date": "2024-Q2",
@@ -316,37 +316,37 @@
     },
     {
       "date": "2024-Q3",
-      "value": 1.0
+      "value": 1.01
     },
     {
       "date": "2024-Q4",
-      "value": 0.76
+      "value": 0.77
     },
     {
       "date": "2025-Q1",
-      "value": 0.8
+      "value": 0.82
     },
     {
       "date": "2025-Q2",
-      "value": 0.74
+      "value": 0.77
     },
     {
       "date": "2025-Q3",
-      "value": 0.66
-    },
-    {
-      "date": "2025-Q4",
       "value": 0.69
     },
     {
+      "date": "2025-Q4",
+      "value": 0.72
+    },
+    {
       "date": "2026-Q1",
-      "value": 0.53
+      "value": 0.55
     }
   ],
   "metadata": {
     "source": "European Central Bank (ECB)",
     "dataset": "MNA",
-    "series": "Q.Y.I9.W2.S1.S1._Z.EMP._Z._T._Z.PS._Z.N",
+    "series": "Q.Y.I10.W2.S1.S1._Z.EMP._Z._T._Z.PS._Z.N",
     "indicator": "Employment - Euro Area",
     "unit": "Percent change",
     "frequency": "Quarterly",
@@ -359,8 +359,8 @@
     "time_jst": "18:00",
     "datetime_cet": "2026-08-14T11:00:00+02:00",
     "time_cet": "11:00",
-    "label": "Employment Change QoQ (Q2)",
-    "estimate": 0.1
+    "label": "Employment Change YoY (Q2)",
+    "estimate": 0.5
   },
-  "last_updated": "2026-06-17T20:04:27.685875+09:00"
+  "last_updated": "2026-06-27T22:45:24.681200+09:00"
 }

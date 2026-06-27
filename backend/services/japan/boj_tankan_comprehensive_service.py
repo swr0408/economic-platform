@@ -216,6 +216,83 @@ class BOJTankanComprehensiveService:
         # Fallback
         return self.BASE_URL_TEMPLATE.format(year=2024) + f"all2412{url_type}.xlsx"
 
+    def _zenyo_url_for_quarter(self, full_year: int, quarter: int, url_type: str) -> str:
+        """特定の調査年・四半期の zenyo Excel URL を構築する。
+
+        過去ファイルは「5年グループ」ディレクトリ配下に置かれる
+        (例: 2021-2025 → /zenyo/2021/、2026- → /zenyo/2026/)。
+        """
+        group_start = 2001 + 5 * ((full_year - 2001) // 5)
+        yy = full_year % 100
+        return (
+            f"https://www.boj.or.jp/statistics/tk/zenyo/{group_start}/data/"
+            f"all{yy:02d}{quarter:02d}{url_type}.xlsx"
+        )
+
+    def fetch_di_quarter(self, data_type: str, full_year: int, quarter: int) -> List[Dict[str, Any]]:
+        """指定四半期の zenyo ファイルを取得し DI 系列を解析して返す（履歴バックフィル用）。
+
+        取得不能・該当無しは空リストを返す。1ファイルに直近数四半期分が含まれるため、
+        年次ストライドで呼び出して結果を日付マージすれば長期履歴を構築できる。
+        """
+        config = self.DATA_CONFIGS.get(data_type)
+        if not config:
+            return []
+        url = self._zenyo_url_for_quarter(full_year, quarter, config["url_type"])
+        try:
+            resp = requests.get(url, timeout=30, headers={"User-Agent": "Mozilla/5.0"})
+            if resp.status_code != 200 or len(resp.content) < 10000:
+                return []
+            return self._parse_di_data(resp.content, config)
+        except Exception as e:
+            print(f"[tankan] fetch_di_quarter {data_type} {full_year}Q{quarter} failed: {e}")
+            return []
+
+    ZENYO_BACKFILL_START_YEAR = 2019  # zenyo xlsx が遡れる範囲。以前は手動CSV種で補完
+
+    def _build_long_history(self, data_type: str, config: Dict[str, Any]) -> List[Dict[str, Any]]:
+        """zenyo 過去ファイルを年次ストライドで取得し長期履歴を構築する。
+
+        1ファイルに直近数四半期が含まれるため、年1本＋当年最新で全期間を被覆できる。
+        """
+        now = datetime.now()
+        cur_q = 12 if now.month >= 12 else 9 if now.month >= 10 else 6 if now.month >= 7 else 3 if now.month >= 4 else 12
+        cur_year = now.year if now.month >= 4 else now.year - 1
+        is_capital = (data_type == "capital_investment")
+        merged: Dict[str, Dict[str, Any]] = {}
+
+        def parse(content: bytes) -> List[Dict[str, Any]]:
+            return (self._parse_capital_investment_data(content, config) if is_capital
+                    else self._parse_di_data(content, config))
+
+        for year in range(self.ZENYO_BACKFILL_START_YEAR, cur_year + 1):
+            quarters = [cur_q] if year == cur_year else [3]
+            if year == cur_year and cur_q != 3:
+                quarters.append(3)  # 当年Q1も取り当年内の被覆を確保
+            for q in quarters:
+                url = self._zenyo_url_for_quarter(year, q, config["url_type"])
+                try:
+                    resp = requests.get(url, timeout=30, headers={"User-Agent": "Mozilla/5.0"})
+                    if resp.status_code != 200 or len(resp.content) < 10000:
+                        continue
+                    for p in parse(resp.content):
+                        if p.get("date"):
+                            # 昇順処理のため新しいファイルが後勝ち＝最新改定値が反映される
+                            merged[p["date"]] = p
+                except Exception as e:
+                    print(f"[tankan] long-history {data_type} {year}Q{q} failed: {e}")
+        self._seed_from_manual_csv(data_type, merged)
+        return sorted(merged.values(), key=lambda x: x.get("date", ""))
+
+    def _seed_from_manual_csv(self, data_type: str, merged: Dict[str, Dict[str, Any]]) -> None:
+        """手動CSV種（BOJ時系列検索のネイティブCSV）で古い期間を補完する。
+        `data/manual_update/japan/tankan/*.csv` を解析（zenyo優先・未充足のみ）。"""
+        try:
+            from services.japan.boj_tankan_manual_seed import seed_into
+            seed_into(data_type, merged)
+        except Exception as e:
+            print(f"[tankan] manual CSV seed failed for {data_type}: {e}")
+
     def _col_to_index(self, col_letter: str) -> int:
         """Convert column letter(s) to index (A=1, B=2, ..., AA=27, etc.)"""
         result = 0
@@ -506,21 +583,10 @@ class BOJTankanComprehensiveService:
                 file_cached["source"] = "file"
                 return file_cached
 
-        # Fetch from BOJ
+        # Fetch from BOJ（過去ファイルを年次蓄積して長期履歴を構築）
         try:
-            excel_url = self._get_excel_url(config["url_type"])
-            print(f"Fetching BOJ Tankan {data_type} from {excel_url}")
-
-            response = requests.get(excel_url, timeout=30)
-            response.raise_for_status()
-
-            if data_type == "capital_investment":
-                data_points = self._parse_capital_investment_data(response.content, config)
-            else:
-                data_points = self._parse_di_data(response.content, config)
-
-            # Sort by date
-            data_points.sort(key=lambda x: x.get("date", ""))
+            print(f"Building long-term BOJ Tankan {data_type} (zenyo backfill)")
+            data_points = self._build_long_history(data_type, config)
 
             result = {
                 "data": data_points,
@@ -528,7 +594,6 @@ class BOJTankanComprehensiveService:
                 "name": config["name"],
                 "unit": config["unit"],
                 "last_updated": datetime.now().isoformat(),
-                "excel_url": excel_url,
                 "cached": False,
                 "source": "boj"
             }

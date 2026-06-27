@@ -524,22 +524,28 @@
     },
     {
       "date": "2026-03-01",
-      "exports": 7.664,
-      "imports": 7.234,
-      "balance": 0.43
+      "exports": 7.666,
+      "imports": 7.213,
+      "balance": 0.452
     },
     {
       "date": "2026-04-01",
-      "exports": 8.62,
-      "imports": 6.7,
-      "balance": 1.92
+      "exports": 8.268,
+      "imports": 6.67,
+      "balance": 1.598
+    },
+    {
+      "date": "2026-05-01",
+      "exports": 8.877,
+      "imports": 8.077,
+      "balance": 0.8
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "exports": 8.62,
-    "imports": 6.7,
-    "balance": 1.92
+    "date": "2026-05-01",
+    "exports": 8.877,
+    "imports": 8.077,
+    "balance": 0.8
   },
   "metadata": {
     "source": "Stats NZ",
@@ -550,14 +556,14 @@
     "table": "Table 1.01 - Actual values"
   },
   "next_release": {
-    "date": "2026-06-18",
-    "datetime_utc": "2026-06-18T22:45:00+00:00",
-    "datetime_jst": "2026-06-19T07:45:00+09:00",
+    "date": "2026-07-21",
+    "datetime_utc": "2026-07-21T22:45:00+00:00",
+    "datetime_jst": "2026-07-22T07:45:00+09:00",
     "time_jst": "07:45",
-    "datetime_auckland": "2026-06-19T10:45:00+12:00",
+    "datetime_auckland": "2026-07-22T10:45:00+12:00",
     "time_auckland": "10:45",
-    "label": "Balance of Trade (May)",
-    "estimate": 0.875
+    "label": "Balance of Trade (Jun)",
+    "estimate": 0.2
   },
-  "last_updated": "2026-06-17T09:31:45.368480+09:00"
+  "last_updated": "2026-06-27T11:47:05.063263+09:00"
 }

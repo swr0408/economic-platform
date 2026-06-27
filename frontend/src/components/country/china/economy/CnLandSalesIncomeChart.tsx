@@ -140,6 +140,16 @@ export default function CnLandSalesIncomeChart({ data }: Props) {
 
   const subInfo = getSubInfo()
 
+  // 累計収入は亿元、前年比/前月比は% と単位が異なるため、各値を単位付き文字列に
+  // 整形して渡す（SimpleLatestValueBox は value/subValue で unit を共有するため、
+  // 一律 unit="%" だと累計収入が誤って「%」表示になる）。
+  const headlineValue =
+    latest?.value != null ? `${latest.value.toLocaleString()}亿元` : undefined
+  const subValueStr =
+    subInfo.value != null
+      ? `${subInfo.value >= 0 ? '+' : ''}${subInfo.value.toFixed(1)}%`
+      : undefined
+
   return (
     <div id="cn-land-sales-income">
       <ChartContainer
@@ -152,14 +162,13 @@ export default function CnLandSalesIncomeChart({ data }: Props) {
         {/* 最新値表示 */}
         <SimpleLatestValueBox
           label="土地売却収入（累計）"
-          value={latest?.value}
+          value={headlineValue}
           valueColor={COLORS.value}
           subLabel={subInfo.label}
-          subValue={subInfo.value}
+          subValue={subValueStr}
           subValueColor={dataKind === 'yoy' ? COLORS.yoy : COLORS.mom}
           date={latest?.date}
-          format="number"
-          unit="%"
+          format="raw"
         />
 
         {/* 上段: 指標種別 + データ比較ボタン */}

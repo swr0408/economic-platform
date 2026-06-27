@@ -3106,8 +3106,8 @@
     "datetime_sydney": "2026-07-01T11:30:00+10:00",
     "time_sydney": "11:30",
     "label": "建築許可件数 (May)",
-    "estimate": null
+    "estimate": 10.6
   },
-  "last_updated": "2026-06-17T10:31:25.004944+09:00",
-  "file_date": "20260617"
+  "last_updated": "2026-06-27T11:46:20.229830+09:00",
+  "file_date": "20260627"
 }

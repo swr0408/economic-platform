@@ -49,9 +49,135 @@ DB_INDICATORS = {
     "imports_yoy": "cn_imports_yoy",
 }
 
+# レベル指標（1000 USD → 億 USD 変換対象）
+_LEVEL_INDICATORS = {"cn_trade_balance", "cn_exports", "cn_imports"}
+
+# 手動CSV（税関の正式レベル値）と mtime マーカー
+_MANUAL_CSV_PATH = _BASE_DIR / "data" / "csv_import" / "中国貿易収支.csv"
+_CSV_MTIME_MARKER = _FILE_CACHE_DIR / ".cn_trade_csv_mtime"
+
+# 手動CSVの列名 → DB指標ID（import_nbs_trade_csv.py と一致）
+_CSV_TRADE_MAP = {
+    "Balance of Imports and Exports Current Period(1000 US dollars)": "cn_trade_balance",
+    "Total Value of Exports Current Period(1000 US dollars)": "cn_exports",
+    "Total Value of Imports Current Period(1000 US dollars)": "cn_imports",
+    "Total Value of Exports Growth Rate (The same period last year=100)(%)": "cn_exports_yoy",
+    "Total Value of Imports Growth Rate (The same period last year=100)(%)": "cn_imports_yoy",
+}
+
+
+def _import_manual_csv() -> None:
+    """手動CSV（data/csv_import/中国貿易収支.csv）が更新されていれば再インポート。
+
+    貿易(税関)のレベル値は自動取得源が無いため、税関の正式値を手動CSVで反映する
+    （特に中国が1-2月を合算発表する1-2月分は FMP由来の再構成では復元できないため、
+    正確な値はこのCSVが権威ソース）。mtime 検知で更新時のみ再取込・冪等。
+    レベル指標は 1000 USD → 億 USD に変換（importスクリプトと同一処理）。
+    """
+    if not _MANUAL_CSV_PATH.exists():
+        return
+    try:
+        mtime = os.path.getmtime(_MANUAL_CSV_PATH)
+        last = 0.0
+        if _CSV_MTIME_MARKER.exists():
+            try:
+                last = float(_CSV_MTIME_MARKER.read_text().strip())
+            except (ValueError, OSError):
+                last = 0.0
+        if mtime <= last:
+            return
+
+        from scripts.import_nbs_pmi_csv import parse_csv_transposed
+        from services.china.nbs_db_utils import upsert_nbs_data
+
+        parsed = parse_csv_transposed(_MANUAL_CSV_PATH, _CSV_TRADE_MAP)
+        for db_indicator, values in parsed.items():
+            if not values:
+                continue
+            if db_indicator in _LEVEL_INDICATORS:
+                values = {k: round(v / 100_000, 2) for k, v in values.items()}
+            upsert_nbs_data(db_indicator, values, source="csv")
+
+        os.makedirs(_FILE_CACHE_DIR, exist_ok=True)
+        _CSV_MTIME_MARKER.write_text(str(mtime))
+        logger.info(f"[Trade] Manual CSV re-imported (mtime={mtime})")
+    except Exception as e:
+        logger.warning(f"[Trade] Manual CSV import failed: {e}")
+
+
+def _fetch_and_upsert() -> None:
+    """FMP から YoY を gap-fill し、レベルは YoY×前年同月から再構成して補完。
+
+    貿易(税関)データは自動取得源が無く、FMP economic_calendar_events(CN) の
+    **YoY actual のみ信頼可能**（レベルの actual は単位不整合(M/B混在)で使用不可）。
+    レベル系列は `level[m] = level[m-12months] * (1 + yoy[m]/100)`、
+    `balance = exports - imports` で復元する。これは YoY の定義そのものであり、
+    前年同月の実値が DB にあれば誤差 < 0.05%（検証済）。
+    ただし中国は **1-2月を合算発表**し Feb の YoY が累計値のため、レベル再構成は
+    単月が確定する **month >= 3 のみ**（1-2月分は手動CSVが担当）。冪等・欠損月のみ。
+    """
+    from datetime import datetime as _dt
+    from services.china.nbs_db_utils import (
+        backfill_from_fmp_events, load_nbs_data, upsert_nbs_data,
+    )
+
+    # 1. YoY を FMP から gap-fill（既存値は非上書き）
+    backfill_from_fmp_events("cn_exports_yoy", "Exports YoY")
+    backfill_from_fmp_events("cn_imports_yoy", "Imports YoY")
+
+    # 2. レベル(輸出/輸入)を YoY×前年同月 から再構成（欠損月・単月のみ）
+    for level_ind, yoy_ind in (("cn_exports", "cn_exports_yoy"), ("cn_imports", "cn_imports_yoy")):
+        levels = load_nbs_data(level_ind)
+        yoys = load_nbs_data(yoy_ind)
+        recon: Dict[str, float] = {}
+        for date_str, yoy in yoys.items():
+            if date_str in levels:
+                continue
+            try:
+                d = _dt.strptime(date_str, "%Y-%m-%d")
+            except ValueError:
+                continue
+            if d.month <= 2:  # 中国1-2月合算 → 単月再構成不可（手動CSV管轄）
+                continue
+            prev = f"{d.year - 1}-{d.month:02d}-01"
+            base = levels.get(prev)
+            if base is None:
+                continue
+            recon[date_str] = round(base * (1 + yoy / 100), 2)
+        if recon:
+            upsert_nbs_data(level_ind, recon, source="api")
+
+    # 3. 貿易収支 = 輸出 - 輸入（両レベルが揃う欠損月のみ）
+    exports = load_nbs_data("cn_exports")
+    imports = load_nbs_data("cn_imports")
+    balance = load_nbs_data("cn_trade_balance")
+    recon_bal: Dict[str, float] = {}
+    for date_str, exp_val in exports.items():
+        if date_str in balance:
+            continue
+        imp_val = imports.get(date_str)
+        if imp_val is None:
+            continue
+        recon_bal[date_str] = round(exp_val - imp_val, 2)
+    if recon_bal:
+        upsert_nbs_data("cn_trade_balance", recon_bal, source="api")
+
+
 def _build_data() -> Dict[str, Any]:
-    """DBからデータを読み込み（DB蓄積データのみで運用）"""
+    """DBからデータを読み込み（手動CSV + FMP YoY + レベル再構成で蓄積）"""
     from services.china.nbs_db_utils import load_nbs_multi
+
+    # --- 手動CSV（税関の正式値）→ DB蓄積（mtime更新時のみ・権威ソース）---
+    try:
+        _import_manual_csv()
+    except Exception as e:
+        logger.warning(f"[Trade] Manual CSV import failed: {e}")
+
+    # --- FMP YoY gap-fill + レベル再構成 → DB蓄積 ---
+    try:
+        _fetch_and_upsert()
+    except Exception as e:
+        logger.warning(f"[Trade] FMP fetch/reconstruct failed: {e}")
 
     # --- DBから全データ読み込み ---
     all_indicators = list(DB_INDICATORS.values())

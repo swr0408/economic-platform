@@ -10,7 +10,7 @@ SNB Data Portalから住宅ローン残高（国内・CHF建て・全銀行）�
 発表スケジュール:
 - 月次（Monthly banking statistics）- 20日以降の最初の営業日 09:00（チューリッヒ時間）
 
-単位: CHF（億CHF単位に変換して表示）
+単位: SNB原値は千CHF。実CHFに直し Billion CHF（10億CHF）に変換して表示
 """
 import json
 import re
@@ -138,9 +138,12 @@ class CHMortgageBalanceService:
                 try:
                     # "1987-12" -> "1987-12-01"
                     date = f"{date_str}-01"
-                    # 値はCHF単位、億CHF単位に変換
-                    value_chf = float(value_str)
-                    value = value_chf / 100_000_000  # CHF -> 億CHF
+                    # SNB BSTA 残高系キューブの "Value" は「千CHF」単位で報告される
+                    # (例: 1,245,302,370.38 千CHF ≒ CHF 1.245兆)。
+                    # これを実CHFに直し、表示用に Billion CHF (10億CHF) へ変換する。
+                    snb_thousand_chf = float(value_str)
+                    value_chf = snb_thousand_chf * 1_000  # 千CHF -> CHF
+                    value = value_chf / 1_000_000_000  # CHF -> Billion CHF
 
                     data_points.append({
                         "date": date,
@@ -169,7 +172,7 @@ class CHMortgageBalanceService:
             "data": data_points,
             "latest": latest,
             "metadata": {
-                "unit": "100 million CHF",
+                "unit": "Billion CHF",
                 "description": "Mortgage claims, domestic, CHF, all banks",
                 "source_url": "https://data.snb.ch/en/topics/banken/cube/BSTA.SNB.MONA_U.BIL.AKT.HYP",
             },

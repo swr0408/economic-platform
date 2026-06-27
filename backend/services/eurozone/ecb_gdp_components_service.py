@@ -56,11 +56,11 @@ class ECBGDPComponentsService:
 
     # シリーズキー（GDP寄与度）
     SERIES_KEYS = {
-        "private_consumption": "Q.Y.I9.W0.S1M.S1.D.P31._Z._Z._T.EUR_R_B1GQ.Y.GO1",
-        "government_consumption": "Q.Y.I9.W0.S13.S1.D.P3._Z._Z._T.EUR_R_B1GQ.Y.GO1",
-        "gross_fixed_capital": "Q.Y.I9.W0.S1.S1.D.P51G.N11G._T._Z.EUR_R_B1GQ.Y.GO1",
-        "changes_in_inventories": "Q.Y.I9.W0.S1.S1.D.P5M.N1MG._T._Z.EUR_R_B1GQ.Y.GO1",
-        "net_exports": "Q.Y.I9.W1.S1.S1.B.B11._Z._Z._Z.EUR_R_B1GQ.Y.GO1"
+        "private_consumption": "Q.Y.I10.W0.S1M.S1.D.P31._Z._Z._T.EUR_R_B1GQ.Y.GO1",
+        "government_consumption": "Q.Y.I10.W0.S13.S1.D.P3._Z._Z._T.EUR_R_B1GQ.Y.GO1",
+        "gross_fixed_capital": "Q.Y.I10.W0.S1.S1.D.P51G.N11G._T._Z.EUR_R_B1GQ.Y.GO1",
+        "changes_in_inventories": "Q.Y.I10.W0.S1.S1.D.P5M.N1MG._T._Z.EUR_R_B1GQ.Y.GO1",
+        "net_exports": "Q.Y.I10.W1.S1.S1.B.B11._Z._Z._Z.EUR_R_B1GQ.Y.GO1"
     }
 
     DATA_CACHE_KEY = "economy:ecb_gdp_components:data"

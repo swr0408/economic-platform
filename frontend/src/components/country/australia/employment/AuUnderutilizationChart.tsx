@@ -1,10 +1,10 @@
 /**
  * オーストラリア アンダー・ユーティライゼーション チャートコンポーネント
  *
- * 不完全利用率、不完全雇用率、失業率の3系列を表示
+ * 労働力不完全利用率、不完全就業率、失業率の3系列を表示
  *
  * データソース:
- * - ABS 6202.0 Labour Force, Table 23
+ * - ABS SDMX API (LF_UNDER dataflow: M24/M23/M13, 月次・季調)
  *
  * 発表スケジュール:
  * - 毎月（通常第3木曜日、Labour Force Survey）
@@ -92,7 +92,7 @@ export default function AuUnderutilizationChart({ data }: AuUnderutilizationChar
       >
         {/* 最新値表示（3系列） */}
         <div style={LATEST_VALUE_BOX_STYLE}>
-          {/* 不完全利用率 */}
+          {/* 労働力不完全利用率 */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <span
               style={{
@@ -102,13 +102,13 @@ export default function AuUnderutilizationChart({ data }: AuUnderutilizationChar
                 borderRadius: 2,
               }}
             />
-            <span style={{ fontSize: 12, color: '#a0a0a0' }}>不完全利用率</span>
+            <span style={{ fontSize: 12, color: '#a0a0a0' }}>労働力不完全利用率</span>
             <span style={{ fontSize: 18, fontWeight: 'bold', color: COLORS.underutilisation }}>
               {latest?.underutilisation?.toFixed(1) ?? '-'}%
             </span>
           </div>
 
-          {/* 不完全雇用率 */}
+          {/* 不完全就業率 */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <span
               style={{
@@ -118,7 +118,7 @@ export default function AuUnderutilizationChart({ data }: AuUnderutilizationChar
                 borderRadius: 2,
               }}
             />
-            <span style={{ fontSize: 12, color: '#a0a0a0' }}>不完全雇用率</span>
+            <span style={{ fontSize: 12, color: '#a0a0a0' }}>不完全就業率</span>
             <span style={{ fontSize: 18, fontWeight: 'bold', color: COLORS.underemployment }}>
               {latest?.underemployment?.toFixed(1) ?? '-'}%
             </span>
@@ -177,8 +177,8 @@ export default function AuUnderutilizationChart({ data }: AuUnderutilizationChar
                   <StandardLineChart
                     data={filteredData}
                     lines={[
-                      { dataKey: 'underutilisation', color: COLORS.underutilisation, name: '不完全利用率', hide: hiddenSeries.has('underutilisation') },
-                      { dataKey: 'underemployment', color: COLORS.underemployment, name: '不完全雇用率', hide: hiddenSeries.has('underemployment') },
+                      { dataKey: 'underutilisation', color: COLORS.underutilisation, name: '労働力不完全利用率', hide: hiddenSeries.has('underutilisation') },
+                      { dataKey: 'underemployment', color: COLORS.underemployment, name: '不完全就業率', hide: hiddenSeries.has('underemployment') },
                       { dataKey: 'unemployment', color: COLORS.unemployment, name: '失業率', hide: hiddenSeries.has('unemployment') },
                     ]}
                     yAxisFormatter={(v) => `${v}%`}

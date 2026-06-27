@@ -114,7 +114,11 @@ class CnBaiduMigrationScreenshotService:
             url=url,
             output_path=str(output_path),
             wait_selector=".mgs-line",
-            wait_for_load_state="networkidle",
+            # 百度地図SPAは背景通信が常時続き networkidle に到達せず goto が
+            # 60秒タイムアウトする（capture失敗→スクショ凍結）。ページ自体は
+            # domcontentloadedで数秒ロード可・.mgs-line も出現するため、
+            # wait_selector + wait_after_load_ms(canvas描画待ち) で担保する。
+            wait_for_load_state="domcontentloaded",
             wait_after_load_ms=8_000,  # 旧実装の time.sleep(8) 相当
             clip_selector=".mgs-line",
             scroll_into_view=True,

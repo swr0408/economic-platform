@@ -5,6 +5,7 @@ CPI（前年比・前月比・食品・非食品）+ PPI（前年比・前月比
 キャッシュ更新判定: NBS発表日時ベース
 """
 import os
+import glob
 from typing import Dict, Any, Optional, List
 from datetime import datetime
 from pathlib import Path
@@ -16,11 +17,15 @@ from services.dashboard.loaders.base import BaseDashboardLoader
 JST = ZoneInfo("Asia/Tokyo")
 CST = ZoneInfo("Asia/Shanghai")
 
+_DATA_ROOT = Path(__file__).parent.parent.parent.parent / "data"
+
 # 輸出物価指数の手動更新CSV
 _EXPORT_PRICES_CSV = (
-    Path(__file__).parent.parent.parent.parent
-    / "data" / "manual_update" / "monthly" / "china" / "中国輸出物価.csv"
+    _DATA_ROOT / "manual_update" / "monthly" / "china" / "中国輸出物価.csv"
 )
+
+# CPI 長期履歴の手動更新CSV(NBS データ照会、年範囲分割) — 更新時に cn_cpi を再取得
+_CPI_CSV_GLOB = str(_DATA_ROOT / "csv_import" / "china_cpi_*.csv")
 
 
 class ChinaInflationLoader(BaseDashboardLoader):
@@ -59,6 +64,17 @@ class ChinaInflationLoader(BaseDashboardLoader):
         except Exception:
             return False
 
+    def _is_cpi_csv_newer_than(self, last_updated_dt: datetime) -> bool:
+        """CPI 長期履歴の手動更新CSV(いずれか)がキャッシュより新しければ True"""
+        try:
+            for path in glob.glob(_CPI_CSV_GLOB):
+                mtime = datetime.fromtimestamp(os.path.getmtime(path), tz=JST)
+                if mtime > last_updated_dt:
+                    return True
+        except Exception:
+            pass
+        return False
+
     def _is_cache_stale(self, last_updated: Optional[str]) -> bool:
         if super()._is_cache_stale(last_updated):
             return True
@@ -70,7 +86,10 @@ class ChinaInflationLoader(BaseDashboardLoader):
                 last_updated_dt = last_updated_dt.replace(tzinfo=JST)
         except Exception:
             return True
-        return self._is_export_prices_csv_newer_than(last_updated_dt)
+        return (
+            self._is_export_prices_csv_newer_than(last_updated_dt)
+            or self._is_cpi_csv_newer_than(last_updated_dt)
+        )
 
     def _detect_stale_indicators(self, last_updated: Optional[str]) -> set:
         """
@@ -88,6 +107,9 @@ class ChinaInflationLoader(BaseDashboardLoader):
 
             if self._is_export_prices_csv_newer_than(last_updated_dt):
                 stale.add("cn_export_prices")
+
+            if self._is_cpi_csv_newer_than(last_updated_dt):
+                stale.add("cn_cpi")
 
             now = datetime.now(JST)
             release_datetimes = self.get_release_datetimes()

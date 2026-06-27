@@ -745,6 +745,16 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     relatedIndicators: ['import-export-price', 'cgpi', 'national-cpi', 'japan-fundamentals-yen'],
     tags: ['交易条件', 'Terms of Trade', '輸出物価', '輸入物価', 'FOB', 'CIF', '日本銀行', '資源価格', '原油', 'LNG', '円安', '為替', '実質所得', '価格転嫁', '貿易収支'],
   },
+  {
+    indicatorId: 'price-di-spread',
+    title: '価格DIスプレッド',
+    country: 'japan',
+    category: 'inflation',
+    summary: '日銀短観の販売価格DI−仕入価格DIで測る派生指標。企業の価格転嫁力と採算・マージン圧力を確認する。水準・変化幅、販売/仕入の分解、業種・規模差で読む。',
+    loadContent: loadMd('japan/price-di-spread.md'),
+    relatedIndicators: ['boj-tankan', 'cgpi', 'import-export-price', 'national-cpi'],
+    tags: ['価格DIスプレッド', '販売価格DI', '仕入価格DI', '日銀短観', '短観', '価格転嫁', 'マージン', '採算', '企業物価', 'インフレ', '日本銀行', 'DI'],
+  },
 
   // --- Japan / 物価（GDPギャップ） ---
   {
@@ -2373,7 +2383,7 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     indicatorId: 'uk-government-debt-to-gdp-ratio',
     title: '政府債務残高対GDP比（英国）',
     country: 'uk',
-    category: 'economy',
+    category: 'policy',
     summary: 'ONS HF6X（PSND ex GDP比）。狭義の純債務／GDPで財政余力を見る。財政ルールで使われるPSNFLとは別物。利払い費・OBR見通し・国債利回りと併読。',
     loadContent: loadMd('uk/uk-government-debt-to-gdp-ratio.md'),
     relatedIndicators: ['uk-public-sector-net-borrowing', 'uk-qt', 'uk-boe-overview'],
@@ -2870,6 +2880,30 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['ニュージーランド', 'RBNZ', 'OCR', 'MPC', 'Remit', 'インフレ目標', 'デュアルマンデート', '物価安定', '雇用', 'NZD'],
   },
 
+  // --- ニュージーランド / Output Gap（需給ギャップ） ---
+  {
+    indicatorId: 'nz-output-gap',
+    title: 'Output Gap（需給ギャップ・ニュージーランド）',
+    country: 'newzealand',
+    category: 'policy',
+    summary: '実際のGDPと潜在GDPの乖離を示すRBNZ推計の需給バランス指標。プラスは需要超過でインフレ圧力、マイナスは余剰能力。MPSの今回 vs 前回の改定方向と、失業率・賃金・インフレとの整合性で読む。',
+    loadContent: loadMd('newzealand/nz-output-gap.md'),
+    relatedIndicators: ['nz-neutral-ocr', 'nz-rbnz-overview', 'traded-nontraded'],
+    tags: ['Output Gap', '需給ギャップ', '潜在GDP', 'RBNZ', 'MPS', 'ニュージーランド', 'インフレ圧力', 'スラック', '失業率', '賃金', '金融政策'],
+  },
+
+  // --- ニュージーランド / OCR & 中立OCRスイート ---
+  {
+    indicatorId: 'nz-neutral-ocr',
+    title: 'OCR & 中立OCRスイート（中立金利・ニュージーランド）',
+    country: 'newzealand',
+    category: 'policy',
+    summary: '実際のOCRと複数の中立OCR推計（短期・予測期間・長期）を比較し、金融政策が引き締め的か緩和的かを判断する指標群。OCRが中立を下回れば緩和的、上回れば引き締め的。Output gapとの整合性で読む。',
+    loadContent: loadMd('newzealand/nz-neutral-ocr.md'),
+    relatedIndicators: ['nz-output-gap', 'nz-rbnz-overview', 'neutral-rate'],
+    tags: ['中立OCR', '中立金利', '自然利子率', 'Neutral OCR', 'OCR', 'RBNZ', 'MPS', 'ニュージーランド', '金融政策スタンス', '引き締め', '緩和', 'r*'],
+  },
+
   // --- ニュージーランド / 貿易構造 ---
   {
     indicatorId: 'nz-trade',
@@ -3036,6 +3070,30 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     tags: ['可処分所得', 'Disposable Income', 'ABS', '実質所得', '購買力', '消費'],
   },
 
+  // --- オーストラリア / 住宅ローン金利 ---
+  {
+    indicatorId: 'au-housing-lending-rates',
+    title: '住宅ローン金利（オーストラリア・RBA F6）',
+    country: 'australia',
+    category: 'housing',
+    summary: 'RBA F6が公表する実際の貸出条件を反映した住宅ローン平均金利。既存/新規・居住用/投資用・変動/固定の系列差から金融政策の家計波及、借り換え環境、住宅需要、銀行の貸出姿勢を読む。',
+    loadContent: loadMd('australia/au-housing-lending-rates.md'),
+    relatedIndicators: ['au-rba-overview', 'au-housing-loan-arrears', 'household-saving-ratio'],
+    tags: ['住宅ローン金利', 'Housing Lending Rates', 'RBA', 'F6', 'オーストラリア', '変動金利', '固定金利', '居住用', '投資用', 'Owner-occupier', 'Investor', '既存ローン', '新規ローン', '借り換え', '利払い負担', '住宅需要', 'AUD'],
+  },
+
+  // --- オーストラリア / 住宅ローン延滞率 ---
+  {
+    indicatorId: 'au-housing-loan-arrears',
+    title: '住宅ローン延滞率（オーストラリア・APRA）',
+    country: 'australia',
+    category: 'housing',
+    summary: 'APRA ADI Property Exposuresの住宅ローン延滞データ。30〜89日延滞（初期ストレス）と非稼働ローン（90日超等の深刻な信用悪化）を分けて読む家計信用リスク指標。延滞は遅行性があり住宅価格・雇用・金利と併せて確認する。',
+    loadContent: loadMd('australia/au-housing-loan-arrears.md'),
+    relatedIndicators: ['au-housing-lending-rates', 'au-rba-overview', 'household-saving-ratio'],
+    tags: ['住宅ローン延滞率', '延滞率', 'Arrears', 'Non-performing', '非稼働ローン', '30-89日延滞', 'APRA', 'ADI', 'Property Exposures', 'オーストラリア', '信用リスク', '貸倒', '家計', '銀行', 'LVR', 'AUD'],
+  },
+
   // --- ユーロ圏 / 伊独スプレッド ---
   {
     indicatorId: 'btp-bund-spread',
@@ -3190,6 +3248,18 @@ export const HANDBOOK_ENTRIES: HandbookEntry[] = [
     loadContent: loadMd('eurozone/ecb-adjusted-loans.md'),
     relatedIndicators: ['ecb-bls', 'ecb-m3', 'ecb-bank-interest-rates', 'ecb-rates'],
     tags: ['BSI', 'Balance Sheet Items', '調整済貸出', 'Adjusted Loans', 'MFI', '非金融法人', '家計', '住宅購入', '信用供給', '信用循環', 'ECB', 'ユーロ圏', '銀行貸出'],
+  },
+
+  // --- ユーロ圏 / システミックストレス指標（CISS） ---
+  {
+    indicatorId: 'ecb-ciss',
+    title: 'システミックストレス指標（CISS）',
+    country: 'eurozone',
+    category: 'economy',
+    summary: 'ECBが公表する金融システム全体のストレス度合いを示す複合指標。金融仲介機関・短期金融市場・株式・債券・為替の5分野を統合し、複数市場で同時にストレスが高まる局面で上昇しやすい設計。リスクオン・オフ環境や金融不安の広がりを確認する。',
+    loadContent: loadMd('eurozone/ecb-ciss.md'),
+    relatedIndicators: ['btp-bund-spread', 'oas', 'ecb-rates', 'ez-pmi'],
+    tags: ['CISS', 'Composite Indicator of Systemic Stress', 'システミックストレス', '金融ストレス', 'ECB', 'ユーロ圏', 'システミックリスク', '信用スプレッド', 'ボラティリティ', 'リスクオフ', '安全資産', '流動性', '金融不安'],
   },
 
   // --- ユーロ圏 / 鉱工業生産 ---

@@ -1,116 +1,1100 @@
 {
   "data": [
     {
+      "date": "2015-01-01",
+      "ppi_index": 88.1,
+      "ppi_yoy_change": -2.1,
+      "ppi_mom_change": -0.6,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2015-02-01",
+      "ppi_index": 88.2,
+      "ppi_yoy_change": -2.0,
+      "ppi_mom_change": 0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2015-03-01",
+      "ppi_index": 88.3,
+      "ppi_yoy_change": -1.7,
+      "ppi_mom_change": 0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2015-04-01",
+      "ppi_index": 88.4,
+      "ppi_yoy_change": -1.4,
+      "ppi_mom_change": 0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2015-05-01",
+      "ppi_index": 88.4,
+      "ppi_yoy_change": -1.2,
+      "ppi_mom_change": 0.0,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2015-06-01",
+      "ppi_index": 88.3,
+      "ppi_yoy_change": -1.3,
+      "ppi_mom_change": -0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2015-07-01",
+      "ppi_index": 88.3,
+      "ppi_yoy_change": -1.2,
+      "ppi_mom_change": 0.0,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2015-08-01",
+      "ppi_index": 87.9,
+      "ppi_yoy_change": -1.6,
+      "ppi_mom_change": -0.5,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2015-09-01",
+      "ppi_index": 87.6,
+      "ppi_yoy_change": -1.9,
+      "ppi_mom_change": -0.3,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2015-10-01",
+      "ppi_index": 87.2,
+      "ppi_yoy_change": -2.4,
+      "ppi_mom_change": -0.5,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2015-11-01",
+      "ppi_index": 87.0,
+      "ppi_yoy_change": -2.6,
+      "ppi_mom_change": -0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2015-12-01",
+      "ppi_index": 86.6,
+      "ppi_yoy_change": -2.3,
+      "ppi_mom_change": -0.5,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2016-01-01",
+      "ppi_index": 86.1,
+      "ppi_yoy_change": -2.3,
+      "ppi_mom_change": -0.6,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2016-02-01",
+      "ppi_index": 85.7,
+      "ppi_yoy_change": -2.8,
+      "ppi_mom_change": -0.5,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2016-03-01",
+      "ppi_index": 85.7,
+      "ppi_yoy_change": -2.9,
+      "ppi_mom_change": 0.0,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2016-04-01",
+      "ppi_index": 85.8,
+      "ppi_yoy_change": -2.9,
+      "ppi_mom_change": 0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2016-05-01",
+      "ppi_index": 86.2,
+      "ppi_yoy_change": -2.5,
+      "ppi_mom_change": 0.5,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2016-06-01",
+      "ppi_index": 86.4,
+      "ppi_yoy_change": -2.2,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2016-07-01",
+      "ppi_index": 86.6,
+      "ppi_yoy_change": -1.9,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2016-08-01",
+      "ppi_index": 86.5,
+      "ppi_yoy_change": -1.6,
+      "ppi_mom_change": -0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2016-09-01",
+      "ppi_index": 86.4,
+      "ppi_yoy_change": -1.4,
+      "ppi_mom_change": -0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2016-10-01",
+      "ppi_index": 86.8,
+      "ppi_yoy_change": -0.5,
+      "ppi_mom_change": 0.5,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2016-11-01",
+      "ppi_index": 87.1,
+      "ppi_yoy_change": 0.1,
+      "ppi_mom_change": 0.3,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2016-12-01",
+      "ppi_index": 87.5,
+      "ppi_yoy_change": 1.0,
+      "ppi_mom_change": 0.5,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2017-01-01",
+      "ppi_index": 88.1,
+      "ppi_yoy_change": 2.3,
+      "ppi_mom_change": 0.7,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2017-02-01",
+      "ppi_index": 88.3,
+      "ppi_yoy_change": 3.0,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2017-03-01",
+      "ppi_index": 88.4,
+      "ppi_yoy_change": 3.2,
+      "ppi_mom_change": 0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2017-04-01",
+      "ppi_index": 88.6,
+      "ppi_yoy_change": 3.3,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2017-05-01",
+      "ppi_index": 88.6,
+      "ppi_yoy_change": 2.8,
+      "ppi_mom_change": 0.0,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2017-06-01",
+      "ppi_index": 88.6,
+      "ppi_yoy_change": 2.5,
+      "ppi_mom_change": 0.0,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2017-07-01",
+      "ppi_index": 88.7,
+      "ppi_yoy_change": 2.4,
+      "ppi_mom_change": 0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2017-08-01",
+      "ppi_index": 88.8,
+      "ppi_yoy_change": 2.7,
+      "ppi_mom_change": 0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2017-09-01",
+      "ppi_index": 89.2,
+      "ppi_yoy_change": 3.2,
+      "ppi_mom_change": 0.5,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2017-10-01",
+      "ppi_index": 89.3,
+      "ppi_yoy_change": 2.9,
+      "ppi_mom_change": 0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2017-11-01",
+      "ppi_index": 89.3,
+      "ppi_yoy_change": 2.5,
+      "ppi_mom_change": 0.0,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2017-12-01",
+      "ppi_index": 89.5,
+      "ppi_yoy_change": 2.3,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2018-01-01",
+      "ppi_index": 90.0,
+      "ppi_yoy_change": 2.2,
+      "ppi_mom_change": 0.6,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2018-02-01",
+      "ppi_index": 89.9,
+      "ppi_yoy_change": 1.8,
+      "ppi_mom_change": -0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2018-03-01",
+      "ppi_index": 90.0,
+      "ppi_yoy_change": 1.8,
+      "ppi_mom_change": 0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2018-04-01",
+      "ppi_index": 90.3,
+      "ppi_yoy_change": 1.9,
+      "ppi_mom_change": 0.3,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2018-05-01",
+      "ppi_index": 90.8,
+      "ppi_yoy_change": 2.5,
+      "ppi_mom_change": 0.6,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2018-06-01",
+      "ppi_index": 91.1,
+      "ppi_yoy_change": 2.8,
+      "ppi_mom_change": 0.3,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2018-07-01",
+      "ppi_index": 91.3,
+      "ppi_yoy_change": 2.9,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2018-08-01",
+      "ppi_index": 91.5,
+      "ppi_yoy_change": 3.0,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2018-09-01",
+      "ppi_index": 92.0,
+      "ppi_yoy_change": 3.1,
+      "ppi_mom_change": 0.5,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2018-10-01",
+      "ppi_index": 92.2,
+      "ppi_yoy_change": 3.2,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2018-11-01",
+      "ppi_index": 92.3,
+      "ppi_yoy_change": 3.4,
+      "ppi_mom_change": 0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2018-12-01",
+      "ppi_index": 92.0,
+      "ppi_yoy_change": 2.8,
+      "ppi_mom_change": -0.3,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2019-01-01",
+      "ppi_index": 92.3,
+      "ppi_yoy_change": 2.6,
+      "ppi_mom_change": 0.3,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2019-02-01",
+      "ppi_index": 92.2,
+      "ppi_yoy_change": 2.6,
+      "ppi_mom_change": -0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2019-03-01",
+      "ppi_index": 92.2,
+      "ppi_yoy_change": 2.4,
+      "ppi_mom_change": 0.0,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2019-04-01",
+      "ppi_index": 92.6,
+      "ppi_yoy_change": 2.5,
+      "ppi_mom_change": 0.4,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2019-05-01",
+      "ppi_index": 92.5,
+      "ppi_yoy_change": 1.9,
+      "ppi_mom_change": -0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2019-06-01",
+      "ppi_index": 92.2,
+      "ppi_yoy_change": 1.2,
+      "ppi_mom_change": -0.3,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2019-07-01",
+      "ppi_index": 92.2,
+      "ppi_yoy_change": 1.0,
+      "ppi_mom_change": 0.0,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2019-08-01",
+      "ppi_index": 91.8,
+      "ppi_yoy_change": 0.3,
+      "ppi_mom_change": -0.4,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2019-09-01",
+      "ppi_index": 91.9,
+      "ppi_yoy_change": -0.1,
+      "ppi_mom_change": 0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2019-10-01",
+      "ppi_index": 91.7,
+      "ppi_yoy_change": -0.5,
+      "ppi_mom_change": -0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2019-11-01",
+      "ppi_index": 91.7,
+      "ppi_yoy_change": -0.7,
+      "ppi_mom_change": 0.0,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2019-12-01",
+      "ppi_index": 91.8,
+      "ppi_yoy_change": -0.2,
+      "ppi_mom_change": 0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2020-01-01",
+      "ppi_index": 92.5,
+      "ppi_yoy_change": 0.2,
+      "ppi_mom_change": 0.8,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2020-02-01",
+      "ppi_index": 92.2,
+      "ppi_yoy_change": null,
+      "ppi_mom_change": -0.3,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2020-03-01",
+      "ppi_index": 91.5,
+      "ppi_yoy_change": -0.8,
+      "ppi_mom_change": -0.8,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2020-04-01",
+      "ppi_index": 90.8,
+      "ppi_yoy_change": -1.9,
+      "ppi_mom_change": -0.8,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2020-05-01",
+      "ppi_index": 90.5,
+      "ppi_yoy_change": -2.2,
+      "ppi_mom_change": -0.3,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2020-06-01",
+      "ppi_index": 90.5,
+      "ppi_yoy_change": -1.8,
+      "ppi_mom_change": 0.0,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2020-07-01",
+      "ppi_index": 90.7,
+      "ppi_yoy_change": -1.6,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2020-08-01",
+      "ppi_index": 90.7,
+      "ppi_yoy_change": -1.2,
+      "ppi_mom_change": 0.0,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2020-09-01",
+      "ppi_index": 91.0,
+      "ppi_yoy_change": -1.0,
+      "ppi_mom_change": 0.3,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2020-10-01",
+      "ppi_index": 91.1,
+      "ppi_yoy_change": -0.7,
+      "ppi_mom_change": 0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2020-11-01",
+      "ppi_index": 91.3,
+      "ppi_yoy_change": -0.4,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2020-12-01",
+      "ppi_index": 92.0,
+      "ppi_yoy_change": 0.2,
+      "ppi_mom_change": 0.8,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2021-01-01",
+      "ppi_index": 93.3,
+      "ppi_yoy_change": 0.9,
+      "ppi_mom_change": 1.4,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2021-02-01",
+      "ppi_index": 94.1,
+      "ppi_yoy_change": 2.1,
+      "ppi_mom_change": 0.9,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2021-03-01",
+      "ppi_index": 95.0,
+      "ppi_yoy_change": 3.8,
+      "ppi_mom_change": 1.0,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2021-04-01",
+      "ppi_index": 95.9,
+      "ppi_yoy_change": 5.6,
+      "ppi_mom_change": 0.9,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2021-05-01",
+      "ppi_index": 97.0,
+      "ppi_yoy_change": 7.2,
+      "ppi_mom_change": 1.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2021-06-01",
+      "ppi_index": 98.1,
+      "ppi_yoy_change": 8.4,
+      "ppi_mom_change": 1.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2021-07-01",
+      "ppi_index": 99.8,
+      "ppi_yoy_change": 10.0,
+      "ppi_mom_change": 1.7,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2021-08-01",
+      "ppi_index": 101.0,
+      "ppi_yoy_change": 11.4,
+      "ppi_mom_change": 1.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2021-09-01",
+      "ppi_index": 102.7,
+      "ppi_yoy_change": 12.9,
+      "ppi_mom_change": 1.7,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2021-10-01",
+      "ppi_index": 105.8,
+      "ppi_yoy_change": 16.1,
+      "ppi_mom_change": 3.0,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2021-11-01",
+      "ppi_index": 106.8,
+      "ppi_yoy_change": 17.0,
+      "ppi_mom_change": 0.9,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2021-12-01",
+      "ppi_index": 110.5,
+      "ppi_yoy_change": 20.1,
+      "ppi_mom_change": 3.5,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2022-01-01",
+      "ppi_index": 114.7,
+      "ppi_yoy_change": 22.9,
+      "ppi_mom_change": 3.8,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2022-02-01",
+      "ppi_index": 116.3,
+      "ppi_yoy_change": 23.6,
+      "ppi_mom_change": 1.4,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2022-03-01",
+      "ppi_index": 121.9,
+      "ppi_yoy_change": 28.3,
+      "ppi_mom_change": 4.8,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2022-04-01",
+      "ppi_index": 125.3,
+      "ppi_yoy_change": 30.7,
+      "ppi_mom_change": 2.8,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2022-05-01",
+      "ppi_index": 127.2,
+      "ppi_yoy_change": 31.1,
+      "ppi_mom_change": 1.5,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2022-06-01",
+      "ppi_index": 128.2,
+      "ppi_yoy_change": 30.7,
+      "ppi_mom_change": 0.8,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2022-07-01",
+      "ppi_index": 132.7,
+      "ppi_yoy_change": 33.0,
+      "ppi_mom_change": 3.5,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2022-08-01",
+      "ppi_index": 139.9,
+      "ppi_yoy_change": 38.5,
+      "ppi_mom_change": 5.4,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2022-09-01",
+      "ppi_index": 142.3,
+      "ppi_yoy_change": 38.6,
+      "ppi_mom_change": 1.7,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2022-10-01",
+      "ppi_index": 139.3,
+      "ppi_yoy_change": 31.7,
+      "ppi_mom_change": -2.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2022-11-01",
+      "ppi_index": 135.0,
+      "ppi_yoy_change": 26.4,
+      "ppi_mom_change": -3.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2022-12-01",
+      "ppi_index": 134.2,
+      "ppi_yoy_change": 21.4,
+      "ppi_mom_change": -0.6,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2023-01-01",
+      "ppi_index": 133.5,
+      "ppi_yoy_change": 16.4,
+      "ppi_mom_change": -0.5,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2023-02-01",
+      "ppi_index": 132.5,
+      "ppi_yoy_change": 13.9,
+      "ppi_mom_change": -0.7,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2023-03-01",
+      "ppi_index": 131.1,
+      "ppi_yoy_change": 7.5,
+      "ppi_mom_change": -1.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2023-04-01",
+      "ppi_index": 131.8,
+      "ppi_yoy_change": 5.2,
+      "ppi_mom_change": 0.5,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2023-05-01",
+      "ppi_index": 130.4,
+      "ppi_yoy_change": 2.5,
+      "ppi_mom_change": -1.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2023-06-01",
+      "ppi_index": 129.8,
+      "ppi_yoy_change": 1.2,
+      "ppi_mom_change": -0.5,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2023-07-01",
+      "ppi_index": 128.9,
+      "ppi_yoy_change": -2.9,
+      "ppi_mom_change": -0.7,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2023-08-01",
+      "ppi_index": 129.2,
+      "ppi_yoy_change": -7.6,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2023-09-01",
+      "ppi_index": 129.3,
+      "ppi_yoy_change": -9.1,
+      "ppi_mom_change": 0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2023-10-01",
+      "ppi_index": 129.1,
+      "ppi_yoy_change": -7.3,
+      "ppi_mom_change": -0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2023-11-01",
+      "ppi_index": 128.3,
+      "ppi_yoy_change": -5.0,
+      "ppi_mom_change": -0.6,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2023-12-01",
+      "ppi_index": 127.3,
+      "ppi_yoy_change": -5.1,
+      "ppi_mom_change": -0.8,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2024-01-01",
+      "ppi_index": 127.6,
+      "ppi_yoy_change": -4.4,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2024-02-01",
+      "ppi_index": 127.1,
+      "ppi_yoy_change": -4.1,
+      "ppi_mom_change": -0.4,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2024-03-01",
+      "ppi_index": 127.3,
+      "ppi_yoy_change": -2.9,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2024-04-01",
+      "ppi_index": 127.5,
+      "ppi_yoy_change": -3.3,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2024-05-01",
+      "ppi_index": 127.5,
+      "ppi_yoy_change": -2.2,
+      "ppi_mom_change": 0.0,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2024-06-01",
+      "ppi_index": 127.7,
+      "ppi_yoy_change": -1.6,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2024-07-01",
+      "ppi_index": 127.9,
+      "ppi_yoy_change": -0.8,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2024-08-01",
+      "ppi_index": 128.2,
+      "ppi_yoy_change": -0.8,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2024-09-01",
+      "ppi_index": 127.5,
+      "ppi_yoy_change": -1.4,
+      "ppi_mom_change": -0.5,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2024-10-01",
+      "ppi_index": 127.7,
+      "ppi_yoy_change": -1.1,
+      "ppi_mom_change": 0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2024-11-01",
+      "ppi_index": 128.4,
+      "ppi_yoy_change": 0.1,
+      "ppi_mom_change": 0.5,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2024-12-01",
+      "ppi_index": 128.3,
+      "ppi_yoy_change": 0.8,
+      "ppi_mom_change": -0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2025-01-01",
+      "ppi_index": 128.2,
+      "ppi_yoy_change": 0.5,
+      "ppi_mom_change": -0.1,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2025-02-01",
+      "ppi_index": 128.0,
+      "ppi_yoy_change": 0.7,
+      "ppi_mom_change": -0.2,
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
       "date": "2025-03-01",
-      "ppi_index": null,
+      "ppi_index": 127.1,
       "ppi_yoy_change": -0.2,
       "ppi_mom_change": -0.7,
-      "source": "fmp",
-      "is_preliminary": true
+      "source": "destatis",
+      "is_preliminary": false
     },
     {
       "date": "2025-04-01",
-      "ppi_index": null,
+      "ppi_index": 126.3,
       "ppi_yoy_change": -0.9,
       "ppi_mom_change": -0.6,
-      "source": "fmp",
-      "is_preliminary": true
+      "source": "destatis",
+      "is_preliminary": false
     },
     {
       "date": "2025-05-01",
-      "ppi_index": null,
+      "ppi_index": 126.0,
       "ppi_yoy_change": -1.2,
       "ppi_mom_change": -0.2,
-      "source": "fmp",
-      "is_preliminary": true
+      "source": "destatis",
+      "is_preliminary": false
     },
     {
       "date": "2025-06-01",
-      "ppi_index": null,
+      "ppi_index": 126.1,
       "ppi_yoy_change": -1.3,
       "ppi_mom_change": 0.1,
-      "source": "fmp",
-      "is_preliminary": true
+      "source": "destatis",
+      "is_preliminary": false
     },
     {
       "date": "2025-07-01",
-      "ppi_index": null,
+      "ppi_index": 126.0,
       "ppi_yoy_change": -1.5,
       "ppi_mom_change": -0.1,
-      "source": "fmp",
-      "is_preliminary": true
+      "source": "destatis",
+      "is_preliminary": false
     },
     {
       "date": "2025-08-01",
-      "ppi_index": null,
+      "ppi_index": 125.4,
       "ppi_yoy_change": -2.2,
       "ppi_mom_change": -0.5,
-      "source": "fmp",
-      "is_preliminary": true
+      "source": "destatis",
+      "is_preliminary": false
     },
     {
       "date": "2025-09-01",
-      "ppi_index": null,
+      "ppi_index": 125.3,
       "ppi_yoy_change": -1.7,
       "ppi_mom_change": -0.1,
-      "source": "fmp",
-      "is_preliminary": true
+      "source": "destatis",
+      "is_preliminary": false
     },
     {
       "date": "2025-10-01",
-      "ppi_index": null,
+      "ppi_index": 125.4,
       "ppi_yoy_change": -1.8,
       "ppi_mom_change": 0.1,
-      "source": "fmp",
-      "is_preliminary": true
+      "source": "destatis",
+      "is_preliminary": false
     },
     {
       "date": "2025-11-01",
-      "ppi_index": null,
+      "ppi_index": 125.4,
       "ppi_yoy_change": -2.3,
       "ppi_mom_change": 0.0,
-      "source": "fmp",
-      "is_preliminary": true
+      "source": "destatis",
+      "is_preliminary": false
     },
     {
       "date": "2025-12-01",
-      "ppi_index": null,
+      "ppi_index": 125.1,
       "ppi_yoy_change": -2.5,
       "ppi_mom_change": -0.2,
-      "source": "fmp",
-      "is_preliminary": true
+      "source": "destatis",
+      "is_preliminary": false
     },
     {
       "date": "2026-01-01",
-      "ppi_index": null,
+      "ppi_index": 124.4,
       "ppi_yoy_change": -3.0,
       "ppi_mom_change": -0.6,
-      "source": "fmp",
-      "is_preliminary": true
+      "source": "destatis",
+      "is_preliminary": false
     },
     {
       "date": "2026-02-01",
-      "ppi_index": null,
+      "ppi_index": 123.8,
       "ppi_yoy_change": -3.3,
       "ppi_mom_change": -0.5,
-      "source": "fmp",
-      "is_preliminary": true
+      "source": "destatis",
+      "is_preliminary": false
     },
     {
       "date": "2026-03-01",
-      "ppi_index": null,
+      "ppi_index": 126.9,
       "ppi_yoy_change": -0.2,
       "ppi_mom_change": 2.5,
-      "source": "fmp",
-      "is_preliminary": true
+      "source": "destatis",
+      "is_preliminary": false
     },
     {
       "date": "2026-04-01",
-      "ppi_index": null,
+      "ppi_index": 128.4,
       "ppi_yoy_change": 1.7,
       "ppi_mom_change": 1.2,
-      "source": "fmp",
-      "is_preliminary": true
+      "source": "destatis",
+      "is_preliminary": false
+    },
+    {
+      "date": "2026-05-01",
+      "ppi_index": 128.8,
+      "ppi_yoy_change": 2.2,
+      "ppi_mom_change": 0.3,
+      "source": "destatis",
+      "is_preliminary": false
     }
   ],
   "metadata": {
@@ -121,14 +1105,14 @@
     "description": "ドイツ生産者物価指数（PPI）"
   },
   "next_release": {
-    "date": "2026-06-19",
-    "datetime_utc": "2026-06-19T06:00:00+00:00",
-    "datetime_jst": "2026-06-19T15:00:00+09:00",
+    "date": "2026-07-20",
+    "datetime_utc": "2026-07-20T06:00:00+00:00",
+    "datetime_jst": "2026-07-20T15:00:00+09:00",
     "time_jst": "15:00",
-    "datetime_cet": "2026-06-19T08:00:00+02:00",
+    "datetime_cet": "2026-07-20T08:00:00+02:00",
     "time_cet": "08:00",
-    "label": "Producer Price Index YoY (May)",
-    "estimate": 2.5
+    "label": "Producer Price Index YoY (Jun)",
+    "estimate": 3.6
   },
-  "last_updated": "2026-06-17T20:05:02.629392+09:00"
+  "last_updated": "2026-06-27T22:45:43.496402+09:00"
 }

@@ -199,7 +199,7 @@ export default function AuHouseholdSpendingChart({ data }: AuHouseholdSpendingCh
                     <Tooltip title="比較ページを開く">
                       <Button
                         icon={<AreaChartOutlined />}
-                        onClick={() => window.open('/compare?s=au_household_spending', '_blank')}
+                        onClick={() => window.open(`/compare?s=au_household_spending_${dataKind}`, '_blank')}
                       >
                         データ比較
                       </Button>

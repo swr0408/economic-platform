@@ -30049,12 +30049,62 @@
       "date": "2026-06-15",
       "value": 2.0,
       "deposit_facility": 2.0
+    },
+    {
+      "date": "2026-06-16",
+      "value": 2.0,
+      "deposit_facility": 2.0
+    },
+    {
+      "date": "2026-06-17",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-06-18",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-06-19",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-06-20",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-06-21",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-06-22",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-06-23",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-06-24",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-06-25",
+      "value": 2.25,
+      "deposit_facility": 2.25
     }
   ],
   "latest": {
-    "date": "2026-06-15",
-    "value": 2.0,
-    "deposit_facility": 2.0
+    "date": "2026-06-25",
+    "value": 2.25,
+    "deposit_facility": 2.25
   },
   "next_release": {
     "date": "2026-07-23",
@@ -30063,8 +30113,8 @@
     "time_jst": "21:15",
     "datetime_cet": "2026-07-23T14:15:00+02:00",
     "time_cet": "14:15",
-    "label": "Deposit Facility Rate",
+    "label": "Interest Rate Decision",
     "estimate": null
   },
-  "last_updated": "2026-06-15T20:03:09.765348+09:00"
+  "last_updated": "2026-06-25T15:46:00.990032+09:00"
 }

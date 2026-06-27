@@ -70,10 +70,26 @@ class CBIIndustrialTrendsService:
         if db_result:
             latest = db_result[-1] if db_result else None
 
+            # 発表時刻レース対策（ラグガード）: 取得データが新月へ進んでいない場合は
+            # last_updated を発表直前に据え置き、FMP実値のDB同期後の再取得を促す。
+            # CBIは発表(19:00 London)ちょうどの再構築がFMP actualのDB取込(数分〜十数分後)を
+            # 先行しやすく、now刻みだと should_refresh が「消化済み」と誤判定して
+            # 次回発表/7日TTLまで凍結するため（前月を保存したまま固着）。
+            from services.uk.fmp_next_release_utils import resolve_last_updated_after_fetch
+            _prev_cache = redis_client.get(self.DATA_CACHE_KEY)
+            _prev_latest = _prev_cache.get("latest") if isinstance(_prev_cache, dict) else None
+            _resolved_last_updated = resolve_last_updated_after_fetch(
+                self.FMP_EVENT_PATTERNS,
+                latest.get("date") if isinstance(latest, dict) else None,
+                _prev_latest.get("date") if isinstance(_prev_latest, dict) else None,
+                _prev_cache.get("last_updated") if isinstance(_prev_cache, dict) else None,
+                country="GB",
+            )
+
             cache_payload = {
                 "data": db_result,
                 "latest": latest,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": _resolved_last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -84,7 +100,7 @@ class CBIIndustrialTrendsService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "database",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": _resolved_last_updated,
             }
 
         # ファイルキャッシュフォールバック
@@ -142,10 +158,7 @@ class CBIIndustrialTrendsService:
                     SELECT datetime_utc, actual, estimate, previous
                     FROM economic_calendar_events
                     WHERE country = 'UK'
-                      AND (
-                          event ILIKE '%CBI Industrial Trends Orders%'
-                          OR event ILIKE '%CBI Business Optimism Index%'
-                      )
+                      AND event ILIKE '%CBI Industrial Trends Orders%'
                       AND actual IS NOT NULL
                     ORDER BY datetime_utc ASC
                 """)

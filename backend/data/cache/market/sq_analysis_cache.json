@@ -6131,17 +6131,38 @@
         "intraday_close": null,
         "intraday_regular_open": 6591.245,
         "intraday_regular_close": 6516.854
+      },
+      {
+        "date": "2026-06-19",
+        "type": "SQ",
+        "year": 2026,
+        "month": 6,
+        "sq_close": null,
+        "d_minus2_to_minus1": 1.0846,
+        "d_minus1_to_sq": null,
+        "d_minus2_to_sq": null,
+        "sq_day_oc": null,
+        "sq_to_next": null,
+        "intraday_return": null,
+        "intraday_regular_return": -0.0207,
+        "d_minus2_date": "2026-06-17",
+        "d_minus1_date": "2026-06-18",
+        "next_date": "2026-06-22",
+        "intraday_open": null,
+        "intraday_close": null,
+        "intraday_regular_open": 7493.199,
+        "intraday_regular_close": 7491.651
       }
     ],
     "summary": {
       "all": {
         "label": "全体",
-        "count": 65,
+        "count": 66,
         "d_minus2_to_minus1": {
-          "mean": 0.1034,
-          "median": 0.1277,
-          "win_rate": 53.8,
-          "count": 65
+          "mean": 0.1182,
+          "median": 0.128,
+          "win_rate": 54.5,
+          "count": 66
         },
         "d_minus1_to_sq": {
           "mean": -0.2365,
@@ -6168,20 +6189,20 @@
           "count": 65
         },
         "intraday_regular_return": {
-          "mean": -0.2788,
-          "median": -0.056,
-          "win_rate": 36.8,
-          "count": 57
+          "mean": -0.2743,
+          "median": -0.0553,
+          "win_rate": 36.2,
+          "count": 58
         }
       },
       "sq": {
         "label": "SQ",
-        "count": 65,
+        "count": 66,
         "d_minus2_to_minus1": {
-          "mean": 0.1034,
-          "median": 0.1277,
-          "win_rate": 53.8,
-          "count": 65
+          "mean": 0.1182,
+          "median": 0.128,
+          "win_rate": 54.5,
+          "count": 66
         },
         "d_minus1_to_sq": {
           "mean": -0.2365,
@@ -6208,10 +6229,10 @@
           "count": 65
         },
         "intraday_regular_return": {
-          "mean": -0.2788,
-          "median": -0.056,
-          "win_rate": 36.8,
-          "count": 57
+          "mean": -0.2743,
+          "median": -0.0553,
+          "win_rate": 36.2,
+          "count": 58
         }
       },
       "monthly": {
@@ -6257,12 +6278,12 @@
         },
         "6": {
           "label": "6月",
-          "count": 16,
+          "count": 17,
           "d_minus2_to_minus1": {
-            "mean": -0.0635,
-            "median": 0.128,
-            "win_rate": 62.5,
-            "count": 16
+            "mean": 0.0041,
+            "median": 0.1283,
+            "win_rate": 64.7,
+            "count": 17
           },
           "d_minus1_to_sq": {
             "mean": -0.0965,
@@ -6289,10 +6310,10 @@
             "count": 16
           },
           "intraday_regular_return": {
-            "mean": -0.2742,
-            "median": -0.1647,
-            "win_rate": 21.4,
-            "count": 14
+            "mean": -0.2573,
+            "median": -0.0493,
+            "win_rate": 20.0,
+            "count": 15
           }
         },
         "9": {
@@ -6380,5 +6401,5 @@
   },
   "cached": false,
   "source": "yfinance + dukascopy",
-  "last_updated": "2026-06-17T20:43:00.484146+09:00"
+  "last_updated": "2026-06-27T19:39:16.603165+09:00"
 }

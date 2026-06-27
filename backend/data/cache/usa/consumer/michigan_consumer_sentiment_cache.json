@@ -2691,6 +2691,10 @@
     {
       "date": "2026-05-01",
       "value": 44.8
+    },
+    {
+      "date": "2026-06-01",
+      "value": 49.5
     }
   ],
   "components": [
@@ -6053,17 +6057,22 @@
       "date": "2026-05-01",
       "current": 45.8,
       "expected": 44.1
+    },
+    {
+      "date": "2026-06-01",
+      "current": 47.7,
+      "expected": 50.7
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": 44.8
+    "date": "2026-06-01",
+    "value": 49.5
   },
   "latest_components": {
-    "date": "2026-05-01",
-    "current": 45.8,
-    "expected": 44.1
+    "date": "2026-06-01",
+    "current": 47.7,
+    "expected": 50.7
   },
-  "latest_data_date": "2026-05-01",
-  "last_updated": "2026-06-17T20:01:27.627934+09:00"
+  "latest_data_date": "2026-06-01",
+  "last_updated": "2026-06-27T17:31:37.359708+09:00"
 }

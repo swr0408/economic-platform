@@ -1253,52 +1253,64 @@
     },
     {
       "date": "2026-01-01",
-      "total_value": 71532.0,
-      "ex_auto_value": 52486.0,
-      "ex_auto_gas_value": 46089.0,
-      "total_mom": 1.16,
-      "ex_auto_mom": 0.97,
-      "ex_auto_gas_mom": 1.07,
-      "total_yoy": 1.36,
-      "ex_auto_yoy": 2.77,
-      "ex_auto_gas_yoy": 3.88
+      "total_value": 71651.0,
+      "ex_auto_value": 52566.0,
+      "ex_auto_gas_value": 46060.0,
+      "total_mom": 1.33,
+      "ex_auto_mom": 1.13,
+      "ex_auto_gas_mom": 1.0,
+      "total_yoy": 1.53,
+      "ex_auto_yoy": 2.92,
+      "ex_auto_gas_yoy": 3.82
     },
     {
       "date": "2026-02-01",
-      "total_value": 72008.0,
-      "ex_auto_value": 52805.0,
-      "ex_auto_gas_value": 46406.0,
-      "total_mom": 0.67,
-      "ex_auto_mom": 0.61,
-      "ex_auto_gas_mom": 0.69,
-      "total_yoy": 3.76,
-      "ex_auto_yoy": 3.17,
-      "ex_auto_gas_yoy": 4.33
+      "total_value": 72040.0,
+      "ex_auto_value": 52787.0,
+      "ex_auto_gas_value": 46322.0,
+      "total_mom": 0.54,
+      "ex_auto_mom": 0.42,
+      "ex_auto_gas_mom": 0.57,
+      "total_yoy": 3.8,
+      "ex_auto_yoy": 3.13,
+      "ex_auto_gas_yoy": 4.15
     },
     {
       "date": "2026-03-01",
-      "total_value": 72666.0,
-      "ex_auto_value": 53553.0,
-      "ex_auto_gas_value": 46359.0,
-      "total_mom": 0.91,
-      "ex_auto_mom": 1.42,
-      "ex_auto_gas_mom": -0.1,
-      "total_yoy": 3.41,
-      "ex_auto_yoy": 5.56,
-      "ex_auto_gas_yoy": 4.14
+      "total_value": 72662.0,
+      "ex_auto_value": 53427.0,
+      "ex_auto_gas_value": 46285.0,
+      "total_mom": 0.86,
+      "ex_auto_mom": 1.21,
+      "ex_auto_gas_mom": -0.08,
+      "total_yoy": 3.4,
+      "ex_auto_yoy": 5.31,
+      "ex_auto_gas_yoy": 3.97
+    },
+    {
+      "date": "2026-04-01",
+      "total_value": 73030.0,
+      "ex_auto_value": 53466.0,
+      "ex_auto_gas_value": 45959.0,
+      "total_mom": 0.51,
+      "ex_auto_mom": 0.07,
+      "ex_auto_gas_mom": -0.7,
+      "total_yoy": 3.72,
+      "ex_auto_yoy": 5.7,
+      "ex_auto_gas_yoy": 3.35
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "total_value": 72666.0,
-    "ex_auto_value": 53553.0,
-    "ex_auto_gas_value": 46359.0,
-    "total_mom": 0.91,
-    "ex_auto_mom": 1.42,
-    "ex_auto_gas_mom": -0.1,
-    "total_yoy": 3.41,
-    "ex_auto_yoy": 5.56,
-    "ex_auto_gas_yoy": 4.14
+    "date": "2026-04-01",
+    "total_value": 73030.0,
+    "ex_auto_value": 53466.0,
+    "ex_auto_gas_value": 45959.0,
+    "total_mom": 0.51,
+    "ex_auto_mom": 0.07,
+    "ex_auto_gas_mom": -0.7,
+    "total_yoy": 3.72,
+    "ex_auto_yoy": 5.7,
+    "ex_auto_gas_yoy": 3.35
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -1314,14 +1326,14 @@
     }
   },
   "next_release": {
-    "date": "2026-06-19",
-    "datetime_utc": "2026-06-19T12:30:00+00:00",
-    "datetime_jst": "2026-06-19T21:30:00+09:00",
+    "date": "2026-07-23",
+    "datetime_utc": "2026-07-23T12:30:00+00:00",
+    "datetime_jst": "2026-07-23T21:30:00+09:00",
     "time_jst": "21:30",
-    "datetime_toronto": "2026-06-19T08:30:00-04:00",
+    "datetime_toronto": "2026-07-23T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "Retail Sales MoM (May)",
-    "estimate": 0.3
+    "label": "Retail Sales MoM (Jun)",
+    "estimate": 0.5
   },
-  "last_updated": "2026-06-17T21:31:25.080930+09:00"
+  "last_updated": "2026-06-27T11:46:23.092061+09:00"
 }

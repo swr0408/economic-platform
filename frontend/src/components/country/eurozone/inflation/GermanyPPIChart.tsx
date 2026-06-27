@@ -235,7 +235,7 @@ export default function GermanyPPIChart({ data }: GermanyPPIChartProps) {
                       <StandardLineChart
                         data={filteredData}
                         lines={[{ dataKey: 'ppi_yoy', color: COLORS.ppi, name: 'PPI（前年比）' }]}
-                        yAxisFormatter={(v) => `${v}%`}
+                        yAxisFormatter={(v) => `${Number(v).toFixed(1)}%`}
                         yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
                         showZeroLine={true}
                       />
@@ -252,7 +252,7 @@ export default function GermanyPPIChart({ data }: GermanyPPIChartProps) {
                       <StandardBarChart
                         data={filteredData}
                         bars={[{ dataKey: 'ppi_mom', color: COLORS.ppi, name: 'PPI（前月比）' }]}
-                        yAxisFormatter={(v) => `${v}%`}
+                        yAxisFormatter={(v) => `${Number(v).toFixed(1)}%`}
                         yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
                       />
                     </>

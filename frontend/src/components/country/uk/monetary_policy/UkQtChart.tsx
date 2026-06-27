@@ -158,7 +158,7 @@ export default function UkQtChart({ data }: UkQtChartProps) {
                   }}
                 >
                   <div style={{ fontWeight: 'bold', marginBottom: 8, fontSize: 14, color: DARK_THEME.textPrimary }}>
-                    {formatDateLabel(String(label))}
+                    {String(label).replace(/-/g, '/')}
                   </div>
                   <div
                     style={{

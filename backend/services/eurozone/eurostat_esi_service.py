@@ -49,8 +49,11 @@ class EurostatESIService:
     DATASET = "ei_bssi_m_r2"
 
     # 地域コード
+    # 2026-01-01にブルガリアがユーロ導入→ユーロ圏集計が EA20(20か国)→EA21(21か国) に移行。
+    # Eurostatは2026年以降をEA21で公表し、EA20は2025-12で打ち切られたため EA21 を使用する
+    # (EA21には2015-01からの遡及履歴が含まれるためデータ欠損なし)。
     GEO_CODES = {
-        "euro_area": "EA20",
+        "euro_area": "EA21",
         "germany": "DE",
         "france": "FR",
         "italy": "IT",
@@ -102,7 +105,7 @@ class EurostatESIService:
                     "frequency": "Monthly",
                     "seasonal_adjustment": "Seasonally adjusted",
                     "countries": {
-                        "euro_area": "Euro Area - 20 countries",
+                        "euro_area": "Euro Area - 21 countries",
                         "germany": "Germany",
                         "france": "France",
                         "italy": "Italy",

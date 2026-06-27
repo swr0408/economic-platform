@@ -1159,6 +1159,24 @@
       "previous": 0.7
     },
     {
+      "date": "2026-02-01",
+      "value": 1.1,
+      "forecast": 1.4,
+      "previous": 1.5
+    },
+    {
+      "date": "2026-03-01",
+      "value": 1.2,
+      "forecast": 1.2,
+      "previous": 1.1
+    },
+    {
+      "date": "2026-04-01",
+      "value": 1.0,
+      "forecast": 1.4,
+      "previous": 1.2
+    },
+    {
       "date": "2026-05-01",
       "value": 1.2,
       "forecast": 1.1,
@@ -1171,5 +1189,5 @@
     "forecast": 1.1,
     "previous": 1.0
   },
-  "last_updated": "2026-06-17T17:31:21.793175+09:00"
+  "last_updated": "2026-06-27T11:46:16.882457+09:00"
 }

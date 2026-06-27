@@ -87,7 +87,7 @@ class ECBInflationExpectationsService:
         api_result = self._fetch_from_ecb()
 
         if api_result:
-            next_release = get_next_release_by_pattern(self.FMP_EVENT_PATTERN, "Euro Area")
+            next_release = get_next_release_by_pattern(self.FMP_EVENT_PATTERN, country="EU")
 
             cache_payload = {
                 "data": api_result,
@@ -235,8 +235,17 @@ class ECBInflationExpectationsService:
             return None
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定（FMPパターン方式）"""
-        return should_refresh_by_pattern(self.FMP_EVENT_PATTERN, last_updated_str, "Euro Area")
+        """キャッシュを更新すべきかどうかを判定（FMPパターン方式）
+
+        - country は FMPカレンダーDBの格納値に合わせて "EU"（"Euro Area" ではヒットせず
+          発表日判定が常にFalseになり凍結する）。
+        - max_age_hours=36: ECB CES APIは月次データをFMP発表予定日より前に公開することがあり
+          （例: 5月分がFMP予定6/29より前にAPI反映）、発表日判定だけでは取り込みが遅れる。
+          月次・低コストAPIなので短い自己回復ネットで新月を1〜1.5日以内に取り込む。
+        """
+        return should_refresh_by_pattern(
+            self.FMP_EVENT_PATTERN, last_updated_str, "EU", max_age_hours=36
+        )
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:
         """ファイルキャッシュを読み込む"""
@@ -280,7 +289,7 @@ class ECBInflationExpectationsService:
                 "inflation_3y": len(data.get("inflation_3y", [])),
                 "inflation_5y": len(data.get("inflation_5y", [])),
             } if cached_data else {},
-            "next_release": cached_data.get("next_release") if cached_data else get_next_release_by_pattern(self.FMP_EVENT_PATTERN, "Euro Area"),
+            "next_release": cached_data.get("next_release") if cached_data else get_next_release_by_pattern(self.FMP_EVENT_PATTERN, country="EU"),
             "file_cache_exists": DATA_CACHE_FILE.exists(),
         }
 

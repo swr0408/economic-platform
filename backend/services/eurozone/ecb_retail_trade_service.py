@@ -3,7 +3,7 @@
 Eurostat APIから Retail Trade Volume データを取得
 
 指標:
-- Retail Trade Volume Index - Euro Area 20
+- Retail Trade Volume Index - Euro Area 21
 - 前月比 (MoM): 季節・稼働日調整済み
 - 前年比 (YoY): 稼働日調整済み
 
@@ -55,9 +55,13 @@ class ECBRetailTradeService:
     # SCA = Seasonally and calendar adjusted data (for MoM)
     # CA = Calendar adjusted data only (for YoY)
     # I21 = Index, 2021=100
-    # EA20 = Euro area - 20 countries
-    SERIES_KEY_SCA = "M.VOL_SLS.G47.SCA.I21.EA20"  # 季節・営業日調整済み（前月比用）
-    SERIES_KEY_CA = "M.VOL_SLS.G47.CA.I21.EA20"    # 営業日調整のみ（前年比用）
+    # EA21 = Euro area - 21 countries
+    #   2026-01-01のブルガリア加盟でEurostatの「ユーロ圏」公式headlineがEA20→EA21に移行。
+    #   EA20系列は更新継続中だが旧構成のため公式news release(=FMP実値)と僅かにズレる
+    #   (例: 2026-04 MoM EA20 -0.29 vs EA21/公式 -0.4)。EA21は2015-01〜の全履歴を持つので
+    #   履歴欠落なく切替可。ECB経常収支のI9→I10、ESIのEA20→EA21と同根のドリフト対策。
+    SERIES_KEY_SCA = "M.VOL_SLS.G47.SCA.I21.EA21"  # 季節・営業日調整済み（前月比用）
+    SERIES_KEY_CA = "M.VOL_SLS.G47.CA.I21.EA21"    # 営業日調整のみ（前年比用）
 
     def __init__(self):
         pass
@@ -91,7 +95,7 @@ class ECBRetailTradeService:
                 "metadata": {
                     "source": "Eurostat",
                     "dataset": self.DATASET,
-                    "indicator": "Retail Trade Volume Index - Euro Area 20",
+                    "indicator": "Retail Trade Volume Index - Euro Area 21",
                     "unit": "Percentage change",
                     "adjustment_mom": "Seasonally and calendar adjusted (SCA)",
                     "adjustment_yoy": "Calendar adjusted only (CA)",

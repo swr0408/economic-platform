@@ -291,7 +291,7 @@ export default function GermanyCPIChart({ data }: GermanyCPIChartProps) {
                           { dataKey: 'cpi_yoy', color: COLORS.cpi, name: 'CPI（前年比）' },
                           { dataKey: 'hicp_yoy', color: COLORS.hicp, name: 'HICP（前年比）' },
                         ]}
-                        yAxisFormatter={(v) => `${v}%`}
+                        yAxisFormatter={(v) => `${Number(v).toFixed(1)}%`}
                         yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
                         showZeroLine={true}
                       />
@@ -320,7 +320,7 @@ export default function GermanyCPIChart({ data }: GermanyCPIChartProps) {
                             ? { dataKey: 'cpi_mom', color: COLORS.cpi, name: 'CPI（前月比）' }
                             : { dataKey: 'hicp_mom', color: COLORS.hicp, name: 'HICP（前月比）' },
                         ]}
-                        yAxisFormatter={(v) => `${v}%`}
+                        yAxisFormatter={(v) => `${Number(v).toFixed(1)}%`}
                         yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
                       />
                     </>

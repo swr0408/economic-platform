@@ -145,26 +145,57 @@ class JapanPriceDISpreadService:
             "error": "No data available",
         }
 
-    def _fetch_and_calculate_spread(self) -> Optional[Dict[str, Any]]:
-        """販売価格DIと仕入価格DIを取得してスプレッドを計算"""
-        try:
-            print("Fetching Price DI Spread data from BOJ Tankan...")
+    # 長期バックフィルの開始年（zenyo xlsx が遡れる範囲。これ以前は手動CSV種で補完）
+    ZENYO_BACKFILL_START_YEAR = 2019
 
-            # 販売価格DIを取得
-            selling_price_data = self.tankan_service.get_comprehensive_data("selling_price", force_refresh=True)
-            if not selling_price_data.get("data"):
+    def _build_long_history(self, data_type: str) -> Dict[str, Dict[str, Any]]:
+        """zenyo 過去ファイルを年次ストライドで取得し、DI 系列の長期履歴を
+        {date: data_point} で返す。1ファイルに数四半期分が入るため年1本で十分被覆。"""
+        from datetime import datetime as _dt
+        merged: Dict[str, Dict[str, Any]] = {}
+        now = _dt.now(JST)
+        # 直近の確定四半期（3/6/9/12）
+        cur_q = 12 if now.month >= 12 else 9 if now.month >= 10 else 6 if now.month >= 7 else 3 if now.month >= 4 else 12
+        cur_year = now.year if now.month >= 4 else now.year - 1
+        for year in range(self.ZENYO_BACKFILL_START_YEAR, cur_year + 1):
+            # 当年は最新四半期、過年は Q1(3月) ファイル（各ファイルが数四半期を内包）
+            quarter = cur_q if year == cur_year else 3
+            points = self.tankan_service.fetch_di_quarter(data_type, year, quarter)
+            for p in points:
+                if p.get("date"):
+                    merged[p["date"]] = p
+            # 当年は最新四半期も別途確保（年初Q1取得だと最新が落ちるのを防ぐ）
+            if year == cur_year and quarter != 3:
+                for p in self.tankan_service.fetch_di_quarter(data_type, year, 3):
+                    if p.get("date"):
+                        merged.setdefault(p["date"], p)
+        return merged
+
+    def _seed_from_manual_csv(self, data_type: str, merged: Dict[str, Dict[str, Any]]) -> None:
+        """手動CSV種（BOJ時系列検索のネイティブCSV）で古い期間を補完する。
+        `data/manual_update/japan/tankan/*.csv` を解析（zenyo優先・未充足のみ）。"""
+        try:
+            from services.japan.boj_tankan_manual_seed import seed_into
+            seed_into(data_type, merged)
+        except Exception as e:
+            print(f"[price_di_spread] manual CSV seed failed for {data_type}: {e}")
+
+    def _fetch_and_calculate_spread(self) -> Optional[Dict[str, Any]]:
+        """販売価格DIと仕入価格DIの長期履歴を取得してスプレッドを計算"""
+        try:
+            print("Building long-term Price DI Spread from BOJ Tankan (zenyo backfill)...")
+
+            selling_by_date = self._build_long_history("selling_price")
+            self._seed_from_manual_csv("selling_price", selling_by_date)
+            if not selling_by_date:
                 print("No selling price data available")
                 return None
 
-            # 仕入価格DIを取得
-            purchase_price_data = self.tankan_service.get_comprehensive_data("purchase_price", force_refresh=True)
-            if not purchase_price_data.get("data"):
+            purchase_by_date = self._build_long_history("purchase_price")
+            self._seed_from_manual_csv("purchase_price", purchase_by_date)
+            if not purchase_by_date:
                 print("No purchase price data available")
                 return None
-
-            # 日付ごとにデータをマージ
-            selling_by_date = {item["date"]: item for item in selling_price_data["data"]}
-            purchase_by_date = {item["date"]: item for item in purchase_price_data["data"]}
 
             # 共通の日付でスプレッドを計算
             common_dates = sorted(set(selling_by_date.keys()) & set(purchase_by_date.keys()))

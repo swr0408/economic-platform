@@ -292,6 +292,11 @@ function HeadlineRow({
   const timeAgo = item.published_at ? dayjs(item.published_at).fromNow() : ''
   const publishedTime = item.published_at ? dayjs(item.published_at).format('MM/DD HH:mm') : ''
 
+  const [expanded, setExpanded] = useState(false)
+  const mainText = item.headline_ja || item.headline_raw || ''
+  // 長文（120文字超 or 3行以上）は折り畳み表示にする
+  const isLong = mainText.length > 120 || (mainText.match(/\n/g) || []).length >= 2
+
   return (
     <div
       style={{
@@ -322,15 +327,35 @@ function HeadlineRow({
 
       {/* Center: headline text */}
       <div style={{ flex: 1, minWidth: 0 }}>
-        {/* Japanese translation */}
-        <div style={{ color: colors.textPrimary, fontSize: 13, lineHeight: 1.5, wordBreak: 'break-word' }}>
-          {item.headline_ja || item.headline_raw}
+        {/* Japanese translation（改行を保持。長文は3行で折り畳み） */}
+        <div style={{
+          color: colors.textPrimary, fontSize: 13, lineHeight: 1.5, wordBreak: 'break-word',
+          whiteSpace: 'pre-wrap',
+          ...(isLong && !expanded ? {
+            display: '-webkit-box',
+            WebkitLineClamp: 3,
+            WebkitBoxOrient: 'vertical' as const,
+            overflow: 'hidden',
+          } : {}),
+        }}>
+          {mainText}
         </div>
         {/* Original (if translated) */}
-        {item.headline_ja && (
-          <div style={{ color: colors.textTertiary, fontSize: 11, lineHeight: 1.4, marginTop: 2 }}>
+        {item.headline_ja && (!isLong || expanded) && (
+          <div style={{ color: colors.textTertiary, fontSize: 11, lineHeight: 1.4, marginTop: 2, whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
             {item.headline_raw}
           </div>
+        )}
+        {isLong && (
+          <span
+            onClick={() => setExpanded(v => !v)}
+            style={{
+              color: colors.accent, fontSize: 11, cursor: 'pointer',
+              display: 'inline-block', marginTop: 2, userSelect: 'none',
+            }}
+          >
+            {expanded ? '折りたたむ ▲' : '続きを表示 ▼'}
+          </span>
         )}
         {/* Speaker / embed info */}
         <div style={{ display: 'flex', gap: 8, alignItems: 'center', marginTop: 4, flexWrap: 'wrap' }}>

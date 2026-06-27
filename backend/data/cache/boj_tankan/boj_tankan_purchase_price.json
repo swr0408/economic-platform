@@ -1,6 +1,202 @@
 {
   "data": [
     {
+      "date": "2018-03-31",
+      "all_industries_current": 22.0,
+      "all_industries_forecast": 19.0,
+      "large_manufacturing_current": 26.0,
+      "large_manufacturing_forecast": 22.0
+    },
+    {
+      "date": "2018-06-30",
+      "all_industries_current": 24.0,
+      "all_industries_forecast": 21.0,
+      "large_manufacturing_current": 30.0,
+      "large_manufacturing_forecast": 24.0
+    },
+    {
+      "date": "2018-09-30",
+      "all_industries_current": 23.0,
+      "all_industries_forecast": 21.0,
+      "large_manufacturing_current": 27.0,
+      "large_manufacturing_forecast": 23.0
+    },
+    {
+      "date": "2018-12-31",
+      "all_industries_current": 22.0,
+      "all_industries_forecast": 19.0,
+      "large_manufacturing_current": 24.0,
+      "large_manufacturing_forecast": 20.0
+    },
+    {
+      "date": "2019-03-31",
+      "all_industries_current": 16.0,
+      "all_industries_forecast": 17.0,
+      "large_manufacturing_current": 17.0,
+      "large_manufacturing_forecast": 16.0
+    },
+    {
+      "date": "2019-06-30",
+      "all_industries_current": 13.0,
+      "all_industries_forecast": 15.0,
+      "large_manufacturing_current": 11.0,
+      "large_manufacturing_forecast": 13.0
+    },
+    {
+      "date": "2019-09-30",
+      "all_industries_current": 8.0,
+      "all_industries_forecast": 12.0,
+      "large_manufacturing_current": 5.0,
+      "large_manufacturing_forecast": 9.0
+    },
+    {
+      "date": "2019-12-31",
+      "all_industries_current": 8.0,
+      "all_industries_forecast": 10.0,
+      "large_manufacturing_current": 6.0,
+      "large_manufacturing_forecast": 8.0
+    },
+    {
+      "date": "2020-03-31",
+      "all_industries_current": 8.0,
+      "all_industries_forecast": 9.0,
+      "large_manufacturing_current": 5.0,
+      "large_manufacturing_forecast": 7.0
+    },
+    {
+      "date": "2020-06-30",
+      "all_industries_current": -1.0,
+      "all_industries_forecast": 4.0,
+      "large_manufacturing_current": -3.0,
+      "large_manufacturing_forecast": 2.0
+    },
+    {
+      "date": "2020-09-30",
+      "all_industries_current": 2.0,
+      "all_industries_forecast": 6.0,
+      "large_manufacturing_current": 2.0,
+      "large_manufacturing_forecast": 6.0
+    },
+    {
+      "date": "2020-12-31",
+      "all_industries_current": 4.0,
+      "all_industries_forecast": 9.0,
+      "large_manufacturing_current": 5.0,
+      "large_manufacturing_forecast": 11.0
+    },
+    {
+      "date": "2021-03-31",
+      "all_industries_current": 13.0,
+      "all_industries_forecast": 15.0,
+      "large_manufacturing_current": 15.0,
+      "large_manufacturing_forecast": 18.0
+    },
+    {
+      "date": "2021-06-30",
+      "all_industries_current": 21.0,
+      "all_industries_forecast": 22.0,
+      "large_manufacturing_current": 29.0,
+      "large_manufacturing_forecast": 27.0
+    },
+    {
+      "date": "2021-09-30",
+      "all_industries_current": 28.0,
+      "all_industries_forecast": 27.0,
+      "large_manufacturing_current": 37.0,
+      "large_manufacturing_forecast": 34.0
+    },
+    {
+      "date": "2021-12-31",
+      "all_industries_current": 38.0,
+      "all_industries_forecast": 35.0,
+      "large_manufacturing_current": 49.0,
+      "large_manufacturing_forecast": 43.0
+    },
+    {
+      "date": "2022-03-31",
+      "all_industries_current": 47.0,
+      "all_industries_forecast": 47.0,
+      "large_manufacturing_current": 58.0,
+      "large_manufacturing_forecast": 55.0
+    },
+    {
+      "date": "2022-06-30",
+      "all_industries_current": 55.0,
+      "all_industries_forecast": 53.0,
+      "large_manufacturing_current": 65.0,
+      "large_manufacturing_forecast": 59.0
+    },
+    {
+      "date": "2022-09-30",
+      "all_industries_current": 59.0,
+      "all_industries_forecast": 54.0,
+      "large_manufacturing_current": 65.0,
+      "large_manufacturing_forecast": 59.0
+    },
+    {
+      "date": "2022-12-31",
+      "all_industries_current": 60.0,
+      "all_industries_forecast": 53.0,
+      "large_manufacturing_current": 66.0,
+      "large_manufacturing_forecast": 56.0
+    },
+    {
+      "date": "2023-03-31",
+      "all_industries_current": 55.0,
+      "all_industries_forecast": 48.0,
+      "large_manufacturing_current": 60.0,
+      "large_manufacturing_forecast": 52.0
+    },
+    {
+      "date": "2023-06-30",
+      "all_industries_current": 48.0,
+      "all_industries_forecast": 43.0,
+      "large_manufacturing_current": 52.0,
+      "large_manufacturing_forecast": 44.0
+    },
+    {
+      "date": "2023-09-30",
+      "all_industries_current": 46.0,
+      "all_industries_forecast": 42.0,
+      "large_manufacturing_current": 48.0,
+      "large_manufacturing_forecast": 42.0
+    },
+    {
+      "date": "2023-12-31",
+      "all_industries_current": 41.0,
+      "all_industries_forecast": 41.0,
+      "large_manufacturing_current": 43.0,
+      "large_manufacturing_forecast": 38.0
+    },
+    {
+      "date": "2024-03-31",
+      "all_industries_current": 43.0,
+      "all_industries_forecast": 41.0,
+      "large_manufacturing_current": 42.0,
+      "large_manufacturing_forecast": 41.0
+    },
+    {
+      "date": "2024-06-30",
+      "all_industries_current": 47.0,
+      "all_industries_forecast": 45.0,
+      "large_manufacturing_current": 47.0,
+      "large_manufacturing_forecast": 44.0
+    },
+    {
+      "date": "2024-09-30",
+      "all_industries_current": 43.0,
+      "all_industries_forecast": 42.0,
+      "large_manufacturing_current": 41.0,
+      "large_manufacturing_forecast": 39.0
+    },
+    {
+      "date": "2024-12-31",
+      "all_industries_current": 42.0,
+      "all_industries_forecast": 40.0,
+      "large_manufacturing_current": 39.0,
+      "large_manufacturing_forecast": 37.0
+    },
+    {
       "date": "2025-03-31",
       "all_industries_current": 44.0,
       "all_industries_forecast": 45.0,
@@ -39,8 +235,7 @@
   "data_type": "purchase_price",
   "name": "仕入価格判断指数（DI）",
   "unit": "%ポイント",
-  "last_updated": "2026-04-03T11:52:27.305614",
-  "excel_url": "https://www.boj.or.jp/statistics/tk/zenyo/2026/data/all2603a.xlsx",
+  "last_updated": "2026-06-18T14:56:58.675006",
   "cached": false,
   "source": "boj"
 }

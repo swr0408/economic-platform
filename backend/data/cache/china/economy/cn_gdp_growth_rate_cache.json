@@ -324,14 +324,14 @@
       "qoq": "GDP 前期比 (%)"
     },
     "total_records": 62,
-    "last_fetched": "2026-06-16T11:31:43.794469+09:00"
+    "last_fetched": "2026-06-27T11:46:31.356707+09:00"
   },
   "next_release": {
     "date": "2026-07-15",
     "datetime_utc": "2026-07-15T02:00:00+00:00",
     "datetime_jst": "2026-07-15T11:00:00+09:00",
     "time_jst": "11:00",
-    "label": "GDP Growth Rate YoY (Q2)",
-    "estimate": 4.7
+    "label": "Gross Domestic Product YoY (Q2)",
+    "estimate": null
   }
 }

@@ -10,8 +10,10 @@ BFS（スイス連邦統計局）PxWeb APIからスイスCPIデータを取得
 - Inflation Rate MoM (前月比)
 
 データソース:
-- BFS DAM API: LIK (Dezember 2020=100) 詳細データ
-- Asset ID: 36366707
+- BFS DAM API: LIK (Dezember 2025=100) 詳細データ
+- Seed Asset ID: 36669838 (orderNr su-i-05.02.66)
+  ※ BFSは基準改定・月次公表ごとに新damIdを発番するため固定IDだと凍結する。
+    bfs_asset_resolver で orderNr から最新版に動的解決し、行/列はラベル検出する。
 
 発表スケジュール:
 - 毎月初旬（BFS発表）
@@ -51,21 +53,24 @@ class ChCPIService:
     FMP_COUNTRY = "CH"
     FMP_EVENT_PATTERN = "Inflation Rate YoY"
 
-    # BFS DAM API URL
-    # LIK (Dezember 2020=100), Detailresultate seit 1982
-    BFS_ASSET_URL = "https://dam-api.bfs.admin.ch/hub/api/dam/assets/36366707/master"
+    # BFS DAM API URL（シードID。resolverで同一orderNrの最新版に解決する）
+    # LIK (Dezember 2025=100), Detailresultate seit 1982
+    BFS_ASSET_URL = "https://dam-api.bfs.admin.ch/hub/api/dam/assets/36669838/master"
 
-    # Excel内の行インデックス（0-indexed）
-    # Row 3: 日付ヘッダー
-    # Row 4: Total
-    # Row 476: Kerninflation 1
-    # Row 480: Kerninflation 2
+    # 行/列はラベル・コードで動的検出する（基準改定でレイアウトが変わるため）。
+    # 検出失敗時のフォールバック既定値（旧 Dezember 2020=100 テーブル相当）。
     HEADER_ROW = 3
-    DATA_START_COL = 7  # Column H (0-indexed = 7)
+    DATA_START_COL = 7
 
     ROW_TOTAL = 4
     ROW_CORE1 = 476
     ROW_CORE2 = 480
+
+    # ラベル/コード検出キー
+    CODE_TOTAL = "100_100"
+    LABEL_TOTAL = "Total"
+    LABEL_CORE1 = "Kerninflation 1"
+    LABEL_CORE2 = "Kerninflation 2"
 
     def __init__(self):
         pass
@@ -104,8 +109,8 @@ class ChCPIService:
                     "source": "Swiss Federal Statistical Office (BFS)",
                     "indicator": "Consumer Price Index",
                     "description": "スイス消費者物価指数（CPI）",
-                    "base_year": "Dec 2020 = 100",
-                    "asset_id": "36366707",
+                    "base_year": "Dec 2025 = 100",
+                    "asset_id": "36669838 (orderNr su-i-05.02.66, dynamic)",
                 },
                 "last_updated": datetime.now(JST).isoformat(),
             }
@@ -146,88 +151,132 @@ class ChCPIService:
             "error": "No data available",
         }
 
-    def _load_from_bfs(self) -> List[Dict[str, Any]]:
-        """BFS DAM APIからデータを取得"""
+    @staticmethod
+    def _parse_value(val) -> Optional[float]:
+        """セル値を数値に（'...'/空白/'-'はNone）"""
+        if pd.isna(val):
+            return None
+        if isinstance(val, str) and val.strip() in ['...', '', '-']:
+            return None
         try:
-            print(f"[ChCPI] Fetching data from BFS API: {self.BFS_ASSET_URL}")
+            return round(float(val), 2)
+        except (ValueError, TypeError):
+            return None
 
-            # Excelファイルをダウンロード
-            resp = requests.get(self.BFS_ASSET_URL, timeout=60)
+    def _locate(self, df: "pd.DataFrame") -> Dict[str, int]:
+        """Excelのヘッダー行・日付開始列・各系列の行をラベル/コードで動的検出。
+
+        BFSは基準改定で列数（多言語ラベル列）や行位置が変わるため、固定インデックス
+        は脆い。検出失敗時はフォールバック既定値を用いる。
+        """
+        # ヘッダー行: 先頭8行でTimestampを最も多く含む行
+        header_row = self.HEADER_ROW
+        for i in range(min(8, df.shape[0])):
+            cnt = sum(isinstance(v, (datetime, pd.Timestamp)) for v in df.iloc[i].tolist())
+            if cnt >= 12:
+                header_row = i
+                break
+
+        # 日付開始列: ヘッダー行で最初にTimestampが現れる列
+        first_col = self.DATA_START_COL
+        hdr = df.iloc[header_row].tolist()
+        for c, v in enumerate(hdr):
+            if isinstance(v, (datetime, pd.Timestamp)):
+                first_col = c
+                break
+
+        # Total行: コード(列0)が CODE_TOTAL、無ければラベル一致
+        row_total = None
+        for i in range(df.shape[0]):
+            if str(df.iloc[i, 0]).strip() == self.CODE_TOTAL:
+                row_total = i
+                break
+        if row_total is None:
+            row_total = self._find_row_by_label(df, self.LABEL_TOTAL, first_col, exact=True)
+        if row_total is None:
+            row_total = self.ROW_TOTAL
+
+        row_core1 = self._find_row_by_label(df, self.LABEL_CORE1, first_col)
+        row_core2 = self._find_row_by_label(df, self.LABEL_CORE2, first_col)
+        if row_core1 is None:
+            row_core1 = self.ROW_CORE1
+        if row_core2 is None:
+            row_core2 = self.ROW_CORE2
+
+        return {
+            "header_row": header_row,
+            "first_col": first_col,
+            "total": row_total,
+            "core1": row_core1,
+            "core2": row_core2,
+        }
+
+    def _find_row_by_label(self, df: "pd.DataFrame", needle: str,
+                           label_cols_end: int, exact: bool = False) -> Optional[int]:
+        """ラベル列（日付列より手前）から needle に一致する最初の行を返す"""
+        end = max(1, min(label_cols_end, df.shape[1]))
+        for i in range(df.shape[0]):
+            for c in range(0, end):
+                cell = str(df.iloc[i, c]).strip()
+                if (cell == needle) if exact else (needle in cell):
+                    return i
+        return None
+
+    def _extract_sheet(self, df: "pd.DataFrame") -> Dict[str, Dict[str, Optional[float]]]:
+        """1シートから {date_str: {total, core1, core2}} を抽出"""
+        loc = self._locate(df)
+        out: Dict[str, Dict[str, Optional[float]]] = {}
+        hdr = df.iloc[loc["header_row"]].tolist()
+        for c in range(loc["first_col"], df.shape[1]):
+            date_val = hdr[c] if c < len(hdr) else None
+            if not isinstance(date_val, (datetime, pd.Timestamp)):
+                continue
+            date_str = date_val.strftime('%Y-%m-01')
+            out[date_str] = {
+                "total": self._parse_value(df.iloc[loc["total"], c]),
+                "core1": self._parse_value(df.iloc[loc["core1"], c]),
+                "core2": self._parse_value(df.iloc[loc["core2"], c]),
+            }
+        return out
+
+    def _load_from_bfs(self) -> List[Dict[str, Any]]:
+        """BFS DAM APIからデータを取得（orderNrで最新版に動的解決）"""
+        try:
+            from services.switzerland.bfs_asset_resolver import resolve_master_url_from_url
+            url = resolve_master_url_from_url(self.BFS_ASSET_URL)
+            print(f"[ChCPI] Fetching data from BFS API: {url}")
+
+            resp = requests.get(url, timeout=120)
             resp.raise_for_status()
+            content = resp.content
 
-            # Excelファイルを読み込み
-            excel_data = io.BytesIO(resp.content)
+            # YoY（前年比）/ MoM（前月比）シート
+            df_yoy = pd.read_excel(io.BytesIO(content), sheet_name='VAR_m-12', header=None)
+            df_mom = pd.read_excel(io.BytesIO(content), sheet_name='VAR_m-1', header=None)
 
-            # YoY（前年比）シートを読み込み
-            df_yoy = pd.read_excel(excel_data, sheet_name='VAR_m-12', header=None)
+            yoy = self._extract_sheet(df_yoy)
+            mom = self._extract_sheet(df_mom)
 
-            # MoM（前月比）シートを読み込み
-            excel_data.seek(0)
-            df_mom = pd.read_excel(excel_data, sheet_name='VAR_m-1', header=None)
-
-            # 日付列を取得（Row 3, Column 7以降）
-            dates = df_yoy.iloc[self.HEADER_ROW, self.DATA_START_COL:].tolist()
-
-            # 各系列のデータを取得
-            total_yoy = df_yoy.iloc[self.ROW_TOTAL, self.DATA_START_COL:].tolist()
-            core1_yoy = df_yoy.iloc[self.ROW_CORE1, self.DATA_START_COL:].tolist()
-            core2_yoy = df_yoy.iloc[self.ROW_CORE2, self.DATA_START_COL:].tolist()
-
-            total_mom = df_mom.iloc[self.ROW_TOTAL, self.DATA_START_COL:].tolist()
-            core1_mom = df_mom.iloc[self.ROW_CORE1, self.DATA_START_COL:].tolist()
-            core2_mom = df_mom.iloc[self.ROW_CORE2, self.DATA_START_COL:].tolist()
-
-            # データを構築
-            result = []
             current_date = datetime.now(JST).date()
-
-            for i, date_val in enumerate(dates):
-                if pd.isna(date_val):
+            result = []
+            for date_str in sorted(set(yoy) | set(mom)):
+                # 未来月（予測）は除外
+                if datetime.strptime(date_str, '%Y-%m-%d').date() > current_date:
                     continue
-
-                # datetime型に変換
-                if isinstance(date_val, datetime):
-                    date_obj = date_val
-                else:
-                    continue
-
-                # 未来のデータ（予測値）はスキップ - 現在月より後のデータは除外
-                # ただし、データが実績かどうかは難しいため、現在月の1ヶ月後までは含める
-                if date_obj.date() > current_date:
-                    continue
-
-                date_str = date_obj.strftime('%Y-%m-01')
-
-                # 値を取得（'...'や空白はNone）
-                def parse_value(val):
-                    if pd.isna(val):
-                        return None
-                    if isinstance(val, str) and val.strip() in ['...', '', '-']:
-                        return None
-                    try:
-                        return round(float(val), 2)
-                    except (ValueError, TypeError):
-                        return None
-
+                y = yoy.get(date_str, {})
+                m = mom.get(date_str, {})
                 record = {
                     "date": date_str,
-                    "cpi_yoy": parse_value(total_yoy[i]),
-                    "cpi_mom": parse_value(total_mom[i]),
-                    "core1_yoy": parse_value(core1_yoy[i]),
-                    "core1_mom": parse_value(core1_mom[i]),
-                    "core2_yoy": parse_value(core2_yoy[i]),
-                    "core2_mom": parse_value(core2_mom[i]),
+                    "cpi_yoy": y.get("total"),
+                    "cpi_mom": m.get("total"),
+                    "core1_yoy": y.get("core1"),
+                    "core1_mom": m.get("core1"),
+                    "core2_yoy": y.get("core2"),
+                    "core2_mom": m.get("core2"),
                 }
-
-                # 少なくとも1つの値があれば追加
-                if any(v is not None for v in [
-                    record["cpi_yoy"], record["cpi_mom"],
-                    record["core1_yoy"], record["core1_mom"],
-                    record["core2_yoy"], record["core2_mom"]
-                ]):
+                if any(v is not None for v in record.values() if not isinstance(v, str)):
                     result.append(record)
 
-            # 日付でソート
             result.sort(key=lambda x: x["date"])
 
             print(f"[ChCPI] Loaded {len(result)} records from BFS API")

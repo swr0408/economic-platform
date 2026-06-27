@@ -51,7 +51,6 @@ from typing import Dict, Any
 from services.newzealand.nz_ppi_service import nz_ppi_service
 from services.newzealand.nz_cpi_service import nz_cpi_service
 from services.newzealand.nz_cpi_item_service import nz_cpi_item_service
-from services.newzealand.nz_traded_nontraded_service import nz_traded_nontraded_service
 from services.newzealand.nz_number_of_employees_service import nz_number_of_employees_service
 from services.newzealand.nz_unemployment_rate_service import nz_unemployment_rate_service
 from services.newzealand.nz_wages_service import nz_wages_service
@@ -155,31 +154,6 @@ def get_cpi_item_cache_status() -> Dict[str, Any]:
 def invalidate_cpi_item_cache() -> Dict[str, bool]:
     """CPI項目別のキャッシュを無効化"""
     success = nz_cpi_item_service.invalidate_cache()
-    return {"success": success}
-
-
-# =============================================================================
-# 貿易財/非貿易財
-# =============================================================================
-
-@router.get("/traded-nontraded")
-def get_traded_nontraded(
-    force_refresh: bool = Query(False, description="強制的にデータを再取得")
-) -> Dict[str, Any]:
-    """NZ 貿易財/非貿易財データを取得"""
-    return nz_traded_nontraded_service.get_data(force_refresh=force_refresh)
-
-
-@router.get("/traded-nontraded/cache")
-def get_traded_nontraded_cache_status() -> Dict[str, Any]:
-    """貿易財/非貿易財のキャッシュ状態を取得"""
-    return nz_traded_nontraded_service.get_cache_status()
-
-
-@router.delete("/traded-nontraded/cache")
-def invalidate_traded_nontraded_cache() -> Dict[str, bool]:
-    """貿易財/非貿易財のキャッシュを無効化"""
-    success = nz_traded_nontraded_service.invalidate_cache()
     return {"success": success}
 
 

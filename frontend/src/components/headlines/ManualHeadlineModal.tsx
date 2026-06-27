@@ -101,8 +101,8 @@ function ManualHeadlineModal({ onClose, defaultCategoryPrefix }: Props) {
           内容
         </Text>
         <Input.TextArea
-          rows={3}
-          placeholder="ヘッドラインの内容を入力..."
+          autoSize={{ minRows: 3, maxRows: 12 }}
+          placeholder="ヘッドラインの内容を入力...（改行はそのまま保存・表示されます）"
           value={content}
           onChange={e => setContent(e.target.value)}
           style={{ background: colors.bgTertiary, borderColor: colors.border, color: colors.textPrimary }}

@@ -25,6 +25,7 @@ import JapanPosUvpiChart from './price/JapanPosUvpiChart'
 import JapanTermsOfTradeChart from './price/JapanTermsOfTradeChart'
 import PricePassThroughRateChart from './price/PricePassThroughRateChart'
 import JapanPriceDISpreadChart from './price/JapanPriceDISpreadChart'
+import JapanInflationOutlookChart from './price/JapanInflationOutlookChart'
 import JapanGDPGapChart from './economy/JapanGDPGapChart'
 import BOJGDPGapChart from './price/BOJGDPGapChart'
 import HouseholdExpectedInflationChart from './price/HouseholdExpectedInflationChart'
@@ -75,6 +76,11 @@ export default function JapanInflationCharts() {
       {/* 価格DIスプレッド（日銀短観） */}
       <div id="price-di-spread">
         <JapanPriceDISpreadChart />
+      </div>
+
+      {/* 企業の物価見通し（日銀短観 表7） */}
+      <div id="inflation-outlook">
+        <JapanInflationOutlookChart />
       </div>
 
       {/* 企業向けサービス価格指数（SPPI） */}

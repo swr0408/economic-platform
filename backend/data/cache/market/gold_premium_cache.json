@@ -30162,28 +30162,78 @@
     },
     {
       "date": "2026-06-05",
-      "china": -13.43,
-      "india": -85.1
+      "china": 13.4,
+      "india": -65.11
+    },
+    {
+      "date": "2026-06-08",
+      "china": 15.24,
+      "india": -61.49
+    },
+    {
+      "date": "2026-06-09",
+      "china": 14.9,
+      "india": -55.65
+    },
+    {
+      "date": "2026-06-10",
+      "china": 17.36,
+      "india": -45.89
+    },
+    {
+      "date": "2026-06-11",
+      "china": 18.99,
+      "india": -38.31
+    },
+    {
+      "date": "2026-06-12",
+      "china": 12.82,
+      "india": -25.89
+    },
+    {
+      "date": "2026-06-15",
+      "china": 1.68,
+      "india": -20.7
+    },
+    {
+      "date": "2026-06-16",
+      "china": -4.18,
+      "india": -17.44
+    },
+    {
+      "date": "2026-06-17",
+      "china": -14.07,
+      "india": -15.09
+    },
+    {
+      "date": "2026-06-18",
+      "china": -11.08,
+      "india": -11.09
+    },
+    {
+      "date": "2026-06-19",
+      "china": 4.68,
+      "india": -8.85
     }
   ],
   "latest_china": {
-    "date": "2026-06-05",
-    "value": -13.43
+    "date": "2026-06-19",
+    "value": 4.68
   },
   "latest_india": {
-    "date": "2026-06-05",
-    "value": -85.1
+    "date": "2026-06-19",
+    "value": -8.85
   },
   "metadata": {
     "source": "World Gold Council (DB)",
     "indicator": "Gold Premium/Discount (China & India)",
     "unit": "US$/oz (5-day moving average)",
     "frequency": "daily (business days)",
-    "data_count": 6033,
+    "data_count": 6043,
     "start_date": "2003-04-25",
-    "end_date": "2026-06-05"
+    "end_date": "2026-06-19"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-12T09:37:30.436823+09:00"
+  "last_updated": "2026-06-25T20:16:53.412176+09:00"
 }

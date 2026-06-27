@@ -139,7 +139,7 @@ export default function GermanyUnemploymentChart({ data }: GermanyUnemploymentCh
                     lines={[
                       { dataKey: 'value', color: COLORS.value, name: '失業率' },
                     ]}
-                    yAxisFormatter={(v) => `${v}%`}
+                    yAxisFormatter={(v) => `${Number(v).toFixed(1)}%`}
                     yDomain={['dataMin - 0.1', 'dataMax + 0.1']}
                     showZeroLine={false}
                   />

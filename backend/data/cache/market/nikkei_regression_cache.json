@@ -1038,22 +1038,22 @@
     {
       "date": "2026-04-01",
       "actual": 59284.92,
-      "model": 42144.0
+      "model": 42143.0
     },
     {
       "date": "2026-05-01",
       "actual": 66329.5,
-      "model": null
+      "model": 41752.0
     },
     {
       "date": "2026-06-01",
-      "actual": 69902.25,
+      "actual": 69360.88,
       "model": null
     }
   ],
   "latest": {
     "date": "2026-06-01",
-    "actual": 69902.25,
+    "actual": 69360.88,
     "model": null
   },
   "model_info": {
@@ -1071,11 +1071,11 @@
     "data_count": 210,
     "start_date": "2009-01-01",
     "end_date": "2026-06-01",
-    "afre_latest": "2026-04-01",
+    "afre_latest": "2026-05-01",
     "usdjpy_latest": "2026-06-01",
     "nikkei_latest": "2026-06-01"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-17T20:39:47.755629+09:00"
+  "last_updated": "2026-06-27T19:36:18.993540+09:00"
 }

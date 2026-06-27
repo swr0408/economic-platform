@@ -247,7 +247,7 @@ export default function IfoBusinessClimateChart({ data }: IfoBusinessClimateChar
         title="IFO企業景況感指数（ドイツ）"
         showPeriodSelector={false}
         dataSource="IFO"
-        sourceUrl="https://www.ifo.de/fakten/2025-12-17/ifo-geschaeftsklimaindex-gesunken-dezember-2025"
+        sourceUrl="https://www.ifo.de/umfrage/ifo-geschaeftsklima-deutschland"
         handbookId="ifo-business-climate"
       >
         <Tabs

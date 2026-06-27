@@ -31,6 +31,7 @@ from core.redis_client import redis_client
 from services.canada.fmp_next_release_utils import (
     get_next_release_by_pattern,
     should_refresh_by_pattern,
+    resolve_last_updated_after_fetch,
 )
 
 
@@ -80,12 +81,26 @@ class CaCpiService:
                         "last_updated": last_updated_str,
                     }
 
+        # 取得前の最新月（発表時刻レース ラグガード用）
+        prev_cache = redis_client.get(self.DATA_CACHE_KEY) or {}
+        prev_latest_date = (prev_cache.get("latest") or {}).get("date")
+        prev_last_updated = prev_cache.get("last_updated")
+
         # データソースから取得
         result = self._load_from_source()
         if result:
             # 最新値を取得
             latest = self._get_latest_values(result)
             next_release = get_next_release_by_pattern(FMP_CPI_PATTERN, country="CA")
+
+            # 発表時刻レース対策: 取得データが新月に未反映なら last_updated を発表直前に
+            # 据え置き、次回ポーリングで再取得を促す（StatCan CSV zip 反映ラグで旧月を
+            # 「発表消化済み」として凍結させない）。データ前進時は now を返す。
+            new_latest_date = (latest or {}).get("date")
+            resolved_last_updated = resolve_last_updated_after_fetch(
+                FMP_CPI_PATTERN, new_latest_date, prev_latest_date, prev_last_updated,
+                country="CA",
+            )
 
             cache_payload = {
                 "data": result,
@@ -99,7 +114,7 @@ class CaCpiService:
                     "frequency": "monthly",
                 },
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": resolved_last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=self.CACHE_TTL)
             self._save_file_cache(cache_payload)
@@ -111,7 +126,7 @@ class CaCpiService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": resolved_last_updated,
             }
 
         # ファイルキャッシュフォールバック

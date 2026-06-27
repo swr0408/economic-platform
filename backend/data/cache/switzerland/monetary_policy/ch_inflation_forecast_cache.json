@@ -1,15 +1,15 @@
 {
   "latest": {
-    "release_date": "2026-03-19",
-    "observed_image": "/api/switzerland/snb/inflation-forecast/image/20260319_observed.png",
-    "forecast_image": "/api/switzerland/snb/inflation-forecast/image/20260319_forecast.png",
-    "observed_url": "https://www.snb.ch/public/asset/en/www-snb-ch/publications/communication/press-releases-restricted/pre_20260319/publications2_en/pre_20260319_p2.en.png",
-    "forecast_url": "https://www.snb.ch/public/asset/en/www-snb-ch/publications/communication/press-releases-restricted/pre_20260319/publications3_en/pre_20260319_p3.en.png"
+    "release_date": "2026-06-18",
+    "observed_image": "/api/switzerland/snb/inflation-forecast/image/20260618_observed.png",
+    "forecast_image": "/api/switzerland/snb/inflation-forecast/image/20260618_forecast.png",
+    "observed_url": "https://www.snb.ch/public/asset/en/www-snb-ch/publications/communication/press-releases-restricted/pre_20260618/publications2_en/pre_20260618_p2.en.png",
+    "forecast_url": "https://www.snb.ch/public/asset/en/www-snb-ch/publications/communication/press-releases-restricted/pre_20260618/publications3_en/pre_20260618_p3.en.png"
   },
   "metadata": {
     "source": "Swiss National Bank",
     "indicator": "SNB Inflation Forecast",
     "description": "SNBインフレ見通し（条件付き予測）"
   },
-  "last_updated": "2026-06-17T16:01:40.211957+09:00"
+  "last_updated": "2026-06-27T11:46:19.104166+09:00"
 }

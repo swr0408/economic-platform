@@ -13133,18 +13133,54 @@
       "value": 1.4,
       "bid_amount": 4203.0,
       "win_amount": 4203.0
+    },
+    {
+      "date": "2026-06-18",
+      "value": 1.4,
+      "bid_amount": 2480.0,
+      "win_amount": 2480.0
+    },
+    {
+      "date": "2026-06-22",
+      "value": 1.4,
+      "bid_amount": 4765.0,
+      "win_amount": 4765.0
+    },
+    {
+      "date": "2026-06-23",
+      "value": 1.4,
+      "bid_amount": 5245.0,
+      "win_amount": 5245.0
+    },
+    {
+      "date": "2026-06-24",
+      "value": 1.4,
+      "bid_amount": 6625.0,
+      "win_amount": 6625.0
+    },
+    {
+      "date": "2026-06-25",
+      "value": 1.4,
+      "bid_amount": 3705.0,
+      "win_amount": 3705.0
+    },
+    {
+      "date": "2026-06-26",
+      "value": 1.4,
+      "bid_amount": 2315.0,
+      "win_amount": 2315.0
     }
   ],
   "latest": {
-    "date": "2026-06-17",
+    "date": "2026-06-26",
     "value": 1.4,
-    "bid_amount": 4203.0,
-    "win_amount": 4203.0
+    "bid_amount": 2315.0,
+    "win_amount": 2315.0
   },
   "metadata": {
     "source": "PBC（中国人民銀行）",
     "unit": "%",
     "frequency": "daily",
-    "total_records": 2189
+    "total_records": 2195
   }
 }

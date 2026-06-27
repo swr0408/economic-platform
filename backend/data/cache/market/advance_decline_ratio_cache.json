@@ -1,83 +1,6 @@
 {
   "data": [
     {
-      "date": "2024-05-22",
-      "ratio": 94.63,
-      "advances": 865,
-      "declines": 723,
-      "unchanged": 0,
-      "advances_25d": 0,
-      "declines_25d": 0,
-      "nikkei225": 38617.1,
-      "topix": 2737.36
-    },
-    {
-      "date": "2024-05-23",
-      "ratio": 98.92,
-      "advances": 599,
-      "declines": 1003,
-      "unchanged": 0,
-      "advances_25d": 0,
-      "declines_25d": 0,
-      "nikkei225": 39103.22,
-      "topix": 2754.75
-    },
-    {
-      "date": "2024-05-26",
-      "ratio": 107.74,
-      "advances": 1072,
-      "declines": 521,
-      "unchanged": 0,
-      "advances_25d": 0,
-      "declines_25d": 0,
-      "nikkei225": null,
-      "topix": null
-    },
-    {
-      "date": "2024-05-27",
-      "ratio": 100.0,
-      "advances": 631,
-      "declines": 955,
-      "unchanged": 0,
-      "advances_25d": 0,
-      "declines_25d": 0,
-      "nikkei225": 38900.02,
-      "topix": 2766.36
-    },
-    {
-      "date": "2024-05-28",
-      "ratio": 101.74,
-      "advances": 249,
-      "declines": 1371,
-      "unchanged": 0,
-      "advances_25d": 0,
-      "declines_25d": 0,
-      "nikkei225": 38855.37,
-      "topix": 2768.5
-    },
-    {
-      "date": "2024-05-29",
-      "ratio": 97.07,
-      "advances": 982,
-      "declines": 615,
-      "unchanged": 0,
-      "advances_25d": 0,
-      "declines_25d": 0,
-      "nikkei225": 38556.87,
-      "topix": 2741.62
-    },
-    {
-      "date": "2024-05-30",
-      "ratio": 102.6,
-      "advances": 1512,
-      "declines": 117,
-      "unchanged": 0,
-      "advances_25d": 0,
-      "declines_25d": 0,
-      "nikkei225": 38054.13,
-      "topix": 2726.2
-    },
-    {
       "date": "2024-06-02",
       "ratio": 100.92,
       "advances": 1025,
@@ -5554,28 +5477,105 @@
       "declines_25d": 0,
       "nikkei225": 69404.5,
       "topix": 3991.14
+    },
+    {
+      "date": "2026-06-17",
+      "ratio": 98.3,
+      "advances": 937,
+      "declines": 579,
+      "unchanged": 0,
+      "advances_25d": 0,
+      "declines_25d": 0,
+      "nikkei225": 69902.25,
+      "topix": 4013.23
+    },
+    {
+      "date": "2026-06-18",
+      "ratio": 96.21,
+      "advances": 648,
+      "declines": 873,
+      "unchanged": 0,
+      "advances_25d": 0,
+      "declines_25d": 0,
+      "nikkei225": 71053.49,
+      "topix": 4068.18
+    },
+    {
+      "date": "2026-06-21",
+      "ratio": 99.97,
+      "advances": 792,
+      "declines": 727,
+      "unchanged": 0,
+      "advances_25d": 0,
+      "declines_25d": 0,
+      "nikkei225": null,
+      "topix": null
+    },
+    {
+      "date": "2026-06-22",
+      "ratio": 92.52,
+      "advances": 366,
+      "declines": 1154,
+      "unchanged": 0,
+      "advances_25d": 0,
+      "declines_25d": 0,
+      "nikkei225": 72353.96,
+      "topix": 4095.05
+    },
+    {
+      "date": "2026-06-23",
+      "ratio": 96.85,
+      "advances": 678,
+      "declines": 826,
+      "unchanged": 0,
+      "advances_25d": 0,
+      "declines_25d": 0,
+      "nikkei225": 69788.38,
+      "topix": 3990.38
+    },
+    {
+      "date": "2026-06-24",
+      "ratio": 97.17,
+      "advances": 1043,
+      "declines": 471,
+      "unchanged": 0,
+      "advances_25d": 0,
+      "declines_25d": 0,
+      "nikkei225": 69174.97,
+      "topix": 3963.76
+    },
+    {
+      "date": "2026-06-25",
+      "ratio": 97.75,
+      "advances": 915,
+      "declines": 613,
+      "unchanged": 0,
+      "advances_25d": 0,
+      "declines_25d": 0,
+      "nikkei225": 72366.34,
+      "topix": 4016.47
     }
   ],
   "latest": {
-    "date": "2026-06-16",
-    "ratio": 95.44,
-    "advances": 931,
-    "declines": 578,
+    "date": "2026-06-25",
+    "ratio": 97.75,
+    "advances": 915,
+    "declines": 613,
     "unchanged": 0,
     "advances_25d": 0,
     "declines_25d": 0,
-    "nikkei225": 69404.5,
-    "topix": 3991.14
+    "nikkei225": 72366.34,
+    "topix": 4016.47
   },
   "metadata": {
     "source": "nikkei225jp.com",
     "frequency": "daily",
     "data_count": 505,
-    "start_date": "2024-05-22",
-    "end_date": "2026-06-16",
+    "start_date": "2024-06-02",
+    "end_date": "2026-06-25",
     "window": 25
   },
   "cached": false,
   "source": "api",
-  "last_updated": "2026-06-17T11:39:47.413741"
+  "last_updated": "2026-06-27T10:37:44.737648"
 }

@@ -1275,14 +1275,14 @@
     {
       "date": "2025-09-01",
       "value": 46.3,
-      "forecast": 48.0,
+      "forecast": 47.9,
       "previous": 49.0,
       "period": "Sep"
     },
     {
       "date": "2025-10-01",
       "value": 48.2,
-      "forecast": 47.5,
+      "forecast": 47.7,
       "previous": 46.3,
       "period": "Oct"
     },
@@ -1303,8 +1303,8 @@
     {
       "date": "2026-01-01",
       "value": 48.8,
-      "forecast": 47.9,
-      "previous": 46.4,
+      "forecast": 47.2,
+      "previous": 45.8,
       "period": "Jan"
     },
     {
@@ -2058,8 +2058,26 @@
       "previous": null
     },
     {
+      "date": "2026-02-01",
+      "value": 57.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
       "date": "2026-03-01",
       "value": 57.2,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2026-04-01",
+      "value": 54.8,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2026-05-01",
+      "value": 56.0,
       "forecast": null,
       "previous": null
     }
@@ -2072,8 +2090,8 @@
     "period": "May"
   },
   "latest_services": {
-    "date": "2026-03-01",
-    "value": 57.2,
+    "date": "2026-05-01",
+    "value": 56.0,
     "forecast": null,
     "previous": null
   },
@@ -2085,5 +2103,5 @@
     "frequency": "monthly",
     "threshold": 50
   },
-  "last_updated": "2026-06-17T16:01:14.962891+09:00"
+  "last_updated": "2026-06-27T20:10:43.896323+09:00"
 }

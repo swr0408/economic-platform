@@ -7,6 +7,7 @@ import BOEOISCurveChart from './monetary_policy/BOEOISCurveChart'
 import BOEEconomicOutlookSection from './monetary_policy/BOEEconomicOutlookSection'
 import BOEDMPSurveySection from './monetary_policy/BOEDMPSurveySection'
 import UKPublicSectorNetBorrowingChart from './monetary_policy/UKPublicSectorNetBorrowingChart'
+import UkGovernmentDebtToGdpRatioChart from './economy/UkGovernmentDebtToGdpRatioChart'
 import UkQtChart from './monetary_policy/UkQtChart'
 import RestrictedSection from '../../common/RestrictedSection'
 import BOERateCutsExpectationChart from './monetary_policy/BOERateCutsExpectationChart'
@@ -52,6 +53,13 @@ export default function UKPolicyCharts() {
         />
       </div>
 
+      {/* BOE MPC Voting Chart */}
+      <div id="boe-mpc-voting">
+        <BOEMPCVotingChart
+          data={dashboardData?.boe_mpc_voting ?? null}
+        />
+      </div>
+      
       {/* BOE Rate Cuts Expectation Chart (special) */}
       <RestrictedSection visibility="special">
         <div id="boe-rate-cuts">
@@ -64,12 +72,6 @@ export default function UKPolicyCharts() {
         <SONIAChart />
       </div>
 
-      {/* BOE MPC Voting Chart */}
-      <div id="boe-mpc-voting">
-        <BOEMPCVotingChart
-          data={dashboardData?.boe_mpc_voting ?? null}
-        />
-      </div>
 
       {/* BOE OIS Curve Chart */}
       <div id="boe-ois-curve">
@@ -105,6 +107,13 @@ export default function UKPolicyCharts() {
       <div id="uk-public-sector-net-borrowing">
         <UKPublicSectorNetBorrowingChart
           data={dashboardData?.uk_public_sector_net_borrowing ?? null}
+        />
+      </div>
+
+      {/* UK政府債務残高対GDP比 */}
+      <div id="uk-government-debt-to-gdp-ratio">
+        <UkGovernmentDebtToGdpRatioChart
+          data={dashboardData?.uk_government_debt_to_gdp_ratio ?? null}
         />
       </div>
 

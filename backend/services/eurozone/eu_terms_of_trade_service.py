@@ -9,11 +9,16 @@ Eurostat APIから輸出・輸入単価指数データを取得し、交易条�
 
 データソース:
 - Eurostat API
-  - teiet300: Unit value of exports (輸出単価指数)
-  - teiet310: Unit value of imports (輸入単価指数)
-- Series Parameters:
+  - ext_st_easitc: Euro area trade by SITC product group（ユーロ圏SITC別貿易）
+    - indic_et=IVU: Unit value index (2021=100)（輸出入の単価指数）
+    - 2002-01からの長期月次履歴を保持（短期テーブル teiet300/teiet310 は直近約1年のみ）
+- Series Parameters (path series key: freq.stk_flow.indic_et.partner.sitc06.geo):
   - freq: M (Monthly)
-  - geo: EA20 (Euro area - 20 countries)
+  - stk_flow: EXP / IMP
+  - indic_et: IVU (Unit value index, 2021=100)
+  - partner: EXT_EA21 (Extra-euro area - 21 countries)
+  - sitc06: TOTAL
+  - geo: EA21 (2026-01にブルガリアがユーロ導入しEA20→EA21へ移行)
 
 発表スケジュール:
 - 月次（EU国際貿易と同時発表）
@@ -48,9 +53,15 @@ class EUTermsOfTradeService:
     # Eurostat API base URL
     EUROSTAT_API_BASE = "https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data"
 
-    # Dataset codes
-    EXPORTS_DATASET = "teiet300"  # Unit value of exports
-    IMPORTS_DATASET = "teiet310"  # Unit value of imports
+    # Dataset code（長期月次履歴を持つ完全データセット）
+    # 旧 teiet300/teiet310（tei短期テーブル）は直近約1年しか保持しないため、
+    # 元データセット ext_st_easitc の単価指数(IVU)へ移行し2002-01からの履歴を取得する。
+    DATASET = "ext_st_easitc"
+
+    # パスキー（dims順: freq.stk_flow.indic_et.partner.sitc06.geo）
+    # partner=EXT_EA21（域外）, geo=EA21, indic_et=IVU（単価指数 2021=100）
+    EXPORT_SERIES_KEY = "M.EXP.IVU.EXT_EA21.TOTAL.EA21"
+    IMPORT_SERIES_KEY = "M.IMP.IVU.EXT_EA21.TOTAL.EA21"
 
     DATA_CACHE_KEY = "economy:eu_terms_of_trade:data"
     # EU国際貿易と同時発表のためマッピングを共用
@@ -105,8 +116,8 @@ class EUTermsOfTradeService:
                     }
 
         # Eurostat APIから各指標を取得
-        export_uv_data = self._fetch_eurostat_data(self.EXPORTS_DATASET) or []
-        import_uv_data = self._fetch_eurostat_data(self.IMPORTS_DATASET) or []
+        export_uv_data = self._fetch_eurostat_data(self.EXPORT_SERIES_KEY) or []
+        import_uv_data = self._fetch_eurostat_data(self.IMPORT_SERIES_KEY) or []
 
         if export_uv_data and import_uv_data:
             # 交易条件を計算: (輸出単価指数 / 輸入単価指数) × 100
@@ -126,9 +137,10 @@ class EUTermsOfTradeService:
                 "latest_import_uv": latest_import_uv,
                 "metadata": {
                     "source": "Eurostat - External Trade",
-                    "export_dataset": self.EXPORTS_DATASET,
-                    "import_dataset": self.IMPORTS_DATASET,
-                    "area": "Euro area (20 countries)",
+                    "dataset": self.DATASET,
+                    "export_series": self.EXPORT_SERIES_KEY,
+                    "import_series": self.IMPORT_SERIES_KEY,
+                    "area": "Euro area (21 countries)",
                     "unit": "Index (2021 = 100)",
                     "frequency": "Monthly",
                     "description": "Terms of Trade = Export Unit Value / Import Unit Value × 100",
@@ -191,25 +203,21 @@ class EUTermsOfTradeService:
 
         return result
 
-    def _fetch_eurostat_data(self, dataset: str, start_period: str = "2010-01") -> Optional[List[Dict]]:
+    def _fetch_eurostat_data(self, series_key: str, start_period: str = "2002-01") -> Optional[List[Dict]]:
         """
-        Eurostat APIから特定のデータセットを取得
+        Eurostat APIから単一系列（パスキー指定）を取得
 
         Args:
-            dataset: データセットコード (teiet300, teiet310)
-            start_period: 開始期間 (YYYY-MM)
+            series_key: パスキー freq.stk_flow.indic_et.partner.sitc06.geo
+                        (例: M.EXP.IVU.EXT_EA21.TOTAL.EA21)
+            start_period: 開始期間 (YYYY-MM)。ext_st_easitc は 2002-01 から保持
 
         Returns:
             データポイントのリスト
         """
-        # teiet300/teiet310 は複数の次元を持つ:
-        # freq, stk_flow, sitc06, partner, unit, geo, time
-        # パス内でフィルタを指定: M...WRL_REST.I21_NSA.EA21
-        # M = Monthly, WRL_REST = Rest of world, I21_NSA = Index 2021=100, EA21 = Euro area 21
-        # 2026: ユーロ圏が 21 か国に拡大し teiet300 の geo から EA20 が削除された
-        # (INVALID_QUERY_DIMENSION_VALUE) ため EA21 へ更新。
-        series_key = "M...WRL_REST.I21_NSA.EA21"
-        url = f"{self.EUROSTAT_API_BASE}/{dataset}/{series_key}"
+        # 注意: Eurostat SDMX 2.1 APIはフィルタをクエリパラメータではなくURLパスの
+        # 系列キーで指定する必要がある（クエリ指定は無視され全キューブ取得→413になる）。
+        url = f"{self.EUROSTAT_API_BASE}/{self.DATASET}/{series_key}"
 
         params = {
             "format": "JSON",
@@ -217,7 +225,7 @@ class EUTermsOfTradeService:
         }
 
         try:
-            print(f"[EUTermsOfTrade] Fetching {dataset} from Eurostat API: {url}")
+            print(f"[EUTermsOfTrade] Fetching {self.DATASET}/{series_key} from Eurostat API")
             response = requests.get(url, params=params, timeout=30)
             response.raise_for_status()
 
@@ -232,7 +240,7 @@ class EUTermsOfTradeService:
             values = data.get("value", {})
 
             if not time_index or not values:
-                print(f"[EUTermsOfTrade] No data found for {dataset}")
+                print(f"[EUTermsOfTrade] No data found for {series_key}")
                 return None
 
             # Create index to time mapping
@@ -253,14 +261,14 @@ class EUTermsOfTradeService:
                         "value": float(value)
                     })
 
-            print(f"[EUTermsOfTrade] Successfully fetched {len(result)} {dataset} data points")
+            print(f"[EUTermsOfTrade] Successfully fetched {len(result)} {series_key} data points")
             return result
 
         except requests.exceptions.RequestException as e:
-            print(f"[EUTermsOfTrade] API request error for {dataset}: {e}")
+            print(f"[EUTermsOfTrade] API request error for {series_key}: {e}")
             return None
         except (KeyError, ValueError, IndexError) as e:
-            print(f"[EUTermsOfTrade] Data parsing error for {dataset}: {e}")
+            print(f"[EUTermsOfTrade] Data parsing error for {series_key}: {e}")
             return None
 
     def _should_refresh(self, last_updated_str: str) -> bool:

@@ -99,6 +99,11 @@ class CaSpPmiService:
         services_data = self._load_series("services")
         composite_data = self._load_series("composite")
 
+        # 欠損検知ガード: 総合PMIが製造業/サービス業より遅れている場合に警告
+        # （FMPが総合のactualをNULL配信する事象が過去にあり、製造/サービスは
+        #  更新されるため監視が「最新」と誤認しやすい→ログで顕在化させる）
+        self._warn_if_composite_lags(manufacturing_data, services_data, composite_data)
+
         cache_payload = {
             "manufacturing": {
                 "data": manufacturing_data,
@@ -126,6 +131,36 @@ class CaSpPmiService:
             "source": "csv+db+fmp",
             "last_updated": datetime.now(JST).isoformat(),
         }
+
+    def _warn_if_composite_lags(
+        self,
+        manufacturing_data: List[Dict[str, Any]],
+        services_data: List[Dict[str, Any]],
+        composite_data: List[Dict[str, Any]],
+    ) -> None:
+        """総合PMIの最新月が製造業/サービス業より古い場合に警告ログを出す。
+
+        FMPが総合PMIのactualをNULLで配信する欠損事象では、製造業/サービス業だけ
+        前進し総合が凍結する（CSVシードで補完するが、再発を検知できるようにする）。
+        """
+        try:
+            def _latest(data: List[Dict[str, Any]]) -> Optional[str]:
+                return data[-1]["date"] if data else None
+
+            comp_latest = _latest(composite_data)
+            peer_latest = max(
+                [d for d in (_latest(manufacturing_data), _latest(services_data)) if d],
+                default=None,
+            )
+            if comp_latest and peer_latest and comp_latest < peer_latest:
+                print(
+                    f"[CaSpPmi] WARNING: Composite PMI lags peers "
+                    f"(composite={comp_latest}, manufacturing/services={peer_latest}). "
+                    f"FMP may be missing the composite actual; "
+                    f"seed data/csv_import/カナダ総合PMI.csv to recover."
+                )
+        except Exception as e:
+            print(f"[CaSpPmi] Error in composite-lag guard: {e}")
 
     def _load_series(self, pmi_type: str) -> List[Dict[str, Any]]:
         """1つのPMI系列のデータを取得しマージ（CSV + DB + FMP）"""

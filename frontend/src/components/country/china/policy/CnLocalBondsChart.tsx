@@ -131,6 +131,7 @@ export default function CnLocalBondsChart({ data }: Props) {
   const latest = data.latest
   const currentValue = latest ? latest[dataKind] : null
   const isPercent = dataKind !== 'headroom'
+  const isCost = dataKind === 'cost'
 
   return (
     <div id="cn-local-bonds">
@@ -181,10 +182,16 @@ export default function CnLocalBondsChart({ data }: Props) {
             { dataKey: dataKind, color: COLORS[dataKind], name: LABELS[dataKind] },
           ]}
           yAxisFormatter={isPercent
-            ? (v: number) => `${v}%`
+            ? (v: number) => `${v.toFixed(isCost ? 1 : 0)}%`
             : (v: number) => `${(v / 10000).toFixed(1)}万`
           }
-          yDomain={isPercent ? ['dataMin - 5', 'dataMax + 5'] : ['dataMin - 5000', 'dataMax + 5000']}
+          yDomain={
+            isCost
+              ? ['dataMin - 0.5', 'dataMax + 0.5']
+              : isPercent
+                ? ['dataMin - 5', 'dataMax + 5']
+                : ['dataMin - 5000', 'dataMax + 5000']
+          }
           tooltipValueFormatter={(v: number) =>
             isPercent ? `${v.toFixed(2)}%` : `${v.toLocaleString()} 億元`
           }

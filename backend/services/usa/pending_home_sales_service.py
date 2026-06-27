@@ -14,8 +14,9 @@ DBからPending Home Salesデータを取得
 キャッシュ方式: FMP発表日時ベース判定方式
 """
 import json
+import re
 from datetime import datetime
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Tuple
 from zoneinfo import ZoneInfo
 from pathlib import Path
 
@@ -27,6 +28,17 @@ from services.usa.fmp_next_release_utils import (
 
 
 JST = ZoneInfo("Asia/Tokyo")
+
+# FMPの発表イベントは「リリース日」で記録され、参照月は event 名のサフィックス
+# (例: "Pending Home Sales MoM (May)") に入る。リリース日は参照月の約1ヶ月後なので、
+# datetime_utc の月をそのまま使うと全データが1ヶ月後方にずれる。ラベルから参照月を復元する。
+_MONTH_ABBR = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+    "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+}
+_LABEL_MONTH_RE = re.compile(
+    r"\((Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\)", re.IGNORECASE
+)
 
 CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "housing"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
@@ -122,6 +134,45 @@ class PendingHomeSalesService:
             "error": "No data available"
         }
 
+    @staticmethod
+    def _reference_date(dt_utc: datetime, event: str) -> str:
+        """イベントの参照月（YYYY-MM-01）を決定する。
+
+        - ラベル付き("... (May)")はリリース日に記録されているため、ラベルの月を
+          参照月とし、年はリリース年からロールオーバーを考慮して復元する。
+        - ラベル無し(過去の蓄積分)は従来どおり datetime_utc の月を参照月とする。
+        """
+        m = _LABEL_MONTH_RE.search(event or "")
+        if m:
+            ref_month = _MONTH_ABBR[m.group(1).lower()]
+            ref_year = dt_utc.year
+            # リリースは参照月の約1ヶ月後。参照月がリリース月より大きければ前年(12月→1月)。
+            if ref_month > dt_utc.month:
+                ref_year -= 1
+            return f"{ref_year:04d}-{ref_month:02d}-01"
+        return dt_utc.strftime("%Y-%m-01")
+
+    def _aggregate_by_reference_month(self, rows) -> Dict[str, Optional[float]]:
+        """イベント行を参照月ごとに集約する。
+
+        同一参照月に複数行ある場合の優先順位:
+          ラベル付き(=参照月が明示, 信頼度高) > ラベル無し。
+        同優先度では新しいリリース(datetime_utc が後)を採用(改定値優先)。
+        """
+        # date_str -> (priority, datetime_utc, value)
+        best: Dict[str, Tuple[int, datetime, Optional[float]]] = {}
+        for row in rows:
+            dt_utc, event, actual = row
+            if not dt_utc:
+                continue
+            date_str = self._reference_date(dt_utc, event)
+            priority = 2 if _LABEL_MONTH_RE.search(event or "") else 1
+            value = float(actual) if actual is not None else None
+            existing = best.get(date_str)
+            if existing is None or (priority, dt_utc) > (existing[0], existing[1]):
+                best[date_str] = (priority, dt_utc, value)
+        return {d: v[2] for d, v in best.items()}
+
     def _load_from_db(self) -> List[Dict[str, Any]]:
         """DBから履歴データを取得（MoMとYoYを結合）"""
         try:
@@ -131,7 +182,7 @@ class PendingHomeSalesService:
             with SessionLocal() as session:
                 # MoMデータを取得
                 mom_query = text("""
-                    SELECT datetime_utc, actual
+                    SELECT datetime_utc, event, actual
                     FROM economic_calendar_events
                     WHERE country = 'US'
                       AND event ILIKE '%Pending Home Sales MoM%'
@@ -142,7 +193,7 @@ class PendingHomeSalesService:
 
                 # YoYデータを取得
                 yoy_query = text("""
-                    SELECT datetime_utc, actual
+                    SELECT datetime_utc, event, actual
                     FROM economic_calendar_events
                     WHERE country = 'US'
                       AND event ILIKE '%Pending Home Sales YoY%'
@@ -151,21 +202,9 @@ class PendingHomeSalesService:
                 """)
                 yoy_rows = session.execute(yoy_query).fetchall()
 
-                # 月別にデータを集約
-                mom_dict = {}
-                for row in mom_rows:
-                    dt_utc, actual = row
-                    if dt_utc:
-                        # 月初日に正規化
-                        date_str = dt_utc.strftime("%Y-%m-01")
-                        mom_dict[date_str] = float(actual) if actual else None
-
-                yoy_dict = {}
-                for row in yoy_rows:
-                    dt_utc, actual = row
-                    if dt_utc:
-                        date_str = dt_utc.strftime("%Y-%m-01")
-                        yoy_dict[date_str] = float(actual) if actual else None
+                # 参照月別にデータを集約（ラベルから参照月を復元・優先度付き）
+                mom_dict = self._aggregate_by_reference_month(mom_rows)
+                yoy_dict = self._aggregate_by_reference_month(yoy_rows)
 
                 # 全ての日付を統合
                 all_dates = sorted(set(mom_dict.keys()) | set(yoy_dict.keys()))

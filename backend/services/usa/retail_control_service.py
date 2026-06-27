@@ -76,14 +76,16 @@ class RetailControlService:
                         "last_updated": last_updated_str
                     }
 
-        # DBから取得
-        db_result = self._load_from_db()
-        if db_result:
+        # Census MARTS から控除群を算出(標準定義の引き算方式A)を最優先。
+        # FMP/CSV はヘッドラインに化ける/停止する等で不安定なため、公式構成要素から
+        # 一貫して算出する(総合−自動車−ガソリン−建材−飲食、季調済・全履歴・最新改定版)。
+        census_result = self._fetch_from_census()
+        if census_result:
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
 
-            latest = db_result[-1] if db_result else None
+            latest = census_result[-1] if census_result else None
             cache_payload = {
-                "data": db_result,
+                "data": census_result,
                 "latest": latest,
                 "next_release": next_release,
                 "last_updated": datetime.now(JST).isoformat()
@@ -92,11 +94,11 @@ class RetailControlService:
             self._save_file_cache(cache_payload)
 
             return {
-                "data": db_result,
+                "data": census_result,
                 "latest": latest,
                 "next_release": next_release,
                 "cached": False,
-                "source": "database",
+                "source": "census_marts",
                 "last_updated": datetime.now(JST).isoformat()
             }
 
@@ -123,24 +125,70 @@ class RetailControlService:
             "error": "No data available"
         }
 
+    def _fetch_from_census(self) -> List[Dict[str, Any]]:
+        """Census MARTS の構成要素から控除群を算出(標準定義の引き算方式)。
+
+        コントロールグループ = 総合(44X72) − 自動車(441) − ガソリン(447)
+                              − 建材(444) − 飲食(722)  (季調済水準)
+
+        フロントは {date, mom} を使用。forecast は持たない(None)。
+        取得失敗時は [] を返し、呼び出し側がファイルキャッシュへフォールバックする。
+        """
+        try:
+            from services.usa.census_marts_source import fetch_control_group
+
+            rows = fetch_control_group()
+            if not rows:
+                return []
+            return [
+                {
+                    "date": r["date"],
+                    "mom": r["mom"],
+                    "yoy": r["yoy"],
+                    "forecast": None,
+                }
+                for r in rows
+                if r.get("mom") is not None
+            ]
+        except Exception as e:
+            print(f"[RetailControl] Census fetch failed: {e}")
+            return []
+
     def _load_from_db(self) -> List[Dict[str, Any]]:
-        """DBから履歴データを取得"""
+        """DBから履歴データを取得(Census取得失敗時の旧フォールバック・未使用)"""
         try:
             from core.database import SessionLocal
             from sqlalchemy import text
             import re
 
             with SessionLocal() as session:
-                # FMPのイベント名 + CSVインポートのイベント名の両方を検索
+                # コントロールグループ(=リテールコントロール)の値を取得する。
+                #
+                # 重要 (2026-06-17 修正): FMP は Control Group を独立イベントで配信せず、
+                # **"Retail Sales MoM" という名前でコントロールグループの値**を返す
+                # (検証済: FMP "Retail Sales MoM" はヘッドライン RSAFS と全く一致せず、
+                #  CSV の正式 Control Group と3/6完全一致・他も改定差±0.1〜0.3で一致。
+                #  current 月も FMP=0.7=Investing リテールコントロール 0.7 で一致)。
+                # 旧実装は "Retail Sales Ex Gas/Autos"(別物=ガソリン/自動車のみ除外) を
+                # 拾っており、2025-11以降それが表示され 0.5% 等の誤値になっていた。
+                #
+                # 取得対象:
+                #   - "Retail Sales Control Group MoM" (CSV_IMPORT, 〜2025-10 の正式確報)
+                #   - "Retail Sales MoM"               (FMP, 2025-11以降の速報=控除群の値)
+                # ※ "Ex Gas/Autos" / "Ex Autos" / "YoY" は対象外。
+                # datetime_utc ASC + 月単位の重複排除により、重複月は日付の早い
+                # CSV確報が優先され、CSV が無い直近月のみ FMP 速報が採用される。
                 query = text("""
                     SELECT datetime_utc, event, actual, estimate, previous
                     FROM economic_calendar_events
                     WHERE country = 'US'
                       AND (
-                        event ILIKE '%Retail Sales Ex Gas/Autos%'
-                        OR event ILIKE '%Retail Control%'
-                        OR event ILIKE '%Retail Sales Control Group%'
+                        event ILIKE 'Retail Sales Control Group MoM%'
+                        OR event ILIKE 'Retail Control%'
+                        OR event ILIKE 'Retail Sales MoM%'
                       )
+                      AND event NOT ILIKE '%YoY%'
+                      AND event NOT ILIKE '%Ex %'
                       AND actual IS NOT NULL
                     ORDER BY datetime_utc ASC
                 """)

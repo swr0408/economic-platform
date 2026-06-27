@@ -61,7 +61,9 @@ class BOEMPCVotingService:
             cached_data = redis_client.get(self.DATA_CACHE_KEY)
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str):
+                cached_list = cached_data.get("data") or []
+                latest_meeting = cached_list[-1].get("date") if cached_list else None
+                if last_updated_str and not self._should_refresh(last_updated_str, latest_meeting):
                     return {
                         "data": cached_data.get("data", []),
                         "members": cached_data.get("members", []),
@@ -258,7 +260,7 @@ class BOEMPCVotingService:
             print(f"[BOE MPC Voting] Error getting next release: {e}")
             return None
 
-    def _should_refresh(self, last_updated_str: str) -> bool:
+    def _should_refresh(self, last_updated_str: str, latest_meeting_date: Optional[str] = None) -> bool:
         """キャッシュを更新すべきかどうかを判定"""
         try:
             last_updated = datetime.fromisoformat(last_updated_str)
@@ -267,9 +269,29 @@ class BOEMPCVotingService:
 
             now = datetime.now(JST)
 
-            # 1日以上経過していたら更新
+            # 1) 1日以上経過していたら更新
             if (now - last_updated) > timedelta(days=1):
                 return True
+
+            # 2) 発表時刻レース対策（ラグガード）:
+            #    直近のBoE金利決定（FMP "Interest Rate Decision" GB）が発生済みなのに
+            #    キャッシュの最新会合日がそれより前なら、ソース(BoE Excel)反映待ちとみなして
+            #    短時間で再取得する。発表直後（20秒後等）にExcel未反映の旧分をキャッシュして
+            #    翌日まで凍結する問題を解消（発表後36hの窓のみ。以後は上記1日TTLが backstop）。
+            if latest_meeting_date:
+                try:
+                    from services.uk.fmp_next_release_utils import _get_last_release_datetime
+                    last_release = _get_last_release_datetime("Interest Rate Decision", "GB")
+                    if last_release and now >= last_release:
+                        age_hours = (now - last_release).total_seconds() / 3600.0
+                        if age_hours <= 36 and latest_meeting_date < last_release.strftime("%Y-%m-%d"):
+                            print(
+                                f"[BOE MPC Voting] release-aware refresh: cached latest meeting "
+                                f"{latest_meeting_date} < BoE decision {last_release.date()} → refetch"
+                            )
+                            return True
+                except Exception as e:
+                    print(f"[BOE MPC Voting] release-aware check failed: {e}")
 
             return False
         except Exception as e:

@@ -1,9 +1,9 @@
 /**
- * BOJ Tankan Unified Table Component
- * 日銀短観 統合テーブル（6種類のデータを左右ボタンで切り替え表示）
+ * BOJ Tankan Unified Chart Component
+ * 日銀短観 統合チャート（6種類のデータを左右ボタンで切り替え・長期時系列の折れ線）
  *
  * 1. 業況判断指数（DI） - 大企業製造業/非製造業の業況判断と先行き
- * 2. 設備投資額 - 大企業製造業/非製造業の投資額と修正率
+ * 2. 設備投資額 - 大企業製造業/非製造業（前年度比）
  * 3. 生産・営業用設備判断指数（DI）
  * 4. 雇用人員判断指数（DI）
  * 5. 仕入価格判断指数（DI）
@@ -11,79 +11,116 @@
  */
 
 import { useEffect, useState, useMemo } from 'react'
-import { Table, Button } from 'antd'
+import { Button } from 'antd'
 import { LeftOutlined, RightOutlined, CalendarOutlined } from '@ant-design/icons'
-import type { ColumnsType } from 'antd/es/table'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
-import DataTablePagination from '../../../common/DataTablePagination'
+import PeriodSelector from '../../../common/PeriodSelector'
 
 import {
   fetchBOJTankanData,
-  formatQuarterDate as formatQuarterDateDI,
   type BOJTankanDataPoint,
   type NextRelease,
 } from '../../../../utils/japan/bojTankanApi'
 
 import { TEXT_COLORS } from '../../usa/common/chartConstants'
+import {
+  useSortedData,
+  usePeriodFiltering,
+  useHiddenSeries,
+  type PeriodType,
+} from '../../usa/common/useChartData'
+import {
+  NoDataMessage,
+  StandardLineChart,
+} from '../../usa/common/ChartComponents'
 
 import {
   fetchBOJTankanComprehensiveTable,
-  formatQuarterDate as formatQuarterDateComp,
-  formatFiscalYearDate,
   type DataType,
   type BOJTankanComprehensiveDataPoint,
 } from '../../../../utils/japan/bojTankanComprehensiveApi'
 
 type UnifiedDataType = 'business_conditions' | DataType
 
+interface LineDef {
+  dataKey: string
+  name: string
+  color: string
+  hiddenByDefault?: boolean
+}
+
 interface DataTypeConfig {
   type: UnifiedDataType
   displayName: string
+  unit: '%pt' | '%'
+  lines: LineDef[]
 }
 
-const DATA_TYPES: DataTypeConfig[] = [
-  { type: 'business_conditions', displayName: '業況判断指数（DI）' },
-  { type: 'capital_investment', displayName: '設備投資額' },
-  { type: 'production_facilities', displayName: '生産・営業用設備判断指数（DI）' },
-  { type: 'employment', displayName: '雇用人員判断指数（DI）' },
-  { type: 'purchase_price', displayName: '仕入価格判断指数（DI）' },
-  { type: 'selling_price', displayName: '販売価格判断指数（DI）' },
+const DI_4: LineDef[] = [
+  { dataKey: 'all_industries_current', name: '大企業全産業 実績', color: '#0958d9' },
+  { dataKey: 'all_industries_forecast', name: '大企業全産業 予測', color: '#91caff', hiddenByDefault: true },
+  { dataKey: 'large_manufacturing_current', name: '大企業製造業 実績', color: '#cf1322' },
+  { dataKey: 'large_manufacturing_forecast', name: '大企業製造業 予測', color: '#ffa39e', hiddenByDefault: true },
 ]
 
-interface TableRow {
-  key: string
-  quarter: string
-  [key: string]: string | number | null | undefined
-}
-
-const INITIAL_ROW_COUNT = 5
-const INCREMENT_COUNT = 10
+const DATA_TYPES: DataTypeConfig[] = [
+  {
+    type: 'business_conditions',
+    displayName: '業況判断指数（DI）',
+    unit: '%pt',
+    lines: [
+      { dataKey: 'large_manufacturing_current', name: '大企業製造業 業況判断', color: '#0958d9' },
+      { dataKey: 'large_manufacturing_outlook', name: '大企業製造業 先行き', color: '#91caff', hiddenByDefault: true },
+      { dataKey: 'large_non_manufacturing_current', name: '大企業非製造業 業況判断', color: '#cf1322' },
+      { dataKey: 'large_non_manufacturing_outlook', name: '大企業非製造業 先行き', color: '#ffa39e', hiddenByDefault: true },
+    ],
+  },
+  {
+    type: 'capital_investment',
+    displayName: '設備投資額（前年度比）',
+    unit: '%',
+    lines: [
+      { dataKey: 'large_manufacturing', name: '大企業製造業', color: '#0958d9' },
+      { dataKey: 'large_non_manufacturing', name: '大企業非製造業', color: '#cf1322' },
+    ],
+  },
+  { type: 'production_facilities', displayName: '生産・営業用設備判断指数（DI）', unit: '%pt', lines: DI_4 },
+  { type: 'employment', displayName: '雇用人員判断指数（DI）', unit: '%pt', lines: DI_4 },
+  { type: 'purchase_price', displayName: '仕入価格判断指数（DI）', unit: '%pt', lines: DI_4 },
+  { type: 'selling_price', displayName: '販売価格判断指数（DI）', unit: '%pt', lines: DI_4 },
+]
 
 // 次回発表日時のフォーマット
 const formatNextRelease = (nextRelease: NextRelease | null | undefined): string | null => {
   if (!nextRelease) return null
   if (nextRelease.datetime_jst) {
     const dt = new Date(nextRelease.datetime_jst)
-    const month = dt.getMonth() + 1
-    const day = dt.getDate()
-    const hours = dt.getHours().toString().padStart(2, '0')
-    const minutes = dt.getMinutes().toString().padStart(2, '0')
-    return `${month}/${day} ${hours}:${minutes}`
+    return `${dt.getMonth() + 1}/${dt.getDate()} ${dt.getHours().toString().padStart(2, '0')}:${dt.getMinutes().toString().padStart(2, '0')}`
   }
   if (nextRelease.time_jst && nextRelease.date) {
     const dt = new Date(nextRelease.date)
-    const month = dt.getMonth() + 1
-    const day = dt.getDate()
-    return `${month}/${day} ${nextRelease.time_jst}`
+    return `${dt.getMonth() + 1}/${dt.getDate()} ${nextRelease.time_jst}`
   }
   if (nextRelease.date) {
     const dt = new Date(nextRelease.date)
-    const month = dt.getMonth() + 1
-    const day = dt.getDate()
-    return `${month}/${day}`
+    return `${dt.getMonth() + 1}/${dt.getDate()}`
   }
   return null
+}
+
+const formatQuarterLabel = (dateStr: string): string => {
+  const date = new Date(dateStr)
+  const year = date.getFullYear() % 100
+  const quarter = Math.floor(date.getMonth() / 3) + 1
+  return `'${year.toString().padStart(2, '0')} Q${quarter}`
+}
+
+const formatFiscalLabel = (dateStr: string): string => {
+  // 会計年度末(3/31)基準 → 年度ラベル（例: 2025-03-31 → FY24）
+  const date = new Date(dateStr)
+  const fy = (date.getMonth() <= 2 ? date.getFullYear() - 1 : date.getFullYear()) % 100
+  return `FY${fy.toString().padStart(2, '0')}`
 }
 
 export default function BOJTankanUnifiedTable() {
@@ -92,10 +129,12 @@ export default function BOJTankanUnifiedTable() {
   const [comprehensiveData, setComprehensiveData] = useState<BOJTankanComprehensiveDataPoint[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [visibleRowCount, setVisibleRowCount] = useState(INITIAL_ROW_COUNT)
   const [nextRelease, setNextRelease] = useState<NextRelease | null>(null)
+  const [selectedPeriod, setSelectedPeriod] = useState<PeriodType>(10)
+  const { hiddenSeries, handleLegendClick } = useHiddenSeries()
 
   const currentDataType = DATA_TYPES[currentDataTypeIndex]
+  const isCapital = currentDataType.type === 'capital_investment'
 
   // データ取得
   useEffect(() => {
@@ -105,250 +144,69 @@ export default function BOJTankanUnifiedTable() {
         setError(null)
 
         if (currentDataType.type === 'business_conditions') {
-          // 業況判断DIデータを取得
           const response = await fetchBOJTankanData()
           setDiData(response.data)
           setComprehensiveData([])
-          if (response.next_release) {
-            setNextRelease(response.next_release)
-          }
+          if (response.next_release) setNextRelease(response.next_release)
         } else {
-          // 包括的データを取得
           const response = await fetchBOJTankanComprehensiveTable(currentDataType.type as DataType)
           setComprehensiveData(response.table_data)
           setDiData([])
         }
-
-        setVisibleRowCount(INITIAL_ROW_COUNT)
       } catch (err) {
-        const errorMessage = err instanceof Error ? err.message : 'データの取得に失敗しました'
-        setError(errorMessage)
+        setError(err instanceof Error ? err.message : 'データの取得に失敗しました')
         console.error('Error loading BOJ Tankan data:', err)
       } finally {
         setLoading(false)
       }
     }
-
     loadData()
   }, [currentDataType.type])
 
-  const handlePrevious = () => {
-    setCurrentDataTypeIndex((prev) => (prev - 1 + DATA_TYPES.length) % DATA_TYPES.length)
-  }
+  const handlePrevious = () => setCurrentDataTypeIndex((prev) => (prev - 1 + DATA_TYPES.length) % DATA_TYPES.length)
+  const handleNext = () => setCurrentDataTypeIndex((prev) => (prev + 1) % DATA_TYPES.length)
 
-  const handleNext = () => {
-    setCurrentDataTypeIndex((prev) => (prev + 1) % DATA_TYPES.length)
-  }
+  const chartData = useMemo(() => {
+    const rawData = (currentDataType.type === 'business_conditions'
+      ? diData
+      : comprehensiveData) as unknown as Array<{ date: string } & Record<string, number | null>>
+    return rawData.map((p) => ({ ...p }))
+  }, [currentDataType.type, diData, comprehensiveData])
 
-  const handleShowMore = () => {
-    const totalCount = currentDataType.type === 'business_conditions' ? diData.length : comprehensiveData.length
-    setVisibleRowCount((prev) => Math.min(prev + INCREMENT_COUNT, totalCount))
-  }
+  const sortedData = useSortedData(chartData)
+  const filteredData = usePeriodFiltering(sortedData, { selectedPeriod, defaultStartYear: 2018 })
 
-  const handleReset = () => {
-    setVisibleRowCount(INITIAL_ROW_COUNT)
-  }
+  const yDomain = useMemo<[number, number]>(() => {
+    const values = filteredData.flatMap((d) =>
+      currentDataType.lines
+        .map((l) => d[l.dataKey] as number | null)
+        .filter((v): v is number => typeof v === 'number')
+    )
+    if (values.length === 0) return [-50, 50]
+    const pad = isCapital ? 3 : 5
+    const step = isCapital ? 2 : 5
+    return [Math.floor((Math.min(...values) - pad) / step) * step, Math.ceil((Math.max(...values) + pad) / step) * step]
+  }, [filteredData, currentDataType.lines, isCapital])
 
-  // DI値のレンダリング（色分け）
-  const renderDIValue = (val: number | null | undefined) => {
-    if (val === null || val === undefined) return '-'
-    const color = val > 0 ? '#3f8600' : val < 0 ? '#cf1322' : undefined
-    return <span style={{ color, fontWeight: 500 }}>{val.toFixed(1)}</span>
-  }
+  const title = `日銀短観 ${currentDataType.displayName}`
 
-  // カラム定義を取得
-  const getColumns = (): ColumnsType<TableRow> => {
-    const baseColumns: ColumnsType<TableRow> = [
-      {
-        title: '期間',
-        dataIndex: 'quarter',
-        key: 'quarter',
-        align: 'center',
-        width: 100,
-      },
-    ]
-
-    if (currentDataType.type === 'business_conditions') {
-      // 業況判断DI
-      return [
-        ...baseColumns,
-        {
-          title: '大企業製造業',
-          children: [
-            {
-              title: '業況判断',
-              dataIndex: 'large_manufacturing_current',
-              key: 'large_manufacturing_current',
-              width: 120,
-              align: 'center' as const,
-              render: renderDIValue,
-            },
-            {
-              title: '先行き',
-              dataIndex: 'large_manufacturing_outlook',
-              key: 'large_manufacturing_outlook',
-              width: 120,
-              align: 'center' as const,
-              render: renderDIValue,
-            },
-          ],
-        },
-        {
-          title: '大企業非製造業',
-          children: [
-            {
-              title: '業況判断',
-              dataIndex: 'large_non_manufacturing_current',
-              key: 'large_non_manufacturing_current',
-              width: 120,
-              align: 'center' as const,
-              render: renderDIValue,
-            },
-            {
-              title: '先行き',
-              dataIndex: 'large_non_manufacturing_outlook',
-              key: 'large_non_manufacturing_outlook',
-              width: 120,
-              align: 'center' as const,
-              render: renderDIValue,
-            },
-          ],
-        },
-      ]
-    } else if (currentDataType.type === 'capital_investment') {
-      // 設備投資額（修正率付き）
-      return [
-        ...baseColumns,
-        {
-          title: '大企業製造業',
-          dataIndex: 'large_manufacturing',
-          key: 'large_manufacturing',
-          width: 180,
-          align: 'center' as const,
-          render: (val: number | null | undefined, record: TableRow, index: number) => {
-            if (val === null || val === undefined) return '-'
-            // 最新値には修正率を表示
-            if (index === 0 && record.large_manufacturing_revision != null) {
-              const revision = record.large_manufacturing_revision as number
-              return `${val.toFixed(1)}% (${revision >= 0 ? '+' : ''}${revision.toFixed(1)})`
-            }
-            return `${val.toFixed(1)}%`
-          },
-        },
-        {
-          title: '大企業非製造業',
-          dataIndex: 'large_non_manufacturing',
-          key: 'large_non_manufacturing',
-          width: 180,
-          align: 'center' as const,
-          render: (val: number | null | undefined, record: TableRow, index: number) => {
-            if (val === null || val === undefined) return '-'
-            if (index === 0 && record.large_non_manufacturing_revision != null) {
-              const revision = record.large_non_manufacturing_revision as number
-              return `${val.toFixed(1)}% (${revision >= 0 ? '+' : ''}${revision.toFixed(1)})`
-            }
-            return `${val.toFixed(1)}%`
-          },
-        },
-      ]
-    } else {
-      // 生産・営業用設備、雇用人員、仕入価格、販売価格
-      return [
-        ...baseColumns,
-        {
-          title: '大企業全産業',
-          children: [
-            {
-              title: '実績',
-              dataIndex: 'all_industries_current',
-              key: 'all_industries_current',
-              width: 100,
-              align: 'center' as const,
-              render: renderDIValue,
-            },
-            {
-              title: '予測',
-              dataIndex: 'all_industries_forecast',
-              key: 'all_industries_forecast',
-              width: 100,
-              align: 'center' as const,
-              render: renderDIValue,
-            },
-          ],
-        },
-        {
-          title: '大企業製造業',
-          children: [
-            {
-              title: '実績',
-              dataIndex: 'large_manufacturing_current',
-              key: 'large_manufacturing_current',
-              width: 100,
-              align: 'center' as const,
-              render: renderDIValue,
-            },
-            {
-              title: '予測',
-              dataIndex: 'large_manufacturing_forecast',
-              key: 'large_manufacturing_forecast',
-              width: 100,
-              align: 'center' as const,
-              render: renderDIValue,
-            },
-          ],
-        },
-      ]
-    }
-  }
-
-  // 日付フォーマット
-  const formatQuarter = (dateStr: string): string => {
-    if (currentDataType.type === 'business_conditions') {
-      return formatQuarterDateDI(dateStr)
-    } else if (currentDataType.type === 'capital_investment') {
-      return formatFiscalYearDate(dateStr)
-    } else {
-      return formatQuarterDateComp(dateStr)
-    }
-  }
-
-  // テーブルデータを変換
-  const tableData = useMemo<TableRow[]>(() => {
-    const rawData = currentDataType.type === 'business_conditions' ? diData : comprehensiveData
-
-    return rawData
-      .sort((a, b) => b.date.localeCompare(a.date))
-      .slice(0, visibleRowCount)
-      .map((point) => ({
-        key: point.date,
-        quarter: formatQuarter(point.date),
-        ...point,
-      }))
-  }, [currentDataType.type, diData, comprehensiveData, visibleRowCount])
-
-  const totalCount = currentDataType.type === 'business_conditions' ? diData.length : comprehensiveData.length
-
-  if (loading) {
-    return <LoadingChart title="日銀短観" />
-  }
+  if (loading) return <LoadingChart title={title} />
 
   if (error) {
     return (
-      <ChartContainer title="日銀短観" showPeriodSelector={false} showDataSource={false} handbookId="boj-tankan">
+      <ChartContainer title={title} showPeriodSelector={false} showDataSource={false} handbookId="boj-tankan">
         <div style={{ textAlign: 'center', padding: '40px 0', color: '#ff4d4f' }}>{error}</div>
       </ChartContainer>
     )
   }
 
-  if (tableData.length === 0) {
-    return (
-      <ChartContainer title="日銀短観" showPeriodSelector={false} showDataSource={false} handbookId="boj-tankan">
-        <div style={{ textAlign: 'center', padding: '40px 0', color: '#999' }}>データがありません</div>
-      </ChartContainer>
-    )
-  }
-
-  const title = `日銀短観 ${currentDataType.displayName}`
+  const lines = currentDataType.lines.map((l) => ({
+    dataKey: l.dataKey,
+    color: l.color,
+    name: l.name,
+    strokeWidth: l.hiddenByDefault ? 1.5 : 2.5,
+    hide: hiddenSeries.has(l.dataKey),
+  }))
 
   return (
     <div id="japan-boj-tankan-unified-table">
@@ -360,7 +218,6 @@ export default function BOJTankanUnifiedTable() {
         handbookId="boj-tankan"
         extra={
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            {/* ページング */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
               <Button icon={<LeftOutlined />} onClick={handlePrevious} disabled={currentDataTypeIndex === 0} size="small" />
               <span style={{ fontSize: '12px', color: '#8c8c8c', minWidth: '40px', textAlign: 'center' }}>
@@ -373,15 +230,8 @@ export default function BOJTankanUnifiedTable() {
                 size="small"
               />
             </div>
-            {/* 次回発表 */}
             {nextRelease && formatNextRelease(nextRelease) && (
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 6,
-                fontSize: 12,
-                color: TEXT_COLORS.secondary,
-              }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12, color: TEXT_COLORS.secondary }}>
                 <CalendarOutlined />
                 <span>次回発表: {formatNextRelease(nextRelease)}</span>
               </div>
@@ -389,25 +239,25 @@ export default function BOJTankanUnifiedTable() {
           </div>
         }
       >
-        {/* テーブル */}
-        <Table
-          columns={getColumns()}
-          dataSource={tableData}
-          pagination={false}
-          size="small"
-          bordered
-          scroll={{ x: 'max-content' }}
-        />
+        <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: 8 }}>
+          <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+        </div>
 
-        {/* ページネーション */}
-        <DataTablePagination
-          currentCount={visibleRowCount}
-          totalCount={totalCount}
-          initialCount={INITIAL_ROW_COUNT}
-          incrementCount={INCREMENT_COUNT}
-          onShowMore={handleShowMore}
-          onReset={handleReset}
-        />
+        {filteredData.length === 0 ? (
+          <NoDataMessage />
+        ) : (
+          <StandardLineChart
+            data={filteredData}
+            lines={lines}
+            yAxisFormatter={(v) => `${v.toFixed(0)}`}
+            yDomain={yDomain}
+            showZeroLine={true}
+            xAxisFormatter={isCapital ? formatFiscalLabel : formatQuarterLabel}
+            tooltipLabelFormatter={isCapital ? formatFiscalLabel : formatQuarterLabel}
+            tooltipValueFormatter={(v) => `${v.toFixed(1)} ${currentDataType.unit}`}
+            onLegendClick={handleLegendClick}
+          />
+        )}
       </ChartContainer>
     </div>
   )

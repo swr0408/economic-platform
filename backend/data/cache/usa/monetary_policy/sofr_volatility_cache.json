@@ -1,48 +1,6 @@
 {
   "data": [
     {
-      "date": "2024-07-17",
-      "sofr": 5.35,
-      "sofr_change": 0.0,
-      "volatility_20d": 2.1981
-    },
-    {
-      "date": "2024-07-18",
-      "sofr": 5.34,
-      "sofr_change": -1.0,
-      "volatility_20d": 2.2118
-    },
-    {
-      "date": "2024-07-19",
-      "sofr": 5.34,
-      "sofr_change": 0.0,
-      "volatility_20d": 2.1981
-    },
-    {
-      "date": "2024-07-22",
-      "sofr": 5.33,
-      "sofr_change": -1.0,
-      "volatility_20d": 2.1981
-    },
-    {
-      "date": "2024-07-23",
-      "sofr": 5.34,
-      "sofr_change": 1.0,
-      "volatility_20d": 2.207
-    },
-    {
-      "date": "2024-07-24",
-      "sofr": 5.34,
-      "sofr_change": 0.0,
-      "volatility_20d": 2.1637
-    },
-    {
-      "date": "2024-07-25",
-      "sofr": 5.35,
-      "sofr_change": 1.0,
-      "volatility_20d": 2.1637
-    },
-    {
       "date": "2024-07-26",
       "sofr": 5.35,
       "sofr_change": 0.0,
@@ -2861,13 +2819,55 @@
       "sofr": 3.69,
       "sofr_change": 4.0,
       "volatility_20d": 2.7928
+    },
+    {
+      "date": "2026-06-16",
+      "sofr": 3.63,
+      "sofr_change": -6.0,
+      "volatility_20d": 3.1204
+    },
+    {
+      "date": "2026-06-17",
+      "sofr": 3.63,
+      "sofr_change": 0.0,
+      "volatility_20d": 3.0677
+    },
+    {
+      "date": "2026-06-18",
+      "sofr": 3.62,
+      "sofr_change": -1.0,
+      "volatility_20d": 3.0677
+    },
+    {
+      "date": "2026-06-22",
+      "sofr": 3.61,
+      "sofr_change": -1.0,
+      "volatility_20d": 3.0865
+    },
+    {
+      "date": "2026-06-23",
+      "sofr": 3.62,
+      "sofr_change": 1.0,
+      "volatility_20d": 2.9784
+    },
+    {
+      "date": "2026-06-24",
+      "sofr": 3.62,
+      "sofr_change": 0.0,
+      "volatility_20d": 2.3725
+    },
+    {
+      "date": "2026-06-25",
+      "sofr": 3.64,
+      "sofr_change": 2.0,
+      "volatility_20d": 2.4165
     }
   ],
   "latest": {
-    "date": "2026-06-15",
-    "sofr": 3.69,
-    "sofr_change": 4.0,
-    "volatility_20d": 2.7928
+    "date": "2026-06-25",
+    "sofr": 3.64,
+    "sofr_change": 2.0,
+    "volatility_20d": 2.4165
   },
   "metadata": {
     "source": "NY Fed Markets API",
@@ -2876,5 +2876,5 @@
     "description": "SOFR 20日ローリングボラティリティ（日次変化の標準偏差）",
     "release_time": "08:00 ET（毎営業日）"
   },
-  "last_updated": "2026-06-16T23:42:08.767036"
+  "last_updated": "2026-06-27T02:46:12.239245"
 }

@@ -151,6 +151,16 @@ class RbnzPolicyRateService:
 
         # 1. RBNZ B2 Excel から取得
         b2_data = self._load_from_b2_excel()
+        if not b2_data:
+            # B2取得失敗時は直近キャッシュの長期履歴をベースに据えて
+            # DB発表イベント(2025-04以降のみ)で全履歴を上書きしないようにする
+            prior = self._load_file_cache()
+            prior_data = prior.get("data", []) if prior else []
+            if prior_data:
+                print(f"[RbnzPolicyRate] B2 fetch failed; reusing {len(prior_data)} prior cached records as base")
+                for item in prior_data:
+                    if "date" in item and item.get("value") is not None:
+                        merged[item["date"]] = {"date": item["date"], "value": item["value"]}
         for item in b2_data:
             merged[item["date"]] = item
 
@@ -177,8 +187,10 @@ class RbnzPolicyRateService:
     def _load_from_b2_excel(self) -> List[Dict[str, Any]]:
         """RBNZ B2 Daily Close XLSXからOCRデータを取得
 
-        RBNZサイトはCloudflare CDNが Python HTTP ライブラリをブロックするため、
-        curl コマンドでダウンロードする。
+        RBNZサイトはCloudflare CDNが Python HTTP ライブラリ(requests/httpx)を
+        TLSフィンガープリントでブロックするため、共通ヘルパー
+        `fetch_rbnz_xlsx`(curl/wget自動選択+リトライ+xlsxマジックバイト検証)で
+        取得する。
 
         Excelの構造:
         - Row 0: カテゴリヘッダー（Cash rate, Bank bill yields, ...）
@@ -189,49 +201,17 @@ class RbnzPolicyRateService:
         - Row 5+: データ（Col 0 = datetime, Col 1 = OCR value）
         """
         try:
-            import subprocess
-            import tempfile
-            import os
+            from services.newzealand._rbnz_fetch import fetch_rbnz_xlsx
 
-            print(f"[RbnzPolicyRate] Downloading B2 via curl from: {B2_DAILY_URL}")
+            content = fetch_rbnz_xlsx(B2_DAILY_URL)
+            if not content:
+                print("[RbnzPolicyRate] B2 download failed (all methods)")
+                return []
 
-            # curl でダウンロード（Cloudflare対策）
-            with tempfile.NamedTemporaryFile(suffix=".xlsx", delete=False) as tmp:
-                tmp_path = tmp.name
+            print(f"[RbnzPolicyRate] Downloaded {len(content)} bytes")
 
-            try:
-                proc = subprocess.run(
-                    [
-                        "curl", "-L", "-o", tmp_path,
-                        "-H", "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
-                        "--max-time", "120",
-                        "-s",
-                        B2_DAILY_URL,
-                    ],
-                    capture_output=True,
-                    text=True,
-                    timeout=150,
-                )
-
-                if proc.returncode != 0:
-                    print(f"[RbnzPolicyRate] curl failed (exit {proc.returncode}): {proc.stderr[:200]}")
-                    return []
-
-                file_size = os.path.getsize(tmp_path)
-                if file_size < 10000:
-                    print(f"[RbnzPolicyRate] Downloaded file too small ({file_size} bytes), likely error page")
-                    return []
-
-                print(f"[RbnzPolicyRate] Downloaded {file_size} bytes")
-
-                # header=None で読み込み（ヘッダー行がデータに含まれる）
-                df = pd.read_excel(tmp_path, engine="openpyxl", header=None)
-
-            finally:
-                try:
-                    os.unlink(tmp_path)
-                except Exception:
-                    pass
+            # header=None で読み込み（ヘッダー行がデータに含まれる）
+            df = pd.read_excel(io.BytesIO(content), engine="openpyxl", header=None)
 
             # データ行は Row 5 以降、Col 0 = 日付, Col 1 = OCR
             DATA_START_ROW = 5

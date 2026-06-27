@@ -77,6 +77,7 @@ export default function AuHousingLoanArrearsChart({ data }: AuHousingLoanArrears
         showPeriodSelector={false}
         dataSource="APRA"
         sourceUrl="https://www.apra.gov.au/quarterly-authorised-deposit-taking-institution-statistics"
+        handbookId="au-housing-loan-arrears"
       >
         {/* 最新値表示（3系列） */}
         <div style={LATEST_VALUE_BOX_STYLE}>
@@ -170,7 +171,7 @@ export default function AuHousingLoanArrearsChart({ data }: AuHousingLoanArrears
                       { dataKey: 'non_performing', color: COLORS.non_performing, name: '不良債権(90日+)', hide: hiddenSeries.has('non_performing') },
                       { dataKey: 'total_arrears', color: COLORS.total_arrears, name: '合計延滞', hide: hiddenSeries.has('total_arrears') },
                     ]}
-                    yAxisFormatter={(v) => `${v}%`}
+                    yAxisFormatter={(v) => `${v.toFixed(1)}%`}
                     yDomain={['dataMin - 0.1', 'dataMax + 0.1']}
                     tooltipValueFormatter={(v) => `${v.toFixed(3)}%`}
                     onLegendClick={handleLegendClick}

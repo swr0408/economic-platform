@@ -300,7 +300,7 @@ export default function ECBHICPChart({ data }: ECBHICPChartProps) {
                           { dataKey: 'core', color: COLORS.core, name: 'HICP（除くエネルギー・食品）' },
                           { dataKey: 'coreExclUnprocessedFood', color: COLORS.coreExclUnprocessedFood, name: 'HICP（除くエネルギー・非加工食品）' },
                         ]}
-                        yAxisFormatter={(v) => `${v}%`}
+                        yAxisFormatter={(v) => `${Number(v).toFixed(1)}%`}
                         yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
                         showZeroLine={true}
                       />
@@ -329,7 +329,7 @@ export default function ECBHICPChart({ data }: ECBHICPChartProps) {
                             ? { dataKey: 'total_mom', color: COLORS.total, name: 'HICP（総合・前月比）' }
                             : { dataKey: 'core_mom', color: COLORS.core, name: 'HICP（コア：除エネ食品・前月比）' },
                         ]}
-                        yAxisFormatter={(v) => `${v}%`}
+                        yAxisFormatter={(v) => `${Number(v).toFixed(1)}%`}
                         yDomain={['dataMin - 0.5', 'dataMax + 0.5']}
                       />
                     </>

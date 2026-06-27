@@ -17195,22 +17195,46 @@
     {
       "date": "2026-06-17",
       "stock_tonnes": 88114.0
+    },
+    {
+      "date": "2026-06-18",
+      "stock_tonnes": 82893.0
+    },
+    {
+      "date": "2026-06-22",
+      "stock_tonnes": 77849.0
+    },
+    {
+      "date": "2026-06-23",
+      "stock_tonnes": 75080.0
+    },
+    {
+      "date": "2026-06-24",
+      "stock_tonnes": 74943.0
+    },
+    {
+      "date": "2026-06-25",
+      "stock_tonnes": 75065.0
+    },
+    {
+      "date": "2026-06-26",
+      "stock_tonnes": 74528.0
     }
   ],
   "latest": {
-    "date": "2026-06-17",
-    "stock_tonnes": 88114.0
+    "date": "2026-06-26",
+    "stock_tonnes": 74528.0
   },
   "metadata": {
     "source": "SHFE (Eastmoney)",
     "indicator": "SHFE Copper Warehouse Stock",
     "unit": "tonnes",
     "frequency": "daily",
-    "data_count": 4299,
+    "data_count": 4305,
     "start_date": "2008-10-06",
-    "end_date": "2026-06-17"
+    "end_date": "2026-06-26"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-17T20:43:09.157554+09:00"
+  "last_updated": "2026-06-27T19:37:52.787522+09:00"
 }

@@ -686,27 +686,27 @@
     },
     {
       "date": "2025-09-01",
-      "value": 12.6,
-      "forecast": null,
-      "previous": null
+      "value": 12.7,
+      "forecast": 7.2,
+      "previous": 1.2
     },
     {
       "date": "2025-10-01",
-      "value": 3.5,
-      "forecast": null,
-      "previous": null
+      "value": 3.6,
+      "forecast": 5.0,
+      "previous": 12.7
     },
     {
       "date": "2025-11-01",
       "value": 8.4,
-      "forecast": null,
-      "previous": null
+      "forecast": 5.7,
+      "previous": 3.5
     },
     {
       "date": "2025-12-01",
-      "value": 13.3,
-      "forecast": null,
-      "previous": null
+      "value": 13.4,
+      "forecast": 8.3,
+      "previous": 8.4
     },
     {
       "date": "2026-01-01",
@@ -753,5 +753,5 @@
     "frequency": "monthly"
   },
   "next_release": null,
-  "last_updated": "2026-06-17T20:05:02.313756+09:00"
+  "last_updated": "2026-06-28T00:32:11.332911+09:00"
 }

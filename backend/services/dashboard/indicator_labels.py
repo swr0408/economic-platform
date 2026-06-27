@@ -368,7 +368,6 @@ INDICATOR_LABELS: dict[str, str] = {
     'total_number_of_people': '人流総量',
     'total_vehicle_sales': '自動車販売台数',
     'trade_balance': '貿易収支',
-    'traded_nontraded': '貿易財 / 非貿易財',
     'trimmed_mean_pce': 'Trimmed Mean PCE',
     'truflation_us_cpi': 'Truflation US CPI',
     'tsa_checkpoint': '航空機旅客者数',

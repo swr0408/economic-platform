@@ -20514,21 +20514,39 @@
     {
       "date": "2026-06-05",
       "total": 775677.0,
-      "spr": 349192.0,
       "ex_spr": 426485.0,
+      "spr": 349192.0,
       "total_yoy": -7.05,
       "ex_spr_yoy": -1.37,
       "spr_yoy": -13.15
+    },
+    {
+      "date": "2026-06-12",
+      "total": 758473.0,
+      "ex_spr": 418222.0,
+      "spr": 340251.0,
+      "total_yoy": -7.87,
+      "ex_spr_yoy": -0.65,
+      "spr_yoy": -15.42
+    },
+    {
+      "date": "2026-06-19",
+      "total": 743325.0,
+      "spr": 331191.0,
+      "ex_spr": 412134.0,
+      "total_yoy": -9.09,
+      "ex_spr_yoy": -0.72,
+      "spr_yoy": -17.72
     }
   ],
   "latest": {
-    "date": "2026-06-05",
-    "total": 775677.0,
-    "spr": 349192.0,
-    "ex_spr": 426485.0,
-    "total_yoy": -7.05,
-    "ex_spr_yoy": -1.37,
-    "spr_yoy": -13.15
+    "date": "2026-06-19",
+    "total": 743325.0,
+    "spr": 331191.0,
+    "ex_spr": 412134.0,
+    "total_yoy": -9.09,
+    "ex_spr_yoy": -0.72,
+    "spr_yoy": -17.72
   },
   "metadata": {
     "source": "EIA",
@@ -20539,11 +20557,11 @@
       "ex_spr": "U.S. Ending Stocks excluding SPR",
       "spr": "U.S. Ending Stocks in SPR"
     },
-    "data_count": 2280,
+    "data_count": 2282,
     "start_date": "1982-08-20",
-    "end_date": "2026-06-05"
+    "end_date": "2026-06-19"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-17T18:22:46.898560+09:00"
+  "last_updated": "2026-06-27T18:51:44.650363+09:00"
 }

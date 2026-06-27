@@ -1503,14 +1503,14 @@
     "base_period": "December 2016 = 100"
   },
   "next_release": {
-    "date": "2026-06-17",
-    "datetime_utc": "2026-06-17T12:30:00+00:00",
-    "datetime_jst": "2026-06-17T21:30:00+09:00",
+    "date": "2026-07-23",
+    "datetime_utc": "2026-07-23T12:30:00+00:00",
+    "datetime_jst": "2026-07-23T21:30:00+09:00",
     "time_jst": "21:30",
-    "datetime_toronto": "2026-06-17T08:30:00-04:00",
+    "datetime_toronto": "2026-07-23T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "New Housing Price Index MoM (May)",
-    "estimate": -0.1
+    "label": "New Housing Price Index MoM (Jun)",
+    "estimate": -0.2
   },
-  "last_updated": "2026-06-17T21:31:25.495448+09:00"
+  "last_updated": "2026-06-27T11:46:20.165276+09:00"
 }

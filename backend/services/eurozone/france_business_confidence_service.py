@@ -17,6 +17,7 @@ INSEEのXLSファイルからFrance Business Confidenceデータを取得
 キャッシュ方式: FMP発表日時ベース判定方式
 """
 import json
+import re
 import requests
 import io
 from datetime import datetime
@@ -39,6 +40,13 @@ CET = ZoneInfo("Europe/Paris")
 CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "eurozone" / "economy"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "france_business_confidence_cache.json"
+
+# 長期履歴シード（Investing 518 = INSEE 製造業景況感, 1976-05〜。FMPが2025-04以降のみ
+# しか保持しないため一度だけ手動投入した静的履歴。FMP実値と完全一致＝重複期間は無害。
+# 将来分はFMPで自動更新され、本CSVは更新不要）。
+SEED_CSV_PATH = (
+    Path(__file__).parent.parent.parent / "data" / "csv_import" / "france_business_confidence.csv"
+)
 
 # INSEE XLS URL (公表ごとにファイル ID が変わり凍結するためフォールバック扱い)
 INSEE_XLS_URL = "https://www.insee.fr/fr/statistiques/fichier/8730143/014_EMI_4.xls"
@@ -105,22 +113,30 @@ class FranceBusinessConfidenceService:
                         "last_updated": last_updated_str,
                     }
 
-        # まず安定した INSEE BDM API、ダメなら従来の XLS にフォールバック
-        xls_result = self._load_from_insee_bdm() or self._load_from_insee_xls()
+        # 主ソース = FMP "Business Confidence"（FR）。
+        # 旧実装は INSEE BDM 001565530（climat des affaires "全部門"）を取得していたが、
+        # それは FMP/Trading Economics 等が言う "France Business Confidence" ではなく
+        # 別系列（"Business Climate Indicator"）で、名称・FMPマッピング・発表日と不一致だった
+        # (2026-06: 全部門94 vs Business Confidence 100)。名称どおりの系列に統一する。
+        # 長期履歴シード（静的）＋ FMP（最新・将来分）をマージ。FMPが新しい月を上書き。
+        merged: Dict[str, float] = {d["date"]: d["value"] for d in self._load_seed_csv()}
+        for d in self._load_from_fmp():
+            merged[d["date"]] = d["value"]
+        fmp_result = [{"date": k, "value": v} for k, v in sorted(merged.items())]
 
-        if xls_result:
-            latest = xls_result[-1] if xls_result else None
+        if fmp_result:
+            latest = fmp_result[-1] if fmp_result else None
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
 
             cache_payload = {
-                "data": xls_result,
+                "data": fmp_result,
                 "latest": latest,
                 "metadata": {
-                    "source": "INSEE - France Business Confidence",
+                    "source": "INSEE (via FMP) - France Business Confidence",
                     "country": "France",
                     "unit": "Index",
                     "frequency": "Monthly",
-                    "description": "Business Confidence Indicator (企業信頼感指数)",
+                    "description": "France Business Confidence（企業信頼感）",
                 },
                 "next_release": next_release,
                 "last_updated": datetime.now(JST).isoformat(),
@@ -129,12 +145,12 @@ class FranceBusinessConfidenceService:
             self._save_file_cache(cache_payload)
 
             return {
-                "data": xls_result,
+                "data": fmp_result,
                 "latest": latest,
                 "metadata": cache_payload["metadata"],
                 "next_release": next_release,
                 "cached": False,
-                "source": "insee_xls",
+                "source": "fmp",
                 "last_updated": datetime.now(JST).isoformat(),
             }
 
@@ -162,6 +178,116 @@ class FranceBusinessConfidenceService:
             "last_updated": None,
             "error": "No data available",
         }
+
+    # 月略称 → 月番号（FMPラベル "(Jun)" 等の解析用）
+    _MONTH_ABBR = {
+        "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+        "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+    }
+
+    def _parse_ref_month(self, label: str, release_dt: datetime) -> Optional[str]:
+        """FMPイベントラベルの "(Jun)" 等から参照月 "YYYY-MM-01" を復元。
+
+        France Business Confidence は当月分（"(Jun)" を6月に発表）。ラベル月が発表月より
+        先行する場合（"(Dec)" を翌1月発表 等）は前年と判定する。
+        """
+        m = re.search(r"\(([A-Za-z]{3})\)", label or "")
+        if not m:
+            return None
+        mon = self._MONTH_ABBR.get(m.group(1).lower())
+        if not mon:
+            return None
+        year = release_dt.year
+        if mon > release_dt.month + 1:
+            year -= 1
+        return f"{year:04d}-{mon:02d}-01"
+
+    def _load_seed_csv(self) -> List[Dict[str, Any]]:
+        """静的な長期履歴シード（date,value）を読み込む。存在しなければ空。"""
+        result: List[Dict[str, Any]] = []
+        try:
+            if not SEED_CSV_PATH.exists():
+                return result
+            with open(SEED_CSV_PATH, "r", encoding="utf-8") as f:
+                lines = f.read().splitlines()
+            for line in lines[1:]:  # ヘッダー(date,value)をスキップ
+                line = line.strip()
+                if not line:
+                    continue
+                parts = line.split(",")
+                if len(parts) < 2:
+                    continue
+                date_str = parts[0].strip()
+                try:
+                    value = round(float(parts[1].strip()), 1)
+                except (ValueError, TypeError):
+                    continue
+                if len(date_str) == 7:  # "YYYY-MM" 保険
+                    date_str = f"{date_str}-01"
+                result.append({"date": date_str, "value": value})
+        except Exception as e:
+            print(f"[FranceBusinessConfidence] Failed to load seed CSV: {e}")
+        return result
+
+    def _load_from_fmp(self) -> List[Dict[str, Any]]:
+        """FMP "Business Confidence"（FR）を主ソースとして取得。
+
+        - DB economic_calendar_events（カレンダー同期で蓄積）から actual を取得。
+        - "Business Climate Indicator"（全部門景況感=別系列）は除外。
+        - ラベル "(Mon)" から参照月を復元し、参照月ごとに最新（確報）を採用。
+        - 直近はDB同期前の速報を取りこぼさないようライブFMP APIで補完。
+        Returns: [{"date": "YYYY-MM-01", "value": float}, ...]（日付昇順）
+        """
+        by_month: Dict[str, float] = {}
+
+        # 1. DB（高速・蓄積分）
+        try:
+            from core.database import get_db_connection
+            with get_db_connection() as conn:
+                cur = conn.cursor()
+                cur.execute("""
+                    SELECT datetime_utc, event, actual
+                    FROM economic_calendar_events
+                    WHERE country = 'FR'
+                      AND event ILIKE '%Business Confidence%'
+                      AND event NOT ILIKE '%Climate%'
+                      AND actual IS NOT NULL
+                    ORDER BY datetime_utc ASC
+                """)
+                for dt_utc, event, actual in cur.fetchall():
+                    ref = self._parse_ref_month(event, dt_utc)
+                    if ref and actual is not None:
+                        by_month[ref] = float(actual)  # 昇順なので後勝ち=確報
+                cur.close()
+        except Exception as e:
+            print(f"[FranceBusinessConfidence] DB query failed: {e}")
+
+        # 2. ライブFMP補完（直近90日。DB同期前の速報を即反映）
+        try:
+            from services.calendar.fmp_service import fmp_service
+            from datetime import date as date_type, timedelta
+            today = date_type.today()
+            raw = fmp_service.fetch_calendar(today - timedelta(days=90), today, country="FR")
+            for ev in raw:
+                if ev.get("country") != "FR":
+                    continue
+                name = ev.get("event", "")
+                if "business confidence" not in name.lower() or "climate" in name.lower():
+                    continue
+                if ev.get("actual") is None:
+                    continue
+                dt_utc, _ = fmp_service.parse_datetime(ev.get("date", ""))
+                if not dt_utc:
+                    continue
+                ref = self._parse_ref_month(name, dt_utc)
+                if ref:
+                    by_month[ref] = float(ev["actual"])
+        except Exception as e:
+            print(f"[FranceBusinessConfidence] FMP live supplement failed: {e}")
+
+        result = [{"date": d, "value": round(v, 1)} for d, v in sorted(by_month.items())]
+        print(f"[FranceBusinessConfidence] Loaded {len(result)} records from FMP")
+        return result
 
     def _load_from_insee_bdm(self) -> List[Dict[str, Any]]:
         """INSEE BDM SDMX API から企業景況感指数を取得 (安定ソース)。

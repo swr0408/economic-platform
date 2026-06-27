@@ -150,14 +150,14 @@ export default function CnCapitalFlowsChart({ data }: Props) {
     return DETAIL_SERIES
   }, [viewMode])
 
+  // 凡例クリックで hide プロパティを設定（全系列を渡して凡例を維持）
   const lines = useMemo(() => {
-    return activeSeries
-      .filter(s => !isHidden(s.key))
-      .map(s => ({
-        dataKey: s.key,
-        color: s.color,
-        name: s.label,
-      }))
+    return activeSeries.map(s => ({
+      dataKey: s.key,
+      color: s.color,
+      name: s.label,
+      hide: isHidden(s.key),
+    }))
   }, [activeSeries, isHidden])
 
   if (data === null) {
@@ -244,7 +244,8 @@ export default function CnCapitalFlowsChart({ data }: Props) {
             `${v.toLocaleString(undefined, { minimumFractionDigits: 1, maximumFractionDigits: 1 })} 億USD`
           }
           showZeroLine={true}
-          showLegend={false}
+          showLegend={true}
+          onLegendClick={handleLegendClick}
         />
       </ChartContainer>
     </div>
