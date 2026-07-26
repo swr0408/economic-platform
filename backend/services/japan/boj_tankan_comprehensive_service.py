@@ -557,6 +557,18 @@ class BOJTankanComprehensiveService:
         wb.close()
         return data_points
 
+    def _needs_release_refetch(self, data_type: str, cached: Dict[str, Any]) -> bool:
+        """調査全容(zenyo)公表スケジュール基準で、保有データが最新四半期に未達なら
+        再取得を促す（レート制限付き）。capital_investment(年度)は対象外。
+        判定失敗時は False（従来通りキャッシュ返却）。"""
+        if data_type == "capital_investment":
+            return False
+        try:
+            from services.japan.boj_tankan_schedule import needs_release_refetch
+            return needs_release_refetch(cached)
+        except Exception:
+            return False
+
     def get_comprehensive_data(self, data_type: str, force_refresh: bool = False) -> Dict[str, Any]:
         """Get BOJ Tankan comprehensive data for specific type"""
         if data_type not in self.DATA_CONFIGS:
@@ -569,15 +581,18 @@ class BOJTankanComprehensiveService:
         config = self.DATA_CONFIGS[data_type]
 
         # Check cache
+        # 調査全容(zenyo)が概要の翌日公表のため、保有データが公表済みであるべき
+        # 四半期に未達ならキャッシュを返さず再取得（レート制限付き）。
+        # capital_investment は年度(FY)ベースで四半期スケジュールに乗らないため対象外。
         if not force_refresh:
             cached_data = self._get_from_cache(data_type)
-            if cached_data:
+            if cached_data and not self._needs_release_refetch(data_type, cached_data):
                 cached_data["cached"] = True
                 cached_data["source"] = "redis"
                 return cached_data
 
             file_cached = self._get_file_cache(data_type)
-            if file_cached:
+            if file_cached and not self._needs_release_refetch(data_type, file_cached):
                 self._set_to_cache(data_type, file_cached)
                 file_cached["cached"] = True
                 file_cached["source"] = "file"

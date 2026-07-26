@@ -150,6 +150,25 @@ class BankLendingService:
             next_release = self._get_next_sloos_release()
             now = datetime.now(JST).isoformat()
 
+            # 発表レース対策ラグガード: 全SLOOS系列の最新四半期が既存キャッシュを超えて
+            # いなければ last_updated を据え置き、次回再取得で自己回復させる（SLOOSは四半期）。
+            _new_date = None
+            for _s in all_series.values():
+                if isinstance(_s, dict) and isinstance(_s.get("latest"), dict):
+                    _d = _s["latest"].get("date")
+                    if _d and (_new_date is None or _d > _new_date):
+                        _new_date = _d
+            _existing = redis_client.get(self.CACHE_KEY_MULTI)
+            _old_date = None
+            if isinstance(_existing, dict) and isinstance(_existing.get("series"), dict):
+                for _s in _existing["series"].values():
+                    if isinstance(_s, dict) and isinstance(_s.get("latest"), dict):
+                        _d = _s["latest"].get("date")
+                        if _d and (_old_date is None or _d > _old_date):
+                            _old_date = _d
+            if _existing and _old_date and _new_date and _new_date <= _old_date:
+                now = _existing.get("last_updated", now)
+
             result = {
                 "series": all_series,
                 "next_release": next_release,

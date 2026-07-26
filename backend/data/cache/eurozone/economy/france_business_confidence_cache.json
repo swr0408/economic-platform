@@ -2399,11 +2399,15 @@
     {
       "date": "2026-06-01",
       "value": 100.0
+    },
+    {
+      "date": "2026-07-01",
+      "value": 101.0
     }
   ],
   "latest": {
-    "date": "2026-06-01",
-    "value": 100.0
+    "date": "2026-07-01",
+    "value": 101.0
   },
   "metadata": {
     "source": "INSEE (via FMP) - France Business Confidence",
@@ -2413,14 +2417,14 @@
     "description": "France Business Confidence（企業信頼感）"
   },
   "next_release": {
-    "date": "2026-07-23",
-    "datetime_utc": "2026-07-23T06:45:00+00:00",
-    "datetime_jst": "2026-07-23T15:45:00+09:00",
+    "date": "2026-08-21",
+    "datetime_utc": "2026-08-21T06:45:00+00:00",
+    "datetime_jst": "2026-08-21T15:45:00+09:00",
     "time_jst": "15:45",
-    "datetime_cet": "2026-07-23T08:45:00+02:00",
+    "datetime_cet": "2026-08-21T08:45:00+02:00",
     "time_cet": "08:45",
-    "label": "Business Confidence (Jul)",
+    "label": "Business Confidence (Aug)",
     "estimate": null
   },
-  "last_updated": "2026-06-27T22:45:24.557907+09:00"
+  "last_updated": "2026-07-23T16:00:48.658147+09:00"
 }

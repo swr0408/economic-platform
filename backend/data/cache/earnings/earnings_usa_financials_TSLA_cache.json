@@ -8,6 +8,29 @@
   "reported_currency": "USD",
   "periods": [
     {
+      "date": "2026-06-30",
+      "period": "Q2",
+      "fiscal_year": "2026",
+      "reported_currency": "USD",
+      "revenue": 28236000000.0,
+      "gross_profit": 4751000000.0,
+      "operating_income": 398000000.0,
+      "net_income": 1114000000.0,
+      "eps_diluted": 0.32,
+      "gross_margin": 16.826037682391274,
+      "operating_margin": 1.4095480946309675,
+      "net_margin": 3.945318033715824,
+      "operating_cf": 4697000000.0,
+      "fcf": -1092000000.0,
+      "capex": -5789000000.0,
+      "buyback": 0.0,
+      "dividends_paid": 70000000.0,
+      "fcf_margin": -3.867403314917127,
+      "depreciation_amortization": 1619000000.0,
+      "revenue_yoy": 25.51564722617354,
+      "eps_yoy": -3.903903903903907
+    },
+    {
       "date": "2026-03-31",
       "period": "Q1",
       "fiscal_year": "2026",
@@ -96,8 +119,8 @@
       "dividends_paid": 0.0,
       "fcf_margin": 0.64900426742532,
       "depreciation_amortization": 1433000000.0,
-      "revenue_yoy": -11.780392156862746,
-      "eps_yoy": -16.75
+      "revenue_yoy": null,
+      "eps_yoy": null
     },
     {
       "date": "2025-03-31",
@@ -167,36 +190,13 @@
       "depreciation_amortization": 1348000000.0,
       "revenue_yoy": null,
       "eps_yoy": null
-    },
-    {
-      "date": "2024-06-30",
-      "period": "Q2",
-      "fiscal_year": "2024",
-      "reported_currency": "USD",
-      "revenue": 25500000000.0,
-      "gross_profit": 4578000000.0,
-      "operating_income": 1605000000.0,
-      "net_income": 1400000000.0,
-      "eps_diluted": 0.4,
-      "gross_margin": 17.95294117647059,
-      "operating_margin": 6.294117647058823,
-      "net_margin": 5.490196078431373,
-      "operating_cf": 3612000000.0,
-      "fcf": 1340000000.0,
-      "capex": -2272000000.0,
-      "buyback": 0.0,
-      "dividends_paid": 0.0,
-      "fcf_margin": 5.254901960784314,
-      "depreciation_amortization": 1278000000.0,
-      "revenue_yoy": null,
-      "eps_yoy": null
     }
   ],
   "ir_home": "https://www.tesla.com/",
   "ir_results": "https://investor.apple.com/investor-relations/default.aspx",
   "ir_tdnet": "",
   "ir_notes": "Press releases / Shareholder update PDF",
-  "last_updated": "2026-05-11T15:53:45.916511+00:00",
+  "last_updated": "2026-07-25T13:50:53.268638+00:00",
   "cached": false,
   "status": "ok"
 }

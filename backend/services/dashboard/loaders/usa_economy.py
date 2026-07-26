@@ -358,16 +358,20 @@ class USAEconomyLoader(BaseDashboardLoader):
         return None
 
     def get_manual_csv_paths(self) -> List[Path]:
-        """手動更新CSV（ISM製造業/非製造業サブインデックス）を監視対象に宣言。
+        """手動更新CSV/画像（ISMサブインデックス, OpenTableスクショ）を監視対象に宣言。
 
-        これらを編集すると base._is_cache_stale が mtime 変化を検知し、
+        これらを編集/アップロードすると base._is_cache_stale が mtime 変化を検知し、
         ダッシュボード集約キャッシュ（main/light/heavy）を自動再構築する。
+        OpenTable は Akamai 遮断のため手動アップロード運用で、配置画像の mtime を
+        ここで監視することで管理者の差し替えが即座に集約層へ反映される。
         """
         from services.usa.ism_components_service import CSV_FILE as ISM_MFG_CSV
         from services.usa.ism_non_manufacturing_components_service import (
             CSV_FILE as ISM_NM_CSV,
         )
-        return [ISM_MFG_CSV, ISM_NM_CSV]
+        from services.usa.opentable_service import opentable_service
+
+        return [ISM_MFG_CSV, ISM_NM_CSV, *opentable_service.get_image_paths()]
 
     def _should_force_refresh(self, indicator: str) -> bool:
         """指標が強制更新対象かどうかを判定"""

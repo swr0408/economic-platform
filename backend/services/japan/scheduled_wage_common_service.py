@@ -112,13 +112,27 @@ class ScheduledWageCommonService:
 
         if estat_data:
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
+            from services.usa.fmp_next_release_utils import guarded_last_updated_nested
+            now_str = datetime.now(JST).isoformat()
+            _skeys = ("scheduled_wage", "general", "part_time")
+            _cand = []
+            for _k in _skeys:
+                _s = estat_data.get(_k)
+                if isinstance(_s, dict) and isinstance(_s.get("latest"), dict):
+                    _d = _s["latest"].get("date")
+                    if _d:
+                        _cand.append(_d)
+            _new_date = max(_cand) if _cand else None
+            last_updated = guarded_last_updated_nested(
+                self.DATA_CACHE_KEY, _skeys, _new_date, now_str
+            )
 
             cache_payload = {
                 "scheduled_wage": estat_data.get("scheduled_wage"),
                 "general": estat_data.get("general"),
                 "part_time": estat_data.get("part_time"),
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)

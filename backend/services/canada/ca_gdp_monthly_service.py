@@ -32,6 +32,7 @@ from core.redis_client import redis_client
 from services.canada.fmp_next_release_utils import (
     get_next_release_by_pattern,
     should_refresh_by_pattern,
+    resolve_last_updated_after_fetch,
 )
 from services.canada.statcan_utils import fetch_statcan_csv
 
@@ -96,6 +97,11 @@ class CaGdpMonthlyService:
                         "last_updated": last_updated_str,
                     }
 
+        # 既存キャッシュ（発表レース・ラグガード判定用に先に読む）
+        prev_cache = redis_client.get(self.DATA_CACHE_KEY)
+        prev_latest_date = (prev_cache or {}).get("latest", {}).get("date") if prev_cache else None
+        prev_last_updated = (prev_cache or {}).get("last_updated") if prev_cache else None
+
         # データソースから取得
         result = self._load_from_source()
         if result:
@@ -105,6 +111,21 @@ class CaGdpMonthlyService:
 
             # 速報値を取得
             advance_estimate = self._fetch_advance_estimate()
+
+            # 発表レース対策ラグガード:
+            # StatCan CSV zip は公式発表時刻（08:30 ET）から数分遅れて新月が反映される。
+            # 発表時刻直後の取得で旧月をキャッシュし last_updated=now(≧発表時刻) を刻むと
+            # should_refresh が「消化済み」と誤判定し翌月発表まで凍結する（2026-06-30 に
+            # April 発表当日も March 凍結が発生）。ソース未反映時は last_updated を発表直前に
+            # 据え置き、反映後の次回ポーリングで新月を取り込ませる。
+            new_latest_date = latest.get("date") if latest else None
+            last_updated = resolve_last_updated_after_fetch(
+                FMP_GDP_MONTHLY_PATTERN,
+                new_latest_date,
+                prev_latest_date,
+                prev_last_updated,
+                country="CA",
+            )
 
             cache_payload = {
                 "data": result,
@@ -118,7 +139,7 @@ class CaGdpMonthlyService:
                     "frequency": "monthly",
                 },
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=self.CACHE_TTL)
             self._save_file_cache(cache_payload)
@@ -131,7 +152,7 @@ class CaGdpMonthlyService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

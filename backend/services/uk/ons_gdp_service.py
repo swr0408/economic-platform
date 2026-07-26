@@ -77,12 +77,18 @@ class ONSGDPService:
         api_result = self._fetch_from_ons()
 
         if api_result:
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("qoq", "yoy", "quarterly_data"),
+                _max_date_of(api_result.get("qoq", []), api_result.get("yoy", []), api_result.get("quarterly_data", [])), now_str
+            )
             cache_payload = {
                 "qoq": api_result.get("qoq", []),
                 "yoy": api_result.get("yoy", []),
                 "quarterly_data": api_result.get("quarterly_data", []),
                 "metadata": api_result.get("metadata", {}),
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -95,7 +101,7 @@ class ONSGDPService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "ons_api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

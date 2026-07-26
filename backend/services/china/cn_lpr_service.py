@@ -33,6 +33,7 @@ from services.china.fmp_next_release_utils import (
     get_next_release_by_pattern,
     should_refresh_by_pattern,
 )
+from services.usa.fmp_next_release_utils import guarded_last_updated
 
 
 # タイムゾーン
@@ -186,6 +187,10 @@ class CnLprService:
 
         if db_result:
             latest = db_result[-1] if db_result else None
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                cache_key, latest.get("date") if latest else None, now_str
+            )
             metadata = {
                 "source": "DB (CSV_IMPORT + FMP)",
                 "indicator": f"China Loan Prime Rate ({label})",
@@ -198,7 +203,7 @@ class CnLprService:
                 "latest": latest,
                 "metadata": metadata,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(cache_key, cache_payload, expire=0)
             self._save_file_cache(cache_file, cache_payload)
@@ -210,7 +215,7 @@ class CnLprService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "database",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

@@ -3611,11 +3611,27 @@
     {
       "date": "2026-06-24",
       "value": 521.82
+    },
+    {
+      "date": "2026-07-01",
+      "value": 521.82
+    },
+    {
+      "date": "2026-07-08",
+      "value": 521.82
+    },
+    {
+      "date": "2026-07-15",
+      "value": 521.82
+    },
+    {
+      "date": "2026-07-22",
+      "value": 491.57
     }
   ],
   "latest": {
-    "date": "2026-06-24",
-    "value": 521.82
+    "date": "2026-07-22",
+    "value": 491.57
   },
   "metadata": {
     "source": "Bank of England",
@@ -3625,5 +3641,5 @@
     "frequency": "Weekly",
     "description": "Asset Purchase Facility gilt holdings (initial purchase proceeds)"
   },
-  "last_updated": "2026-06-27T11:46:19.775236+09:00"
+  "last_updated": "2026-07-25T11:31:27.727838+09:00"
 }

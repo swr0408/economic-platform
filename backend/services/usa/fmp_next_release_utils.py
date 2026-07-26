@@ -400,6 +400,232 @@ def should_refresh_by_fmp(
         return False
 
 
+def _get_last_release_datetime(econalpha_id: str) -> Optional[datetime]:
+    """直近（過去）の発表 datetime（JST）を返す。actual有無を問わず最新の過去発表。
+
+    indicator_event_mapping から econalpha_id のパターン・国コードを解決し、
+    economic_calendar_events から datetime_utc <= NOW() の最新イベントを取得する。
+    ラグガード（resolve_last_updated_after_fetch）が発表時刻の基準として使用する。
+    """
+    try:
+        patterns = get_fmp_event_patterns(econalpha_id)
+        if not patterns:
+            return None
+        country = get_fmp_event_country(econalpha_id)
+
+        from core.database import SessionLocal
+        from sqlalchemy import text
+
+        pattern_conditions = " OR ".join(
+            [f"event ILIKE :pat{i}" for i in range(len(patterns))]
+        )
+        pattern_params = {f"pat{i}": f"%{p}%" for i, p in enumerate(patterns)}
+
+        with SessionLocal() as session:
+            query = text(f"""
+                SELECT datetime_utc
+                FROM economic_calendar_events
+                WHERE country = :country
+                  AND ({pattern_conditions})
+                  AND datetime_utc <= NOW()
+                ORDER BY datetime_utc DESC
+                LIMIT 1
+            """)
+            row = session.execute(query, {"country": country, **pattern_params}).fetchone()
+            if not row:
+                return None
+            dt_utc = row[0]
+            if dt_utc.tzinfo is None:
+                dt_utc = dt_utc.replace(tzinfo=UTC)
+            return dt_utc.astimezone(JST)
+
+    except Exception as e:
+        print(f"[FMP Utils] _get_last_release_datetime error for {econalpha_id}: {e}")
+        return None
+
+
+def resolve_last_updated_after_fetch(
+    econalpha_id: str,
+    new_latest_date: Optional[str],
+    prev_latest_date: Optional[str],
+    prev_last_updated: Optional[str],
+    retry_window_hours: float = 36.0,
+) -> str:
+    """発表時刻レース対策のラグガード付き last_updated を決定する。
+
+    背景: ダッシュボード再構築はFMP発表時刻に発火するが、一次ソース（FMPカレンダーの
+    actual や非FMP API）への新月反映が数秒〜数分遅れることがある。発表時刻ちょうど〜
+    直後の取得で旧月をキャッシュし `last_updated=now(≧発表時刻)` を刻むと、
+    should_refresh_by_fmp_schedule が「発表消化済み」と判断し次回発表（翌月）まで
+    再取得しない（凍結）。実例: 2026-07-01 韓国輸出 Exports YoY(Jun) が 09:00 JST 発表、
+    09:00:19 の再構築が actual 未反映の5月をキャッシュし last_updated=09:00:19 を刻んで
+    19秒差で凍結した。
+
+    対策: 取得データの最新期間が前回から進んでおらず（=ソース未反映）、かつ直近発表が
+    retry_window_hours 以内で、前回キャッシュがその発表をまだ消化していない場合は、
+    last_updated を「直近発表時刻の直前」に据え置く。これにより should_refresh が再取得を
+    促し続け、ソース反映後の最初のポーリングで新月を取り込める。データが前進した／発表から
+    時間が経過した／前回が消化済み の各ケースは now を返す（過剰・無限フェッチを防止）。
+
+    Returns: ISO形式の last_updated 文字列。
+    """
+    now = datetime.now(JST)
+    now_iso = now.isoformat()
+
+    # 比較不能 or データが前進 → 通常どおり now（発表消化）
+    if not new_latest_date or not prev_latest_date or new_latest_date > prev_latest_date:
+        return now_iso
+
+    # ここに来る = 取得データが前回から前進していない（同一 or 後退）
+    last_release = _get_last_release_datetime(econalpha_id)
+    if not last_release or now < last_release:
+        return now_iso
+
+    # 発表から時間が経過しすぎ → 据え置かない（無限フェッチ防止）
+    age_hours = (now - last_release).total_seconds() / 3600.0
+    if age_hours > retry_window_hours:
+        return now_iso
+
+    # 前回キャッシュが既にこの発表を消化済み（last_updated≧発表）なら据え置かない
+    if prev_last_updated:
+        try:
+            plu = datetime.fromisoformat(prev_last_updated)
+            if plu.tzinfo is None:
+                plu = plu.replace(tzinfo=JST)
+            if plu >= last_release:
+                return now_iso
+        except Exception:
+            pass
+
+    # 発表直後だがソース未反映 → 消化扱いにせず、発表直前に据え置いて再取得を促す
+    print(
+        f"[FMP Utils] lag-guard: source not yet advanced past release "
+        f"({last_release.isoformat()}) for {econalpha_id}; holding last_updated to retry "
+        f"(latest={new_latest_date})"
+    )
+    return (last_release - timedelta(seconds=1)).isoformat()
+
+
+def guarded_last_updated(
+    cache_key: str,
+    new_latest_date: Optional[str],
+    now_str: str,
+) -> str:
+    """発表レース対策ラグガード（Redisキャッシュ最新月ベースの簡易版）。
+
+    取得データの最新月(new_latest_date)が既存キャッシュの最新月を超えていなければ、
+    last_updated を既存キャッシュの旧値のまま維持して返す。発表(例: 8:30 ET)直後～
+    一次ソース(FRED/DBnomics等)反映の間に再構築が走ると、ソース未反映のまま旧月を
+    last_updated=発表後 で保存し should_refresh が「消化済み」誤判定して次回発表まで
+    凍結する。データ未前進なら旧 last_updated を維持し、次回リクエストで再取得して
+    新月を自己回復させる（データ自体は既存値の改定反映のため呼び出し側で更新してよい）。
+
+    econalpha_id/発表スケジュールを引かない軽量版。発表時刻の厳密判定が要る場合は
+    resolve_last_updated_after_fetch を使う。
+    """
+    try:
+        from core.redis_client import redis_client
+        existing_cache = redis_client.get(cache_key)
+        existing_latest_date = None
+        if existing_cache:
+            # (1) トップレベル "latest": {"date": ...} 形式
+            lt = existing_cache.get("latest")
+            if isinstance(lt, dict):
+                existing_latest_date = lt.get("date")
+            # (2) "latest" が無い/日付を持たない場合は "data": [...] の末尾要素の date で代替
+            if not existing_latest_date:
+                data = existing_cache.get("data")
+                if isinstance(data, list) and data and isinstance(data[-1], dict):
+                    existing_latest_date = data[-1].get("date")
+        if existing_latest_date and new_latest_date and new_latest_date <= existing_latest_date:
+            return existing_cache.get("last_updated", now_str)
+    except Exception as e:
+        print(f"[FMP Utils] guarded_last_updated error for {cache_key}: {e}")
+    return now_str
+
+
+def guarded_last_updated_nested(
+    cache_key: str,
+    series_keys,
+    new_latest_date: Optional[str],
+    now_str: str,
+) -> str:
+    """ネスト構造キャッシュ用の発表レース対策ラグガード。
+
+    キャッシュが {series_key: {"data": [...], "latest": {"date": ...}}, ...} 形式
+    （mom/yoy、all/common、manufacturing/services 等）の場合に使う。既存キャッシュの
+    series_keys のうち最も新しい latest.date を「既存最新月」とみなし、取得データの最新月
+    (new_latest_date、呼び出し側で全系列の最大を渡す) がそれを超えていなければ last_updated を
+    据え置き、次回リクエストで再取得して新月を自己回復させる。guarded_last_updated の
+    ネスト版（トップレベル latest/data を持たないキャッシュ向け）。
+    """
+    try:
+        from core.redis_client import redis_client
+        existing_cache = redis_client.get(cache_key)
+        existing_latest_date = None
+        if isinstance(existing_cache, dict):
+            for k in series_keys:
+                s = existing_cache.get(k)
+                if isinstance(s, dict) and isinstance(s.get("latest"), dict):
+                    d = s["latest"].get("date")
+                    if d and (existing_latest_date is None or d > existing_latest_date):
+                        existing_latest_date = d
+        if existing_latest_date and new_latest_date and new_latest_date <= existing_latest_date:
+            return existing_cache.get("last_updated", now_str)
+    except Exception as e:
+        print(f"[FMP Utils] guarded_last_updated_nested error for {cache_key}: {e}")
+    return now_str
+
+
+def guarded_last_updated_keys(
+    cache_key: str,
+    data_keys,
+    new_latest_date: Optional[str],
+    now_str: str,
+) -> str:
+    """トップレベルの data_keys 各々が [{"date": ...}, ...] リストのキャッシュ用ラグガード。
+
+    キャッシュが {"unemployment_rate": [...], "retail_sales_yoy": [...], ...} のように
+    トップレベルキー直下にデータリストを持つ形式（ECB/Destatis系に多い、"data"/"latest" を
+    持たない）向け。既存キャッシュの data_keys 各リスト末尾要素の date の最大を「既存最新月」と
+    みなし、取得データの最新月（new_latest_date、呼び出し側で全リストの最大を渡す）がそれを
+    超えていなければ last_updated を据え置く。guarded_last_updated / _nested のキー直下リスト版。
+    """
+    try:
+        from core.redis_client import redis_client
+        existing = redis_client.get(cache_key)
+        existing_date = None
+        if isinstance(existing, dict):
+            for k in data_keys:
+                v = existing.get(k)
+                lst = None
+                if isinstance(v, list):
+                    lst = v
+                elif isinstance(v, dict) and isinstance(v.get("data"), list):
+                    # ONS系列コードキー等、値が {"data": [...]} 辞書の場合はその data を見る
+                    lst = v["data"]
+                if lst and isinstance(lst[-1], dict):
+                    d = lst[-1].get("date")
+                    if d and (existing_date is None or d > existing_date):
+                        existing_date = d
+        if existing_date and new_latest_date and new_latest_date <= existing_date:
+            return existing.get("last_updated", now_str)
+    except Exception as e:
+        print(f"[FMP Utils] guarded_last_updated_keys error for {cache_key}: {e}")
+    return now_str
+
+
+def _max_date_of(*lists) -> Optional[str]:
+    """複数のデータリスト（[{"date":...}]）から最新 date の最大を返すヘルパー。"""
+    cand = []
+    for lst in lists:
+        if isinstance(lst, list) and lst and isinstance(lst[-1], dict):
+            d = lst[-1].get("date")
+            if d:
+                cand.append(d)
+    return max(cand) if cand else None
+
+
 def should_refresh_by_fmp_schedule(
     econalpha_id: str,
     last_updated_str: str,

@@ -6,20 +6,6 @@
   ],
   "items": [
     {
-      "symbol": "ABBN",
-      "name": "ABB",
-      "tier": "A",
-      "country_code": "switzerland",
-      "date": "2026-07-16",
-      "time": "--",
-      "fiscal_date_ending": "",
-      "eps_estimate": 0.75,
-      "eps_actual": null,
-      "revenue_estimate": 9439864000.0,
-      "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
-    },
-    {
       "symbol": "NOVN",
       "name": "Novartis",
       "tier": "S",
@@ -27,11 +13,11 @@
       "date": "2026-07-21",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 2.19,
-      "eps_actual": null,
-      "revenue_estimate": 14135930000.0,
-      "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "eps_estimate": 2.17,
+      "eps_actual": 2.41,
+      "revenue_estimate": 14066540000.0,
+      "revenue_actual": 14408000000.0,
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "ROG",
@@ -41,11 +27,11 @@
       "date": "2026-07-23",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 1.61,
+      "eps_estimate": 1.58,
       "eps_actual": null,
-      "revenue_estimate": 38586210000.0,
+      "revenue_estimate": 38141570000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-23"
     },
     {
       "symbol": "NESN",
@@ -55,11 +41,11 @@
       "date": "2026-07-23",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 2.67,
-      "eps_actual": null,
-      "revenue_estimate": 54825020000.0,
-      "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "eps_estimate": 2.56,
+      "eps_actual": 2.48,
+      "revenue_estimate": 53192110000.0,
+      "revenue_actual": 52794070000.0,
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "UBSG",
@@ -69,11 +55,11 @@
       "date": "2026-07-29",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.8,
+      "eps_estimate": 0.902,
       "eps_actual": null,
-      "revenue_estimate": 13095330000.0,
+      "revenue_estimate": 13401240000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "ZURN",
@@ -87,7 +73,21 @@
       "eps_actual": null,
       "revenue_estimate": 24332510000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
+    },
+    {
+      "symbol": "ABBN",
+      "name": "ABB",
+      "tier": "A",
+      "country_code": "switzerland",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
     },
     {
       "symbol": "CFR",
@@ -104,9 +104,9 @@
       "updated_from_date": null
     }
   ],
-  "next_7d_count": 0,
-  "next_30d_count": 4,
-  "last_updated": "2026-06-27T13:49:18.757685+00:00",
+  "next_7d_count": 1,
+  "next_30d_count": 2,
+  "last_updated": "2026-07-25T13:50:51.902612+00:00",
   "cached": false,
   "status": "ok"
 }

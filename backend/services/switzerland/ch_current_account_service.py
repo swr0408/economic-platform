@@ -104,9 +104,14 @@ class CHCurrentAccountService:
             if fmp_data:
                 snb_result = self._merge_fmp_data(snb_result, fmp_data)
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            _lt = snb_result.get("latest") if isinstance(snb_result, dict) else None
+            _new_date = _lt.get("date") if isinstance(_lt, dict) else None
+            if not _new_date and isinstance(snb_result, dict) and isinstance(snb_result.get("data"), list) and snb_result["data"]:
+                _new_date = snb_result["data"][-1].get("date")
             cache_payload = {
                 **snb_result,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": guarded_last_updated(self.DATA_CACHE_KEY, _new_date, datetime.now(JST).isoformat()),
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)

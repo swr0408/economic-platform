@@ -4,6 +4,7 @@
 """
 from typing import Dict, Any, Optional, List
 from datetime import datetime
+from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from services.dashboard.loaders.base import BaseDashboardLoader
@@ -51,6 +52,21 @@ class GlobalEconomyLoader(BaseDashboardLoader):
     def get_expected_keys(self) -> List[str]:
         """期待されるデータキーのリストを返す"""
         return self.EXPECTED_KEYS
+
+    def get_manual_csv_paths(self) -> List[Path]:
+        """手動更新CSV（J.P.Morgan グローバル製造業PMI）を監視対象に宣言。
+
+        手動CSVを編集しても指標の発表日時は変わらないため、発表日時ベースの
+        stale 判定では検知できず集約キャッシュが古いまま配信され続ける。
+        ここで宣言すると base._is_cache_stale が mtime 変化を検知し、
+        集約キャッシュ（main/light）を自動再構築する。
+        """
+        # `global` は予約語のため from import 不可。importlib 経由で取得する。
+        import importlib
+        csv_file = importlib.import_module(
+            "services.global.global_manufacturing_pmi_service"
+        ).CSV_FILE
+        return [csv_file]
 
     def _has_null_values(self, cached_data: Dict[str, Any]) -> bool:
         """キャッシュにNone値が含まれているかチェック（スクリーンショットURLはスキップ）"""

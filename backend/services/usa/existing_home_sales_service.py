@@ -31,6 +31,7 @@ from core.redis_client import redis_client
 from services.usa.fmp_next_release_utils import (
     get_next_release_from_fmp,
     should_refresh_by_fmp_schedule,
+    guarded_last_updated,
 )
 
 
@@ -110,11 +111,15 @@ class ExistingHomeSalesService:
 
         if combined_data:
             latest = combined_data[-1] if combined_data else None
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
 
             cache_payload = {
                 "data": combined_data,
                 "latest": latest,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
@@ -126,7 +131,7 @@ class ExistingHomeSalesService:
                 "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
                 "cached": False,
                 "source": "api (FRED + FMP DB)",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         # フォールバック

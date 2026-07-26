@@ -137,6 +137,13 @@ class FRBTotalAssetsService(BaseSingleSeriesService):
 
             now = datetime.now(JST)
 
+            # max-age フォールバック（発表レース凍結の自己回復）:
+            # 水曜15:30 ET発表ちょうどの再取得で H.4.1 未反映のまま last_updated=now を刻むと
+            # 下の発表日時判定が「消化済み」と誤認し次回水曜まで凍結する。週次のため48hで
+            # 必ず再取得させ、当該週内に自己回復させる。
+            if (now - last_updated).total_seconds() > 48 * 3600:
+                return True
+
             # 最新の発表日時を計算
             latest_release = self._get_latest_release_datetime()
             if latest_release is None:

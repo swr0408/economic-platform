@@ -456,6 +456,14 @@ class CBJobsLaborDifferentialService:
                 last_updated = last_updated.replace(tzinfo=JST)
 
             now = datetime.now(ET)
+
+            # max-age フォールバック（発表レース凍結の自己回復）:
+            # 発表時刻ちょうどの再取得で CSV/FRED 未反映のまま last_updated=now を刻むと、
+            # 下の発表時刻判定が「消化済み」と誤認し次回発表(翌月最終火曜)まで永久凍結する。
+            # 一定時間で必ず再取得させ自己回復させる。
+            if (now - last_updated).total_seconds() > 168 * 3600:
+                return True
+
             today = now.date()
 
             # 今月の最終火曜日を計算

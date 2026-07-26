@@ -2735,24 +2735,26 @@
       "index": 333.98,
       "annualized_3m": 8.21,
       "annualized_6m": 5.56
+    },
+    {
+      "date": "2026-06-01",
+      "value": 3.46,
+      "yoy": 3.46,
+      "mom": -0.42,
+      "index": 332.57,
+      "annualized_3m": 2.79,
+      "annualized_6m": 4.05
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": 4.17,
-    "yoy": 4.17,
-    "mom": 0.47,
-    "index": 333.98,
-    "annualized_3m": 8.21,
-    "annualized_6m": 5.56
+    "date": "2026-06-01",
+    "value": 3.46,
+    "yoy": 3.46,
+    "mom": -0.42,
+    "index": 332.57,
+    "annualized_3m": 2.79,
+    "annualized_6m": 4.05
   },
-  "next_release": {
-    "date": "2026-07-14",
-    "datetime_utc": "2026-07-14T12:30:00+00:00",
-    "datetime_jst": "2026-07-14T21:30:00+09:00",
-    "time_jst": "21:30",
-    "label": "CPI s.a (Jun)",
-    "estimate": 335.3
-  },
-  "last_updated": "2026-06-28T00:31:07.087960+09:00"
+  "next_release": null,
+  "last_updated": "2026-07-26T04:02:58.947875+09:00"
 }

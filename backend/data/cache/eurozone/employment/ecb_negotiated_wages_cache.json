@@ -162,28 +162,20 @@
     },
     {
       "date": "2025-Q1",
-      "value": 2.38
+      "value": 2.48
     },
     {
       "date": "2025-Q2",
-      "value": 3.95
+      "value": 4.0
     },
     {
       "date": "2025-Q3",
       "value": 1.87
-    },
-    {
-      "date": "2025-Q4",
-      "value": 2.95
-    },
-    {
-      "date": "2026-Q1",
-      "value": 2.46
     }
   ],
   "latest": {
-    "date": "2026-Q1",
-    "value": 2.46
+    "date": "2025-Q3",
+    "value": 1.87
   },
   "metadata": {
     "source": "European Central Bank (ECB)",
@@ -195,5 +187,5 @@
     "description": "Indicator of Negotiated Wage Rates"
   },
   "next_release": null,
-  "last_updated": "2026-06-27T22:45:24.108545+09:00"
+  "last_updated": "2026-07-26T01:03:05.322878+09:00"
 }

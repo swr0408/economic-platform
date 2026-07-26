@@ -1,0 +1,100 @@
+{
+  "as_of": "2026-06",
+  "generated_at": "2026-07-02 09:20",
+  "data_coverage": {
+    "start": "1900-01-01",
+    "end": "2026-07-02"
+  },
+  "n_series": 3921,
+  "n_clean": 1390,
+  "sections": [
+    {
+      "id": "overview",
+      "title": "概要と読み方",
+      "group": "はじめに"
+    },
+    {
+      "id": "us_matrix",
+      "title": "米国 主要指標マトリクス",
+      "group": "クロス分析"
+    },
+    {
+      "id": "country_usa",
+      "title": "米国 主要指標",
+      "group": "各国主要指標"
+    },
+    {
+      "id": "country_japan",
+      "title": "日本 主要指標",
+      "group": "各国主要指標"
+    },
+    {
+      "id": "country_eurozone",
+      "title": "ユーロ圏 主要指標",
+      "group": "各国主要指標"
+    },
+    {
+      "id": "country_uk",
+      "title": "英国 主要指標",
+      "group": "各国主要指標"
+    },
+    {
+      "id": "country_canada",
+      "title": "カナダ 主要指標",
+      "group": "各国主要指標"
+    },
+    {
+      "id": "country_australia",
+      "title": "豪州 主要指標",
+      "group": "各国主要指標"
+    },
+    {
+      "id": "country_newzealand",
+      "title": "NZ 主要指標",
+      "group": "各国主要指標"
+    },
+    {
+      "id": "country_switzerland",
+      "title": "スイス 主要指標",
+      "group": "各国主要指標"
+    },
+    {
+      "id": "country_china",
+      "title": "中国 主要指標",
+      "group": "各国主要指標"
+    },
+    {
+      "id": "instruments",
+      "title": "主要銘柄",
+      "group": "銘柄分析"
+    }
+  ],
+  "downloads": [
+    {
+      "name": "us_matrix_corr.csv",
+      "desc": "米主要指標 相関マトリクス"
+    },
+    {
+      "name": "us_matrix_lag.csv",
+      "desc": "米主要指標 ベストラグ"
+    },
+    {
+      "name": "all_rankings.csv",
+      "desc": "全ターゲット×全候補 ランキング（フル）"
+    },
+    {
+      "name": "robust_leaders.csv",
+      "desc": "robust 先行指標のみ抽出"
+    },
+    {
+      "name": "high_conf_leaders.csv",
+      "desc": "高確度先行指標（厳格フィルタ）のみ抽出"
+    },
+    {
+      "name": "catalog.csv",
+      "desc": "全系列カタログ",
+      "root": true
+    }
+  ],
+  "scope": "full"
+}

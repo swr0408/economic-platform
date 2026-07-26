@@ -119,6 +119,11 @@ class ChHousingPricesService:
         if bfs_result:
             latest = bfs_result[-1] if bfs_result else None
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
             cache_payload = {
                 "data": bfs_result,
                 "latest": latest,
@@ -129,7 +134,7 @@ class ChHousingPricesService:
                     "unit": "index (2020Q1=100)",
                     "frequency": "quarterly",
                 },
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -141,7 +146,7 @@ class ChHousingPricesService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

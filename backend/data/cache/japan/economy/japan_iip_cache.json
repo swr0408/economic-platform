@@ -1,6 +1,14 @@
 {
   "data": [
     {
+      "date": "2026-05-01",
+      "item_code": "1000000000",
+      "item_name": "鉱工業",
+      "category": "鉱工業",
+      "value": 102.6,
+      "mom_change": 0.1
+    },
+    {
       "date": "2026-04-01",
       "item_code": "1000000000",
       "item_name": "鉱工業",
@@ -801,6 +809,6 @@
       "mom_change": null
     }
   ],
-  "last_updated": "2026-06-27T11:46:35.445494+09:00",
+  "last_updated": "2026-07-26T04:05:45.257835+09:00",
   "source": "Ministry of Economy, Trade and Industry (METI)"
 }

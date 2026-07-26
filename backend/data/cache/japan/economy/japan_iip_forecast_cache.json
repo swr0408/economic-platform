@@ -1,6 +1,11 @@
 {
   "data": [
     {
+      "item_name": "2026/06",
+      "this_month": 3.7,
+      "next_month": 0.0
+    },
+    {
       "item_name": "2026/05",
       "this_month": 5.1,
       "next_month": -0.4
@@ -69,20 +74,15 @@
       "item_name": "2025/04",
       "this_month": 2.0,
       "next_month": 2.9
-    },
-    {
-      "item_name": "2025/03",
-      "this_month": 1.1,
-      "next_month": 0.7
     }
   ],
-  "forecast_month": "2026-05-01",
-  "next_month": "2026-06-01",
+  "forecast_month": "2026-06-01",
+  "next_month": "2026-07-01",
   "revision_table": {
     "columns": [],
     "rows": []
   },
-  "last_updated": "2026-06-16T10:50:53.077423+09:00",
+  "last_updated": "2026-07-24T09:47:35.598704+09:00",
   "source": "Ministry of Economy, Trade and Industry (METI)",
   "pdf_reference": "https://www.meti.go.jp/statistics/tyo/iip/result/pdf/reference/rev_forecast.pdf"
 }

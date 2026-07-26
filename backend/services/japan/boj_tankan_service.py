@@ -120,6 +120,15 @@ class BOJTankanService:
             print(f"File cache write error: {e}")
         return False
 
+    def _needs_release_refetch(self, cached: Dict[str, Any]) -> bool:
+        """調査全容(zenyo)公表スケジュール基準で、保有データが最新四半期に未達なら
+        再取得を促す（レート制限付き）。判定失敗時は False（従来通りキャッシュ返却）。"""
+        try:
+            from services.japan.boj_tankan_schedule import needs_release_refetch
+            return needs_release_refetch(cached)
+        except Exception:
+            return False
+
     def _get_latest_excel_url(self) -> str:
         """Get URL for the latest Tankan Excel file
 
@@ -363,16 +372,18 @@ class BOJTankanService:
     def get_tankan_data(self, force_refresh: bool = False) -> Dict[str, Any]:
         """Get BOJ Tankan DI data"""
         # Check cache if not forcing refresh
+        # 調査全容(zenyo)が概要の翌日公表のため、保有データが公表済みであるべき
+        # 四半期に未達ならキャッシュを返さず再取得（レート制限付き）。
         if not force_refresh:
             cached_data = self._get_from_cache()
-            if cached_data:
+            if cached_data and not self._needs_release_refetch(cached_data):
                 cached_data["cached"] = True
                 cached_data["source"] = "redis"
                 cached_data["next_release"] = self._get_next_release()
                 return cached_data
 
             file_cached = self._get_file_cache()
-            if file_cached:
+            if file_cached and not self._needs_release_refetch(file_cached):
                 self._set_to_cache(file_cached)
                 file_cached["cached"] = True
                 file_cached["source"] = "file"

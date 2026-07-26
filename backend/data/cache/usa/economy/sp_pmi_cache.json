@@ -675,16 +675,22 @@
       },
       {
         "date": "2026-06-01",
-        "value": 55.7,
+        "value": 53.9,
         "forecast": 55.7,
         "previous": 55.1
+      },
+      {
+        "date": "2026-07-01",
+        "value": 53.8,
+        "forecast": 54.3,
+        "previous": 53.9
       }
     ],
     "latest": {
-      "date": "2026-06-01",
-      "value": 55.7,
-      "forecast": 55.7,
-      "previous": 55.1
+      "date": "2026-07-01",
+      "value": 53.8,
+      "forecast": 54.3,
+      "previous": 53.9
     }
   },
   "services": {
@@ -1593,20 +1599,26 @@
         "date": "2026-05-01",
         "value": 50.7,
         "forecast": 50.9,
-        "previous": 50.9
+        "previous": 51.0
       },
       {
         "date": "2026-06-01",
-        "value": 51.3,
-        "forecast": 51.3,
+        "value": 51.2,
+        "forecast": 51.4,
         "previous": 50.7
+      },
+      {
+        "date": "2026-07-01",
+        "value": 53.6,
+        "forecast": 51.5,
+        "previous": 51.2
       }
     ],
     "latest": {
-      "date": "2026-06-01",
-      "value": 51.3,
-      "forecast": 51.3,
-      "previous": 50.7
+      "date": "2026-07-01",
+      "value": 53.6,
+      "forecast": 51.5,
+      "previous": 51.2
     }
   },
   "composite": {
@@ -2447,16 +2459,22 @@
       },
       {
         "date": "2026-06-01",
-        "value": 52.2,
+        "value": 51.9,
         "forecast": 52.2,
         "previous": 51.5
+      },
+      {
+        "date": "2026-07-01",
+        "value": 53.6,
+        "forecast": 52.3,
+        "previous": 51.9
       }
     ],
     "latest": {
-      "date": "2026-06-01",
-      "value": 52.2,
-      "forecast": 52.2,
-      "previous": 51.5
+      "date": "2026-07-01",
+      "value": 53.6,
+      "forecast": 52.3,
+      "previous": 51.9
     }
   },
   "next_release": {
@@ -2465,7 +2483,7 @@
     "datetime_jst": "2026-07-24T22:45:00+09:00",
     "time_jst": "22:45",
     "label": "S&P Global Manufacturing PMI (Jul)",
-    "estimate": null
+    "estimate": 54.3
   },
-  "last_updated": "2026-06-28T00:30:00.512788+09:00"
+  "last_updated": "2026-07-24T23:02:24.733156+09:00"
 }

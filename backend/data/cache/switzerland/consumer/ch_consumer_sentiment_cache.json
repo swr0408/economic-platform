@@ -967,16 +967,20 @@
     {
       "date": "2026-05-01",
       "value": -38.1
+    },
+    {
+      "date": "2026-06-01",
+      "value": -35.8
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": -38.1
+    "date": "2026-06-01",
+    "value": -35.8
   },
   "metadata": {
     "source": "SECO (State Secretariat for Economic Affairs)",
     "indicator": "Consumer Climate",
     "description": "スイス消費者景況感指数"
   },
-  "last_updated": "2026-06-27T11:46:31.827444+09:00"
+  "last_updated": "2026-07-26T01:34:35.759941+09:00"
 }

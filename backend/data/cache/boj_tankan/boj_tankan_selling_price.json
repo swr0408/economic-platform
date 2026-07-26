@@ -1212,12 +1212,19 @@
       "all_industries_forecast": 36.0,
       "large_manufacturing_current": 28.0,
       "large_manufacturing_forecast": 33.0
+    },
+    {
+      "date": "2026-06-30",
+      "all_industries_current": 40.0,
+      "all_industries_forecast": 41.0,
+      "large_manufacturing_current": 40.0,
+      "large_manufacturing_forecast": 43.0
     }
   ],
   "data_type": "selling_price",
   "name": "販売価格判断指数（DI）",
   "unit": "%ポイント",
-  "last_updated": "2026-06-18T15:43:52.949648",
+  "last_updated": "2026-07-02T01:57:11.929637",
   "cached": false,
   "source": "boj"
 }

@@ -821,6 +821,12 @@
       "stock": null,
       "flow": 5200.0,
       "stock_yoy": null
+    },
+    {
+      "date": "2026-06-30",
+      "stock": null,
+      "flow": 16100.0,
+      "stock_yoy": null
     }
   ],
   "latest": {
@@ -834,8 +840,8 @@
     "unit_flow": "亿元",
     "indicator": "New RMB Loans / Total Loans",
     "source": "PBOC Excel + FMP",
-    "total_records": 137,
-    "last_fetched": "2026-06-28T00:31:34.847408+09:00"
+    "total_records": 138,
+    "last_fetched": "2026-07-24T11:33:33.972185+09:00"
   },
   "next_release": null
 }

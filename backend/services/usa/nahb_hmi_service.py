@@ -30,6 +30,7 @@ from core.redis_client import redis_client
 from services.usa.fmp_next_release_utils import (
     get_next_release_from_fmp,
     should_refresh_by_fmp_schedule,
+    guarded_last_updated,
 )
 
 
@@ -88,12 +89,16 @@ class NAHBHMIService:
         if combined_data:
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
             latest = combined_data[-1] if combined_data else None
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
 
             cache_payload = {
                 "data": combined_data,
                 "latest": latest,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -104,7 +109,7 @@ class NAHBHMIService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "database + nahb",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         # ファイルキャッシュフォールバック

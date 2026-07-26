@@ -1622,118 +1622,118 @@
     },
     {
       "date": "2024-01-01",
-      "value": -1.11,
-      "value_millions": -1113.0
+      "value": -1.13,
+      "value_millions": -1126.0
     },
     {
       "date": "2024-02-01",
-      "value": -1.06,
-      "value_millions": -1060.0
+      "value": -1.08,
+      "value_millions": -1081.0
     },
     {
       "date": "2024-03-01",
-      "value": -2.29,
-      "value_millions": -2293.0
+      "value": -2.31,
+      "value_millions": -2314.0
     },
     {
       "date": "2024-04-01",
-      "value": -5.08,
-      "value_millions": -5081.0
+      "value": -5.12,
+      "value_millions": -5124.0
     },
     {
       "date": "2024-05-01",
       "value": -2.89,
-      "value_millions": -2889.0
+      "value_millions": -2888.0
     },
     {
       "date": "2024-06-01",
-      "value": -3.34,
-      "value_millions": -3337.0
+      "value": -3.27,
+      "value_millions": -3274.0
     },
     {
       "date": "2024-07-01",
-      "value": -2.41,
-      "value_millions": -2408.0
+      "value": -2.71,
+      "value_millions": -2712.0
     },
     {
       "date": "2024-08-01",
-      "value": 1.74,
-      "value_millions": 1739.0
+      "value": 1.99,
+      "value_millions": 1986.0
     },
     {
       "date": "2024-09-01",
-      "value": 2.36,
-      "value_millions": 2362.0
+      "value": 2.22,
+      "value_millions": 2218.0
     },
     {
       "date": "2024-10-01",
-      "value": -1.34,
-      "value_millions": -1337.0
+      "value": -3.15,
+      "value_millions": -3149.0
     },
     {
       "date": "2024-11-01",
-      "value": -3.65,
-      "value_millions": -3652.0
+      "value": -3.28,
+      "value_millions": -3282.0
     },
     {
       "date": "2024-12-01",
-      "value": -1.7,
-      "value_millions": -1695.0
+      "value": -0.02,
+      "value_millions": -18.0
     },
     {
       "date": "2025-01-01",
-      "value": -1.7,
-      "value_millions": -1700.0
+      "value": -1.55,
+      "value_millions": -1548.0
     },
     {
       "date": "2025-02-01",
-      "value": -4.63,
-      "value_millions": -4629.0
+      "value": -4.51,
+      "value_millions": -4513.0
     },
     {
       "date": "2025-03-01",
-      "value": -3.03,
-      "value_millions": -3032.0
+      "value": -2.97,
+      "value_millions": -2967.0
     },
     {
       "date": "2025-04-01",
-      "value": -3.98,
-      "value_millions": -3982.0
+      "value": -3.9,
+      "value_millions": -3895.0
     },
     {
       "date": "2025-05-01",
-      "value": -3.3,
-      "value_millions": -3298.0
+      "value": -3.28,
+      "value_millions": -3280.0
     },
     {
       "date": "2025-06-01",
-      "value": -4.2,
-      "value_millions": -4198.0
+      "value": -4.11,
+      "value_millions": -4109.0
     },
     {
       "date": "2025-07-01",
-      "value": -1.46,
-      "value_millions": -1457.0
+      "value": -1.75,
+      "value_millions": -1750.0
     },
     {
       "date": "2025-08-01",
-      "value": -1.45,
-      "value_millions": -1445.0
+      "value": -1.8,
+      "value_millions": -1798.0
     },
     {
       "date": "2025-09-01",
-      "value": -3.81,
-      "value_millions": -3813.0
+      "value": -4.14,
+      "value_millions": -4137.0
     },
     {
       "date": "2025-10-01",
-      "value": -5.87,
-      "value_millions": -5873.0
+      "value": -5.84,
+      "value_millions": -5844.0
     },
     {
       "date": "2025-11-01",
-      "value": -4.78,
-      "value_millions": -4777.0
+      "value": -4.76,
+      "value_millions": -4758.0
     },
     {
       "date": "2025-12-01",
@@ -1742,23 +1742,28 @@
     },
     {
       "date": "2026-01-01",
-      "value": 1.3,
-      "value_millions": 1304.0
+      "value": 1.5,
+      "value_millions": 1498.0
     },
     {
       "date": "2026-02-01",
-      "value": -5.34,
-      "value_millions": -5339.0
+      "value": -5.76,
+      "value_millions": -5757.0
     },
     {
       "date": "2026-03-01",
-      "value": -9.66,
-      "value_millions": -9658.0
+      "value": -10.47,
+      "value_millions": -10467.0
     },
     {
       "date": "2026-04-01",
-      "value": -8.44,
-      "value_millions": -8435.0
+      "value": -7.05,
+      "value_millions": -7053.0
+    },
+    {
+      "date": "2026-05-01",
+      "value": -1.04,
+      "value_millions": -1044.0
     }
   ],
   "mom_change": [
@@ -3056,7 +3061,7 @@
     },
     {
       "date": "2024-01-01",
-      "value": 2.12
+      "value": 2.1
     },
     {
       "date": "2024-02-01",
@@ -3068,109 +3073,113 @@
     },
     {
       "date": "2024-04-01",
-      "value": -2.79
+      "value": -2.81
     },
     {
       "date": "2024-05-01",
-      "value": 2.19
+      "value": 2.23
     },
     {
       "date": "2024-06-01",
-      "value": -0.45
+      "value": -0.38
     },
     {
       "date": "2024-07-01",
-      "value": 0.93
+      "value": 0.56
     },
     {
       "date": "2024-08-01",
-      "value": 4.15
+      "value": 4.7
     },
     {
       "date": "2024-09-01",
-      "value": 0.62
+      "value": 0.23
     },
     {
       "date": "2024-10-01",
-      "value": -3.7
+      "value": -5.37
     },
     {
       "date": "2024-11-01",
-      "value": -2.31
+      "value": -0.13
     },
     {
       "date": "2024-12-01",
-      "value": 1.95
+      "value": 3.26
     },
     {
       "date": "2025-01-01",
-      "value": 0.0
+      "value": -1.53
     },
     {
       "date": "2025-02-01",
-      "value": -2.93
+      "value": -2.96
     },
     {
       "date": "2025-03-01",
-      "value": 1.6
+      "value": 1.54
     },
     {
       "date": "2025-04-01",
-      "value": -0.95
+      "value": -0.93
     },
     {
       "date": "2025-05-01",
-      "value": 0.68
+      "value": 0.62
     },
     {
       "date": "2025-06-01",
-      "value": -0.9
+      "value": -0.83
     },
     {
       "date": "2025-07-01",
-      "value": 2.74
+      "value": 2.36
     },
     {
       "date": "2025-08-01",
-      "value": 0.01
+      "value": -0.05
     },
     {
       "date": "2025-09-01",
-      "value": -2.36
+      "value": -2.34
     },
     {
       "date": "2025-10-01",
-      "value": -2.06
+      "value": -1.7
     },
     {
       "date": "2025-11-01",
-      "value": 1.09
+      "value": 1.08
     },
     {
       "date": "2025-12-01",
-      "value": 3.91
+      "value": 3.89
     },
     {
       "date": "2026-01-01",
-      "value": 2.17
+      "value": 2.37
     },
     {
       "date": "2026-02-01",
-      "value": -6.64
+      "value": -7.26
     },
     {
       "date": "2026-03-01",
-      "value": -4.32
+      "value": -4.71
     },
     {
       "date": "2026-04-01",
-      "value": 1.22
+      "value": 3.42
+    },
+    {
+      "date": "2026-05-01",
+      "value": 6.01
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "value": -8.44,
-    "value_millions": -8435.0
+    "date": "2026-05-01",
+    "value": -1.04,
+    "value_millions": -1044.0
   },
   "metadata": {
     "title": "Total Trade (TT): WW: Balance: BOP: CP: SA",
@@ -3178,9 +3187,9 @@
     "unit": "£ billions",
     "unit_raw": "m",
     "source": "Office for National Statistics",
-    "release_date": "2026-06-11T23:00:00.000Z",
+    "release_date": "2026-07-15T23:00:00.000Z",
     "description": "Total Trade Balance (Goods + Services), BOP, Current Prices, SA"
   },
-  "ons_next_release": "16 July 2026",
-  "last_updated": "2026-06-27T11:46:16.999296+09:00"
+  "ons_next_release": "13 August 2026",
+  "last_updated": "2026-07-26T01:05:39.890914+09:00"
 }

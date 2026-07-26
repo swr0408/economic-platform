@@ -1382,31 +1382,36 @@
     },
     {
       "date": "2026-01-01",
-      "nominal_cai": 126.06,
-      "real_cai": 108.66
+      "nominal_cai": 126.2,
+      "real_cai": 108.78
     },
     {
       "date": "2026-02-01",
-      "nominal_cai": 126.17,
+      "nominal_cai": 126.18,
       "real_cai": 108.91
     },
     {
       "date": "2026-03-01",
-      "nominal_cai": 125.5,
-      "real_cai": 107.99
+      "nominal_cai": 125.15,
+      "real_cai": 107.68
     },
     {
       "date": "2026-04-01",
-      "nominal_cai": 127.5,
-      "real_cai": 109.72
+      "nominal_cai": 127.05,
+      "real_cai": 109.32
+    },
+    {
+      "date": "2026-05-01",
+      "nominal_cai": 128.32,
+      "real_cai": 109.96
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "nominal_cai": 127.5,
-    "real_cai": 109.72
+    "date": "2026-05-01",
+    "nominal_cai": 128.32,
+    "real_cai": 109.96
   },
-  "last_updated": "2026-06-18T20:35:18.991742+09:00",
+  "last_updated": "2026-07-08T14:06:10.104121+09:00",
   "source": "Bank of Japan",
   "indicator": "Consumption Activity Index (CAI)",
   "cached": false

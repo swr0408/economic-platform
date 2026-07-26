@@ -19,6 +19,7 @@ import {
   LockOutlined,
   TeamOutlined,
   EyeOutlined,
+  BarChartOutlined,
 } from '@ant-design/icons'
 import SidebarNavigation from './SidebarNavigation'
 import MarketSidebarNavigation from './MarketSidebarNavigation'
@@ -191,8 +192,17 @@ function MainLayout() {
       },
     )
 
+    // master 限定: 相関・先行性レポート
+    if (user?.role === 'master') {
+      items.push({
+        key: '/reports/correlation',
+        icon: <BarChartOutlined />,
+        label: <Link to="/reports/correlation" style={linkStyle}>相関レポート</Link>,
+      })
+    }
+
     return items
-  }, [isPrivileged])
+  }, [isPrivileged, user?.role])
 
   const selectedKey = useMemo(() => {
     const path = location.pathname
@@ -207,6 +217,7 @@ function MainLayout() {
     if (path.startsWith('/compare')) return '/compare'
     if (path.startsWith('/handbook')) return '/handbook'
     if (path.startsWith('/smc')) return '/smc'
+    if (path.startsWith('/reports/correlation')) return '/reports/correlation'
     return path
   }, [location.pathname])
 

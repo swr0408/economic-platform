@@ -73,11 +73,15 @@ class JapanPriceDISpreadService:
     def get_data(self, force_refresh: bool = False) -> Dict[str, Any]:
         """価格DIスプレッドデータを取得"""
         # Redisキャッシュチェック
+        # FMP発表日(概要)ベースの should_refresh に加え、調査全容(zenyo)が概要の
+        # 翌日公表のため「保有データが公表済みであるべき四半期に未達」なら再取得
+        # （概要日の再取得だけだと全容公表前で旧四半期のまま固着するのを防ぐ）。
         if not force_refresh:
             cached_data = redis_client.get(self.DATA_CACHE_KEY)
             if cached_data:
                 last_updated_str = cached_data.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str):
+                if (last_updated_str and not self._should_refresh(last_updated_str)
+                        and not self._needs_release_refetch(cached_data)):
                     cached_data["cached"] = True
                     cached_data["source"] = "redis"
                     cached_data["next_release"] = self._get_next_release()
@@ -88,7 +92,8 @@ class JapanPriceDISpreadService:
             file_cache = self._load_file_cache()
             if file_cache:
                 last_updated_str = file_cache.get("last_updated")
-                if last_updated_str and not self._should_refresh(last_updated_str):
+                if (last_updated_str and not self._should_refresh(last_updated_str)
+                        and not self._needs_release_refetch(file_cache)):
                     redis_client.set(self.DATA_CACHE_KEY, file_cache, expire=0)
                     file_cache["cached"] = True
                     file_cache["source"] = "file"
@@ -246,6 +251,15 @@ class JapanPriceDISpreadService:
             import traceback
             traceback.print_exc()
             return None
+
+    def _needs_release_refetch(self, cached: Dict[str, Any]) -> bool:
+        """調査全容(zenyo)公表スケジュール基準で、保有データが最新四半期に未達なら
+        再取得を促す（レート制限付き）。判定失敗時は False（従来通りキャッシュ返却）。"""
+        try:
+            from services.japan.boj_tankan_schedule import needs_release_refetch
+            return needs_release_refetch(cached)
+        except Exception:
+            return False
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定（FMP発表日ベース）"""

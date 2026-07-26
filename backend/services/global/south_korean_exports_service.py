@@ -29,6 +29,7 @@ from core.redis_client import redis_client
 from services.usa.fmp_next_release_utils import (
     get_next_release_from_fmp,
     should_refresh_by_fmp_schedule,
+    resolve_last_updated_after_fetch,
 )
 
 
@@ -72,6 +73,11 @@ class SouthKoreanExportsService:
                         "last_updated": last_updated_str,
                     }
 
+        # 取得前の最新月（発表時刻レース ラグガード用）
+        prev_cache = redis_client.get(self.DATA_CACHE_KEY) or {}
+        prev_latest_date = (prev_cache.get("latest") or {}).get("date")
+        prev_last_updated = prev_cache.get("last_updated")
+
         # DBから取得
         data = self._load_from_db()
 
@@ -87,12 +93,20 @@ class SouthKoreanExportsService:
                 "frequency": "monthly",
             }
 
+            # 発表時刻レース対策: 取得データが新月に未反映（FMP actual 遅延）なら
+            # last_updated を発表直前に据え置き、次回ポーリングで再取得を促す。
+            # データ前進時は now を返す。
+            new_latest_date = (latest or {}).get("date")
+            resolved_last_updated = resolve_last_updated_after_fetch(
+                self.ECONALPHA_ID, new_latest_date, prev_latest_date, prev_last_updated,
+            )
+
             cache_payload = {
                 "data": data,
                 "latest": latest,
                 "metadata": metadata,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": resolved_last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)

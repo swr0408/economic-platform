@@ -1104,12 +1104,17 @@
       "date": "2026-06-01",
       "value": 80.6,
       "change": -2.9
+    },
+    {
+      "date": "2026-07-01",
+      "value": 83.9,
+      "change": 4.1
     }
   ],
   "latest": {
-    "date": "2026-06-01",
-    "value": 80.6,
-    "change": -2.9
+    "date": "2026-07-01",
+    "value": 83.9,
+    "change": 4.1
   },
   "metadata": {
     "source": "Westpac-Melbourne Institute",
@@ -1117,5 +1122,5 @@
     "frequency": "monthly",
     "unit": "index / %"
   },
-  "last_updated": "2026-06-27T11:46:20.752738+09:00"
+  "last_updated": "2026-07-14T09:45:01.139403+09:00"
 }

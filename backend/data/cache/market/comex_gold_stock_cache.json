@@ -50222,8 +50222,8 @@
     "total_oz": 28304230.133
   },
   "latest_gold": {
-    "date": "2026-06-26",
-    "close": 4078.7
+    "date": "2026-07-24",
+    "close": 4067.6001
   },
   "metadata": {
     "source": "CME COMEX + yfinance (GC=F)",
@@ -50236,5 +50236,5 @@
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-27T15:12:34.155061+09:00"
+  "last_updated": "2026-07-25T16:29:31.144485+09:00"
 }

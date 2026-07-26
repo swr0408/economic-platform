@@ -66,3 +66,8 @@ diagnose_*.py
 
 # vendored tool binaries (pandoc etc.) — do not commit
 .vendor/
+
+# OpenTable local capture tool: creds-bearing bat + dry-run artifacts
+backend/scripts/opentable_capture/run_opentable_capture.bat
+backend/scripts/opentable_capture/opentable_week.png
+backend/scripts/opentable_capture/opentable_month.png

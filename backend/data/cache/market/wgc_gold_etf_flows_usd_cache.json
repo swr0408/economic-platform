@@ -4479,24 +4479,56 @@
       "south_africa": 12.33,
       "hong_kong": -2.42,
       "total": -1602.78
+    },
+    {
+      "date": "2026-06-12",
+      "gold_price_usd": 4586.0,
+      "us": -1502.9,
+      "uk": -587.15,
+      "germany": -471.11,
+      "switzerland": -160.44,
+      "japan": -332.35,
+      "china": -359.37,
+      "india": 0.0,
+      "australia": -13.34,
+      "canada": 358.17,
+      "south_africa": 7.81,
+      "hong_kong": 0.73,
+      "total": -3059.95
+    },
+    {
+      "date": "2026-06-19",
+      "gold_price_usd": 4586.0,
+      "us": 603.26,
+      "uk": 338.08,
+      "germany": 258.68,
+      "switzerland": 183.3,
+      "japan": 0.0,
+      "china": 11.81,
+      "india": 0.0,
+      "australia": -39.16,
+      "canada": -221.98,
+      "south_africa": -59.58,
+      "hong_kong": -11.76,
+      "total": 1062.65
     }
   ],
   "data_type": "flows_usd",
   "latest": {
-    "date": "2026-06-05",
+    "date": "2026-06-19",
     "gold_price_usd": 4586.0,
-    "us": -1273.07,
-    "uk": 212.45,
-    "germany": 64.3,
-    "switzerland": 64.19,
+    "us": 603.26,
+    "uk": 338.08,
+    "germany": 258.68,
+    "switzerland": 183.3,
     "japan": 0.0,
-    "china": -513.38,
+    "china": 11.81,
     "india": 0.0,
-    "australia": -64.33,
-    "canada": -102.85,
-    "south_africa": 12.33,
-    "hong_kong": -2.42,
-    "total": -1602.78
+    "australia": -39.16,
+    "canada": -221.98,
+    "south_africa": -59.58,
+    "hong_kong": -11.76,
+    "total": 1062.65
   },
   "metadata": {
     "source": "World Gold Council",
@@ -4514,11 +4546,11 @@
       "hong_kong"
     ],
     "frequency": "monthly",
-    "data_count": 280,
+    "data_count": 282,
     "start_date": "2003-03-31",
-    "end_date": "2026-06-05"
+    "end_date": "2026-06-19"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-12T09:41:54.503865+09:00"
+  "last_updated": "2026-06-28T17:20:38.906043+09:00"
 }

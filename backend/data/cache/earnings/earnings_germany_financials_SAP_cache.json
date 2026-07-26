@@ -8,6 +8,31 @@
   "reported_currency": "EUR",
   "periods": [
     {
+      "date": "2026-06-30",
+      "period": "Q2",
+      "fiscal_year": "2026",
+      "reported_currency": "EUR",
+      "revenue": 9878000000.0,
+      "gross_profit": 7228000000.0,
+      "operating_income": 2651000000.0,
+      "net_income": 2180000000.0,
+      "eps_diluted": 1.88,
+      "gross_margin": 73.1727070257137,
+      "operating_margin": 26.83741648106904,
+      "net_margin": 22.06924478639401,
+      "operating_cf": 3154000000.0,
+      "fcf": 3038000000.0,
+      "capex": -116000000.0,
+      "buyback": -321000000.0,
+      "dividends_paid": -2883000000.0,
+      "fcf_margin": 30.755213605993113,
+      "depreciation_amortization": 316000000.0,
+      "rd_expenses": 1844000000.0,
+      "stock_based_comp": 468000000.0,
+      "revenue_yoy": 9.427273734352498,
+      "eps_yoy": 30.555555555555554
+    },
+    {
       "date": "2026-03-31",
       "period": "Q1",
       "fiscal_year": "2026",
@@ -104,8 +129,8 @@
       "depreciation_amortization": 319000000.0,
       "rd_expenses": 1618000000.0,
       "stock_based_comp": 529000000.0,
-      "revenue_yoy": 8.903365906623236,
-      "eps_yoy": 89.4736842105263
+      "revenue_yoy": null,
+      "eps_yoy": null
     },
     {
       "date": "2025-03-31",
@@ -181,38 +206,13 @@
       "stock_based_comp": 535000000.0,
       "revenue_yoy": null,
       "eps_yoy": null
-    },
-    {
-      "date": "2024-06-30",
-      "period": "Q2",
-      "fiscal_year": "2024",
-      "reported_currency": "EUR",
-      "revenue": 8289000000.0,
-      "gross_profit": 6017000000.0,
-      "operating_income": 1222000000.0,
-      "net_income": 888000000.0,
-      "eps_diluted": 0.76,
-      "gross_margin": 72.59017975630353,
-      "operating_margin": 14.74242972614308,
-      "net_margin": 10.712993123416577,
-      "operating_cf": 1540000000.0,
-      "fcf": 1362000000.0,
-      "capex": -178000000.0,
-      "buyback": -543000000.0,
-      "dividends_paid": -2565000000.0,
-      "fcf_margin": 16.431415128483533,
-      "depreciation_amortization": 313000000.0,
-      "rd_expenses": 1605000000.0,
-      "stock_based_comp": 509000000.0,
-      "revenue_yoy": null,
-      "eps_yoy": null
     }
   ],
   "ir_home": "https://www.sap.com/investor",
   "ir_results": "https://www.sap.com/investors/en.html",
   "ir_tdnet": "",
   "ir_notes": "Financial Documents & Events / Recent Results",
-  "last_updated": "2026-05-11T15:54:23.160222+00:00",
+  "last_updated": "2026-07-25T13:50:58.936840+00:00",
   "cached": false,
   "status": "ok"
 }

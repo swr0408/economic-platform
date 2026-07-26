@@ -93,8 +93,8 @@ const SERIES_NAMES = {
 // Indeed右Y軸の余白（上下を独立に微調整できる）。値はIndeed値域に対する割合。
 // 上を大きくするほど Indeed 線のピークが下がり、右軸の上限指数が大きくなる。
 // 下を大きくするほど Indeed 線の谷が上がり、右軸の下限指数が小さくなる。
-const INDEED_TOP_HEADROOM_RATIO = 0.1
-const INDEED_BOTTOM_HEADROOM_RATIO = 0
+const INDEED_TOP_HEADROOM_RATIO = 0.2
+const INDEED_BOTTOM_HEADROOM_RATIO = 0.
 
 
 // =============================================================================

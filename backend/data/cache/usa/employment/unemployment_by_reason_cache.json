@@ -2527,15 +2527,23 @@
       "leavers": 916.0,
       "reentrants": 2209.0,
       "new_entrants": 818.0
+    },
+    {
+      "date": "2026-06-01",
+      "layoff": 768.0,
+      "other_losers": 2511.0,
+      "leavers": 776.0,
+      "reentrants": 2237.0,
+      "new_entrants": 772.0
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "layoff": 778.0,
-    "other_losers": 2606.0,
-    "leavers": 916.0,
-    "reentrants": 2209.0,
-    "new_entrants": 818.0
+    "date": "2026-06-01",
+    "layoff": 768.0,
+    "other_losers": 2511.0,
+    "leavers": 776.0,
+    "reentrants": 2237.0,
+    "new_entrants": 772.0
   },
-  "last_updated": "2026-06-27T18:53:17.276171+09:00"
+  "last_updated": "2026-07-25T22:52:30.324257+09:00"
 }

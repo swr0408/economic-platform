@@ -104,13 +104,18 @@ class ONSProductivityService:
             lzvb_yoy = api_result.get("lzvb", {}).get("yoy", [])
             latest = lzvb_yoy[-1] if lzvb_yoy else None
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY, latest.get("date") if isinstance(latest, dict) else None, now_str
+            )
             cache_payload = {
                 "lzvb": api_result.get("lzvb", {}),
                 "a4ym": api_result.get("a4ym", {}),
                 "dmwo": api_result.get("dmwo", {}),
                 "latest": latest,
                 "metadata": api_result.get("metadata", {}),
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -124,7 +129,7 @@ class ONSProductivityService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "ons_api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

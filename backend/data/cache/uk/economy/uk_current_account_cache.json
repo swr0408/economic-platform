@@ -1382,43 +1382,48 @@
     },
     {
       "date": "2024-03-01",
-      "value": -20.84,
-      "value_millions": -20844.0
+      "value": -20.96,
+      "value_millions": -20960.0
     },
     {
       "date": "2024-06-01",
-      "value": -23.33,
-      "value_millions": -23332.0
+      "value": -23.41,
+      "value_millions": -23413.0
     },
     {
       "date": "2024-09-01",
-      "value": -13.89,
-      "value_millions": -13894.0
+      "value": -14.11,
+      "value_millions": -14107.0
     },
     {
       "date": "2024-12-01",
-      "value": -27.6,
-      "value_millions": -27596.0
+      "value": -26.94,
+      "value_millions": -26944.0
     },
     {
       "date": "2025-03-01",
-      "value": -21.41,
-      "value_millions": -21410.0
+      "value": -23.19,
+      "value_millions": -23190.0
     },
     {
       "date": "2025-06-01",
-      "value": -23.21,
-      "value_millions": -23214.0
+      "value": -24.48,
+      "value_millions": -24482.0
     },
     {
       "date": "2025-09-01",
-      "value": -10.69,
-      "value_millions": -10689.0
+      "value": -20.09,
+      "value_millions": -20095.0
     },
     {
       "date": "2025-12-01",
-      "value": -18.39,
-      "value_millions": -18392.0
+      "value": -27.18,
+      "value_millions": -27178.0
+    },
+    {
+      "date": "2026-03-01",
+      "value": -22.13,
+      "value_millions": -22134.0
     }
   ],
   "qoq_change": [
@@ -2524,35 +2529,39 @@
     },
     {
       "date": "2024-03-01",
-      "value": 7.21
+      "value": 7.09
     },
     {
       "date": "2024-06-01",
-      "value": -2.49
+      "value": -2.45
     },
     {
       "date": "2024-09-01",
-      "value": 9.44
+      "value": 9.3
     },
     {
       "date": "2024-12-01",
-      "value": -13.71
+      "value": -12.83
     },
     {
       "date": "2025-03-01",
-      "value": 6.19
+      "value": 3.75
     },
     {
       "date": "2025-06-01",
-      "value": -1.8
+      "value": -1.29
     },
     {
       "date": "2025-09-01",
-      "value": 12.52
+      "value": 4.39
     },
     {
       "date": "2025-12-01",
-      "value": -7.7
+      "value": -7.09
+    },
+    {
+      "date": "2026-03-01",
+      "value": 5.05
     }
   ],
   "gdp_ratio": [
@@ -3678,25 +3687,29 @@
     },
     {
       "date": "2025-03-01",
-      "value": -2.9
-    },
-    {
-      "date": "2025-06-01",
       "value": -3.1
     },
     {
+      "date": "2025-06-01",
+      "value": -3.2
+    },
+    {
       "date": "2025-09-01",
-      "value": -1.4
+      "value": -2.6
     },
     {
       "date": "2025-12-01",
-      "value": -2.4
+      "value": -3.5
+    },
+    {
+      "date": "2026-03-01",
+      "value": -2.8
     }
   ],
   "latest": {
-    "date": "2025-12-01",
-    "value": -18.39,
-    "value_millions": -18392.0
+    "date": "2026-03-01",
+    "value": -22.13,
+    "value_millions": -22134.0
   },
   "metadata": {
     "title": "BoP Current Account Balance SA £m",
@@ -3704,9 +3717,9 @@
     "unit": "£ billions",
     "unit_raw": "m",
     "source": "Office for National Statistics",
-    "release_date": "2026-03-30T23:00:00.000Z",
+    "release_date": "2026-06-29T23:00:00.000Z",
     "description": "Current Account Balance, BOP, Current Prices, SA"
   },
-  "ons_next_release": "30 June 2026",
-  "last_updated": "2026-06-27T11:46:17.386774+09:00"
+  "ons_next_release": "30 September 2026",
+  "last_updated": "2026-07-26T01:05:40.311440+09:00"
 }

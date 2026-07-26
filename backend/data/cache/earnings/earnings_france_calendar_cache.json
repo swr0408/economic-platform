@@ -13,11 +13,11 @@
       "date": "2026-07-23",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 2.95,
-      "eps_actual": null,
-      "revenue_estimate": 55869310000.0,
-      "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "eps_estimate": 2.81,
+      "eps_actual": 2.68,
+      "revenue_estimate": 55129970000.0,
+      "revenue_actual": 57097000000.0,
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "BNP",
@@ -27,25 +27,25 @@
       "date": "2026-07-23",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 1.93,
-      "eps_actual": null,
-      "revenue_estimate": 15751630000.0,
-      "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "eps_estimate": 1.92,
+      "eps_actual": 2.16,
+      "revenue_estimate": 15433790000.0,
+      "revenue_actual": 32005950000.0,
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "MC",
       "name": "LVMH",
       "tier": "A",
       "country_code": "france",
-      "date": "2026-07-28",
+      "date": "2026-07-27",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 2.55,
+      "eps_estimate": 2.47,
       "eps_actual": null,
-      "revenue_estimate": 44790150000.0,
+      "revenue_estimate": 22043130000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "SAF",
@@ -55,11 +55,11 @@
       "date": "2026-07-28",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 1.48,
+      "eps_estimate": 1.45,
       "eps_actual": null,
-      "revenue_estimate": 20104130000.0,
+      "revenue_estimate": 19993390000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "AIR",
@@ -69,11 +69,11 @@
       "date": "2026-07-29",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.4248,
+      "eps_estimate": 0.571,
       "eps_actual": null,
-      "revenue_estimate": 20934500000.0,
+      "revenue_estimate": 23188080000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "SU",
@@ -83,11 +83,11 @@
       "date": "2026-07-30",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 1.06,
+      "eps_estimate": 1.01,
       "eps_actual": null,
-      "revenue_estimate": 24273290000.0,
+      "revenue_estimate": 23847230000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "SAN",
@@ -99,28 +99,28 @@
       "fiscal_date_ending": "",
       "eps_estimate": 1.09,
       "eps_actual": null,
-      "revenue_estimate": 12874380000.0,
+      "revenue_estimate": 12428350000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "CS",
       "name": "AXA",
       "tier": "A",
       "country_code": "france",
-      "date": "2026-07-30",
+      "date": "2026-07-31",
       "time": "--",
       "fiscal_date_ending": "",
       "eps_estimate": 2.5,
       "eps_actual": null,
       "revenue_estimate": 43554970000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     }
   ],
-  "next_7d_count": 0,
-  "next_30d_count": 2,
-  "last_updated": "2026-06-27T13:49:18.794956+00:00",
+  "next_7d_count": 6,
+  "next_30d_count": 6,
+  "last_updated": "2026-07-25T13:50:51.940173+00:00",
   "cached": false,
   "status": "ok"
 }

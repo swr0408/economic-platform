@@ -105,6 +105,12 @@ class ECBHICPService:
                 country=self.FMP_COUNTRY
             )
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("annual_rates", "monthly_changes"),
+                _max_date_of(api_result["annual_rates"], api_result["monthly_changes"]), now_str
+            )
             cache_payload = {
                 "annual_rates": api_result["annual_rates"],
                 "monthly_changes": api_result["monthly_changes"],
@@ -116,7 +122,7 @@ class ECBHICPService:
                     "description": "ユーロ圏消費者物価調和指数（HICP）",
                 },
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -129,7 +135,7 @@ class ECBHICPService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "ecb_api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

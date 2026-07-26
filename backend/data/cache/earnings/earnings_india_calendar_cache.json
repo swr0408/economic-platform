@@ -13,11 +13,11 @@
       "date": "2026-07-18",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.39,
-      "eps_actual": null,
-      "revenue_estimate": 5059729000.0,
-      "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "eps_estimate": 0.38,
+      "eps_actual": 0.4,
+      "revenue_estimate": 4998857000.0,
+      "revenue_actual": 4806085000.0,
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "ICICIBANK.NS",
@@ -28,10 +28,10 @@
       "time": "--",
       "fiscal_date_ending": "",
       "eps_estimate": 0.4,
-      "eps_actual": null,
-      "revenue_estimate": 3395172000.0,
-      "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "eps_actual": 0.43,
+      "revenue_estimate": 3318235000.0,
+      "revenue_actual": 3417289000.0,
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "INFY.NS",
@@ -42,24 +42,24 @@
       "time": "--",
       "fiscal_date_ending": "",
       "eps_estimate": 0.21,
-      "eps_actual": null,
-      "revenue_estimate": 5102479000.0,
-      "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "eps_actual": 0.2,
+      "revenue_estimate": 5084261000.0,
+      "revenue_actual": 4992466000.0,
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "LT.NS",
       "name": "Larsen & Toubro",
       "tier": "A",
       "country_code": "india",
-      "date": "2026-07-29",
+      "date": "2026-07-28",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.2528,
+      "eps_estimate": 0.2882,
       "eps_actual": null,
-      "revenue_estimate": 7257143000.0,
+      "revenue_estimate": 7049248000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "M&M.NS",
@@ -69,11 +69,11 @@
       "date": "2026-07-30",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.3544,
+      "eps_estimate": 0.319,
       "eps_actual": null,
-      "revenue_estimate": 4235509000.0,
+      "revenue_estimate": 4382820000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "RELIANCE.NS",
@@ -146,9 +146,9 @@
       "updated_from_date": null
     }
   ],
-  "next_7d_count": 0,
-  "next_30d_count": 3,
-  "last_updated": "2026-06-27T13:49:18.844602+00:00",
+  "next_7d_count": 2,
+  "next_30d_count": 2,
+  "last_updated": "2026-07-25T13:50:51.994407+00:00",
   "cached": false,
   "status": "ok"
 }

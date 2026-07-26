@@ -12,7 +12,7 @@
  *   SAME     : force_refresh しても進まず → ソース未反映ラグ or fetch 破損
  *   NO_SVC / NO_METH / EXC : 命名規約外・例外 (個別調査)
  */
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   Alert,
   Button,
@@ -94,6 +94,10 @@ const VIEW_OPTIONS = [
 // グローバル fetch ラッパの 30s 上限ではなく専用の長いタイムアウトを使う。
 // (自前 signal を渡すと fetchAuth.ts のラッパは独自タイムアウトを適用しない)
 const REFRESH_TIMEOUT_MS = 180_000
+
+// 鮮度走査も 760+ キャッシュの stat/解析で 10〜30 秒かかることがあるため、
+// グローバル 30s ではなく専用の長いタイムアウトを使う。
+const SCAN_TIMEOUT_MS = 120_000
 
 // ---------------------------------------------------------------------------
 // キャッシュ file パス → 日本語の指標名 (ベストエフォート)
@@ -530,7 +534,7 @@ export default function AdminStalenessPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [category, setCategory] = useState('STUCK')
-  const [viewMode, setViewMode] = useState<ViewMode>('FLAGGED')
+  const [viewMode, setViewMode] = useState<ViewMode>('ALL')
   const [query, setQuery] = useState('')
   const [activeGroup, setActiveGroup] = useState('ALL')
   const [refreshing, setRefreshing] = useState<Record<string, boolean>>({})
@@ -563,27 +567,54 @@ export default function AdminStalenessPage() {
     )
   }, [items, activeGroup, query])
 
-  const fetchStaleness = useCallback(async () => {
-    setLoading(true)
-    setError(null)
-    try {
-      // 全指標モードは include_ok=true で OK 含む全キャッシュを取得 (category 絞り込み無し)。
-      // 遅延検知モードは従来どおり category で絞り込む。
-      const url =
-        viewMode === 'ALL'
-          ? '/api/admin/staleness?include_ok=true'
-          : `/api/admin/staleness?category=${encodeURIComponent(category)}`
-      const res = await authFetch(url)
-      if (!res.ok) throw new Error(`HTTP ${res.status}`)
-      const data = await res.json()
-      setItems((data.items ?? []) as StalenessItem[])
-      setActiveGroup('ALL')
-    } catch (e) {
-      setError(e instanceof Error ? e.message : '取得に失敗しました')
-    } finally {
-      setLoading(false)
-    }
-  }, [authFetch, category, viewMode])
+  // 表示モード切替の連打などで複数の走査リクエストが並ぶと、遅れて届いた
+  // 古いモードの応答が新しいモードの結果を上書きする (全指標が遅延検知に
+  // 戻って見える) ため、進行中リクエストの中断と古い応答の破棄を行う。
+  const scanSeqRef = useRef(0)
+  const scanAbortRef = useRef<AbortController | null>(null)
+
+  const fetchStaleness = useCallback(
+    async (fresh = false) => {
+      scanAbortRef.current?.abort()
+      const controller = new AbortController()
+      scanAbortRef.current = controller
+      const seq = ++scanSeqRef.current
+      // グローバル fetch の 30s 上限を回避するため自前の長いタイムアウト signal を渡す
+      const timer = setTimeout(() => controller.abort(), SCAN_TIMEOUT_MS)
+      setLoading(true)
+      setError(null)
+      try {
+        // 全指標モードは include_ok=true で OK 含む全キャッシュを取得 (category 絞り込み無し)。
+        // 遅延検知モードは従来どおり category で絞り込む。
+        // fresh=true (再走査ボタン) はサーバー側の短期スキャンキャッシュをバイパスする。
+        const base =
+          viewMode === 'ALL'
+            ? '/api/admin/staleness?include_ok=true'
+            : `/api/admin/staleness?category=${encodeURIComponent(category)}`
+        const url = fresh ? `${base}&fresh=true` : base
+        const res = await authFetch(url, { signal: controller.signal })
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        const data = await res.json()
+        if (seq !== scanSeqRef.current) return // 新しいリクエストに置換済み → 破棄
+        setItems((data.items ?? []) as StalenessItem[])
+        setActiveGroup('ALL')
+      } catch (e) {
+        if (seq !== scanSeqRef.current) return // 置換による中断はエラー扱いしない
+        const aborted = e instanceof DOMException && e.name === 'AbortError'
+        setError(
+          aborted
+            ? `走査がタイムアウトしました(${SCAN_TIMEOUT_MS / 1000}s)。再走査してください`
+            : e instanceof Error
+              ? e.message
+              : '取得に失敗しました'
+        )
+      } finally {
+        clearTimeout(timer)
+        if (seq === scanSeqRef.current) setLoading(false)
+      }
+    },
+    [authFetch, category, viewMode]
+  )
 
   useEffect(() => {
     void fetchStaleness()
@@ -748,7 +779,7 @@ export default function AdminStalenessPage() {
                   style={{ width: 200 }}
                 />
               )}
-              <Button icon={<ReloadOutlined />} onClick={() => void fetchStaleness()} loading={loading}>
+              <Button icon={<ReloadOutlined />} onClick={() => void fetchStaleness(true)} loading={loading}>
                 再走査
               </Button>
             </Space>

@@ -176,10 +176,30 @@ class ECBGDPComponentsService:
                 }
             }
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            _new_date = None
+            for _v in components_data.values():
+                if isinstance(_v, list) and _v and isinstance(_v[-1], dict):
+                    _d = _v[-1].get("date")
+                    if _d and (_new_date is None or _d > _new_date):
+                        _new_date = _d
+            _existing = redis_client.get(self.DATA_CACHE_KEY)
+            _old_date = None
+            if isinstance(_existing, dict) and isinstance(_existing.get("components"), dict):
+                for _v in _existing["components"].values():
+                    if isinstance(_v, list) and _v and isinstance(_v[-1], dict):
+                        _d = _v[-1].get("date")
+                        if _d and (_old_date is None or _d > _old_date):
+                            _old_date = _d
+            _now_gc = datetime.now(JST).isoformat()
+            if _existing and _old_date and _new_date and _new_date <= _old_date:
+                _lu_gc = _existing.get("last_updated", _now_gc)
+            else:
+                _lu_gc = _now_gc
             cache_payload = {
                 "components": components_data,
                 "metadata": metadata,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": _lu_gc
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)

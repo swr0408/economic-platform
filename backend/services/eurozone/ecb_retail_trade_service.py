@@ -89,6 +89,12 @@ class ECBRetailTradeService:
         if api_result:
             next_release = get_next_release_by_pattern(self.FMP_EVENT_PATTERN)
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("retail_yoy", "retail_mom"),
+                _max_date_of(api_result.get("retail_yoy", []), api_result.get("retail_mom", [])), now_str
+            )
             cache_payload = {
                 "retail_yoy": api_result.get("retail_yoy", []),
                 "retail_mom": api_result.get("retail_mom", []),
@@ -102,7 +108,7 @@ class ECBRetailTradeService:
                     "base_year": 2021,
                 },
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -114,7 +120,7 @@ class ECBRetailTradeService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "eurostat_api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

@@ -89,6 +89,11 @@ class CHJobVacanciesService:
             # 最新値を取得
             latest = pdf_result[-1] if pdf_result else None
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
             cache_payload = {
                 "data": pdf_result,
                 "latest": latest,
@@ -98,7 +103,7 @@ class CHJobVacanciesService:
                     "description": "スイス求人件数",
                     "unit": "件（千）",
                 },
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -110,7 +115,7 @@ class CHJobVacanciesService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "pdf",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

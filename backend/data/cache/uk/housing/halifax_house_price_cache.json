@@ -1118,7 +1118,7 @@
     },
     {
       "date": "2025-07-01",
-      "value": 0.4,
+      "value": 0.3,
       "forecast": null,
       "previous": null
     },
@@ -1178,15 +1178,15 @@
     },
     {
       "date": "2026-05-01",
-      "value": -0.1,
-      "forecast": -0.1,
-      "previous": -0.5
+      "value": -0.2,
+      "forecast": null,
+      "previous": null
     },
     {
       "date": "2026-06-01",
-      "value": -0.1,
-      "forecast": 0.1,
-      "previous": -0.1
+      "value": 0.2,
+      "forecast": null,
+      "previous": null
     }
   ],
   "yoy": [
@@ -2302,7 +2302,7 @@
     },
     {
       "date": "2025-06-01",
-      "value": 2.7,
+      "value": 2.8,
       "forecast": null,
       "previous": null
     },
@@ -2368,29 +2368,29 @@
     },
     {
       "date": "2026-05-01",
-      "value": 0.4,
-      "forecast": 0.6,
-      "previous": 0.8
+      "value": 0.5,
+      "forecast": null,
+      "previous": null
     },
     {
       "date": "2026-06-01",
-      "value": 0.5,
-      "forecast": 1.0,
-      "previous": 0.4
+      "value": 0.6,
+      "forecast": null,
+      "previous": null
     }
   ],
   "latest_mom": {
     "date": "2026-06-01",
-    "value": -0.1,
-    "forecast": 0.1,
-    "previous": -0.1
+    "value": 0.2,
+    "forecast": null,
+    "previous": null
   },
   "latest_yoy": {
     "date": "2026-06-01",
-    "value": 0.5,
-    "forecast": 1.0,
-    "previous": 0.4
+    "value": 0.6,
+    "forecast": null,
+    "previous": null
   },
   "next_release": "2026-02-06T07:00:00+00:00",
-  "last_updated": "2026-06-27T22:53:02.465980+09:00"
+  "last_updated": "2026-07-26T04:38:21.805431+09:00"
 }

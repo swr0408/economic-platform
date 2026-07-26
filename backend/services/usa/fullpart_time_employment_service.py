@@ -28,6 +28,7 @@ import requests
 from core.redis_client import redis_client
 from services.usa.fmp_next_release_utils import (
     get_next_release_from_fmp,
+    resolve_last_updated_after_fetch,
     should_refresh_by_fmp_schedule,
 )
 
@@ -125,10 +126,21 @@ class FullPartTimeEmploymentService:
         if api_data:
             latest = api_data[-1] if api_data else None
 
+            # 発表時刻レース対策: ソース未反映の旧月を発表後タイムスタンプで保存すると
+            # should_refresh が消化済み判定し次回発表まで凍結するため、ラグガードで決定する
+            prev_cache = redis_client.get(self.DATA_CACHE_KEY) or self._load_file_cache() or {}
+            prev_latest = prev_cache.get("latest") or {}
+            resolved_last_updated = resolve_last_updated_after_fetch(
+                self.ECONALPHA_ID,
+                latest.get("date") if isinstance(latest, dict) else None,
+                prev_latest.get("date") if isinstance(prev_latest, dict) else None,
+                prev_cache.get("last_updated"),
+            )
+
             cache_payload = {
                 "data": api_data,
                 "latest": latest,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": resolved_last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -140,7 +152,7 @@ class FullPartTimeEmploymentService:
                 "next_release": get_next_release_from_fmp('fulltime_employment'),
                 "cached": False,
                 "source": "api",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": resolved_last_updated
             }
 
         # 取得失敗時はファイルキャッシュから返す

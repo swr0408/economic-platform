@@ -5421,40 +5421,70 @@
       "nikkei_close": 72366.34
     },
     {
-      "date": "2026-06-19",
+      "date": "2026-06-22",
+      "individuals": 9503.7,
+      "foreigners": -12378.2,
+      "trust_banks": 273.0,
+      "investment_trusts": 3305.6,
+      "business_corps": null,
+      "proprietary": 2908.8,
+      "nikkei_close": 68733.15
+    },
+    {
+      "date": "2026-06-29",
+      "individuals": -6368.5,
+      "foreigners": 3662.4,
+      "trust_banks": 92.1,
+      "investment_trusts": 661.5,
+      "business_corps": 1022.2,
+      "proprietary": 561.9,
+      "nikkei_close": 67743.85
+    },
+    {
+      "date": "2026-07-03",
       "individuals": null,
       "foreigners": null,
       "trust_banks": null,
       "investment_trusts": null,
       "business_corps": null,
       "proprietary": null,
-      "nikkei_close": 72366.34
+      "nikkei_close": 67743.85
+    },
+    {
+      "date": "2026-07-10",
+      "individuals": null,
+      "foreigners": null,
+      "trust_banks": null,
+      "investment_trusts": null,
+      "business_corps": null,
+      "proprietary": null,
+      "nikkei_close": 68751.51
     }
   ],
   "latest": {
-    "date": "2026-06-15",
-    "individuals": -4470.0,
-    "foreigners": 10562.8,
-    "trust_banks": -1373.4,
-    "investment_trusts": -5534.1,
-    "business_corps": 1999.9,
-    "proprietary": -35.2,
-    "nikkei_close": 72366.34
+    "date": "2026-06-29",
+    "individuals": -6368.5,
+    "foreigners": 3662.4,
+    "trust_banks": 92.1,
+    "investment_trusts": 661.5,
+    "business_corps": 1022.2,
+    "proprietary": 561.9,
+    "nikkei_close": 67743.85
   },
   "latest_nikkei": {
-    "date": "2026-06-25",
-    "close": 72366.34
+    "date": "2026-07-15",
+    "close": 68751.51
   },
   "metadata": {
     "source": "JPX + yfinance (^N225)",
     "indicator": "Investor Type Weekly Trading (Net)",
     "unit": "億円",
     "frequency": "weekly",
-    "data_count": 543,
+    "data_count": 546,
     "start_date": "2016-01-04",
-    "end_date": "2026-06-19"
+    "end_date": "2026-07-10"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-25T20:15:18.929071+09:00"
+  "last_updated": "2026-07-15T20:27:44.755935+09:00"
 }

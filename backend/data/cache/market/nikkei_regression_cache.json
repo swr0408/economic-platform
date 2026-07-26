@@ -1043,17 +1043,22 @@
     {
       "date": "2026-05-01",
       "actual": 66329.5,
-      "model": 41752.0
+      "model": 41755.0
     },
     {
       "date": "2026-06-01",
-      "actual": 69360.88,
+      "actual": 70062.32,
+      "model": 41677.0
+    },
+    {
+      "date": "2026-07-01",
+      "actual": 64611.15,
       "model": null
     }
   ],
   "latest": {
-    "date": "2026-06-01",
-    "actual": 69360.88,
+    "date": "2026-07-01",
+    "actual": 64611.15,
     "model": null
   },
   "model_info": {
@@ -1068,14 +1073,14 @@
   },
   "metadata": {
     "source": "Regression Model (AFRE 12MA + USDJPY)",
-    "data_count": 210,
+    "data_count": 211,
     "start_date": "2009-01-01",
-    "end_date": "2026-06-01",
-    "afre_latest": "2026-05-01",
-    "usdjpy_latest": "2026-06-01",
-    "nikkei_latest": "2026-06-01"
+    "end_date": "2026-07-01",
+    "afre_latest": "2026-06-01",
+    "usdjpy_latest": "2026-07-01",
+    "nikkei_latest": "2026-07-01"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-27T19:36:18.993540+09:00"
+  "last_updated": "2026-07-25T22:50:52.552189+09:00"
 }

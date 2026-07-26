@@ -3779,16 +3779,25 @@
       "tradable_yoy": 2.5,
       "non_tradable_qoq": 1.1,
       "non_tradable_yoy": 3.5
+    },
+    {
+      "date": "2026-06-01",
+      "all_qoq": 1.5,
+      "all_yoy": 4.1,
+      "tradable_qoq": 2.7,
+      "tradable_yoy": 4.9,
+      "non_tradable_qoq": 0.6,
+      "non_tradable_yoy": 3.4
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "all_qoq": 0.9,
-    "all_yoy": 3.1,
-    "tradable_qoq": 0.7,
-    "tradable_yoy": 2.5,
-    "non_tradable_qoq": 1.1,
-    "non_tradable_yoy": 3.5
+    "date": "2026-06-01",
+    "all_qoq": 1.5,
+    "all_yoy": 4.1,
+    "tradable_qoq": 2.7,
+    "tradable_yoy": 4.9,
+    "non_tradable_qoq": 0.6,
+    "non_tradable_yoy": 3.4
   },
   "metadata": {
     "source": "Stats NZ",
@@ -3801,5 +3810,5 @@
     "series_non_tradable": "CPIQ.SE9NS6500"
   },
   "next_release": null,
-  "last_updated": "2026-06-27T11:46:38.915302+09:00"
+  "last_updated": "2026-07-26T01:45:49.453831+09:00"
 }

@@ -2074,6 +2074,11 @@
       "date": "2026-06",
       "value": 10.5,
       "source": "zew"
+    },
+    {
+      "date": "2026-07",
+      "value": 26.3,
+      "source": "zew"
     }
   ],
   "situation": [
@@ -4151,27 +4156,23 @@
       "date": "2026-06",
       "value": -81.0,
       "source": "zew"
+    },
+    {
+      "date": "2026-07",
+      "value": -77.6,
+      "source": "zew"
     }
   ],
   "latest_sentiment": {
-    "date": "2026-06",
-    "value": 10.5,
+    "date": "2026-07",
+    "value": 26.3,
     "source": "zew"
   },
   "latest_situation": {
-    "date": "2026-06",
-    "value": -81.0,
+    "date": "2026-07",
+    "value": -77.6,
     "source": "zew"
   },
-  "next_release": {
-    "date": "2026-07-21",
-    "datetime_utc": "2026-07-21T09:00:00+00:00",
-    "datetime_jst": "2026-07-21T18:00:00+09:00",
-    "time_jst": "18:00",
-    "datetime_cet": "2026-07-21T11:00:00+02:00",
-    "time_cet": "11:00",
-    "label": "ZEW Economic Sentiment Index (Jul)",
-    "estimate": null
-  },
-  "last_updated": "2026-06-27T23:00:15.476897+09:00"
+  "next_release": null,
+  "last_updated": "2026-07-26T04:29:55.692257+09:00"
 }

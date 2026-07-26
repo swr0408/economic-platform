@@ -1069,8 +1069,8 @@
     "time_jst": "17:00",
     "datetime_cet": "2026-07-30T10:00:00+02:00",
     "time_cet": "10:00",
-    "label": "GDP Growth Rate QoQ (Q2)",
-    "estimate": -0.2
+    "label": "GDP Growth Rate YoY (Q2)",
+    "estimate": 0.4
   },
-  "last_updated": "2026-06-27T11:46:32.851102+09:00"
+  "last_updated": "2026-07-04T04:30:14.498304+09:00"
 }

@@ -8,6 +8,29 @@
   "reported_currency": "CHF",
   "periods": [
     {
+      "date": "2026-06-30",
+      "period": "Q2",
+      "fiscal_year": "2026",
+      "reported_currency": "CHF",
+      "revenue": 31017064554.0,
+      "gross_profit": 22864410351.0,
+      "operating_income": 9644055672.0,
+      "net_income": 7018780481.0,
+      "eps_diluted": 1.09,
+      "gross_margin": 73.71558424296917,
+      "operating_margin": 31.092741401140394,
+      "net_margin": 22.628770910220933,
+      "operating_cf": 7324211330.0,
+      "fcf": 5720443995.0,
+      "capex": -1603767335.0,
+      "buyback": -109301340.0,
+      "dividends_paid": -8450934496.0,
+      "fcf_margin": 18.442892895428056,
+      "depreciation_amortization": 0.0,
+      "revenue_yoy": 0.8488247951619196,
+      "eps_yoy": 11.224489795918377
+    },
+    {
       "date": "2025-12-31",
       "period": "Q4",
       "fiscal_year": "2025",
@@ -96,8 +119,8 @@
       "dividends_paid": -7650000000.0,
       "fcf_margin": 20.12615424632592,
       "depreciation_amortization": 1654000000.0,
-      "revenue_yoy": -4.7654435671156525,
-      "eps_yoy": -25.75757575757576
+      "revenue_yoy": null,
+      "eps_yoy": null
     },
     {
       "date": "2023-12-31",
@@ -162,32 +185,9 @@
       "fcf": 6081000000.0,
       "capex": -2526000000.0,
       "buyback": -646000000.0,
-      "dividends_paid": 0.0,
+      "dividends_paid": 170035414.0,
       "fcf_margin": 19.624991931840185,
       "depreciation_amortization": 1920000000.0,
-      "revenue_yoy": null,
-      "eps_yoy": null
-    },
-    {
-      "date": "2022-06-30",
-      "period": "Q2",
-      "fiscal_year": "2022",
-      "reported_currency": "CHF",
-      "revenue": 32295000000.0,
-      "gross_profit": 22545000000.0,
-      "operating_income": 10271000000.0,
-      "net_income": 8530000000.0,
-      "eps_diluted": 1.32,
-      "gross_margin": 69.80956804458894,
-      "operating_margin": 31.80368478092584,
-      "net_margin": 26.412757392785263,
-      "operating_cf": 9283000000.0,
-      "fcf": 7257000000.0,
-      "capex": -2026000000.0,
-      "buyback": -611000000.0,
-      "dividends_paid": -7446000000.0,
-      "fcf_margin": 22.470970738504413,
-      "depreciation_amortization": 1904000000.0,
       "revenue_yoy": null,
       "eps_yoy": null
     }
@@ -196,7 +196,7 @@
   "ir_results": "https://www.roche.com/investors/updates.htm",
   "ir_tdnet": "",
   "ir_notes": "Investor updates / Results event pages",
-  "last_updated": "2026-05-11T15:51:44.110886+00:00",
+  "last_updated": "2026-07-25T13:50:57.768098+00:00",
   "cached": false,
   "status": "ok"
 }

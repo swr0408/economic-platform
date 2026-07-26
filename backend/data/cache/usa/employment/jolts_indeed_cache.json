@@ -12407,7 +12407,7 @@
     },
     {
       "date": "2026-04-01",
-      "jolts": 7618.0,
+      "jolts": 7585.0,
       "indeed": 102.2
     },
     {
@@ -12557,7 +12557,7 @@
     },
     {
       "date": "2026-05-01",
-      "jolts": null,
+      "jolts": 7594.0,
       "indeed": 102.5
     },
     {
@@ -12768,15 +12768,190 @@
     {
       "date": "2026-06-12",
       "jolts": null,
+      "indeed": 100.4
+    },
+    {
+      "date": "2026-06-13",
+      "jolts": null,
+      "indeed": 100.4
+    },
+    {
+      "date": "2026-06-14",
+      "jolts": null,
+      "indeed": 100.4
+    },
+    {
+      "date": "2026-06-15",
+      "jolts": null,
       "indeed": 100.5
+    },
+    {
+      "date": "2026-06-16",
+      "jolts": null,
+      "indeed": 100.5
+    },
+    {
+      "date": "2026-06-17",
+      "jolts": null,
+      "indeed": 100.6
+    },
+    {
+      "date": "2026-06-18",
+      "jolts": null,
+      "indeed": 100.8
+    },
+    {
+      "date": "2026-06-19",
+      "jolts": null,
+      "indeed": 101.1
+    },
+    {
+      "date": "2026-06-20",
+      "jolts": null,
+      "indeed": 101.3
+    },
+    {
+      "date": "2026-06-21",
+      "jolts": null,
+      "indeed": 101.5
+    },
+    {
+      "date": "2026-06-22",
+      "jolts": null,
+      "indeed": 101.7
+    },
+    {
+      "date": "2026-06-23",
+      "jolts": null,
+      "indeed": 101.8
+    },
+    {
+      "date": "2026-06-24",
+      "jolts": null,
+      "indeed": 101.8
+    },
+    {
+      "date": "2026-06-25",
+      "jolts": null,
+      "indeed": 101.6
+    },
+    {
+      "date": "2026-06-26",
+      "jolts": null,
+      "indeed": 101.4
+    },
+    {
+      "date": "2026-06-27",
+      "jolts": null,
+      "indeed": 101.3
+    },
+    {
+      "date": "2026-06-28",
+      "jolts": null,
+      "indeed": 101.1
+    },
+    {
+      "date": "2026-06-29",
+      "jolts": null,
+      "indeed": 100.9
+    },
+    {
+      "date": "2026-06-30",
+      "jolts": null,
+      "indeed": 101.0
+    },
+    {
+      "date": "2026-07-01",
+      "jolts": null,
+      "indeed": 101.0
+    },
+    {
+      "date": "2026-07-02",
+      "jolts": null,
+      "indeed": 100.9
+    },
+    {
+      "date": "2026-07-03",
+      "jolts": null,
+      "indeed": 101.1
+    },
+    {
+      "date": "2026-07-04",
+      "jolts": null,
+      "indeed": 101.1
+    },
+    {
+      "date": "2026-07-05",
+      "jolts": null,
+      "indeed": 101.1
+    },
+    {
+      "date": "2026-07-06",
+      "jolts": null,
+      "indeed": 101.1
+    },
+    {
+      "date": "2026-07-07",
+      "jolts": null,
+      "indeed": 101.1
+    },
+    {
+      "date": "2026-07-08",
+      "jolts": null,
+      "indeed": 101.2
+    },
+    {
+      "date": "2026-07-09",
+      "jolts": null,
+      "indeed": 101.3
+    },
+    {
+      "date": "2026-07-10",
+      "jolts": null,
+      "indeed": 101.2
+    },
+    {
+      "date": "2026-07-11",
+      "jolts": null,
+      "indeed": 101.3
+    },
+    {
+      "date": "2026-07-12",
+      "jolts": null,
+      "indeed": 101.3
+    },
+    {
+      "date": "2026-07-13",
+      "jolts": null,
+      "indeed": 101.4
+    },
+    {
+      "date": "2026-07-14",
+      "jolts": null,
+      "indeed": 101.4
+    },
+    {
+      "date": "2026-07-15",
+      "jolts": null,
+      "indeed": 101.5
+    },
+    {
+      "date": "2026-07-16",
+      "jolts": null,
+      "indeed": 101.5
+    },
+    {
+      "date": "2026-07-17",
+      "jolts": null,
+      "indeed": 101.5
     }
   ],
   "latest": {
-    "date": "2026-06-12",
-    "jolts": 7618.0,
-    "jolts_date": "2026-04-01",
-    "indeed": 100.5,
-    "indeed_date": "2026-06-12"
+    "date": "2026-07-17",
+    "jolts": 7594.0,
+    "jolts_date": "2026-05-01",
+    "indeed": 101.5,
+    "indeed_date": "2026-07-17"
   },
-  "last_updated": "2026-06-25T09:35:53.581362+09:00"
+  "last_updated": "2026-07-26T00:31:40.505707+09:00"
 }

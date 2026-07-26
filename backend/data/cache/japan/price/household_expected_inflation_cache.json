@@ -719,21 +719,30 @@
       "exp1y_median": 10.0,
       "exp5y_mean": 10.3,
       "exp5y_median": 5.0
+    },
+    {
+      "date": "2026-06-01",
+      "current_mean": 16.5,
+      "current_median": 10.0,
+      "exp1y_mean": 13.1,
+      "exp1y_median": 10.0,
+      "exp5y_mean": 10.8,
+      "exp5y_median": 5.0
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "current_mean": 17.3,
+    "date": "2026-06-01",
+    "current_mean": 16.5,
     "current_median": 10.0,
-    "exp1y_mean": 11.4,
+    "exp1y_mean": 13.1,
     "exp1y_median": 10.0,
-    "exp5y_mean": 10.3,
+    "exp5y_mean": 10.8,
     "exp5y_median": 5.0
   },
   "next_release": {
-    "date": "2026-07-16",
-    "datetime_jst": "2026-07-16T14:00:00+09:00",
-    "label": "生活意識アンケート調査 - 2026/07/16（予定）"
+    "date": "2026-10-15",
+    "datetime_jst": "2026-10-15T14:00:00+09:00",
+    "label": "生活意識アンケート調査 - 2026/10/15 頃（推定）"
   },
-  "last_updated": "2026-06-26T08:46:41.528139+09:00"
+  "last_updated": "2026-07-24T09:49:41.046802+09:00"
 }

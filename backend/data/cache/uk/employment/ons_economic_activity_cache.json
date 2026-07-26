@@ -3002,7 +3002,7 @@
     },
     {
       "date": "2021-03-01",
-      "value": 78.3,
+      "value": 78.4,
       "period": "2021 FEB"
     },
     {
@@ -3027,7 +3027,7 @@
     },
     {
       "date": "2021-08-01",
-      "value": 78.6,
+      "value": 78.5,
       "period": "2021 JUL"
     },
     {
@@ -3042,7 +3042,7 @@
     },
     {
       "date": "2021-11-01",
-      "value": 78.3,
+      "value": 78.4,
       "period": "2021 OCT"
     },
     {
@@ -3072,7 +3072,7 @@
     },
     {
       "date": "2022-05-01",
-      "value": 78.4,
+      "value": 78.3,
       "period": "2022 APR"
     },
     {
@@ -3132,7 +3132,7 @@
     },
     {
       "date": "2023-05-01",
-      "value": 78.7,
+      "value": 78.6,
       "period": "2023 APR"
     },
     {
@@ -3167,12 +3167,12 @@
     },
     {
       "date": "2023-12-01",
-      "value": 77.9,
+      "value": 78.0,
       "period": "2023 NOV"
     },
     {
       "date": "2024-01-01",
-      "value": 77.9,
+      "value": 78.0,
       "period": "2023 DEC"
     },
     {
@@ -3182,12 +3182,12 @@
     },
     {
       "date": "2024-03-01",
-      "value": 77.9,
+      "value": 78.0,
       "period": "2024 FEB"
     },
     {
       "date": "2024-04-01",
-      "value": 77.8,
+      "value": 77.9,
       "period": "2024 MAR"
     },
     {
@@ -3237,17 +3237,17 @@
     },
     {
       "date": "2025-02-01",
-      "value": 78.6,
+      "value": 78.7,
       "period": "2025 JAN"
     },
     {
       "date": "2025-03-01",
-      "value": 78.6,
+      "value": 78.7,
       "period": "2025 FEB"
     },
     {
       "date": "2025-04-01",
-      "value": 78.7,
+      "value": 78.8,
       "period": "2025 MAR"
     },
     {
@@ -3257,12 +3257,12 @@
     },
     {
       "date": "2025-06-01",
-      "value": 79.0,
+      "value": 79.1,
       "period": "2025 MAY"
     },
     {
       "date": "2025-07-01",
-      "value": 78.9,
+      "value": 79.0,
       "period": "2025 JUN"
     },
     {
@@ -3272,7 +3272,7 @@
     },
     {
       "date": "2025-09-01",
-      "value": 79.0,
+      "value": 79.1,
       "period": "2025 AUG"
     },
     {
@@ -3287,7 +3287,7 @@
     },
     {
       "date": "2025-12-01",
-      "value": 79.2,
+      "value": 79.1,
       "period": "2025 NOV"
     },
     {
@@ -3309,21 +3309,26 @@
       "date": "2026-04-01",
       "value": 79.0,
       "period": "2026 MAR"
+    },
+    {
+      "date": "2026-05-01",
+      "value": 79.1,
+      "period": "2026 APR"
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "value": 79.0,
-    "period": "2026 MAR"
+    "date": "2026-05-01",
+    "value": 79.1,
+    "period": "2026 APR"
   },
   "metadata": {
     "title": "LFS: Economic activity rate: UK: All: Aged 16-64 (%): SA",
     "cdid": "LF22",
     "unit": "%",
-    "release_date": "18-06-2026",
-    "next_release_ons": "21 July 2026",
+    "release_date": "21-07-2026",
+    "next_release_ons": "18 August  2026",
     "source": "Office for National Statistics",
     "description": "イギリス経済活動率（16-64歳、季節調整済）"
   },
-  "last_updated": "2026-06-27T11:46:17.099504+09:00"
+  "last_updated": "2026-07-26T04:37:03.632019+09:00"
 }

@@ -140,6 +140,7 @@ try:
     from backend.routers.uk.uk_trade_balance import router as uk_trade_balance_router
     from backend.routers.uk.uk_current_account import router as uk_current_account_router
     from backend.routers.usa.fed_rate_cuts_screenshot import router as usa_fed_rate_cuts_screenshot_router
+    from backend.routers.usa.opentable import router as usa_opentable_router
     from backend.routers.uk.boe_rate_cuts_screenshot import router as uk_boe_rate_cuts_screenshot_router
     from backend.routers.japan.boj_rate_cuts_screenshot import router as japan_boj_rate_cuts_screenshot_router
     from backend.routers.switzerland.snb import router as switzerland_snb_router
@@ -192,6 +193,7 @@ try:
     from backend.routers.visibility import router as visibility_router
     from backend.routers.admin_staleness import router as admin_staleness_router
     from backend.routers.billing_admin import router as billing_admin_router
+    from backend.routers.correlation_report import router as correlation_report_router
     from backend.core.auth.schema_init import init_auth_schema
     from backend.core.auth.visibility_schema_init import init_visibility_schema
     from backend.core.billing.schema_init import init_billing_schema
@@ -217,6 +219,7 @@ except ImportError as _ie:
     from routers.usa.treasury import router as treasury_router
     from routers.usa.quarterly_refunding import router as quarterly_refunding_router
     from routers.usa.truflation_screenshot import router as truflation_screenshot_router
+    from routers.usa.opentable import router as usa_opentable_router
     from routers.dashboard import router as dashboard_router
     from routers.dashboard_home import router as dashboard_home_router
     from routers.market import router as market_router
@@ -418,6 +421,7 @@ except ImportError as _ie:
     from routers.visibility import router as visibility_router
     from routers.admin_staleness import router as admin_staleness_router
     from routers.billing_admin import router as billing_admin_router
+    from routers.correlation_report import router as correlation_report_router
     from core.auth.schema_init import init_auth_schema
     from core.auth.visibility_schema_init import init_visibility_schema
     from core.billing.schema_init import init_billing_schema
@@ -554,6 +558,7 @@ app.include_router(fomc_projections_router)
 app.include_router(treasury_router)
 app.include_router(quarterly_refunding_router)
 app.include_router(truflation_screenshot_router)
+app.include_router(usa_opentable_router)
 app.include_router(dashboard_router)
 app.include_router(dashboard_home_router)
 app.include_router(market_router)
@@ -728,6 +733,7 @@ app.include_router(auth_router)
 app.include_router(visibility_router)
 app.include_router(admin_staleness_router)
 app.include_router(billing_admin_router)
+app.include_router(correlation_report_router)
 
 
 @app.get("/health")

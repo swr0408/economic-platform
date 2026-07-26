@@ -446,16 +446,20 @@
     },
     {
       "date": "2026-03-31",
-      "value": 785625.0
+      "value": 785621.0
     },
     {
       "date": "2026-04-30",
       "value": 774932.0
+    },
+    {
+      "date": "2026-05-31",
+      "value": 773846.0
     }
   ],
   "latest": {
-    "date": "2026-04-30",
-    "value": 774932.0
+    "date": "2026-05-31",
+    "value": 773846.0
   },
   "metadata": {
     "source": "Reserve Bank of New Zealand",
@@ -464,12 +468,12 @@
     "unit": "NZD millions",
     "frequency": "monthly",
     "table": "S10 - Banks: Balance sheet",
-    "published_date": "2026-05-29"
+    "published_date": "2026-06-30"
   },
   "next_release": {
-    "date": "2026-06-29",
-    "label": "S10 Banks Balance Sheet (Jun 2026)",
+    "date": "2026-07-30",
+    "label": "S10 Banks Balance Sheet (Jul 2026)",
     "estimated": true
   },
-  "last_updated": "2026-06-26T21:06:26.644289+09:00"
+  "last_updated": "2026-07-26T01:48:25.635699+09:00"
 }

@@ -839,15 +839,23 @@
       "purchase_housing_yoy": 1.0,
       "electricity_yoy": 12.5,
       "gas_yoy": 13.2
+    },
+    {
+      "date": "2026-06-01",
+      "food_yoy": 2.8,
+      "rentals_yoy": 0.5,
+      "purchase_housing_yoy": 2.7,
+      "electricity_yoy": 12.0,
+      "gas_yoy": 10.9
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "food_yoy": 4.0,
-    "rentals_yoy": 1.2,
-    "purchase_housing_yoy": 1.0,
-    "electricity_yoy": 12.5,
-    "gas_yoy": 13.2
+    "date": "2026-06-01",
+    "food_yoy": 2.8,
+    "rentals_yoy": 0.5,
+    "purchase_housing_yoy": 2.7,
+    "electricity_yoy": 12.0,
+    "gas_yoy": 10.9
   },
   "metadata": {
     "source": "Stats NZ",
@@ -864,5 +872,5 @@
     }
   },
   "next_release": null,
-  "last_updated": "2026-06-27T11:46:43.958693+09:00"
+  "last_updated": "2026-07-26T01:46:07.044344+09:00"
 }

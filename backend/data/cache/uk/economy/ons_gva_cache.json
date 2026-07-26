@@ -1628,7 +1628,7 @@
       },
       {
         "date": "2024-07-01",
-        "value": 0.4,
+        "value": 0.3,
         "period": "2024 JUL"
       },
       {
@@ -1648,7 +1648,7 @@
       },
       {
         "date": "2024-11-01",
-        "value": 0.3,
+        "value": 0.2,
         "period": "2024 NOV"
       },
       {
@@ -1698,32 +1698,32 @@
       },
       {
         "date": "2025-09-01",
-        "value": 0.1,
+        "value": 0.0,
         "period": "2025 SEP"
       },
       {
         "date": "2025-10-01",
-        "value": 0.0,
+        "value": -0.1,
         "period": "2025 OCT"
       },
       {
         "date": "2025-11-01",
-        "value": 0.0,
+        "value": -0.1,
         "period": "2025 NOV"
       },
       {
         "date": "2025-12-01",
-        "value": 0.2,
+        "value": 0.1,
         "period": "2025 DEC"
       },
       {
         "date": "2026-01-01",
-        "value": 0.4,
+        "value": 0.3,
         "period": "2026 JAN"
       },
       {
         "date": "2026-02-01",
-        "value": 0.5,
+        "value": 0.4,
         "period": "2026 FEB"
       },
       {
@@ -1733,16 +1733,21 @@
       },
       {
         "date": "2026-04-01",
-        "value": 0.7,
+        "value": 0.8,
         "period": "2026 APR"
+      },
+      {
+        "date": "2026-05-01",
+        "value": 0.7,
+        "period": "2026 MAY"
       }
     ],
     "metadata": {
       "title": "Gross Value Added - Monthly (3 month on 3 month growth) :CVM SA",
       "cdid": "ED3H",
       "unit": "",
-      "release_date": "12-06-2026",
-      "next_release_ons": "16 July 2026"
+      "release_date": "16-07-2026",
+      "next_release_ons": "13 August 2026"
     }
   },
   "ecy2": {
@@ -3634,20 +3639,20 @@
       {
         "date": "2024-05-01",
         "period": "2024 MAY",
-        "value": 100.77,
-        "yoy_change": 0.83
+        "value": 100.8,
+        "yoy_change": 0.87
       },
       {
         "date": "2024-06-01",
         "period": "2024 JUN",
-        "value": 100.83,
-        "yoy_change": 0.7
+        "value": 100.87,
+        "yoy_change": 0.73
       },
       {
         "date": "2024-07-01",
         "period": "2024 JUL",
-        "value": 100.87,
-        "yoy_change": 0.73
+        "value": 100.9,
+        "yoy_change": 0.77
       },
       {
         "date": "2024-08-01",
@@ -3658,122 +3663,128 @@
       {
         "date": "2024-09-01",
         "period": "2024 SEP",
-        "value": 101.0,
-        "yoy_change": 0.97
+        "value": 100.97,
+        "yoy_change": 0.93
       },
       {
         "date": "2024-10-01",
         "period": "2024 OCT",
-        "value": 101.13,
-        "yoy_change": 1.27
+        "value": 101.07,
+        "yoy_change": 1.2
       },
       {
         "date": "2024-11-01",
         "period": "2024 NOV",
-        "value": 101.2,
-        "yoy_change": 1.37
+        "value": 101.1,
+        "yoy_change": 1.27
       },
       {
         "date": "2024-12-01",
         "period": "2024 DEC",
-        "value": 101.4,
-        "yoy_change": 1.71
+        "value": 101.3,
+        "yoy_change": 1.6
       },
       {
         "date": "2025-01-01",
         "period": "2025 JAN",
-        "value": 101.57,
-        "yoy_change": 1.7
+        "value": 101.47,
+        "yoy_change": 1.6
       },
       {
         "date": "2025-02-01",
         "period": "2025 FEB",
-        "value": 101.8,
-        "yoy_change": 1.8
+        "value": 101.7,
+        "yoy_change": 1.7
       },
       {
         "date": "2025-03-01",
         "period": "2025 MAR",
-        "value": 101.97,
-        "yoy_change": 1.63
+        "value": 101.87,
+        "yoy_change": 1.53
       },
       {
         "date": "2025-04-01",
         "period": "2025 APR",
-        "value": 102.07,
-        "yoy_change": 1.53
+        "value": 102.0,
+        "yoy_change": 1.46
       },
       {
         "date": "2025-05-01",
         "period": "2025 MAY",
-        "value": 102.03,
-        "yoy_change": 1.26
+        "value": 102.0,
+        "yoy_change": 1.19
       },
       {
         "date": "2025-06-01",
         "period": "2025 JUN",
-        "value": 102.1,
-        "yoy_change": 1.26
+        "value": 102.07,
+        "yoy_change": 1.19
       },
       {
         "date": "2025-07-01",
         "period": "2025 JUL",
-        "value": 102.23,
-        "yoy_change": 1.35
+        "value": 102.13,
+        "yoy_change": 1.22
       },
       {
         "date": "2025-08-01",
         "period": "2025 AUG",
-        "value": 102.3,
-        "yoy_change": 1.39
+        "value": 102.17,
+        "yoy_change": 1.26
       },
       {
         "date": "2025-09-01",
         "period": "2025 SEP",
-        "value": 102.23,
-        "yoy_change": 1.22
+        "value": 102.07,
+        "yoy_change": 1.09
       },
       {
         "date": "2025-10-01",
         "period": "2025 OCT",
-        "value": 102.17,
-        "yoy_change": 1.02
+        "value": 102.0,
+        "yoy_change": 0.92
       },
       {
         "date": "2025-11-01",
         "period": "2025 NOV",
-        "value": 102.27,
-        "yoy_change": 1.05
+        "value": 102.03,
+        "yoy_change": 0.92
       },
       {
         "date": "2025-12-01",
         "period": "2025 DEC",
-        "value": 102.4,
-        "yoy_change": 0.99
+        "value": 102.13,
+        "yoy_change": 0.82
       },
       {
         "date": "2026-01-01",
         "period": "2026 JAN",
-        "value": 102.57,
-        "yoy_change": 0.98
+        "value": 102.23,
+        "yoy_change": 0.76
       },
       {
         "date": "2026-02-01",
         "period": "2026 FEB",
-        "value": 102.8,
-        "yoy_change": 0.98
+        "value": 102.47,
+        "yoy_change": 0.75
       },
       {
         "date": "2026-03-01",
         "period": "2026 MAR",
-        "value": 103.07,
-        "yoy_change": 1.08
+        "value": 102.77,
+        "yoy_change": 0.88
       },
       {
         "date": "2026-04-01",
         "period": "2026 APR",
-        "value": 103.27,
-        "yoy_change": 1.18
+        "value": 103.03,
+        "yoy_change": 1.01
+      },
+      {
+        "date": "2026-05-01",
+        "period": "2026 MAY",
+        "value": 103.17,
+        "yoy_change": 1.14
       }
     ],
     "data": [
@@ -5419,7 +5430,7 @@
       },
       {
         "date": "2024-05-01",
-        "value": 101.0,
+        "value": 101.1,
         "period": "2024 MAY"
       },
       {
@@ -5439,37 +5450,37 @@
       },
       {
         "date": "2024-09-01",
-        "value": 101.1,
+        "value": 101.0,
         "period": "2024 SEP"
       },
       {
         "date": "2024-10-01",
-        "value": 101.2,
+        "value": 101.1,
         "period": "2024 OCT"
       },
       {
         "date": "2024-11-01",
-        "value": 101.3,
+        "value": 101.2,
         "period": "2024 NOV"
       },
       {
         "date": "2024-12-01",
-        "value": 101.7,
+        "value": 101.6,
         "period": "2024 DEC"
       },
       {
         "date": "2025-01-01",
-        "value": 101.7,
+        "value": 101.6,
         "period": "2025 JAN"
       },
       {
         "date": "2025-02-01",
-        "value": 102.0,
+        "value": 101.9,
         "period": "2025 FEB"
       },
       {
         "date": "2025-03-01",
-        "value": 102.2,
+        "value": 102.1,
         "period": "2025 MAR"
       },
       {
@@ -5484,58 +5495,63 @@
       },
       {
         "date": "2025-06-01",
-        "value": 102.4,
+        "value": 102.3,
         "period": "2025 JUN"
       },
       {
         "date": "2025-07-01",
-        "value": 102.4,
+        "value": 102.2,
         "period": "2025 JUL"
       },
       {
         "date": "2025-08-01",
-        "value": 102.1,
+        "value": 102.0,
         "period": "2025 AUG"
       },
       {
         "date": "2025-09-01",
-        "value": 102.2,
+        "value": 102.0,
         "period": "2025 SEP"
       },
       {
         "date": "2025-10-01",
-        "value": 102.2,
+        "value": 102.0,
         "period": "2025 OCT"
       },
       {
         "date": "2025-11-01",
-        "value": 102.4,
+        "value": 102.1,
         "period": "2025 NOV"
       },
       {
         "date": "2025-12-01",
-        "value": 102.6,
+        "value": 102.3,
         "period": "2025 DEC"
       },
       {
         "date": "2026-01-01",
-        "value": 102.7,
+        "value": 102.3,
         "period": "2026 JAN"
       },
       {
         "date": "2026-02-01",
-        "value": 103.1,
+        "value": 102.8,
         "period": "2026 FEB"
       },
       {
         "date": "2026-03-01",
-        "value": 103.4,
+        "value": 103.2,
         "period": "2026 MAR"
       },
       {
         "date": "2026-04-01",
-        "value": 103.3,
+        "value": 103.1,
         "period": "2026 APR"
+      },
+      {
+        "date": "2026-05-01",
+        "value": 103.2,
+        "period": "2026 MAY"
       }
     ],
     "yoy": [
@@ -7438,8 +7454,8 @@
       {
         "date": "2024-05-01",
         "period": "2024 MAY",
-        "value": 101.0,
-        "yoy_change": 1.2
+        "value": 101.1,
+        "yoy_change": 1.3
       },
       {
         "date": "2024-06-01",
@@ -7462,44 +7478,44 @@
       {
         "date": "2024-09-01",
         "period": "2024 SEP",
-        "value": 101.1,
-        "yoy_change": 1.1
+        "value": 101.0,
+        "yoy_change": 1.0
       },
       {
         "date": "2024-10-01",
         "period": "2024 OCT",
-        "value": 101.2,
-        "yoy_change": 1.61
+        "value": 101.1,
+        "yoy_change": 1.51
       },
       {
         "date": "2024-11-01",
         "period": "2024 NOV",
-        "value": 101.3,
-        "yoy_change": 1.4
+        "value": 101.2,
+        "yoy_change": 1.3
       },
       {
         "date": "2024-12-01",
         "period": "2024 DEC",
-        "value": 101.7,
-        "yoy_change": 2.11
+        "value": 101.6,
+        "yoy_change": 2.01
       },
       {
         "date": "2025-01-01",
         "period": "2025 JAN",
-        "value": 101.7,
-        "yoy_change": 1.6
+        "value": 101.6,
+        "yoy_change": 1.5
       },
       {
         "date": "2025-02-01",
         "period": "2025 FEB",
-        "value": 102.0,
-        "yoy_change": 1.69
+        "value": 101.9,
+        "yoy_change": 1.6
       },
       {
         "date": "2025-03-01",
         "period": "2025 MAR",
-        "value": 102.2,
-        "yoy_change": 1.59
+        "value": 102.1,
+        "yoy_change": 1.49
       },
       {
         "date": "2025-04-01",
@@ -7511,73 +7527,79 @@
         "date": "2025-05-01",
         "period": "2025 MAY",
         "value": 101.9,
-        "yoy_change": 0.89
+        "yoy_change": 0.79
       },
       {
         "date": "2025-06-01",
         "period": "2025 JUN",
-        "value": 102.4,
-        "yoy_change": 1.59
+        "value": 102.3,
+        "yoy_change": 1.49
       },
       {
         "date": "2025-07-01",
         "period": "2025 JUL",
-        "value": 102.4,
-        "yoy_change": 1.59
+        "value": 102.2,
+        "yoy_change": 1.39
       },
       {
         "date": "2025-08-01",
         "period": "2025 AUG",
-        "value": 102.1,
-        "yoy_change": 0.99
+        "value": 102.0,
+        "yoy_change": 0.89
       },
       {
         "date": "2025-09-01",
         "period": "2025 SEP",
-        "value": 102.2,
-        "yoy_change": 1.09
+        "value": 102.0,
+        "yoy_change": 0.99
       },
       {
         "date": "2025-10-01",
         "period": "2025 OCT",
-        "value": 102.2,
-        "yoy_change": 0.99
+        "value": 102.0,
+        "yoy_change": 0.89
       },
       {
         "date": "2025-11-01",
         "period": "2025 NOV",
-        "value": 102.4,
-        "yoy_change": 1.09
+        "value": 102.1,
+        "yoy_change": 0.89
       },
       {
         "date": "2025-12-01",
         "period": "2025 DEC",
-        "value": 102.6,
-        "yoy_change": 0.88
+        "value": 102.3,
+        "yoy_change": 0.69
       },
       {
         "date": "2026-01-01",
         "period": "2026 JAN",
-        "value": 102.7,
-        "yoy_change": 0.98
+        "value": 102.3,
+        "yoy_change": 0.69
       },
       {
         "date": "2026-02-01",
         "period": "2026 FEB",
-        "value": 103.1,
-        "yoy_change": 1.08
+        "value": 102.8,
+        "yoy_change": 0.88
       },
       {
         "date": "2026-03-01",
         "period": "2026 MAR",
-        "value": 103.4,
-        "yoy_change": 1.17
+        "value": 103.2,
+        "yoy_change": 1.08
       },
       {
         "date": "2026-04-01",
         "period": "2026 APR",
-        "value": 103.3,
-        "yoy_change": 1.27
+        "value": 103.1,
+        "yoy_change": 1.08
+      },
+      {
+        "date": "2026-05-01",
+        "period": "2026 MAY",
+        "value": 103.2,
+        "yoy_change": 1.28
       }
     ],
     "mom": [
@@ -9546,14 +9568,14 @@
       {
         "date": "2024-05-01",
         "period": "2024 MAY",
-        "value": 101.0,
-        "mom_change": 0.3
+        "value": 101.1,
+        "mom_change": 0.4
       },
       {
         "date": "2024-06-01",
         "period": "2024 JUN",
         "value": 100.8,
-        "mom_change": -0.2
+        "mom_change": -0.3
       },
       {
         "date": "2024-07-01",
@@ -9570,50 +9592,50 @@
       {
         "date": "2024-09-01",
         "period": "2024 SEP",
-        "value": 101.1,
-        "mom_change": 0.0
+        "value": 101.0,
+        "mom_change": -0.1
       },
       {
         "date": "2024-10-01",
         "period": "2024 OCT",
-        "value": 101.2,
+        "value": 101.1,
         "mom_change": 0.1
       },
       {
         "date": "2024-11-01",
         "period": "2024 NOV",
-        "value": 101.3,
+        "value": 101.2,
         "mom_change": 0.1
       },
       {
         "date": "2024-12-01",
         "period": "2024 DEC",
-        "value": 101.7,
-        "mom_change": 0.39
+        "value": 101.6,
+        "mom_change": 0.4
       },
       {
         "date": "2025-01-01",
         "period": "2025 JAN",
-        "value": 101.7,
+        "value": 101.6,
         "mom_change": 0.0
       },
       {
         "date": "2025-02-01",
         "period": "2025 FEB",
-        "value": 102.0,
-        "mom_change": 0.29
+        "value": 101.9,
+        "mom_change": 0.3
       },
       {
         "date": "2025-03-01",
         "period": "2025 MAR",
-        "value": 102.2,
+        "value": 102.1,
         "mom_change": 0.2
       },
       {
         "date": "2025-04-01",
         "period": "2025 APR",
         "value": 102.0,
-        "mom_change": -0.2
+        "mom_change": -0.1
       },
       {
         "date": "2025-05-01",
@@ -9624,76 +9646,82 @@
       {
         "date": "2025-06-01",
         "period": "2025 JUN",
-        "value": 102.4,
-        "mom_change": 0.49
+        "value": 102.3,
+        "mom_change": 0.39
       },
       {
         "date": "2025-07-01",
         "period": "2025 JUL",
-        "value": 102.4,
-        "mom_change": 0.0
+        "value": 102.2,
+        "mom_change": -0.1
       },
       {
         "date": "2025-08-01",
         "period": "2025 AUG",
-        "value": 102.1,
-        "mom_change": -0.29
+        "value": 102.0,
+        "mom_change": -0.2
       },
       {
         "date": "2025-09-01",
         "period": "2025 SEP",
-        "value": 102.2,
-        "mom_change": 0.1
+        "value": 102.0,
+        "mom_change": 0.0
       },
       {
         "date": "2025-10-01",
         "period": "2025 OCT",
-        "value": 102.2,
+        "value": 102.0,
         "mom_change": 0.0
       },
       {
         "date": "2025-11-01",
         "period": "2025 NOV",
-        "value": 102.4,
-        "mom_change": 0.2
+        "value": 102.1,
+        "mom_change": 0.1
       },
       {
         "date": "2025-12-01",
         "period": "2025 DEC",
-        "value": 102.6,
+        "value": 102.3,
         "mom_change": 0.2
       },
       {
         "date": "2026-01-01",
         "period": "2026 JAN",
-        "value": 102.7,
-        "mom_change": 0.1
+        "value": 102.3,
+        "mom_change": 0.0
       },
       {
         "date": "2026-02-01",
         "period": "2026 FEB",
-        "value": 103.1,
-        "mom_change": 0.39
+        "value": 102.8,
+        "mom_change": 0.49
       },
       {
         "date": "2026-03-01",
         "period": "2026 MAR",
-        "value": 103.4,
-        "mom_change": 0.29
+        "value": 103.2,
+        "mom_change": 0.39
       },
       {
         "date": "2026-04-01",
         "period": "2026 APR",
-        "value": 103.3,
+        "value": 103.1,
         "mom_change": -0.1
+      },
+      {
+        "date": "2026-05-01",
+        "period": "2026 MAY",
+        "value": 103.2,
+        "mom_change": 0.1
       }
     ],
     "metadata": {
       "title": "Gross Value Added - Monthly (Index 1dp) :CVM SA",
       "cdid": "ECY2",
       "unit": "",
-      "release_date": "12-06-2026",
-      "next_release_ons": "16 July 2026"
+      "release_date": "16-07-2026",
+      "next_release_ons": "13 August 2026"
     }
   },
   "metadata": {
@@ -9702,5 +9730,5 @@
     "ed3h_title": "Gross Value Added - Monthly (3 month on 3 month growth) :CVM SA",
     "ecy2_title": "Gross Value Added - Monthly (Index 1dp) :CVM SA"
   },
-  "last_updated": "2026-06-27T11:46:17.211444+09:00"
+  "last_updated": "2026-07-26T04:36:01.473611+09:00"
 }

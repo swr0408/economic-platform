@@ -1184,16 +1184,22 @@
     },
     {
       "date": "2026-07-01",
-      "value": -29.2,
+      "value": -29.3,
       "forecast": -27.6,
       "previous": -29.7
+    },
+    {
+      "date": "2026-08-01",
+      "value": -29.6,
+      "forecast": -28.5,
+      "previous": -29.3
     }
   ],
   "latest": {
-    "date": "2026-07-01",
-    "value": -29.2,
-    "forecast": -27.6,
-    "previous": -29.7
+    "date": "2026-08-01",
+    "value": -29.6,
+    "forecast": -28.5,
+    "previous": -29.3
   },
   "metadata": {
     "source": "GfK",
@@ -1203,14 +1209,14 @@
     "note": "翌月の消費者信頼感予測値。0を上回ると消費意欲が高い状態を示す。"
   },
   "next_release": {
-    "date": "2026-07-24",
-    "datetime_utc": "2026-07-24T06:00:00+00:00",
-    "datetime_jst": "2026-07-24T15:00:00+09:00",
+    "date": "2026-08-27",
+    "datetime_utc": "2026-08-27T06:00:00+00:00",
+    "datetime_jst": "2026-08-27T15:00:00+09:00",
     "time_jst": "15:00",
-    "datetime_cet": "2026-07-24T08:00:00+02:00",
+    "datetime_cet": "2026-08-27T08:00:00+02:00",
     "time_cet": "08:00",
-    "label": "Consumer Confidence (Aug)",
-    "estimate": null
+    "label": "Consumer Confidence (Sep)",
+    "estimate": -30
   },
-  "last_updated": "2026-06-27T23:02:53.892859+09:00"
+  "last_updated": "2026-07-24T15:15:40.937886+09:00"
 }

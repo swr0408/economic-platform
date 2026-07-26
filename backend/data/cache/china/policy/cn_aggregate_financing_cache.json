@@ -812,16 +812,22 @@
     },
     {
       "date": "2026-05-31",
-      "flow": 20264.0,
+      "flow": 20293.0,
       "stock": 458.81,
       "yoy": 7.7
+    },
+    {
+      "date": "2026-06-30",
+      "flow": 33645.0,
+      "stock": 462.06,
+      "yoy": 7.4
     }
   ],
   "latest": {
-    "date": "2026-05-31",
-    "flow": 20264.0,
-    "stock": 458.81,
-    "yoy": 7.7
+    "date": "2026-06-30",
+    "flow": 33645.0,
+    "stock": 462.06,
+    "yoy": 7.4
   },
   "metadata": {
     "unit_flow": "100億元",
@@ -829,15 +835,15 @@
     "unit_yoy": "%",
     "indicator": "Aggregate Financing to the Real Economy",
     "source": "PBOC",
-    "total_records": 136,
-    "last_fetched": "2026-06-27T11:47:29.287089+09:00"
+    "total_records": 137,
+    "last_fetched": "2026-07-23T17:16:56.278821+09:00"
   },
   "next_release": {
-    "date": "2026-07-14",
-    "datetime_utc": "2026-07-14T07:00:00+00:00",
-    "datetime_jst": "2026-07-14T16:00:00+09:00",
-    "time_jst": "16:00",
-    "label": "Total Social Financing (Jun)",
-    "estimate": 3890
+    "date": "2026-08-13",
+    "datetime_utc": "2026-08-13T09:00:00+00:00",
+    "datetime_jst": "2026-08-13T18:00:00+09:00",
+    "time_jst": "18:00",
+    "label": "Total Social Financing (Jul)",
+    "estimate": 1000
   }
 }

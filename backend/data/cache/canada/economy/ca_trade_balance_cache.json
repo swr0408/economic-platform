@@ -3456,54 +3456,64 @@
     },
     {
       "date": "2026-01-01",
-      "balance": -3041.6,
-      "exports": 63080.4,
-      "imports": 66122.0,
-      "mom_change": -1978.8,
-      "mom": -186.19,
-      "yoy_change": -6687.2,
-      "yoy": -183.43
+      "balance": -3125.4,
+      "exports": 63109.8,
+      "imports": 66235.2,
+      "mom_change": -2062.6,
+      "mom": -194.07,
+      "yoy_change": -6771.0,
+      "yoy": -185.73
     },
     {
       "date": "2026-02-01",
-      "balance": -5187.1,
-      "exports": 67218.4,
-      "imports": 72405.5,
-      "mom_change": -2145.5,
-      "mom": -70.54,
-      "yoy_change": -3987.8,
-      "yoy": -332.51
+      "balance": -5319.5,
+      "exports": 67300.6,
+      "imports": 72620.2,
+      "mom_change": -2194.1,
+      "mom": -70.2,
+      "yoy_change": -4120.2,
+      "yoy": -343.55
     },
     {
       "date": "2026-03-01",
-      "balance": 1753.3,
-      "exports": 73979.9,
-      "imports": 72226.6,
-      "mom_change": 6940.4,
-      "mom": 133.8,
-      "yoy_change": 3665.3,
-      "yoy": 191.7
+      "balance": 1882.5,
+      "exports": 74482.0,
+      "imports": 72599.5,
+      "mom_change": 7202.0,
+      "mom": 135.39,
+      "yoy_change": 3794.5,
+      "yoy": 198.46
     },
     {
       "date": "2026-04-01",
-      "balance": 2720.9,
-      "exports": 75160.4,
-      "imports": 72439.5,
-      "mom_change": 967.6,
-      "mom": 55.19,
-      "yoy_change": 9890.1,
-      "yoy": 137.95
+      "balance": 3405.3,
+      "exports": 76401.3,
+      "imports": 72996.0,
+      "mom_change": 1522.8,
+      "mom": 80.89,
+      "yoy_change": 10574.5,
+      "yoy": 147.5
+    },
+    {
+      "date": "2026-05-01",
+      "balance": 4243.4,
+      "exports": 77099.2,
+      "imports": 72855.8,
+      "mom_change": 838.1,
+      "mom": 24.61,
+      "yoy_change": 9990.1,
+      "yoy": 173.84
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "balance": 2720.9,
-    "exports": 75160.4,
-    "imports": 72439.5,
-    "mom_change": 967.6,
-    "mom": 55.19,
-    "yoy_change": 9890.1,
-    "yoy": 137.95
+    "date": "2026-05-01",
+    "balance": 4243.4,
+    "exports": 77099.2,
+    "imports": 72855.8,
+    "mom_change": 838.1,
+    "mom": 24.61,
+    "yoy_change": 9990.1,
+    "yoy": 173.84
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -3514,14 +3524,14 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-07-07",
-    "datetime_utc": "2026-07-07T12:30:00+00:00",
-    "datetime_jst": "2026-07-07T21:30:00+09:00",
+    "date": "2026-08-04",
+    "datetime_utc": "2026-08-04T12:30:00+00:00",
+    "datetime_jst": "2026-08-04T21:30:00+09:00",
     "time_jst": "21:30",
-    "datetime_toronto": "2026-07-07T08:30:00-04:00",
+    "datetime_toronto": "2026-08-04T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "Imports (May)",
-    "estimate": null
+    "label": "Imports (Jun)",
+    "estimate": 69.2
   },
-  "last_updated": "2026-06-27T11:46:35.590396+09:00"
+  "last_updated": "2026-07-26T01:21:50.904806+09:00"
 }

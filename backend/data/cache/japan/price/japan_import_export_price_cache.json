@@ -376,31 +376,37 @@
       "date": "2026-03-01",
       "export_yen_yoy": 12.22,
       "import_yen_yoy": 8.11,
-      "import_contract_yoy": 2.32
+      "import_contract_yoy": 2.4
     },
     {
       "date": "2026-04-01",
-      "export_yen_yoy": 19.09,
-      "import_yen_yoy": 21.03,
-      "import_contract_yoy": 10.8
+      "export_yen_yoy": 19.01,
+      "import_yen_yoy": 21.29,
+      "import_contract_yoy": 11.04
     },
     {
       "date": "2026-05-01",
-      "export_yen_yoy": 20.59,
-      "import_yen_yoy": 25.54,
-      "import_contract_yoy": 15.5
+      "export_yen_yoy": 20.37,
+      "import_yen_yoy": 26.12,
+      "import_contract_yoy": 16.07
+    },
+    {
+      "date": "2026-06-01",
+      "export_yen_yoy": 20.71,
+      "import_yen_yoy": 29.68,
+      "import_contract_yoy": 17.77
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "export_yen_yoy": 20.59,
-    "import_yen_yoy": 25.54,
-    "import_contract_yoy": 15.5
+    "date": "2026-06-01",
+    "export_yen_yoy": 20.71,
+    "import_yen_yoy": 29.68,
+    "import_contract_yoy": 17.77
   },
   "next_release": {
-    "date": "2026-07-10",
-    "datetime_jst": "2026-07-10T08:50:00+09:00",
-    "label": "企業物価指数（輸入・輸出物価含む）- 2026/07/10 8:50 JST（予定）"
+    "date": "2026-08-10",
+    "datetime_jst": "2026-08-10T08:50:00+09:00",
+    "label": "企業物価指数（輸入・輸出物価含む）- 2026/08/10 8:50 JST（予定）"
   },
-  "last_updated": "2026-06-27T18:54:45.281125+09:00"
+  "last_updated": "2026-07-25T22:53:12.634909+09:00"
 }

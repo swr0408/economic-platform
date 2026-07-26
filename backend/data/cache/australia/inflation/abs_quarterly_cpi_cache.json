@@ -3124,8 +3124,8 @@
     "time_jst": "10:30",
     "datetime_sydney": "2026-07-29T11:30:00+10:00",
     "time_sydney": "11:30",
-    "label": "CPI MoM (Jun)",
-    "estimate": null
+    "label": "RBA Trimmed Mean CPI YoY (Jun)",
+    "estimate": 3.7
   },
-  "last_updated": "2026-06-27T11:46:42.688863+09:00"
+  "last_updated": "2026-07-26T01:18:32.599579+09:00"
 }

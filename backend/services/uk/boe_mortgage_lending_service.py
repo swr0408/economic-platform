@@ -86,11 +86,16 @@ class BoEMortgageLendingService:
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
             latest = data[-1] if data else None
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
             cache_payload = {
                 "data": data,
                 "latest": latest,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -101,7 +106,7 @@ class BoEMortgageLendingService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "csv" if csv_data else "database",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         # ファイルキャッシュフォールバック

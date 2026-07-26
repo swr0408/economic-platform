@@ -2042,7 +2042,7 @@
     },
     {
       "date": "2019-06-01",
-      "value": 0.15,
+      "value": 0.16,
       "forecast": null,
       "previous": null
     },
@@ -2054,7 +2054,7 @@
     },
     {
       "date": "2019-08-01",
-      "value": -0.45,
+      "value": -0.46,
       "forecast": null,
       "previous": null
     },
@@ -2078,7 +2078,7 @@
     },
     {
       "date": "2019-12-01",
-      "value": 0.1,
+      "value": 0.09,
       "forecast": null,
       "previous": null
     },
@@ -2096,7 +2096,7 @@
     },
     {
       "date": "2020-03-01",
-      "value": 0.77,
+      "value": 0.76,
       "forecast": null,
       "previous": null
     },
@@ -2114,7 +2114,7 @@
     },
     {
       "date": "2020-06-01",
-      "value": -1.72,
+      "value": -1.71,
       "forecast": null,
       "previous": null
     },
@@ -2150,7 +2150,7 @@
     },
     {
       "date": "2020-12-01",
-      "value": 0.89,
+      "value": 0.88,
       "forecast": null,
       "previous": null
     },
@@ -2168,7 +2168,7 @@
     },
     {
       "date": "2021-03-01",
-      "value": -0.37,
+      "value": -0.38,
       "forecast": null,
       "previous": null
     },
@@ -2180,7 +2180,7 @@
     },
     {
       "date": "2021-05-01",
-      "value": 1.61,
+      "value": 1.6,
       "forecast": null,
       "previous": null
     },
@@ -2216,7 +2216,7 @@
     },
     {
       "date": "2021-11-01",
-      "value": 1.19,
+      "value": 1.2,
       "forecast": null,
       "previous": null
     },
@@ -2246,25 +2246,25 @@
     },
     {
       "date": "2022-04-01",
-      "value": 0.39,
+      "value": 0.4,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2022-05-01",
-      "value": 0.64,
+      "value": 0.63,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2022-06-01",
-      "value": 0.19,
+      "value": 0.2,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2022-07-01",
-      "value": 0.15,
+      "value": 0.14,
       "forecast": null,
       "previous": null
     },
@@ -2276,7 +2276,7 @@
     },
     {
       "date": "2022-09-01",
-      "value": -0.12,
+      "value": -0.11,
       "forecast": null,
       "previous": null
     },
@@ -2288,13 +2288,13 @@
     },
     {
       "date": "2022-11-01",
-      "value": -1.46,
+      "value": -1.45,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2022-12-01",
-      "value": -0.31,
+      "value": -0.32,
       "forecast": null,
       "previous": null
     },
@@ -2306,7 +2306,7 @@
     },
     {
       "date": "2023-02-01",
-      "value": -0.81,
+      "value": -0.82,
       "forecast": null,
       "previous": null
     },
@@ -2318,25 +2318,25 @@
     },
     {
       "date": "2023-04-01",
-      "value": 0.9,
+      "value": 0.91,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2023-05-01",
-      "value": -0.22,
+      "value": -0.23,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2023-06-01",
-      "value": 0.27,
+      "value": 0.31,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2023-07-01",
-      "value": -0.26,
+      "value": -0.27,
       "forecast": null,
       "previous": null
     },
@@ -2348,13 +2348,13 @@
     },
     {
       "date": "2023-09-01",
-      "value": -0.17,
+      "value": -0.18,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2023-10-01",
-      "value": 0.87,
+      "value": 0.86,
       "forecast": null,
       "previous": null
     },
@@ -2366,55 +2366,55 @@
     },
     {
       "date": "2023-12-01",
-      "value": -0.11,
+      "value": -0.12,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2024-01-01",
-      "value": 0.65,
+      "value": 0.64,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2024-02-01",
-      "value": 0.52,
+      "value": 0.51,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2024-03-01",
-      "value": -0.31,
+      "value": -0.32,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2024-04-01",
-      "value": -0.04,
+      "value": -0.02,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2024-05-01",
-      "value": 0.51,
+      "value": 0.49,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2024-06-01",
-      "value": 0.51,
+      "value": 0.6,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2024-07-01",
-      "value": 0.3,
+      "value": 0.26,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2024-08-01",
-      "value": 0.01,
+      "value": 0.0,
       "forecast": null,
       "previous": null
     },
@@ -2432,97 +2432,97 @@
     },
     {
       "date": "2024-11-01",
-      "value": 1.02,
+      "value": 1.01,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2024-12-01",
-      "value": 0.85,
+      "value": 0.83,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2025-01-01",
-      "value": -0.02,
+      "value": -0.04,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2025-02-01",
-      "value": 0.28,
+      "value": 0.26,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2025-03-01",
-      "value": -0.25,
+      "value": -0.26,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2025-04-01",
-      "value": -0.49,
+      "value": -0.46,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2025-05-01",
-      "value": 0.67,
+      "value": 0.65,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2025-06-01",
-      "value": -0.74,
+      "value": -0.62,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2025-07-01",
-      "value": 0.52,
+      "value": 0.45,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2025-08-01",
-      "value": -0.1,
+      "value": -0.11,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2025-09-01",
-      "value": 0.5,
+      "value": 0.49,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2025-10-01",
-      "value": 0.25,
+      "value": 0.24,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2025-11-01",
-      "value": 0.32,
+      "value": 0.31,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2025-12-01",
-      "value": -0.35,
+      "value": -0.36,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2026-01-01",
-      "value": 0.29,
+      "value": 0.28,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2026-02-01",
-      "value": 0.31,
+      "value": 0.29,
       "forecast": null,
       "previous": null
     },
@@ -2534,13 +2534,19 @@
     },
     {
       "date": "2026-04-01",
-      "value": 0.37,
+      "value": 0.41,
       "forecast": null,
       "previous": null
     },
     {
       "date": "2026-05-01",
-      "value": -0.59,
+      "value": -0.61,
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2026-06-01",
+      "value": -0.03,
       "forecast": null,
       "previous": null
     }
@@ -5023,20 +5029,26 @@
       "value": 1.68,
       "forecast": null,
       "previous": null
+    },
+    {
+      "date": "2026-06-01",
+      "value": 2.16,
+      "forecast": null,
+      "previous": null
     }
   ],
   "latest_mom": {
-    "date": "2026-05-01",
-    "value": -0.59,
+    "date": "2026-06-01",
+    "value": -0.03,
     "forecast": null,
     "previous": null
   },
   "latest_yoy": {
-    "date": "2026-05-01",
-    "value": 1.68,
+    "date": "2026-06-01",
+    "value": 2.16,
     "forecast": null,
     "previous": null
   },
   "next_release": null,
-  "last_updated": "2026-06-28T00:31:22.471971+09:00"
+  "last_updated": "2026-07-26T04:38:19.167952+09:00"
 }

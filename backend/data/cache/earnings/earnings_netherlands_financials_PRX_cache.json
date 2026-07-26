@@ -8,6 +8,29 @@
   "reported_currency": "USD",
   "periods": [
     {
+      "date": "2026-03-31",
+      "period": "Q4",
+      "fiscal_year": "2026",
+      "reported_currency": "USD",
+      "revenue": 6091146053.0,
+      "gross_profit": 2736108355.0,
+      "operating_income": 98147371.0,
+      "net_income": 6015031765.0,
+      "eps_diluted": 0.55,
+      "gross_margin": 44.91943439202902,
+      "operating_margin": 1.6113120609160345,
+      "net_margin": 98.75041105010916,
+      "operating_cf": 294594649.0,
+      "fcf": 251691650.0,
+      "capex": -42902999.0,
+      "buyback": -2750482512.0,
+      "dividends_paid": -508763925.0,
+      "fcf_margin": 4.132090214386459,
+      "depreciation_amortization": 28042106.0,
+      "revenue_yoy": 109.2458279972518,
+      "eps_yoy": 205.55555555555557
+    },
+    {
       "date": "2025-09-30",
       "period": "Q2",
       "fiscal_year": "2026",
@@ -96,8 +119,8 @@
       "dividends_paid": -199718038.0,
       "fcf_margin": 4.500171762281003,
       "depreciation_amortization": 84303091.0,
-      "revenue_yoy": -25.321096089153,
-      "eps_yoy": -76.62337662337663
+      "revenue_yoy": null,
+      "eps_yoy": null
     },
     {
       "date": "2023-09-30",
@@ -167,36 +190,13 @@
       "depreciation_amortization": 98000000.0,
       "revenue_yoy": null,
       "eps_yoy": null
-    },
-    {
-      "date": "2022-03-31",
-      "period": "Q4",
-      "fiscal_year": "2022",
-      "reported_currency": "USD",
-      "revenue": 3898021861.0,
-      "gross_profit": 954764102.0,
-      "operating_income": -346627570.0,
-      "net_income": 2914543049.0,
-      "eps_diluted": 0.77,
-      "gross_margin": 24.493554321808357,
-      "operating_margin": -8.892396768423357,
-      "net_margin": 74.76979742366817,
-      "operating_cf": -634442837.0,
-      "fcf": -765854211.0,
-      "capex": -131411374.0,
-      "buyback": -3443499131.0,
-      "dividends_paid": -244075033.0,
-      "fcf_margin": -19.647252845409323,
-      "depreciation_amortization": 139471447.0,
-      "revenue_yoy": null,
-      "eps_yoy": null
     }
   ],
   "ir_home": "https://www.prosus.com/investors/",
   "ir_results": "https://www.prosus.com/investors",
   "ir_tdnet": "",
   "ir_notes": "",
-  "last_updated": "2026-05-11T15:54:12.095857+00:00",
+  "last_updated": "2026-07-05T13:12:00.675061+00:00",
   "cached": false,
   "status": "ok"
 }

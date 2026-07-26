@@ -1097,21 +1097,27 @@
       "value": 54.0,
       "forecast": 53.0,
       "previous": 52.7
+    },
+    {
+      "date": "2026-06-01",
+      "value": 53.3,
+      "forecast": 54.0,
+      "previous": 54.0
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": 54.0,
-    "forecast": 53.0,
-    "previous": 52.7
+    "date": "2026-06-01",
+    "value": 53.3,
+    "forecast": 54.0,
+    "previous": 54.0
   },
   "next_release": {
-    "date": "2026-07-01",
-    "datetime_utc": "2026-07-01T14:00:00+00:00",
-    "datetime_jst": "2026-07-01T23:00:00+09:00",
+    "date": "2026-08-03",
+    "datetime_utc": "2026-08-03T14:00:00+00:00",
+    "datetime_jst": "2026-08-03T23:00:00+09:00",
     "time_jst": "23:00",
-    "label": "ISM Manufacturing New Orders (Jun)",
-    "estimate": 56
+    "label": "ISM Manufacturing Prices (Jul)",
+    "estimate": null
   },
-  "last_updated": "2026-06-28T00:30:00.484439+09:00"
+  "last_updated": "2026-07-24T11:30:40.344134+09:00"
 }

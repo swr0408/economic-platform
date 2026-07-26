@@ -45,7 +45,12 @@ CSV_DIR = Path(__file__).parent.parent.parent / "data" / "csv_import"
 IVEY_PMI_CSV = CSV_DIR / "IveyPMI.csv"
 
 # FMPパターン
-FMP_PATTERN = "Ivey PMI s.a"
+# 注意: FMPは2026-02参照月から季節調整版イベント名を "Ivey PMI s.a" → "Ivey PMI" に
+# 改名した（"s.a" 表記が消滅）。旧名固定だと改名後を取りこぼし凍結するため、汎用名
+# "Ivey PMI" で拾い、非季節調整版 "Ivey PMI n.s.a" を FMP_EXCLUDE で除外する。
+# （旧 "Ivey PMI s.a (...)" も "Ivey PMI" 部分一致で引き続きヒットする）
+FMP_PATTERN = "Ivey PMI"
+FMP_EXCLUDE = "n.s.a"
 COUNTRY = "CA"
 
 MONTH_MAP = {
@@ -86,6 +91,11 @@ class CaIveyPmiService:
         data = self._load_all_data()
 
         latest = data[-1] if data else None
+        from services.usa.fmp_next_release_utils import guarded_last_updated
+        now_str = datetime.now(JST).isoformat()
+        last_updated = guarded_last_updated(
+            self.DATA_CACHE_KEY, latest.get("date") if latest else None, now_str
+        )
 
         cache_payload = {
             "data": data,
@@ -98,7 +108,7 @@ class CaIveyPmiService:
                 "frequency": "monthly",
                 "threshold": 50,
             },
-            "last_updated": datetime.now(JST).isoformat(),
+            "last_updated": last_updated,
         }
         redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
         self._save_file_cache(cache_payload)
@@ -110,7 +120,7 @@ class CaIveyPmiService:
             "next_release": next_release,
             "cached": False,
             "source": "csv+db+fmp",
-            "last_updated": datetime.now(JST).isoformat(),
+            "last_updated": last_updated,
         }
 
     def _load_all_data(self) -> List[Dict[str, Any]]:
@@ -211,6 +221,7 @@ class CaIveyPmiService:
                     FROM economic_calendar_events
                     WHERE country = :country
                       AND LOWER(event) LIKE LOWER(:pattern)
+                      AND LOWER(event) NOT LIKE LOWER(:exclude)
                       AND actual IS NOT NULL
                     ORDER BY datetime_utc DESC
                     LIMIT 500
@@ -218,7 +229,8 @@ class CaIveyPmiService:
 
                 rows = session.execute(query, {
                     "country": COUNTRY,
-                    "pattern": f"%{FMP_PATTERN}%"
+                    "pattern": f"%{FMP_PATTERN}%",
+                    "exclude": f"%{FMP_EXCLUDE}%",
                 }).fetchall()
 
                 for row in rows:
@@ -270,7 +282,11 @@ class CaIveyPmiService:
                     continue
 
                 event_name = event.get("event", "")
-                if FMP_PATTERN.lower() not in event_name.lower():
+                event_name_lower = event_name.lower()
+                if FMP_PATTERN.lower() not in event_name_lower:
+                    continue
+                # 非季節調整版(n.s.a)を除外（季節調整版のみ採用）
+                if FMP_EXCLUDE in event_name_lower:
                     continue
 
                 dt_utc, _ = fmp_service.parse_datetime(event.get("date", ""))

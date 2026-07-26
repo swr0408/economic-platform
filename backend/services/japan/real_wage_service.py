@@ -106,6 +106,24 @@ class RealWageService:
 
         if all_data or common_data:
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
+            now_str = datetime.now(JST).isoformat()
+            # 発表レース対策ラグガード: 主要系列(all、無ければcommon)の最新月が既存キャッシュを
+            # 超えていなければ last_updated を据え置き、次回再取得で新月を自己回復させる。
+            _new_date = (all_data[-1].get("date") if all_data else
+                         (common_data[-1].get("date") if common_data else None))
+            _existing = redis_client.get(self.DATA_CACHE_KEY)
+            _old_date = None
+            if isinstance(_existing, dict):
+                for _k in ("all", "common"):
+                    _s = _existing.get(_k)
+                    if isinstance(_s, dict) and isinstance(_s.get("latest"), dict):
+                        _old_date = _s["latest"].get("date")
+                        if _old_date:
+                            break
+            if _existing and _old_date and _new_date and _new_date <= _old_date:
+                last_updated = _existing.get("last_updated", now_str)
+            else:
+                last_updated = now_str
 
             cache_payload = {
                 "all": {
@@ -117,7 +135,7 @@ class RealWageService:
                     "latest": common_data[-1] if common_data else None,
                 } if common_data else None,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)

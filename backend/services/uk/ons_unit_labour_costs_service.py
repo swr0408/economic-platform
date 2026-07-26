@@ -89,12 +89,17 @@ class ONSUnitLabourCostsService:
             yoy_data = api_result.get("yoy", {}).get("data", [])
             latest = yoy_data[-1] if yoy_data else None
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
             cache_payload = {
                 "yoy": api_result.get("yoy", {}),
                 "qoq": api_result.get("qoq", {}),
                 "latest": latest,
                 "metadata": api_result.get("metadata", {}),
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -107,7 +112,7 @@ class ONSUnitLabourCostsService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "ons_api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

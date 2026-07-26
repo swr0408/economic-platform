@@ -11,6 +11,7 @@
 """
 import asyncio
 import re
+import time
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel
@@ -37,10 +38,37 @@ router = APIRouter(tags=["AdminStaleness"])
 _FILE_RE = re.compile(r"^[a-z0-9_]+(?:/[a-z0-9_]+)+\.json$")
 
 
+# スキャン結果の短期キャッシュ。
+# 走査は Docker バインドマウント環境で 10〜15 秒かかる (mtime stat が支配的で
+# パースキャッシュが効かない) うえ、専用プールが max_workers=1 のため
+# 「初期表示(遅延検知) → 全指標へ切替」のような連続リクエストが直列に並び、
+# 2 本目がフロントの 30s タイムアウトを超過していた。
+# include_ok=True のフル結果を 1 回だけ走査して短期キャッシュし、
+# category / include_ok の絞り込みはキャッシュ済み結果への後段フィルタで返す。
+_SCAN_TTL_SECONDS = 60.0
+_scan_cache: dict = {"ts": 0.0, "result": None}
+_scan_lock = asyncio.Lock()
+
+
+async def _get_scan_result(fresh: bool) -> dict:
+    """フル走査結果 (include_ok=True) を取得。TTL 内はキャッシュを返す。
+
+    ロックで走査を直列化し、待っていた後続リクエストは走査完了後に
+    同じキャッシュを再利用する (二重走査させない)。
+    """
+    async with _scan_lock:
+        age = time.monotonic() - _scan_cache["ts"]
+        if fresh or _scan_cache["result"] is None or age > _SCAN_TTL_SECONDS:
+            _scan_cache["result"] = await scan_stale_caches_async(include_ok=True)
+            _scan_cache["ts"] = time.monotonic()
+        return _scan_cache["result"]
+
+
 @router.get("/api/admin/staleness")
 async def api_staleness(
     category: str = Query(None, description="STUCK | WRITER_STOPPED | LAGGING で絞り込み"),
     include_ok: bool = Query(False, description="正常なキャッシュも含める"),
+    fresh: bool = Query(False, description="短期キャッシュを無視して再走査する"),
     _master: User = Depends(_require_master),
 ):
     """全キャッシュ (754) を走査し、期待リリース間隔より遅れているものを返す。
@@ -53,12 +81,20 @@ async def api_staleness(
       - WRITER_STOPPED: 再取得自体が止まっている
       - LAGGING       : やや遅延
     """
-    result = await scan_stale_caches_async(include_ok=include_ok)
+    full = await _get_scan_result(fresh)
+    items = list(full["items"])
+    if not include_ok:
+        items = [r for r in items if r["category"] not in ("OK", "UNMONITORED")]
     if category:
         cats = {c.strip().upper() for c in category.split(",")}
-        result["items"] = [r for r in result["items"] if r["category"] in cats]
-        result["flagged"] = len(result["items"])
-    return result
+        items = [r for r in items if r["category"] in cats]
+    return {
+        "generated_at": full["generated_at"],
+        "total": full["total"],
+        "flagged": len([r for r in items if r["category"] != "OK"]),
+        "counts": full["counts"],
+        "items": items,
+    }
 
 
 class RefreshRequest(BaseModel):

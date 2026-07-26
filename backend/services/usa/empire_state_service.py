@@ -28,6 +28,7 @@ from core.redis_client import redis_client
 from services.usa.fmp_next_release_utils import (
     get_next_release_from_fmp,
     should_refresh_by_fmp_schedule,
+    guarded_last_updated,
 )
 
 
@@ -110,11 +111,15 @@ class EmpireStateService:
 
             # 最新値を取得
             latest = fetched_data[-1] if fetched_data else None
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
 
             cache_payload = {
                 "data": fetched_data,
                 "latest": latest,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             # last_updated方式: TTL=0（無期限、発表日判定で無効化）
             redis_client.set(self.CACHE_KEY, cache_payload, expire=0)
@@ -125,7 +130,7 @@ class EmpireStateService:
                 "next_release": get_next_release_from_fmp('empire_state'),
                 "cached": False,
                 "source": "fred",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         return {

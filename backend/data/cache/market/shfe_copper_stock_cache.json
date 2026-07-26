@@ -17219,22 +17219,102 @@
     {
       "date": "2026-06-26",
       "stock_tonnes": 74528.0
+    },
+    {
+      "date": "2026-06-29",
+      "stock_tonnes": 73289.0
+    },
+    {
+      "date": "2026-06-30",
+      "stock_tonnes": 74617.0
+    },
+    {
+      "date": "2026-07-01",
+      "stock_tonnes": 73569.0
+    },
+    {
+      "date": "2026-07-02",
+      "stock_tonnes": 70079.0
+    },
+    {
+      "date": "2026-07-03",
+      "stock_tonnes": 68472.0
+    },
+    {
+      "date": "2026-07-06",
+      "stock_tonnes": 64172.0
+    },
+    {
+      "date": "2026-07-07",
+      "stock_tonnes": 60371.0
+    },
+    {
+      "date": "2026-07-08",
+      "stock_tonnes": 57336.0
+    },
+    {
+      "date": "2026-07-09",
+      "stock_tonnes": 53849.0
+    },
+    {
+      "date": "2026-07-10",
+      "stock_tonnes": 48410.0
+    },
+    {
+      "date": "2026-07-13",
+      "stock_tonnes": 47158.0
+    },
+    {
+      "date": "2026-07-14",
+      "stock_tonnes": 44697.0
+    },
+    {
+      "date": "2026-07-15",
+      "stock_tonnes": 43944.0
+    },
+    {
+      "date": "2026-07-16",
+      "stock_tonnes": 42894.0
+    },
+    {
+      "date": "2026-07-17",
+      "stock_tonnes": 39652.0
+    },
+    {
+      "date": "2026-07-20",
+      "stock_tonnes": 35091.0
+    },
+    {
+      "date": "2026-07-21",
+      "stock_tonnes": 33415.0
+    },
+    {
+      "date": "2026-07-22",
+      "stock_tonnes": 32539.0
+    },
+    {
+      "date": "2026-07-23",
+      "stock_tonnes": 31184.0
+    },
+    {
+      "date": "2026-07-24",
+      "stock_tonnes": 28668.0
     }
   ],
   "latest": {
-    "date": "2026-06-26",
-    "stock_tonnes": 74528.0
+    "date": "2026-07-24",
+    "stock_tonnes": 28668.0
   },
   "metadata": {
     "source": "SHFE (Eastmoney)",
     "indicator": "SHFE Copper Warehouse Stock",
     "unit": "tonnes",
     "frequency": "daily",
-    "data_count": 4305,
+    "data_count": 4325,
     "start_date": "2008-10-06",
-    "end_date": "2026-06-26"
+    "end_date": "2026-07-24"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-27T19:37:52.787522+09:00"
+  "last_updated": "2026-07-24T20:53:31.369760+09:00"
 }

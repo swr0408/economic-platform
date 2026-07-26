@@ -8,6 +8,31 @@
   "reported_currency": "USD",
   "periods": [
     {
+      "date": "2026-06-30",
+      "period": "Q2",
+      "fiscal_year": "2026",
+      "reported_currency": "USD",
+      "revenue": 119796000000.0,
+      "gross_profit": 73853000000.0,
+      "operating_income": 40770000000.0,
+      "net_income": 112193000000.0,
+      "eps_diluted": 9.11,
+      "gross_margin": 61.648969915523054,
+      "operating_margin": 34.03285585495342,
+      "net_margin": 93.65337740826071,
+      "operating_cf": 39069000000.0,
+      "fcf": -5855000000.0,
+      "capex": -44924000000.0,
+      "buyback": 0.0,
+      "dividends_paid": -2689000000.0,
+      "fcf_margin": -4.8874753748038335,
+      "depreciation_amortization": 7104000000.0,
+      "rd_expenses": 18219000000.0,
+      "stock_based_comp": 7957000000.0,
+      "revenue_yoy": 24.23362508814867,
+      "eps_yoy": 294.37229437229433
+    },
+    {
       "date": "2026-03-31",
       "period": "Q1",
       "fiscal_year": "2026",
@@ -104,8 +129,8 @@
       "depreciation_amortization": 4998000000.0,
       "rd_expenses": 13808000000.0,
       "stock_based_comp": 5998000000.0,
-      "revenue_yoy": 13.790092280097236,
-      "eps_yoy": 22.222222222222232
+      "revenue_yoy": null,
+      "eps_yoy": null
     },
     {
       "date": "2025-03-31",
@@ -181,38 +206,13 @@
       "stock_based_comp": 5846000000.0,
       "revenue_yoy": null,
       "eps_yoy": null
-    },
-    {
-      "date": "2024-06-30",
-      "period": "Q2",
-      "fiscal_year": "2024",
-      "reported_currency": "USD",
-      "revenue": 84742000000.0,
-      "gross_profit": 49235000000.0,
-      "operating_income": 27425000000.0,
-      "net_income": 23619000000.0,
-      "eps_diluted": 1.89,
-      "gross_margin": 58.099879634655785,
-      "operating_margin": 32.362936914399,
-      "net_margin": 27.871657501593074,
-      "operating_cf": 26640000000.0,
-      "fcf": 13454000000.0,
-      "capex": -13186000000.0,
-      "buyback": -15684000000.0,
-      "dividends_paid": -2466000000.0,
-      "fcf_margin": 15.876424913266149,
-      "depreciation_amortization": 3708000000.0,
-      "rd_expenses": 11860000000.0,
-      "stock_based_comp": 5865000000.0,
-      "revenue_yoy": null,
-      "eps_yoy": null
     }
   ],
   "ir_home": "https://abc.xyz/investor/",
   "ir_results": "https://abc.xyz/investor/",
   "ir_tdnet": "",
   "ir_notes": "Earnings & Events セクション",
-  "last_updated": "2026-05-11T15:53:44.472388+00:00",
+  "last_updated": "2026-07-25T13:50:52.689018+00:00",
   "cached": false,
   "status": "ok"
 }

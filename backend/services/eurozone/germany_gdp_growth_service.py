@@ -141,6 +141,12 @@ class GermanyGDPGrowthService:
                 country=self.FMP_COUNTRY
             )
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("gdp_growth_qoq", "gdp_growth_yoy"),
+                _max_date_of(qoq_data, yoy_data), now_str
+            )
             cache_payload = {
                 "gdp_growth_qoq": qoq_data,
                 "gdp_growth_yoy": yoy_data,
@@ -154,7 +160,7 @@ class GermanyGDPGrowthService:
                     "yoy_adjustment": "price adjusted (preisbereinigt)",
                 },
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             # ファイルキャッシュは Destatis 成功時のみ更新（API障害時に上書きしない）
@@ -168,7 +174,7 @@ class GermanyGDPGrowthService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "destatis + fmp" if destatis_qoq_count > 0 else "file_cache + fmp",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック（FMPもない場合）

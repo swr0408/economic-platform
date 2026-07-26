@@ -667,11 +667,15 @@
     {
       "date": "2026-05-01",
       "value": 73.8
+    },
+    {
+      "date": "2026-06-01",
+      "value": 69.9
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": 73.8
+    "date": "2026-06-01",
+    "value": 69.9
   },
   "metadata": {
     "source": "CIER (Chung-Hua Institution for Economic Research)",
@@ -681,5 +685,5 @@
     "frequency": "monthly"
   },
   "next_release": null,
-  "last_updated": "2026-06-03T20:01:41.873683+09:00"
+  "last_updated": "2026-07-26T01:49:21.467966+09:00"
 }

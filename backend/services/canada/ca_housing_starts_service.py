@@ -81,6 +81,11 @@ class CaHousingStartsService:
         if result:
             # 最新値を取得
             latest = result[-1] if result else None
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
             next_release = get_next_release_by_pattern(FMP_HOUSING_STARTS_PATTERN, country="CA")
 
             cache_payload = {
@@ -95,7 +100,7 @@ class CaHousingStartsService:
                     "frequency": "monthly",
                 },
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=self.CACHE_TTL)
             self._save_file_cache(cache_payload)
@@ -107,7 +112,7 @@ class CaHousingStartsService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

@@ -1385,14 +1385,21 @@
       "variable_1m_5m": 3.0,
       "fixed_500k_1m": 1.44,
       "fixed_1m_5m": 1.41
+    },
+    {
+      "date": "2026-04-01",
+      "variable_500k_1m": 3.0,
+      "variable_1m_5m": 3.0,
+      "fixed_500k_1m": 1.6,
+      "fixed_1m_5m": 1.475
     }
   ],
   "latest": {
-    "date": "2026-03-01",
+    "date": "2026-04-01",
     "variable_500k_1m": 3.0,
     "variable_1m_5m": 3.0,
-    "fixed_500k_1m": 1.44,
-    "fixed_1m_5m": 1.41
+    "fixed_500k_1m": 1.6,
+    "fixed_1m_5m": 1.475
   },
   "metadata": {
     "source": "Swiss National Bank",
@@ -1406,6 +1413,6 @@
       "fixed_1m_5m": "固定金利（100万〜500万CHF）"
     }
   },
-  "publishing_date": "2026-06-22 09:00",
-  "last_updated": "2026-06-27T11:46:20.607041+09:00"
+  "publishing_date": "2026-07-21 09:00",
+  "last_updated": "2026-07-26T01:36:45.425732+09:00"
 }

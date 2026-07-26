@@ -128,6 +128,12 @@ class EUTermsOfTradeService:
             latest_export_uv = export_uv_data[-1] if export_uv_data else None
             latest_import_uv = import_uv_data[-1] if import_uv_data else None
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("terms_of_trade", "export_uv", "import_uv"),
+                _max_date_of(terms_of_trade, export_uv_data, import_uv_data), now_str
+            )
             cache_payload = {
                 "terms_of_trade": terms_of_trade,
                 "export_uv": export_uv_data,
@@ -146,7 +152,7 @@ class EUTermsOfTradeService:
                     "description": "Terms of Trade = Export Unit Value / Import Unit Value × 100",
                 },
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)

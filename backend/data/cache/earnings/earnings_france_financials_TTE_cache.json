@@ -8,6 +8,31 @@
   "reported_currency": "USD",
   "periods": [
     {
+      "date": "2026-06-30",
+      "period": "Q2",
+      "fiscal_year": "2026",
+      "reported_currency": "USD",
+      "revenue": 56082960000.0,
+      "gross_profit": 7446362000.0,
+      "operating_income": 7446362000.0,
+      "net_income": 5341421000.0,
+      "eps_diluted": 2.37,
+      "gross_margin": 13.27740547217907,
+      "operating_margin": 13.27740547217907,
+      "net_margin": 9.524142448972023,
+      "operating_cf": 10640233197.0,
+      "fcf": 6483593063.0,
+      "capex": -4156640134.0,
+      "buyback": -1481578759.0,
+      "dividends_paid": -2056241952.0,
+      "fcf_margin": 11.560718376847442,
+      "depreciation_amortization": 3020388000.0,
+      "total_debt": 62639988000.0,
+      "cash_equivalents": 27647981000.0,
+      "revenue_yoy": 25.532634971796934,
+      "eps_yoy": 102.56410256410258
+    },
+    {
       "date": "2026-03-31",
       "period": "Q1",
       "fiscal_year": "2026",
@@ -104,8 +129,8 @@
       "depreciation_amortization": 3360000000.0,
       "total_debt": 62221000000.0,
       "cash_equivalents": 20424000000.0,
-      "revenue_yoy": -9.163735437041254,
-      "eps_yoy": -26.87500000000001
+      "revenue_yoy": null,
+      "eps_yoy": null
     },
     {
       "date": "2025-03-31",
@@ -181,38 +206,13 @@
       "cash_equivalents": 25672000000.0,
       "revenue_yoy": null,
       "eps_yoy": null
-    },
-    {
-      "date": "2024-06-30",
-      "period": "Q2",
-      "fiscal_year": "2024",
-      "reported_currency": "USD",
-      "revenue": 49183000000.0,
-      "gross_profit": 14090000000.0,
-      "operating_income": 6264000000.0,
-      "net_income": 3787000000.0,
-      "eps_diluted": 1.6,
-      "gross_margin": 28.648110119350186,
-      "operating_margin": 12.736108004798405,
-      "net_margin": 7.699814976719599,
-      "operating_cf": 9007000000.0,
-      "fcf": 5308000000.0,
-      "capex": -3699000000.0,
-      "buyback": -2007000000.0,
-      "dividends_paid": -1853000000.0,
-      "fcf_margin": 10.792346949149097,
-      "depreciation_amortization": 3080000000.0,
-      "total_debt": 53797000000.0,
-      "cash_equivalents": 23211000000.0,
-      "revenue_yoy": null,
-      "eps_yoy": null
     }
   ],
   "ir_home": "https://totalenergies.com/investors",
   "ir_results": "https://www.lvmh.com/en/financial-calendar",
   "ir_tdnet": "",
   "ir_notes": "",
-  "last_updated": "2026-05-11T15:54:33.625555+00:00",
+  "last_updated": "2026-07-25T13:51:00.254056+00:00",
   "cached": false,
   "status": "ok"
 }

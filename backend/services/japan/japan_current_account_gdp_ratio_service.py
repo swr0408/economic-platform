@@ -78,7 +78,9 @@ class JapanCurrentAccountGdpRatioService:
         """FMPから次回発表日時を取得（GDPベース）"""
         try:
             # GDPの発表日をベースにする
-            return self.fmp_utils["get_next_release"]("quarterly_gdp")
+            # (マッピングIDは indicator_event_mapping に実在する japan_gdp_qoq を使う。
+            #  旧 "quarterly_gdp" はマッピング行が無く常に None → TTLフォールバックだった)
+            return self.fmp_utils["get_next_release"]("japan_gdp_qoq")
         except Exception as e:
             print(f"Error getting next release: {e}")
             return None
@@ -387,7 +389,7 @@ class JapanCurrentAccountGdpRatioService:
         """キャッシュを更新すべきかどうかを判定"""
         try:
             return self.fmp_utils["should_refresh"](
-                "quarterly_gdp",  # GDPの発表スケジュールに従う
+                "japan_gdp_qoq",  # GDPの発表スケジュールに従う（実在するマッピングID）
                 last_updated_str
             )
         except Exception as e:

@@ -831,16 +831,22 @@
       },
       {
         "date": "2026-06",
-        "value": 51.3,
+        "value": 51.4,
         "forecast": 51.3,
         "previous": 51.6
+      },
+      {
+        "date": "2026-07",
+        "value": 52.0,
+        "forecast": 51.5,
+        "previous": 51.4
       }
     ],
     "latest": {
-      "date": "2026-06",
-      "value": 51.3,
-      "forecast": 51.3,
-      "previous": 51.6
+      "date": "2026-07",
+      "value": 52.0,
+      "forecast": 51.5,
+      "previous": 51.4
     }
   },
   "services": {
@@ -1675,16 +1681,22 @@
       },
       {
         "date": "2026-06",
-        "value": 48.9,
+        "value": 49.4,
         "forecast": 48.9,
         "previous": 47.7
+      },
+      {
+        "date": "2026-07",
+        "value": 51.6,
+        "forecast": 49.8,
+        "previous": 49.4
       }
     ],
     "latest": {
-      "date": "2026-06",
-      "value": 48.9,
-      "forecast": 48.9,
-      "previous": 47.7
+      "date": "2026-07",
+      "value": 51.6,
+      "forecast": 49.8,
+      "previous": 49.4
     }
   },
   "composite": {
@@ -2519,18 +2531,24 @@
       },
       {
         "date": "2026-06",
-        "value": 49.5,
+        "value": 50.0,
         "forecast": 49.5,
         "previous": 48.5
+      },
+      {
+        "date": "2026-07",
+        "value": 51.9,
+        "forecast": 50.3,
+        "previous": 50.0
       }
     ],
     "latest": {
-      "date": "2026-06",
-      "value": 49.5,
-      "forecast": 49.5,
-      "previous": 48.5
+      "date": "2026-07",
+      "value": 51.9,
+      "forecast": 50.3,
+      "previous": 50.0
     }
   },
   "next_release": null,
-  "last_updated": "2026-06-27T15:45:22.092219+02:00"
+  "last_updated": "2026-07-24T17:30:07.625532+02:00"
 }

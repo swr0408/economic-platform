@@ -495,7 +495,11 @@
       },
       {
         "date": "2026-04",
-        "value": 4.93
+        "value": 5.01
+      },
+      {
+        "date": "2026-05",
+        "value": 5.86
       }
     ]
   },
@@ -1039,7 +1043,11 @@
       },
       {
         "date": "2026-04",
-        "value": 0.62
+        "value": 0.7
+      },
+      {
+        "date": "2026-05",
+        "value": 0.15
       }
     ]
   },
@@ -1050,14 +1058,14 @@
     "description": "ユーロ圏生産者物価指数（PPI）"
   },
   "next_release": {
-    "date": "2026-07-06",
-    "datetime_utc": "2026-07-06T09:00:00+00:00",
-    "datetime_jst": "2026-07-06T18:00:00+09:00",
+    "date": "2026-08-05",
+    "datetime_utc": "2026-08-05T09:00:00+00:00",
+    "datetime_jst": "2026-08-05T18:00:00+09:00",
     "time_jst": "18:00",
-    "datetime_cet": "2026-07-06T11:00:00+02:00",
+    "datetime_cet": "2026-08-05T11:00:00+02:00",
     "time_cet": "11:00",
-    "label": "Producer Price Index MoM (May)",
-    "estimate": 0.7
+    "label": "Producer Price Index MoM (Jun)",
+    "estimate": -0.4
   },
-  "last_updated": "2026-06-27T22:45:22.548736+09:00"
+  "last_updated": "2026-07-26T04:33:42.336648+09:00"
 }

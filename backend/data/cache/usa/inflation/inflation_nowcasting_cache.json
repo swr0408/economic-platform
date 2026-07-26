@@ -1,21 +1,35 @@
 {
   "monthly_mom": [
     {
+      "date": "July 2026",
+      "cpi": 0.04,
+      "core_cpi": 0.21,
+      "pce": 0.16,
+      "core_pce": 0.27
+    },
+    {
       "date": "June 2026",
-      "cpi": -0.02,
-      "core_cpi": 0.23,
-      "pce": 0.12,
-      "core_pce": 0.28
+      "cpi": null,
+      "core_cpi": null,
+      "pce": -0.12,
+      "core_pce": 0.19
     }
   ],
   "monthly_yoy": [
     {
+      "date": "July 2026",
+      "cpi": 3.37,
+      "core_cpi": 2.52,
+      "pce": 3.63,
+      "core_pce": 3.36
+    },
+    {
       "date": "June 2026",
-      "cpi": 3.96,
-      "core_cpi": 2.85,
-      "pce": 3.9,
-      "core_pce": 3.43
+      "cpi": null,
+      "core_cpi": null,
+      "pce": 3.65,
+      "core_pce": 3.33
     }
   ],
-  "last_updated": "2026-06-27T22:52:23.150848+09:00"
+  "last_updated": "2026-07-26T04:04:12.819098+09:00"
 }

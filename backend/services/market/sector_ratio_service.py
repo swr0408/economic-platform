@@ -26,6 +26,7 @@ ETFの価格比を算出し、景気サイクル・クレジットリスクの�
 """
 import json
 import logging
+import math
 from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -179,22 +180,29 @@ class SectorRatioService:
             item: Dict[str, Any] = {"date": date_str}
 
             # S&P500オーバーレイ
+            # 注意: yfinanceは特定日にNaNを返すことがある。NaNはJSONとして不正で
+            #       (json.dumpsが`NaN`を出力→フロントのJSON.parseが失敗→チャート全体が
+            #       「データがありません」表示になる)、必ず有限値のみ採用する。
             sp500_val = sp500_map.get(date_str)
-            if sp500_val is not None:
+            if sp500_val is not None and math.isfinite(sp500_val):
                 item["sp500"] = round(sp500_val, 2)
 
             # 各ETF/先物の生値
             has_any_ratio = False
             for key in ["xly", "xlp", "xlf", "xlu", "hyg", "lqd", "ief", "lumber", "gold"]:
                 val = ticker_data.get(key, {}).get(date_str)
-                if val is not None:
+                if val is not None and math.isfinite(val):
                     item[key] = round(val, 2)
 
             # レシオ計算
             for ratio_key, num_key, den_key in RATIO_DEFS:
                 num_val = ticker_data.get(num_key, {}).get(date_str)
                 den_val = ticker_data.get(den_key, {}).get(date_str)
-                if num_val is not None and den_val is not None and den_val > 0:
+                if (
+                    num_val is not None and den_val is not None
+                    and math.isfinite(num_val) and math.isfinite(den_val)
+                    and den_val > 0
+                ):
                     item[ratio_key] = round(num_val / den_val, 4)
                     has_any_ratio = True
 

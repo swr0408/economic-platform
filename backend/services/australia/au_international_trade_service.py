@@ -300,7 +300,14 @@ class AuInternationalTradeService:
                     },
                     "next_release": next_release,
                 }
-                cache_payload = {**result, "last_updated": datetime.now(JST).isoformat()}
+                _new_date = balance[-1].get("date") if balance else None
+                _existing = redis_client.get(self.DATA_CACHE_KEY)
+                _old_date = None
+                if isinstance(_existing, dict) and isinstance(_existing.get("balance"), list) and _existing["balance"]:
+                    _old_date = _existing["balance"][-1].get("date")
+                _now_lu = datetime.now(JST).isoformat()
+                _lu = _existing.get("last_updated", _now_lu) if (_existing and _old_date and _new_date and _new_date <= _old_date) else _now_lu
+                cache_payload = {**result, "last_updated": _lu}
                 redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
                 self._save_file_cache(cache_payload)
 

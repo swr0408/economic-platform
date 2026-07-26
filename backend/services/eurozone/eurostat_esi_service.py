@@ -92,6 +92,12 @@ class EurostatESIService:
         if api_result:
             next_release = get_next_release_by_pattern(self.FMP_EVENT_PATTERN)
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("euro_area", "germany", "france", "italy"),
+                _max_date_of(api_result.get("euro_area", []), api_result.get("germany", []), api_result.get("france", []), api_result.get("italy", [])), now_str
+            )
             cache_payload = {
                 "euro_area": api_result.get("euro_area", []),
                 "germany": api_result.get("germany", []),
@@ -112,7 +118,7 @@ class EurostatESIService:
                     },
                 },
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -126,7 +132,7 @@ class EurostatESIService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "eurostat_api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

@@ -315,6 +315,9 @@ class AuNumberOfBuildingPermitsService:
         if raw_data:
             data_with_changes = self._calculate_changes(raw_data)
             latest = data_with_changes[-1] if data_with_changes else None
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            _now_lu = datetime.now(JST).isoformat()
+            _lu = guarded_last_updated(self.DATA_CACHE_KEY, latest.get("date") if latest else None, _now_lu)
 
             result = {
                 "data": data_with_changes,
@@ -330,7 +333,7 @@ class AuNumberOfBuildingPermitsService:
             }
             cache_payload = {
                 **result,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": _lu,
                 "file_date": file_date,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)

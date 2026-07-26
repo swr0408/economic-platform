@@ -1181,13 +1181,19 @@
       "value": 3.4,
       "forecast": 0.6,
       "previous": -3.4
+    },
+    {
+      "date": "2026-06-01",
+      "value": 1.7,
+      "forecast": 2.9,
+      "previous": 3.4
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": 3.4,
-    "forecast": 0.6,
-    "previous": -3.4
+    "date": "2026-06-01",
+    "value": 1.7,
+    "forecast": 2.9,
+    "previous": 3.4
   },
-  "last_updated": "2026-06-28T00:31:20.969471+09:00"
+  "last_updated": "2026-07-24T11:33:23.629854+09:00"
 }

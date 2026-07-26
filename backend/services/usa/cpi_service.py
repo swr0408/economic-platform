@@ -110,11 +110,15 @@ class CPIService:
             next_release = get_next_release_from_fmp(self.CPI_ECONALPHA_ID)
 
             latest = fred_result[-1] if fred_result else None
+            now_str = datetime.now(JST).isoformat()
+            last_updated = self._guarded_last_updated(
+                self.CPI_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
             cache_payload = {
                 "data": fred_result,
                 "latest": latest,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.CPI_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload, CPI_CACHE_FILE)
@@ -125,7 +129,7 @@ class CPIService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "FRED",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         # 取得失敗時はファイルキャッシュから返す
@@ -191,11 +195,15 @@ class CPIService:
             next_release = get_next_release_from_fmp(self.CORE_CPI_ECONALPHA_ID)
 
             latest = fred_result[-1] if fred_result else None
+            now_str = datetime.now(JST).isoformat()
+            last_updated = self._guarded_last_updated(
+                self.CORE_CPI_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
             cache_payload = {
                 "data": fred_result,
                 "latest": latest,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.CORE_CPI_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload, CORE_CPI_CACHE_FILE)
@@ -206,7 +214,7 @@ class CPIService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "FRED",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         # 取得失敗時はファイルキャッシュから返す
@@ -272,11 +280,15 @@ class CPIService:
             next_release = get_next_release_from_fmp(self.CPI_ECONALPHA_ID)
 
             latest = merged_result[-1] if merged_result else None
+            now_str = datetime.now(JST).isoformat()
+            last_updated = self._guarded_last_updated(
+                self.CPI_CATEGORIES_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
             cache_payload = {
                 "data": merged_result,
                 "latest": latest,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.CPI_CATEGORIES_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload, CPI_CATEGORIES_CACHE_FILE)
@@ -287,7 +299,7 @@ class CPIService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "FRED",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         # 取得失敗時はファイルキャッシュから返す
@@ -579,6 +591,22 @@ class CPIService:
             item["annualized_6m"] = annualized_6m
 
         return result
+
+    def _guarded_last_updated(self, cache_key: str, new_latest_date: Optional[str], now_str: str) -> str:
+        """発表レース対策ラグガード: 取得データがキャッシュより新しくなければ last_updated を据え置く。
+
+        CPI発表(8:30 ET)直後～FRED反映の間に再構築が走ると、FREDが新月未反映のまま旧月を返し
+        last_updated=発表後 を刻む → should_refresh_by_fmp_schedule が「消化済み」誤判定して翌月まで
+        凍結する。最新月がキャッシュ最新月を超えていなければ旧 last_updated を維持し、次回リクエストで
+        再取得して新月を自己回復させる（データ自体は既存値の改定反映のため更新する）。
+        """
+        existing_cache = redis_client.get(cache_key)
+        existing_latest_date = None
+        if existing_cache and existing_cache.get("latest"):
+            existing_latest_date = existing_cache["latest"].get("date")
+        if existing_latest_date and new_latest_date and new_latest_date <= existing_latest_date:
+            return existing_cache.get("last_updated", now_str)
+        return now_str
 
     def _should_refresh_cpi(self, last_updated_str: str) -> bool:
         """CPIキャッシュを更新すべきかどうかを判定"""

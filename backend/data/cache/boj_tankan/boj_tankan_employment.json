@@ -1212,12 +1212,19 @@
       "all_industries_forecast": -31.0,
       "large_manufacturing_current": -20.0,
       "large_manufacturing_forecast": -24.0
+    },
+    {
+      "date": "2026-06-30",
+      "all_industries_current": -28.0,
+      "all_industries_forecast": -31.0,
+      "large_manufacturing_current": -21.0,
+      "large_manufacturing_forecast": -25.0
     }
   ],
   "data_type": "employment",
   "name": "雇用人員判断指数（DI）",
   "unit": "%ポイント",
-  "last_updated": "2026-06-18T16:04:23.319726",
+  "last_updated": "2026-07-02T01:57:00.787270",
   "cached": false,
   "source": "boj"
 }

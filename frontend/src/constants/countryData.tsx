@@ -273,6 +273,7 @@ export const COUNTRIES_DATA: CountryItem[] = [
           { code: 'boj-cai', name: '消費活動指数（旅行収支調整前）' },
           { code: 'economy-watcher', name: '景気ウォッチャー調査' },
           { code: 'consumption-expenditure', name: '実質消費支出（家計調査）' },
+          { code: 'retail-sales', name: '小売業販売額（商業動態統計）' },
         ],
       },
       {

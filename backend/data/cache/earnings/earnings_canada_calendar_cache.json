@@ -13,11 +13,11 @@
       "date": "2026-07-29",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 3.14,
+      "eps_estimate": 2.89,
       "eps_actual": null,
-      "revenue_estimate": 3809400000.0,
+      "revenue_estimate": 3770757000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "ENB",
@@ -29,9 +29,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.44,
       "eps_actual": null,
-      "revenue_estimate": 7853613000.0,
+      "revenue_estimate": 8670284000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "SHOP",
@@ -43,9 +43,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.39,
       "eps_actual": null,
-      "revenue_estimate": 3325143000.0,
+      "revenue_estimate": 3378905000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "BAM",
@@ -55,11 +55,11 @@
       "date": "2026-08-05",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.44,
+      "eps_estimate": 0.4285,
       "eps_actual": null,
-      "revenue_estimate": 1418848000.0,
+      "revenue_estimate": 1465659000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "CNQ",
@@ -69,44 +69,44 @@
       "date": "2026-08-06",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 1.36,
+      "eps_estimate": 1.43,
       "eps_actual": null,
-      "revenue_estimate": 8981263000.0,
+      "revenue_estimate": 9254744000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "RY",
       "name": "Royal Bank of Canada",
       "tier": "A",
       "country_code": "canada",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
+      "date": "2026-08-27",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 2.87,
       "eps_actual": null,
-      "revenue_estimate": null,
+      "revenue_estimate": 12783620000.0,
       "revenue_actual": null,
-      "updated_from_date": null
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "TD",
       "name": "TD",
       "tier": "A",
       "country_code": "canada",
-      "date": null,
-      "time": null,
-      "fiscal_date_ending": null,
-      "eps_estimate": null,
+      "date": "2026-08-27",
+      "time": "--",
+      "fiscal_date_ending": "",
+      "eps_estimate": 1.72,
       "eps_actual": null,
-      "revenue_estimate": null,
+      "revenue_estimate": 10579650000.0,
       "revenue_actual": null,
-      "updated_from_date": null
+      "updated_from_date": "2026-07-25"
     }
   ],
-  "next_7d_count": 0,
-  "next_30d_count": 0,
-  "last_updated": "2026-06-27T13:49:18.856623+00:00",
+  "next_7d_count": 2,
+  "next_30d_count": 5,
+  "last_updated": "2026-07-25T13:50:52.007273+00:00",
   "cached": false,
   "status": "ok"
 }

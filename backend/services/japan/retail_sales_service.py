@@ -31,6 +31,7 @@ from services.japan.fmp_next_release_utils import (
     get_next_release_from_fmp,
     should_refresh_by_fmp_schedule,
 )
+from services.japan.estat_file_source import download_estat_excel
 
 
 JST = ZoneInfo("Asia/Tokyo")
@@ -39,12 +40,21 @@ CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "japan" / "
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 DATA_CACHE_FILE = CACHE_DIR / "retail_sales_cache.json"
 
-# e-Stat Excel download settings
-ESTAT_EXCEL_URL = "https://www.e-stat.go.jp/stat-search/file-download"
+# e-Stat 商業動態統計速報の statInfId を Data Catalog API で動的解決する。
+# 速報ファイルはリリース毎に statInfId がローテートするため固定 ID 直叩きだと
+# 古い版に固着する（旧実装の固定 ID 000040349027 は 2025-08 止まりの古い版を返し、
+# 直近月は FMP だけが供給していた）。
+# 政府統計コード 00550030 = 商業動態統計調査。
+# テーブル名は毎月「商業動態統計速報(YYYY年M月分)」と変わるため、共通部分文字列で
+# フィルタし公開日降順の先頭（=最新月）を取得する。
+ESTAT_STATS_CODE = "00550030"
+ESTAT_TABLE_FILTER = "商業動態統計速報"
+
+# API 失敗時の既知 statInfId（新しい順）
 FALLBACK_STAT_INF_IDS = [
-    "000040349027",  # Latest
-    "000040312871",
-    "000040304374",
+    "000040469855",  # 商業動態統計速報(2026年5月分)
+    "000040460829",  # 商業動態統計速報(2026年4月分)
+    "000040450874",  # 商業動態統計速報(2026年3月分)
 ]
 
 
@@ -117,6 +127,24 @@ class RetailSalesService:
 
         if mom_data or yoy_data:
             next_release = get_next_release_from_fmp(self.ECONALPHA_IDS["yoy"])
+            now_str = datetime.now(JST).isoformat()
+            # 発表レース対策ラグガード: 主要系列(yoy、無ければmom)の最新月が既存キャッシュを
+            # 超えていなければ last_updated を据え置き、次回再取得で新月を自己回復させる。
+            _new_date = (yoy_data[-1].get("date") if yoy_data else
+                         (mom_data[-1].get("date") if mom_data else None))
+            _existing = redis_client.get(self.DATA_CACHE_KEY)
+            _old_date = None
+            if isinstance(_existing, dict):
+                for _k in ("yoy", "mom"):
+                    _s = _existing.get(_k)
+                    if isinstance(_s, dict) and isinstance(_s.get("latest"), dict):
+                        _old_date = _s["latest"].get("date")
+                        if _old_date:
+                            break
+            if _existing and _old_date and _new_date and _new_date <= _old_date:
+                last_updated = _existing.get("last_updated", now_str)
+            else:
+                last_updated = now_str
 
             cache_payload = {
                 "mom": {
@@ -128,7 +156,7 @@ class RetailSalesService:
                     "latest": yoy_data[-1] if yoy_data else None,
                 } if yoy_data else None,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -244,26 +272,13 @@ class RetailSalesService:
             return {"yoy": [], "mom": []}
 
     def _download_excel_file(self) -> Optional[bytes]:
-        """e-Stat Excelファイルをダウンロード"""
-        for stat_inf_id in FALLBACK_STAT_INF_IDS:
-            try:
-                params = {
-                    "statInfId": stat_inf_id,
-                    "fileKind": "0"
-                }
-                response = requests.get(
-                    ESTAT_EXCEL_URL,
-                    params=params,
-                    timeout=30
-                )
-                if response.status_code == 200:
-                    print(f"Downloaded e-Stat Excel (statInfId: {stat_inf_id})")
-                    return response.content
-            except Exception as e:
-                print(f"Error downloading Excel with {stat_inf_id}: {e}")
-                continue
-
-        return None
+        """e-Stat 商業動態統計速報 Excel を動的解決した statInfId で取得"""
+        return download_estat_excel(
+            ESTAT_STATS_CODE,
+            ESTAT_TABLE_FILTER,
+            FALLBACK_STAT_INF_IDS,
+            updated_days=120,
+        )
 
     def _parse_excel_data(self, excel_content: bytes) -> List[Dict[str, Any]]:
         """Excelデータをパース"""
@@ -388,21 +403,26 @@ class RetailSalesService:
         fmp_data: List[Dict[str, Any]]
     ) -> List[Dict[str, Any]]:
         """
-        3つのデータソースをマージ
-        優先順位: history_data < estat_data < fmp_data（後のものが上書き）
+        3つのデータソースをマージ（後のものが上書き＝優先）
+        優先順位: history_data(長期ベース) < fmp_data(即時補完) < estat_data(公式・最優先)
+
+        e-Stat はMETI公式の速報値で前月分の改定も反映するため最優先。
+        FMP は e-Stat のカタログ反映が当日朝に間に合わない等のギャップ補完に使う。
+        （旧実装はFMP最優先だったが、e-Statが固定IDで陳腐化していたための消極的な
+          順序であり、e-Stat動的解決の修正に合わせて公式値優先に是正）
         """
         merged = {}
 
-        # 1. 履歴DBデータをベースに
+        # 1. 履歴DBデータをベースに（長期時系列）
         for d in history_data:
             merged[d["date"]] = d.copy()
 
-        # 2. e-Statデータで上書き
-        for d in estat_data:
+        # 2. FMPデータで上書き（e-Stat未反映月のギャップ補完）
+        for d in fmp_data:
             merged[d["date"]] = d.copy()
 
-        # 3. FMPデータで上書き（最優先）
-        for d in fmp_data:
+        # 3. e-Stat速報データで上書き（公式・改定込みで最優先）
+        for d in estat_data:
             merged[d["date"]] = d.copy()
 
         result = sorted(merged.values(), key=lambda x: x["date"])

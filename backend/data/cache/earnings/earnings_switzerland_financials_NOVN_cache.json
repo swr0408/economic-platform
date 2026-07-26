@@ -8,6 +8,29 @@
   "reported_currency": "USD",
   "periods": [
     {
+      "date": "2026-06-30",
+      "period": "Q2",
+      "fiscal_year": "2026",
+      "reported_currency": "USD",
+      "revenue": 14417876000.0,
+      "gross_profit": 10737355000.0,
+      "operating_income": 4735243000.0,
+      "net_income": 3266237000.0,
+      "eps_diluted": 1.71,
+      "gross_margin": 74.47251592398214,
+      "operating_margin": 32.84286118149441,
+      "net_margin": 22.654078867095265,
+      "operating_cf": 5888054192.0,
+      "fcf": 5566988070.0,
+      "capex": -321066122.0,
+      "buyback": -1198187969.0,
+      "dividends_paid": -2865952216.0,
+      "fcf_margin": 38.61170723066282,
+      "depreciation_amortization": 1200823000.0,
+      "revenue_yoy": -2.818306821245619,
+      "eps_yoy": -16.990291262135926
+    },
+    {
       "date": "2026-03-31",
       "period": "Q1",
       "fiscal_year": "2026",
@@ -96,8 +119,8 @@
       "dividends_paid": -2485000000.0,
       "fcf_margin": 41.1566459962254,
       "depreciation_amortization": 1256000000.0,
-      "revenue_yoy": 15.257924176507148,
-      "eps_yoy": 29.559748427672954
+      "revenue_yoy": null,
+      "eps_yoy": null
     },
     {
       "date": "2025-03-31",
@@ -167,36 +190,13 @@
       "depreciation_amortization": 1965000000.0,
       "revenue_yoy": null,
       "eps_yoy": null
-    },
-    {
-      "date": "2024-06-30",
-      "period": "Q2",
-      "fiscal_year": "2024",
-      "reported_currency": "USD",
-      "revenue": 12872000000.0,
-      "gross_profit": 9699000000.0,
-      "operating_income": 4014000000.0,
-      "net_income": 3246000000.0,
-      "eps_diluted": 1.59,
-      "gross_margin": 75.34959602237414,
-      "operating_margin": 31.183965195773773,
-      "net_margin": 25.217526413921693,
-      "operating_cf": 4875000000.0,
-      "fcf": 4147000000.0,
-      "capex": -728000000.0,
-      "buyback": -1616000000.0,
-      "dividends_paid": -2417000000.0,
-      "fcf_margin": 32.217215661901804,
-      "depreciation_amortization": 1162000000.0,
-      "revenue_yoy": null,
-      "eps_yoy": null
     }
   ],
   "ir_home": "https://www.novartis.com/investors",
   "ir_results": "https://www.novartis.com/investors/financial-data/quarterly-results",
   "ir_tdnet": "",
   "ir_notes": "",
-  "last_updated": "2026-05-11T15:54:19.677423+00:00",
+  "last_updated": "2026-07-25T13:50:56.202637+00:00",
   "cached": false,
   "status": "ok"
 }

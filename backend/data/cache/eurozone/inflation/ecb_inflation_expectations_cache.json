@@ -200,6 +200,10 @@
       {
         "date": "2026-05-01",
         "value": 3.5
+      },
+      {
+        "date": "2026-06-01",
+        "value": 3.0
       }
     ],
     "inflation_3y": [
@@ -402,6 +406,10 @@
       {
         "date": "2026-05-01",
         "value": 2.9
+      },
+      {
+        "date": "2026-06-01",
+        "value": 2.8
       }
     ],
     "inflation_5y": [
@@ -588,6 +596,10 @@
       {
         "date": "2026-05-01",
         "value": 2.4
+      },
+      {
+        "date": "2026-06-01",
+        "value": 2.4
       }
     ]
   },
@@ -603,14 +615,14 @@
     }
   },
   "next_release": {
-    "date": "2026-06-29",
-    "datetime_utc": "2026-06-29T09:00:00+00:00",
-    "datetime_jst": "2026-06-29T18:00:00+09:00",
+    "date": "2026-07-30",
+    "datetime_utc": "2026-07-30T09:00:00+00:00",
+    "datetime_jst": "2026-07-30T18:00:00+09:00",
     "time_jst": "18:00",
-    "datetime_cet": "2026-06-29T11:00:00+02:00",
+    "datetime_cet": "2026-07-30T11:00:00+02:00",
     "time_cet": "11:00",
-    "label": "Consumer Inflation Expectation (Jun)",
-    "estimate": 42
+    "label": "Consumer Inflation Expectation (Jul)",
+    "estimate": 38
   },
-  "last_updated": "2026-06-27T22:45:29.671768+09:00"
+  "last_updated": "2026-07-26T04:33:43.599760+09:00"
 }

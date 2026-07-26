@@ -24,6 +24,7 @@ import ChangePasswordPage from './pages/ChangePasswordPage'
 import AdminUsersPage from './pages/AdminUsersPage'
 import AdminVisibilityPage from './pages/AdminVisibilityPage'
 import AdminStalenessPage from './pages/AdminStalenessPage'
+import CorrelationReportPage from './pages/CorrelationReportPage'
 import ProtectedRoute from './components/auth/ProtectedRoute'
 import { HandbookProvider } from './contexts/HandbookContext'
 import { AuthProvider } from './contexts/AuthContext'
@@ -144,6 +145,16 @@ function App() {
                 element={
                   <ProtectedRoute allowedRoles={['master']}>
                     <AdminStalenessPage />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* master 限定: 相関・先行性レポート */}
+              <Route
+                path="reports/correlation"
+                element={
+                  <ProtectedRoute allowedRoles={['master']}>
+                    <CorrelationReportPage />
                   </ProtectedRoute>
                 }
               />

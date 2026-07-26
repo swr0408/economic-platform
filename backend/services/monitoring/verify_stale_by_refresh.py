@@ -155,6 +155,60 @@ _REFRESH_OVERRIDES: Dict[str, tuple] = {
         "services.usa.pce_deflator_service", "pce_deflator_service",
         "get_core_pce_deflator_data", {"force_refresh": True},
     ),
+    # CPI（総合/コア/項目別）: 1つの cpi_service が複数ファイルを別メソッドで生成。
+    # 総合(cpi_cache)は命名規約で cpi_service に解決できるが、コア/項目別はファイル名
+    # (core_cpi / cpi_categories) がモジュール名と不一致で core_cpi_service /
+    # cpi_categories_service を import しようとして ModuleNotFoundError(EXC) になる。
+    "usa/inflation/core_cpi_cache.json": (
+        "services.usa.cpi_service", "cpi_service",
+        "get_core_cpi_data", {"force_refresh": True},
+    ),
+    "usa/inflation/cpi_categories_cache.json": (
+        "services.usa.cpi_service", "cpi_service",
+        "get_cpi_categories_data", {"force_refresh": True},
+    ),
+    # PPI（総合/コア）: 1つの ppi_service が2ファイルを別メソッドで生成。総合(ppi_cache)は
+    # 規約で ppi_service に解決できるが、コアはファイル名 core_ppi がモジュール名と不一致で
+    # core_ppi_service を import しようとして ModuleNotFoundError(EXC) になる（CPIと同型）。
+    "usa/inflation/core_ppi_cache.json": (
+        "services.usa.ppi_service", "ppi_service",
+        "get_core_ppi_data", {"force_refresh": True},
+    ),
+    # 日本CPI（全国/品目別）: サービスmodule名が japan_ プレフィックス付き
+    # （japan_national_cpi_service / japan_cpi_categories_service）だが cacheファイル名は
+    # national_cpi / national_cpi_categories でプレフィックス無し。命名規約フォールバックが
+    # services.japan.national_cpi_service / national_cpi_categories_service を import しようとして
+    # ModuleNotFoundError(EXC) になり「今すぐ更新」が失敗する。
+    "japan/price/national_cpi_cache.json": (
+        "services.japan.japan_national_cpi_service", "japan_national_cpi_service",
+        "get_national_cpi_data", {"force_refresh": True},
+    ),
+    "japan/price/national_cpi_categories_cache.json": (
+        "services.japan.japan_cpi_categories_service", "japan_cpi_categories_service",
+        "get_cpi_categories_data", {"force_refresh": True},
+    ),
+    # 日本の同型（cacheファイル名 ≠ サービスmodule名）で手動更新がEXCになる残り。
+    # japan_ プレフィックス / 別名モジュールのため命名規約フォールバックが解決できない。
+    "japan/employment/unemployment_cache.json": (
+        "services.japan.japan_unemployment_service", "japan_unemployment_service",
+        "get_unemployment_data", {"force_refresh": True},
+    ),
+    "japan/price/tokyo_cpi_cache.json": (
+        "services.japan.japan_tokyo_cpi_service", "japan_tokyo_cpi_service",
+        "get_tokyo_cpi_data", {"force_refresh": True},
+    ),
+    "japan/employment/scheduled_wage_estat_cache.json": (
+        "services.japan.scheduled_wage_service", "scheduled_wage_service",
+        "get_scheduled_wage_data", {"force_refresh": True},
+    ),
+    "japan/employment/shuntou_schedule_cache.json": (
+        "services.japan.shuntou_service", "shuntou_service",
+        "get_shuntou_data", {"force_refresh": True},
+    ),
+    "japan/price/japan_inflation_outlook_cache.json": (
+        "services.japan.boj_inflation_outlook_service", "boj_inflation_outlook_service",
+        "get_data", {"force_refresh": True},
+    ),
 }
 
 

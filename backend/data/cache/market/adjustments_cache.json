@@ -2166,27 +2166,31 @@
     },
     {
       "date": "2026-02-01",
-      "value": 14206.0
+      "value": 13815.0
     },
     {
       "date": "2026-03-01",
-      "value": 8009.0
+      "value": 7318.0
+    },
+    {
+      "date": "2026-04-01",
+      "value": 11511.0
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "value": 8009.0
+    "date": "2026-04-01",
+    "value": 11511.0
   },
   "metadata": {
     "source": "EIA",
     "frequency": "monthly",
     "unit": "Thousand Barrels",
     "series": "U.S. Supply Adjustment of Crude Oil",
-    "data_count": 543,
+    "data_count": 544,
     "start_date": "1981-01-01",
-    "end_date": "2026-03-01"
+    "end_date": "2026-04-01"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-27T19:35:37.495345+09:00"
+  "last_updated": "2026-07-24T09:56:24.949918+09:00"
 }

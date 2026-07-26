@@ -1263,19 +1263,16 @@
     {
       "date": "2026-04-01",
       "value": 3.6
+    },
+    {
+      "date": "2026-05-01",
+      "value": 3.3
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "value": 3.6
+    "date": "2026-05-01",
+    "value": 3.3
   },
-  "next_release": {
-    "date": "2026-07-06",
-    "datetime_utc": "2026-07-06T23:30:00+00:00",
-    "datetime_jst": "2026-07-07T08:30:00+09:00",
-    "time_jst": "08:30",
-    "label": "Average Cash Earnings YoY (May)",
-    "estimate": null
-  },
-  "last_updated": "2026-06-28T00:31:19.978607+09:00"
+  "next_release": null,
+  "last_updated": "2026-07-26T04:07:23.141481+09:00"
 }

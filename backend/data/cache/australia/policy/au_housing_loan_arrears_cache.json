@@ -167,13 +167,19 @@
       "past_due_30_89": 0.467,
       "non_performing": 0.986,
       "total_arrears": 1.454
+    },
+    {
+      "date": "2026-03-31",
+      "past_due_30_89": 0.491,
+      "non_performing": 0.988,
+      "total_arrears": 1.479
     }
   ],
   "latest": {
-    "date": "2025-12-31",
-    "past_due_30_89": 0.467,
-    "non_performing": 0.986,
-    "total_arrears": 1.454
+    "date": "2026-03-31",
+    "past_due_30_89": 0.491,
+    "non_performing": 0.988,
+    "total_arrears": 1.479
   },
   "metadata": {
     "source": "Australian Prudential Regulation Authority",
@@ -182,8 +188,8 @@
     "unit": "%"
   },
   "next_release": {
-    "date": "2026-05-15",
-    "label": "APRA Property Exposures (Q1 2026)"
+    "date": "2026-08-15",
+    "label": "APRA Property Exposures (Q2 2026)"
   },
-  "last_updated": "2026-06-27T11:46:38.404493+09:00"
+  "last_updated": "2026-07-26T01:20:30.178327+09:00"
 }

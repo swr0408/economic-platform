@@ -1586,6 +1586,11 @@
       "nairu": null
     },
     {
+      "date": "2026-06-01",
+      "unrate": 4.2,
+      "nairu": null
+    },
+    {
       "date": "2026-07-01",
       "unrate": null,
       "nairu": 4.39
@@ -1797,9 +1802,9 @@
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "unrate": 4.3,
+    "date": "2026-06-01",
+    "unrate": 4.2,
     "nairu": null
   },
-  "last_updated": "2026-06-11T22:09:12.389139+09:00"
+  "last_updated": "2026-07-26T00:31:46.953772+09:00"
 }

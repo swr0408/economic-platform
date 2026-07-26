@@ -127,6 +127,27 @@ class HousingStartsPermitsService:
 
             housing_starts_latest = housing_starts_with_changes[-1] if housing_starts_with_changes else None
             building_permits_latest = building_permits_with_changes[-1] if building_permits_with_changes else None
+            now_str = datetime.now(JST).isoformat()
+
+            # 発表レース対策（ラグガード）: 住宅着工・建設許可は同時発表。両系列とも最新月が
+            # 既存キャッシュを超えていなければ（＝ソース未反映）last_updated を旧値のまま維持し、
+            # should_refresh の「消化済み」誤判定による翌月まで凍結を防ぎ次回再取得で自己回復させる。
+            existing_cache = redis_client.get(self.DATA_CACHE_KEY)
+            new_hs = housing_starts_latest.get("date") if housing_starts_latest else None
+            new_bp = building_permits_latest.get("date") if building_permits_latest else None
+            old_hs = old_bp = None
+            if existing_cache:
+                if existing_cache.get("housing_starts", {}).get("latest"):
+                    old_hs = existing_cache["housing_starts"]["latest"].get("date")
+                if existing_cache.get("building_permits", {}).get("latest"):
+                    old_bp = existing_cache["building_permits"]["latest"].get("date")
+            hs_not_newer = bool(old_hs and new_hs and new_hs <= old_hs)
+            bp_not_newer = bool(old_bp and new_bp and new_bp <= old_bp)
+            if hs_not_newer and bp_not_newer:
+                last_updated = existing_cache.get("last_updated", now_str)
+                print(f"  Housing Starts/Permits: data not newer (hs={new_hs}, bp={new_bp}), keeping last_updated={last_updated}")
+            else:
+                last_updated = now_str
 
             cache_payload = {
                 "housing_starts": {
@@ -137,7 +158,7 @@ class HousingStartsPermitsService:
                     "data": building_permits_with_changes,
                     "latest": building_permits_latest
                 },
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
@@ -149,7 +170,7 @@ class HousingStartsPermitsService:
                 "next_release": get_next_release_from_fmp(self.ECONALPHA_ID),
                 "cached": False,
                 "source": "api",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         # フォールバック

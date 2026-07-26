@@ -4078,13 +4078,6 @@
     "five_year": 3.3,
     "date": "2026-06-01"
   },
-  "next_release": {
-    "date": "2026-07-17",
-    "datetime_utc": "2026-07-17T14:00:00+00:00",
-    "datetime_jst": "2026-07-17T23:00:00+09:00",
-    "time_jst": "23:00",
-    "label": "Michigan Inflation Expectations (Jul)",
-    "estimate": null
-  },
-  "last_updated": "2026-06-27T17:32:38.056723+09:00"
+  "next_release": null,
+  "last_updated": "2026-07-26T04:03:32.496017+09:00"
 }

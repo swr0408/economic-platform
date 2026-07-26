@@ -244,14 +244,21 @@
       "yoy": -27.2,
       "mom": -0.2,
       "monthly_increment": 1625.0
+    },
+    {
+      "date": "2026-05-01",
+      "value": 8048.0,
+      "yoy": -28.7,
+      "mom": -23.3,
+      "monthly_increment": 1247.0
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "value": 6801.0,
-    "yoy": -27.2,
-    "mom": -0.2,
-    "monthly_increment": 1625.0
+    "date": "2026-05-01",
+    "value": 8048.0,
+    "yoy": -28.7,
+    "mom": -23.3,
+    "monthly_increment": 1247.0
   },
   "metadata": {
     "source": "中国財政部",
@@ -260,5 +267,5 @@
     "frequency": "monthly"
   },
   "next_release": null,
-  "last_updated": "2026-06-27T11:47:48.280667+09:00"
+  "last_updated": "2026-07-26T01:29:02.245787+09:00"
 }

@@ -255,6 +255,9 @@ class AuCurrentAccountService:
             if raw_data:
                 changes = self._calculate_changes(raw_data)
                 latest = raw_data[-1] if raw_data else None
+                from services.usa.fmp_next_release_utils import guarded_last_updated
+                _now_lu = datetime.now(JST).isoformat()
+                _lu = guarded_last_updated(self.DATA_CACHE_KEY, latest.get("date") if latest else None, _now_lu)
 
                 result = {
                     "data": raw_data,
@@ -272,7 +275,7 @@ class AuCurrentAccountService:
                 }
                 cache_payload = {
                     **result,
-                    "last_updated": datetime.now(JST).isoformat(),
+                    "last_updated": _lu,
                 }
                 redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
                 self._save_file_cache(cache_payload)

@@ -2799,16 +2799,24 @@
       "paid_hourly": 3.3,
       "job_stayer": 3.3,
       "job_switcher": 3.7
+    },
+    {
+      "date": "2026-06-01",
+      "overall": 3.6,
+      "fulltime": 3.9,
+      "paid_hourly": 3.5,
+      "job_stayer": 3.4,
+      "job_switcher": 4.1
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "overall": 3.5,
-    "fulltime": 3.8,
-    "paid_hourly": 3.3,
-    "job_stayer": 3.3,
-    "job_switcher": 3.7
+    "date": "2026-06-01",
+    "overall": 3.6,
+    "fulltime": 3.9,
+    "paid_hourly": 3.5,
+    "job_stayer": 3.4,
+    "job_switcher": 4.1
   },
-  "latest_data_date": "2026-05-01",
-  "last_updated": "2026-06-27T18:54:48.096595+09:00"
+  "latest_data_date": "2026-06-01",
+  "last_updated": "2026-07-25T22:53:13.214507+09:00"
 }

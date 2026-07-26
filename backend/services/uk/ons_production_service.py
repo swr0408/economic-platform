@@ -76,11 +76,17 @@ class ONSProductionService:
         api_result = self._fetch_from_ons()
 
         if api_result:
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("ed2t", "ecyz"),
+                _max_date_of(api_result.get("ed2t", {}).get("data", []), api_result.get("ecyz", {}).get("data", [])), now_str
+            )
             cache_payload = {
                 "ed2t": api_result.get("ed2t", {}),
                 "ecyz": api_result.get("ecyz", {}),
                 "metadata": api_result.get("metadata", {}),
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -92,7 +98,7 @@ class ONSProductionService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "ons_api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック
@@ -257,8 +263,11 @@ class ONSProductionService:
             now = datetime.now(JST)
             hours_since_update = (now - last_updated).total_seconds() / 3600
 
-            # 7日以上経過していれば更新
-            if hours_since_update >= 24 * 7:
+            # 24時間以上経過していれば更新
+            # FMPカレンダーがUK月次発表イベント(GDP/IP)を落とすと発表日駆動のrefreshが
+            # 空振りし、集約が旧月で凍結する(2026-07-16 ONS 5月分で発生)。
+            # 集約層の MAX_CACHE_AGE_HOURS(24h) と揃え、発表当日中に自己回復させる。
+            if hours_since_update >= 24:
                 return True
 
             # FMPパターンベースの更新判定

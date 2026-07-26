@@ -157,14 +157,21 @@ class HalifaxHousePriceService:
         }
 
     def _load_mom_from_db(self) -> List[Dict[str, Any]]:
-        """DBから前月比データを取得"""
+        """DBから前月比データを取得
+
+        注意: FMPは発表日ベースで格納され前月データを報告するため、-1ヶ月して
+        データ対象月に変換する（例: 7/7発表 actual=6月分）。CSV_IMPORT/PDF_IMPORT は
+        データ対象月ベースなのでそのまま。この補正が無いとFMP行が+1ヶ月ずれ、
+        未発表の翌月に「幻の点」が出る（RICSと同方針）。
+        """
         try:
             from core.database import SessionLocal
             from sqlalchemy import text
+            from dateutil.relativedelta import relativedelta
 
             with SessionLocal() as session:
                 query = text("""
-                    SELECT datetime_utc, actual, estimate, previous
+                    SELECT datetime_utc, actual, estimate, previous, provider
                     FROM economic_calendar_events
                     WHERE country = 'UK'
                       AND event ILIKE '%Halifax House Price Index MoM%'
@@ -177,9 +184,12 @@ class HalifaxHousePriceService:
                 seen_dates = set()
 
                 for row in rows:
-                    dt_utc, actual, estimate, previous = row
+                    dt_utc, actual, estimate, previous, provider = row
                     if dt_utc:
-                        date_str = dt_utc.strftime("%Y-%m-01")
+                        if provider == "FMP":
+                            date_str = (dt_utc - relativedelta(months=1)).strftime("%Y-%m-01")
+                        else:
+                            date_str = dt_utc.strftime("%Y-%m-01")
                         if date_str in seen_dates:
                             continue
                         seen_dates.add(date_str)
@@ -193,6 +203,8 @@ class HalifaxHousePriceService:
                             "previous": float(previous) if previous is not None else None,
                         })
 
+                # FMPの-1ヶ月補正で date が datetime_utc 順と一致しなくなるためソート
+                result.sort(key=lambda x: x["date"])
                 logger.info(f"[Halifax House Price] Loaded {len(result)} MoM records from DB")
                 return result
 
@@ -201,14 +213,19 @@ class HalifaxHousePriceService:
             return []
 
     def _load_yoy_from_db(self) -> List[Dict[str, Any]]:
-        """DBから前年比データを取得"""
+        """DBから前年比データを取得
+
+        注意: FMPは発表日ベースで前月データを報告するため-1ヶ月補正する
+        （_load_mom_from_db と同じ理由）。CSV_IMPORT/PDF_IMPORT はそのまま。
+        """
         try:
             from core.database import SessionLocal
             from sqlalchemy import text
+            from dateutil.relativedelta import relativedelta
 
             with SessionLocal() as session:
                 query = text("""
-                    SELECT datetime_utc, actual, estimate, previous
+                    SELECT datetime_utc, actual, estimate, previous, provider
                     FROM economic_calendar_events
                     WHERE country = 'UK'
                       AND event ILIKE '%Halifax House Price Index YoY%'
@@ -221,9 +238,12 @@ class HalifaxHousePriceService:
                 seen_dates = set()
 
                 for row in rows:
-                    dt_utc, actual, estimate, previous = row
+                    dt_utc, actual, estimate, previous, provider = row
                     if dt_utc:
-                        date_str = dt_utc.strftime("%Y-%m-01")
+                        if provider == "FMP":
+                            date_str = (dt_utc - relativedelta(months=1)).strftime("%Y-%m-01")
+                        else:
+                            date_str = dt_utc.strftime("%Y-%m-01")
                         if date_str in seen_dates:
                             continue
                         seen_dates.add(date_str)
@@ -237,6 +257,8 @@ class HalifaxHousePriceService:
                             "previous": float(previous) if previous is not None else None,
                         })
 
+                # FMPの-1ヶ月補正で date が datetime_utc 順と一致しなくなるためソート
+                result.sort(key=lambda x: x["date"])
                 logger.info(f"[Halifax House Price] Loaded {len(result)} YoY records from DB")
                 return result
 
@@ -456,6 +478,29 @@ class HalifaxHousePriceService:
                                 if yoy_value is None:
                                     yoy_value = float(m.group(3))
                                     logger.info(f"Found Halifax YoY from header-row format: {yoy_value}%")
+
+                        # 価格サマリ行フォールバック（2026〜のLloyds改称後の新レイアウト）:
+                        # 表紙にラベル無しで "£299,330 +0.2 % -0.4% +0. 6%" のように
+                        # 平均価格の直後へ MoM / Quarterly / Annual の3つの%が並ぶ。
+                        # pdfplumberが数値内へ空白を挟む("+0. 6%")ため行を圧縮して解析し、
+                        # £抽出の揺れに依存しないよう価格の桁区切り(NNN,NNN)をアンカーにする。
+                        if mom_value is None or yoy_value is None:
+                            for line in text.splitlines():
+                                if '%' not in line:
+                                    continue
+                                compact = line.replace(' ', '')
+                                m = re.search(r'\d{1,3},\d{3}((?:[+-]?\d+\.?\d*%){3})', compact)
+                                if not m:
+                                    continue
+                                vals = re.findall(r'([+-]?\d+\.?\d*)%', m.group(1))
+                                if len(vals) == 3:
+                                    if mom_value is None:
+                                        mom_value = float(vals[0])
+                                        logger.info(f"Found Halifax MoM from price-row format: {mom_value}%")
+                                    if yoy_value is None:
+                                        yoy_value = float(vals[2])
+                                        logger.info(f"Found Halifax YoY from price-row format: {yoy_value}%")
+                                    break
 
             # カバーから取れなければ発行日 -1 ヶ月で推定
             if not data_date:

@@ -66,7 +66,7 @@
     },
     {
       "date": "2016-05",
-      "value": 95.2
+      "value": 95.3
     },
     {
       "date": "2016-06",
@@ -110,7 +110,7 @@
     },
     {
       "date": "2017-04",
-      "value": 98.2
+      "value": 98.3
     },
     {
       "date": "2017-05",
@@ -202,7 +202,7 @@
     },
     {
       "date": "2019-03",
-      "value": 99.9
+      "value": 100.0
     },
     {
       "date": "2019-04",
@@ -286,7 +286,7 @@
     },
     {
       "date": "2020-12",
-      "value": 98.5
+      "value": 98.6
     },
     {
       "date": "2021-01",
@@ -314,7 +314,7 @@
     },
     {
       "date": "2021-07",
-      "value": 101.2
+      "value": 101.3
     },
     {
       "date": "2021-08",
@@ -430,7 +430,7 @@
     },
     {
       "date": "2023-12",
-      "value": 98.6
+      "value": 98.5
     },
     {
       "date": "2024-01",
@@ -450,7 +450,7 @@
     },
     {
       "date": "2024-05",
-      "value": 96.0
+      "value": 96.1
     },
     {
       "date": "2024-06",
@@ -486,11 +486,11 @@
     },
     {
       "date": "2025-02",
-      "value": 98.8
+      "value": 98.7
     },
     {
       "date": "2025-03",
-      "value": 101.4
+      "value": 101.2
     },
     {
       "date": "2025-04",
@@ -498,7 +498,7 @@
     },
     {
       "date": "2025-05",
-      "value": 98.9
+      "value": 99.2
     },
     {
       "date": "2025-06",
@@ -518,7 +518,7 @@
     },
     {
       "date": "2025-10",
-      "value": 98.4
+      "value": 98.5
     },
     {
       "date": "2025-11",
@@ -530,19 +530,23 @@
     },
     {
       "date": "2026-01",
-      "value": 97.4
+      "value": 97.3
     },
     {
       "date": "2026-02",
-      "value": 97.7
+      "value": 97.6
     },
     {
       "date": "2026-03",
-      "value": 98.1
+      "value": 97.9
     },
     {
       "date": "2026-04",
       "value": 98.2
+    },
+    {
+      "date": "2026-05",
+      "value": 98.0
     }
   ],
   "mom_change": [
@@ -638,15 +642,15 @@
     },
     {
       "date": "2016-05",
-      "value": -1.65,
-      "current_index": 95.2,
+      "value": -1.55,
+      "current_index": 95.3,
       "previous_index": 96.8
     },
     {
       "date": "2016-06",
-      "value": 0.95,
+      "value": 0.84,
       "current_index": 96.1,
-      "previous_index": 95.2
+      "previous_index": 95.3
     },
     {
       "date": "2016-07",
@@ -704,15 +708,15 @@
     },
     {
       "date": "2017-04",
-      "value": 0.72,
-      "current_index": 98.2,
+      "value": 0.82,
+      "current_index": 98.3,
       "previous_index": 97.5
     },
     {
       "date": "2017-05",
-      "value": 0.51,
+      "value": 0.41,
       "current_index": 98.7,
-      "previous_index": 98.2
+      "previous_index": 98.3
     },
     {
       "date": "2017-06",
@@ -842,15 +846,15 @@
     },
     {
       "date": "2019-03",
-      "value": 0.1,
-      "current_index": 99.9,
+      "value": 0.2,
+      "current_index": 100.0,
       "previous_index": 99.8
     },
     {
       "date": "2019-04",
-      "value": -0.1,
+      "value": -0.2,
       "current_index": 99.8,
-      "previous_index": 99.9
+      "previous_index": 100.0
     },
     {
       "date": "2019-05",
@@ -968,15 +972,15 @@
     },
     {
       "date": "2020-12",
-      "value": -0.91,
-      "current_index": 98.5,
+      "value": -0.8,
+      "current_index": 98.6,
       "previous_index": 99.4
     },
     {
       "date": "2021-01",
-      "value": 1.62,
+      "value": 1.52,
       "current_index": 100.1,
-      "previous_index": 98.5
+      "previous_index": 98.6
     },
     {
       "date": "2021-02",
@@ -1010,15 +1014,15 @@
     },
     {
       "date": "2021-07",
-      "value": 1.2,
-      "current_index": 101.2,
+      "value": 1.3,
+      "current_index": 101.3,
       "previous_index": 100.0
     },
     {
       "date": "2021-08",
-      "value": -2.17,
+      "value": -2.27,
       "current_index": 99.0,
-      "previous_index": 101.2
+      "previous_index": 101.3
     },
     {
       "date": "2021-09",
@@ -1184,15 +1188,15 @@
     },
     {
       "date": "2023-12",
-      "value": -0.2,
-      "current_index": 98.6,
+      "value": -0.3,
+      "current_index": 98.5,
       "previous_index": 98.8
     },
     {
       "date": "2024-01",
-      "value": -1.12,
+      "value": -1.02,
       "current_index": 97.5,
-      "previous_index": 98.6
+      "previous_index": 98.5
     },
     {
       "date": "2024-02",
@@ -1214,15 +1218,15 @@
     },
     {
       "date": "2024-05",
-      "value": -1.64,
-      "current_index": 96.0,
+      "value": -1.54,
+      "current_index": 96.1,
       "previous_index": 97.6
     },
     {
       "date": "2024-06",
-      "value": 1.77,
+      "value": 1.66,
       "current_index": 97.7,
-      "previous_index": 96.0
+      "previous_index": 96.1
     },
     {
       "date": "2024-07",
@@ -1268,33 +1272,33 @@
     },
     {
       "date": "2025-02",
-      "value": 0.82,
-      "current_index": 98.8,
+      "value": 0.71,
+      "current_index": 98.7,
       "previous_index": 98.0
     },
     {
       "date": "2025-03",
-      "value": 2.63,
-      "current_index": 101.4,
-      "previous_index": 98.8
+      "value": 2.53,
+      "current_index": 101.2,
+      "previous_index": 98.7
     },
     {
       "date": "2025-04",
-      "value": -3.55,
+      "value": -3.36,
       "current_index": 97.8,
-      "previous_index": 101.4
+      "previous_index": 101.2
     },
     {
       "date": "2025-05",
-      "value": 1.12,
-      "current_index": 98.9,
+      "value": 1.43,
+      "current_index": 99.2,
       "previous_index": 97.8
     },
     {
       "date": "2025-06",
-      "value": -0.2,
+      "value": -0.5,
       "current_index": 98.7,
-      "previous_index": 98.9
+      "previous_index": 99.2
     },
     {
       "date": "2025-07",
@@ -1316,15 +1320,15 @@
     },
     {
       "date": "2025-10",
-      "value": 0.31,
-      "current_index": 98.4,
+      "value": 0.41,
+      "current_index": 98.5,
       "previous_index": 98.1
     },
     {
       "date": "2025-11",
-      "value": 0.3,
+      "value": 0.2,
       "current_index": 98.7,
-      "previous_index": 98.4
+      "previous_index": 98.5
     },
     {
       "date": "2025-12",
@@ -1334,27 +1338,33 @@
     },
     {
       "date": "2026-01",
-      "value": -1.02,
-      "current_index": 97.4,
+      "value": -1.12,
+      "current_index": 97.3,
       "previous_index": 98.4
     },
     {
       "date": "2026-02",
       "value": 0.31,
-      "current_index": 97.7,
-      "previous_index": 97.4
+      "current_index": 97.6,
+      "previous_index": 97.3
     },
     {
       "date": "2026-03",
-      "value": 0.41,
-      "current_index": 98.1,
-      "previous_index": 97.7
+      "value": 0.31,
+      "current_index": 97.9,
+      "previous_index": 97.6
     },
     {
       "date": "2026-04",
-      "value": 0.1,
+      "value": 0.31,
       "current_index": 98.2,
-      "previous_index": 98.1
+      "previous_index": 97.9
+    },
+    {
+      "date": "2026-05",
+      "value": -0.2,
+      "current_index": 98.0,
+      "previous_index": 98.2
     }
   ],
   "yoy_change": [
@@ -1376,7 +1386,7 @@
     },
     {
       "date": "2016-05",
-      "value": -0.52
+      "value": -0.42
     },
     {
       "date": "2016-06",
@@ -1420,11 +1430,11 @@
     },
     {
       "date": "2017-04",
-      "value": 1.45
+      "value": 1.55
     },
     {
       "date": "2017-05",
-      "value": 3.68
+      "value": 3.57
     },
     {
       "date": "2017-06",
@@ -1468,7 +1478,7 @@
     },
     {
       "date": "2018-04",
-      "value": 1.83
+      "value": 1.73
     },
     {
       "date": "2018-05",
@@ -1512,7 +1522,7 @@
     },
     {
       "date": "2019-03",
-      "value": -0.5
+      "value": -0.4
     },
     {
       "date": "2019-04",
@@ -1560,7 +1570,7 @@
     },
     {
       "date": "2020-03",
-      "value": -12.51
+      "value": -12.6
     },
     {
       "date": "2020-04",
@@ -1596,7 +1606,7 @@
     },
     {
       "date": "2020-12",
-      "value": 1.86
+      "value": 1.96
     },
     {
       "date": "2021-01",
@@ -1624,7 +1634,7 @@
     },
     {
       "date": "2021-07",
-      "value": 9.05
+      "value": 9.16
     },
     {
       "date": "2021-08",
@@ -1644,7 +1654,7 @@
     },
     {
       "date": "2021-12",
-      "value": 3.65
+      "value": 3.55
     },
     {
       "date": "2022-01",
@@ -1672,7 +1682,7 @@
     },
     {
       "date": "2022-07",
-      "value": -0.69
+      "value": -0.79
     },
     {
       "date": "2022-08",
@@ -1740,7 +1750,7 @@
     },
     {
       "date": "2023-12",
-      "value": -2.28
+      "value": -2.38
     },
     {
       "date": "2024-01",
@@ -1760,7 +1770,7 @@
     },
     {
       "date": "2024-05",
-      "value": -4.95
+      "value": -4.85
     },
     {
       "date": "2024-06",
@@ -1788,7 +1798,7 @@
     },
     {
       "date": "2024-12",
-      "value": -2.13
+      "value": -2.03
     },
     {
       "date": "2025-01",
@@ -1796,11 +1806,11 @@
     },
     {
       "date": "2025-02",
-      "value": 1.23
+      "value": 1.13
     },
     {
       "date": "2025-03",
-      "value": 4.43
+      "value": 4.22
     },
     {
       "date": "2025-04",
@@ -1808,7 +1818,7 @@
     },
     {
       "date": "2025-05",
-      "value": 3.02
+      "value": 3.23
     },
     {
       "date": "2025-06",
@@ -1828,7 +1838,7 @@
     },
     {
       "date": "2025-10",
-      "value": 1.55
+      "value": 1.65
     },
     {
       "date": "2025-11",
@@ -1840,7 +1850,7 @@
     },
     {
       "date": "2026-01",
-      "value": -0.61
+      "value": -0.71
     },
     {
       "date": "2026-02",
@@ -1848,15 +1858,19 @@
     },
     {
       "date": "2026-03",
-      "value": -3.25
+      "value": -3.26
     },
     {
       "date": "2026-04",
       "value": 0.41
+    },
+    {
+      "date": "2026-05",
+      "value": -1.21
     }
   ],
   "metadata": {
-    "last_updated": "2026-06-27T22:45:24.321599+09:00",
+    "last_updated": "2026-07-26T04:29:50.115357+09:00",
     "source": "Eurostat - Short-term business statistics",
     "dataset": "sts_inpr_m",
     "data_start": "2015-01",
@@ -1867,5 +1881,5 @@
     "adjustment_nsa": "Not seasonally adjusted",
     "adjustment_sca": "Seasonally and calendar adjusted"
   },
-  "last_updated": "2026-06-27T22:45:24.321613+09:00"
+  "last_updated": "2026-07-26T04:29:50.115381+09:00"
 }

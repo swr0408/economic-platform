@@ -151,16 +151,12 @@
       },
       {
         "date": "2026-01-01",
-        "value": 5.02,
-        "source": "press_no6",
-        "preliminary": true
+        "value": 5.01
       }
     ],
     "latest": {
       "date": "2026-01-01",
-      "value": 5.02,
-      "source": "press_no6",
-      "preliminary": true
+      "value": 5.01
     }
   },
   "union_member": {
@@ -312,11 +308,15 @@
       {
         "date": "2025-01-01",
         "value": 4.65
+      },
+      {
+        "date": "2026-01-01",
+        "value": 4.69
       }
     ],
     "latest": {
-      "date": "2025-01-01",
-      "value": 4.65
+      "date": "2026-01-01",
+      "value": 4.69
     }
   },
   "press_releases": [
@@ -361,12 +361,19 @@
       "year": 2026,
       "title": "第6回回答集計結果",
       "cached": true
+    },
+    {
+      "number": 7,
+      "url": "https://www.jtuc-rengo.or.jp/activity/roudou/shuntou/2026/yokyu_kaito/kaito/press_no7.pdf",
+      "year": 2026,
+      "title": "第7回回答集計結果",
+      "cached": true
     }
   ],
   "next_release": {
-    "date": "2026-07-01T16:00:00+09:00",
+    "date": "2027-02-15T16:00:00+09:00",
     "label": "推定",
     "estimated": true
   },
-  "last_updated": "2026-06-22T11:31:17.760410+09:00"
+  "last_updated": "2026-07-26T04:07:16.672459+09:00"
 }

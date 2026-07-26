@@ -244,12 +244,17 @@
       "date": "2026-03-01",
       "selling_price_outlook": 3.1,
       "general_price_outlook": 2.6
+    },
+    {
+      "date": "2026-06-01",
+      "selling_price_outlook": 3.7,
+      "general_price_outlook": 2.7
     }
   ],
   "latest": {
-    "date": "2026-03-01",
-    "selling_price_outlook": 3.1,
-    "general_price_outlook": 2.6
+    "date": "2026-06-01",
+    "selling_price_outlook": 3.7,
+    "general_price_outlook": 2.7
   },
   "metadata": {
     "source": "Bank of Japan (BOJ) Tankan Survey - 企業の物価見通し（表7）",
@@ -259,13 +264,6 @@
     "unit": "%",
     "frequency": "Quarterly"
   },
-  "next_release": {
-    "date": "2026-06-30",
-    "datetime_utc": "2026-06-30T23:50:00+00:00",
-    "datetime_jst": "2026-07-01T08:50:00+09:00",
-    "time_jst": "08:50",
-    "label": "Tankan Large Manufacturers Index (Q2)",
-    "estimate": 16
-  },
-  "last_updated": "2026-06-26T08:46:43.610723+09:00"
+  "next_release": null,
+  "last_updated": "2026-07-24T09:49:42.272770+09:00"
 }

@@ -2693,24 +2693,48 @@
       "value": -0.765,
       "forecast": null,
       "previous": -8.33
+    },
+    {
+      "date": "2026-06-30",
+      "value": -6.072,
+      "forecast": -4.1,
+      "previous": -0.765
+    },
+    {
+      "date": "2026-07-07",
+      "value": -0.399,
+      "forecast": -1.5,
+      "previous": -6.072
+    },
+    {
+      "date": "2026-07-14",
+      "value": -0.564,
+      "forecast": -2.7,
+      "previous": -0.399
+    },
+    {
+      "date": "2026-07-21",
+      "value": 2.603,
+      "forecast": -1.5,
+      "previous": -0.564
     }
   ],
   "latest": {
-    "date": "2026-06-23",
-    "value": -0.765,
-    "forecast": null,
-    "previous": -8.33
+    "date": "2026-07-21",
+    "value": 2.603,
+    "forecast": -1.5,
+    "previous": -0.564
   },
   "metadata": {
     "source": "API (American Petroleum Institute)",
     "frequency": "weekly",
     "unit": "M (Million Barrels)",
     "series": "API Weekly Crude Oil Stock Change",
-    "data_count": 449,
+    "data_count": 453,
     "start_date": "2017-11-28",
-    "end_date": "2026-06-23"
+    "end_date": "2026-07-21"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-25T20:17:52.009671+09:00"
+  "last_updated": "2026-07-24T10:01:18.611045+09:00"
 }

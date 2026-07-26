@@ -2581,40 +2581,46 @@
     },
     {
       "date": "2026-01-01",
-      "value": 236.4,
-      "mom": -16.16,
-      "yoy": 1.11
+      "value": 236.8,
+      "mom": -16.04,
+      "yoy": 1.26
     },
     {
       "date": "2026-02-01",
-      "value": 249.8,
-      "mom": 5.64,
-      "yoy": 12.28
+      "value": 248.8,
+      "mom": 5.09,
+      "yoy": 11.86
     },
     {
       "date": "2026-03-01",
-      "value": 240.1,
-      "mom": -3.88,
-      "yoy": 11.93
+      "value": 239.6,
+      "mom": -3.72,
+      "yoy": 11.69
     },
     {
       "date": "2026-04-01",
-      "value": 278.4,
-      "mom": 15.95,
-      "yoy": -1.22
+      "value": 271.5,
+      "mom": 13.33,
+      "yoy": -3.66
     },
     {
       "date": "2026-05-01",
-      "value": 261.4,
-      "mom": -6.11,
-      "yoy": -6.22
+      "value": 253.1,
+      "mom": -6.78,
+      "yoy": -9.19
+    },
+    {
+      "date": "2026-06-01",
+      "value": 239.0,
+      "mom": -5.58,
+      "yoy": -15.9
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": 261.4,
-    "mom": -6.11,
-    "yoy": -6.22
+    "date": "2026-06-01",
+    "value": 239.0,
+    "mom": -5.58,
+    "yoy": -15.9
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -2625,14 +2631,14 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-07-16",
-    "datetime_utc": "2026-07-16T12:15:00+00:00",
-    "datetime_jst": "2026-07-16T21:15:00+09:00",
+    "date": "2026-08-18",
+    "datetime_utc": "2026-08-18T12:15:00+00:00",
+    "datetime_jst": "2026-08-18T21:15:00+09:00",
     "time_jst": "21:15",
-    "datetime_toronto": "2026-07-16T08:15:00-04:00",
+    "datetime_toronto": "2026-08-18T08:15:00-04:00",
     "time_toronto": "08:15",
-    "label": "Housing Starts (Jun)",
-    "estimate": 220.0
+    "label": "Housing Starts (Jul)",
+    "estimate": null
   },
-  "last_updated": "2026-06-27T11:46:19.795786+09:00"
+  "last_updated": "2026-07-26T01:25:56.758605+09:00"
 }

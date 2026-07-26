@@ -100,6 +100,12 @@ class ECBLaborProductivityService:
         if has_data:
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("per_hour", "per_person", "per_hour_yoy", "per_person_yoy"),
+                _max_date_of(per_hour, per_person, per_hour_yoy, per_person_yoy), now_str
+            )
             cache_payload = {
                 "per_hour": per_hour,
                 "per_person": per_person,
@@ -115,7 +121,7 @@ class ECBLaborProductivityService:
                     "description": "労働生産性（ユーロ圏）",
                 },
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -129,7 +135,7 @@ class ECBLaborProductivityService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "ecb_api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

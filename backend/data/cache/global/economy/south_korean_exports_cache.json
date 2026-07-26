@@ -734,16 +734,22 @@
     },
     {
       "date": "2026-05-01",
-      "value": 53.2,
-      "forecast": 48.4,
+      "value": 53.4,
+      "forecast": 53.2,
       "previous": 48.0
+    },
+    {
+      "date": "2026-06-01",
+      "value": 70.9,
+      "forecast": null,
+      "previous": 53.4
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": 53.2,
-    "forecast": 48.4,
-    "previous": 48.0
+    "date": "2026-06-01",
+    "value": 70.9,
+    "forecast": null,
+    "previous": 53.4
   },
   "metadata": {
     "source": "MOTIR (Ministry of Trade, Industry and Resources)",
@@ -753,5 +759,5 @@
     "frequency": "monthly"
   },
   "next_release": null,
-  "last_updated": "2026-06-28T00:32:11.332911+09:00"
+  "last_updated": "2026-07-25T11:32:06.494212+09:00"
 }

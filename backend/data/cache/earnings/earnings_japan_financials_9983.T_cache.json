@@ -8,6 +8,29 @@
   "reported_currency": "JPY",
   "periods": [
     {
+      "date": "2026-05-31",
+      "period": "Q3",
+      "fiscal_year": "2026",
+      "reported_currency": "JPY",
+      "revenue": 1015155333000.0,
+      "gross_profit": 515786217000.0,
+      "operating_income": 206811432000.0,
+      "net_income": 147542817000.0,
+      "eps_diluted": 47.84,
+      "gross_margin": 50.80860044105191,
+      "operating_margin": 20.37239280306278,
+      "net_margin": 14.534013879824636,
+      "operating_cf": 148881692000.0,
+      "fcf": 126967975000.0,
+      "capex": -21913717000.0,
+      "buyback": 0.0,
+      "dividends_paid": -99447626000.0,
+      "fcf_margin": 12.507246021629284,
+      "depreciation_amortization": 59196244000.0,
+      "revenue_yoy": 22.824325537501057,
+      "eps_yoy": 39.2721979621543
+    },
+    {
       "date": "2026-02-28",
       "period": "Q2",
       "fiscal_year": "2026",
@@ -96,8 +119,8 @@
       "dividends_paid": -73577000000.0,
       "fcf_margin": 11.542510072473412,
       "depreciation_amortization": 53217000000.0,
-      "revenue_yoy": 7.688318727508202,
-      "eps_yoy": -9.74776668418287
+      "revenue_yoy": null,
+      "eps_yoy": null
     },
     {
       "date": "2025-02-28",
@@ -167,36 +190,13 @@
       "depreciation_amortization": 52856000000.0,
       "revenue_yoy": null,
       "eps_yoy": null
-    },
-    {
-      "date": "2024-05-31",
-      "period": "Q3",
-      "fiscal_year": "2024",
-      "reported_currency": "JPY",
-      "revenue": 767502000000.0,
-      "gross_profit": 433731000000.0,
-      "operating_income": 144718000000.0,
-      "net_income": 116927000000.0,
-      "eps_diluted": 38.06,
-      "gross_margin": 56.51203514779115,
-      "operating_margin": 18.85571633689554,
-      "net_margin": 15.234748573945083,
-      "operating_cf": 132013000000.0,
-      "fcf": 101203000000.0,
-      "capex": -30810000000.0,
-      "buyback": 0.0,
-      "dividends_paid": -53632000000.0,
-      "fcf_margin": 13.186024270946525,
-      "depreciation_amortization": 51781000000.0,
-      "revenue_yoy": null,
-      "eps_yoy": null
     }
   ],
   "ir_home": "https://www.fastretailing.com/jp/about/",
   "ir_results": "https://www.fastretailing.com/jp/ir/",
   "ir_tdnet": "https://www.release.tdnet.info/inbs/I_main_00.html",
   "ir_notes": "Earnings Announcements / Results Summary",
-  "last_updated": "2026-05-11T15:53:58.842356+00:00",
+  "last_updated": "2026-07-15T23:14:08.586634+00:00",
   "cached": false,
   "status": "ok"
 }

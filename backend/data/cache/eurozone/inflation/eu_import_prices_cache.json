@@ -490,11 +490,15 @@
     },
     {
       "date": "2026-03-01",
-      "value": 1.7
+      "value": 1.5
     },
     {
       "date": "2026-04-01",
-      "value": 6.2
+      "value": 6.3
+    },
+    {
+      "date": "2026-05-01",
+      "value": 7.7
     }
   ],
   "mom": [
@@ -1032,20 +1036,24 @@
     },
     {
       "date": "2026-03-01",
-      "value": 3.8
+      "value": 3.6
     },
     {
       "date": "2026-04-01",
-      "value": 2.7
+      "value": 2.9
+    },
+    {
+      "date": "2026-05-01",
+      "value": 0.5
     }
   ],
   "latest_yoy": {
-    "date": "2026-04-01",
-    "value": 6.2
+    "date": "2026-05-01",
+    "value": 7.7
   },
   "latest_mom": {
-    "date": "2026-04-01",
-    "value": 2.7
+    "date": "2026-05-01",
+    "value": 0.5
   },
   "metadata": {
     "source": "Eurostat - Euro-Indicators (Industrial Import Prices)",
@@ -1060,10 +1068,10 @@
     "description": "Industrial import price indices"
   },
   "next_release": {
-    "date": "2026-07-06",
-    "datetime_jst": "2026-07-06 19:00",
+    "date": "2026-08-06",
+    "datetime_jst": "2026-08-06 19:00",
     "time_jst": "19:00",
-    "label": "Import Prices (2026-07-06)"
+    "label": "Import Prices (2026-08-06)"
   },
-  "last_updated": "2026-06-27T22:45:51.094544+09:00"
+  "last_updated": "2026-07-26T01:03:43.742018+09:00"
 }

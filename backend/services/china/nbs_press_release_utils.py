@@ -72,6 +72,18 @@ RE_QUARTER_NOYEAR = re.compile(r"(一|二|三|四)季度")
 # 年付きパターンが全滅した場合のみ使う（年は発表日基準で推定）。
 RE_MONTH_NOYEAR = re.compile(r"(\d{1,2})月份")
 
+# 半期・累計期間タイトル（数字を含まない中国語表記）。小売売上高のH1発表は
+# "2026年上半年社会消费品零售总额..." のように「上半年」と表記され、数字月の
+# パターン(RE_MONTH/RE_RANGE)が全滅して period=None になり最新月が取り込めなかった。
+# 上半年=6月末 / 前三季度=9月末 / 全年=12月 にマッピングする（対象月データ列は当期=末月）。
+RE_HALF_YEAR = re.compile(r"(\d{4})年上半年")
+RE_THREE_QUARTERS = re.compile(r"(\d{4})年前三季度")
+RE_FULL_YEAR = re.compile(r"(\d{4})年全年")
+# 年なし版（フォールバック）。年は発表日基準で推定。
+RE_HALF_YEAR_NOYEAR = re.compile(r"上半年")
+RE_THREE_QUARTERS_NOYEAR = re.compile(r"前三季度")
+RE_FULL_YEAR_NOYEAR = re.compile(r"全年")
+
 
 def _parse_release_period(title: str) -> Optional[Tuple[int, int]]:
     """プレスリリースタイトルから (year, month) を抽出"""
@@ -86,6 +98,16 @@ def _parse_release_period(title: str) -> Optional[Tuple[int, int]]:
         q = QUARTER_MAP.get(m.group(2))
         if q:
             return (year, QUARTER_END_MONTH[q])
+    # "2026年上半年..." → (2026, 6) / "2026年前三季度..." → (2026, 9) / "2026年全年..." → (2026, 12)
+    m = RE_HALF_YEAR.search(title)
+    if m:
+        return (int(m.group(1)), 6)
+    m = RE_THREE_QUARTERS.search(title)
+    if m:
+        return (int(m.group(1)), 9)
+    m = RE_FULL_YEAR.search(title)
+    if m:
+        return (int(m.group(1)), 12)
     # "2026年3月份..." → (2026, 3)
     m = RE_MONTH.search(title)
     if m:
@@ -108,6 +130,18 @@ def _parse_release_period(title: str) -> Optional[Tuple[int, int]]:
             if month > now.month:
                 year -= 1
             return (year, month)
+    # 年なし半期・累計期間（上半年/前三季度/全年）。年は発表月基準で推定。
+    for rx, end_month in (
+        (RE_HALF_YEAR_NOYEAR, 6),
+        (RE_THREE_QUARTERS_NOYEAR, 9),
+        (RE_FULL_YEAR_NOYEAR, 12),
+    ):
+        if rx.search(title):
+            now = datetime.now(JST)
+            year = now.year
+            if end_month > now.month:
+                year -= 1
+            return (year, end_month)
     return None
 
 

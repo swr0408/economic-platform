@@ -6,20 +6,6 @@
   ],
   "items": [
     {
-      "symbol": "TSM",
-      "name": "TSMC",
-      "tier": "S",
-      "country_code": "taiwan",
-      "date": "2026-07-16",
-      "time": "--",
-      "fiscal_date_ending": "",
-      "eps_estimate": 3.77,
-      "eps_actual": null,
-      "revenue_estimate": 40053450000.0,
-      "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
-    },
-    {
       "symbol": "2317.TW",
       "name": "Hon Hai",
       "tier": "A",
@@ -27,11 +13,25 @@
       "date": "2026-08-12",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.2601,
+      "eps_estimate": 0.2598,
       "eps_actual": null,
-      "revenue_estimate": 74905890000.0,
+      "revenue_estimate": 75776880000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
+    },
+    {
+      "symbol": "TSM",
+      "name": "TSMC",
+      "tier": "S",
+      "country_code": "taiwan",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
     },
     {
       "symbol": "2454.TW",
@@ -50,7 +50,7 @@
   ],
   "next_7d_count": 0,
   "next_30d_count": 1,
-  "last_updated": "2026-06-27T13:49:18.807794+00:00",
+  "last_updated": "2026-07-25T13:50:51.953728+00:00",
   "cached": false,
   "status": "ok"
 }

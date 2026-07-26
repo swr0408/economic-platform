@@ -737,16 +737,25 @@
       "outstanding_inv_fixed": 5.53,
       "new_oo_variable": 5.99,
       "new_oo_fixed": 5.9
+    },
+    {
+      "date": "2026-05-31",
+      "outstanding_oo_variable": 6.24,
+      "outstanding_oo_fixed": 5.53,
+      "outstanding_inv_variable": 6.48,
+      "outstanding_inv_fixed": 5.6,
+      "new_oo_variable": 6.23,
+      "new_oo_fixed": 6.07
     }
   ],
   "latest": {
-    "date": "2026-04-30",
-    "outstanding_oo_variable": 6.0,
-    "outstanding_oo_fixed": 5.47,
-    "outstanding_inv_variable": 6.24,
-    "outstanding_inv_fixed": 5.53,
-    "new_oo_variable": 5.99,
-    "new_oo_fixed": 5.9
+    "date": "2026-05-31",
+    "outstanding_oo_variable": 6.24,
+    "outstanding_oo_fixed": 5.53,
+    "outstanding_inv_variable": 6.48,
+    "outstanding_inv_fixed": 5.6,
+    "new_oo_variable": 6.23,
+    "new_oo_fixed": 6.07
   },
   "metadata": {
     "source": "Reserve Bank of Australia",
@@ -755,5 +764,5 @@
     "unit": "% p.a."
   },
   "next_release": null,
-  "last_updated": "2026-06-27T11:46:24.404996+09:00"
+  "last_updated": "2026-07-26T01:20:15.488307+09:00"
 }

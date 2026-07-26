@@ -88,13 +88,19 @@ class NationwideHPIService:
             latest_mom = mom_data[-1] if mom_data else None
             latest_yoy = yoy_data[-1] if yoy_data else None
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("mom", "yoy"),
+                _max_date_of(mom_data, yoy_data), now_str
+            )
             cache_payload = {
                 "mom": mom_data,
                 "yoy": yoy_data,
                 "latest_mom": latest_mom,
                 "latest_yoy": latest_yoy,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -107,7 +113,7 @@ class NationwideHPIService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "excel" if excel_data else "database",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         # ファイルキャッシュフォールバック

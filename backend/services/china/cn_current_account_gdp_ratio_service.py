@@ -120,6 +120,11 @@ class CnCurrentAccountGdpRatioService:
         result = self._load_from_source()
         if result:
             latest = result[-1] if result else None
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
 
             cache_payload = {
                 "data": result,
@@ -132,7 +137,7 @@ class CnCurrentAccountGdpRatioService:
                     "ca_source": "SAFE quarterly(RMB) Current Account (亿元)",
                     "gdp_source": "NBS A010101 Nominal GDP (亿元)",
                 },
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)

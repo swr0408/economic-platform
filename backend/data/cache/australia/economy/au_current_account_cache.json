@@ -3200,6 +3200,15 @@
     "unit": "B AUD (Billion AUD)",
     "series_id": "A3535187L"
   },
-  "next_release": null,
-  "last_updated": "2026-06-27T11:46:36.213671+09:00"
+  "next_release": {
+    "date": "2026-09-01",
+    "datetime_utc": "2026-09-01T01:30:00+00:00",
+    "datetime_jst": "2026-09-01T10:30:00+09:00",
+    "time_jst": "10:30",
+    "datetime_sydney": "2026-09-01T11:30:00+10:00",
+    "time_sydney": "11:30",
+    "label": "経常収支 (Q2)",
+    "estimate": -22
+  },
+  "last_updated": "2026-07-26T11:11:25.306731+09:00"
 }

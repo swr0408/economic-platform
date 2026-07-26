@@ -1179,16 +1179,22 @@
     {
       "date": "2026-05-01",
       "value": -35.0,
-      "forecast": -31.0,
-      "previous": -35.0
+      "forecast": null,
+      "previous": null
+    },
+    {
+      "date": "2026-06-01",
+      "value": -33.0,
+      "forecast": null,
+      "previous": null
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": -35.0,
-    "forecast": -31.0,
-    "previous": -35.0
+    "date": "2026-06-01",
+    "value": -33.0,
+    "forecast": null,
+    "previous": null
   },
   "next_release": null,
-  "last_updated": "2026-06-27T11:46:17.909507+09:00"
+  "last_updated": "2026-07-26T04:38:21.797338+09:00"
 }

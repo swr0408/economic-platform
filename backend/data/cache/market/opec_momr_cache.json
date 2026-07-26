@@ -8,11 +8,11 @@
           "demand_yoy_change": 2.486,
           "non_doc_production": 60.223,
           "supply_yoy_change": 2.807,
-          "opec_production": 27.065,
+          "opec_production": 27.082,
           "non_opec_doc_production": 15.002,
-          "doc_production": 42.066,
-          "total_production": 102.29,
-          "balance": -0.069,
+          "doc_production": 42.084,
+          "total_production": 102.307,
+          "balance": -0.052,
           "oecd_commercial": 2780.302,
           "oecd_spr": 1206.656,
           "oil_on_water": 1390.517,
@@ -22,40 +22,40 @@
           "period": "2024",
           "world_demand": 103.848,
           "demand_yoy_change": 1.489,
-          "non_doc_production": 61.738,
-          "supply_yoy_change": 1.514,
-          "opec_production": 26.604,
+          "non_doc_production": 61.736,
+          "supply_yoy_change": 1.513,
+          "opec_production": 26.623,
           "non_opec_doc_production": 14.263,
-          "doc_production": 40.866,
-          "total_production": 102.604,
-          "balance": -1.244,
+          "doc_production": 40.885,
+          "total_production": 102.621,
+          "balance": -1.227,
           "oecd_commercial": 2755.822,
           "oecd_spr": 1245.304,
           "oil_on_water": 1309.935,
-          "call_on_opec": 42.111
+          "call_on_opec": 42.112
         },
         {
           "period": "2025",
           "world_demand": 105.157,
           "demand_yoy_change": 1.309,
-          "non_doc_production": 62.832,
+          "non_doc_production": 62.831,
           "supply_yoy_change": 1.095,
-          "opec_production": 27.58,
+          "opec_production": 27.599,
           "non_opec_doc_production": 14.347,
-          "doc_production": 41.927,
-          "total_production": 104.76,
-          "balance": -0.398,
-          "oecd_commercial": 2826.614,
+          "doc_production": 41.946,
+          "total_production": 104.777,
+          "balance": -0.38,
+          "oecd_commercial": 2839.632,
           "oecd_spr": 1248.678,
           "oil_on_water": 1545.699,
-          "call_on_opec": 42.325
+          "call_on_opec": 42.326
         },
         {
           "period": "2026",
-          "world_demand": 106.331,
-          "demand_yoy_change": 1.174,
-          "non_doc_production": 63.595,
-          "supply_yoy_change": 0.763,
+          "world_demand": 105.939,
+          "demand_yoy_change": 0.782,
+          "non_doc_production": 63.599,
+          "supply_yoy_change": 0.769,
           "opec_production": null,
           "non_opec_doc_production": null,
           "doc_production": null,
@@ -64,46 +64,46 @@
           "oecd_commercial": null,
           "oecd_spr": null,
           "oil_on_water": null,
-          "call_on_opec": 42.736
+          "call_on_opec": 42.339
         },
         {
           "period": "2026-Q1",
-          "world_demand": 106.054,
-          "demand_yoy_change": 1.768,
-          "non_doc_production": 62.993,
-          "supply_yoy_change": 0.575,
-          "opec_production": 25.853,
-          "non_opec_doc_production": 14.037,
-          "doc_production": 39.891,
-          "total_production": 102.884,
-          "balance": -3.17,
-          "oecd_commercial": 2773.725,
-          "oecd_spr": 1246.344,
-          "oil_on_water": 1356.57,
-          "call_on_opec": 43.061
+          "world_demand": 105.978,
+          "demand_yoy_change": 1.692,
+          "non_doc_production": 63.213,
+          "supply_yoy_change": 0.795,
+          "opec_production": 25.871,
+          "non_opec_doc_production": 14.022,
+          "doc_production": 39.892,
+          "total_production": 103.105,
+          "balance": -2.873,
+          "oecd_commercial": 2809.039,
+          "oecd_spr": 1239.863,
+          "oil_on_water": 1257.483,
+          "call_on_opec": 42.765
         },
         {
           "period": "2026-Q2",
-          "world_demand": 104.574,
-          "demand_yoy_change": 0.355,
-          "non_doc_production": 63.126,
-          "supply_yoy_change": 0.337,
-          "opec_production": null,
-          "non_opec_doc_production": null,
-          "doc_production": null,
-          "total_production": null,
-          "balance": null,
+          "world_demand": 103.668,
+          "demand_yoy_change": -0.55,
+          "non_doc_production": 62.931,
+          "supply_yoy_change": 0.142,
+          "opec_production": 19.982,
+          "non_opec_doc_production": 14.322,
+          "doc_production": 34.304,
+          "total_production": 97.234,
+          "balance": -6.434,
           "oecd_commercial": null,
           "oecd_spr": null,
           "oil_on_water": null,
-          "call_on_opec": 41.448
+          "call_on_opec": 40.738
         },
         {
           "period": "2026-Q3",
-          "world_demand": 106.758,
-          "demand_yoy_change": 1.27,
-          "non_doc_production": 63.785,
-          "supply_yoy_change": 0.228,
+          "world_demand": 106.368,
+          "demand_yoy_change": 0.88,
+          "non_doc_production": 63.782,
+          "supply_yoy_change": 0.225,
           "opec_production": null,
           "non_opec_doc_production": null,
           "doc_production": null,
@@ -112,14 +112,14 @@
           "oecd_commercial": null,
           "oecd_spr": null,
           "oil_on_water": null,
-          "call_on_opec": 42.973
+          "call_on_opec": 42.586
         },
         {
           "period": "2026-Q4",
-          "world_demand": 107.913,
-          "demand_yoy_change": 1.306,
-          "non_doc_production": 64.458,
-          "supply_yoy_change": 1.903,
+          "world_demand": 107.718,
+          "demand_yoy_change": 1.111,
+          "non_doc_production": 64.456,
+          "supply_yoy_change": 1.907,
           "opec_production": null,
           "non_opec_doc_production": null,
           "doc_production": null,
@@ -128,14 +128,14 @@
           "oecd_commercial": null,
           "oecd_spr": null,
           "oil_on_water": null,
-          "call_on_opec": 43.455
+          "call_on_opec": 43.261
         },
         {
           "period": "2027",
-          "world_demand": 107.873,
-          "demand_yoy_change": 1.542,
-          "non_doc_production": 64.321,
-          "supply_yoy_change": 0.726,
+          "world_demand": 107.881,
+          "demand_yoy_change": 1.943,
+          "non_doc_production": 64.327,
+          "supply_yoy_change": 0.727,
           "opec_production": null,
           "non_opec_doc_production": null,
           "doc_production": null,
@@ -144,14 +144,14 @@
           "oecd_commercial": null,
           "oecd_spr": null,
           "oil_on_water": null,
-          "call_on_opec": 43.552
+          "call_on_opec": 43.555
         },
         {
           "period": "2027-Q1",
-          "world_demand": 107.591,
-          "demand_yoy_change": 1.537,
-          "non_doc_production": 64.236,
-          "supply_yoy_change": 1.243,
+          "world_demand": 107.705,
+          "demand_yoy_change": 1.727,
+          "non_doc_production": 64.147,
+          "supply_yoy_change": 0.934,
           "opec_production": null,
           "non_opec_doc_production": null,
           "doc_production": null,
@@ -160,14 +160,14 @@
           "oecd_commercial": null,
           "oecd_spr": null,
           "oil_on_water": null,
-          "call_on_opec": 43.355
+          "call_on_opec": 43.558
         },
         {
           "period": "2027-Q2",
-          "world_demand": 106.043,
-          "demand_yoy_change": 1.469,
-          "non_doc_production": 63.992,
-          "supply_yoy_change": 0.866,
+          "world_demand": 105.837,
+          "demand_yoy_change": 2.169,
+          "non_doc_production": 64.028,
+          "supply_yoy_change": 1.097,
           "opec_production": null,
           "non_opec_doc_production": null,
           "doc_production": null,
@@ -176,14 +176,14 @@
           "oecd_commercial": null,
           "oecd_spr": null,
           "oil_on_water": null,
-          "call_on_opec": 42.051
+          "call_on_opec": 41.809
         },
         {
           "period": "2027-Q3",
-          "world_demand": 108.37,
-          "demand_yoy_change": 1.612,
-          "non_doc_production": 64.216,
-          "supply_yoy_change": 0.432,
+          "world_demand": 108.33,
+          "demand_yoy_change": 1.962,
+          "non_doc_production": 64.253,
+          "supply_yoy_change": 0.471,
           "opec_production": null,
           "non_opec_doc_production": null,
           "doc_production": null,
@@ -192,14 +192,14 @@
           "oecd_commercial": null,
           "oecd_spr": null,
           "oil_on_water": null,
-          "call_on_opec": 44.154
+          "call_on_opec": 44.077
         },
         {
           "period": "2027-Q4",
-          "world_demand": 109.462,
-          "demand_yoy_change": 1.548,
-          "non_doc_production": 64.834,
-          "supply_yoy_change": 0.376,
+          "world_demand": 109.628,
+          "demand_yoy_change": 1.91,
+          "non_doc_production": 64.871,
+          "supply_yoy_change": 0.415,
           "opec_production": null,
           "non_opec_doc_production": null,
           "doc_production": null,
@@ -208,7 +208,7 @@
           "oecd_commercial": null,
           "oecd_spr": null,
           "oil_on_water": null,
-          "call_on_opec": 44.627
+          "call_on_opec": 44.756
         }
       ],
       "fields": [
@@ -296,13 +296,13 @@
         },
         {
           "period": "2025",
-          "oecd_commercial": 2826.614,
+          "oecd_commercial": 2839.632,
           "oecd_spr": 1248.678,
-          "oecd_total": 4075.292,
+          "oecd_total": 4088.31,
           "oil_on_water": 1545.699,
-          "days_commercial": 61.371,
-          "days_spr": 27.111,
-          "days_total": 88.482
+          "days_commercial": 61.724,
+          "days_spr": 27.142,
+          "days_total": 88.866
         },
         {
           "period": "2025-Q1",
@@ -322,37 +322,37 @@
           "oil_on_water": 1383.294,
           "days_commercial": 59.937,
           "days_spr": 26.663,
-          "days_total": 86.6
+          "days_total": 86.599
         },
         {
           "period": "2025-Q3",
-          "oecd_commercial": 2868.709,
+          "oecd_commercial": 2868.682,
           "oecd_spr": 1237.665,
-          "oecd_total": 4106.374,
+          "oecd_total": 4106.347,
           "oil_on_water": 1460.732,
           "days_commercial": 61.943,
-          "days_spr": 26.724,
-          "days_total": 88.667
+          "days_spr": 26.725,
+          "days_total": 88.668
         },
         {
           "period": "2025-Q4",
-          "oecd_commercial": 2826.614,
+          "oecd_commercial": 2839.632,
           "oecd_spr": 1248.678,
-          "oecd_total": 4075.292,
+          "oecd_total": 4088.31,
           "oil_on_water": 1545.699,
-          "days_commercial": 61.833,
-          "days_spr": 27.315,
-          "days_total": 89.148
+          "days_commercial": 62.159,
+          "days_spr": 27.333,
+          "days_total": 89.492
         },
         {
           "period": "2026-Q1",
-          "oecd_commercial": 2773.725,
-          "oecd_spr": 1246.344,
-          "oecd_total": 4020.069,
-          "oil_on_water": 1356.57,
-          "days_commercial": 61.039,
-          "days_spr": 27.427,
-          "days_total": 88.466
+          "oecd_commercial": 2809.039,
+          "oecd_spr": 1239.863,
+          "oecd_total": 4048.902,
+          "oil_on_water": 1257.483,
+          "days_commercial": 62.0,
+          "days_spr": 27.366,
+          "days_total": 89.366
         }
       ],
       "fields": [
@@ -406,36 +406,36 @@
           "supply_yoy_change": 1.514,
           "opec_production": 26.604,
           "non_opec_doc_production": 14.263,
-          "doc_production": 40.867,
+          "doc_production": 40.866,
           "total_production": 102.604,
           "balance": -1.244,
-          "oecd_commercial": 2755.797,
+          "oecd_commercial": 2755.822,
           "oecd_spr": 1245.304,
           "oil_on_water": 1309.935,
           "call_on_opec": 42.111
         },
         {
           "period": "2025",
-          "world_demand": 105.15,
-          "demand_yoy_change": 1.302,
-          "non_doc_production": 62.833,
-          "supply_yoy_change": 1.095,
-          "opec_production": 27.579,
-          "non_opec_doc_production": 14.349,
+          "world_demand": 105.157,
+          "demand_yoy_change": 1.309,
+          "non_doc_production": 62.831,
+          "supply_yoy_change": 1.093,
+          "opec_production": 27.58,
+          "non_opec_doc_production": 14.347,
           "doc_production": 41.927,
-          "total_production": 104.76,
-          "balance": -0.39,
-          "oecd_commercial": 2839.273,
-          "oecd_spr": 1248.99,
+          "total_production": 104.758,
+          "balance": -0.399,
+          "oecd_commercial": 2826.588,
+          "oecd_spr": 1248.678,
           "oil_on_water": 1545.699,
-          "call_on_opec": 42.317
+          "call_on_opec": 42.327
         },
         {
           "period": "2026",
-          "world_demand": 106.531,
-          "demand_yoy_change": 1.38,
-          "non_doc_production": 63.594,
-          "supply_yoy_change": 0.761,
+          "world_demand": 106.126,
+          "demand_yoy_change": 0.969,
+          "non_doc_production": 63.597,
+          "supply_yoy_change": 0.766,
           "opec_production": null,
           "non_opec_doc_production": null,
           "doc_production": null,
@@ -444,62 +444,62 @@
           "oecd_commercial": null,
           "oecd_spr": null,
           "oil_on_water": null,
-          "call_on_opec": 42.937
+          "call_on_opec": 42.529
         },
         {
           "period": "2026-Q1",
-          "world_demand": 105.743,
-          "demand_yoy_change": 1.457,
-          "non_doc_production": 62.957,
-          "supply_yoy_change": 0.538,
-          "opec_production": 25.883,
-          "non_opec_doc_production": 14.05,
-          "doc_production": 39.933,
-          "total_production": 102.89,
-          "balance": -2.853,
+          "world_demand": 105.923,
+          "demand_yoy_change": 1.637,
+          "non_doc_production": 62.989,
+          "supply_yoy_change": 0.571,
+          "opec_production": 25.847,
+          "non_opec_doc_production": 14.018,
+          "doc_production": 39.865,
+          "total_production": 102.854,
+          "balance": -3.069,
+          "oecd_commercial": 2795.999,
+          "oecd_spr": 1239.616,
+          "oil_on_water": 1297.483,
+          "call_on_opec": 42.934
+        },
+        {
+          "period": "2026-Q2",
+          "world_demand": 104.17,
+          "demand_yoy_change": -0.049,
+          "non_doc_production": 63.143,
+          "supply_yoy_change": 0.354,
+          "opec_production": null,
+          "non_opec_doc_production": null,
+          "doc_production": null,
+          "total_production": null,
+          "balance": null,
+          "oecd_commercial": null,
+          "oecd_spr": null,
+          "oil_on_water": null,
+          "call_on_opec": 41.027
+        },
+        {
+          "period": "2026-Q3",
+          "world_demand": 106.568,
+          "demand_yoy_change": 1.08,
+          "non_doc_production": 63.783,
+          "supply_yoy_change": 0.226,
+          "opec_production": null,
+          "non_opec_doc_production": null,
+          "doc_production": null,
+          "total_production": null,
+          "balance": null,
           "oecd_commercial": null,
           "oecd_spr": null,
           "oil_on_water": null,
           "call_on_opec": 42.786
         },
         {
-          "period": "2026-Q2",
-          "world_demand": 105.074,
-          "demand_yoy_change": 0.855,
-          "non_doc_production": 63.269,
-          "supply_yoy_change": 0.479,
-          "opec_production": null,
-          "non_opec_doc_production": null,
-          "doc_production": null,
-          "total_production": null,
-          "balance": null,
-          "oecd_commercial": null,
-          "oecd_spr": null,
-          "oil_on_water": null,
-          "call_on_opec": 41.805
-        },
-        {
-          "period": "2026-Q3",
-          "world_demand": 107.117,
-          "demand_yoy_change": 1.63,
-          "non_doc_production": 63.73,
-          "supply_yoy_change": 0.172,
-          "opec_production": null,
-          "non_opec_doc_production": null,
-          "doc_production": null,
-          "total_production": null,
-          "balance": null,
-          "oecd_commercial": null,
-          "oecd_spr": null,
-          "oil_on_water": null,
-          "call_on_opec": 43.387
-        },
-        {
           "period": "2026-Q4",
-          "world_demand": 108.156,
-          "demand_yoy_change": 1.576,
-          "non_doc_production": 64.403,
-          "supply_yoy_change": 1.848,
+          "world_demand": 107.818,
+          "demand_yoy_change": 1.211,
+          "non_doc_production": 64.456,
+          "supply_yoy_change": 1.907,
           "opec_production": null,
           "non_opec_doc_production": null,
           "doc_production": null,
@@ -508,14 +508,14 @@
           "oecd_commercial": null,
           "oecd_spr": null,
           "oil_on_water": null,
-          "call_on_opec": 43.752
+          "call_on_opec": 43.362
         },
         {
           "period": "2027",
-          "world_demand": 107.872,
-          "demand_yoy_change": 1.342,
-          "non_doc_production": 64.321,
-          "supply_yoy_change": 0.727,
+          "world_demand": 107.858,
+          "demand_yoy_change": 1.732,
+          "non_doc_production": 64.322,
+          "supply_yoy_change": 0.725,
           "opec_production": null,
           "non_opec_doc_production": null,
           "doc_production": null,
@@ -524,14 +524,14 @@
           "oecd_commercial": null,
           "oecd_spr": null,
           "oil_on_water": null,
-          "call_on_opec": 43.551
+          "call_on_opec": 43.536
         },
         {
           "period": "2027-Q1",
-          "world_demand": 107.04,
-          "demand_yoy_change": 1.297,
-          "non_doc_production": 64.236,
-          "supply_yoy_change": 1.279,
+          "world_demand": 107.65,
+          "demand_yoy_change": 1.727,
+          "non_doc_production": 64.237,
+          "supply_yoy_change": 1.248,
           "opec_production": null,
           "non_opec_doc_production": null,
           "doc_production": null,
@@ -540,14 +540,14 @@
           "oecd_commercial": null,
           "oecd_spr": null,
           "oil_on_water": null,
-          "call_on_opec": 42.804
+          "call_on_opec": 43.412
         },
         {
           "period": "2027-Q2",
-          "world_demand": 106.313,
-          "demand_yoy_change": 1.239,
-          "non_doc_production": 63.992,
-          "supply_yoy_change": 0.723,
+          "world_demand": 105.829,
+          "demand_yoy_change": 1.659,
+          "non_doc_production": 63.993,
+          "supply_yoy_change": 0.85,
           "opec_production": null,
           "non_opec_doc_production": null,
           "doc_production": null,
@@ -556,14 +556,14 @@
           "oecd_commercial": null,
           "oecd_spr": null,
           "oil_on_water": null,
-          "call_on_opec": 42.321
+          "call_on_opec": 41.836
         },
         {
           "period": "2027-Q3",
-          "world_demand": 108.559,
-          "demand_yoy_change": 1.442,
-          "non_doc_production": 64.216,
-          "supply_yoy_change": 0.487,
+          "world_demand": 108.37,
+          "demand_yoy_change": 1.802,
+          "non_doc_production": 64.217,
+          "supply_yoy_change": 0.435,
           "opec_production": null,
           "non_opec_doc_production": null,
           "doc_production": null,
@@ -572,14 +572,14 @@
           "oecd_commercial": null,
           "oecd_spr": null,
           "oil_on_water": null,
-          "call_on_opec": 44.343
+          "call_on_opec": 44.153
         },
         {
           "period": "2027-Q4",
-          "world_demand": 109.543,
-          "demand_yoy_change": 1.387,
-          "non_doc_production": 64.834,
-          "supply_yoy_change": 0.431,
+          "world_demand": 109.556,
+          "demand_yoy_change": 1.738,
+          "non_doc_production": 64.835,
+          "supply_yoy_change": 0.379,
           "opec_production": null,
           "non_opec_doc_production": null,
           "doc_production": null,
@@ -588,7 +588,7 @@
           "oecd_commercial": null,
           "oecd_spr": null,
           "oil_on_water": null,
-          "call_on_opec": 44.709
+          "call_on_opec": 44.721
         }
       ],
       "fields": [
@@ -630,29 +630,19 @@
           "oecd_spr": 1206.656,
           "oecd_total": 3986.958,
           "oil_on_water": 1390.517,
-          "days_commercial": 60.558,
-          "days_spr": 26.282,
-          "days_total": 86.841
+          "days_commercial": 60.577,
+          "days_spr": 26.29,
+          "days_total": 86.867
         },
         {
           "period": "2024",
-          "oecd_commercial": 2755.797,
+          "oecd_commercial": 2755.822,
           "oecd_spr": 1245.304,
-          "oecd_total": 4001.101,
+          "oecd_total": 4001.126,
           "oil_on_water": 1309.935,
-          "days_commercial": 59.99,
-          "days_spr": 27.109,
-          "days_total": 87.099
-        },
-        {
-          "period": "2024-Q1",
-          "oecd_commercial": 2772.073,
-          "oecd_spr": 1218.986,
-          "oecd_total": 3991.059,
-          "oil_on_water": 1392.514,
-          "days_commercial": 60.444,
-          "days_spr": 26.579,
-          "days_total": 87.023
+          "days_commercial": 59.977,
+          "days_spr": 27.103,
+          "days_total": 87.08
         },
         {
           "period": "2024-Q2",
@@ -660,9 +650,9 @@
           "oecd_spr": 1225.769,
           "oecd_total": 4068.422,
           "oil_on_water": 1329.735,
-          "days_commercial": 61.18,
-          "days_spr": 26.381,
-          "days_total": 87.561
+          "days_commercial": 61.189,
+          "days_spr": 26.385,
+          "days_total": 87.574
         },
         {
           "period": "2024-Q3",
@@ -670,69 +660,79 @@
           "oecd_spr": 1234.604,
           "oecd_total": 4043.397,
           "oil_on_water": 1309.282,
-          "days_commercial": 60.566,
-          "days_spr": 26.622,
-          "days_total": 87.188
+          "days_commercial": 60.58,
+          "days_spr": 26.628,
+          "days_total": 87.207
         },
         {
           "period": "2024-Q4",
-          "oecd_commercial": 2755.797,
+          "oecd_commercial": 2755.822,
           "oecd_spr": 1245.304,
-          "oecd_total": 4001.101,
+          "oecd_total": 4001.126,
           "oil_on_water": 1309.935,
-          "days_commercial": 60.934,
-          "days_spr": 27.535,
-          "days_total": 88.469
+          "days_commercial": 60.88,
+          "days_spr": 27.511,
+          "days_total": 88.39
         },
         {
           "period": "2025",
-          "oecd_commercial": 2839.273,
-          "oecd_spr": 1248.99,
-          "oecd_total": 4088.263,
+          "oecd_commercial": 2826.588,
+          "oecd_spr": 1248.678,
+          "oecd_total": 4075.266,
           "oil_on_water": 1545.699,
-          "days_commercial": 61.612,
-          "days_spr": 27.103,
-          "days_total": 88.715
+          "days_commercial": 61.44,
+          "days_spr": 27.142,
+          "days_total": 88.582
         },
         {
           "period": "2025-Q1",
-          "oecd_commercial": 2748.655,
+          "oecd_commercial": 2748.703,
           "oecd_spr": 1244.373,
-          "oecd_total": 3993.028,
+          "oecd_total": 3993.076,
           "oil_on_water": 1363.987,
-          "days_commercial": 60.2,
-          "days_spr": 27.254,
-          "days_total": 87.455
+          "days_commercial": 60.191,
+          "days_spr": 27.249,
+          "days_total": 87.441
         },
         {
           "period": "2025-Q2",
-          "oecd_commercial": 2788.766,
+          "oecd_commercial": 2788.797,
           "oecd_spr": 1240.595,
-          "oecd_total": 4029.361,
+          "oecd_total": 4029.392,
           "oil_on_water": 1383.294,
-          "days_commercial": 60.001,
-          "days_spr": 26.692,
-          "days_total": 86.693
+          "days_commercial": 59.937,
+          "days_spr": 26.663,
+          "days_total": 86.599
         },
         {
           "period": "2025-Q3",
-          "oecd_commercial": 2868.694,
+          "oecd_commercial": 2868.682,
           "oecd_spr": 1237.665,
-          "oecd_total": 4106.359,
+          "oecd_total": 4106.347,
           "oil_on_water": 1460.732,
-          "days_commercial": 61.867,
-          "days_spr": 26.692,
-          "days_total": 88.56
+          "days_commercial": 61.943,
+          "days_spr": 26.725,
+          "days_total": 88.668
         },
         {
           "period": "2025-Q4",
-          "oecd_commercial": 2839.273,
-          "oecd_spr": 1248.99,
-          "oecd_total": 4088.263,
+          "oecd_commercial": 2826.588,
+          "oecd_spr": 1248.678,
+          "oecd_total": 4075.266,
           "oil_on_water": 1545.699,
-          "days_commercial": 62.632,
-          "days_spr": 27.552,
-          "days_total": 90.184
+          "days_commercial": 61.874,
+          "days_spr": 27.333,
+          "days_total": 89.207
+        },
+        {
+          "period": "2026-Q1",
+          "oecd_commercial": 2795.999,
+          "oecd_spr": 1239.616,
+          "oecd_total": 4035.615,
+          "oil_on_water": 1297.483,
+          "days_commercial": 61.712,
+          "days_spr": 27.36,
+          "days_total": 89.073
         }
       ],
       "fields": [
@@ -747,7 +747,6 @@
       "periods": [
         "2023",
         "2024",
-        "2024-Q1",
         "2024-Q2",
         "2024-Q3",
         "2024-Q4",
@@ -755,7 +754,8 @@
         "2025-Q1",
         "2025-Q2",
         "2025-Q3",
-        "2025-Q4"
+        "2025-Q4",
+        "2026-Q1"
       ]
     }
   },
@@ -791,31 +791,31 @@
       },
       {
         "period": "2026-Q1",
-        "world_demand_chg": 0.3,
-        "non_doc_production_chg": 0.0,
-        "balance_chg": null,
-        "call_on_opec_chg": 0.3
+        "world_demand_chg": 0.1,
+        "non_doc_production_chg": 0.2,
+        "balance_chg": 0.2,
+        "call_on_opec_chg": -0.2
       },
       {
         "period": "2026-Q2",
         "world_demand_chg": -0.5,
-        "non_doc_production_chg": -0.1,
+        "non_doc_production_chg": -0.2,
         "balance_chg": null,
-        "call_on_opec_chg": -0.4
+        "call_on_opec_chg": -0.3
       },
       {
         "period": "2026-Q3",
-        "world_demand_chg": -0.4,
-        "non_doc_production_chg": 0.1,
+        "world_demand_chg": -0.2,
+        "non_doc_production_chg": 0.0,
         "balance_chg": null,
-        "call_on_opec_chg": -0.4
+        "call_on_opec_chg": -0.2
       },
       {
         "period": "2026-Q4",
-        "world_demand_chg": -0.2,
-        "non_doc_production_chg": 0.1,
+        "world_demand_chg": -0.1,
+        "non_doc_production_chg": 0.0,
         "balance_chg": null,
-        "call_on_opec_chg": -0.3
+        "call_on_opec_chg": -0.1
       },
       {
         "period": "2027",
@@ -826,31 +826,31 @@
       },
       {
         "period": "2027-Q1",
-        "world_demand_chg": 0.6,
-        "non_doc_production_chg": 0.0,
+        "world_demand_chg": 0.1,
+        "non_doc_production_chg": -0.1,
         "balance_chg": null,
-        "call_on_opec_chg": 0.6
+        "call_on_opec_chg": 0.1
       },
       {
         "period": "2027-Q2",
-        "world_demand_chg": -0.3,
+        "world_demand_chg": 0.0,
         "non_doc_production_chg": 0.0,
         "balance_chg": null,
-        "call_on_opec_chg": -0.3
+        "call_on_opec_chg": 0.0
       },
       {
         "period": "2027-Q3",
-        "world_demand_chg": -0.2,
-        "non_doc_production_chg": 0.0,
-        "balance_chg": null,
-        "call_on_opec_chg": -0.2
-      },
-      {
-        "period": "2027-Q4",
-        "world_demand_chg": -0.1,
+        "world_demand_chg": 0.0,
         "non_doc_production_chg": 0.0,
         "balance_chg": null,
         "call_on_opec_chg": -0.1
+      },
+      {
+        "period": "2027-Q4",
+        "world_demand_chg": 0.1,
+        "non_doc_production_chg": 0.0,
+        "balance_chg": null,
+        "call_on_opec_chg": 0.0
       }
     ],
     "fields": [
@@ -860,15 +860,15 @@
       "call_on_opec_chg"
     ]
   },
-  "report_month": "May 2026",
+  "report_month": "July 2026",
   "metadata": {
     "source": "OPEC MOMR",
-    "latest_file": "/app/backend/data/manual_update/monthly/opec/momr-appendix-may-2026.xlsx",
-    "latest_file_name": "momr-appendix-may-2026.xlsx",
-    "previous_file_name": "momr-appendix-april-2026.xlsx",
-    "report_month": "May 2026"
+    "latest_file": "/app/backend/data/manual_update/monthly/opec/momr-appendix-july-2026.xlsx",
+    "latest_file_name": "momr-appendix-july-2026.xlsx",
+    "previous_file_name": "momr-appendix-june-2026.xlsx",
+    "report_month": "July 2026"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-27T18:54:14.537006+09:00"
+  "last_updated": "2026-07-25T22:53:27.087912+09:00"
 }

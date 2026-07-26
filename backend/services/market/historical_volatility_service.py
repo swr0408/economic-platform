@@ -65,8 +65,15 @@ class HistoricalVolatilityService:
         try:
             data = self._fetch_data()
             if data and data.get("data"):
-                self._save_to_cache(data)
-                return data
+                if self._is_plausible(data):
+                    self._save_to_cache(data)
+                    return data
+                # yfinanceが一過性のゴミ/列混線データを返すことがある(例: VIX=84.71)。
+                # 妥当性を欠く取得結果で良好な旧キャッシュを上書きしない(劣化上書きガード)。
+                logger.warning(
+                    "ヒストリカルボラティリティ: 取得結果が妥当性チェック不合格のため"
+                    f"旧キャッシュを維持 (latest={data.get('latest')})"
+                )
         except Exception as e:
             logger.error(f"ヒストリカルボラティリティ取得エラー: {e}")
 
@@ -86,6 +93,28 @@ class HistoricalVolatilityService:
             "source": "error",
             "last_updated": None,
         }
+
+    # VIXの物理レンジ（過去最高は2008/10・2020/03の~85前後）。これを大きく超える値や、
+    # 暗示ボラ(VIX)が実現ボラ(HV20)の4倍超といった内部矛盾はデータ不良(列混線等)の兆候。
+    # 終値ベースのVIX/HV20比は急騰局面でも概ね3以下に収まるため、4超はほぼ確実にゴミ。
+    _VIX_MAX_PLAUSIBLE = 150.0
+    _VIX_HV_RATIO_MAX = 4.0
+
+    def _is_plausible(self, data: Dict[str, Any]) -> bool:
+        """取得データの妥当性を簡易判定（明らかなデータ不良を弾く）。
+
+        判定不能な場合（VIX/HV欠落等）は True（ガードしない）に倒す。
+        """
+        latest = data.get("latest") or {}
+        vix = latest.get("vix")
+        hv20 = latest.get("hv20")
+        if vix is None:
+            return True
+        if not (1.0 <= vix <= self._VIX_MAX_PLAUSIBLE):
+            return False
+        if hv20 is not None and hv20 > 0 and (vix / hv20) > self._VIX_HV_RATIO_MAX:
+            return False
+        return True
 
     def _fetch_data(self) -> Dict[str, Any]:
         end_date = datetime.now()

@@ -1,0 +1,442 @@
+﻿target_title,target,candidate,label,best_lag,corr,p,n,corr_lag0,fdr_sig,granger_p,lead_lag,robust_lead,high_conf
+米国：CPI(前年比),macro/usa/inflation/cpi/data::yoy,seasonality/ブレント原油::close,ブレント原油（終値）,1,0.481,5.902556856891343e-17,268,0.34,True,0.0,先行1ヶ月,True,True
+米国：CPI(前年比),macro/usa/inflation/cpi/data::yoy,seasonality/WTI原油::close,WTI原油（終値）,1,0.442,1.0682478317042037e-14,278,0.33,True,0.0,先行1ヶ月,True,True
+米国：CPI(前年比),macro/usa/inflation/cpi/data::yoy,market/brent_oil::close,ブレント原油（終値）,1,0.433,1.7570130531476512e-09,177,0.281,True,0.0,先行1ヶ月,True,True
+米国：CPI(前年比),macro/usa/inflation/cpi/data::yoy,market/crude_oil::close,WTI原油（終値）,1,0.431,2.414540010747677e-09,176,0.273,True,0.0,先行1ヶ月,True,True
+米国：CPI(前年比),macro/usa/inflation/cpi/data::yoy,market/cftc_positioning_brent::price,建玉(BRENT)（価格）,1,0.422,8.225014243837117e-09,172,0.321,True,0.0,先行1ヶ月,True,True
+米国：CPI(前年比),macro/usa/inflation/cpi/data::yoy,market/cftc_positioning_crude_oil::price,建玉(WTI原油)（価格）,1,0.4,1.6977670115095166e-10,237,0.325,True,0.0,先行1ヶ月,True,True
+米国：コアCPI(前年比),macro/usa/inflation/core_cpi/data::yoy,macro/usa/consumer/visa_spending/data::value,米 Visa消費,1,0.511,2.9022134877258704e-10,134,0.277,True,0.0,先行1ヶ月,True,True
+米国：コアCPI(前年比),macro/usa/inflation/core_cpi/data::yoy,macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,欧 小売取引・前年比,1,0.455,1.366612279720936e-07,122,0.23,True,0.0,先行1ヶ月,True,True
+米国：コアCPI(前年比),macro/usa/inflation/core_cpi/data::yoy,macro/usa/consumer/personal_consumption_expenditures_services/data::yoy,米 個人消費支出(サービス)（前年比）,1,0.44,1.0056379826066002e-15,302,0.388,True,0.0,先行1ヶ月,True,True
+米国：コアCPI(前年比),macro/usa/inflation/core_cpi/data::yoy,macro/eurozone/economy/ecb_production/yoy_change::value,欧 鉱工業生産・前年比,1,0.436,5.176552800896201e-07,122,0.416,True,0.0015,先行1ヶ月,True,True
+米国：コアCPI(前年比),macro/usa/inflation/core_cpi/data::yoy,macro/eurozone/monetary_policy/ecb_m3/yoy/data::value,欧 マネーサプライM3・前年比,1,-0.436,1.3899211816065757e-07,134,-0.26,True,0.0,先行1ヶ月,True,True
+米国：コアCPI(前年比),macro/usa/inflation/core_cpi/data::yoy,macro/eurozone/economy/eu_international_trade/imports_yoy::value,欧 貿易・輸入前年比,1,0.436,5.167723854729757e-07,122,0.306,True,0.0009,先行1ヶ月,True,True
+米国：コアCPI(前年比),macro/usa/inflation/core_cpi/data::yoy,macro/japan/consumer/consumption_expenditure/yoy/data::value,日 消費支出・前年比,1,0.433,7.196267312275268e-07,121,0.082,True,0.0,先行1ヶ月,True,True
+米国：コアCPI(前年比),macro/usa/inflation/core_cpi/data::yoy,macro/eurozone/economy/germany_factory_orders/foreign_yoy::value,欧 製造業受注・海外前年比,1,0.416,1.928111152000013e-06,122,0.356,True,0.0016,先行1ヶ月,True,True
+米国：コアCPI(前年比),macro/usa/inflation/core_cpi/data::yoy,macro/canada/economy/ca_gdp_monthly/data::yoy,加 月次GDP（前年比）,1,0.409,1.2079765287478423e-13,303,0.346,True,0.0,先行1ヶ月,True,True
+米国：コアCPI(前年比),macro/usa/inflation/core_cpi/data::yoy,macro/usa/consumer/pce/nominal/data::yoy,米 PCE（前年比）,1,0.4,5.198563488367893e-13,302,0.322,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/usa/employment/initial_claims/data::icsa,米 新規失業保険申請件数,1,0.881,1.1560288014267277e-103,314,0.073,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/usa/employment/initial_claims/data::ic4wsa,米 新規失業保険申請件数（4週平均）,1,0.808,1.4726807363517967e-73,314,0.45,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/usa/employment/jolts_hires_layoffs/data::layoffs,米 JOLTS求人(採用・解雇),1,0.74,1.0531780996303498e-53,303,0.043,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/usa/employment/continued_claims/data::ccsa,米 継続受給者数（継続申請(季調)）,1,0.701,1.10348349066767e-47,314,0.669,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/eurozone/economy/eu_pmi/manufacturing/data::previous,欧 PMI・製造業（前回値）,1,-0.635,1.287260025096208e-16,135,0.111,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/eurozone/economy/eu_pmi/manufacturing/data::value,欧 PMI・製造業,1,-0.629,2.912126531699747e-16,135,0.112,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/china/economy/cn_pmi/headline/data::non_manufacturing,中 PMI・総合（非製造業）,2,-0.608,6.789359501759096e-21,193,0.119,True,0.0,先行2ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/china/economy/cn_pmi/manufacturing_sub/data::employment,中 PMI・製造業（雇用）,2,-0.596,6.28778686137196e-20,193,0.125,True,0.0,先行2ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/canada/policy/ca_settlement_balances/data::value,加 決済残高,1,0.59,6.421858960245893e-14,134,0.442,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/china/economy/cn_caixin_pmi/services/data::value,中 財新PMI・サービス業,2,-0.589,3.736069512296233e-17,169,0.082,True,0.0,先行2ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/china/economy/cn_pmi/headline/data::manufacturing,中 PMI・総合（製造業）,2,-0.585,3.9519104055086943e-19,193,0.088,True,0.0,先行2ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/china/economy/cn_pmi/manufacturing_sub/data::production,中 PMI・製造業（生産）,2,-0.578,1.253141978495003e-18,193,0.117,True,0.0,先行2ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/china/economy/cn_pmi/manufacturing_sub/data::new_orders,中 PMI・製造業（新規受注）,2,-0.575,2.0881052086647037e-18,193,0.073,True,0.0,先行2ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,market/cftc_positioning_brent::price,建玉(BRENT)（価格）,1,-0.561,1.183646314478464e-15,172,-0.207,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/china/economy/cn_pmi/non_manufacturing_sub/data::new_orders,中 PMI・非製造業（新規受注）,2,-0.558,3.3105453424371656e-17,193,0.147,True,0.0,先行2ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/australia/consumer/au_nab_business_confidence/data::value,豪 NAB企業景況感,1,-0.557,2.9358502345680706e-18,207,0.026,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,market/brent_oil::close,ブレント原油（終値）,1,-0.549,2.6772125135381314e-15,177,-0.069,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,market/crude_oil::close,WTI原油（終値）,1,-0.52,1.3846057510024625e-13,176,-0.174,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/china/economy/cn_pmi/manufacturing_sub/data::new_export_orders,中 PMI・製造業（新規輸出受注）,2,-0.52,9.669071558211493e-15,193,-0.248,True,0.0,先行2ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/switzerland/economy/ch_pmi/services_data::value,瑞 PMI・サービス業,1,-0.515,1.5250775712845683e-09,121,-0.23,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,market/us02y::close,米2年債利回り（終値）,1,-0.515,2.2577970667814445e-13,177,-0.067,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/global/economy/oecd_cli/data::a5m,世界 OECD景気先行指数（a5m）,1,-0.509,3.806789819580598e-22,315,-0.377,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/china/economy/cn_caixin_pmi/manufacturing/data::value,中 財新PMI・製造業,2,-0.505,6.621355153316126e-14,193,0.064,True,0.0,先行2ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/china/economy/cn_pmi/non_manufacturing_sub/data::export_new_orders,中 PMI・非製造業（新規輸出受注）,2,-0.5,1.365044920914499e-13,193,-0.034,True,0.0,先行2ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/usa/economy/sp_pmi/services/data::value,米 S&P PMI・サービス業,3,-0.498,1.636670104198403e-10,146,0.063,True,0.0,先行3ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/china/economy/cn_pmi/non_manufacturing_sub/data::in_hand_orders,中 PMI・非製造業（手持受注）,2,-0.492,3.5404079234565167e-13,193,0.1,True,0.0,先行2ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/japan/economy/jp_pmi/manufacturing/data::value,日 PMI・製造業,1,-0.487,2.154921213166458e-09,135,-0.2,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/eurozone/economy/eu_international_trade/balance_mom::value,欧 貿易・収支前月比,2,0.474,9.627049217556444e-09,132,-0.084,True,0.0,先行2ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,seasonality/ブレント原油::close,ブレント原油（終値）,1,-0.456,3.604141105335375e-15,268,-0.128,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/usa/economy/sp_pmi/services/data::previous,米 S&P PMI・サービス業（前回値）,3,-0.453,9.587664742459285e-09,146,0.088,True,0.0,先行3ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/global/economy/usd_fundamental_index/data::germany_mfg,世界 USDファンダメンタル指数（ドイツ製造業）,1,-0.45,4.233781807424523e-11,195,-0.059,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/eurozone/economy/germany_pmi/manufacturing/data::value,欧 PMI・製造業,1,-0.45,4.233781807424523e-11,195,-0.059,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,market/cftc_positioning_crude_oil::price,建玉(WTI原油)（価格）,1,-0.449,3.4671054782319234e-13,237,-0.348,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/global/economy/oecd_cli/data::aus,世界 OECD景気先行指数（豪）,1,-0.449,4.90528161548279e-17,315,-0.441,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/australia/policy/au_rba_rate/data::value,豪 RBA政策金利,1,-0.446,2.709183024439649e-10,182,-0.093,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,seasonality/WTI原油::close,WTI原油（終値）,1,-0.437,2.1968969743678953e-14,278,-0.261,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/global/economy/oecd_cli/data::can,世界 OECD景気先行指数（加）,1,-0.413,1.9381681714390314e-14,315,-0.355,True,0.0,先行1ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/china/economy/cn_trade_balance/exports::value,中 貿易収支・輸出,2,-0.41,3.8575450296158e-09,191,0.071,True,0.0,先行2ヶ月,True,True
+米国：失業率,macro/usa/employment/unemployment_rate/data::unrate,macro/china/economy/cn_pmi/manufacturing_sub/data::in_hand_orders,中 PMI・製造業（手持受注）,2,-0.407,4.2500939849200675e-09,193,-0.018,True,0.0,先行2ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/usa/employment/initial_claims/data::icsa,米 新規失業保険申請件数,1,-0.943,3.0693317366733506e-151,315,0.024,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/usa/employment/initial_claims/data::ic4wsa,米 新規失業保険申請件数（4週平均）,1,-0.867,8.021118325709462e-97,315,-0.38,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/usa/employment/jolts_hires_layoffs/data::layoffs,米 JOLTS求人(採用・解雇),1,-0.806,1.0118597278688433e-70,304,-0.0,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/usa/employment/continued_claims/data::ccsa,米 継続受給者数（継続申請(季調)）,1,-0.705,1.0226230183041247e-48,315,-0.593,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/china/economy/cn_pmi/manufacturing_sub/data::employment,中 PMI・製造業（雇用）,1,-0.652,5.501243516259759e-25,195,-0.03,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/china/economy/cn_pmi/headline/data::non_manufacturing,中 PMI・総合（非製造業）,2,0.632,5.0041236214786454e-23,194,-0.051,True,0.0,先行2ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/china/economy/cn_pmi/non_manufacturing_sub/data::employment,中 PMI・非製造業（雇用）,2,0.63,7.225774749899784e-23,194,-0.085,True,0.0,先行2ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/australia/consumer/au_nab_business_confidence/data::value,豪 NAB企業景況感,1,0.62,1.7145530758385594e-23,208,-0.086,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/china/economy/cn_pmi/headline/data::manufacturing,中 PMI・総合（製造業）,2,0.618,8.06918837333202e-22,194,0.002,True,0.0,先行2ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/china/economy/cn_caixin_pmi/services/data::value,中 財新PMI・サービス業,2,0.617,3.2416191423001594e-19,170,-0.02,True,0.0,先行2ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/china/economy/cn_pmi/manufacturing_sub/data::supplier_delivery,中 PMI・製造業（納期）,2,0.616,1.234836132123972e-21,194,-0.089,True,0.0,先行2ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,market/cftc_positioning_brent::price,建玉(BRENT)（価格）,1,0.612,3.791279239678835e-19,173,0.167,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/china/economy/cn_pmi/manufacturing_sub/data::production,中 PMI・製造業（生産）,2,0.611,2.9845312330048865e-21,194,-0.033,True,0.0,先行2ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/canada/policy/ca_settlement_balances/data::value,加 決済残高,1,-0.608,5.5160995972418685e-15,135,-0.382,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/china/economy/cn_pmi/manufacturing_sub/data::new_orders,中 PMI・製造業（新規受注）,2,0.604,1.2230797483735052e-20,194,0.01,True,0.0,先行2ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,market/brent_oil::close,ブレント原油（終値）,1,0.594,2.4472307196060244e-18,178,0.023,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/china/economy/cn_pmi/non_manufacturing_sub/data::new_orders,中 PMI・非製造業（新規受注）,2,0.585,3.0695481585562694e-19,194,-0.096,True,0.0,先行2ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,market/crude_oil::close,WTI原油（終値）,1,0.566,2.1663740564129987e-16,177,0.148,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,market/us02y::close,米2年債利回り（終値）,1,0.555,8.677646798500707e-16,178,0.044,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/china/economy/cn_pmi/non_manufacturing_sub/data::export_new_orders,中 PMI・非製造業（新規輸出受注）,2,0.548,1.2906235094135178e-16,194,0.084,True,0.0,先行2ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/china/economy/cn_caixin_pmi/manufacturing/data::value,中 財新PMI・製造業,2,0.541,3.9919045091133013e-16,194,0.012,True,0.0,先行2ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/switzerland/economy/ch_pmi/services_data::value,瑞 PMI・サービス業,1,0.509,2.0609525786175995e-09,122,0.227,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,seasonality/ブレント原油::close,ブレント原油（終値）,1,0.505,8.599277934671529e-19,269,0.088,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/global/economy/oecd_cli/data::a5m,世界 OECD景気先行指数（a5m）,1,0.505,8.093597269009674e-22,316,0.385,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/china/economy/cn_pmi/manufacturing_sub/data::new_export_orders,中 PMI・製造業（新規輸出受注）,2,0.504,6.690844383063792e-14,194,0.351,True,0.0,先行2ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,market/cftc_positioning_crude_oil::price,建玉(WTI原油)（価格）,1,0.504,1.0379585348119498e-16,238,0.336,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/usa/economy/sp_pmi/services/data::value,米 S&P PMI・サービス業,3,0.503,8.385023683102687e-11,147,-0.064,True,0.0,先行3ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/australia/policy/au_rba_rate/data::value,豪 RBA政策金利,1,0.491,1.7838956036772078e-12,183,0.049,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/eurozone/economy/eu_international_trade/balance_mom::value,欧 貿易・収支前月比,2,-0.483,3.943775475133234e-09,133,0.043,True,0.0,先行2ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,seasonality/WTI原油::close,WTI原油（終値）,1,0.483,1.0729528566239165e-17,279,0.245,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/china/economy/cn_pmi/non_manufacturing_sub/data::in_hand_orders,中 PMI・非製造業（手持受注）,2,0.482,1.1607256270143055e-12,194,-0.038,True,0.0,先行2ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/canada/employment/ca_employment/data::parttime_change,加 雇用（パートタイム変化）,1,0.477,2.3685816469397626e-19,316,0.047,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/usa/economy/sp_pmi/services/data::previous,米 S&P PMI・サービス業（前回値）,3,0.473,1.4313515767465173e-09,147,-0.087,True,0.0,先行3ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/japan/economy/jp_pmi/manufacturing/data::value,日 PMI・製造業,1,0.471,7.456953504459804e-09,136,0.171,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/global/economy/usd_fundamental_index/data::germany_mfg,世界 USDファンダメンタル指数（ドイツ製造業）,1,0.468,4.654758762133792e-12,196,0.036,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/eurozone/economy/germany_pmi/manufacturing/data::value,欧 PMI・製造業,1,0.468,4.654758762133792e-12,196,0.036,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/china/economy/cn_trade_balance/exports::value,中 貿易収支・輸出,2,0.442,1.3607836087300559e-10,192,-0.052,True,0.0,先行2ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/china/economy/cn_pmi/manufacturing_sub/data::in_hand_orders,中 PMI・製造業（手持受注）,2,0.429,4.4103509422279963e-10,194,0.082,True,0.0,先行2ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/global/economy/oecd_cli/data::aus,世界 OECD景気先行指数（豪）,1,0.425,2.680000260676548e-15,316,0.392,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,market/cftc_positioning_dow::price,建玉(NYダウ)（価格）,1,0.411,3.833324549875755e-09,190,-0.098,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/global/economy/oecd_cli/data::can,世界 OECD景気先行指数（加）,1,0.401,1.2615047087906603e-13,316,0.324,True,0.0,先行1ヶ月,True,True
+米国：雇用者数,macro/usa/employment/nonfarm_payrolls/data::nonfarm,macro/eurozone/economy/ifo_business_climate/expectations::value,欧 Ifo企業景況感・期待,1,0.4,3.388672693858858e-11,255,0.352,True,0.0,先行1ヶ月,True,True
+米国：平均時給(前年比),macro/usa/employment/average_hourly_earnings/data::yoy,macro/china/economy/cn_fixed_asset_investment/data::ytd,中 固定資産投資（年初来）,2,-0.804,5.3263997113748035e-40,171,0.062,True,0.0,先行2ヶ月,True,True
+米国：平均時給(前年比),macro/usa/employment/average_hourly_earnings/data::yoy,macro/china/economy/cn_industrial_production/data::yoy,中 鉱工業生産（前年比）,2,-0.785,2.5230274020416555e-45,211,0.086,True,0.0,先行2ヶ月,True,True
+米国：平均時給(前年比),macro/usa/employment/average_hourly_earnings/data::yoy,macro/china/housing/cn_commercial_residential_sales/data::floor_sold_yoy,中 商業・住宅販売（床面積販売前年比）,2,-0.769,8.573424159376866e-36,177,0.064,True,0.0,先行2ヶ月,True,True
+米国：平均時給(前年比),macro/usa/employment/average_hourly_earnings/data::yoy,macro/china/housing/cn_commercial_residential_sales/data::sales_yoy,中 商業・住宅販売（販売前年比）,2,-0.705,1.4015029453633377e-27,175,0.048,True,0.0,先行2ヶ月,True,True
+米国：平均時給(前年比),macro/usa/employment/average_hourly_earnings/data::yoy,macro/canada/inflation/ca_cpi_service_rent/data::rent,加 CPI(サービス・家賃),2,0.691,4.925142764863857e-34,230,-0.043,True,0.0,先行2ヶ月,True,True
+米国：平均時給(前年比),macro/usa/employment/average_hourly_earnings/data::yoy,macro/china/housing/cn_commercial_residential_sales/data::floor_started_yoy,中 商業・住宅販売（床面積着工前年比）,2,-0.669,2.413777533194373e-24,177,0.084,True,0.0,先行2ヶ月,True,True
+米国：平均時給(前年比),macro/usa/employment/average_hourly_earnings/data::yoy,macro/china/economy/cn_trade_balance/exports_yoy::value,中 貿易収支・輸出前年比,2,-0.659,1.9538959431176633e-25,193,0.004,True,0.0,先行2ヶ月,True,True
+米国：平均時給(前年比),macro/usa/employment/average_hourly_earnings/data::yoy,macro/usa/consumer/visa_spending/data::mom,米 Visa消費（前月比）,1,-0.598,2.2579032951837382e-14,134,-0.121,True,0.0,先行1ヶ月,True,True
+米国：平均時給(前年比),macro/usa/employment/average_hourly_earnings/data::yoy,macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,欧 HICP・コア,3,-0.54,1.6799950168619722e-10,121,0.076,True,0.0,先行3ヶ月,True,True
+米国：平均時給(前年比),macro/usa/employment/average_hourly_earnings/data::yoy,macro/eurozone/inflation/ecb_hicp/annual_rates/core_excl_unprocessed_food::value,欧 HICP・コア(未加工食品除く),3,-0.536,2.2674227997541067e-10,121,0.095,True,0.0,先行3ヶ月,True,True
+米国：平均時給(前年比),macro/usa/employment/average_hourly_earnings/data::yoy,macro/china/policy/cn_shibor/data::1W,中 SHIBOR（1W）,3,-0.49,1.172827705016053e-08,121,-0.065,True,0.0,先行3ヶ月,True,True
+米国：平均時給(前年比),macro/usa/employment/average_hourly_earnings/data::yoy,macro/china/policy/cn_shibor/data::ON,中 SHIBOR（ON）,3,-0.463,8.736383797593256e-08,121,-0.015,True,0.0,先行3ヶ月,True,True
+米国：平均時給(前年比),macro/usa/employment/average_hourly_earnings/data::yoy,macro/china/policy/ch_m1_m2/data::m1_yoy,中 マネーサプライM1・M2（M1前年比）,3,-0.459,1.163288041969816e-07,121,0.034,True,0.0,先行3ヶ月,True,True
+米国：GDP,macro/usa/economy/gdp_growth_rate/data::value,macro/global/economy/oecd_cli/data::a5m,世界 OECD景気先行指数（a5m）,2,-0.71,1.1264624244359022e-21,133,0.149,True,0.0,先行2ヶ月,True,True
+米国：GDP,macro/usa/economy/gdp_growth_rate/data::value,macro/global/economy/oecd_cli/data::chn,世界 OECD景気先行指数（中）,2,-0.697,1.2406984823611274e-20,133,0.022,True,0.0,先行2ヶ月,True,True
+米国：GDP,macro/usa/economy/gdp_growth_rate/data::value,market/north_america_rig_count::value,北米リグ稼働数,1,-0.461,6.301016895713658e-09,144,0.058,True,0.0,先行1ヶ月,True,True
+米国：小売売上(前年比),macro/usa/consumer/retail_sales/data::yoy,macro/usa/housing/pending_home_sales/data::yoy,米 住宅販売保留（前年比）,1,0.833,3.96438855785842e-33,124,0.031,True,0.0,先行1ヶ月,True,True
+米国：小売売上(前年比),macro/usa/consumer/retail_sales/data::yoy,macro/china/economy/cn_fixed_asset_investment/data::ytd,中 固定資産投資（年初来）,2,0.756,7.039224884437066e-33,171,-0.124,True,0.0,先行2ヶ月,True,True
+米国：小売売上(前年比),macro/usa/consumer/retail_sales/data::yoy,macro/eurozone/economy/eu_pmi/manufacturing/data::previous,欧 PMI・製造業（前回値）,1,0.472,6.454488952692769e-09,136,0.208,True,0.0,先行1ヶ月,True,True
+米国：小売売上(前年比),macro/usa/consumer/retail_sales/data::yoy,macro/eurozone/economy/eu_pmi/composite/data::value,欧 PMI・総合,1,0.459,1.8940845657388022e-08,136,0.058,True,0.0,先行1ヶ月,True,True
+米国：小売売上(前年比),macro/usa/consumer/retail_sales/data::yoy,macro/eurozone/economy/eu_pmi/manufacturing/data::value,欧 PMI・製造業,1,0.459,1.8670917636712955e-08,136,0.213,True,0.0,先行1ヶ月,True,True
+米国：小売売上(前年比),macro/usa/consumer/retail_sales/data::yoy,macro/eurozone/economy/eu_pmi/composite/data::previous,欧 PMI・総合（前回値）,1,0.458,1.9883416084106732e-08,136,0.081,True,0.0,先行1ヶ月,True,True
+米国：小売売上(前年比),macro/usa/consumer/retail_sales/data::yoy,macro/eurozone/economy/eu_pmi/services/data::previous,欧 PMI・サービス業（前回値）,1,0.449,4.124113993753562e-08,136,0.075,True,0.0,先行1ヶ月,True,True
+米国：小売売上(前年比),macro/usa/consumer/retail_sales/data::yoy,macro/eurozone/economy/eu_pmi/services/data::value,欧 PMI・サービス業,1,0.448,4.6066995179088216e-08,136,0.046,True,0.0,先行1ヶ月,True,True
+米国：小売売上(前年比),macro/usa/consumer/retail_sales/data::yoy,macro/eurozone/economy/germany_pmi/composite/data::value,欧 PMI・総合,1,0.445,5.5134821541086225e-08,136,0.064,True,0.0,先行1ヶ月,True,True
+米国：小売売上(前年比),macro/usa/consumer/retail_sales/data::yoy,macro/eurozone/economy/france_pmi/composite/data::value,欧 PMI・総合,1,0.44,8.439743173797825e-08,136,0.071,True,0.0,先行1ヶ月,True,True
+米国：小売売上(前年比),macro/usa/consumer/retail_sales/data::yoy,macro/eurozone/economy/france_pmi/services/data::value,欧 PMI・サービス業,1,0.425,5.9857351885395025e-09,172,0.068,True,0.0,先行1ヶ月,True,True
+米国：小売売上(前年比),macro/usa/consumer/retail_sales/data::yoy,macro/eurozone/consumer/germany_retail_sales/retail_sales_mom::value,欧 独小売売上・小売売上前月比,1,0.423,3.634058912131419e-07,134,-0.141,True,0.0,先行1ヶ月,True,True
+米国：小売売上(前年比),macro/usa/consumer/retail_sales/data::yoy,macro/eurozone/economy/france_pmi/manufacturing/data::value,欧 PMI・製造業,1,0.413,1.8402583681624074e-08,172,0.097,True,0.0,先行1ヶ月,True,True
+日本：コアCPI(前年比),macro/japan/price/national_cpi/data::core_yoy,macro/eurozone/inflation/ecb_ppi/annual_rates/ppi::value,欧 PPI,4,0.413,2.7635231351533134e-06,120,0.023,True,0.0,先行4ヶ月,True,True
+日本：コアCPI(前年比),macro/japan/price/national_cpi/data::core_yoy,macro/eurozone/inflation/germany_ppi/data::ppi_index,欧 独PPI（PPI指数）,4,0.411,9.708846378194186e-07,132,0.222,True,0.0,先行4ヶ月,True,True
+日本：コアCPI(前年比),macro/japan/price/national_cpi/data::core_yoy,macro/eurozone/inflation/germany_ppi/data::ppi_yoy_change,欧 独PPI（PPI前年比）,4,0.405,1.6004791895356373e-06,131,0.085,True,0.0,先行4ヶ月,True,True
+日本：政策金利,macro/japan/monetary_policy/boj_policy_rate/data::value,macro/global/economy/semiconductor_sales/mma_data::americas,世界 半導体売上・(移動平均)（米州）,3,0.496,4.3812171350127815e-11,156,0.041,True,0.0,先行3ヶ月,True,True
+日本：政策金利,macro/japan/monetary_policy/boj_policy_rate/data::value,macro/global/economy/semiconductor_sales/mma_data::worldwide,世界 半導体売上・(移動平均)（世界）,3,0.466,8.842331137714658e-10,156,0.033,True,0.0,先行3ヶ月,True,True
+日本：政策金利,macro/japan/monetary_policy/boj_policy_rate/data::value,macro/canada/policy/canada_banks_balance_sheet/data::value,加 カナダ銀行バランスシート,3,-0.415,7.004677165702765e-08,156,0.067,True,0.0,先行3ヶ月,True,True
+日本：小売売上(前年比),macro/japan/consumer/retail_sales/yoy/data::value,macro/eurozone/economy/ecb_production/mom_change::value,欧 鉱工業生産・前月比,5,0.415,9.096167513969082e-07,130,0.124,True,0.0,先行5ヶ月,True,True
+ユーロ圏：CPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/total_hicp::value,macro/eurozone/inflation/germany_ppi/data::ppi_yoy_change,欧 独PPI（PPI前年比）,2,0.623,1.1485275412375344e-14,124,0.471,True,0.0,先行2ヶ月,True,True
+ユーロ圏：CPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/total_hicp::value,macro/eurozone/inflation/ecb_ppi/annual_rates/ppi::value,欧 PPI,2,0.585,1.1731218057355318e-12,123,0.452,True,0.0,先行2ヶ月,True,True
+ユーロ圏：CPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/total_hicp::value,macro/china/policy/cn_gold_reserves_service/data::gold_ounces_wan,中 金準備高（金保有量(万オンス)）,1,-0.499,3.538303823518833e-09,124,-0.49,True,0.0,先行1ヶ月,True,True
+ユーロ圏：CPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/total_hicp::value,macro/usa/housing/case_shiller/data::value,米 ケースシラー住宅価格,4,0.484,1.0399889358157898e-08,125,0.21,True,0.0,先行4ヶ月,True,True
+ユーロ圏：CPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/total_hicp::value,macro/eurozone/economy/eu_terms_of_trade/import_uv::value,欧 交易条件・輸入単価指数,1,0.481,1.7498502171711714e-08,123,0.353,True,0.0,先行1ヶ月,True,True
+ユーロ圏：CPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/total_hicp::value,macro/usa/inflation/cpi_categories/data::food,米 CPI内訳（食料）,1,0.47,3.691531893922669e-08,124,0.323,True,0.0,先行1ヶ月,True,True
+ユーロ圏：CPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/total_hicp::value,macro/usa/employment/adp_employment/data::yoy,米 ADP雇用者数（前年比）,3,0.466,4.375346205969912e-08,125,0.35,True,0.0003,先行3ヶ月,True,True
+ユーロ圏：CPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/total_hicp::value,macro/usa/inflation/import_export_price/data::export_yoy,米 輸出入物価（輸出前年比）,5,0.441,2.885986539603108e-07,124,0.421,True,0.0,先行5ヶ月,True,True
+ユーロ圏：CPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/total_hicp::value,macro/usa/inflation/median_cpi/data::trimmed_mean_16,米 中央値CPI（刈込平均16）,4,0.422,9.390169416838289e-07,125,0.409,True,0.0001,先行4ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/usa/employment/initial_claims/data::ic4wsa,米 新規失業保険申請件数（4週平均）,5,-0.515,7.867490304369864e-10,125,-0.007,True,0.0,先行5ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/uk/employment/ons_claimant_count/data::yoy,英 失業給付申請者数（前年比）,4,-0.496,4.042508232377786e-09,125,-0.001,True,0.0,先行4ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/canada/employment/ca_employment/data::fulltime_change,加 雇用（フルタイム変化）,3,-0.485,1.0100155313507326e-08,125,0.032,True,0.0,先行3ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/usa/housing/housing_starts_permits/housing_starts/data::qoq,米 住宅着工・許可・住宅着工（前期比）,6,0.482,1.2237096643381937e-08,125,0.073,True,0.0,先行6ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/usa/employment/sahm_rule/data::value,米 サームルール,4,-0.471,3.051544500848816e-08,125,0.065,True,0.0,先行4ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/eurozone/consumer/germany_consumer_confidence_gfk/data::previous,欧 GfK消費者信頼感（前回値）,6,-0.468,3.845237839937679e-08,125,-0.149,True,0.0,先行6ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/canada/inflation/ca_cpi_service_rent/data::services,加 CPI(サービス・家賃)（サービス業）,4,0.464,4.945539928521636e-08,125,0.07,True,0.0,先行4ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/uk/economy/ons_gva/ecy2/3m_yoy::value,英 粗付加価値(GVA)・3ヶ月前年比,4,0.46,6.954536248016859e-08,125,-0.138,True,0.0,先行4ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/usa/inflation/core_ppi/data::yoy,米 コアPPI（前年比）,4,0.458,7.977660791820777e-08,125,0.04,True,0.0,先行4ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/usa/inflation/core_ppi/data::value,米 コアPPI,4,0.458,7.977660791820777e-08,125,0.04,True,0.0,先行4ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/usa/employment/continued_claims/data::ccsa,米 継続受給者数（継続申請(季調)）,5,-0.458,7.643017071856216e-08,125,-0.064,True,0.0,先行5ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/usa/employment/adp_employment/data::mom,米 ADP雇用者数（前月比）,4,0.443,2.3604978278323753e-07,125,-0.131,True,0.0,先行4ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/global/economy/oecd_cli/data::aus,世界 OECD景気先行指数（豪）,5,0.433,4.705632446636983e-07,125,-0.029,True,0.0,先行5ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/canada/inflation/ca_cpi_service_rent/data::ex_food_energy,加 CPI(サービス・家賃)（食料・エネルギー除く）,4,0.432,5.047295582117361e-07,125,0.005,True,0.0,先行4ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/usa/employment/pce_food_recreation/data::food_services_yoy,米 PCE(食料・娯楽)（外食前年比）,5,0.422,9.531946293142722e-07,125,0.025,True,0.0,先行5ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/usa/consumer/consumer_credit/data::yoy,米 消費者信用（前年比）,4,0.42,1.0777626042962667e-06,125,0.015,True,0.0,先行4ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/canada/employment/ca_weekly_average_salary/data::yoy,加 週平均賃金（前年比）,4,-0.415,1.5250446398164619e-06,125,0.102,True,0.0,先行4ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/usa/housing/housing_starts_permits/building_permits/data::qoq,米 住宅着工・許可・建設許可（前期比）,6,0.414,1.543233493273089e-06,125,0.066,True,0.0,先行6ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/switzerland/consumer/kof_economic_barometer/data::value,瑞 KOF景気指標,2,-0.414,1.6409770071354856e-06,125,-0.103,True,0.0,先行2ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/eurozone/economy/eurostat_esi/italy::value,欧 ESI(経済信頼感)・イタリア,2,-0.409,2.4757214469187766e-06,124,-0.07,True,0.0,先行2ヶ月,True,True
+ユーロ圏：コアCPI(前年比),macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,欧 失業率,2,-0.401,3.649603719776968e-06,125,-0.011,True,0.0,先行2ヶ月,True,True
+ユーロ圏：政策金利,macro/eurozone/monetary_policy/ecb_rates/data::value,macro/uk/monetary_policy/boe_mpc_voting/data::bank_rate,英 MPC投票（銀行金利）,3,0.603,4.118524719105518e-17,159,0.603,True,0.0,先行3ヶ月,True,True
+ユーロ圏：政策金利,macro/eurozone/monetary_policy/ecb_rates/data::value,macro/eurozone/monetary_policy/ecb_bank_interest_rates/housing/data::value,欧 銀行金利・住宅向け,5,0.591,8.94365476349554e-14,132,0.525,True,0.0,先行5ヶ月,True,True
+ユーロ圏：政策金利,macro/eurozone/monetary_policy/ecb_rates/data::value,macro/eurozone/monetary_policy/ecb_bank_interest_rates/corporations/data::value,欧 銀行金利・企業向け,3,0.58,1.9656040254531987e-13,134,0.502,True,0.0,先行3ヶ月,True,True
+ユーロ圏：政策金利,macro/eurozone/monetary_policy/ecb_rates/data::value,macro/uk/monetary_policy/boe_bank_rate/data::value,英 BOE政策金利,3,0.568,3.0606545732362576e-18,197,0.568,True,0.0,先行3ヶ月,True,True
+ユーロ圏：政策金利,macro/eurozone/monetary_policy/ecb_rates/data::value,market/us02y::close,米2年債利回り（終値）,1,0.503,7.052318226260567e-13,179,0.273,True,0.0,先行1ヶ月,True,True
+ユーロ圏：政策金利,macro/eurozone/monetary_policy/ecb_rates/data::value,macro/australia/policy/au_rba_rate/data::value,豪 RBA政策金利,6,0.433,1.3677243611577024e-09,179,0.164,True,0.0,先行6ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/uk/economy/ons_gva/ecy2/3m_yoy::value,英 粗付加価値(GVA)・3ヶ月前年比,2,-0.674,3.317962824657757e-19,135,-0.253,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/eurozone/employment/germany_unemployment/unemployment_rate::value,欧 失業率,2,0.619,1.992741886002016e-15,133,0.522,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/sahm_rule/data::value,米 サームルール,2,0.595,2.671069510491315e-14,135,0.321,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/uk/employment/ons_claimant_count/data::value,英 失業給付申請者数,2,0.594,3.272156665729401e-14,135,0.381,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/adp_employment/data::yoy,米 ADP雇用者数（前年比）,1,-0.588,6.125642080624116e-14,135,-0.57,True,0.0,先行1ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/continued_claims/data::ccsa,米 継続受給者数（継続申請(季調)）,3,0.579,2.0065953547874594e-13,135,0.057,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/canada/policy/boc_balance_sheet/data::value,加 BOCバランスシート,2,0.571,7.238669199543855e-13,133,0.301,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/canada/employment/ca_unemployment_rate/data::value,加 失業率,3,0.566,8.424160093183614e-13,135,0.023,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/uk/economy/ons_gva/ecy2/mom::value,英 粗付加価値(GVA)・前月比,3,-0.565,9.423774766989864e-13,135,0.084,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/uk/economy/ons_gva/ecy2/data::value,英 粗付加価値(GVA),3,-0.565,9.423774766989864e-13,135,0.084,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/uk/economy/ons_gva/ecy2/yoy::value,英 粗付加価値(GVA)・前年比,3,-0.565,9.423774766989864e-13,135,0.084,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/continued_claims/data::cc4wsa,米 継続受給者数（4週平均(季調)）,3,0.562,1.2851108615683798e-12,135,0.233,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/japan/employment/job_offers_ratio/data::value,日 有効求人倍率,1,-0.559,1.922728039563626e-12,135,-0.55,True,0.0,先行1ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/uk/employment/ons_claimant_count/data::yoy,英 失業給付申請者数（前年比）,2,0.542,1.0765730599436772e-11,135,0.219,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/monetary_policy/frb_total_assets/data::value,米 FRB総資産,3,0.536,2.0893037401141704e-11,135,0.074,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,market/north_america_rig_count::value,北米リグ稼働数,1,-0.534,2.680985102114985e-11,135,-0.496,True,0.0,先行1ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/consumer/personal_consumption_expenditures_services/data::value,米 個人消費支出(サービス),3,-0.534,2.452234544755147e-11,135,0.115,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/cb_jobs_labor_differential/data::plentiful,米 労働環境格差（求人豊富）,2,-0.53,3.729231909033364e-11,135,-0.108,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/cb_jobs_labor_differential/data::differential,米 労働環境格差,2,-0.525,6.052536600012067e-11,135,-0.071,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/consumer/consumer_credit/data::yoy,米 消費者信用（前年比）,2,-0.525,6.099029776460548e-11,135,-0.413,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/canada/employment/ca_employment/data::employment,加 雇用,3,-0.52,1.0347448786323668e-10,135,0.07,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/inflation/zillow_rent_index/data::yoy,米 Zillow家賃指数（前年比）,1,-0.519,9.121624820524644e-10,122,-0.402,True,0.0,先行1ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/global/economy/oecd_cli/data::jpn,世界 OECD景気先行指数（日）,3,-0.518,1.291703817347538e-10,135,0.094,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/eurozone/economy/eurostat_esi/euro_area::value,欧 ESI(経済信頼感)・ユーロ圏,3,-0.517,2.139322430772702e-10,132,0.003,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/consumer/personal_consumption_expenditures_services/data::yoy,米 個人消費支出(サービス)（前年比）,3,-0.51,2.640110852914709e-10,135,0.142,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/eurozone/economy/eurostat_esi/germany::value,欧 ESI(経済信頼感)・ドイツ,3,-0.506,6.214233167597429e-10,132,0.063,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/canada/economy/ca_gdp_monthly/data::value,加 月次GDP,3,-0.505,4.125409449049534e-10,135,0.104,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/unemployment_by_reason/data::layoff,米 失業理由別（レイオフ）,3,0.498,8.859716525459874e-10,134,0.131,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/multiple_jobs_parttime/data::parttime_econ,米 複数就業(パート)（経済的理由パート）,3,0.489,1.9816193340818073e-09,134,0.039,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/japan/economy/boj_lending/data::value,日 日銀貸出,1,0.488,2.011235730528914e-09,135,0.413,True,0.0,先行1ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/job_openings_per_unemployed/data::value,米 求人倍率,3,-0.483,3.5261256917985067e-09,134,-0.154,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/job_openings_per_unemployed/data::unemployed,米 求人倍率（失業者）,2,0.482,3.6604792252718545e-09,134,0.178,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/japan/price/japan_cgpi/data::yoy,日 企業物価（前年比）,3,-0.482,2.53452120548615e-08,120,-0.024,True,0.0001,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/australia/employment/au_anz_job_advertisements/data::value,豪 ANZ求人広告,2,-0.479,4.36117103856502e-09,135,-0.063,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/eurozone/economy/ifo_business_climate/climate::value,欧 Ifo企業景況感・景況,3,-0.471,8.275978181702066e-09,135,0.143,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/unemployment_rate/data::unrate,米 失業率,2,0.471,9.407492027835889e-09,134,0.179,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/canada/employment/ca_average_hourly_wage/data::value,加 平均時給,3,0.468,1.0739448690240288e-08,135,0.017,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/eurozone/economy/france_business_confidence/data::value,欧 企業景況感,3,-0.465,1.3426175424003233e-08,135,-0.051,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/unemployment_rate/data::u6rate,米 失業率（広義U-6）,3,0.461,2.0736946965053474e-08,134,0.11,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/canada/employment/ca_employment/data::fulltime,加 雇用（フルタイム）,3,-0.461,1.8444884557498742e-08,135,-0.044,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/nonfarm_payrolls/data::civilian,米 非農業部門雇用者数（民間部門）,3,-0.457,2.7522962244396827e-08,134,-0.113,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/eurozone/economy/zew_economic_sentiment/situation::value,欧 ZEW景況感・現況,3,-0.453,3.439813842737427e-08,135,-0.151,True,0.0001,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/labor_force_participation/data::value,米 労働参加率,3,-0.451,4.640357729150434e-08,134,-0.081,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/adp_employment/data::mom,米 ADP雇用者数（前月比）,2,-0.449,4.863282683970541e-08,135,-0.053,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/economy/capacity_utilization/data::value,米 設備稼働率,3,-0.449,4.623652874966643e-08,135,0.011,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/eurozone/economy/eurostat_esi/france::value,欧 ESI(経済信頼感)・フランス,2,-0.446,7.422557674759503e-08,133,-0.023,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/fullpart_time_employment/data::fulltime,米 フル・パートタイム雇用（フルタイム）,3,-0.445,6.925857225122262e-08,134,-0.181,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/economy/industrial_production/data::value,米 鉱工業生産,3,-0.44,9.54949827631171e-08,135,0.02,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/canada/employment/ca_weekly_average_salary/data::value,加 週平均賃金,2,0.435,1.3600644426893942e-07,135,0.127,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/nonfarm_payrolls/data::nonfarm,米 非農業部門雇用者数,3,-0.433,1.528046011092547e-07,135,-0.152,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/canada/employment/ca_labor_force_participation_rate/data::value,加 労働参加率,3,-0.432,1.6624770836311164e-07,135,0.146,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/uk/monetary_policy/ons_public_sector_net_borrowing/cgnb::value,英 公的部門純借入,1,0.431,1.7681233092651837e-07,135,0.404,True,0.0,先行1ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/temporary_help_services/data::value,米 臨時就業者数,2,-0.426,2.5835617139906716e-07,135,-0.168,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/australia/employment/au_employed_persons/data::value,豪 就業者数,2,-0.42,4.0851909547525505e-07,135,-0.117,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/inflation/core_pce_deflator/data::yoy,米 コアPCEデフレータ（前年比）,2,-0.417,4.953815596302898e-07,135,-0.111,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/inflation/core_pce_deflator/data::value,米 コアPCEデフレータ,2,-0.417,4.953815596302898e-07,135,-0.111,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/number_of_workers_by_place_of_birth/data::employment_foreign,米 出生地別就業者数（雇用(外国出生)）,3,-0.415,6.095493402625289e-07,134,-0.095,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/employment/number_of_workers_by_place_of_birth/data::employment_native,米 出生地別就業者数（雇用(国内出生)）,3,-0.415,6.191883168386472e-07,134,-0.144,True,0.0,先行3ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/eurozone/consumer/germany_consumer_confidence_gfk/data::value,欧 GfK消費者信頼感,1,-0.414,6.03082408430408e-07,135,-0.308,True,0.0002,先行1ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/australia/employment/au_unemployment_rate/data::value,豪 失業率,2,0.414,6.145006342211721e-07,135,0.299,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/australia/employment/au_underutilization/data::unemployment,豪 不完全就業率（失業）,2,0.414,6.145006342211721e-07,135,0.299,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/economy/sp_pmi/composite/data::previous,米 S&P PMI・総合（前回値）,1,0.414,6.102719739009102e-07,135,0.149,True,0.0,先行1ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/usa/economy/sp_pmi/services/data::previous,米 S&P PMI・サービス業（前回値）,2,0.413,6.342952037644542e-07,135,-0.001,True,0.0,先行2ヶ月,True,True
+ユーロ圏：失業率,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,macro/canada/policy/ca_settlement_balances/data::value,加 決済残高,3,0.403,1.7009151979604037e-06,132,-0.03,True,0.0,先行3ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/usa/housing/pending_home_sales/data::yoy,米 住宅販売保留（前年比）,1,0.738,2.1433252091436156e-22,123,0.173,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/eurozone/economy/eu_pmi/composite/data::value,欧 PMI・総合,1,0.591,6.192565550447167e-13,123,0.114,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/eurozone/economy/eu_pmi/composite/data::previous,欧 PMI・総合（前回値）,1,0.585,1.1961069101442866e-12,123,0.143,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/eurozone/economy/eu_pmi/services/data::value,欧 PMI・サービス業,1,0.58,2.0626945105926125e-12,123,0.103,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/eurozone/economy/france_pmi/composite/data::value,欧 PMI・総合,1,0.577,2.712928988428644e-12,123,0.111,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/eurozone/economy/eu_pmi/services/data::previous,欧 PMI・サービス業（前回値）,1,0.575,3.3456462395150833e-12,123,0.139,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/eurozone/economy/france_pmi/services/data::value,欧 PMI・サービス業,1,0.571,5.0930909784566264e-12,123,0.103,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/eurozone/economy/germany_pmi/composite/data::value,欧 PMI・総合,1,0.565,1.0302198151496898e-11,123,0.147,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/eurozone/economy/eu_pmi/manufacturing/data::previous,欧 PMI・製造業（前回値）,1,0.557,2.2294459859077686e-11,123,0.249,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/eurozone/economy/eu_pmi/manufacturing/data::value,欧 PMI・製造業,1,0.534,2.0911720042680318e-10,123,0.264,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,market/financial_stress_index::value,金融ストレス指数,1,-0.504,2.87501852701012e-09,123,-0.169,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/eurozone/economy/france_pmi/manufacturing/data::value,欧 PMI・製造業,1,0.499,4.073541264913277e-09,123,0.224,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/eurozone/economy/germany_pmi/services/data::value,欧 PMI・サービス業,1,0.48,1.874304652944565e-08,123,0.109,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/global/economy/oecd_cli/data::chn,世界 OECD景気先行指数（中）,1,0.455,1.2366296914147764e-07,123,0.034,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/usa/economy/sp_pmi/composite/data::value,米 S&P PMI・総合,1,0.441,3.3466409058371806e-07,123,-0.095,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/usa/economy/sp_pmi/composite/data::previous,米 S&P PMI・総合（前回値）,1,0.422,1.1334842973392946e-06,123,-0.039,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/usa/economy/sp_pmi/services/data::value,米 S&P PMI・サービス業,2,0.416,1.691197893175749e-06,123,-0.09,True,0.0,先行2ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/global/economy/usd_fundamental_index/data::germany_mfg,世界 USDファンダメンタル指数（ドイツ製造業）,1,0.414,1.8932374825788877e-06,123,0.238,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/eurozone/economy/germany_pmi/manufacturing/data::value,欧 PMI・製造業,1,0.414,1.8932374825788877e-06,123,0.238,True,0.0,先行1ヶ月,True,True
+ユーロ圏：小売売上(前年比),macro/eurozone/consumer/ecb_retail_trade/retail_yoy::value,macro/usa/economy/sp_pmi/services/data::previous,米 S&P PMI・サービス業（前回値）,2,0.411,2.2908044646546805e-06,123,-0.087,True,0.0,先行2ヶ月,True,True
+英国：CPIH(前年比),macro/uk/inflation/ons_cpih/series/cpih_all_yoy/data::value,macro/japan/price/japan_cgpi/data::yoy,日 企業物価（前年比）,1,0.438,4.0203472996154085e-07,123,0.357,True,0.0,先行1ヶ月,True,True
+英国：コアCPIH(前年比),macro/uk/inflation/ons_cpih/series/cpih_core_yoy/data::value,macro/eurozone/economy/eurostat_esi/italy::value,欧 ESI(経済信頼感)・イタリア,3,0.428,3.066300298482622e-07,132,0.196,True,0.0,先行3ヶ月,True,True
+英国：コアCPIH(前年比),macro/uk/inflation/ons_cpih/series/cpih_core_yoy/data::value,macro/eurozone/economy/ecb_production/mom_change::value,欧 鉱工業生産・前月比,3,-0.417,6.513740365635395e-07,132,-0.056,True,0.0,先行3ヶ月,True,True
+英国：コアCPIH(前年比),macro/uk/inflation/ons_cpih/series/cpih_core_yoy/data::value,macro/usa/employment/challenger_job_cuts/data::yoy,米 チャレンジャー人員削減（前年比）,4,-0.413,8.369723650168032e-09,180,0.096,True,0.0,先行4ヶ月,True,True
+英国：政策金利,macro/uk/monetary_policy/boe_bank_rate/data::value,macro/eurozone/monetary_policy/ecb_bank_interest_rates/housing/data::value,欧 銀行金利・住宅向け,1,0.578,2.2205503589590282e-13,135,0.444,True,0.0,先行1ヶ月,True,True
+英国：政策金利,macro/uk/monetary_policy/boe_bank_rate/data::value,market/us02y::close,米2年債利回り（終値）,1,0.558,4.822651671165253e-16,179,0.472,True,0.0,先行1ヶ月,True,True
+英国：政策金利,macro/uk/monetary_policy/boe_bank_rate/data::value,macro/usa/monetary_policy/frb_total_assets/data::value,米 FRB総資産,1,-0.443,6.5299324151736326e-15,281,-0.259,True,0.0,先行1ヶ月,True,True
+英国：政策金利,macro/uk/monetary_policy/boe_bank_rate/data::value,macro/usa/monetary_policy/reserve_balances_wresbal/data::value,米 準備預金残高(WRESBAL),2,-0.408,1.500044731209764e-12,277,-0.184,True,0.0,先行2ヶ月,True,True
+英国：失業率,macro/uk/employment/ons_unemployment/data::value,macro/uk/employment/ons_claimant_count/data::value,英 失業給付申請者数,3,0.462,3.8514793827570344e-36,660,0.379,True,0.0,先行3ヶ月,True,True
+英国：失業率,macro/uk/employment/ons_unemployment/data::value,macro/eurozone/employment/ecb_unemployment/unemployment_rate::value,欧 失業率,3,0.461,2.7363860879769534e-08,132,0.162,True,0.0,先行3ヶ月,True,True
+英国：失業率,macro/uk/employment/ons_unemployment/data::value,macro/eurozone/employment/germany_unemployment/unemployment_rate::value,欧 失業率,3,0.447,7.470485482030901e-08,132,0.053,True,0.0,先行3ヶ月,True,True
+英国：失業率,macro/uk/employment/ons_unemployment/data::value,macro/usa/employment/adp_employment/data::value,米 ADP雇用者数,3,-0.402,7.634842510323892e-09,192,-0.17,True,0.0002,先行3ヶ月,True,True
+英国：雇用者数,macro/uk/employment/ons_employment/data::value,macro/japan/economy/boj_tankan_di/data::large_non_manufacturing_current,日 日銀短観DI（大企業非製造業(現状)）,2,0.405,4.347159397260898e-08,170,0.34,True,0.0002,先行2ヶ月,True,True
+英国：GDP,macro/uk/economy/ons_gdp/yoy::value,macro/global/economy/oecd_cli/data::g20,世界 OECD景気先行指数（G20）,1,0.642,1.9736017658169237e-31,259,0.062,True,0.0,先行1ヶ月,True,True
+英国：GDP,macro/uk/economy/ons_gdp/yoy::value,macro/canada/employment/ca_employment/data::parttime,加 雇用（パートタイム）,1,0.558,1.1278987082376723e-17,199,0.303,True,0.0,先行1ヶ月,True,True
+英国：GDP,macro/uk/economy/ons_gdp/yoy::value,macro/canada/employment/ca_labor_force_participation_rate/data::value,加 労働参加率,1,0.537,2.884966878066141e-16,199,0.126,True,0.0,先行1ヶ月,True,True
+英国：GDP,macro/uk/economy/ons_gdp/yoy::value,macro/usa/consumer/total_vehicle_sales/data::value,米 自動車販売台数,1,0.506,1.195804708691352e-10,143,0.06,True,0.0,先行1ヶ月,True,True
+英国：GDP,macro/uk/economy/ons_gdp/yoy::value,macro/switzerland/consumer/kof_economic_barometer/data::value,瑞 KOF景気指標,1,0.415,3.652507465309018e-07,139,-0.12,True,0.0,先行1ヶ月,True,True
+英国：GDP,macro/uk/economy/ons_gdp/yoy::value,macro/global/economy/oecd_cli/data::deu,世界 OECD景気先行指数（独）,1,0.411,5.487001432565053e-12,259,0.169,True,0.0,先行1ヶ月,True,True
+英国：小売売上(前年比),macro/uk/consumer/ons_retail_sales/yoy::value,macro/china/housing/cn_commercial_residential_sales/data::floor_sold_yoy,中 商業・住宅販売（床面積販売前年比）,2,0.765,2.477898793254774e-35,177,-0.02,True,0.0,先行2ヶ月,True,True
+英国：小売売上(前年比),macro/uk/consumer/ons_retail_sales/yoy::value,macro/china/economy/cn_fixed_asset_investment/data::ytd,中 固定資産投資（年初来）,2,0.746,1.1136122175822855e-31,171,-0.06,True,0.0,先行2ヶ月,True,True
+英国：小売売上(前年比),macro/uk/consumer/ons_retail_sales/yoy::value,macro/china/housing/cn_commercial_residential_sales/data::sales_yoy,中 商業・住宅販売（販売前年比）,2,0.721,2.0352991324346135e-29,175,0.001,True,0.0,先行2ヶ月,True,True
+英国：小売売上(前年比),macro/uk/consumer/ons_retail_sales/yoy::value,macro/usa/housing/pending_home_sales/data::yoy,米 住宅販売保留（前年比）,1,0.692,5.380658472041145e-19,124,-0.096,True,0.0,先行1ヶ月,True,True
+英国：小売売上(前年比),macro/uk/consumer/ons_retail_sales/yoy::value,macro/china/housing/cn_commercial_residential_sales/data::floor_started_yoy,中 商業・住宅販売（床面積着工前年比）,2,0.669,2.746971439091876e-24,177,-0.047,True,0.0,先行2ヶ月,True,True
+英国：小売売上(前年比),macro/uk/consumer/ons_retail_sales/yoy::value,macro/canada/inflation/ca_cpi_service_rent/data::rent,加 CPI(サービス・家賃),2,-0.598,1.1751326477740503e-30,302,0.052,True,0.0,先行2ヶ月,True,True
+英国：小売売上(前年比),macro/uk/consumer/ons_retail_sales/yoy::value,macro/usa/consumer/visa_spending/data::mom,米 Visa消費（前月比）,1,0.541,1.5246740280515603e-11,134,0.171,True,0.0,先行1ヶ月,True,True
+英国：小売売上(前年比),macro/uk/consumer/ons_retail_sales/yoy::value,macro/china/economy/cn_trade_balance/exports_yoy::value,中 貿易収支・輸出前年比,2,0.515,1.936249479349755e-14,193,-0.03,True,0.0,先行2ヶ月,True,True
+英国：小売売上(前年比),macro/uk/consumer/ons_retail_sales/yoy::value,macro/china/economy/cn_industrial_production/data::yoy,中 鉱工業生産（前年比）,2,0.489,5.204235857365565e-19,293,-0.099,True,0.0,先行2ヶ月,True,True
+英国：小売売上(前年比),macro/uk/consumer/ons_retail_sales/yoy::value,macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,欧 HICP・コア,3,0.488,1.394044100213623e-08,121,-0.147,True,0.0,先行3ヶ月,True,True
+英国：小売売上(前年比),macro/uk/consumer/ons_retail_sales/yoy::value,macro/eurozone/economy/eu_pmi/manufacturing/data::previous,欧 PMI・製造業（前回値）,1,0.457,2.1719374937162538e-08,136,0.075,True,0.0,先行1ヶ月,True,True
+英国：小売売上(前年比),macro/uk/consumer/ons_retail_sales/yoy::value,macro/eurozone/economy/eu_pmi/manufacturing/data::value,欧 PMI・製造業,1,0.421,3.4313760408718884e-07,136,0.098,True,0.0,先行1ヶ月,True,True
+英国：小売売上(前年比),macro/uk/consumer/ons_retail_sales/yoy::value,macro/eurozone/economy/eu_pmi/composite/data::previous,欧 PMI・総合（前回値）,1,0.416,4.842461363251507e-07,136,0.004,True,0.0,先行1ヶ月,True,True
+英国：小売売上(前年比),macro/uk/consumer/ons_retail_sales/yoy::value,macro/eurozone/economy/eu_pmi/composite/data::value,欧 PMI・総合,1,0.404,1.108951167955026e-06,136,-0.011,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/usa/employment/initial_claims/data::ic4wsa,米 新規失業保険申請件数（4週平均）,1,0.756,1.603226167191727e-59,315,0.562,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/usa/employment/initial_claims/data::icsa,米 新規失業保険申請件数,1,0.731,6.942563614665234e-54,315,0.274,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/global/economy/oecd_cli/data::a5m,世界 OECD景気先行指数（a5m）,1,-0.646,2.414352292683313e-49,407,-0.39,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/usa/employment/jolts_hires_layoffs/data::layoffs,米 JOLTS求人(採用・解雇),1,0.644,5.474739946837567e-37,304,0.146,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/eurozone/economy/eu_pmi/manufacturing/data::value,欧 PMI・製造業,1,-0.643,2.9644841061613005e-17,136,-0.048,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/eurozone/economy/eu_pmi/manufacturing/data::previous,欧 PMI・製造業（前回値）,1,-0.639,5.4492354167287365e-17,136,-0.072,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/eurozone/economy/germany_pmi/composite/data::value,欧 PMI・総合,1,-0.635,1.0562577781901116e-16,136,0.067,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,market/cftc_positioning_brent::price,建玉(BRENT)（価格）,1,-0.579,6.973046944197628e-17,173,-0.275,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/japan/economy/jp_pmi/manufacturing/data::value,日 PMI・製造業,1,-0.554,2.6705720908179394e-12,136,-0.226,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/eurozone/economy/germany_pmi/services/data::value,欧 PMI・サービス業,2,-0.553,5.2210724879966574e-17,195,0.124,True,0.0,先行2ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,market/crude_oil::close,WTI原油（終値）,1,-0.552,1.788135823986975e-15,177,-0.228,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,market/brent_oil::close,ブレント原油（終値）,1,-0.545,3.587745624009857e-15,178,-0.182,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,market/cftc_positioning_crude_oil::price,建玉(WTI原油)（価格）,1,-0.524,3.667384113873894e-18,238,-0.334,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/australia/consumer/au_nab_business_confidence/data::value,豪 NAB企業景況感,1,-0.52,8.683811412776613e-16,208,-0.102,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/switzerland/economy/ch_pmi/services_data::value,瑞 PMI・サービス業,1,-0.507,2.600147874962853e-09,122,-0.342,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/eurozone/economy/france_pmi/manufacturing/data::value,欧 PMI・製造業,1,-0.503,2.113844486137498e-12,172,0.127,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,seasonality/WTI原油::close,WTI原油（終値）,1,-0.502,3.175067282382487e-19,279,-0.292,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/global/economy/usd_fundamental_index/data::germany_mfg,世界 USDファンダメンタル指数（ドイツ製造業）,1,-0.47,3.68019299280347e-12,196,-0.178,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/eurozone/economy/germany_pmi/manufacturing/data::value,欧 PMI・製造業,1,-0.47,3.68019299280347e-12,196,-0.178,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,seasonality/ブレント原油::close,ブレント原油（終値）,1,-0.465,7.454776356769039e-16,269,-0.197,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,market/us02y::close,米2年債利回り（終値）,1,-0.459,1.1789197295165924e-10,178,-0.198,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/eurozone/economy/ifo_business_climate/expectations::value,欧 Ifo企業景況感・期待,1,-0.448,5.46697117526874e-14,255,-0.407,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/usa/economy/ism_non_manufacturing/data::value,米 ISM非製造業,1,-0.401,2.2990828631099323e-08,181,-0.06,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/global/economy/usd_fundamental_index/data::ism_non_mfg,世界 USDファンダメンタル指数（ISM非製造業）,1,-0.401,2.2990828631099323e-08,181,-0.06,True,0.0,先行1ヶ月,True,True
+カナダ：失業率,macro/canada/employment/ca_unemployment_rate/data::value,macro/australia/policy/au_rba_rate/data::value,豪 RBA政策金利,1,-0.401,1.881526331916064e-08,183,-0.193,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/usa/employment/initial_claims/data::ic4wsa,米 新規失業保険申請件数（4週平均）,1,0.756,1.603226167191727e-59,315,0.562,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/usa/employment/initial_claims/data::icsa,米 新規失業保険申請件数,1,0.731,6.942563614665234e-54,315,0.274,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/global/economy/oecd_cli/data::a5m,世界 OECD景気先行指数（a5m）,1,-0.646,2.414352292683313e-49,407,-0.39,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/usa/employment/jolts_hires_layoffs/data::layoffs,米 JOLTS求人(採用・解雇),1,0.644,5.474739946837567e-37,304,0.146,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/eurozone/economy/eu_pmi/manufacturing/data::value,欧 PMI・製造業,1,-0.643,2.9644841061613005e-17,136,-0.048,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/eurozone/economy/eu_pmi/manufacturing/data::previous,欧 PMI・製造業（前回値）,1,-0.639,5.4492354167287365e-17,136,-0.072,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/eurozone/economy/germany_pmi/composite/data::value,欧 PMI・総合,1,-0.635,1.0562577781901116e-16,136,0.067,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,market/cftc_positioning_brent::price,建玉(BRENT)（価格）,1,-0.579,6.973046944197628e-17,173,-0.275,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/japan/economy/jp_pmi/manufacturing/data::value,日 PMI・製造業,1,-0.554,2.6705720908179394e-12,136,-0.226,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/eurozone/economy/germany_pmi/services/data::value,欧 PMI・サービス業,2,-0.553,5.2210724879966574e-17,195,0.124,True,0.0,先行2ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,market/crude_oil::close,WTI原油（終値）,1,-0.552,1.788135823986975e-15,177,-0.228,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,market/brent_oil::close,ブレント原油（終値）,1,-0.545,3.587745624009857e-15,178,-0.182,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,market/cftc_positioning_crude_oil::price,建玉(WTI原油)（価格）,1,-0.524,3.667384113873894e-18,238,-0.334,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/australia/consumer/au_nab_business_confidence/data::value,豪 NAB企業景況感,1,-0.52,8.683811412776613e-16,208,-0.102,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/switzerland/economy/ch_pmi/services_data::value,瑞 PMI・サービス業,1,-0.507,2.600147874962853e-09,122,-0.342,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/eurozone/economy/france_pmi/manufacturing/data::value,欧 PMI・製造業,1,-0.503,2.113844486137498e-12,172,0.127,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,seasonality/WTI原油::close,WTI原油（終値）,1,-0.502,3.175067282382487e-19,279,-0.292,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/global/economy/usd_fundamental_index/data::germany_mfg,世界 USDファンダメンタル指数（ドイツ製造業）,1,-0.47,3.68019299280347e-12,196,-0.178,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/eurozone/economy/germany_pmi/manufacturing/data::value,欧 PMI・製造業,1,-0.47,3.68019299280347e-12,196,-0.178,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,seasonality/ブレント原油::close,ブレント原油（終値）,1,-0.465,7.454776356769039e-16,269,-0.197,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,market/us02y::close,米2年債利回り（終値）,1,-0.459,1.1789197295165924e-10,178,-0.198,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/eurozone/economy/ifo_business_climate/expectations::value,欧 Ifo企業景況感・期待,1,-0.448,5.46697117526874e-14,255,-0.407,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/usa/economy/ism_non_manufacturing/data::value,米 ISM非製造業,1,-0.401,2.2990828631099323e-08,181,-0.06,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/global/economy/usd_fundamental_index/data::ism_non_mfg,世界 USDファンダメンタル指数（ISM非製造業）,1,-0.401,2.2990828631099323e-08,181,-0.06,True,0.0,先行1ヶ月,True,True
+カナダ：雇用者数,macro/canada/employment/ca_unemployment_rate/data::value,macro/australia/policy/au_rba_rate/data::value,豪 RBA政策金利,1,-0.401,1.881526331916064e-08,183,-0.193,True,0.0,先行1ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/china/economy/cn_fixed_asset_investment/data::ytd,中 固定資産投資（年初来）,2,-0.633,1.6928288482358656e-20,171,0.046,True,0.0,先行2ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/eurozone/economy/eu_pmi/manufacturing/data::previous,欧 PMI・製造業（前回値）,1,-0.591,3.640169001667101e-14,136,-0.22,True,0.0,先行1ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/eurozone/economy/eu_pmi/manufacturing/data::value,欧 PMI・製造業,1,-0.581,1.2059841662090754e-13,136,-0.217,True,0.0,先行1ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/eurozone/economy/france_pmi/manufacturing/data::value,欧 PMI・製造業,1,-0.531,6.869193797509569e-14,172,-0.07,True,0.0,先行1ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/eurozone/economy/eu_pmi/composite/data::previous,欧 PMI・総合（前回値）,1,-0.528,3.951605344886566e-11,136,-0.041,True,0.0,先行1ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/eurozone/economy/eu_pmi/services/data::previous,欧 PMI・サービス業（前回値）,1,-0.521,8.176760020280528e-11,136,-0.038,True,0.0,先行1ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/usa/housing/pending_home_sales/data::yoy,米 住宅販売保留（前年比）,1,-0.515,9.631755455215379e-10,124,-0.063,True,0.0,先行1ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/eurozone/economy/eu_pmi/composite/data::value,欧 PMI・総合,1,-0.51,2.3759408737618385e-10,136,-0.015,True,0.0,先行1ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/usa/economy/sp_pmi/composite/data::value,米 S&P PMI・総合,2,-0.498,7.068718686782271e-10,136,0.038,True,0.0,先行2ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/eurozone/economy/eu_pmi/services/data::value,欧 PMI・サービス業,1,-0.497,7.382521587432842e-10,136,-0.008,True,0.0,先行1ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/eurozone/economy/germany_pmi/composite/data::value,欧 PMI・総合,1,-0.496,8.046766732453677e-10,136,-0.141,True,0.0,先行1ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/eurozone/economy/france_pmi/composite/data::value,欧 PMI・総合,1,-0.494,9.670145895937078e-10,136,0.006,True,0.0,先行1ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/usa/economy/sp_pmi/composite/data::previous,米 S&P PMI・総合（前回値）,2,-0.473,5.891812002063025e-09,136,-0.014,True,0.0,先行2ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/eurozone/economy/france_pmi/services/data::value,欧 PMI・サービス業,1,-0.47,8.005057220937344e-11,172,0.006,True,0.0,先行1ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/usa/employment/jolts_hires_layoffs/data::layoffs,米 JOLTS求人(採用・解雇),1,0.454,6.756355115878553e-17,304,0.167,True,0.0,先行1ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/global/economy/oecd_cli/data::chn,世界 OECD景気先行指数（中）,2,-0.451,1.7890152851376406e-18,340,-0.006,True,0.0,先行2ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/global/economy/oecd_cli/data::a5m,世界 OECD景気先行指数（a5m）,1,-0.421,4.569695417357816e-16,340,-0.359,True,0.0,先行1ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/china/housing/cn_commercial_residential_sales/data::floor_started_yoy,中 商業・住宅販売（床面積着工前年比）,2,-0.419,6.541767841431264e-09,177,0.071,True,0.0,先行2ヶ月,True,True
+カナダ：賃金(前年比),macro/canada/employment/ca_average_hourly_wage/data::yoy,macro/usa/consumer/personal_consumption_expenditures_services/data::mom,米 個人消費支出(サービス)（前月比）,1,-0.401,1.3786421413074335e-13,314,-0.183,True,0.0,先行1ヶ月,True,True
+カナダ：GDP,macro/canada/economy/ca_gdp_growth/data::qoq,macro/global/economy/oecd_cli/data::a5m,世界 OECD景気先行指数（a5m）,2,-0.72,1.4710346303230755e-22,133,0.126,True,0.0,先行2ヶ月,True,True
+カナダ：GDP,macro/canada/economy/ca_gdp_growth/data::qoq,macro/global/economy/oecd_cli/data::chn,世界 OECD景気先行指数（中）,2,-0.701,5.6154089490847666e-21,133,-0.01,True,0.0,先行2ヶ月,True,True
+カナダ：GDP,macro/canada/economy/ca_gdp_growth/data::qoq,market/north_america_rig_count::value,北米リグ稼働数,1,-0.461,1.9914849056659743e-09,153,0.098,True,0.0,先行1ヶ月,True,True
+カナダ：GDP,macro/canada/economy/ca_gdp_growth/data::qoq,macro/canada/economy/ca_current_account/data::qoq_change,加 経常収支（前期比）,4,-0.4,4.0139179519944286e-08,175,-0.19,True,0.0,先行4ヶ月,True,True
+豪州：政策金利,macro/australia/policy/au_rba_rate/data::value,macro/usa/employment/adp_employment/data::value,米 ADP雇用者数,6,0.447,1.7926887248294548e-10,185,0.128,True,0.0,先行6ヶ月,True,True
+豪州：失業率,macro/australia/employment/au_unemployment_rate/data::value,macro/canada/policy/ca_settlement_balances/data::value,加 決済残高,1,0.503,5.166136962676781e-10,135,0.13,True,0.0,先行1ヶ月,True,True
+豪州：失業率,macro/australia/employment/au_unemployment_rate/data::value,macro/usa/employment/continued_claims/data::ccsa,米 継続受給者数（継続申請(季調)）,1,0.482,9.638676230387192e-20,315,0.261,True,0.0,先行1ヶ月,True,True
+豪州：失業率,macro/australia/employment/au_unemployment_rate/data::value,macro/usa/employment/continued_claims/data::cc4wsa,米 継続受給者数（4週平均(季調)）,1,0.451,3.285464282732262e-17,315,0.417,True,0.0,先行1ヶ月,True,True
+豪州：失業率,macro/australia/employment/au_unemployment_rate/data::value,macro/canada/employment/ca_unemployment_rate/data::value,加 失業率,1,0.41,2.8373061266729212e-14,316,0.341,True,0.0,先行1ヶ月,True,True
+豪州：失業率,macro/australia/employment/au_unemployment_rate/data::value,macro/global/economy/jpmorgan_global_manufacturing_pmi/data::value,世界 世界製造業PMI,2,-0.405,3.732887673947724e-06,122,-0.071,True,0.0,先行2ヶ月,True,True
+豪州：失業率,macro/australia/employment/au_unemployment_rate/data::value,macro/eurozone/economy/ecb_production/production_wda::value,欧 鉱工業生産・生産(営業日調整),1,-0.403,1.2753920403756026e-06,135,-0.114,True,0.0,先行1ヶ月,True,True
+豪州：失業率,macro/australia/employment/au_unemployment_rate/data::value,macro/eurozone/economy/ecb_production/mom_change::current_index,欧 鉱工業生産・前月比（現状指数）,1,-0.403,1.3759463848264036e-06,134,-0.108,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/usa/employment/continued_claims/data::ccsa,米 継続受給者数（継続申請(季調)）,1,-0.706,8.480191547340144e-49,315,-0.397,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/usa/employment/initial_claims/data::ic4wsa,米 新規失業保険申請件数（4週平均）,1,-0.7,1.1748667616674056e-47,315,-0.143,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/usa/consumer/personal_consumption_expenditures_services/data::value,米 個人消費支出(サービス),1,0.664,2.1476279833025392e-41,315,0.429,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/eurozone/economy/ecb_production/mom_change::current_index,欧 鉱工業生産・前月比（現状指数）,1,0.638,1.1265077448294733e-16,134,0.394,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/eurozone/economy/ecb_production/production_wda::value,欧 鉱工業生産・生産(営業日調整),1,0.635,1.281235594490955e-16,135,0.396,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/canada/economy/ca_gdp_monthly/data::value,加 月次GDP,1,0.63,2.1415398351395968e-36,316,0.455,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/usa/employment/initial_claims/data::icsa,米 新規失業保険申請件数,1,-0.595,1.3943194973767913e-31,315,0.097,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/canada/policy/ca_settlement_balances/data::value,加 決済残高,1,-0.572,4.2200071094804047e-13,135,-0.237,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/canada/employment/ca_employment/data::employment,加 雇用,1,0.568,2.3338268814657566e-28,316,0.543,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/uk/economy/uk_pmi/services::value,英 PMI・サービス業,1,0.563,9.211626366424965e-18,196,0.305,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/global/economy/oecd_cli/data::g20,世界 OECD景気先行指数（G20）,1,0.551,1.6141713548236813e-26,316,0.292,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/global/economy/oecd_cli/data::deu,世界 OECD景気先行指数（独）,1,0.52,2.9717157438721655e-23,316,0.405,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/usa/consumer/retail_sales/data::value,米 小売売上,1,0.518,5.055327927259512e-23,315,0.201,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/global/economy/oecd_cli/data::g7,世界 OECD景気先行指数（G7）,1,0.515,7.999690520905635e-23,316,0.436,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/canada/employment/ca_labor_force_participation_rate/data::value,加 労働参加率,1,0.514,1.074500944664819e-22,316,0.423,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/canada/employment/ca_employment/data::parttime,加 雇用（パートタイム）,1,0.514,1.098808451803511e-22,316,0.376,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/usa/economy/sp_pmi/services/data::value,米 S&P PMI・サービス業,4,0.514,3.3001342129718724e-11,146,-0.006,True,0.0,先行4ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,market/cftc_positioning_crude_oil::price,建玉(WTI原油)（価格）,1,0.508,5.488488482066639e-17,238,-0.032,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/global/economy/oecd_cli/data::a5m,世界 OECD景気先行指数（a5m）,1,0.504,9.059028299245644e-22,316,0.086,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/usa/economy/sp_pmi/services/data::previous,米 S&P PMI・サービス業（前回値）,4,0.501,1.2280154151285876e-10,146,-0.038,True,0.0,先行4ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,market/cftc_positioning_brent::price,建玉(BRENT)（価格）,1,0.496,3.796446314971037e-12,173,-0.079,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/usa/consumer/advance_real_retail_sales/data::value,米 実質小売速報,1,0.49,2.4600378127795096e-20,314,0.162,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,market/crude_oil::close,WTI原油（終値）,1,0.482,1.1289649722372342e-11,177,-0.141,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/global/economy/oecd_cli/data::gbr,世界 OECD景気先行指数（英）,1,0.461,5.270897458264105e-18,316,0.456,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/canada/economy/ca_industrial_production/data::value,加 鉱工業生産,1,0.457,1.0996350912679827e-17,316,0.393,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/canada/economy/ca_sp_pmi/manufacturing/data::value,加 S&P PMI・製造業,1,0.456,3.0960468044018645e-09,153,0.305,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/usa/consumer/retail_sales/data::ex_auto,米 小売売上（自動車除く）,1,0.452,2.6957940874116816e-17,315,0.295,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/switzerland/economy/ch_pmi/services_data::value,瑞 PMI・サービス業,1,0.438,4.5219504810620144e-07,122,0.029,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/china/economy/cn_fixed_asset_investment/data::ytd,中 固定資産投資（年初来）,3,0.438,2.31777857466483e-09,170,-0.046,True,0.0,先行3ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/global/economy/jpmorgan_global_manufacturing_pmi/data::value,世界 世界製造業PMI,1,0.437,4.3727557066121793e-07,123,0.433,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/china/economy/cn_pmi/manufacturing_sub/data::employment,中 PMI・製造業（雇用）,1,-0.437,1.7424314995444143e-10,195,0.008,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,seasonality/WTI原油::close,WTI原油（終値）,1,0.433,3.763952805642283e-14,279,-0.02,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/global/economy/oecd_cli/data::aus,世界 OECD景気先行指数（豪）,1,0.424,2.9628521765468837e-15,316,0.366,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,market/brent_oil::close,ブレント原油（終値）,1,0.424,3.7119395495626173e-09,178,-0.126,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,market/us02y::close,米2年債利回り（終値）,1,0.423,3.900192576957453e-09,178,0.065,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/eurozone/economy/ifo_business_climate/climate::value,欧 Ifo企業景況感・景況,1,0.414,5.264258286847606e-12,255,0.304,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/newzealand/economy/nz_pci/data::value,NZ NZ総合PMI(PCI),1,0.409,1.2858709876308963e-10,228,0.187,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/china/policy/cn_shibor/data::1Y,中 SHIBOR（1Y）,1,0.408,2.7777084419251926e-06,123,0.284,True,0.0,先行1ヶ月,True,True
+豪州：雇用者数,macro/australia/employment/au_employed_persons/data::value,macro/usa/employment/challenger_job_cuts/data::yoy,米 チャレンジャー人員削減（前年比）,1,-0.404,1.4721650148204424e-08,183,-0.275,True,0.0,先行1ヶ月,True,True
+豪州：GDP,macro/australia/economy/au_gdp_growth_rate/data::qoq,macro/global/economy/oecd_cli/data::chn,世界 OECD景気先行指数（中）,1,0.622,1.055281351414146e-15,134,-0.109,True,0.0,先行1ヶ月,True,True
+豪州：GDP,macro/australia/economy/au_gdp_growth_rate/data::qoq,macro/global/economy/oecd_cli/data::a5m,世界 OECD景気先行指数（a5m）,1,0.559,2.113792482413368e-12,134,0.013,True,0.0,先行1ヶ月,True,True
+NZ：GDP,macro/newzealand/economy/nz_gdp_growth_rate/data::qoq,macro/global/economy/oecd_cli/data::a5m,世界 OECD景気先行指数（a5m）,2,-0.706,2.2406158163431316e-21,133,0.096,True,0.0,先行2ヶ月,True,True
+NZ：GDP,macro/newzealand/economy/nz_gdp_growth_rate/data::qoq,macro/global/economy/oecd_cli/data::chn,世界 OECD景気先行指数（中）,2,-0.704,3.1343383611827996e-21,133,-0.022,True,0.0,先行2ヶ月,True,True
+NZ：GDP,macro/newzealand/economy/nz_gdp_growth_rate/data::qoq,macro/uk/employment/ons_claimant_count/data::yoy,英 失業給付申請者数（前年比）,1,0.539,5.348829159760851e-13,154,-0.12,True,0.0,先行1ヶ月,True,True
+NZ：GDP,macro/newzealand/economy/nz_gdp_growth_rate/data::qoq,macro/usa/consumer/total_vehicle_sales/data::mom,米 自動車販売台数（前月比）,2,-0.467,4.494061385045219e-09,142,-0.114,True,0.0,先行2ヶ月,True,True
+NZ：GDP,macro/newzealand/economy/nz_gdp_growth_rate/data::qoq,macro/australia/housing/au_international_trade/balance_mom_diff::value,豪 貿易・収支前月差,2,0.435,1.720515411783285e-08,154,0.138,True,0.0,先行2ヶ月,True,True
+NZ：GDP,macro/newzealand/economy/nz_gdp_growth_rate/data::qoq,macro/australia/economy/au_international_trade/balance_mom_diff::value,豪 貿易・収支前月差,2,0.434,1.8406340524388478e-08,154,0.123,True,0.0,先行2ヶ月,True,True
+NZ：GDP,macro/newzealand/economy/nz_gdp_growth_rate/data::qoq,market/north_america_rig_count::value,北米リグ稼働数,1,-0.406,1.9442737439538945e-07,153,0.058,True,0.0,先行1ヶ月,True,True
+スイス：CPI(前年比),macro/switzerland/inflation/ch_cpi/data::cpi_yoy,macro/eurozone/inflation/eu_import_prices/yoy::value,欧 輸入物価・前年比,1,0.455,1.222433178643674e-07,123,0.441,True,0.0,先行1ヶ月,True,True
+スイス：CPI(前年比),macro/switzerland/inflation/ch_cpi/data::cpi_yoy,macro/japan/price/japan_cgpi/data::yoy,日 企業物価（前年比）,1,0.434,5.261179634297497e-07,123,0.411,True,0.0,先行1ヶ月,True,True
+スイス：CPI(前年比),macro/switzerland/inflation/ch_cpi/data::cpi_yoy,seasonality/ブレント原油::close,ブレント原油（終値）,1,0.433,9.576488270224352e-14,269,0.193,True,0.0,先行1ヶ月,True,True
+スイス：賃金(前年比),macro/switzerland/employment/ch_nominal_wage_growth/data::value,macro/australia/employment/au_anz_job_advertisements/data::value,豪 ANZ求人広告,4,0.44,9.303997168714085e-08,135,0.026,True,0.0001,先行4ヶ月,True,True
+スイス：賃金(前年比),macro/switzerland/employment/ch_nominal_wage_growth/data::value,macro/canada/employment/ca_unemployment_rate/data::value,加 失業率,4,-0.411,7.526057794802839e-07,135,-0.034,True,0.0001,先行4ヶ月,True,True
+スイス：GDP,macro/switzerland/economy/ch_growth_rate/data::qoq,macro/global/economy/oecd_cli/data::chn,世界 OECD景気先行指数（中）,1,0.652,1.3404384093733488e-17,134,-0.02,True,0.0,先行1ヶ月,True,True
+スイス：GDP,macro/switzerland/economy/ch_growth_rate/data::qoq,macro/global/economy/oecd_cli/data::a5m,世界 OECD景気先行指数（a5m）,2,-0.641,9.072793432140253e-17,133,0.119,True,0.0,先行2ヶ月,True,True
+スイス：GDP,macro/switzerland/economy/ch_growth_rate/data::qoq,market/north_america_rig_count::value,北米リグ稼働数,1,-0.421,5.9517443916028534e-08,153,0.093,True,0.0,先行1ヶ月,True,True
+スイス：小売売上(前年比),macro/switzerland/consumer/ch_retail_trade/data::yoy,macro/usa/housing/pending_home_sales/data::yoy,米 住宅販売保留（前年比）,1,0.716,9.810544366424132e-21,124,0.143,True,0.0,先行1ヶ月,True,True
+スイス：小売売上(前年比),macro/switzerland/consumer/ch_retail_trade/data::yoy,macro/china/economy/cn_fixed_asset_investment/data::ytd,中 固定資産投資（年初来）,3,-0.625,7.775470920053151e-20,170,-0.111,True,0.0,先行3ヶ月,True,True
+スイス：小売売上(前年比),macro/switzerland/consumer/ch_retail_trade/data::yoy,macro/china/housing/cn_commercial_residential_sales/data::floor_sold_yoy,中 商業・住宅販売（床面積販売前年比）,3,-0.526,6.271416724899318e-14,176,-0.173,True,0.0,先行3ヶ月,True,True
+スイス：小売売上(前年比),macro/switzerland/consumer/ch_retail_trade/data::yoy,macro/china/housing/cn_commercial_residential_sales/data::sales_yoy,中 商業・住宅販売（販売前年比）,3,-0.5,2.1239774733455024e-12,174,-0.15,True,0.0,先行3ヶ月,True,True
+スイス：小売売上(前年比),macro/switzerland/consumer/ch_retail_trade/data::yoy,macro/eurozone/inflation/ecb_hicp/annual_rates/core_excl_unprocessed_food::value,欧 HICP・コア(未加工食品除く),4,-0.444,3.721964377753723e-07,120,-0.123,True,0.0,先行4ヶ月,True,True
+スイス：小売売上(前年比),macro/switzerland/consumer/ch_retail_trade/data::yoy,macro/eurozone/inflation/ecb_hicp/annual_rates/core_hicp::value,欧 HICP・コア,4,-0.438,5.578097565112904e-07,120,-0.108,True,0.0,先行4ヶ月,True,True
+中国：政策金利,macro/china/policy/ch_reverse_repo_rate/data::value,macro/japan/consumer/retail_sales/mom/data::value,日 小売売上・前月比,5,0.47,7.092486589302157e-09,137,0.002,True,0.0,先行5ヶ月,True,True
+銘柄：WTI原油,seasonality/WTI原油::close,macro/eurozone/economy/eu_pmi/services/data::value,欧 PMI・サービス業,1,0.649,1.8337075541064468e-17,135,0.366,True,0.0,先行1ヶ月,True,True
+銘柄：WTI原油,seasonality/WTI原油::close,macro/eurozone/economy/eu_pmi/composite/data::value,欧 PMI・総合,1,0.624,6.094851401501858e-16,135,0.387,True,0.0,先行1ヶ月,True,True
+銘柄：WTI原油,seasonality/WTI原油::close,macro/eurozone/economy/france_pmi/composite/data::value,欧 PMI・総合,1,0.613,2.7421733032920494e-15,135,0.372,True,0.0,先行1ヶ月,True,True
+銘柄：WTI原油,seasonality/WTI原油::close,macro/eurozone/economy/eu_pmi/services/data::previous,欧 PMI・サービス業（前回値）,1,0.611,3.708746646655474e-15,135,0.413,True,0.0,先行1ヶ月,True,True
+銘柄：WTI原油,seasonality/WTI原油::close,macro/eurozone/economy/eu_pmi/composite/data::previous,欧 PMI・総合（前回値）,1,0.598,1.9895800008170032e-14,135,0.42,True,0.0,先行1ヶ月,True,True
+銘柄：WTI原油,seasonality/WTI原油::close,macro/eurozone/economy/france_pmi/services/data::value,欧 PMI・サービス業,1,0.579,1.0520078440177106e-16,171,0.352,True,0.0,先行1ヶ月,True,True
+銘柄：WTI原油,seasonality/WTI原油::close,macro/eurozone/economy/germany_pmi/composite/data::value,欧 PMI・総合,1,0.533,2.9204940106598276e-11,135,0.465,True,0.0,先行1ヶ月,True,True
+銘柄：WTI原油,seasonality/WTI原油::close,macro/global/economy/oecd_cli/data::chn,世界 OECD景気先行指数（中）,1,0.531,1.1451655508526413e-21,279,0.212,True,0.0,先行1ヶ月,True,True
+銘柄：WTI原油,seasonality/WTI原油::close,macro/eurozone/economy/germany_pmi/services/data::value,欧 PMI・サービス業,1,0.52,6.70823149596101e-15,195,0.379,True,0.0,先行1ヶ月,True,True
+銘柄：WTI原油,seasonality/WTI原油::close,macro/japan/economy/jp_pmi/services/data::value,日 PMI・サービス業,1,0.447,5.548577066169666e-08,135,0.02,True,0.0,先行1ヶ月,True,True
+銘柄：WTI原油,seasonality/WTI原油::close,macro/usa/economy/sp_pmi/composite/data::value,米 S&P PMI・総合,2,0.44,9.600311675008402e-08,135,-0.136,True,0.0,先行2ヶ月,True,True

@@ -30099,22 +30099,163 @@
       "date": "2026-06-25",
       "value": 2.25,
       "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-06-26",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-06-27",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-06-28",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-06-29",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-06-30",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-01",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-02",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-03",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-04",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-05",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-06",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-07",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-08",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-09",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-10",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-11",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-12",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-13",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-14",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-15",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-16",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-17",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-18",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-19",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-20",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-21",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-22",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-23",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-24",
+      "value": 2.25,
+      "deposit_facility": 2.25
+    },
+    {
+      "date": "2026-07-25",
+      "value": 2.25,
+      "deposit_facility": 2.25
     }
   ],
   "latest": {
-    "date": "2026-06-25",
+    "date": "2026-07-25",
     "value": 2.25,
     "deposit_facility": 2.25
   },
-  "next_release": {
-    "date": "2026-07-23",
-    "datetime_utc": "2026-07-23T12:15:00+00:00",
-    "datetime_jst": "2026-07-23T21:15:00+09:00",
-    "time_jst": "21:15",
-    "datetime_cet": "2026-07-23T14:15:00+02:00",
-    "time_cet": "14:15",
-    "label": "Interest Rate Decision",
-    "estimate": null
-  },
-  "last_updated": "2026-06-25T15:46:00.990032+09:00"
+  "next_release": null,
+  "last_updated": "2026-07-26T04:34:33.154986+09:00"
 }

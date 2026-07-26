@@ -347,6 +347,13 @@ def should_refresh_by_chicago_fed_schedule(last_updated_str: str) -> bool:
 
         now = datetime.now(JST)
 
+        # max-age フォールバック（発表レース凍結の自己回復）:
+        # 発表時刻ちょうどの再取得でソース未反映のまま last_updated=now を刻むと、
+        # 下の発表日時判定(last_updated < release_datetime)が False となり次回発表まで
+        # 凍結する。週次のため48hで必ず再取得させ当該週内に自己回復させる。
+        if (now - last_updated).total_seconds() > 48 * 3600:
+            return True
+
         # 直近の発表日時を取得
         last_release_info = get_carts_last_release()
         if not last_release_info:

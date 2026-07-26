@@ -183,6 +183,10 @@
     {
       "date": "2026-Q2",
       "value": -1.9353543446823909
+    },
+    {
+      "date": "2026-Q3",
+      "value": 2.5906617367677502
     }
   ],
   "enterprises_expected": [
@@ -369,6 +373,10 @@
     {
       "date": "2026-Q2",
       "value": -10.314588543600191
+    },
+    {
+      "date": "2026-Q3",
+      "value": 4.206133815318184
     }
   ],
   "consumer_current": [
@@ -555,6 +563,10 @@
     {
       "date": "2026-Q2",
       "value": -10.80554083454432
+    },
+    {
+      "date": "2026-Q3",
+      "value": -2.1149696512952048
     }
   ],
   "consumer_expected": [
@@ -741,6 +753,10 @@
     {
       "date": "2026-Q2",
       "value": -9.061134771503827
+    },
+    {
+      "date": "2026-Q3",
+      "value": -0.3495550391745999
     }
   ],
   "housing_current": [
@@ -927,6 +943,10 @@
     {
       "date": "2026-Q2",
       "value": 0.26899191308152415
+    },
+    {
+      "date": "2026-Q3",
+      "value": -15.327108511055924
     }
   ],
   "housing_expected": [
@@ -1113,10 +1133,14 @@
     {
       "date": "2026-Q2",
       "value": -19.652282324022583
+    },
+    {
+      "date": "2026-Q3",
+      "value": -12.203125929562066
     }
   ],
   "metadata": {
-    "last_updated": "2026-06-27T22:45:33.387923+09:00",
+    "last_updated": "2026-07-26T04:29:53.353463+09:00",
     "source": "European Central Bank (ECB) - Bank Lending Survey",
     "data_start": "2015-01-01",
     "unit": "Net percentage",
@@ -1130,5 +1154,5 @@
       "housing_expected": "Loan demand - Households for house purchase expected (期待信用需要 - 住宅購入向け融資)"
     }
   },
-  "last_updated": "2026-06-27T22:45:33.387971+09:00"
+  "last_updated": "2026-07-26T04:29:53.353487+09:00"
 }

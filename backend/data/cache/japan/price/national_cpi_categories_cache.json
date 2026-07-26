@@ -1,18 +1,18 @@
 {
   "data": {
-    "current_month": "2026-05-01",
-    "previous_month": "2026-04-01",
+    "current_month": "2026-06-01",
+    "previous_month": "2026-05-01",
     "categories": [
       {
         "code": "0002",
         "name": "食料",
         "current": {
-          "index": 128.7,
-          "yoy": 3.5,
-          "contribution": 0.92
+          "index": 128.6,
+          "yoy": 3.2,
+          "contribution": 0.84
         },
         "previous": {
-          "index": 128.4,
+          "index": 128.7,
           "yoy": 3.5,
           "contribution": 0.92
         }
@@ -21,55 +21,55 @@
         "code": "0045",
         "name": "住居",
         "current": {
+          "index": 105.0,
+          "yoy": 1.0,
+          "contribution": 0.21
+        },
+        "previous": {
           "index": 104.9,
           "yoy": 0.9,
           "contribution": 0.19
-        },
-        "previous": {
-          "index": 104.7,
-          "yoy": 0.8,
-          "contribution": 0.17
         }
       },
       {
         "code": "0054",
         "name": "光熱・水道",
         "current": {
+          "index": 120.0,
+          "yoy": 0.0,
+          "contribution": 0.0
+        },
+        "previous": {
           "index": 119.9,
           "yoy": -1.1,
           "contribution": -0.08
-        },
-        "previous": {
-          "index": 116.2,
-          "yoy": -1.5,
-          "contribution": -0.11
         }
       },
       {
         "code": "0060",
         "name": "家具・家事用品",
         "current": {
-          "index": 124.8,
-          "yoy": 2.2,
+          "index": 125.2,
+          "yoy": 2.4,
           "contribution": 0.08
         },
         "previous": {
-          "index": 124.1,
-          "yoy": 1.9,
-          "contribution": 0.07
+          "index": 124.8,
+          "yoy": 2.2,
+          "contribution": 0.08
         }
       },
       {
         "code": "0082",
         "name": "被服及び履物",
         "current": {
-          "index": 113.4,
+          "index": 113.1,
           "yoy": 1.7,
           "contribution": 0.06
         },
         "previous": {
-          "index": 113.3,
-          "yoy": 1.5,
+          "index": 113.4,
+          "yoy": 1.7,
           "contribution": 0.06
         }
       },
@@ -77,12 +77,12 @@
         "code": "0107",
         "name": "保健医療",
         "current": {
-          "index": 104.3,
-          "yoy": 0.0,
-          "contribution": 0.0
+          "index": 105.6,
+          "yoy": 1.3,
+          "contribution": 0.06
         },
         "previous": {
-          "index": 104.1,
+          "index": 104.3,
           "yoy": 0.0,
           "contribution": 0.0
         }
@@ -91,26 +91,26 @@
         "code": "0111",
         "name": "交通・通信",
         "current": {
+          "index": 102.0,
+          "yoy": 2.4,
+          "contribution": 0.35
+        },
+        "previous": {
           "index": 101.5,
           "yoy": 1.9,
           "contribution": 0.28
-        },
-        "previous": {
-          "index": 101.3,
-          "yoy": 1.5,
-          "contribution": 0.22
         }
       },
       {
         "code": "0118",
         "name": "教育",
         "current": {
-          "index": 89.8,
-          "yoy": -6.1,
+          "index": 89.9,
+          "yoy": -6.0,
           "contribution": -0.19
         },
         "previous": {
-          "index": 89.9,
+          "index": 89.8,
           "yoy": -6.1,
           "contribution": -0.19
         }
@@ -119,14 +119,14 @@
         "code": "0122",
         "name": "教養娯楽",
         "current": {
+          "index": 116.7,
+          "yoy": 1.5,
+          "contribution": 0.15
+        },
+        "previous": {
           "index": 118.0,
           "yoy": 1.7,
           "contribution": 0.17
-        },
-        "previous": {
-          "index": 117.4,
-          "yoy": 1.3,
-          "contribution": 0.13
         }
       },
       {
@@ -134,24 +134,24 @@
         "name": "諸雑費",
         "current": {
           "index": 106.3,
-          "yoy": 0.2,
-          "contribution": 0.01
+          "yoy": 0.3,
+          "contribution": 0.02
         },
         "previous": {
-          "index": 105.9,
-          "yoy": 0.1,
+          "index": 106.3,
+          "yoy": 0.2,
           "contribution": 0.01
         }
       }
     ]
   },
   "next_release": {
-    "date": "2026-06-25",
-    "datetime_utc": "2026-06-25T23:30:00+00:00",
-    "datetime_jst": "2026-06-26T08:30:00+09:00",
+    "date": "2026-07-30",
+    "datetime_utc": "2026-07-30T23:30:00+00:00",
+    "datetime_jst": "2026-07-31T08:30:00+09:00",
     "time_jst": "08:30",
-    "label": "CPI YoY (Jun)",
+    "label": "Core CPI YoY (Jul)",
     "estimate": 1.8
   },
-  "last_updated": "2026-06-26T08:46:51.061922+09:00"
+  "last_updated": "2026-07-24T09:49:53.848028+09:00"
 }

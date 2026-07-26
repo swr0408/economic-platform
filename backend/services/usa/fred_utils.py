@@ -624,11 +624,34 @@ class BaseSingleSeriesService:
 
         if api_data:
             latest = api_data[-1] if api_data else None
+            now_str = datetime.now(JST).isoformat()
+
+            # 発表レース対策（ラグガード）:
+            # FREDが発表直後の未伝播などで最新月を含まない古いデータを返した場合、
+            # last_updated を前回の値のまま維持する。これにより should_refresh が
+            # 「発表消化済み」と誤判定して次回発表まで凍結するのを防ぎ、次回リクエストで
+            # 再度FREDへ問い合わせて最新月を自己回復させる。
+            # （BaseMultiSeriesService と同じロジック）
+            existing_cache = redis_client.get(self.REDIS_KEY)
+            existing_latest_date = None
+            if existing_cache and existing_cache.get("latest"):
+                existing_latest_date = existing_cache["latest"].get("date")
+
+            new_latest_date = latest.get("date") if latest else None
+
+            if existing_latest_date and new_latest_date and new_latest_date <= existing_latest_date:
+                # APIデータがキャッシュより新しくない → last_updatedを維持
+                # （データ自体は既存値の改定反映のため更新する）
+                last_updated = existing_cache.get("last_updated", now_str)
+                print(f"  {self.INDICATOR_NAME}: FRED data not newer (latest={new_latest_date}), keeping last_updated={last_updated}")
+            else:
+                last_updated = now_str
+
             cache_payload = {
                 "data": api_data,
                 "latest": latest,
                 "latest_data_date": latest["date"] if latest else None,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             self._cache_manager.save(cache_payload)
 

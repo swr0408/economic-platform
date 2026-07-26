@@ -34,6 +34,7 @@ import pandas as pd
 from core.redis_client import redis_client
 from services.switzerland.fmp_next_release_utils import (
     get_next_release_by_pattern,
+    resolve_last_updated_after_fetch,
     should_refresh_by_pattern,
 )
 
@@ -96,11 +97,26 @@ class ChCPIService:
                         "last_updated": last_updated_str,
                     }
 
+        # 発表時刻レース対策: 取得前に前回キャッシュの latest/last_updated を退避
+        prev_cache = redis_client.get(self.DATA_CACHE_KEY) or self._load_file_cache() or {}
+        prev_latest = (prev_cache.get("latest") or {}).get("date")
+        prev_last_updated = prev_cache.get("last_updated")
+
         # BFS APIから取得
         bfs_result = self._load_from_bfs()
         if bfs_result:
             # 最新値を取得（実績データのみ - 2025年1月まで）
             latest = bfs_result[-1] if bfs_result else None
+
+            # BFS Excelが発表時刻より遅れて反映される場合、旧月をnow刻みで保存すると
+            # should_refresh が消化済み判定し凍結するため、ラグガードで据え置く
+            resolved_last_updated = resolve_last_updated_after_fetch(
+                self.FMP_EVENT_PATTERN,
+                latest.get("date") if latest else None,
+                prev_latest,
+                prev_last_updated,
+                country=self.FMP_COUNTRY,
+            )
 
             cache_payload = {
                 "data": bfs_result,
@@ -112,7 +128,7 @@ class ChCPIService:
                     "base_year": "Dec 2025 = 100",
                     "asset_id": "36669838 (orderNr su-i-05.02.66, dynamic)",
                 },
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": resolved_last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -124,7 +140,7 @@ class ChCPIService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "bfs_api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": resolved_last_updated,
             }
 
         # ファイルキャッシュフォールバック

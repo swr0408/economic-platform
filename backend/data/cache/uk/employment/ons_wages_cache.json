@@ -1509,11 +1509,16 @@
       "date": "2026-04-01",
       "total_pay": 4.4,
       "regular_pay": 3.4
+    },
+    {
+      "date": "2026-05-01",
+      "total_pay": 4.3,
+      "regular_pay": 3.4
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "total_pay": 4.4,
+    "date": "2026-05-01",
+    "total_pay": 4.3,
     "regular_pay": 3.4
   },
   "metadata": {
@@ -1522,10 +1527,10 @@
     "regular_pay_title": "AWE: Whole Economy Year on Year Three Month Average Growth (%): Seasonally Adjusted Regular Pay Excluding Arrears",
     "regular_pay_cdid": "KAI9",
     "unit": "%",
-    "release_date": "18-06-2026",
-    "next_release_ons": "21 July 2026",
+    "release_date": "21-07-2026",
+    "next_release_ons": "18 August  2026",
     "source": "Office for National Statistics",
     "description": "イギリス平均週給（前年比）"
   },
-  "last_updated": "2026-06-26T22:02:03.129735+09:00"
+  "last_updated": "2026-07-26T04:37:21.329423+09:00"
 }

@@ -4511,24 +4511,40 @@
       "south_africa": 16.86,
       "hong_kong": 9.76,
       "total": 3946.91
+    },
+    {
+      "date": "2026-06-26",
+      "gold_price_usd": 4586.0,
+      "us": 1958.73,
+      "uk": 631.35,
+      "germany": 324.42,
+      "switzerland": 371.8,
+      "japan": 71.38,
+      "china": 278.81,
+      "india": 116.31,
+      "australia": 53.19,
+      "canada": 78.47,
+      "south_africa": 16.81,
+      "hong_kong": 9.76,
+      "total": 3911.03
     }
   ],
   "data_type": "holdings_ton",
   "latest": {
-    "date": "2026-06-19",
+    "date": "2026-06-26",
     "gold_price_usd": 4586.0,
-    "us": 1982.22,
-    "uk": 634.27,
-    "germany": 323.57,
-    "switzerland": 373.85,
+    "us": 1958.73,
+    "uk": 631.35,
+    "germany": 324.42,
+    "switzerland": 371.8,
     "japan": 71.38,
-    "china": 286.93,
+    "china": 278.81,
     "india": 116.31,
     "australia": 53.19,
-    "canada": 78.57,
-    "south_africa": 16.86,
+    "canada": 78.47,
+    "south_africa": 16.81,
     "hong_kong": 9.76,
-    "total": 3946.91
+    "total": 3911.03
   },
   "metadata": {
     "source": "World Gold Council",
@@ -4546,11 +4562,11 @@
       "hong_kong"
     ],
     "frequency": "monthly",
-    "data_count": 282,
+    "data_count": 283,
     "start_date": "2003-03-31",
-    "end_date": "2026-06-19"
+    "end_date": "2026-06-26"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-25T20:16:53.256840+09:00"
+  "last_updated": "2026-07-03T10:32:58.312850+09:00"
 }

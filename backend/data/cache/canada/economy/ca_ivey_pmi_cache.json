@@ -703,11 +703,15 @@
     {
       "date": "2026-01-01",
       "value": 50.9
+    },
+    {
+      "date": "2026-06-01",
+      "value": 56.2
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "value": 50.9
+    "date": "2026-06-01",
+    "value": 56.2
   },
   "metadata": {
     "source": "Ivey Business School",
@@ -717,5 +721,5 @@
     "frequency": "monthly",
     "threshold": 50
   },
-  "last_updated": "2026-06-27T11:46:20.263055+09:00"
+  "last_updated": "2026-07-26T01:21:56.247699+09:00"
 }

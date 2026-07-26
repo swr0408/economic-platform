@@ -27,6 +27,7 @@ from pathlib import Path
 from core.redis_client import redis_client
 from services.usa.fmp_next_release_utils import (
     get_next_release_from_fmp,
+    resolve_last_updated_after_fetch,
     should_refresh_by_fmp_schedule,
 )
 
@@ -110,6 +111,14 @@ class CnCaixinPmiService:
                 self.ECONALPHA_IDS["services"], country="CN"
             )
 
+            # 発表レース対策ラグガード:
+            # 発表時刻ちょうどの再構築でFMPカレンダーの actual が未反映のまま旧月を
+            # キャッシュし last_updated=now を刻むと発表消化済み扱いで凍結する
+            # （2026-07-03 サービス業PMI: 発表10:45 JSTの23秒後に再構築→5月のまま凍結）。
+            # 系列毎にデータ前進を確認し、未前進なら last_updated を発表直前に据え置く。
+            # 製造業/サービス業は発表日が異なるため、より過去（=再取得を促す側）を採用。
+            last_updated = self._resolve_last_updated(manufacturing_data, services_data)
+
             cache_payload = {
                 "manufacturing": {
                     "data": manufacturing_data,
@@ -128,7 +137,7 @@ class CnCaixinPmiService:
                     "services_records": len(services_data) if services_data else 0,
                     "last_fetched": datetime.now(JST).isoformat(),
                 },
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -251,12 +260,58 @@ class CnCaixinPmiService:
             traceback.print_exc()
             return []
 
+    def _resolve_last_updated(
+        self,
+        manufacturing_data: List[Dict[str, Any]],
+        services_data: List[Dict[str, Any]],
+    ) -> str:
+        """系列毎のラグガードを適用した last_updated を返す。
+
+        前回キャッシュ（Redis→ファイルの順）と比較し、直近発表があったのに
+        データが前進していない系列があれば、その発表直前に据え置いて再取得を促す。
+        製造業/サービス業で発表日が異なるため、両系列の解決値のうち古い方を採用する。
+        """
+        prev_cache = redis_client.get(self.DATA_CACHE_KEY) or self._load_file_cache() or {}
+        prev_last_updated = prev_cache.get("last_updated")
+
+        def _latest_date(data: Optional[List[Dict[str, Any]]]) -> Optional[str]:
+            return data[-1]["date"] if data else None
+
+        def _prev_latest_date(pmi_type: str) -> Optional[str]:
+            series = prev_cache.get(pmi_type)
+            return _latest_date(series.get("data")) if series else None
+
+        resolved = [
+            resolve_last_updated_after_fetch(
+                self.ECONALPHA_IDS[pmi_type],
+                new_latest_date=_latest_date(new_data),
+                prev_latest_date=_prev_latest_date(pmi_type),
+                prev_last_updated=prev_last_updated,
+            )
+            for pmi_type, new_data in (
+                ("manufacturing", manufacturing_data),
+                ("services", services_data),
+            )
+        ]
+        return min(resolved, key=datetime.fromisoformat)
+
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
-        # 製造業PMIのスケジュールで判定
-        return should_refresh_by_fmp_schedule(
-            self.ECONALPHA_IDS["manufacturing"],
-            last_updated_str,
+        # 製造業（毎月1日前後）とサービス業（毎月3日前後）は発表日が異なるため、
+        # 両系列のOR判定が必須。製造業のみの判定だとサービス業発表日（例: 2026-07-03）に
+        # 再取得トリガーが無く、max_age まで旧月のまま凍結する。
+        # max_age_hours=24: FMPは発表直後に誤った actual（例: 2026-06 は S&P Global
+        # Manufacturing PMI に NBS 非製造業PMI値 50.2 が混入、正=51.7）を配信し数時間後に
+        # 訂正することがある。発表レースで last_updated が発表時刻直後に刻まれると通常の
+        # 発表日判定では訂正を取り込めず凍結するため、24h の max-age で翌日までに
+        # 自己回復させFMP訂正値を反映する。
+        return any(
+            should_refresh_by_fmp_schedule(
+                econalpha_id,
+                last_updated_str,
+                max_age_hours=24,
+            )
+            for econalpha_id in self.ECONALPHA_IDS.values()
         )
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:

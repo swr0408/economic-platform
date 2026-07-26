@@ -2396,19 +2396,19 @@
     },
     {
       "date": "2025-05-01",
-      "mom": 0.1,
-      "yoy": 4.73,
+      "mom": 0.17,
+      "yoy": 4.8,
       "forecast": null
     },
     {
       "date": "2025-06-01",
-      "mom": 1.1,
-      "yoy": 4.68,
+      "mom": 0.66,
+      "yoy": 4.3,
       "forecast": null
     },
     {
       "date": "2025-07-01",
-      "mom": 0.51,
+      "mom": 0.88,
       "yoy": 4.96,
       "forecast": null
     },
@@ -2462,30 +2462,29 @@
     },
     {
       "date": "2026-04-01",
-      "mom": 0.45,
-      "yoy": 5.71,
+      "mom": 0.56,
+      "yoy": 5.82,
       "forecast": null
     },
     {
       "date": "2026-05-01",
-      "mom": 0.75,
-      "yoy": 6.4,
+      "mom": 0.86,
+      "yoy": 6.56,
+      "forecast": null
+    },
+    {
+      "date": "2026-06-01",
+      "mom": 0.55,
+      "yoy": 6.45,
       "forecast": null
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "mom": 0.75,
-    "yoy": 6.4,
+    "date": "2026-06-01",
+    "mom": 0.55,
+    "yoy": 6.45,
     "forecast": null
   },
-  "next_release": {
-    "date": "2026-07-16",
-    "datetime_utc": "2026-07-16T12:30:00+00:00",
-    "datetime_jst": "2026-07-16T21:30:00+09:00",
-    "time_jst": "21:30",
-    "label": "Retail Sales Ex Gas/Autos MoM (Jun)",
-    "estimate": 0.3
-  },
-  "last_updated": "2026-06-28T00:30:12.113804+09:00"
+  "next_release": null,
+  "last_updated": "2026-07-26T04:01:31.970478+09:00"
 }

@@ -105,6 +105,12 @@ class IfoBusinessClimateService:
             latest_current = current_data[-1] if current_data else None
             latest_expectations = expectations_data[-1] if expectations_data else None
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("climate", "current", "expectations"),
+                _max_date_of(climate_data, current_data, expectations_data), now_str
+            )
             cache_payload = {
                 "climate": climate_data,
                 "current": current_data,
@@ -113,7 +119,7 @@ class IfoBusinessClimateService:
                 "latest_current": latest_current,
                 "latest_expectations": latest_expectations,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -128,7 +134,7 @@ class IfoBusinessClimateService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "ifo_excel",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         # ファイルキャッシュフォールバック

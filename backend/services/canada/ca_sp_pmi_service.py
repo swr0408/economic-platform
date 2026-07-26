@@ -28,7 +28,11 @@ from pathlib import Path
 from core.database import SessionLocal
 from core.redis_client import redis_client
 from services.calendar.fmp_service import fmp_service
-from services.canada.fmp_next_release_utils import get_next_release_by_pattern, should_refresh_by_pattern
+from services.canada.fmp_next_release_utils import (
+    get_next_release_by_pattern,
+    resolve_last_updated_after_fetch,
+    should_refresh_by_pattern,
+)
 from sqlalchemy import text
 
 
@@ -104,6 +108,19 @@ class CaSpPmiService:
         #  更新されるため監視が「最新」と誤認しやすい→ログで顕在化させる）
         self._warn_if_composite_lags(manufacturing_data, services_data, composite_data)
 
+        # 発表時刻レース対策: 発表直後の取得でFMP actual未同期の旧月を
+        # last_updated=now で保存すると should_refresh が消化済み判定し凍結する。
+        # 3系列のうち「最も遅れている系列」の最新月を指紋とし、前回から前進して
+        # いなければ last_updated を発表直前に据え置いて再取得を促す。
+        prev_cache = redis_client.get(self.DATA_CACHE_KEY) or self._load_file_cache() or {}
+        resolved_last_updated = resolve_last_updated_after_fetch(
+            [p for pats in EVENT_PATTERNS.values() for p in pats],
+            self._min_latest_date([manufacturing_data, services_data, composite_data]),
+            self._min_latest_date_from_cache(prev_cache),
+            prev_cache.get("last_updated"),
+            country=COUNTRY,
+        )
+
         cache_payload = {
             "manufacturing": {
                 "data": manufacturing_data,
@@ -117,7 +134,7 @@ class CaSpPmiService:
                 "data": composite_data,
                 "latest": composite_data[-1] if composite_data else None,
             } if composite_data else None,
-            "last_updated": datetime.now(JST).isoformat(),
+            "last_updated": resolved_last_updated,
         }
         redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
         self._save_file_cache(cache_payload)
@@ -129,8 +146,26 @@ class CaSpPmiService:
             "next_release": next_release,
             "cached": False,
             "source": "csv+db+fmp",
-            "last_updated": datetime.now(JST).isoformat(),
+            "last_updated": resolved_last_updated,
         }
+
+    @staticmethod
+    def _min_latest_date(series_list: List[List[Dict[str, Any]]]) -> Optional[str]:
+        """3系列のうち最も遅れている系列の最新月 (YYYY-MM-DD)。全系列前進で初めて前進する。"""
+        dates = [s[-1].get("date") for s in series_list if s]
+        dates = [d for d in dates if d]
+        return min(dates) if dates else None
+
+    @staticmethod
+    def _min_latest_date_from_cache(cache: Dict[str, Any]) -> Optional[str]:
+        """キャッシュpayload形式から _min_latest_date 相当を求める。"""
+        dates = []
+        for key in ("manufacturing", "services", "composite"):
+            v = cache.get(key)
+            latest = v.get("latest") if isinstance(v, dict) else None
+            if isinstance(latest, dict) and latest.get("date"):
+                dates.append(latest["date"])
+        return min(dates) if dates else None
 
     def _warn_if_composite_lags(
         self,

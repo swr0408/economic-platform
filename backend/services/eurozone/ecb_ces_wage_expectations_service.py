@@ -234,11 +234,16 @@ class ECBCesWageExpectationsService:
             latest = wa_data[-1] if wa_data else None
             next_release = self._fetch_next_release()
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
             cache_payload = {
                 "data": wa_data,
                 "latest": latest,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -249,7 +254,7 @@ class ECBCesWageExpectationsService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "ecb_api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック
@@ -287,6 +292,13 @@ class ECBCesWageExpectationsService:
             if last_updated.tzinfo is None:
                 last_updated = last_updated.replace(tzinfo=JST)
             now = datetime.now(JST)
+
+            # max-age フォールバック（発表レース凍結の自己回復）:
+            # 発表時刻ちょうどの再取得で ECB 未反映のまま last_updated=now を刻むと、
+            # 下の発表日時判定(last_updated < release_dt)が False となり次回発表(約1ヶ月)
+            # まで凍結する。168hで必ず再取得させ自己回復させる。
+            if (now - last_updated).total_seconds() > 168 * 3600:
+                return True
 
             # 次回発表日を取得して判定
             next_release = self._fetch_next_release()

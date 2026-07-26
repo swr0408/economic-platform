@@ -271,12 +271,20 @@ class GDPComponentsService:
         fresh_data = self._fetch_gdp_components_data()
         if fresh_data:
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            _latest = fresh_data.get("latest")
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY,
+                _latest.get("date") if isinstance(_latest, dict) else None,
+                now_str,
+            )
 
             cache_payload = {
                 "series": fresh_data["series"],
                 "latest": fresh_data["latest"],
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -287,7 +295,7 @@ class GDPComponentsService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "e-stat",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         # ファイルキャッシュフォールバック

@@ -4688,16 +4688,25 @@
       "core1_mom": 0.1,
       "core2_yoy": 0.4,
       "core2_mom": 0.2
+    },
+    {
+      "date": "2026-06-01",
+      "cpi_yoy": 0.5,
+      "cpi_mom": 0.0,
+      "core1_yoy": 0.3,
+      "core1_mom": 0.0,
+      "core2_yoy": 0.5,
+      "core2_mom": 0.0
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "cpi_yoy": 0.6,
-    "cpi_mom": 0.2,
+    "date": "2026-06-01",
+    "cpi_yoy": 0.5,
+    "cpi_mom": 0.0,
     "core1_yoy": 0.3,
-    "core1_mom": 0.1,
-    "core2_yoy": 0.4,
-    "core2_mom": 0.2
+    "core1_mom": 0.0,
+    "core2_yoy": 0.5,
+    "core2_mom": 0.0
   },
   "metadata": {
     "source": "Swiss Federal Statistical Office (BFS)",
@@ -4706,5 +4715,5 @@
     "base_year": "Dec 2025 = 100",
     "asset_id": "36669838 (orderNr su-i-05.02.66, dynamic)"
   },
-  "last_updated": "2026-06-27T21:40:20.053862+09:00"
+  "last_updated": "2026-07-26T01:37:35.527684+09:00"
 }

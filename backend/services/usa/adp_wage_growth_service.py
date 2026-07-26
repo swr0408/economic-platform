@@ -38,9 +38,11 @@ from services.usa.fmp_next_release_utils import (
 JST = ZoneInfo("Asia/Tokyo")
 ET = ZoneInfo("America/New_York")
 
-# ADP Pay Insights データURL（URLのバージョン部分は変動する可能性あり）
-# 最新のURLを取得するために複数のパターンを試す
-ADP_DATA_URL_BASE = "https://adp-ri-nrip-static.adp.com/artifacts/us_wage/"
+# ADP Pay Insights データURL
+# 2026-06頃に配信ホストが adp-ri-nrip-static.adp.com → payinsights.adp.com に移転（旧ホストは全404）
+# サイト設定JSON pay_insights_production.json の reportDownloadLink が正式なZIP URLを持つため最優先で解決する
+ADP_CONFIG_URL = "https://payinsights.adp.com/pay_insights_production.json"
+ADP_DATA_URL_BASE = "https://payinsights.adp.com/artifacts/us_wage/"
 
 # キャッシュディレクトリ
 CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "usa" / "employment"
@@ -155,41 +157,41 @@ class ADPWageGrowthService:
         try:
             print("Fetching ADP Wage Growth from ADP Pay Insights...")
 
-            # 現在の日付からURLを構築（最新バージョンを探す）
-            now = datetime.now()
-            data_url = None
-
-            # 直近数ヶ月のURLパターンを試す
-            # ADP URLは発表日ベース（YYYYMMDD）で、第1水曜日前後の日付が使われる
-            # 各月の1日〜10日を試す
-            for months_ago in range(0, 6):
-                test_month = now.replace(day=1)
-                for _ in range(months_ago):
-                    if test_month.month == 1:
-                        test_month = test_month.replace(year=test_month.year - 1, month=12)
-                    else:
-                        test_month = test_month.replace(month=test_month.month - 1)
-
-                found = False
-                for day in range(1, 11):
-                    version_str = test_month.strftime(f"%Y%m{day:02d}")
-                    test_url = f"{ADP_DATA_URL_BASE}{version_str}/ADP_PAY_history.zip"
-
-                    try:
-                        resp = requests.head(test_url, timeout=10)
-                        if resp.status_code == 200:
-                            data_url = test_url
-                            print(f"Found ADP data at: {data_url}")
-                            found = True
-                            break
-                    except Exception:
-                        continue
-                if found:
-                    break
+            # 最優先: サイト設定JSONから正式なZIP URLを解決
+            data_url = self._resolve_url_from_config()
 
             if not data_url:
-                # フォールバック: 固定URL
-                data_url = "https://adp-ri-nrip-static.adp.com/artifacts/us_wage/20260304/ADP_PAY_history.zip"
+                # フォールバック1: 発表日ベース（YYYYMMDD）のURLパターンを試す
+                # 各月の1日〜10日（第1水曜日前後）を試す
+                now = datetime.now()
+                for months_ago in range(0, 6):
+                    test_month = now.replace(day=1)
+                    for _ in range(months_ago):
+                        if test_month.month == 1:
+                            test_month = test_month.replace(year=test_month.year - 1, month=12)
+                        else:
+                            test_month = test_month.replace(month=test_month.month - 1)
+
+                    found = False
+                    for day in range(1, 11):
+                        version_str = test_month.strftime(f"%Y%m{day:02d}")
+                        test_url = f"{ADP_DATA_URL_BASE}{version_str}/ADP_PAY_history.zip"
+
+                        try:
+                            resp = requests.head(test_url, timeout=10)
+                            if resp.status_code == 200:
+                                data_url = test_url
+                                print(f"Found ADP data at: {data_url}")
+                                found = True
+                                break
+                        except Exception:
+                            continue
+                    if found:
+                        break
+
+            if not data_url:
+                # フォールバック2: 固定URL
+                data_url = f"{ADP_DATA_URL_BASE}20260701/ADP_PAY_history.zip"
                 print(f"Using fallback URL: {data_url}")
 
             # ZIPファイルをダウンロード
@@ -251,6 +253,24 @@ class ADPWageGrowthService:
             print(f"Error fetching ADP Wage Growth: {e}")
             import traceback
             traceback.print_exc()
+            return None
+
+    def _resolve_url_from_config(self) -> Optional[str]:
+        """pay_insights_production.json の reportDownloadLink から最新ZIP URLを解決"""
+        try:
+            headers = {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+            }
+            resp = requests.get(ADP_CONFIG_URL, headers=headers, timeout=30)
+            resp.raise_for_status()
+            config = resp.json()
+            url = config.get("reportDownloadLink")
+            if url and url.endswith(".zip"):
+                print(f"Resolved ADP data URL from config: {url}")
+                return url
+            return None
+        except Exception as e:
+            print(f"Failed to resolve ADP URL from config: {e}")
             return None
 
     def _should_refresh(self, last_updated_str: str) -> bool:

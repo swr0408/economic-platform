@@ -3,7 +3,9 @@ JPX 日本株指数オプション Put/Call Ratio サービス
 
 データソース:
   - DB: jpx_put_call_ratio テーブル（SIOP月次 + 日次積み上げ）
-  - 日経平均 / TOPIX: yfinance (^N225, TOPIX.T) 日足
+  - 日経平均: yfinance (^N225) 日足
+  - TOPIX: Stooq (^tpx) 日足（正規のインデックス値。yfinanceの^TPXは配信停止、
+           1306.T(ETF)は2026-03-30の1:10分割が未記録で値がずれるため不使用）
   - 日次更新:
     - market_data_whole_day.xlsx → 取引高PCR
     - open_interest.xlsx → 建玉PCR（当日建玉残高）
@@ -600,25 +602,22 @@ class JpxPcrService:
         except Exception as e:
             logger.error(f"[JpxPCR] yfinance error ^N225: {e}")
 
-        # TOPIX - ^TPXが取得不可の場合はDB or yfinance_serviceからフォールバック
-        topix_tickers = ["^TPX", "1306.T"]
-        for ticker_sym in topix_tickers:
-            try:
-                ticker = yf.Ticker(ticker_sym)
-                end_dt = datetime.now(JST) + timedelta(days=2)
-                hist = ticker.history(
-                    start="2020-01-01",
-                    end=end_dt.strftime("%Y-%m-%d"),
-                    interval="1d",
-                )
-                if not hist.empty and len(hist) > 10:
-                    for idx, row in hist.iterrows():
-                        date_str = idx.strftime("%Y-%m-%d")
-                        result["topix"][date_str] = round(float(row["Close"]), 2)
-                    logger.info(f"[JpxPCR] topix daily ({ticker_sym}): {len(result['topix'])} days")
-                    break
-            except Exception as e:
-                logger.warning(f"[JpxPCR] yfinance error {ticker_sym}: {e}")
+        # TOPIX - Stooq (^tpx) から正規のインデックス値を取得（NT倍率サービスと同じ経路に統一）。
+        # yfinanceの^TPXは配信停止、フォールバックの1306.T(ETF)は2026-03-30の1:10分割が
+        # yfinanceに未記録で auto_adjust が効かず値が1/10にずれるため使用しない。
+        try:
+            from services.market._stooq_utils import fetch_stooq_daily
+            end_dt = datetime.now(JST) + timedelta(days=2)
+            df = fetch_stooq_daily("^tpx", "2020-01-01", end_dt.strftime("%Y-%m-%d"))
+            if df is not None and not df.empty:
+                for _, row in df.iterrows():
+                    date_str = row["Date"].strftime("%Y-%m-%d")
+                    result["topix"][date_str] = round(float(row["Close"]), 2)
+                logger.info(f"[JpxPCR] topix daily (Stooq ^tpx): {len(result['topix'])} days")
+            else:
+                logger.warning("[JpxPCR] Stooq ^tpx returned no data")
+        except Exception as e:
+            logger.warning(f"[JpxPCR] Stooq error ^tpx: {e}")
 
         return result
 

@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react'
-import { Tabs } from 'antd'
+import { Tabs, Button, Tooltip } from 'antd'
+import { AreaChartOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import PeriodSelector from '../../../common/PeriodSelector'
@@ -117,7 +118,18 @@ export default function ISMComponentsChart({ data }: ISMComponentsChartProps) {
               label: '時系列',
               children: (
                 <>
-                  <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+                  {/* 期間セレクタ + 比較ボタン */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                    <PeriodSelector onPeriodChange={setSelectedPeriod} selectedPeriod={selectedPeriod} />
+                    <Tooltip title="比較ページを開く（ISM製造業サブインデックス）">
+                      <Button
+                        icon={<AreaChartOutlined />}
+                        onClick={() => window.open('/compare?s=ism_new_orders&s=ism_production&s=ism_employment&s=ism_prices&s=ism_supplier_deliveries', '_blank')}
+                      >
+                        データ比較
+                      </Button>
+                    </Tooltip>
+                  </div>
 
                   <StandardLineChart
                     data={filteredData}

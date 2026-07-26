@@ -1902,18 +1902,29 @@
       "large_manufacturing_purchase": 46.0,
       "all_industries_selling": 30.0,
       "all_industries_purchase": 47.0
+    },
+    {
+      "date": "2026-06-30",
+      "value": -22.0,
+      "spread": -22.0,
+      "large_manufacturing_spread": -22.0,
+      "all_industries_spread": -19.0,
+      "large_manufacturing_selling": 40.0,
+      "large_manufacturing_purchase": 62.0,
+      "all_industries_selling": 40.0,
+      "all_industries_purchase": 59.0
     }
   ],
   "latest": {
-    "date": "2026-03-31",
-    "value": -18.0,
-    "spread": -18.0,
-    "large_manufacturing_spread": -18.0,
-    "all_industries_spread": -17.0,
-    "large_manufacturing_selling": 28.0,
-    "large_manufacturing_purchase": 46.0,
-    "all_industries_selling": 30.0,
-    "all_industries_purchase": 47.0
+    "date": "2026-06-30",
+    "value": -22.0,
+    "spread": -22.0,
+    "large_manufacturing_spread": -22.0,
+    "all_industries_spread": -19.0,
+    "large_manufacturing_selling": 40.0,
+    "large_manufacturing_purchase": 62.0,
+    "all_industries_selling": 40.0,
+    "all_industries_purchase": 59.0
   },
   "metadata": {
     "source": "Bank of Japan (BOJ) Tankan Survey",
@@ -1921,13 +1932,6 @@
     "unit": "%pt",
     "frequency": "Quarterly"
   },
-  "next_release": {
-    "date": "2026-06-30",
-    "datetime_utc": "2026-06-30T23:50:00+00:00",
-    "datetime_jst": "2026-07-01T08:50:00+09:00",
-    "time_jst": "08:50",
-    "label": "Tankan Large Manufacturers Index (Q2)",
-    "estimate": 16
-  },
-  "last_updated": "2026-06-26T08:46:49.006335+09:00"
+  "next_release": null,
+  "last_updated": "2026-07-24T09:49:51.713361+09:00"
 }

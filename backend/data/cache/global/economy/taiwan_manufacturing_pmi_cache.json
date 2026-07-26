@@ -263,13 +263,19 @@
       "value": 56.1,
       "forecast": 54.9,
       "previous": 55.3
+    },
+    {
+      "date": "2026-06-01",
+      "value": 55.2,
+      "forecast": 55.5,
+      "previous": 56.1
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": 56.1,
-    "forecast": 54.9,
-    "previous": 55.3
+    "date": "2026-06-01",
+    "value": 55.2,
+    "forecast": 55.5,
+    "previous": 56.1
   },
   "metadata": {
     "source": "S&P Global",
@@ -284,7 +290,7 @@
     "datetime_jst": "2026-07-24T22:45:00+09:00",
     "time_jst": "22:45",
     "label": "S&P Global Manufacturing PMI (Jul)",
-    "estimate": null
+    "estimate": 54.3
   },
-  "last_updated": "2026-06-28T00:32:11.119376+09:00"
+  "last_updated": "2026-07-25T11:32:05.272873+09:00"
 }

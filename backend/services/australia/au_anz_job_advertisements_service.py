@@ -11,10 +11,11 @@ ANZ-Indeed Australian Job Advertisements サービス
 import json
 import hashlib
 import logging
+import calendar
 from datetime import datetime
 from io import BytesIO
 from typing import Dict, List, Any, Optional
-from urllib.parse import urljoin
+from urllib.parse import urljoin, quote
 from zoneinfo import ZoneInfo
 from pathlib import Path
 
@@ -48,8 +49,51 @@ class AuAnzJobAdvertisementsService:
     def __init__(self):
         pass
 
+    def _probe_dynamic_url(self) -> Optional[str]:
+        """公表URLをパターンから動的に解決する。
+
+        リリースページのリンクは旧版(前月データ)に固着しがちで、新ファイルは
+        別URL(翌月フォルダ)に置かれるため取りこぼす。ANZの規則:
+          データ月M(年Y) → 翌月(M+1)の月名フォルダに
+          `.../jobads/{公表年}/{公表月名(小文字)}/ANZ-Indeed Australian Job Ads data_{Mon}{YY}.xlsx`
+        最新候補(データ月=今月)から遡り、最初に200で取得できたURLを返す。
+        """
+        base = f"{ANZ_BASE}/content/dam/anzcomau/mediacentre/pdfs/jobads/"
+        now = datetime.now(JST)
+        y, m = now.year, now.month
+        sess = requests.Session()
+        for back in range(0, 13):
+            # データ月(dm)/データ年(dy)
+            dm, dy = m - back, y
+            while dm <= 0:
+                dm += 12
+                dy -= 1
+            # 公表月(pm)/公表年(py) = データ月 + 1ヶ月
+            pm, py = dm + 1, dy
+            if pm > 12:
+                pm, py = pm - 12, py + 1
+            folder = calendar.month_name[pm].lower()   # 例: 'july'
+            mon3 = calendar.month_abbr[dm]             # 例: 'Jun'
+            fname = f"ANZ-Indeed Australian Job Ads data_{mon3}{dy % 100:02d}.xlsx"
+            url = base + f"{py}/{folder}/" + quote(fname)
+            try:
+                # HEADはCDNが403を返すためGET(stream)で存在確認
+                r = sess.get(url, timeout=30, stream=True)
+                status = r.status_code
+                r.close()
+                if status == 200:
+                    logger.info(f"ANZ dynamic URL resolved: {url}")
+                    return url
+            except Exception as e:
+                logger.debug(f"ANZ probe failed for {url}: {e}")
+        logger.info("ANZ dynamic URL probe found nothing; falling back to release page")
+        return None
+
     def _find_xlsx_url(self) -> Optional[str]:
-        """ANZリリースページからxlsxリンクを検出"""
+        """xlsxのURLを解決（動的パターン優先→リリースページscrapeへフォールバック）"""
+        dynamic = self._probe_dynamic_url()
+        if dynamic:
+            return dynamic
         try:
             sess = requests.Session()
             html = sess.get(ANZ_RELEASE_DATES_URL, timeout=30).text
@@ -195,8 +239,8 @@ class AuAnzJobAdvertisementsService:
 
     def _get_next_release(self) -> Optional[Dict[str, str]]:
         try:
-            from services.usa.fmp_next_release_utils import get_next_release_by_pattern
-            return get_next_release_by_pattern("ANZ Job Advertisements", "AU")
+            from services.australia.fmp_next_release_utils import get_next_release_by_pattern
+            return get_next_release_by_pattern("ANZ Job Advertisements", country="AU")
         except Exception as e:
             logger.warning(f"Failed to get next release: {e}")
             return None

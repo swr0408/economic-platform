@@ -149,10 +149,32 @@ class PPICategoriesService:
         if bls_result:
             next_release = get_next_release_from_fmp(self.PPI_ECONALPHA_ID)
 
+            # 発表レース対策ラグガード: 全カテゴリの最新月が既存キャッシュを超えていなければ
+            # last_updated を据え置き、次回再取得で新月を自己回復させる。
+            _new_date = None
+            for _c in bls_result:
+                if isinstance(_c, dict) and isinstance(_c.get("data"), list) and _c["data"]:
+                    _d = _c["data"][-1].get("date")
+                    if _d and (_new_date is None or _d > _new_date):
+                        _new_date = _d
+            _existing = redis_client.get(self.CACHE_KEY)
+            _old_date = None
+            if isinstance(_existing, dict) and isinstance(_existing.get("categories"), list):
+                for _c in _existing["categories"]:
+                    if isinstance(_c, dict) and isinstance(_c.get("data"), list) and _c["data"]:
+                        _d = _c["data"][-1].get("date")
+                        if _d and (_old_date is None or _d > _old_date):
+                            _old_date = _d
+            _now_pc = datetime.now(JST).isoformat()
+            if _existing and _old_date and _new_date and _new_date <= _old_date:
+                _lu_pc = _existing.get("last_updated", _now_pc)
+            else:
+                _lu_pc = _now_pc
+
             cache_payload = {
                 "categories": bls_result,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": _lu_pc
             }
             redis_client.set(self.CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -162,7 +184,7 @@ class PPICategoriesService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "BLS",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": _lu_pc
             }
 
         # 取得失敗時はファイルキャッシュから返す

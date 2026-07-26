@@ -1508,24 +1508,29 @@
     {
       "date": "2026-03-01",
       "import_yoy": 2.26,
-      "export_yoy": 5.51
+      "export_yoy": 5.64
     },
     {
       "date": "2026-04-01",
-      "import_yoy": 4.23,
-      "export_yoy": 9.11
+      "import_yoy": 4.3,
+      "export_yoy": 9.31
     },
     {
       "date": "2026-05-01",
-      "import_yoy": 6.74,
-      "export_yoy": 11.21
+      "import_yoy": 6.6,
+      "export_yoy": 11.35
+    },
+    {
+      "date": "2026-06-01",
+      "import_yoy": 7.1,
+      "export_yoy": 10.18
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "import_yoy": 6.74,
-    "export_yoy": 11.21
+    "date": "2026-06-01",
+    "import_yoy": 7.1,
+    "export_yoy": 10.18
   },
   "next_release": null,
-  "last_updated": "2026-06-27T17:32:36.982635+09:00"
+  "last_updated": "2026-07-26T04:03:19.428810+09:00"
 }

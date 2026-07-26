@@ -324,7 +324,12 @@
       "date": "2026-05-01",
       "compensation_plans": 18.0,
       "hiring_plans": 9.0
+    },
+    {
+      "date": "2026-06-01",
+      "compensation_plans": 17.0,
+      "hiring_plans": 11.0
     }
   ],
-  "last_updated": "2026-06-27T17:31:44.935590+09:00"
+  "last_updated": "2026-07-25T14:01:55.433088+09:00"
 }

@@ -2986,9 +2986,7 @@
     },
     {
       "date": "2025-03-01",
-      "value": 1.24,
-      "forecast": 1.26,
-      "previous": 1.26
+      "value": 1.25
     },
     {
       "date": "2025-04-01",
@@ -2996,27 +2994,19 @@
     },
     {
       "date": "2025-05-01",
-      "value": 1.26,
-      "forecast": 1.24,
-      "previous": 1.24
+      "value": 1.23
     },
     {
       "date": "2025-06-01",
-      "value": 1.24,
-      "forecast": 1.26,
-      "previous": 1.26
+      "value": 1.22
     },
     {
       "date": "2025-07-01",
-      "value": 1.22,
-      "forecast": 1.25,
-      "previous": 1.24
+      "value": 1.22
     },
     {
       "date": "2025-08-01",
-      "value": 1.22,
-      "forecast": 1.23,
-      "previous": 1.22
+      "value": 1.21
     },
     {
       "date": "2025-09-01",
@@ -3024,27 +3014,19 @@
     },
     {
       "date": "2025-10-01",
-      "value": 1.2,
-      "forecast": 1.22,
-      "previous": 1.22
+      "value": 1.19
     },
     {
       "date": "2025-11-01",
-      "value": 1.18,
-      "forecast": 1.2,
-      "previous": 1.2
+      "value": 1.19
     },
     {
       "date": "2025-12-01",
-      "value": 1.18,
-      "forecast": 1.18,
-      "previous": 1.18
+      "value": 1.2
     },
     {
       "date": "2026-01-01",
-      "value": 1.19,
-      "forecast": 1.18,
-      "previous": 1.18
+      "value": 1.18
     },
     {
       "date": "2026-02-01",
@@ -3052,36 +3034,21 @@
     },
     {
       "date": "2026-03-01",
-      "value": 1.18,
-      "forecast": 1.19,
-      "previous": 1.2
+      "value": 1.18
     },
     {
       "date": "2026-04-01",
-      "value": 1.18,
-      "forecast": 1.18,
-      "previous": 1.19
+      "value": 1.18
     },
     {
       "date": "2026-05-01",
-      "value": 1.18,
-      "forecast": 1.18,
-      "previous": 1.18
+      "value": 1.17
     }
   ],
   "latest": {
     "date": "2026-05-01",
-    "value": 1.18,
-    "forecast": 1.18,
-    "previous": 1.18
+    "value": 1.17
   },
-  "next_release": {
-    "date": "2026-06-29",
-    "datetime_utc": "2026-06-29T23:30:00+00:00",
-    "datetime_jst": "2026-06-30T08:30:00+09:00",
-    "time_jst": "08:30",
-    "label": "Jobs/applications ratio (May)",
-    "estimate": null
-  },
-  "last_updated": "2026-06-26T00:31:21.674882+09:00"
+  "next_release": null,
+  "last_updated": "2026-07-26T04:07:28.149661+09:00"
 }

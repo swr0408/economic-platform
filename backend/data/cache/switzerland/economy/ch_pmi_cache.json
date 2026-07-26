@@ -1233,107 +1233,75 @@
     {
       "date": "2025-03-01",
       "value": 48.9,
-      "forecast": 50.5,
-      "previous": 49.6,
-      "period": "Mar"
+      "forecast": null,
+      "previous": null
     },
     {
       "date": "2025-04-01",
       "value": 45.8,
-      "forecast": 48.6,
-      "previous": 48.9,
-      "period": "Apr"
+      "forecast": null,
+      "previous": null
     },
     {
       "date": "2025-05-01",
       "value": 42.1,
-      "forecast": 46.5,
-      "previous": 45.8,
-      "period": "May"
+      "forecast": null,
+      "previous": null
     },
     {
       "date": "2025-06-01",
       "value": 49.6,
-      "forecast": 44.0,
-      "previous": 42.1,
-      "period": "Jun"
+      "forecast": null,
+      "previous": null
     },
     {
       "date": "2025-07-01",
       "value": 48.8,
-      "forecast": 49.9,
-      "previous": 49.6,
-      "period": "Jul"
+      "forecast": null,
+      "previous": null
     },
     {
       "date": "2025-08-01",
       "value": 49.0,
-      "forecast": 47.0,
-      "previous": 48.8,
-      "period": "Aug"
+      "forecast": null,
+      "previous": null
     },
     {
       "date": "2025-09-01",
       "value": 46.3,
-      "forecast": 47.9,
-      "previous": 49.0,
-      "period": "Sep"
+      "forecast": null,
+      "previous": null
     },
     {
       "date": "2025-10-01",
       "value": 48.2,
-      "forecast": 47.7,
-      "previous": 46.3,
-      "period": "Oct"
+      "forecast": null,
+      "previous": null
     },
     {
       "date": "2025-11-01",
       "value": 49.7,
-      "forecast": 48.5,
-      "previous": 48.2,
-      "period": "Nov"
+      "forecast": null,
+      "previous": null
     },
     {
       "date": "2025-12-01",
       "value": 45.8,
-      "forecast": 49.9,
-      "previous": 49.7,
-      "period": "Dec"
+      "forecast": null,
+      "previous": null
     },
     {
       "date": "2026-01-01",
       "value": 48.8,
-      "forecast": 47.2,
-      "previous": 45.8,
-      "period": "Jan"
+      "forecast": null,
+      "previous": null
     },
     {
-      "date": "2026-02-01",
-      "value": 47.4,
-      "forecast": 49.8,
-      "previous": 48.8,
-      "period": "Feb"
-    },
-    {
-      "date": "2026-03-01",
-      "value": 53.3,
-      "forecast": 47.2,
-      "previous": 47.4,
-      "period": "Mar"
-    },
-    {
-      "date": "2026-04-01",
-      "value": 54.5,
-      "forecast": 52.0,
-      "previous": 53.3,
-      "period": "Apr"
-    },
-    {
-      "date": "2026-05-01",
-      "value": 57.3,
-      "forecast": 54.0,
-      "previous": 54.5,
-      "period": "May"
+      "date": "2026-06-01",
+      "value": 54.3,
+      "forecast": 56.5,
+      "previous": 57.3,
+      "period": "Jun"
     }
   ],
   "services_data": [
@@ -2083,11 +2051,11 @@
     }
   ],
   "latest_manufacturing": {
-    "date": "2026-05-01",
-    "value": 57.3,
-    "forecast": 54.0,
-    "previous": 54.5,
-    "period": "May"
+    "date": "2026-06-01",
+    "value": 54.3,
+    "forecast": 56.5,
+    "previous": 57.3,
+    "period": "Jun"
   },
   "latest_services": {
     "date": "2026-05-01",
@@ -2103,5 +2071,5 @@
     "frequency": "monthly",
     "threshold": 50
   },
-  "last_updated": "2026-06-27T20:10:43.896323+09:00"
+  "last_updated": "2026-07-26T01:34:04.121254+09:00"
 }

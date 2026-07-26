@@ -365,6 +365,13 @@ class CaSettlementBalancesService:
 
             now_toronto = datetime.now(TORONTO)
 
+            # max-age フォールバック（発表レース凍結の自己回復）:
+            # 金曜発表ちょうどの再取得でソース未反映のまま last_updated=now を刻むと、
+            # 下の金曜判定が「消化済み」と誤認し翌金曜まで当該週を取り逃す。週次のため
+            # 48hで必ず再取得させ自己回復させる。
+            if (now_toronto - last_updated).total_seconds() > 48 * 3600:
+                return True
+
             # 金曜日（weekday=4）の14:30 ET
             if now_toronto.weekday() == 4:
                 release_time = now_toronto.replace(hour=14, minute=30, second=0, microsecond=0)

@@ -25389,12 +25389,102 @@
       "date": "2026-06-26",
       "silver_tons": 16026.53,
       "shares_outstanding": 531200000
+    },
+    {
+      "date": "2026-06-29",
+      "silver_tons": 15978.25,
+      "shares_outstanding": 529600000
+    },
+    {
+      "date": "2026-06-30",
+      "silver_tons": 15999.37,
+      "shares_outstanding": 530300000
+    },
+    {
+      "date": "2026-07-01",
+      "silver_tons": 15999.37,
+      "shares_outstanding": 530300000
+    },
+    {
+      "date": "2026-07-02",
+      "silver_tons": 16025.02,
+      "shares_outstanding": 531150000
+    },
+    {
+      "date": "2026-07-06",
+      "silver_tons": 15982.78,
+      "shares_outstanding": 529750000
+    },
+    {
+      "date": "2026-07-07",
+      "silver_tons": 15999.37,
+      "shares_outstanding": 530300000
+    },
+    {
+      "date": "2026-07-08",
+      "silver_tons": 15982.78,
+      "shares_outstanding": 529750000
+    },
+    {
+      "date": "2026-07-09",
+      "silver_tons": 15952.61,
+      "shares_outstanding": 528750000
+    },
+    {
+      "date": "2026-07-10",
+      "silver_tons": 15952.61,
+      "shares_outstanding": 528750000
+    },
+    {
+      "date": "2026-07-13",
+      "silver_tons": 15934.51,
+      "shares_outstanding": 528150000
+    },
+    {
+      "date": "2026-07-14",
+      "silver_tons": 16044.63,
+      "shares_outstanding": 531800000
+    },
+    {
+      "date": "2026-07-15",
+      "silver_tons": 16044.63,
+      "shares_outstanding": 531800000
+    },
+    {
+      "date": "2026-07-16",
+      "silver_tons": 16083.85,
+      "shares_outstanding": 533100000
+    },
+    {
+      "date": "2026-07-17",
+      "silver_tons": 16156.26,
+      "shares_outstanding": 535500000
+    },
+    {
+      "date": "2026-07-20",
+      "silver_tons": 16147.21,
+      "shares_outstanding": 535200000
+    },
+    {
+      "date": "2026-07-21",
+      "silver_tons": 16138.16,
+      "shares_outstanding": 534900000
+    },
+    {
+      "date": "2026-07-22",
+      "silver_tons": 16162.29,
+      "shares_outstanding": 535700000
+    },
+    {
+      "date": "2026-07-23",
+      "silver_tons": 16162.29,
+      "shares_outstanding": 535700000
     }
   ],
   "latest": {
-    "date": "2026-06-26",
-    "silver_tons": 16026.53,
-    "shares_outstanding": 531200000
+    "date": "2026-07-23",
+    "silver_tons": 16162.29,
+    "shares_outstanding": 535700000
   },
   "metadata": {
     "source": "iShares Silver Trust (BlackRock)",
@@ -25402,11 +25492,11 @@
     "unit": "トン",
     "silver_per_share_oz": 0.97,
     "frequency": "daily",
-    "data_count": 5078,
+    "data_count": 5096,
     "start_date": "2006-04-21",
-    "end_date": "2026-06-26"
+    "end_date": "2026-07-23"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-27T19:35:35.541091+09:00"
+  "last_updated": "2026-07-24T09:56:23.099052+09:00"
 }

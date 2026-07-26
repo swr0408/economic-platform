@@ -504,12 +504,17 @@
       "date": "2026-05-01",
       "total": 5.1,
       "youth": 15.6
+    },
+    {
+      "date": "2026-06-01",
+      "total": 5.0,
+      "youth": null
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "total": 5.1,
-    "youth": 15.6
+    "date": "2026-06-01",
+    "total": 5.0,
+    "youth": null
   },
   "metadata": {
     "indicator": "Unemployment Rate",
@@ -518,15 +523,15 @@
       "total": "全国城鎮調査失業率 (%)",
       "youth": "16-24歳若年層失業率 (%)"
     },
-    "total_records": 101,
-    "last_fetched": "2026-06-27T11:46:32.542395+09:00"
+    "total_records": 102,
+    "last_fetched": "2026-07-23T17:15:55.884143+09:00"
   },
   "next_release": {
-    "date": "2026-07-15",
-    "datetime_utc": "2026-07-15T02:00:00+00:00",
-    "datetime_jst": "2026-07-15T11:00:00+09:00",
+    "date": "2026-08-17",
+    "datetime_utc": "2026-08-17T02:00:00+00:00",
+    "datetime_jst": "2026-08-17T11:00:00+09:00",
     "time_jst": "11:00",
-    "label": "Unemployment Rate (Jun)",
+    "label": "Unemployment Rate (Jul)",
     "estimate": 5.1
   }
 }

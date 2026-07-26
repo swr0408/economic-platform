@@ -28,6 +28,7 @@ from core.redis_client import redis_client
 from services.usa.fmp_next_release_utils import (
     get_next_release_from_fmp,
     should_refresh_by_fmp_schedule,
+    guarded_last_updated,
 )
 
 
@@ -101,11 +102,15 @@ class PCEDeflatorService:
             next_release = get_next_release_from_fmp(self.PCE_ECONALPHA_ID)
 
             latest = fred_result[-1] if fred_result else None
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.PCE_DEFLATOR_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
             cache_payload = {
                 "data": fred_result,
                 "latest": latest,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.PCE_DEFLATOR_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload, PCE_DEFLATOR_CACHE_FILE)
@@ -116,7 +121,7 @@ class PCEDeflatorService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "FRED",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         # 取得失敗時はファイルキャッシュから返す
@@ -182,11 +187,15 @@ class PCEDeflatorService:
             next_release = get_next_release_from_fmp(self.PCE_ECONALPHA_ID)
 
             latest = fred_result[-1] if fred_result else None
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.CORE_PCE_DEFLATOR_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
             cache_payload = {
                 "data": fred_result,
                 "latest": latest,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.CORE_PCE_DEFLATOR_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload, CORE_PCE_DEFLATOR_CACHE_FILE)
@@ -197,7 +206,7 @@ class PCEDeflatorService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "FRED",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         # 取得失敗時はファイルキャッシュから返す

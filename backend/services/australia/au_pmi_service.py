@@ -106,6 +106,12 @@ class AuPmiService:
         services_data = self._load_series("services")
         composite_data = self._load_series("composite")
 
+        from services.usa.fmp_next_release_utils import guarded_last_updated_nested
+        _dates = [s[-1].get("date") for s in (manufacturing_data, services_data, composite_data) if s]
+        _new_date = max([d for d in _dates if d], default=None)
+        last_updated = guarded_last_updated_nested(
+            self.DATA_CACHE_KEY, ("manufacturing", "services", "composite"), _new_date, datetime.now(JST).isoformat()
+        )
         cache_payload = {
             "manufacturing": {
                 "data": manufacturing_data,
@@ -119,7 +125,7 @@ class AuPmiService:
                 "data": composite_data,
                 "latest": composite_data[-1] if composite_data else None,
             } if composite_data else None,
-            "last_updated": datetime.now(JST).isoformat(),
+            "last_updated": last_updated,
         }
         redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
         self._save_file_cache(cache_payload)
@@ -131,7 +137,7 @@ class AuPmiService:
             "next_release": next_release,
             "cached": False,
             "source": "csv+db+fmp",
-            "last_updated": datetime.now(JST).isoformat(),
+            "last_updated": last_updated,
         }
 
     def _load_series(self, pmi_type: str) -> List[Dict[str, Any]]:

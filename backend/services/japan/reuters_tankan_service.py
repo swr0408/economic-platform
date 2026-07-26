@@ -101,6 +101,13 @@ class ReutersTankanService:
         non_manufacturing_data = self._load_non_manufacturing()
 
         if manufacturing_data or non_manufacturing_data:
+            from services.usa.fmp_next_release_utils import guarded_last_updated_nested
+            now_str = datetime.now(JST).isoformat()
+            _dates = [s[-1].get("date") for s in (manufacturing_data, non_manufacturing_data) if s]
+            _new_date = max([d for d in _dates if d], default=None)
+            last_updated = guarded_last_updated_nested(
+                self.DATA_CACHE_KEY, ("manufacturing", "non_manufacturing"), _new_date, now_str
+            )
             cache_payload = {
                 "manufacturing": {
                     "data": manufacturing_data,
@@ -115,7 +122,7 @@ class ReutersTankanService:
                     "manufacturing": self._get_file_mtime(MANUFACTURING_CSV),
                     "non_manufacturing": self._get_file_mtime(NON_MANUFACTURING_CSV),
                 },
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)

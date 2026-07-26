@@ -32,6 +32,7 @@ from services.usa.release_schedule_utils import (
     JOLTS_OPENINGS_CHECKER,
     UNEMPLOYMENT_RATE_CHECKER,
 )
+from services.usa.fmp_next_release_utils import resolve_last_updated_after_fetch
 
 
 # タイムゾーン
@@ -114,11 +115,23 @@ class JobOpeningsPerUnemployedService:
         if api_data:
             latest = api_data[-1] if api_data else None
 
+            # 発表時刻レース対策: ソース未反映の旧月を発表後タイムスタンプで保存すると
+            # should_refresh が消化済み判定し次回発表まで凍結するため、ラグガードで決定する
+            # (分母の失業者数は雇用統計と同時更新のため unemployment_rate スケジュールで判定)
+            prev_cache = redis_client.get(self.DATA_CACHE_KEY) or self._load_file_cache() or {}
+            prev_latest = prev_cache.get("latest") or {}
+            resolved_last_updated = resolve_last_updated_after_fetch(
+                "unemployment_rate",
+                latest.get("date") if isinstance(latest, dict) else None,
+                prev_latest.get("date") if isinstance(prev_latest, dict) else None,
+                prev_cache.get("last_updated"),
+            )
+
             cache_payload = {
                 "data": api_data,
                 "latest": latest,
                 "latest_data_date": latest["date"] if latest else None,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": resolved_last_updated
             }
 
             # キャッシュに保存
@@ -131,7 +144,7 @@ class JobOpeningsPerUnemployedService:
                 "next_release": None,
                 "cached": False,
                 "source": "api",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": resolved_last_updated
             }
 
         # 取得失敗時はファイルキャッシュから返す

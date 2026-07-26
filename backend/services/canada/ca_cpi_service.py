@@ -89,6 +89,13 @@ class CaCpiService:
         # データソースから取得
         result = self._load_from_source()
         if result:
+            # 発表当日の2CSVラグ対策: 最新月がヘッドライン(yoy/index)のみでコア指標
+            # (trim/median/common)未反映なら、その不完全な最新月を暫定除外する。
+            # コア用CSV(18-10-0256)がヘッドライン用CSV(18-10-0004)より数分遅れて反映される
+            # ため、発表直後に「ヘッドラインだけの月」を公開すると集約キャッシュがそれを掴んで
+            # 凍結し trim/median/common が更新されない(2026-07-20発生)。
+            result = self._withhold_incomplete_trailing_core(result)
+
             # 最新値を取得
             latest = self._get_latest_values(result)
             next_release = get_next_release_by_pattern(FMP_CPI_PATTERN, country="CA")
@@ -376,6 +383,45 @@ class CaCpiService:
                 result.append(item)
 
         return result
+
+    # コア指標(Bank of Canada 3系列)。全て揃って初めて「月として完成」とみなす。
+    CORE_KEYS = ("trim", "median", "common")
+
+    def _has_complete_core(self, point: Dict[str, Any]) -> bool:
+        """trim/median/common が全て存在し None でなければ True。"""
+        return all(point.get(k) is not None for k in self.CORE_KEYS)
+
+    def _withhold_incomplete_trailing_core(
+        self, result: List[Dict[str, Any]]
+    ) -> List[Dict[str, Any]]:
+        """末尾のコア指標未反映月を暫定的に除外する（発表当日の2CSVラグ対策）。
+
+        コアは通常ヘッドラインと同日に発表される(表18-10-0256)ため、末尾の欠落は
+        CSV zip 反映ラグによる一時的なもの。末尾の連続欠落が最大2ヶ月ぶんまでなら
+        除外し、コアCSV反映後の再取得で完全な月を公開する。3ヶ月以上・全欠落は
+        構造変化の可能性があるため除外しない(長期間データを隠さない安全弁)。
+
+        除外により最新月が前進しなくなるため、resolve_last_updated_after_fetch の
+        ラグガードが last_updated を発表直前へ据え置き、次回ポーリングで再取得を促す。
+        """
+        if not result:
+            return result
+
+        incomplete_trailing = 0
+        for point in reversed(result):
+            if self._has_complete_core(point):
+                break
+            incomplete_trailing += 1
+
+        # 除外対象なし / 全欠落 / 欠落が続きすぎ(構造変化) → そのまま
+        if incomplete_trailing == 0 or incomplete_trailing >= len(result):
+            return result
+        if incomplete_trailing > 2:
+            return result
+
+        dropped = [p.get("date") for p in result[-incomplete_trailing:]]
+        print(f"[CaCpi] コア指標未反映のため最新月を暫定除外(コアCSVラグ): {dropped}")
+        return result[:-incomplete_trailing]
 
     def _get_latest_values(self, data: List[Dict[str, Any]]) -> Dict[str, Any]:
         """最新値を取得"""

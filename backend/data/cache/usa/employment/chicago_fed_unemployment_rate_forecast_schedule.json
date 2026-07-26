@@ -1,21 +1,6 @@
 {
   "schedule": [
     {
-      "date": "2026-05-28",
-      "report": "May 2026 Advance",
-      "type": "advance"
-    },
-    {
-      "date": "2026-06-04",
-      "report": "May 2026 Final",
-      "type": "final"
-    },
-    {
-      "date": "2026-06-25",
-      "report": "June 2026 Advance",
-      "type": "advance"
-    },
-    {
       "date": "2026-07-01",
       "report": "June 2026 Final",
       "type": "final"
@@ -71,5 +56,5 @@
       "type": "final"
     }
   ],
-  "last_updated": "2026-05-18T16:24:10.071167+09:00"
+  "last_updated": "2026-07-01T00:30:34.905675+09:00"
 }

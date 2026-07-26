@@ -114,6 +114,13 @@ class JapanPMIService:
         if manufacturing_data or services_data or composite_data:
             # いずれかの指標のnext_releaseを取得（製造業を優先）
             next_release = get_next_release_from_fmp(self.ECONALPHA_IDS["manufacturing"])
+            from services.usa.fmp_next_release_utils import guarded_last_updated_nested
+            now_str = datetime.now(JST).isoformat()
+            _dates = [s[-1].get("date") for s in (manufacturing_data, services_data, composite_data) if s]
+            _new_date = max([d for d in _dates if d], default=None)
+            last_updated = guarded_last_updated_nested(
+                self.DATA_CACHE_KEY, ("manufacturing", "services", "composite"), _new_date, now_str
+            )
 
             cache_payload = {
                 "manufacturing": {
@@ -129,7 +136,7 @@ class JapanPMIService:
                     "latest": composite_data[-1] if composite_data else None,
                 } if composite_data else None,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -259,11 +266,16 @@ class JapanPMIService:
             return []
 
     def _should_refresh(self, last_updated_str: str) -> bool:
-        """キャッシュを更新すべきかどうかを判定（FMP 5分方式）"""
-        # 製造業PMIのスケジュールで判定（3つとも同時発表のため）
-        return should_refresh_by_fmp_schedule(
-            self.ECONALPHA_IDS["manufacturing"],
-            last_updated_str
+        """キャッシュを更新すべきかどうかを判定（FMP 5分方式）
+
+        フラッシュ（速報）は3系列同時発表だが、確報は製造業（月初第1営業日）と
+        サービス業・総合（約2営業日後）で発表日が異なる。製造業のみで判定すると
+        サービス業・総合の確報を取りこぼして次回フラッシュまで凍結するため、
+        3系列いずれかの発表で再取得する。
+        """
+        return any(
+            should_refresh_by_fmp_schedule(econalpha_id, last_updated_str)
+            for econalpha_id in self.ECONALPHA_IDS.values()
         )
 
     def _load_file_cache(self) -> Optional[Dict[str, Any]]:

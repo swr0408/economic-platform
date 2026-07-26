@@ -13169,18 +13169,138 @@
       "value": 1.4,
       "bid_amount": 2315.0,
       "win_amount": 2315.0
+    },
+    {
+      "date": "2026-06-29",
+      "value": 1.4,
+      "bid_amount": 1575.0,
+      "win_amount": 1575.0
+    },
+    {
+      "date": "2026-06-30",
+      "value": 1.4,
+      "bid_amount": 695.0,
+      "win_amount": 695.0
+    },
+    {
+      "date": "2026-07-01",
+      "value": 1.4,
+      "bid_amount": 1000.0,
+      "win_amount": 1000.0
+    },
+    {
+      "date": "2026-07-02",
+      "value": 1.4,
+      "bid_amount": 2885.0,
+      "win_amount": 2885.0
+    },
+    {
+      "date": "2026-07-03",
+      "value": 1.4,
+      "bid_amount": 630.0,
+      "win_amount": 630.0
+    },
+    {
+      "date": "2026-07-06",
+      "value": 1.4,
+      "bid_amount": 70.0,
+      "win_amount": 70.0
+    },
+    {
+      "date": "2026-07-07",
+      "value": 1.4,
+      "bid_amount": 100.0,
+      "win_amount": 100.0
+    },
+    {
+      "date": "2026-07-08",
+      "value": 1.4,
+      "bid_amount": 150.0,
+      "win_amount": 150.0
+    },
+    {
+      "date": "2026-07-09",
+      "value": 1.4,
+      "bid_amount": 100.0,
+      "win_amount": 100.0
+    },
+    {
+      "date": "2026-07-10",
+      "value": 1.4,
+      "bid_amount": 200.0,
+      "win_amount": 200.0
+    },
+    {
+      "date": "2026-07-13",
+      "value": 1.4,
+      "bid_amount": 2240.0,
+      "win_amount": 2240.0
+    },
+    {
+      "date": "2026-07-14",
+      "value": 1.4,
+      "bid_amount": 2365.0,
+      "win_amount": 2365.0
+    },
+    {
+      "date": "2026-07-15",
+      "value": 1.4,
+      "bid_amount": 4265.0,
+      "win_amount": 4265.0
+    },
+    {
+      "date": "2026-07-16",
+      "value": 1.4,
+      "bid_amount": 6260.0,
+      "win_amount": 6260.0
+    },
+    {
+      "date": "2026-07-17",
+      "value": 1.4,
+      "bid_amount": 4505.0,
+      "win_amount": 4505.0
+    },
+    {
+      "date": "2026-07-20",
+      "value": 1.4,
+      "bid_amount": 3985.0,
+      "win_amount": 3985.0
+    },
+    {
+      "date": "2026-07-21",
+      "value": 1.4,
+      "bid_amount": 2530.0,
+      "win_amount": 2530.0
+    },
+    {
+      "date": "2026-07-22",
+      "value": 1.4,
+      "bid_amount": 760.0,
+      "win_amount": 760.0
+    },
+    {
+      "date": "2026-07-23",
+      "value": 1.4,
+      "bid_amount": 2040.0,
+      "win_amount": 2040.0
+    },
+    {
+      "date": "2026-07-24",
+      "value": 1.4,
+      "bid_amount": 890.0,
+      "win_amount": 890.0
     }
   ],
   "latest": {
-    "date": "2026-06-26",
+    "date": "2026-07-24",
     "value": 1.4,
-    "bid_amount": 2315.0,
-    "win_amount": 2315.0
+    "bid_amount": 890.0,
+    "win_amount": 890.0
   },
   "metadata": {
     "source": "PBC（中国人民銀行）",
     "unit": "%",
     "frequency": "daily",
-    "total_records": 2195
+    "total_records": 2215
   }
 }

@@ -6,32 +6,18 @@
   ],
   "items": [
     {
-      "symbol": "DANSKE",
-      "name": "Danske Bank",
-      "tier": "A",
-      "country_code": "denmark",
-      "date": "2026-07-17",
-      "time": "--",
-      "fiscal_date_ending": "",
-      "eps_estimate": 0.553,
-      "eps_actual": null,
-      "revenue_estimate": 2239278000.0,
-      "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
-    },
-    {
       "symbol": "DSV",
       "name": "DSV",
       "tier": "A",
       "country_code": "denmark",
-      "date": "2026-07-30",
+      "date": "2026-07-22",
       "time": "--",
       "fiscal_date_ending": "",
       "eps_estimate": 1.2,
-      "eps_actual": null,
-      "revenue_estimate": 11522480000.0,
-      "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "eps_actual": 0.725,
+      "revenue_estimate": 11396360000.0,
+      "revenue_actual": 11704790000.0,
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "NOVO-B",
@@ -41,11 +27,11 @@
       "date": "2026-08-05",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.83,
+      "eps_estimate": 0.768,
       "eps_actual": null,
-      "revenue_estimate": 11155530000.0,
+      "revenue_estimate": 10893220000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "GMAB",
@@ -55,11 +41,11 @@
       "date": "2026-08-06",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.33,
+      "eps_estimate": 0.37,
       "eps_actual": null,
-      "revenue_estimate": 1094349000.0,
+      "revenue_estimate": 1108771000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "MAERSK-B",
@@ -69,11 +55,11 @@
       "date": "2026-08-06",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.05,
+      "eps_estimate": 0.1433,
       "eps_actual": null,
-      "revenue_estimate": 13811720000.0,
+      "revenue_estimate": 14071450000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "VWS",
@@ -85,9 +71,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.06,
       "eps_actual": null,
-      "revenue_estimate": 5220885000.0,
+      "revenue_estimate": 5198241000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "NZYM-B",
@@ -97,16 +83,30 @@
       "date": "2026-08-20",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.769,
+      "eps_estimate": 0.6,
       "eps_actual": null,
-      "revenue_estimate": 1290227000.0,
+      "revenue_estimate": 1279045000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
+    },
+    {
+      "symbol": "DANSKE",
+      "name": "Danske Bank",
+      "tier": "A",
+      "country_code": "denmark",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
     }
   ],
   "next_7d_count": 0,
-  "next_30d_count": 1,
-  "last_updated": "2026-06-27T13:49:18.782759+00:00",
+  "next_30d_count": 5,
+  "last_updated": "2026-07-25T13:50:51.927306+00:00",
   "cached": false,
   "status": "ok"
 }

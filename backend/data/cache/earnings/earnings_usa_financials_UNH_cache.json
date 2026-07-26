@@ -8,6 +8,29 @@
   "reported_currency": "USD",
   "periods": [
     {
+      "date": "2026-06-30",
+      "period": "Q2",
+      "fiscal_year": "2026",
+      "reported_currency": "USD",
+      "revenue": 112032000000.0,
+      "gross_profit": 36674000000.0,
+      "operating_income": 7991000000.0,
+      "net_income": 5484000000.0,
+      "eps_diluted": 6.05,
+      "gross_margin": 32.73528991716652,
+      "operating_margin": 7.132783490431304,
+      "net_margin": 4.89502999143102,
+      "operating_cf": 11052000000.0,
+      "fcf": 10253000000.0,
+      "capex": -799000000.0,
+      "buyback": -1646000000.0,
+      "dividends_paid": -2087000000.0,
+      "fcf_margin": 9.151849471579549,
+      "depreciation_amortization": 1040000000.0,
+      "revenue_yoy": 0.37270642201834864,
+      "eps_yoy": 61.764705882352935
+    },
+    {
       "date": "2026-03-31",
       "period": "Q1",
       "fiscal_year": "2026",
@@ -96,8 +119,8 @@
       "dividends_paid": -2000000000.0,
       "fcf_margin": 5.646143922018348,
       "depreciation_amortization": 1084000000.0,
-      "revenue_yoy": 12.908805826715897,
-      "eps_yoy": -17.621145374449334
+      "revenue_yoy": null,
+      "eps_yoy": null
     },
     {
       "date": "2025-03-31",
@@ -167,36 +190,13 @@
       "depreciation_amortization": 1041000000.0,
       "revenue_yoy": null,
       "eps_yoy": null
-    },
-    {
-      "date": "2024-06-30",
-      "period": "Q2",
-      "fiscal_year": "2024",
-      "reported_currency": "USD",
-      "revenue": 98855000000.0,
-      "gross_profit": 22057000000.0,
-      "operating_income": 7875000000.0,
-      "net_income": 4216000000.0,
-      "eps_diluted": 4.54,
-      "gross_margin": 22.312477871630165,
-      "operating_margin": 7.9662131404582475,
-      "net_margin": 4.2648323301805675,
-      "operating_cf": 6746000000.0,
-      "fcf": 5893000000.0,
-      "capex": -853000000.0,
-      "buyback": 0.0,
-      "dividends_paid": -1935000000.0,
-      "fcf_margin": 5.961256385615296,
-      "depreciation_amortization": 1020000000.0,
-      "revenue_yoy": null,
-      "eps_yoy": null
     }
   ],
   "ir_home": "https://www.uhc.com/",
   "ir_results": "https://www.unitedhealthgroup.com/investors.html",
   "ir_tdnet": "",
   "ir_notes": "",
-  "last_updated": "2026-05-11T15:53:54.117130+00:00",
+  "last_updated": "2026-07-21T12:11:02.545296+00:00",
   "cached": false,
   "status": "ok"
 }

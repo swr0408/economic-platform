@@ -8,6 +8,31 @@
   "reported_currency": "USD",
   "periods": [
     {
+      "date": "2026-06-30",
+      "period": "Q2",
+      "fiscal_year": "2026",
+      "reported_currency": "USD",
+      "revenue": 12559938000.0,
+      "gross_profit": 6522973000.0,
+      "operating_income": 4192610000.0,
+      "net_income": 3401414000.0,
+      "eps_diluted": 0.8,
+      "gross_margin": 51.93475477347101,
+      "operating_margin": 33.38081764416353,
+      "net_margin": 27.081455338394182,
+      "operating_cf": 1586415000.0,
+      "fcf": 1367771000.0,
+      "capex": -218644000.0,
+      "buyback": -4714403000.0,
+      "dividends_paid": 0.0,
+      "fcf_margin": 10.889950252939148,
+      "depreciation_amortization": 4411839000.0,
+      "rd_expenses": 1007675000.0,
+      "stock_based_comp": 131312000.0,
+      "revenue_yoy": 13.365374252899542,
+      "eps_yoy": 11.111111111111121
+    },
+    {
       "date": "2026-03-31",
       "period": "Q1",
       "fiscal_year": "2026",
@@ -104,8 +129,8 @@
       "depreciation_amortization": 3912087000.0,
       "rd_expenses": 824683000.0,
       "stock_based_comp": 80862000.0,
-      "revenue_yoy": 15.899222851858555,
-      "eps_yoy": 46.93877551020408
+      "revenue_yoy": null,
+      "eps_yoy": null
     },
     {
       "date": "2025-03-31",
@@ -181,38 +206,13 @@
       "stock_based_comp": 65650000.0,
       "revenue_yoy": null,
       "eps_yoy": null
-    },
-    {
-      "date": "2024-06-30",
-      "period": "Q2",
-      "fiscal_year": "2024",
-      "reported_currency": "USD",
-      "revenue": 9559310000.0,
-      "gross_profit": 4385167000.0,
-      "operating_income": 2602837000.0,
-      "net_income": 2147306000.0,
-      "eps_diluted": 0.49,
-      "gross_margin": 45.873258634775944,
-      "operating_margin": 27.228293673915793,
-      "net_margin": 22.46298111474573,
-      "operating_cf": 1290847000.0,
-      "fcf": 1212560000.0,
-      "capex": -78287000.0,
-      "buyback": -1599998000.0,
-      "dividends_paid": 0.0,
-      "fcf_margin": 12.684597528482705,
-      "depreciation_amortization": 3850917000.0,
-      "rd_expenses": 711254000.0,
-      "stock_based_comp": 68766000.0,
-      "revenue_yoy": null,
-      "eps_yoy": null
     }
   ],
   "ir_home": "https://ir.netflix.net/ir-overview/profile/default.aspx",
   "ir_results": "https://ir.netflix.net/financials/quarterly-earnings/default.aspx",
   "ir_tdnet": "",
   "ir_notes": "",
-  "last_updated": "2026-05-11T15:53:53.463045+00:00",
+  "last_updated": "2026-07-21T12:11:01.615585+00:00",
   "cached": false,
   "status": "ok"
 }

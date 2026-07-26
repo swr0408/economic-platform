@@ -165,14 +165,37 @@ class JapanEconomyLoader(BaseDashboardLoader):
         return result
 
     def _get_quarterly_gdp(self, service) -> dict:
-        """四半期GDPデータを取得"""
+        """四半期GDPデータを取得（前期比・前期比年率・前年比を四半期毎にマージ）
+
+        QuarterlyGDPService は get_quarterly_gdp_qoq / _qoq_annualized / _yoy の
+        3メソッドに分割されている（旧 get_quarterly_gdp_data は存在しない）。
+        フロント型 JapanQuarterlyGDPData の {date, qoq, qoq_annualized, yoy} 行に
+        マージして返す。
+        """
         try:
             force_refresh = self._should_force_refresh("quarterly_gdp")
-            response = service.get_quarterly_gdp_data(force_refresh=force_refresh)
+            qoq = service.get_quarterly_gdp_qoq(force_refresh=force_refresh)
+            annualized = service.get_quarterly_gdp_qoq_annualized(force_refresh=force_refresh)
+            yoy = service.get_quarterly_gdp_yoy(force_refresh=force_refresh)
+
+            merged: dict = {}
+            for key, response in (("qoq", qoq), ("qoq_annualized", annualized), ("yoy", yoy)):
+                for row in (response.get("data") or []):
+                    date = row.get("date")
+                    if not date:
+                        continue
+                    merged.setdefault(date, {"date": date})[key] = row.get("value")
+            # 日付キーは "YYYY-QN" 形式のため辞書順ソートで時系列になる
+            data = [merged[d] for d in sorted(merged)]
+
             return {
-                "data": response.get("data", []),
-                "latest": response.get("latest"),
-                "next_release": response.get("next_release"),
+                "data": data,
+                "latest": data[-1] if data else None,
+                "next_release": (
+                    qoq.get("next_release")
+                    or annualized.get("next_release")
+                    or yoy.get("next_release")
+                ),
             }
         except Exception as e:
             print(f"Error getting Quarterly GDP: {e}")

@@ -1623,14 +1623,21 @@
       "labor_force_foreign": 137189.0,
       "employment_native": 31472.0,
       "employment_foreign": 131426.0
+    },
+    {
+      "date": "2026-06-01",
+      "labor_force_native": 31872.0,
+      "labor_force_foreign": 138326.0,
+      "employment_native": 30725.0,
+      "employment_foreign": 131997.0
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "labor_force_native": 32612.0,
-    "labor_force_foreign": 137189.0,
-    "employment_native": 31472.0,
-    "employment_foreign": 131426.0
+    "date": "2026-06-01",
+    "labor_force_native": 31872.0,
+    "labor_force_foreign": 138326.0,
+    "employment_native": 30725.0,
+    "employment_foreign": 131997.0
   },
-  "last_updated": "2026-06-25T17:30:32.712387+09:00"
+  "last_updated": "2026-07-26T00:31:55.304707+09:00"
 }

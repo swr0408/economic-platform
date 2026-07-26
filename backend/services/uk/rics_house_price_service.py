@@ -102,11 +102,16 @@ class RICSHousePriceService:
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
             latest = db_result[-1] if db_result else None
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
             cache_payload = {
                 "data": db_result,
                 "latest": latest,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -279,12 +284,17 @@ class RICSHousePriceService:
 
                 # 優先パターン: 明示的に「house price」文脈を含むもの
                 hp_patterns = [
+                    # RICSのヘッドライン住宅価格 = "aggregate net balance"（house price固有の語）。
+                    # 接続句がRICSの改稿で変わっても拾えるよう、"aggregate net balance" の直後
+                    # （数値/%を跨がない25文字以内）に現れる最初の ±数値% を取る。
+                    #   "aggregate net balance came in at -33%"   （2026-06〜の新表現）
+                    #   "aggregate net balance remained at -35%"
+                    #   "aggregate net balance stands at -10%"     （旧表現）
+                    r'aggregate\s+net\s+balance\b[^%\d]{0,25}?([+-]?\d+)\s*%',
                     # "House Price Balance: -25" / "House Price Balance -25%"
                     r'House\s*Price\s*Balance[:\s]*([+-]?\d+)',
                     # "-25% House Price Balance"
                     r'([+-]?\d+)\s*%?\s*House\s*Price\s*Balance',
-                    # "aggregate net balance stands at -10%"（house pricesセクション内）
-                    r'aggregate\s+net\s*\n?\s*balance\s+stands?\s+at\s+([+-]?\d+)\s*%',
                 ]
 
                 # 文脈パターン: 「house price」から近い距離にある「balance ... 数値」

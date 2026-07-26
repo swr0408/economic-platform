@@ -537,6 +537,15 @@
     "frequency": "quarterly",
     "unit": "%"
   },
-  "next_release": null,
-  "last_updated": "2026-06-27T11:46:21.541825+09:00"
+  "next_release": {
+    "date": "2026-09-02",
+    "datetime_utc": "2026-09-02T01:30:00+00:00",
+    "datetime_jst": "2026-09-02T10:30:00+09:00",
+    "time_jst": "10:30",
+    "datetime_sydney": "2026-09-02T11:30:00+10:00",
+    "time_sydney": "11:30",
+    "label": "個人消費 (Q2)",
+    "estimate": null
+  },
+  "last_updated": "2026-07-26T01:14:30.203879+09:00"
 }

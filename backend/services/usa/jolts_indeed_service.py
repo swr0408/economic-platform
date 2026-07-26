@@ -31,6 +31,7 @@ from core.redis_client import redis_client
 from services.usa.fmp_next_release_utils import (
     get_next_release_from_fmp,
     should_refresh_by_fmp_schedule,
+    guarded_last_updated,
 )
 
 
@@ -131,11 +132,15 @@ class JoltsIndeedService:
 
         if api_data:
             latest = self._get_latest_values(api_data)
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
 
             cache_payload = {
                 "data": api_data,
                 "latest": latest,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -147,7 +152,7 @@ class JoltsIndeedService:
                 "next_release": get_next_release_from_fmp('jolts_openings'),
                 "cached": False,
                 "source": "api",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         # 取得失敗時はファイルキャッシュから返す

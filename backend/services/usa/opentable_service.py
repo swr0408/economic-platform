@@ -26,6 +26,12 @@ MANUAL_DIR = Path(__file__).parent.parent.parent / "data" / "manual_update" / "d
 # 静的配信ベースURL
 STATIC_BASE = "/static/manual_update/daily/the_restaurant_industry"
 
+# 対応画像拡張子
+IMAGE_EXTS = (".png", ".jpg", ".jpeg", ".webp")
+
+# アップロード対象の種別 → ファイル名に含まれるマーカー
+UPLOAD_KINDS = ("week", "month")
+
 
 class OpenTableService:
     """OpenTable Seated Diners サービス（手動画像配置方式）"""
@@ -87,7 +93,7 @@ class OpenTableService:
 
         images = []
         for f in sorted(MANUAL_DIR.iterdir(), key=lambda p: self._sort_key(p.name)):
-            if not f.suffix.lower() in (".png", ".jpg", ".jpeg", ".webp"):
+            if not f.suffix.lower() in IMAGE_EXTS:
                 continue
 
             label = self._filename_to_label(f.name)
@@ -141,6 +147,71 @@ class OpenTableService:
         return {
             "date": mtime.strftime("%Y-%m-%d"),
             "description": f"Data as of {mtime.strftime('%b %d, %Y')}",
+        }
+
+    def get_image_paths(self) -> List[Path]:
+        """現在配置されている週次/月次画像の実パス一覧を返す。
+
+        ダッシュボード集約ローダーが `get_manual_csv_paths()` から参照し、
+        アップロードによる mtime 変化を検知して集約キャッシュを再構築させる。
+        """
+        if not MANUAL_DIR.exists():
+            return []
+        return [
+            f for f in MANUAL_DIR.iterdir()
+            if f.is_file() and f.suffix.lower() in IMAGE_EXTS
+        ]
+
+    def _existing_path_for_kind(self, kind: str) -> Optional[Path]:
+        """種別（week/month）に対応する既存画像パスを返す（無ければ None）。"""
+        marker = f"by_{kind}"
+        if not MANUAL_DIR.exists():
+            return None
+        for f in sorted(MANUAL_DIR.iterdir()):
+            if (
+                f.is_file()
+                and f.suffix.lower() in IMAGE_EXTS
+                and marker in f.name.lower()
+            ):
+                return f
+        return None
+
+    def save_uploaded_image(self, kind: str, data: bytes) -> Dict[str, Any]:
+        """アップロードされた画像を week/month の正規ファイルとして保存する。
+
+        既存ファイルがあればそのファイル名（`..._2026vs2025.png` 等の年ラベルを
+        保持）を上書きし、無ければ現在年ベースの正規名で新規作成する。
+        これにより種別ごとに常に1ファイルだけが存在し、タブ重複を防ぐ。
+
+        Args:
+            kind: "week" | "month"
+            data: 画像バイト列（PNG/JPEG/WEBP）
+
+        Returns:
+            {"kind": str, "filename": str, "url": str, "size": int}
+        """
+        if kind not in UPLOAD_KINDS:
+            raise ValueError(f"unsupported kind: {kind} (expected one of {UPLOAD_KINDS})")
+        if not data:
+            raise ValueError("empty upload data")
+
+        MANUAL_DIR.mkdir(parents=True, exist_ok=True)
+
+        target = self._existing_path_for_kind(kind)
+        if target is None:
+            now = datetime.now(JST)
+            target = MANUAL_DIR / (
+                f"change_in_seated_diners_by_{kind}_{now.year}vs{now.year - 1}.png"
+            )
+
+        target.write_bytes(data)
+        logger.info(f"[OpenTable] saved uploaded {kind} image: {target.name} ({len(data)} bytes)")
+
+        return {
+            "kind": kind,
+            "filename": target.name,
+            "url": f"{STATIC_BASE}/{target.name}",
+            "size": len(data),
         }
 
     def invalidate_cache(self) -> bool:

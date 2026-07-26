@@ -1,7 +1,7 @@
 import React, { useRef, useState, useCallback } from 'react'
 import { Card, Typography, Tooltip, message } from 'antd'
 import { QuestionCircleOutlined, CameraOutlined, CheckOutlined } from '@ant-design/icons'
-import html2canvas from 'html2canvas'
+import { toBlob } from 'html-to-image'
 import PeriodSelector, { type PeriodValue } from './PeriodSelector'
 import { useHandbook } from '../../contexts/HandbookContext'
 import { HANDBOOK_MAP } from '../../content/handbookRegistry'
@@ -59,7 +59,7 @@ export default function ChartContainer({
   const hasHandbook = handbookId && HANDBOOK_MAP.has(handbookId)
   const cardRef = useRef<HTMLDivElement>(null)
   const [copying, setCopying] = useState(false)
-  // チャートキャプチャ (html2canvas) 機能は master 限定
+  // チャートキャプチャ機能は master 限定
   // (非 master には 📷 アイコンを一切描画しない。万一 DOM から強引に発火された
   //  場合の二重防御として handleCopyChart 先頭でも role を再チェックする)
   const isMaster = useIsMaster()
@@ -69,35 +69,36 @@ export default function ChartContainer({
     if (!cardRef.current || copying) return
     setCopying(true)
     try {
-      const canvas = await html2canvas(cardRef.current, {
+      // html2canvas はページ全体(document.documentElement)をクローンするため、
+      // チャートが多数並ぶダッシュボードでは対象カード1枚のコピーでも非常に遅い。
+      // html-to-image は渡したノードのみをクローンするので、同じ scale(=pixelRatio 2)
+      // でも周囲のチャート枚数に依存せず高速。
+      const blob = await toBlob(cardRef.current, {
         backgroundColor: DARK_THEME.bgSecondary,
-        scale: 2,
-        useCORS: true,
-        logging: false,
+        pixelRatio: 2,
+        cacheBust: true,
       })
-      canvas.toBlob(async (blob) => {
-        if (!blob) {
-          message.error('画像の生成に失敗しました')
-          setCopying(false)
-          return
-        }
-        try {
-          await navigator.clipboard.write([
-            new ClipboardItem({ 'image/png': blob }),
-          ])
-          message.success('クリップボードにコピーしました')
-        } catch {
-          // クリップボードAPIが使えない場合はダウンロードにフォールバック
-          const url = URL.createObjectURL(blob)
-          const a = document.createElement('a')
-          a.href = url
-          a.download = `${title}.png`
-          a.click()
-          URL.revokeObjectURL(url)
-          message.success('画像をダウンロードしました')
-        }
+      if (!blob) {
+        message.error('画像の生成に失敗しました')
         setCopying(false)
-      }, 'image/png')
+        return
+      }
+      try {
+        await navigator.clipboard.write([
+          new ClipboardItem({ 'image/png': blob }),
+        ])
+        message.success('クリップボードにコピーしました')
+      } catch {
+        // クリップボードAPIが使えない場合はダウンロードにフォールバック
+        const url = URL.createObjectURL(blob)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = `${title}.png`
+        a.click()
+        URL.revokeObjectURL(url)
+        message.success('画像をダウンロードしました')
+      }
+      setCopying(false)
     } catch {
       message.error('画像の生成に失敗しました')
       setCopying(false)

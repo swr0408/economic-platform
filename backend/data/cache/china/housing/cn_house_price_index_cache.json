@@ -1097,21 +1097,27 @@
       "value": -3.5,
       "forecast": -3.4,
       "previous": -3.5
+    },
+    {
+      "date": "2026-06-01",
+      "value": -3.3,
+      "forecast": -3.4,
+      "previous": -3.5
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": -3.5,
+    "date": "2026-06-01",
+    "value": -3.3,
     "forecast": -3.4,
     "previous": -3.5
   },
   "next_release": {
-    "date": "2026-07-15",
-    "datetime_utc": "2026-07-15T01:30:00+00:00",
-    "datetime_jst": "2026-07-15T10:30:00+09:00",
+    "date": "2026-08-17",
+    "datetime_utc": "2026-08-17T01:30:00+00:00",
+    "datetime_jst": "2026-08-17T10:30:00+09:00",
     "time_jst": "10:30",
-    "label": "House Price Index YoY (Jun)",
-    "estimate": -3.4
+    "label": "House Price Index YoY (Jul)",
+    "estimate": null
   },
-  "last_updated": "2026-06-27T11:46:34.959294+09:00"
+  "last_updated": "2026-07-23T17:15:56.751311+09:00"
 }

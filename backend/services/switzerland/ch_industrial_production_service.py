@@ -96,6 +96,21 @@ class CHIndustrialProductionService:
             # 最新値を取得
             latest_monthly = monthly_data[-1] if monthly_data else None
             latest_quarterly = quarterly_data[-1] if quarterly_data else None
+            _dates = [d.get("date") for d in (latest_monthly, latest_quarterly) if isinstance(d, dict)]
+            _new_date = max([d for d in _dates if d], default=None)
+            _existing = redis_client.get(self.DATA_CACHE_KEY)
+            _old_dates = []
+            if isinstance(_existing, dict):
+                for _k in ("latest_monthly", "latest_quarterly"):
+                    _v = _existing.get(_k)
+                    if isinstance(_v, dict) and _v.get("date"):
+                        _old_dates.append(_v["date"])
+            _old_date = max(_old_dates) if _old_dates else None
+            now_str = datetime.now(JST).isoformat()
+            if _existing and _old_date and _new_date and _new_date <= _old_date:
+                last_updated = _existing.get("last_updated", now_str)
+            else:
+                last_updated = now_str
 
             cache_payload = {
                 "monthly_data": monthly_data,
@@ -108,7 +123,7 @@ class CHIndustrialProductionService:
                     "description": "スイス鉱工業生産",
                     "unit": "%",
                 },
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -122,7 +137,7 @@ class CHIndustrialProductionService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

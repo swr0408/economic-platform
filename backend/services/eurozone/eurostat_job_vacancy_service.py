@@ -114,6 +114,11 @@ class EurostatJobVacancyService:
             self._invalidate_calendar_cache()
             next_release = self._calculate_next_release()
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
             cache_payload = {
                 "data": job_vacancy_data,
                 "latest": latest,
@@ -128,7 +133,7 @@ class EurostatJobVacancyService:
                     "description": "Job vacancy rate",
                 },
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -140,7 +145,7 @@ class EurostatJobVacancyService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "eurostat_api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック
@@ -251,6 +256,13 @@ class EurostatJobVacancyService:
                 last_updated = last_updated.replace(tzinfo=JST)
 
             now = datetime.now(JST)
+
+            # max-age フォールバック（発表レース凍結の自己回復）:
+            # 発表時刻ちょうどの再取得で Eurostat 未反映のまま last_updated=now を刻むと、
+            # 下の発表日時判定(last_updated < release_datetime)が False となり次回発表
+            # （四半期=最大3ヶ月）まで凍結する。168hで必ず再取得させ自己回復させる。
+            if (now - last_updated).total_seconds() > 168 * 3600:
+                return True
 
             # 次回発表日を取得
             next_release = self._get_next_release_from_calendar()

@@ -1,6 +1,7 @@
-date,new_orders,business_activity,employment,supplier_deliveries,prices
+date,new_orders,business_activity,employment,supplier_deliveries,prices,inventories
 2026/1,53.1,57.4,50.3,54.2,66.6,
 2026/2,58.6,59.9,51.8,53.9,63.0,
 2026/3,60.6,53.9,45.2,56.2,70.7,
 2026/4,53.5,55.9,48.0,56.8,70.7,
 2026/5,57.3,57.7,47.9,55.2,71.3,
+2026/6,55.1,55.4,51.2,54.4,67.7,

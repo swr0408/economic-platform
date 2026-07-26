@@ -76,7 +76,8 @@ RUN pip install --no-cache-dir \
     dukascopy-python \
     deep-translator \
     discord.py \
-    PyJWT
+    PyJWT \
+    python-multipart==0.0.6
 
 # Playwright のブラウザは base image に同梱済みなので playwright install は不要。
 # ただし念の為 chromium だけ最新化したい場合は次行を有効化:

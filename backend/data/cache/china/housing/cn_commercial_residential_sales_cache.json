@@ -1077,13 +1077,19 @@
       "floor_started_yoy": -22.6,
       "sales_yoy": -13.5,
       "floor_sold_yoy": -10.8
+    },
+    {
+      "date": "2026-06-01",
+      "floor_started_yoy": -23.4,
+      "sales_yoy": -13.6,
+      "floor_sold_yoy": -11.6
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "floor_started_yoy": -22.6,
-    "sales_yoy": -13.5,
-    "floor_sold_yoy": -10.8
+    "date": "2026-06-01",
+    "floor_started_yoy": -23.4,
+    "sales_yoy": -13.6,
+    "floor_sold_yoy": -11.6
   },
   "metadata": {
     "indicator": "Commercial Residential Sales",
@@ -1096,15 +1102,15 @@
       "sales_yoy": "新築商業ビル販売額 累積YoY",
       "floor_sold_yoy": "新築商業用ビル売却床面積 累積YoY"
     },
-    "total_records": 180,
-    "last_fetched": "2026-06-27T11:46:34.325085+09:00"
+    "total_records": 181,
+    "last_fetched": "2026-07-23T17:15:56.541348+09:00"
   },
   "next_release": {
-    "date": "2026-07-15",
-    "datetime_utc": "2026-07-15T01:30:00+00:00",
-    "datetime_jst": "2026-07-15T10:30:00+09:00",
+    "date": "2026-08-17",
+    "datetime_utc": "2026-08-17T01:30:00+00:00",
+    "datetime_jst": "2026-08-17T10:30:00+09:00",
     "time_jst": "10:30",
-    "label": "House Price Index YoY (Jun)",
-    "estimate": -3.4
+    "label": "House Price Index YoY (Jul)",
+    "estimate": null
   }
 }

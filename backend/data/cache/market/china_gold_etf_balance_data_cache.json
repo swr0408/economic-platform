@@ -6999,11 +6999,35 @@
     {
       "date": "2026-06-24",
       "total_shares_wan": 1057894.08
+    },
+    {
+      "date": "2026-06-25",
+      "total_shares_wan": 1049634.08
+    },
+    {
+      "date": "2026-06-26",
+      "total_shares_wan": 1039954.08
+    },
+    {
+      "date": "2026-06-29",
+      "total_shares_wan": 1034814.08
+    },
+    {
+      "date": "2026-06-30",
+      "total_shares_wan": 1029664.08
+    },
+    {
+      "date": "2026-07-01",
+      "total_shares_wan": 1027234.08
+    },
+    {
+      "date": "2026-07-02",
+      "total_shares_wan": 1031694.08
     }
   ],
   "latest": {
-    "date": "2026-06-24",
-    "total_shares_wan": 1057894.08
+    "date": "2026-07-02",
+    "total_shares_wan": 1031694.08
   },
   "metadata": {
     "source": "Shanghai Stock Exchange",
@@ -7011,11 +7035,11 @@
     "fund_name": "華安黄金ETF",
     "frequency": "daily",
     "unit": "万份",
-    "data_count": 1750,
+    "data_count": 1756,
     "start_date": "2019-03-01",
-    "end_date": "2026-06-24"
+    "end_date": "2026-07-02"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-25T20:17:25.521853+09:00"
+  "last_updated": "2026-07-03T10:33:45.526315+09:00"
 }

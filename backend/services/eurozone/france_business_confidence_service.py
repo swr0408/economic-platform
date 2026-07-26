@@ -128,6 +128,11 @@ class FranceBusinessConfidenceService:
             latest = fmp_result[-1] if fmp_result else None
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
             cache_payload = {
                 "data": fmp_result,
                 "latest": latest,
@@ -139,7 +144,7 @@ class FranceBusinessConfidenceService:
                     "description": "France Business Confidence（企業信頼感）",
                 },
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -151,7 +156,7 @@ class FranceBusinessConfidenceService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "fmp",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

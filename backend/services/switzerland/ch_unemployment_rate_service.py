@@ -17,6 +17,7 @@ BFS（スイス連邦統計局）から失業率データを取得
 """
 import json
 import io
+import re
 from datetime import datetime
 from typing import Dict, List, Any, Optional
 from zoneinfo import ZoneInfo
@@ -33,6 +34,11 @@ from services.switzerland.fmp_next_release_utils import (
 
 
 JST = ZoneInfo("Asia/Tokyo")
+
+_MONTH_ABBR = {
+    "jan": 1, "feb": 2, "mar": 3, "apr": 4, "may": 5, "jun": 6,
+    "jul": 7, "aug": 8, "sep": 9, "oct": 10, "nov": 11, "dec": 12,
+}
 
 CACHE_DIR = Path(__file__).parent.parent.parent / "data" / "cache" / "switzerland" / "employment"
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
@@ -79,9 +85,20 @@ class CHUnemploymentRateService:
         # BFS APIから取得
         bfs_result = self._load_from_bfs()
         if bfs_result:
-            # 最新値を取得
+            # BFS Excelは発表当日〜数日ラグするため、発表済みだが未反映の月を
+            # FMP速報(n.s.a)で補完する。BFSが後日確報Excelを出したら次回発表時の
+            # 再取得でそちらが優先される（補完はBFS最新月より後の月しか追記しない）
+            bfs_latest_date = bfs_result[-1]["date"] if bfs_result else None
+            bfs_result = self._supplement_from_fmp(bfs_result, bfs_latest_date)
+
+            # 最新値を取得（補完後）
             latest = bfs_result[-1] if bfs_result else None
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
             cache_payload = {
                 "data": bfs_result,
                 "latest": latest,
@@ -91,7 +108,7 @@ class CHUnemploymentRateService:
                     "description": "スイス失業率",
                     "unit": "%",
                 },
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -103,7 +120,7 @@ class CHUnemploymentRateService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "bfs_api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック
@@ -247,6 +264,79 @@ class CHUnemploymentRateService:
             import traceback
             traceback.print_exc()
             return []
+
+    def _supplement_from_fmp(
+        self, bfs_data: List[Dict[str, Any]], bfs_latest_date: Optional[str]
+    ) -> List[Dict[str, Any]]:
+        """FMP（economic_calendar_events）の速報実値でBFS最新月より先の月を補完する。
+
+        BFSのDAM Excel（orderNr je-d-03.03.02.05）はSECO記者発表（毎月上旬）から数日
+        遅れて更新されるため、発表済みの当月がしばらく反映されない。FMPは同じSECO登録
+        失業率を当月発表として持つ（イベント例: "Unemployment Rate n.s.a (Jun)" actual=2.9）。
+        BFSの「Total」は季節調整なし系列なので、必ず n.s.a イベントを使う（季節調整版を
+        混ぜると系列の季節形状が壊れる）。BFS最新月より後の月だけを追記し、BFSが後日
+        確報を出せば次回取得でそちらが優先される（同月は追記しない）。
+        """
+        if not bfs_data or not bfs_latest_date:
+            return bfs_data
+        try:
+            existing = {d["date"] for d in bfs_data}
+
+            from core.database import SessionLocal
+            from sqlalchemy import text
+
+            with SessionLocal() as session:
+                rows = session.execute(
+                    text("""
+                        SELECT datetime_utc, event, actual
+                        FROM economic_calendar_events
+                        WHERE country = 'CH'
+                          AND event ILIKE '%Unemployment Rate n.s.a%'
+                          AND actual IS NOT NULL
+                          AND datetime_utc >= NOW() - INTERVAL '120 days'
+                        ORDER BY datetime_utc ASC
+                    """)
+                ).fetchall()
+
+            # ref月(YYYY-MM-01) → 値（同一refは後勝ち=改定値優先）
+            by_month: Dict[str, float] = {}
+            for dt_utc, event, actual in rows:
+                ref = self._parse_ref_month(event, dt_utc)
+                if ref and actual is not None:
+                    by_month[ref] = round(float(actual), 2)
+
+            added = []
+            for ref, val in by_month.items():
+                if ref not in existing and ref > bfs_latest_date:
+                    bfs_data.append({"date": ref, "value": val})
+                    added.append(ref)
+
+            if added:
+                bfs_data.sort(key=lambda x: x["date"])
+                print(f"[CHUnemploymentRate] FMP flash supplement added: {added}")
+
+            return bfs_data
+        except Exception as e:
+            print(f"[CHUnemploymentRate] FMP supplement error: {e}")
+            return bfs_data
+
+    @staticmethod
+    def _parse_ref_month(label: str, release_dt: datetime) -> Optional[str]:
+        """イベントラベルの "(Jun)" 等から参照月 "YYYY-MM-01" を復元。
+
+        スイス失業率は前月分を翌月上旬に発表（"(Jun)" は7月上旬発表=6月分）。
+        ラベル月が発表月より先行している場合（"(Dec)" を1月発表）は前年と判定する。
+        """
+        m = re.search(r"\(([A-Za-z]{3})\)", label or "")
+        if not m:
+            return None
+        mon = _MONTH_ABBR.get(m.group(1).lower())
+        if not mon:
+            return None
+        year = release_dt.year
+        if mon > release_dt.month + 1:
+            year -= 1
+        return f"{year:04d}-{mon:02d}-01"
 
     def _should_refresh(self, last_updated_str: str) -> bool:
         """キャッシュを更新すべきかどうかを判定（FMP発表日ベース）"""

@@ -28,6 +28,7 @@ from core.redis_client import redis_client
 from services.usa.fmp_next_release_utils import (
     get_next_release_from_fmp,
     should_refresh_by_fmp_schedule,
+    guarded_last_updated,
 )
 
 
@@ -136,11 +137,15 @@ class PhiladelphiaFedService:
 
             # 最新値を取得
             latest = fetched_data[-1] if fetched_data else None
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.CACHE_KEY, latest.get("date") if latest else None, now_str
+            )
 
             cache_payload = {
                 "data": fetched_data,
                 "latest": latest,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             # last_updated方式: TTL=0（無期限、発表日判定で無効化）
             redis_client.set(self.CACHE_KEY, cache_payload, expire=0)
@@ -152,7 +157,7 @@ class PhiladelphiaFedService:
                 "series_config": SERIES_CONFIG,
                 "cached": False,
                 "source": "fred",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         return {
@@ -181,34 +186,27 @@ class PhiladelphiaFedService:
 
             print("Fetching Philadelphia Fed Manufacturing from FRED...")
 
-            # 各シリーズを取得
+            # 各シリーズを取得（一時失敗はリトライ）
             series_data = {}
+            failed = []
             for name, series_id in SERIES_IDS.items():
-                try:
-                    params = {
-                        "series_id": series_id,
-                        "api_key": api_key,
-                        "file_type": "json",
-                        "sort_order": "asc",
-                    }
-                    response = requests.get(FRED_API_URL, params=params, timeout=30)
-                    response.raise_for_status()
-                    data = response.json()
-
-                    observations = data.get("observations", [])
-                    series_data[name] = {
-                        obs["date"]: float(obs["value"])
-                        for obs in observations
-                        if obs.get("value") and obs["value"] != "."
-                    }
-                    print(f"  {name}: {len(series_data[name])} records")
-
-                except Exception as e:
-                    print(f"  Error fetching {name}: {e}")
+                parsed = self._fetch_series_with_retry(series_id, api_key, name)
+                if parsed is None:
+                    failed.append(name)
                     continue
+                series_data[name] = parsed
+                print(f"  {name}: {len(parsed)} records")
 
             if not series_data:
                 return None
+
+            # 劣化ガード: 取得に失敗した系列は既存キャッシュから補完する。
+            # FREDへの10連続リクエストの一部が一時失敗すると、その系列が series_data から
+            # 欠落し、_combine_series_data が全期間 None で埋めて系列を丸ごと消す
+            # （2026-07 employment_future が全 null 化しフロントで「雇用期待」が消えた実例）。
+            # 既存キャッシュに値があれば流用し、次回取得での自己回復まで系列を維持する。
+            if failed:
+                self._backfill_failed_series(series_data, failed)
 
             # データを統合
             combined_data = self._combine_series_data(series_data)
@@ -224,6 +222,62 @@ class PhiladelphiaFedService:
             import traceback
             traceback.print_exc()
             return None
+
+    def _fetch_series_with_retry(
+        self, series_id: str, api_key: str, name: str, attempts: int = 3
+    ) -> Optional[Dict[str, float]]:
+        """単一FREDシリーズを {date: value} で取得する（一時失敗に備えてリトライ）。
+
+        全試行が失敗した場合のみ None を返す。呼び出し側は None の系列を既存キャッシュ
+        から補完し、系列丸ごとの null 上書き（劣化）を防ぐ。
+        """
+        import time
+        params = {
+            "series_id": series_id,
+            "api_key": api_key,
+            "file_type": "json",
+            "sort_order": "asc",
+        }
+        for attempt in range(1, attempts + 1):
+            try:
+                response = requests.get(FRED_API_URL, params=params, timeout=30)
+                response.raise_for_status()
+                observations = response.json().get("observations", [])
+                return {
+                    obs["date"]: float(obs["value"])
+                    for obs in observations
+                    if obs.get("value") and obs["value"] != "."
+                }
+            except Exception as e:
+                print(f"  Error fetching {name} (attempt {attempt}/{attempts}): {e}")
+                if attempt < attempts:
+                    time.sleep(1.0 * attempt)
+        return None
+
+    def _backfill_failed_series(
+        self, series_data: Dict[str, Dict[str, float]], failed_names: List[str]
+    ) -> None:
+        """取得失敗した系列を既存Redisキャッシュの値で補完する（劣化上書き防止）。
+
+        既存キャッシュに当該系列の値が無ければ何もしない（初回取得失敗などはそのまま）。
+        """
+        try:
+            existing = redis_client.get(self.CACHE_KEY)
+            records = existing.get("data", []) if existing else []
+        except Exception as e:
+            print(f"  Backfill: failed to load existing cache: {e}")
+            records = []
+        if not records:
+            return
+        for name in failed_names:
+            recovered = {
+                r["date"]: r[name]
+                for r in records
+                if r.get("date") and r.get(name) is not None
+            }
+            if recovered:
+                series_data[name] = recovered
+                print(f"  Backfilled {name} from cache: {len(recovered)} records (fetch failed)")
 
     def _combine_series_data(self, series_data: Dict[str, Dict[str, float]]) -> List[Dict[str, Any]]:
         """複数シリーズのデータを日付ごとに統合"""

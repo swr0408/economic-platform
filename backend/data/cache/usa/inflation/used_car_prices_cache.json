@@ -1829,12 +1829,17 @@
       "date": "2026-05-01",
       "fred_yoy": -1.99,
       "manheim_yoy": 3.61
+    },
+    {
+      "date": "2026-06-01",
+      "fred_yoy": -1.77,
+      "manheim_yoy": 2.1
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "fred_yoy": -1.99,
-    "manheim_yoy": 3.61
+    "date": "2026-06-01",
+    "fred_yoy": -1.77,
+    "manheim_yoy": 2.1
   },
   "fred_data": [
     {
@@ -3296,6 +3301,10 @@
     {
       "date": "2026-05-01",
       "yoy": -1.99
+    },
+    {
+      "date": "2026-06-01",
+      "yoy": -1.77
     }
   ],
   "manheim_data": [
@@ -4662,11 +4671,15 @@
     {
       "date": "2026-05-01",
       "yoy": 3.61
+    },
+    {
+      "date": "2026-06-01",
+      "yoy": 2.1
     }
   ],
-  "fred_latest_date": "2026-05-01",
-  "manheim_latest_date": "2026-05-01",
-  "fred_last_updated": "2026-06-25T17:31:22.771202+09:00",
-  "manheim_last_attempted": "2026-06-11T01:22:30.123052+09:00",
-  "last_updated": "2026-06-25T17:31:22.771581+09:00"
+  "fred_latest_date": "2026-06-01",
+  "manheim_latest_date": "2026-06-01",
+  "fred_last_updated": "2026-07-26T00:33:17.633775+09:00",
+  "manheim_last_attempted": "2026-07-14T22:23:07.253601+09:00",
+  "last_updated": "2026-07-26T00:33:17.633954+09:00"
 }

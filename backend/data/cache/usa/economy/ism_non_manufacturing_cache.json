@@ -1097,21 +1097,27 @@
       "value": 54.5,
       "forecast": 53.8,
       "previous": 53.6
+    },
+    {
+      "date": "2026-06-01",
+      "value": 54.0,
+      "forecast": 54.2,
+      "previous": 54.5
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": 54.5,
-    "forecast": 53.8,
-    "previous": 53.6
+    "date": "2026-06-01",
+    "value": 54.0,
+    "forecast": 54.2,
+    "previous": 54.5
   },
   "next_release": {
-    "date": "2026-07-06",
-    "datetime_utc": "2026-07-06T14:00:00+00:00",
-    "datetime_jst": "2026-07-06T23:00:00+09:00",
+    "date": "2026-08-05",
+    "datetime_utc": "2026-08-05T14:00:00+00:00",
+    "datetime_jst": "2026-08-05T23:00:00+09:00",
     "time_jst": "23:00",
-    "label": "ISM Non-Manufacturing PMI (Jun)",
+    "label": "ISM Non-Manufacturing Business Activity (Jul)",
     "estimate": null
   },
-  "last_updated": "2026-06-27T22:53:25.499517+09:00"
+  "last_updated": "2026-07-24T09:59:22.285133+09:00"
 }

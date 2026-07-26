@@ -148,11 +148,29 @@ class ISMNonManufacturingComponentsService:
 
             # 最新値を取得
             latest = fetched_data[-1] if fetched_data else None
+            now_str = datetime.now(JST).isoformat()
+
+            # 発表レース対策（ラグガード）:
+            # ISM発表直後～DBnomics/FMP反映ラグの間の再構築で新月が未取得のまま
+            # last_updated=発表後 を刻むと should_refresh が「消化済み」誤判定して翌月まで
+            # 凍結する。最新月がキャッシュ最新月を超えていなければ last_updated を旧値のまま
+            # 維持し次回再取得で自己回復させる（csv_mtime は現値を保存しCSV変更検知は維持）。
+            existing_cache = redis_client.get(self.CACHE_KEY)
+            existing_latest_date = None
+            if existing_cache and existing_cache.get("latest"):
+                existing_latest_date = existing_cache["latest"].get("date")
+            new_latest_date = latest.get("date") if latest else None
+
+            if existing_latest_date and new_latest_date and new_latest_date <= existing_latest_date:
+                last_updated = existing_cache.get("last_updated", now_str)
+                print(f"  ISM Non-Manufacturing Components: data not newer (latest={new_latest_date}), keeping last_updated={last_updated}")
+            else:
+                last_updated = now_str
 
             cache_payload = {
                 "data": fetched_data,
                 "latest": latest,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
                 "csv_mtime": self._get_csv_mtime(),
             }
             # last_updated方式: TTL=0（無期限、発表日判定で無効化）
@@ -164,7 +182,7 @@ class ISMNonManufacturingComponentsService:
                 "next_release": None,
                 "cached": False,
                 "source": "dbnomics",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         return {

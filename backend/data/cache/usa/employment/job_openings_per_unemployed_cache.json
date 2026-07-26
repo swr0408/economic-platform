@@ -1821,16 +1821,22 @@
     {
       "date": "2026-04-01",
       "value": 1.03,
-      "jolts": 7618.0,
+      "jolts": 7585.0,
       "unemployed": 7373.0
+    },
+    {
+      "date": "2026-05-01",
+      "value": 1.04,
+      "jolts": 7594.0,
+      "unemployed": 7307.0
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "value": 1.03,
-    "jolts": 7618.0,
-    "unemployed": 7373.0
+    "date": "2026-05-01",
+    "value": 1.04,
+    "jolts": 7594.0,
+    "unemployed": 7307.0
   },
-  "latest_data_date": "2026-04-01",
-  "last_updated": "2026-06-14T22:00:58.290129+09:00"
+  "latest_data_date": "2026-05-01",
+  "last_updated": "2026-07-15T21:45:16.245753+09:00"
 }

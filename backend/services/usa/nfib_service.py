@@ -34,6 +34,7 @@ from core.redis_client import redis_client
 from services.usa.fmp_next_release_utils import (
     get_next_release_from_fmp,
     should_refresh_by_fmp_schedule,
+    resolve_last_updated_after_fetch,
 )
 
 
@@ -157,9 +158,12 @@ class NFIBService:
             fetched_data.sort(key=lambda x: x["date"])
             latest = fetched_data[-1] if fetched_data else None
 
+            new_last_updated = self._guarded_last_updated(
+                self._load_file_cache(), latest["date"] if latest else None
+            )
             cache_payload = {
                 "data": fetched_data,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": new_last_updated
             }
             # Redisに保存
             redis_client.set(self.CACHE_KEY, cache_payload, expire=0)
@@ -172,7 +176,7 @@ class NFIBService:
                 "next_release": get_next_release_from_fmp('nfib'),
                 "cached": False,
                 "source": "pdf",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": new_last_updated
             }
 
         # 取得失敗時はファイルキャッシュから返す
@@ -202,6 +206,28 @@ class NFIBService:
         """キャッシュを更新すべきかどうかを判定（FMP 3分方式）"""
         # 源泉(NFIB PDF)が発表時刻より遅れて掲載されるケースの凍結を防ぐ24hフォールバック。
         return should_refresh_by_fmp_schedule(self.ECONALPHA_ID, last_updated_str, max_age_hours=24)
+
+    def _guarded_last_updated(
+        self,
+        prev_cache: Optional[Dict[str, Any]],
+        new_latest_date: Optional[str],
+    ) -> str:
+        """発表レース対策のラグガード付き last_updated を決定する。
+
+        発表時刻ちょうど(19:00 JST)の再構築が旧月のNFIB PDF(未差替え)を取得し
+        last_updated=now を刻むと、should_refresh が「発表消化済み」と誤判定して
+        翌月発表まで凍結する。取得データが前回から前進していなければ last_updated を
+        発表直前へ据え置き、次回ポーリングで新月を自己回復させる。
+        """
+        prev_data = prev_cache.get("data", []) if prev_cache else []
+        prev_latest_date = prev_data[-1].get("date") if prev_data else None
+        prev_last_updated = prev_cache.get("last_updated") if prev_cache else None
+        return resolve_last_updated_after_fetch(
+            self.ECONALPHA_ID,
+            new_latest_date,
+            prev_latest_date,
+            prev_last_updated,
+        )
 
 
     def _fetch_from_pdf(self) -> Optional[Dict[str, Any]]:
@@ -528,9 +554,12 @@ class NFIBService:
             fetched_data.sort(key=lambda x: x["date"])
             latest = fetched_data[-1] if fetched_data else None
 
+            new_last_updated = self._guarded_last_updated(
+                self._load_capex_file_cache(), latest["date"] if latest else None
+            )
             cache_payload = {
                 "data": fetched_data,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": new_last_updated
             }
             # Redisに保存
             redis_client.set(self.CACHE_KEY_CAPEX, cache_payload, expire=0)
@@ -543,7 +572,7 @@ class NFIBService:
                 "next_release": get_next_release_from_fmp('nfib'),
                 "cached": False,
                 "source": "pdf",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": new_last_updated
             }
 
         # 取得失敗時はファイルキャッシュから返す
@@ -850,9 +879,12 @@ class NFIBService:
             fetched_data.sort(key=lambda x: x["date"])
             latest = fetched_data[-1] if fetched_data else None
 
+            new_last_updated = self._guarded_last_updated(
+                self._load_compensation_file_cache(), latest["date"] if latest else None
+            )
             cache_payload = {
                 "data": fetched_data,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": new_last_updated
             }
             # Redisに保存
             redis_client.set(self.CACHE_KEY_COMPENSATION, cache_payload, expire=0)
@@ -865,7 +897,7 @@ class NFIBService:
                 "next_release": get_next_release_from_fmp('nfib'),
                 "cached": False,
                 "source": "pdf",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": new_last_updated
             }
 
         # 取得失敗時はファイルキャッシュから返す
@@ -1107,9 +1139,13 @@ class NFIBService:
             fetched_data.sort(key=lambda x: x["date"])
             latest = fetched_data[-1] if fetched_data else None
 
+            new_last_updated = self._guarded_last_updated(
+                self._load_actual_compensation_file_cache(cache_file),
+                latest["date"] if latest else None,
+            )
             cache_payload = {
                 "data": fetched_data,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": new_last_updated
             }
             redis_client.set(self.CACHE_KEY_ACTUAL_COMPENSATION, cache_payload, expire=0)
             self._save_actual_compensation_file_cache(cache_file, cache_payload)
@@ -1120,7 +1156,7 @@ class NFIBService:
                 "next_release": get_next_release_from_fmp('nfib'),
                 "cached": False,
                 "source": "pdf",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": new_last_updated
             }
 
         # 取得失敗時はファイルキャッシュから返す
@@ -1313,9 +1349,12 @@ class NFIBService:
             fetched_data.sort(key=lambda x: x["date"])
             latest = fetched_data[-1] if fetched_data else None
 
+            new_last_updated = self._guarded_last_updated(
+                self._load_price_plans_file_cache(), latest["date"] if latest else None
+            )
             cache_payload = {
                 "data": fetched_data,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": new_last_updated
             }
             redis_client.set(self.CACHE_KEY_PRICE_PLANS, cache_payload, expire=0)
             self._save_price_plans_file_cache(cache_payload)
@@ -1326,7 +1365,7 @@ class NFIBService:
                 "next_release": get_next_release_from_fmp('nfib'),
                 "cached": False,
                 "source": "pdf",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": new_last_updated
             }
 
         # 取得失敗時はファイルキャッシュから返す

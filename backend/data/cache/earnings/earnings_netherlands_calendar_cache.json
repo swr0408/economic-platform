@@ -6,34 +6,6 @@
   ],
   "items": [
     {
-      "symbol": "PRX",
-      "name": "Prosus",
-      "tier": "A",
-      "country_code": "netherlands",
-      "date": "2026-06-29",
-      "time": "--",
-      "fiscal_date_ending": "",
-      "eps_estimate": 0.398,
-      "eps_actual": null,
-      "revenue_estimate": 5645526000.0,
-      "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
-    },
-    {
-      "symbol": "ASML",
-      "name": "ASML",
-      "tier": "S",
-      "country_code": "netherlands",
-      "date": "2026-07-15",
-      "time": "--",
-      "fiscal_date_ending": "",
-      "eps_estimate": 8.03,
-      "eps_actual": null,
-      "revenue_estimate": 10430580000.0,
-      "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
-    },
-    {
       "symbol": "ASM",
       "name": "ASM International",
       "tier": "A",
@@ -41,11 +13,11 @@
       "date": "2026-07-28",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 5.79,
+      "eps_estimate": 6.91,
       "eps_actual": null,
-      "revenue_estimate": 1097747000.0,
+      "revenue_estimate": 1145190000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "ING",
@@ -55,11 +27,11 @@
       "date": "2026-07-30",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.74,
+      "eps_estimate": 0.75,
       "eps_actual": null,
-      "revenue_estimate": 7155477000.0,
+      "revenue_estimate": 6990862000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "AD",
@@ -71,9 +43,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 0.72,
       "eps_actual": null,
-      "revenue_estimate": 26957300000.0,
+      "revenue_estimate": 26538350000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "ADYEN",
@@ -83,16 +55,44 @@
       "date": "2026-08-13",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.1982,
+      "eps_estimate": 0.1931,
       "eps_actual": null,
-      "revenue_estimate": 1507794000.0,
+      "revenue_estimate": 803550500.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
+    },
+    {
+      "symbol": "ASML",
+      "name": "ASML",
+      "tier": "S",
+      "country_code": "netherlands",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
+    },
+    {
+      "symbol": "PRX",
+      "name": "Prosus",
+      "tier": "A",
+      "country_code": "netherlands",
+      "date": null,
+      "time": null,
+      "fiscal_date_ending": null,
+      "eps_estimate": null,
+      "eps_actual": null,
+      "revenue_estimate": null,
+      "revenue_actual": null,
+      "updated_from_date": null
     }
   ],
-  "next_7d_count": 1,
-  "next_30d_count": 2,
-  "last_updated": "2026-06-27T13:49:18.732363+00:00",
+  "next_7d_count": 2,
+  "next_30d_count": 4,
+  "last_updated": "2026-07-25T13:50:51.877114+00:00",
   "cached": false,
   "status": "ok"
 }

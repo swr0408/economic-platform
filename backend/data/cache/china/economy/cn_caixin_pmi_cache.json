@@ -1156,7 +1156,7 @@
       {
         "date": "2026-01-01",
         "value": 50.3,
-        "forecast": 50.3,
+        "forecast": 50.1,
         "previous": 50.1
       },
       {
@@ -1182,13 +1182,19 @@
         "value": 51.8,
         "forecast": 51.4,
         "previous": 52.2
+      },
+      {
+        "date": "2026-06-01",
+        "value": 51.7,
+        "forecast": 51.6,
+        "previous": 51.8
       }
     ],
     "latest": {
-      "date": "2026-05-01",
-      "value": 51.8,
-      "forecast": 51.4,
-      "previous": 52.2
+      "date": "2026-06-01",
+      "value": 51.7,
+      "forecast": 51.6,
+      "previous": 51.8
     }
   },
   "services": {
@@ -2192,7 +2198,7 @@
       {
         "date": "2025-11-01",
         "value": 52.1,
-        "forecast": 52.1,
+        "forecast": 52.0,
         "previous": 52.6
       },
       {
@@ -2230,23 +2236,43 @@
         "value": 54.4,
         "forecast": 52.3,
         "previous": 52.6
+      },
+      {
+        "date": "2026-06-01",
+        "value": 54.1,
+        "forecast": 53.0,
+        "previous": 54.4
       }
     ],
     "latest": {
-      "date": "2026-05-01",
-      "value": 54.4,
-      "forecast": 52.3,
-      "previous": 52.6
+      "date": "2026-06-01",
+      "value": 54.1,
+      "forecast": 53.0,
+      "previous": 54.4
     }
   },
-  "next_release_manufacturing": null,
-  "next_release_services": null,
+  "next_release_manufacturing": {
+    "date": "2026-08-03",
+    "datetime_utc": "2026-08-03T01:45:00+00:00",
+    "datetime_jst": "2026-08-03T10:45:00+09:00",
+    "time_jst": "10:45",
+    "label": "S&P Global Manufacturing PMI (Jul)",
+    "estimate": 51.5
+  },
+  "next_release_services": {
+    "date": "2026-08-05",
+    "datetime_utc": "2026-08-05T01:45:00+00:00",
+    "datetime_jst": "2026-08-05T10:45:00+09:00",
+    "time_jst": "10:45",
+    "label": "S&P Global Services PMI (Jul)",
+    "estimate": 53.7
+  },
   "metadata": {
     "indicator": "Caixin PMI (Manufacturing / Services)",
     "source": "S&P Global / Caixin",
-    "manufacturing_records": 197,
-    "services_records": 173,
-    "last_fetched": "2026-06-27T11:46:48.434156+09:00"
+    "manufacturing_records": 198,
+    "services_records": 174,
+    "last_fetched": "2026-07-25T22:01:49.847077+09:00"
   },
-  "last_updated": "2026-06-27T11:46:48.434172+09:00"
+  "last_updated": "2026-07-25T22:01:49.524697+09:00"
 }

@@ -2117,13 +2117,19 @@
       "value": 38.48,
       "yoy": 3.25,
       "mom": -0.72
+    },
+    {
+      "date": "2026-06-01",
+      "value": 38.61,
+      "yoy": 3.73,
+      "mom": 0.34
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": 38.48,
-    "yoy": 3.25,
-    "mom": -0.72
+    "date": "2026-06-01",
+    "value": 38.61,
+    "yoy": 3.73,
+    "mom": 0.34
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -2134,14 +2140,14 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-07-10",
-    "datetime_utc": "2026-07-10T12:30:00+00:00",
-    "datetime_jst": "2026-07-10T21:30:00+09:00",
+    "date": "2026-08-07",
+    "datetime_utc": "2026-08-07T12:30:00+00:00",
+    "datetime_jst": "2026-08-07T21:30:00+09:00",
     "time_jst": "21:30",
-    "datetime_toronto": "2026-07-10T08:30:00-04:00",
+    "datetime_toronto": "2026-08-07T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "Average Hourly Wages YoY (Jun)",
-    "estimate": 4.5
+    "label": "Average Hourly Wages YoY (Jul)",
+    "estimate": null
   },
-  "last_updated": "2026-06-27T11:47:05.124042+09:00"
+  "last_updated": "2026-07-26T01:24:12.187683+09:00"
 }

@@ -184,7 +184,8 @@ def _get_next_release_from_db(
 def should_refresh_by_pattern(
     event_pattern: str,
     last_updated_str: str,
-    country: str = "CA"
+    country: str = "CA",
+    max_age_hours: float = 168.0,
 ) -> bool:
     """
     FMPイベントパターンに基づく更新判定
@@ -207,6 +208,14 @@ def should_refresh_by_pattern(
             last_updated = last_updated.replace(tzinfo=JST)
 
         now = datetime.now(JST)
+
+        # max-age フォールバック（発表レース凍結の自己回復）:
+        # 発表時刻ちょうどの再取得でソース(StatCan CSV zip等)未反映のまま
+        # last_updated=now を刻むと、下のスケジュール判定が「発表消化済み」と誤認し
+        # 次回発表まで永久凍結する（CA utils は従来 max-age を持たず、四半期指標では
+        # 最大3ヶ月凍結した）。一定時間で必ず True を返し自己回復させる。
+        if (now - last_updated).total_seconds() > max_age_hours * 60 * 60:
+            return True
 
         with SessionLocal() as session:
             params = {"country": country, "pattern": f"%{event_pattern}%"}

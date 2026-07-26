@@ -80,11 +80,16 @@ class UKHousePriceService:
         if api_result:
             latest = self._get_latest_values(api_result.get("series", {}))
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY, latest.get("date") if isinstance(latest, dict) else None, now_str
+            )
             cache_payload = {
                 "series": api_result.get("series", {}),
                 "series_mom": api_result.get("series_mom", {}),
                 "latest": latest,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -96,7 +101,7 @@ class UKHousePriceService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "land_registry",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

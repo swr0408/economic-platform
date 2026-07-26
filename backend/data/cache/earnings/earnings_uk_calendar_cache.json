@@ -15,9 +15,9 @@
       "fiscal_date_ending": "",
       "eps_estimate": 2.1,
       "eps_actual": null,
-      "revenue_estimate": 15461360000.0,
+      "revenue_estimate": 15444530000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "ULVR",
@@ -27,11 +27,11 @@
       "date": "2026-07-28",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 1.86,
+      "eps_estimate": 1.85,
       "eps_actual": null,
-      "revenue_estimate": 29717650000.0,
+      "revenue_estimate": 29486800000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "GSK",
@@ -43,23 +43,23 @@
       "fiscal_date_ending": "",
       "eps_estimate": 1.27,
       "eps_actual": null,
-      "revenue_estimate": 11064920000.0,
+      "revenue_estimate": 11019850000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "RIO",
       "name": "Rio Tinto",
       "tier": "A",
       "country_code": "uk",
-      "date": "2026-07-29",
+      "date": "2026-07-28",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 3.96,
+      "eps_estimate": 4.13,
       "eps_actual": null,
-      "revenue_estimate": 32627870000.0,
+      "revenue_estimate": 31624950000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "SHEL",
@@ -69,11 +69,11 @@
       "date": "2026-07-30",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 2.68,
+      "eps_estimate": 3.02,
       "eps_actual": null,
-      "revenue_estimate": 85178080000.0,
+      "revenue_estimate": 86223640000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "RR",
@@ -83,11 +83,11 @@
       "date": "2026-07-30",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 0.284,
+      "eps_estimate": 0.2375,
       "eps_actual": null,
-      "revenue_estimate": 13863450000.0,
+      "revenue_estimate": 13637760000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "HSBA",
@@ -97,11 +97,11 @@
       "date": "2026-08-04",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 2.25,
+      "eps_estimate": 2.24,
       "eps_actual": null,
-      "revenue_estimate": 18675560000.0,
+      "revenue_estimate": 18610610000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "BP",
@@ -111,11 +111,11 @@
       "date": "2026-08-04",
       "time": "--",
       "fiscal_date_ending": "",
-      "eps_estimate": 1.49,
+      "eps_estimate": 1.87,
       "eps_actual": null,
-      "revenue_estimate": 61792100000.0,
+      "revenue_estimate": 57887700000.0,
       "revenue_actual": null,
-      "updated_from_date": "2026-06-27"
+      "updated_from_date": "2026-07-25"
     },
     {
       "symbol": "NG",
@@ -132,9 +132,9 @@
       "updated_from_date": null
     }
   ],
-  "next_7d_count": 0,
-  "next_30d_count": 1,
-  "last_updated": "2026-06-27T13:49:18.744801+00:00",
+  "next_7d_count": 6,
+  "next_30d_count": 8,
+  "last_updated": "2026-07-25T13:50:51.890050+00:00",
   "cached": false,
   "status": "ok"
 }

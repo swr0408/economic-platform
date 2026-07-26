@@ -1,18 +1,6 @@
 {
   "data": [
     {
-      "date": "2006-06-01",
-      "index": null,
-      "yoy": 0.5,
-      "mom": null,
-      "core_index": null,
-      "core_yoy": 0.2,
-      "core_mom": null,
-      "core_core_index": null,
-      "core_core_yoy": -0.4,
-      "core_core_mom": null
-    },
-    {
       "date": "2006-07-01",
       "index": null,
       "yoy": 0.3,
@@ -398,13 +386,13 @@
     },
     {
       "date": "2009-03-01",
-      "index": 95.9,
+      "index": null,
       "yoy": -0.3,
       "mom": null,
-      "core_index": 96.8,
+      "core_index": null,
       "core_yoy": -0.1,
       "core_mom": null,
-      "core_core_index": 97.6,
+      "core_core_index": null,
       "core_core_yoy": 0.5,
       "core_core_mom": null
     },
@@ -2879,27 +2867,32 @@
       "core_core_index": 112.0,
       "core_core_yoy": 1.8,
       "core_core_mom": 0.2
+    },
+    {
+      "date": "2026-06-01",
+      "index": 113.6,
+      "yoy": 1.7,
+      "mom": 0.3,
+      "core_index": 113.1,
+      "core_yoy": 1.6,
+      "core_mom": 0.2,
+      "core_core_index": 112.2,
+      "core_core_yoy": 1.7,
+      "core_core_mom": 0.2
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "index": 113.5,
-    "yoy": 1.5,
-    "mom": 0.4,
-    "core_index": 113.0,
-    "core_yoy": 1.4,
-    "core_mom": 0.4,
-    "core_core_index": 112.0,
-    "core_core_yoy": 1.8,
+    "date": "2026-06-01",
+    "index": 113.6,
+    "yoy": 1.7,
+    "mom": 0.3,
+    "core_index": 113.1,
+    "core_yoy": 1.6,
+    "core_mom": 0.2,
+    "core_core_index": 112.2,
+    "core_core_yoy": 1.7,
     "core_core_mom": 0.2
   },
-  "next_release": {
-    "date": "2026-07-30",
-    "datetime_utc": "2026-07-30T23:30:00+00:00",
-    "datetime_jst": "2026-07-31T08:30:00+09:00",
-    "time_jst": "08:30",
-    "label": "CPI YoY (Jul)",
-    "estimate": null
-  },
-  "last_updated": "2026-06-27T17:32:57.236908+09:00"
+  "next_release": null,
+  "last_updated": "2026-07-26T04:28:59.085789+09:00"
 }

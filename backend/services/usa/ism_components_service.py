@@ -110,21 +110,16 @@ class ISMComponentsService:
                         "last_updated": last_updated_str
                     }
 
-        # DBnomics APIから取得
-        fetched_result = self._fetch_from_dbnomics()
+        # データ源: DB（永続履歴テーブル）から取得
+        # DBnomicsは約7ヶ月遅延で実質使えないため取得しない。履歴はDBに永続化済みで
+        # 2021-01以降のDBnomics提供範囲を包含する。直近月は下の _supplement_from_fmp_db
+        # （FMP DB: new_orders/employment/prices）と CSV（手動更新）で供給する。
+        db_data = self._load_from_db()
+        fetched_result = {"data": db_data} if db_data else None
+        if db_data:
+            print(f"  Loaded {len(db_data)} records from DB (DBnomics disabled)")
 
-        if fetched_result and fetched_result.get("data"):
-            # 成功 → DBに保存（派生フィールドを除いた基礎データ）
-            self._save_to_db(fetched_result["data"], source="dbnomics")
-        else:
-            # 失敗 → DBからフォールバック読み込み
-            print("DBnomics failed, falling back to DB...")
-            db_data = self._load_from_db()
-            if db_data:
-                fetched_result = {"data": db_data}
-                print(f"  Loaded {len(db_data)} records from DB")
-
-        # DBnomicsデータをFMP DBの最新データで補完
+        # DBデータをFMP DBの最新データで補完
         if fetched_result and fetched_result.get("data"):
             fetched_result["data"] = self._supplement_from_fmp_db(fetched_result["data"])
             # FMPで取得できた値をCSVに自動書き込み
@@ -145,11 +140,30 @@ class ISMComponentsService:
 
             # 最新値を取得
             latest = fetched_data[-1] if fetched_data else None
+            now_str = datetime.now(JST).isoformat()
+
+            # 発表レース対策（ラグガード）:
+            # ISM発表(第1営業日 10:00 ET)直後～FMPカレンダー同期(最大1時間ラグ)の間に
+            # ダッシュボード再構築が走ると、DB/FMP/CSVいずれにもまだ新月が無く旧月を
+            # last_updated=発表後 で保存 → should_refresh が「消化済み」誤判定して翌月まで
+            # 凍結する。最新月がキャッシュ最新月を超えていない場合は last_updated を旧値の
+            # まま維持し、次回リクエストで再取得して新月を自己回復させる。
+            existing_cache = redis_client.get(self.CACHE_KEY)
+            existing_latest_date = None
+            if existing_cache and existing_cache.get("latest"):
+                existing_latest_date = existing_cache["latest"].get("date")
+            new_latest_date = latest.get("date") if latest else None
+
+            if existing_latest_date and new_latest_date and new_latest_date <= existing_latest_date:
+                last_updated = existing_cache.get("last_updated", now_str)
+                print(f"  ISM Components: latest not newer (latest={new_latest_date}), keeping last_updated={last_updated}")
+            else:
+                last_updated = now_str
 
             cache_payload = {
                 "data": fetched_data,
                 "latest": latest,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
                 "csv_mtime": self._get_csv_mtime(),
             }
             # last_updated方式: TTL=0（無期限、発表日判定で無効化）
@@ -160,8 +174,8 @@ class ISMComponentsService:
                 "latest": latest,
                 "next_release": None,
                 "cached": False,
-                "source": "dbnomics",
-                "last_updated": datetime.now(JST).isoformat()
+                "source": "database",
+                "last_updated": last_updated
             }
 
         return {

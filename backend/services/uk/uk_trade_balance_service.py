@@ -106,13 +106,19 @@ class UKTradeBalanceService:
         if api_result:
             next_release_info = self._get_next_release(api_result.get("ons_next_release"))
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("data",),
+                _max_date_of(api_result.get("data", [])), now_str
+            )
             cache_payload = {
                 "data": api_result.get("data", []),
                 "mom_change": api_result.get("mom_change", []),
                 "latest": api_result.get("latest"),
                 "metadata": api_result.get("metadata", {}),
                 "ons_next_release": api_result.get("ons_next_release"),
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -125,7 +131,7 @@ class UKTradeBalanceService:
                 "next_release": next_release_info,
                 "cached": False,
                 "source": "ons_api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

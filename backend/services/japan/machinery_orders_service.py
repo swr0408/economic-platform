@@ -144,9 +144,16 @@ class MachineryOrdersService:
             # 次回発表日時取得
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY,
+                merged_data[-1].get("date") if merged_data else None,
+                now_str,
+            )
             result = {
                 "data": merged_data,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
                 "source": "e-Stat (Cabinet Office)",
                 "description": "民間需要（船舶・電力を除く）- 機械受注統計調査",
                 "next_release": next_release,

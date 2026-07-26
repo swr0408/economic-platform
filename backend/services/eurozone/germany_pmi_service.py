@@ -108,6 +108,12 @@ class GermanyPMIService:
             # next_releaseを取得
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated_nested, _max_date_of
+            now_str = datetime.now(CET).isoformat()
+            last_updated = guarded_last_updated_nested(
+                self.DATA_CACHE_KEY, ("manufacturing", "services", "composite"),
+                _max_date_of(manufacturing_data, services_data, composite_data), now_str
+            )
             cache_payload = {
                 "manufacturing": {
                     "data": manufacturing_data,
@@ -122,7 +128,7 @@ class GermanyPMIService:
                     "latest": composite_data[-1] if composite_data else None,
                 } if composite_data else None,
                 "next_release": next_release,
-                "last_updated": datetime.now(CET).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)

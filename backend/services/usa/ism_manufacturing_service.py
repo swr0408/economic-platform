@@ -86,11 +86,31 @@ class ISMManufacturingService:
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
 
             latest = db_result[-1] if db_result else None
+            now_str = datetime.now(JST).isoformat()
+
+            # 発表レース対策（ラグガード）:
+            # ISM発表(第1営業日 10:00 ET)直後～FMPカレンダー同期(最大1時間ラグ)の間に
+            # ダッシュボード再構築が走ると、DBにまだ新月が無く旧月を last_updated=発表後
+            # で保存 → should_refresh が「消化済み」誤判定して翌月まで凍結する。
+            # DBの最新月がキャッシュ最新月を超えていない場合は last_updated を旧値のまま
+            # 維持し、次回リクエストで再取得して新月を自己回復させる。
+            existing_cache = redis_client.get(self.DATA_CACHE_KEY)
+            existing_latest_date = None
+            if existing_cache and existing_cache.get("latest"):
+                existing_latest_date = existing_cache["latest"].get("date")
+            new_latest_date = latest.get("date") if latest else None
+
+            if existing_latest_date and new_latest_date and new_latest_date <= existing_latest_date:
+                last_updated = existing_cache.get("last_updated", now_str)
+                print(f"  ISM Manufacturing: DB not newer (latest={new_latest_date}), keeping last_updated={last_updated}")
+            else:
+                last_updated = now_str
+
             cache_payload = {
                 "data": db_result,
                 "latest": latest,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -101,7 +121,7 @@ class ISMManufacturingService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "database",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         # 取得失敗時はファイルキャッシュから返す

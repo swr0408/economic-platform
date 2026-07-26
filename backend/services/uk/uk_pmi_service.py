@@ -94,11 +94,17 @@ class UKPMIService:
         composite = self._load_from_db("composite")
 
         if manufacturing or services or composite:
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("manufacturing", "services", "composite"),
+                _max_date_of(manufacturing, services, composite), now_str
+            )
             cache_payload = {
                 "manufacturing": manufacturing,
                 "services": services,
                 "composite": composite,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -110,7 +116,7 @@ class UKPMIService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "database",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

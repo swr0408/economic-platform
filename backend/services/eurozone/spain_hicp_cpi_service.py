@@ -144,6 +144,12 @@ class SpainHICPCPIService:
             latest_cpi_yoy = db_data["cpi_yoy"][-1] if db_data["cpi_yoy"] else None
             latest_hicp_yoy = db_data["hicp_yoy"][-1] if db_data["hicp_yoy"] else None
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("cpi_yoy", "hicp_yoy"),
+                _max_date_of(db_data["cpi_yoy"], db_data["hicp_yoy"]), now_str
+            )
             cache_payload = {
                 "cpi_mom": db_data["cpi_mom"],
                 "cpi_yoy": db_data["cpi_yoy"],
@@ -162,7 +168,7 @@ class SpainHICPCPIService:
                     "series_codes": INE_SERIES,
                 },
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -180,7 +186,7 @@ class SpainHICPCPIService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "database",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

@@ -117,13 +117,19 @@ class ZEWEconomicSentimentService:
             latest_sentiment = sentiment_data[-1] if sentiment_data else None
             latest_situation = situation_data[-1] if situation_data else None
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("sentiment", "situation"),
+                _max_date_of(sentiment_data, situation_data), now_str
+            )
             cache_payload = {
                 "sentiment": sentiment_data,
                 "situation": situation_data,
                 "latest_sentiment": latest_sentiment,
                 "latest_situation": latest_situation,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -136,7 +142,7 @@ class ZEWEconomicSentimentService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "zew + fmp",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         # ファイルキャッシュフォールバック

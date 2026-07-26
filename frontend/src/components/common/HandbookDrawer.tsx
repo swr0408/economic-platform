@@ -102,9 +102,8 @@ export default function HandbookDrawer({ indicatorId, onClose }: HandbookDrawerP
 
   return (
     <>
-      {/* 背景オーバーレイ（クリックで閉じる） */}
+      {/* 背景オーバーレイ（背景を暗くするのみ。範囲外クリックでは閉じず、×ボタンでのみ閉じる） */}
       <div
-        onClick={onClose}
         style={{
           position: 'fixed',
           top: 64,

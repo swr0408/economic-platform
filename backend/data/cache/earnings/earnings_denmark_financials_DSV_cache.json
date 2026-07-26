@@ -8,6 +8,29 @@
   "reported_currency": "DKK",
   "periods": [
     {
+      "date": "2026-06-30",
+      "period": "Q2",
+      "fiscal_year": "2026",
+      "reported_currency": "DKK",
+      "revenue": 76688000000.0,
+      "gross_profit": 20277000000.0,
+      "operating_income": 6255000000.0,
+      "net_income": 2277000000.0,
+      "eps_diluted": 4.75,
+      "gross_margin": 26.440903400792827,
+      "operating_margin": 8.156426037972043,
+      "net_margin": 2.96917379511788,
+      "operating_cf": -308000000.0,
+      "fcf": -1058000000.0,
+      "capex": -750000000.0,
+      "buyback": 0.0,
+      "dividends_paid": 0.0,
+      "fcf_margin": -1.3796161068224493,
+      "depreciation_amortization": 2647000000.0,
+      "revenue_yoy": 23.724246970943646,
+      "eps_yoy": -4.040404040404043
+    },
+    {
       "date": "2026-03-31",
       "period": "Q1",
       "fiscal_year": "2026",
@@ -96,8 +119,8 @@
       "dividends_paid": -7791165.0,
       "fcf_margin": 6.71797105658003,
       "depreciation_amortization": 2210000000.0,
-      "revenue_yoy": 50.601355783949266,
-      "eps_yoy": -23.25581395348837
+      "revenue_yoy": null,
+      "eps_yoy": null
     },
     {
       "date": "2025-03-31",
@@ -138,7 +161,7 @@
       "operating_cf": 2844000000.0,
       "fcf": 2302000000.0,
       "capex": -542000000.0,
-      "buyback": 0.0,
+      "buyback": -1836932.0,
       "dividends_paid": 0.0,
       "fcf_margin": 5.290251413338236,
       "depreciation_amortization": 1538000000.0,
@@ -167,36 +190,13 @@
       "depreciation_amortization": 1430000000.0,
       "revenue_yoy": null,
       "eps_yoy": null
-    },
-    {
-      "date": "2024-06-30",
-      "period": "Q2",
-      "fiscal_year": "2024",
-      "reported_currency": "DKK",
-      "revenue": 41157000000.0,
-      "gross_profit": 5242000000.0,
-      "operating_income": 4099000000.0,
-      "net_income": 2699000000.0,
-      "eps_diluted": 6.45,
-      "gross_margin": 12.736594018028525,
-      "operating_margin": 9.959423670335545,
-      "net_margin": 6.557815195471001,
-      "operating_cf": 2462000000.0,
-      "fcf": 1922000000.0,
-      "capex": -540000000.0,
-      "buyback": -915000000.0,
-      "dividends_paid": 0.0,
-      "fcf_margin": 4.66992249192118,
-      "depreciation_amortization": 1410000000.0,
-      "revenue_yoy": null,
-      "eps_yoy": null
     }
   ],
   "ir_home": "https://www.dsv.com/en/countries/europe/denmark",
   "ir_results": "https://investor.dsv.com/company-announcements",
   "ir_tdnet": "",
   "ir_notes": "",
-  "last_updated": "2026-05-11T15:54:28.746431+00:00",
+  "last_updated": "2026-07-25T13:50:59.524936+00:00",
   "cached": false,
   "status": "ok"
 }

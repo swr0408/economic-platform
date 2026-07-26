@@ -998,31 +998,40 @@
       "input_prices": 2.0,
       "output_prices": -8.0,
       "credit": -2.0
+    },
+    {
+      "date": "2026-04-01",
+      "future_sales": 8.0,
+      "investment": 30.0,
+      "employment": 27.0,
+      "input_prices": 48.0,
+      "output_prices": 25.0,
+      "credit": 1.0
     }
   ],
   "latest": {
-    "date": "2026-01-01",
-    "future_sales": 25.0,
-    "investment": 29.0,
-    "employment": 38.0,
-    "input_prices": 2.0,
-    "output_prices": -8.0,
-    "credit": -2.0
+    "date": "2026-04-01",
+    "future_sales": 8.0,
+    "investment": 30.0,
+    "employment": 27.0,
+    "input_prices": 48.0,
+    "output_prices": 25.0,
+    "credit": 1.0
   },
   "metadata": {
     "source": "Bank of Canada",
     "survey": "Business Outlook Survey (BOS)",
     "description": "カナダ企業景況感調査（BOS）",
-    "unit": "% (Balance of Opinion)",
+    "unit": "Balance of Opinion (pt, net)",
     "frequency": "quarterly"
   },
   "next_release": {
-    "date": "2026-07-06",
-    "datetime_jst": "2026-07-06T23:30:00+09:00",
+    "date": "2026-10-19",
+    "datetime_jst": "2026-10-19T23:30:00+09:00",
     "time_jst": "23:30",
-    "datetime_toronto": "2026-07-06T10:30:00-04:00",
+    "datetime_toronto": "2026-10-19T10:30:00-04:00",
     "time_toronto": "10:30",
     "label": "Business Outlook Survey"
   },
-  "last_updated": "2026-06-27T11:46:20.164701+09:00"
+  "last_updated": "2026-07-26T01:21:34.962562+09:00"
 }

@@ -66,7 +66,7 @@
     },
     {
       "date": "2019-Q2",
-      "value": 0.31
+      "value": 0.32
     },
     {
       "date": "2019-Q3",
@@ -78,7 +78,7 @@
     },
     {
       "date": "2020-Q1",
-      "value": -0.23
+      "value": -0.22
     },
     {
       "date": "2020-Q2",
@@ -90,7 +90,7 @@
     },
     {
       "date": "2020-Q4",
-      "value": 0.58
+      "value": 0.57
     },
     {
       "date": "2021-Q1",
@@ -98,7 +98,7 @@
     },
     {
       "date": "2021-Q2",
-      "value": 0.85
+      "value": 0.86
     },
     {
       "date": "2021-Q3",
@@ -110,7 +110,7 @@
     },
     {
       "date": "2022-Q1",
-      "value": 0.52
+      "value": 0.51
     },
     {
       "date": "2022-Q2",
@@ -126,7 +126,7 @@
     },
     {
       "date": "2023-Q1",
-      "value": 0.5
+      "value": 0.51
     },
     {
       "date": "2023-Q2",
@@ -146,11 +146,11 @@
     },
     {
       "date": "2024-Q2",
-      "value": 0.18
+      "value": 0.19
     },
     {
       "date": "2024-Q3",
-      "value": 0.26
+      "value": 0.25
     },
     {
       "date": "2024-Q4",
@@ -158,7 +158,7 @@
     },
     {
       "date": "2025-Q1",
-      "value": 0.24
+      "value": 0.25
     },
     {
       "date": "2025-Q2",
@@ -166,21 +166,21 @@
     },
     {
       "date": "2025-Q3",
-      "value": 0.18
+      "value": 0.19
     },
     {
       "date": "2025-Q4",
-      "value": 0.16
+      "value": 0.15
     },
     {
       "date": "2026-Q1",
-      "value": 0.07
+      "value": 0.08
     }
   ],
   "employment_yoy": [
     {
       "date": "2016-Q1",
-      "value": 1.34
+      "value": 1.33
     },
     {
       "date": "2016-Q2",
@@ -292,19 +292,19 @@
     },
     {
       "date": "2023-Q1",
-      "value": 1.71
+      "value": 1.72
     },
     {
       "date": "2023-Q2",
-      "value": 1.51
+      "value": 1.52
     },
     {
       "date": "2023-Q3",
-      "value": 1.42
+      "value": 1.43
     },
     {
       "date": "2023-Q4",
-      "value": 1.4
+      "value": 1.41
     },
     {
       "date": "2024-Q1",
@@ -312,35 +312,35 @@
     },
     {
       "date": "2024-Q2",
-      "value": 0.94
+      "value": 0.95
     },
     {
       "date": "2024-Q3",
-      "value": 1.01
+      "value": 1.02
     },
     {
       "date": "2024-Q4",
-      "value": 0.77
+      "value": 0.78
     },
     {
       "date": "2025-Q1",
-      "value": 0.82
+      "value": 0.84
     },
     {
       "date": "2025-Q2",
-      "value": 0.77
+      "value": 0.78
     },
     {
       "date": "2025-Q3",
-      "value": 0.69
+      "value": 0.71
     },
     {
       "date": "2025-Q4",
-      "value": 0.72
+      "value": 0.73
     },
     {
       "date": "2026-Q1",
-      "value": 0.55
+      "value": 0.56
     }
   ],
   "metadata": {
@@ -352,15 +352,6 @@
     "frequency": "Quarterly",
     "description": "雇用者数変化（ユーロ圏）"
   },
-  "next_release": {
-    "date": "2026-08-14",
-    "datetime_utc": "2026-08-14T09:00:00+00:00",
-    "datetime_jst": "2026-08-14T18:00:00+09:00",
-    "time_jst": "18:00",
-    "datetime_cet": "2026-08-14T11:00:00+02:00",
-    "time_cet": "11:00",
-    "label": "Employment Change YoY (Q2)",
-    "estimate": 0.5
-  },
-  "last_updated": "2026-06-27T22:45:24.681200+09:00"
+  "next_release": null,
+  "last_updated": "2026-07-26T04:33:11.896456+09:00"
 }

@@ -764,14 +764,14 @@
     }
   },
   "next_release": {
-    "date": "2026-08-07",
-    "datetime_utc": "2026-08-07T03:00:00+00:00",
-    "datetime_jst": "2026-08-07T12:00:00+09:00",
+    "date": "2026-08-13",
+    "datetime_utc": "2026-08-13T03:00:00+00:00",
+    "datetime_jst": "2026-08-13T12:00:00+09:00",
     "time_jst": "12:00",
-    "datetime_auckland": "2026-08-07T15:00:00+12:00",
+    "datetime_auckland": "2026-08-13T15:00:00+12:00",
     "time_auckland": "15:00",
     "label": "Inflation Expectations (Q3)",
-    "estimate": 1.8
+    "estimate": 3.0
   },
-  "last_updated": "2026-06-26T21:09:01.755256+09:00"
+  "last_updated": "2026-07-24T17:57:40.631873+09:00"
 }

@@ -2419,11 +2419,15 @@
     {
       "date": "2026-05-01",
       "value": 6.6
+    },
+    {
+      "date": "2026-06-01",
+      "value": 6.5
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": 6.6
+    "date": "2026-06-01",
+    "value": 6.5
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -2434,14 +2438,14 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-07-10",
-    "datetime_utc": "2026-07-10T12:30:00+00:00",
-    "datetime_jst": "2026-07-10T21:30:00+09:00",
+    "date": "2026-08-07",
+    "datetime_utc": "2026-08-07T12:30:00+00:00",
+    "datetime_jst": "2026-08-07T21:30:00+09:00",
     "time_jst": "21:30",
-    "datetime_toronto": "2026-07-10T08:30:00-04:00",
+    "datetime_toronto": "2026-08-07T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "Unemployment Rate (Jun)",
-    "estimate": 7.0
+    "label": "Unemployment Rate (Jul)",
+    "estimate": null
   },
-  "last_updated": "2026-06-27T11:47:40.385640+09:00"
+  "last_updated": "2026-07-26T01:24:47.804264+09:00"
 }

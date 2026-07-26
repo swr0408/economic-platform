@@ -102,13 +102,19 @@ class ONSRetailSalesService:
                 "description": "イギリス小売売上高（数量ベース・季節調整済み）",
             }
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("mom", "yoy", "core_mom", "core_yoy"),
+                _max_date_of(data.get("inc_fuel_mom", []), data.get("inc_fuel_yoy", []), data.get("ex_fuel_mom", []), data.get("ex_fuel_yoy", [])), now_str
+            )
             cache_payload = {
                 "mom": data.get("inc_fuel_mom", []),
                 "yoy": data.get("inc_fuel_yoy", []),
                 "core_mom": data.get("ex_fuel_mom", []),
                 "core_yoy": data.get("ex_fuel_yoy", []),
                 "metadata": metadata,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -122,7 +128,7 @@ class ONSRetailSalesService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "ons_api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

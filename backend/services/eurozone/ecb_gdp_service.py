@@ -163,20 +163,30 @@ class ECBGDPService:
 
         if gdp_growth_qoq or gdp_growth_yoy:
             next_release = get_next_release_from_fmp(self.ECONALPHA_ID)
+
+            # last_updated は metadata より先に確定させる（発表レース ラグガード付き）。
+            # 以前は metadata で last_updated を参照した後に代入していたため、
+            # ECBが値を返す成功パスで UnboundLocalError となりチャートが空表示だった。
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("gdp_growth_qoq", "gdp_growth_yoy"),
+                _max_date_of(gdp_growth_qoq, gdp_growth_yoy), now_str
+            )
+
             metadata = {
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
                 "source": "European Central Bank (ECB) - Main National Accounts",
                 "data_start": "2015-01-01",
                 "unit_qoq": "Growth rate to previous period (%)",
                 "unit_yoy": "Growth rate to same period in previous year (%)",
                 "frequency": "Quarterly"
             }
-
             cache_payload = {
                 "gdp_growth_qoq": gdp_growth_qoq,
                 "gdp_growth_yoy": gdp_growth_yoy,
                 "metadata": metadata,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -188,7 +198,7 @@ class ECBGDPService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "ecb_api",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         # ファイルキャッシュフォールバック

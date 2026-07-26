@@ -3890,15 +3890,6 @@
     "value": 84.1,
     "source": "ifo_excel"
   },
-  "next_release": {
-    "date": "2026-07-27",
-    "datetime_utc": "2026-07-27T08:00:00+00:00",
-    "datetime_jst": "2026-07-27T17:00:00+09:00",
-    "time_jst": "17:00",
-    "datetime_cet": "2026-07-27T10:00:00+02:00",
-    "time_cet": "10:00",
-    "label": "Ifo Business Climate (Jul)",
-    "estimate": null
-  },
-  "last_updated": "2026-06-27T20:02:24.039861+09:00"
+  "next_release": null,
+  "last_updated": "2026-07-26T04:29:54.229677+09:00"
 }

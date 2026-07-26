@@ -584,26 +584,31 @@
       "date": "2026-04-30",
       "value": 34105.47,
       "yoy": 3.93
+    },
+    {
+      "date": "2026-05-31",
+      "value": 34422.38,
+      "yoy": 4.78
     }
   ],
   "latest": {
-    "date": "2026-04-30",
-    "value": 34105.47,
-    "yoy": 3.93
+    "date": "2026-05-31",
+    "value": 34422.38,
+    "yoy": 4.78
   },
   "metadata": {
     "unit": "亿美元",
     "indicator": "Foreign Exchange Reserves",
     "source": "SAFE (State Administration of Foreign Exchange)",
-    "total_records": 117,
-    "last_fetched": "2026-06-28T00:32:06.481591+09:00"
+    "total_records": 118,
+    "last_fetched": "2026-07-24T11:33:55.470831+09:00"
   },
   "next_release": {
-    "date": "2026-07-07",
-    "datetime_utc": "2026-07-07T08:00:00+00:00",
-    "datetime_jst": "2026-07-07T17:00:00+09:00",
+    "date": "2026-08-07",
+    "datetime_utc": "2026-08-07T08:00:00+00:00",
+    "datetime_jst": "2026-08-07T17:00:00+09:00",
     "time_jst": "17:00",
-    "label": "Foreign Exchange Reserves (Jun)",
+    "label": "Foreign Exchange Reserves (Jul)",
     "estimate": null
   }
 }

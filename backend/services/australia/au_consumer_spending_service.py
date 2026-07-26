@@ -168,6 +168,9 @@ class AuConsumerSpendingService:
                 data_points = self._build_data_points(observations)
                 if data_points:
                     latest = data_points[-1]
+                    from services.usa.fmp_next_release_utils import guarded_last_updated
+                    _now_lu = datetime.now(JST).isoformat()
+                    _lu = guarded_last_updated(self.DATA_CACHE_KEY, latest.get("date") if latest else None, _now_lu)
                     next_release = self._get_next_release()
                     result = {
                         "data": data_points,
@@ -180,7 +183,7 @@ class AuConsumerSpendingService:
                         },
                         "next_release": next_release,
                     }
-                    cache_payload = {**result, "last_updated": datetime.now(JST).isoformat()}
+                    cache_payload = {**result, "last_updated": _lu}
                     redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
                     self._save_file_cache(cache_payload)
                     return {**result, "cached": False, "source": "abs_api"}

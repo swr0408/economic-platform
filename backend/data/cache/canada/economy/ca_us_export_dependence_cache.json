@@ -2773,44 +2773,52 @@
     },
     {
       "date": "2026-01-01",
-      "value": 67.84,
-      "us_export": 42793.7,
-      "total_export": 63080.4,
+      "value": 67.83,
+      "us_export": 42804.3,
+      "total_export": 63109.8,
       "ma_3m": 67.87,
-      "ma_12m": 70.7
+      "ma_12m": 70.69
     },
     {
       "date": "2026-02-01",
-      "value": 66.91,
-      "us_export": 44974.4,
-      "total_export": 67218.4,
-      "ma_3m": 67.37,
-      "ma_12m": 69.57
+      "value": 66.86,
+      "us_export": 44995.8,
+      "total_export": 67300.6,
+      "ma_3m": 67.35,
+      "ma_12m": 69.56
     },
     {
       "date": "2026-03-01",
-      "value": 67.07,
-      "us_export": 49617.9,
-      "total_export": 73979.9,
-      "ma_3m": 67.25,
+      "value": 67.19,
+      "us_export": 50047.1,
+      "total_export": 74482.0,
+      "ma_3m": 67.28,
       "ma_12m": 69.02
     },
     {
       "date": "2026-04-01",
-      "value": 69.15,
-      "us_export": 51974.9,
-      "total_export": 75160.4,
-      "ma_3m": 67.74,
-      "ma_12m": 69.0
+      "value": 69.3,
+      "us_export": 52948.5,
+      "total_export": 76401.3,
+      "ma_3m": 67.83,
+      "ma_12m": 69.02
+    },
+    {
+      "date": "2026-05-01",
+      "value": 69.68,
+      "us_export": 53723.7,
+      "total_export": 77099.2,
+      "ma_3m": 68.74,
+      "ma_12m": 69.13
     }
   ],
   "latest": {
-    "date": "2026-04-01",
-    "value": 69.15,
-    "us_export": 51974.9,
-    "total_export": 75160.4,
-    "ma_3m": 67.74,
-    "ma_12m": 69.0
+    "date": "2026-05-01",
+    "value": 69.68,
+    "us_export": 53723.7,
+    "total_export": 77099.2,
+    "ma_3m": 68.74,
+    "ma_12m": 69.13
   },
   "metadata": {
     "source": "Statistics Canada",
@@ -2821,14 +2829,14 @@
     "frequency": "monthly"
   },
   "next_release": {
-    "date": "2026-07-07",
-    "datetime_utc": "2026-07-07T12:30:00+00:00",
-    "datetime_jst": "2026-07-07T21:30:00+09:00",
+    "date": "2026-08-04",
+    "datetime_utc": "2026-08-04T12:30:00+00:00",
+    "datetime_jst": "2026-08-04T21:30:00+09:00",
     "time_jst": "21:30",
-    "datetime_toronto": "2026-07-07T08:30:00-04:00",
+    "datetime_toronto": "2026-08-04T08:30:00-04:00",
     "time_toronto": "08:30",
-    "label": "Imports (May)",
-    "estimate": null
+    "label": "Imports (Jun)",
+    "estimate": 69.2
   },
-  "last_updated": "2026-06-27T11:46:36.680995+09:00"
+  "last_updated": "2026-07-26T01:21:38.566347+09:00"
 }

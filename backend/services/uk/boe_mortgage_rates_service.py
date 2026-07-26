@@ -100,6 +100,12 @@ class BoEMortgageRatesService:
             latest_cfmz6jv = cfmz6jv_data[-1] if cfmz6jv_data else None
             latest_iumtlmv = iumtlmv_data[-1] if iumtlmv_data else None
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("cfmz6k6", "cfmz6jv", "iumtlmv"),
+                _max_date_of(cfmz6k6_data, cfmz6jv_data, iumtlmv_data), now_str
+            )
             cache_payload = {
                 "cfmz6k6": cfmz6k6_data,
                 "cfmz6jv": cfmz6jv_data,
@@ -108,7 +114,7 @@ class BoEMortgageRatesService:
                 "latest_cfmz6jv": latest_cfmz6jv,
                 "latest_iumtlmv": latest_iumtlmv,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -123,7 +129,7 @@ class BoEMortgageRatesService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "csv" if csv_data else "database",
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
 
         # ファイルキャッシュフォールバック

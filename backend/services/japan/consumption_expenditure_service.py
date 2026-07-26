@@ -110,6 +110,13 @@ class ConsumptionExpenditureService:
         if mom_data or yoy_data:
             # YoYのスケジュールで次回発表を取得
             next_release = get_next_release_from_fmp(self.ECONALPHA_IDS["yoy"])
+            from services.usa.fmp_next_release_utils import guarded_last_updated_nested
+            now_str = datetime.now(JST).isoformat()
+            _dates = [s[-1].get("date") for s in (mom_data, yoy_data) if s]
+            _new_date = max([d for d in _dates if d], default=None)
+            last_updated = guarded_last_updated_nested(
+                self.DATA_CACHE_KEY, ("yoy", "mom"), _new_date, now_str
+            )
 
             cache_payload = {
                 "mom": {
@@ -121,7 +128,7 @@ class ConsumptionExpenditureService:
                     "latest": yoy_data[-1] if yoy_data else None,
                 } if yoy_data else None,
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat()
+                "last_updated": last_updated
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)

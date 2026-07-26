@@ -6,13 +6,15 @@
  * - 月次テーブル (Monthly)
  */
 import { useState } from 'react'
-import { Tabs, Button, Modal } from 'antd'
-import { ExpandOutlined, ZoomInOutlined, ZoomOutOutlined } from '@ant-design/icons'
+import { Tabs, Button, Modal, Upload, message, Space } from 'antd'
+import type { UploadFile } from 'antd'
+import { ExpandOutlined, ZoomInOutlined, ZoomOutOutlined, UploadOutlined } from '@ant-design/icons'
 import ChartContainer from '../../../common/ChartContainer'
 import LoadingChart from '../../../common/LoadingChart'
 import type { OpenTableData, OpenTableImage } from '../../../../hooks/useDashboardData'
 import { LATEST_VALUE_BOX_STYLE, TEXT_COLORS } from '../common/chartConstants'
 import { apiUrl } from '../../../../utils/apiConfig'
+import { useAuth } from '../../../../contexts/AuthContext'
 
 interface OpenTableChartProps {
   data: OpenTableData | null
@@ -23,11 +25,58 @@ export default function OpenTableChart({ data }: OpenTableChartProps) {
   const [zoomLevel, setZoomLevel] = useState(1)
   const [activeTab, setActiveTab] = useState('0')
 
+  // 管理者(master)向け: スクショ手動アップロード
+  const { hasRole } = useAuth()
+  const isMaster = hasRole('master')
+  const [uploadOpen, setUploadOpen] = useState(false)
+  const [weekFile, setWeekFile] = useState<UploadFile | null>(null)
+  const [monthFile, setMonthFile] = useState<UploadFile | null>(null)
+  const [uploading, setUploading] = useState(false)
+  // アップロード後に画像URLをキャッシュバスターで即時更新するためのトークン
+  const [cacheBust, setCacheBust] = useState(0)
+
   const openModal = () => { setZoomLevel(1); setIsModalOpen(true) }
   const closeModal = () => { setIsModalOpen(false); setZoomLevel(1) }
   const zoomIn = () => setZoomLevel(prev => Math.min(prev + 0.25, 3))
   const zoomOut = () => setZoomLevel(prev => Math.max(prev - 0.25, 0.5))
   const resetZoom = () => setZoomLevel(1)
+
+  const bustUrl = (url: string) => {
+    const full = apiUrl(url)
+    if (!cacheBust) return full
+    return `${full}${full.includes('?') ? '&' : '?'}v=${cacheBust}`
+  }
+
+  const handleUpload = async () => {
+    if (!weekFile && !monthFile) {
+      message.warning('週次または月次の画像を選択してください')
+      return
+    }
+    const form = new FormData()
+    if (weekFile) form.append('week', weekFile as unknown as Blob)
+    if (monthFile) form.append('month', monthFile as unknown as Blob)
+
+    setUploading(true)
+    try {
+      const res = await fetch(apiUrl('/api/usa/opentable/upload'), {
+        method: 'POST',
+        body: form,
+      })
+      if (!res.ok) {
+        const text = await res.text().catch(() => '')
+        throw new Error(`${res.status} ${text}`.trim())
+      }
+      message.success('OpenTableのスクショを更新しました')
+      setUploadOpen(false)
+      setWeekFile(null)
+      setMonthFile(null)
+      setCacheBust(Date.now())
+    } catch (e) {
+      message.error(`アップロードに失敗しました: ${e instanceof Error ? e.message : String(e)}`)
+    } finally {
+      setUploading(false)
+    }
+  }
 
   if (data === null) {
     return <LoadingChart title="レストラン予約件数前年比（OpenTable）" />
@@ -67,7 +116,7 @@ export default function OpenTableChart({ data }: OpenTableChartProps) {
         onClick={openModal}
       >
         <img
-          src={apiUrl(img.url)}
+          src={bustUrl(img.url)}
           alt={`OpenTable ${img.label}`}
           style={{
             maxWidth: '100%',
@@ -113,14 +162,26 @@ export default function OpenTableChart({ data }: OpenTableChartProps) {
               </span>
             )}
           </div>
-          <Button
-            icon={<ExpandOutlined />}
-            onClick={openModal}
-            size="small"
-            title="拡大表示"
-          >
-            拡大
-          </Button>
+          <Space size={8}>
+            {isMaster && (
+              <Button
+                icon={<UploadOutlined />}
+                onClick={() => setUploadOpen(true)}
+                size="small"
+                title="スクショを差し替えて更新（管理者）"
+              >
+                更新
+              </Button>
+            )}
+            <Button
+              icon={<ExpandOutlined />}
+              onClick={openModal}
+              size="small"
+              title="拡大表示"
+            >
+              拡大
+            </Button>
+          </Space>
         </div>
 
         {/* タブ切替 or 単一画像 */}
@@ -200,7 +261,7 @@ export default function OpenTableChart({ data }: OpenTableChartProps) {
           }}
         >
           <img
-            src={apiUrl(currentImage.url)}
+            src={bustUrl(currentImage.url)}
             alt={`OpenTable ${currentImage.label}`}
             style={{
               transform: `scale(${zoomLevel})`,
@@ -229,6 +290,57 @@ export default function OpenTableChart({ data }: OpenTableChartProps) {
           </div>
         </div>
       </Modal>
+
+      {/* 管理者用: スクショ差し替えアップロード */}
+      {isMaster && (
+        <Modal
+          title="OpenTableスクショを更新"
+          open={uploadOpen}
+          onCancel={() => setUploadOpen(false)}
+          onOk={handleUpload}
+          okText="アップロード"
+          cancelText="キャンセル"
+          confirmLoading={uploading}
+          width={520}
+        >
+          <div style={{ fontSize: 12, color: '#666', marginBottom: 12, lineHeight: 1.6 }}>
+            OpenTableの{' '}
+            <a href="https://www.opentable.com/state-of-industry" target="_blank" rel="noopener noreferrer">
+              State of the Industry
+            </a>
+            {' '}ページ（Global選択）から、週次チャート／月次テーブルのスクショを取得して差し替えます。
+            片方だけの更新も可能です。
+            <br />
+            ※ このサイトはボット遮断のため自動取得できません。手動で画像を貼り付けてください。
+          </div>
+
+          <div style={{ marginBottom: 16 }}>
+            <div style={{ fontWeight: 600, marginBottom: 4 }}>週次チャート (Weekly)</div>
+            <Upload
+              maxCount={1}
+              accept="image/png,image/jpeg,image/webp"
+              beforeUpload={(file) => { setWeekFile(file); return false }}
+              onRemove={() => setWeekFile(null)}
+              fileList={weekFile ? [weekFile] : []}
+            >
+              <Button icon={<UploadOutlined />} size="small">週次画像を選択</Button>
+            </Upload>
+          </div>
+
+          <div>
+            <div style={{ fontWeight: 600, marginBottom: 4 }}>月次テーブル (Monthly)</div>
+            <Upload
+              maxCount={1}
+              accept="image/png,image/jpeg,image/webp"
+              beforeUpload={(file) => { setMonthFile(file); return false }}
+              onRemove={() => setMonthFile(null)}
+              fileList={monthFile ? [monthFile] : []}
+            >
+              <Button icon={<UploadOutlined />} size="small">月次画像を選択</Button>
+            </Upload>
+          </div>
+        </Modal>
+      )}
     </div>
   )
 }

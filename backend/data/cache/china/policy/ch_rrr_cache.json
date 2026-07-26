@@ -499,17 +499,21 @@
     {
       "date": "2026-06-30",
       "value": 7.5
+    },
+    {
+      "date": "2026-07-31",
+      "value": 7.5
     }
   ],
   "latest": {
-    "date": "2026-06-30",
+    "date": "2026-07-31",
     "value": 7.5
   },
   "metadata": {
     "unit": "%",
     "indicator": "Reserve Requirement Ratio (Large Banks)",
     "source": "PBC via Wuhan Branch",
-    "total_records": 125,
-    "last_fetched": "2026-06-27T11:46:18.380270+09:00"
+    "total_records": 126,
+    "last_fetched": "2026-07-23T17:15:47.794069+09:00"
   }
 }

@@ -3253,28 +3253,41 @@
     {
       "date": "2026-05-01",
       "close": 3728.73,
-      "forward_pe": 17.25,
-      "forward_eps": 216.16,
-      "earnings_yield": 0.057971,
+      "forward_pe": 17.27,
+      "forward_eps": 215.91,
+      "earnings_yield": 0.057904,
       "yield_10y": 0.0265,
-      "yield_spread": 0.031471,
-      "yield_ratio": 2.1876,
-      "forward_pe_yoy": 17.01,
-      "forward_eps_yoy": 18.93,
-      "earnings_yield_yoy": -14.54
+      "yield_spread": 0.031404,
+      "yield_ratio": 2.1851,
+      "forward_pe_yoy": 17.15,
+      "forward_eps_yoy": 18.79,
+      "earnings_yield_yoy": -14.64
     },
     {
       "date": "2026-06-01",
       "close": 3940.7,
-      "forward_pe": 17.14,
-      "forward_eps": 229.91,
-      "earnings_yield": 0.058343,
-      "yield_10y": 0.0265,
-      "yield_spread": 0.031843,
-      "yield_ratio": 2.2016,
-      "forward_pe_yoy": 12.39,
-      "forward_eps_yoy": 26.24,
-      "earnings_yield_yoy": -11.03
+      "forward_pe": 17.0,
+      "forward_eps": 231.81,
+      "earnings_yield": 0.058824,
+      "yield_10y": 0.0267,
+      "yield_spread": 0.032124,
+      "yield_ratio": 2.2031,
+      "forward_pe_yoy": 11.47,
+      "forward_eps_yoy": 27.28,
+      "earnings_yield_yoy": -10.29
+    },
+    {
+      "date": "2026-07-01",
+      "close": 4011.5,
+      "forward_pe": 17.17,
+      "forward_eps": 233.63,
+      "earnings_yield": 0.058241,
+      "yield_10y": 0.0267,
+      "yield_spread": 0.031541,
+      "yield_ratio": 2.1813,
+      "forward_pe_yoy": 10.25,
+      "forward_eps_yoy": 28.47,
+      "earnings_yield_yoy": -9.29
     }
   ],
   "monthly_table": [
@@ -6030,39 +6043,50 @@
     },
     {
       "date": "2026-05",
-      "forward_pe": 17.25,
-      "forward_eps": 216.16,
-      "earnings_yield": 5.8,
+      "forward_pe": 17.27,
+      "forward_eps": 215.91,
+      "earnings_yield": 5.79,
       "close": 3728.73,
       "yield_10y": 2.65,
-      "forward_pe_mom": 1.89,
-      "forward_eps_mom": -0.31,
-      "earnings_yield_mom": -1.86
+      "forward_pe_mom": 2.01,
+      "forward_eps_mom": -0.42,
+      "earnings_yield_mom": -1.97
     },
     {
       "date": "2026-06",
-      "forward_pe": 17.14,
-      "forward_eps": 229.91,
-      "earnings_yield": 5.83,
+      "forward_pe": 17.0,
+      "forward_eps": 231.81,
+      "earnings_yield": 5.88,
       "close": 3940.7,
-      "yield_10y": 2.65,
-      "forward_pe_mom": -0.64,
-      "forward_eps_mom": 6.36,
-      "earnings_yield_mom": 0.64
+      "yield_10y": 2.67,
+      "forward_pe_mom": -1.56,
+      "forward_eps_mom": 7.36,
+      "earnings_yield_mom": 1.59
+    },
+    {
+      "date": "2026-07",
+      "forward_pe": 17.17,
+      "forward_eps": 233.63,
+      "earnings_yield": 5.82,
+      "close": 4011.5,
+      "yield_10y": 2.67,
+      "forward_pe_mom": 1.0,
+      "forward_eps_mom": 0.79,
+      "earnings_yield_mom": -0.99
     }
   ],
   "latest": {
-    "date": "2026-06-01",
-    "close": 3940.7,
-    "forward_pe": 17.14,
-    "forward_eps": 229.91,
-    "earnings_yield": 0.058343,
-    "yield_10y": 0.0265,
-    "yield_spread": 0.031843,
-    "yield_ratio": 2.2016,
-    "forward_pe_yoy": 12.39,
-    "forward_eps_yoy": 26.24,
-    "earnings_yield_yoy": -11.03
+    "date": "2026-07-01",
+    "close": 4011.5,
+    "forward_pe": 17.17,
+    "forward_eps": 233.63,
+    "earnings_yield": 0.058241,
+    "yield_10y": 0.0267,
+    "yield_spread": 0.031541,
+    "yield_ratio": 2.1813,
+    "forward_pe_yoy": 10.25,
+    "forward_eps_yoy": 28.47,
+    "earnings_yield_yoy": -9.29
   },
   "metadata": {
     "source": "TOPIX Valuation",
@@ -6071,11 +6095,11 @@
     "pe_source": "MacroMicro",
     "yield_source": "FRED (IRLTLT01JPM156N)",
     "file_name": "topix_pe.csv",
-    "file_mtime": 1781655651.8934968,
-    "data_count": 252,
+    "file_mtime": 1783473480.8767316,
+    "data_count": 253,
     "date_range": {
       "start": "2005-06-01",
-      "end": "2026-06-01"
+      "end": "2026-07-01"
     },
     "series": [
       "forward_pe (予想PER)",
@@ -6088,5 +6112,5 @@
   },
   "cached": false,
   "source": "csv+yfinance+fred",
-  "last_updated": "2026-06-27T19:37:50.083037+09:00"
+  "last_updated": "2026-07-25T22:52:31.026705+09:00"
 }

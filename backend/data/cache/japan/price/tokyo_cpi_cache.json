@@ -2893,13 +2893,6 @@
     "core_core_yoy": 1.9,
     "core_core_mom": 0.4
   },
-  "next_release": {
-    "date": "2026-07-30",
-    "datetime_utc": "2026-07-30T23:30:00+00:00",
-    "datetime_jst": "2026-07-31T08:30:00+09:00",
-    "time_jst": "08:30",
-    "label": "Core CPI YoY (Jul)",
-    "estimate": null
-  },
-  "last_updated": "2026-06-27T17:32:58.592136+09:00"
+  "next_release": null,
+  "last_updated": "2026-07-26T04:29:01.347741+09:00"
 }

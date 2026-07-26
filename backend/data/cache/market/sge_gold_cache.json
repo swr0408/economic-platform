@@ -6588,28 +6588,83 @@
       "volume_kg": 54840.0,
       "amount_cny": 47889803020.0,
       "open_interest": 200684
+    },
+    {
+      "date": "2026-06-26",
+      "open": 872.0,
+      "high": 884.2,
+      "low": 870.76,
+      "close": 882.85,
+      "settlement": 877.27,
+      "volume_kg": 38350.0,
+      "amount_cny": 33643401980.0,
+      "open_interest": 197590
+    },
+    {
+      "date": "2026-06-29",
+      "open": 883.0,
+      "high": 894.97,
+      "low": 882.22,
+      "close": 887.2,
+      "settlement": 887.99,
+      "volume_kg": 48028.0,
+      "amount_cny": 42648714460.0,
+      "open_interest": 194960
+    },
+    {
+      "date": "2026-06-30",
+      "open": 883.9,
+      "high": 885.5,
+      "low": 862.13,
+      "close": 878.53,
+      "settlement": 870.83,
+      "volume_kg": 52190.0,
+      "amount_cny": 45449028260.0,
+      "open_interest": 196514
+    },
+    {
+      "date": "2026-07-01",
+      "open": 879.0,
+      "high": 886.5,
+      "low": 866.0,
+      "close": 867.77,
+      "settlement": 871.17,
+      "volume_kg": 32540.0,
+      "amount_cny": 28348044860.0,
+      "open_interest": 194088
+    },
+    {
+      "date": "2026-07-02",
+      "open": 881.0,
+      "high": 897.67,
+      "low": 876.64,
+      "close": 886.96,
+      "settlement": 887.12,
+      "volume_kg": 50728.0,
+      "amount_cny": 45001981660.0,
+      "open_interest": 193152
     }
   ],
   "latest": {
-    "date": "2026-06-25",
-    "open": 885.3,
-    "high": 887.5,
-    "low": 865.79,
-    "close": 873.15,
-    "settlement": 873.26,
-    "volume_kg": 54840.0,
-    "amount_cny": 47889803020.0,
-    "open_interest": 200684
+    "date": "2026-07-02",
+    "open": 881.0,
+    "high": 897.67,
+    "low": 876.64,
+    "close": 886.96,
+    "settlement": 887.12,
+    "volume_kg": 50728.0,
+    "amount_cny": 45001981660.0,
+    "open_interest": 193152
   },
   "metadata": {
     "source": "Shanghai Gold Exchange",
     "contract": "Au(T+D)",
     "frequency": "daily",
-    "data_count": 599,
+    "data_count": 604,
     "start_date": "2024-01-02",
-    "end_date": "2026-06-25"
+    "end_date": "2026-07-02"
   },
   "cached": false,
   "source": "model",
-  "last_updated": "2026-06-25T20:16:53.455010+09:00"
+  "last_updated": "2026-07-03T10:32:58.501144+09:00"
 }

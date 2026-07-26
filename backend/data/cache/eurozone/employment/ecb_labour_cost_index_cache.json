@@ -535,15 +535,6 @@
     "frequency": "Quarterly",
     "description": "労働コスト指数（ユーロ圏）- 時間あたり労働コスト"
   },
-  "next_release": {
-    "date": "2026-08-20",
-    "datetime_utc": "2026-08-20T09:00:00+00:00",
-    "datetime_jst": "2026-08-20T18:00:00+09:00",
-    "time_jst": "18:00",
-    "datetime_cet": "2026-08-20T11:00:00+02:00",
-    "time_cet": "11:00",
-    "label": "Labour Cost Index YoY (Q2)",
-    "estimate": null
-  },
-  "last_updated": "2026-06-27T22:45:24.851992+09:00"
+  "next_release": null,
+  "last_updated": "2026-07-26T04:33:11.911252+09:00"
 }

@@ -2431,23 +2431,24 @@
       "core_goods": 1.06,
       "core_services": 3.42,
       "shelter": 3.37
+    },
+    {
+      "date": "2026-06-01",
+      "food": 3.01,
+      "energy": 15.7,
+      "core_goods": 0.82,
+      "core_services": 3.16,
+      "shelter": 3.28
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "food": 3.08,
-    "energy": 23.54,
-    "core_goods": 1.06,
-    "core_services": 3.42,
-    "shelter": 3.37
+    "date": "2026-06-01",
+    "food": 3.01,
+    "energy": 15.7,
+    "core_goods": 0.82,
+    "core_services": 3.16,
+    "shelter": 3.28
   },
-  "next_release": {
-    "date": "2026-07-14",
-    "datetime_utc": "2026-07-14T12:30:00+00:00",
-    "datetime_jst": "2026-07-14T21:30:00+09:00",
-    "time_jst": "21:30",
-    "label": "CPI s.a (Jun)",
-    "estimate": 335.3
-  },
-  "last_updated": "2026-06-28T00:31:08.661628+09:00"
+  "next_release": null,
+  "last_updated": "2026-07-26T04:02:59.959887+09:00"
 }

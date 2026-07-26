@@ -1116,6 +1116,14 @@ export interface PersonalConsumptionExpendituresServicesNextRelease {
   estimate?: number | null
 }
 
+// ダッシュボードのクライアントキャッシュ設定。
+// バックエンドのダッシュボードルートは Redis(→DB) のみ参照し外部APIを叩かないため、
+// 再取得コストは低い。旧設定(staleTime 24h + refetchOnMount:false)では、発表でバックエンドが
+// 更新されてもブラウザが最大24時間 or フルリロードまで旧データを表示し続けた(SPA遷移・タブ復帰・
+// 再接続でも再取得しない)。発表直後もハードリロード無しで反映されるよう、staleTime を短め(5分)に
+// し、マウント時/タブ復帰時に stale なら再取得する。
+const DASHBOARD_STALE_TIME = 5 * 60 * 1000 // 5分
+
 /**
  * ダッシュボードデータを取得するAPI関数
  */
@@ -1204,8 +1212,9 @@ export function useDashboardData<T = Record<string, unknown>>(
     queryKey: ['dashboard', country, category],
     queryFn: () => fetchDashboardData<T>(country, category),
     enabled: options?.enabled ?? true,
-    staleTime: options?.staleTime ?? 24 * 60 * 60 * 1000, // 1日
-    refetchOnMount: options?.refetchOnMount ?? false,
+    staleTime: options?.staleTime ?? DASHBOARD_STALE_TIME,
+    refetchOnMount: options?.refetchOnMount ?? true,
+    refetchOnWindowFocus: true,
   })
 }
 
@@ -1274,16 +1283,18 @@ export function useUSAEconomyDashboardProgressive() {
   const lightQuery = useQuery({
     queryKey: ['dashboard', 'usa', 'economy', 'light'],
     queryFn: () => fetchDashboardLightData<Partial<USAEconomyData>>('usa', 'economy'),
-    staleTime: 24 * 60 * 60 * 1000, // 1日
-    refetchOnMount: false,
+    staleTime: DASHBOARD_STALE_TIME,
+    refetchOnMount: true,
+    refetchOnWindowFocus: true,
   })
 
   // 重い指標を取得（軽量指標取得後に開始）
   const heavyQuery = useQuery({
     queryKey: ['dashboard', 'usa', 'economy', 'heavy'],
     queryFn: () => fetchDashboardHeavyData<Partial<USAEconomyData>>('usa', 'economy'),
-    staleTime: 24 * 60 * 60 * 1000, // 1日
-    refetchOnMount: false,
+    staleTime: DASHBOARD_STALE_TIME,
+    refetchOnMount: true,
+    refetchOnWindowFocus: true,
     // 軽量指標の取得完了後に開始（オプション：即座に開始したい場合はコメントアウト）
     // enabled: lightQuery.isSuccess,
   })

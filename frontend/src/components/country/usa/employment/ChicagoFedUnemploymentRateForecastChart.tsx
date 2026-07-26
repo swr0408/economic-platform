@@ -425,6 +425,18 @@ export default function ChicagoFedUnemploymentRateForecastChart({
   const latestProbability = data.latest_probability
   const nextRelease = data.next_release
 
+  // 最新月は Final 公表前だと forecast50f が未確定（advance のみ）。
+  // その場合は Advance 値にフォールバックし、ラベルもそれに合わせる（N/A 回避）。
+  const latestForecast50IsFinal = latest?.forecast50f != null
+  const latestForecast50 =
+    latest?.forecast50f ?? latest?.forecast50a ?? null
+  const latestForecast50Label = latestForecast50IsFinal
+    ? '失業率予測 (Final, 50%)'
+    : '失業率予測 (Advance, 50%)'
+  const latestForecast50Color = latestForecast50IsFinal
+    ? FORECAST_COLORS.forecast50f
+    : FORECAST_COLORS.forecast50a
+
   // 最新値ボックス
   const latestItems =
     viewMode === 'forecast'
@@ -481,9 +493,9 @@ export default function ChicagoFedUnemploymentRateForecastChart({
         ]
       : [
           {
-            label: '失業率予測 (Final, 50%)',
-            value: latest?.forecast50f ?? null,
-            color: FORECAST_COLORS.forecast50f,
+            label: latestForecast50Label,
+            value: latestForecast50,
+            color: latestForecast50Color,
             format: 'percent' as const,
             decimals: 2,
           },

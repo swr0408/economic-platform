@@ -64,17 +64,37 @@
       "labor": 50.0,
       "zero_pass_through": 1.0,
       "supply_chain": null
+    },
+    {
+      "date": "2026-03-01",
+      "survey_period": "2026年3月",
+      "total": 54.2,
+      "raw_materials": 55.7,
+      "energy": 48.9,
+      "labor": 50.0,
+      "zero_pass_through": 0.8,
+      "supply_chain": {
+        "tier_1": 14.0,
+        "tier_2": 15.2,
+        "tier_3": 17.9,
+        "tier_4_plus": 23.3
+      }
     }
   ],
   "latest": {
-    "date": "2025-09-01",
-    "survey_period": "2025年9月",
-    "total": 53.5,
-    "raw_materials": 55.0,
+    "date": "2026-03-01",
+    "survey_period": "2026年3月",
+    "total": 54.2,
+    "raw_materials": 55.7,
     "energy": 48.9,
     "labor": 50.0,
-    "zero_pass_through": 1.0,
-    "supply_chain": null
+    "zero_pass_through": 0.8,
+    "supply_chain": {
+      "tier_1": 14.0,
+      "tier_2": 15.2,
+      "tier_3": 17.9,
+      "tier_4_plus": 23.3
+    }
   },
   "metadata": {
     "description": "価格転嫁率（中小企業庁・コスト全般）",
@@ -96,5 +116,5 @@
       "tier_4_plus": "4次請け以上"
     }
   },
-  "last_updated": "2026-06-27T22:50:00.892040+09:00"
+  "last_updated": "2026-07-24T16:09:13.160053+09:00"
 }

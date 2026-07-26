@@ -199,17 +199,16 @@
     {
       "date": "2026-05-01",
       "value": 1.0
+    },
+    {
+      "date": "2026-06-01",
+      "value": 1.1
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "value": 1.0
+    "date": "2026-06-01",
+    "value": 1.1
   },
-  "next_release": {
-    "date": "2026-07-24",
-    "datetime_jst": "2026-07-24T07:00:00+09:00",
-    "time_jst": "07:00",
-    "label": "ECB CES Results & Press Release"
-  },
-  "last_updated": "2026-06-27T22:45:32.531860+09:00"
+  "next_release": null,
+  "last_updated": "2026-07-24T17:01:16.030427+09:00"
 }

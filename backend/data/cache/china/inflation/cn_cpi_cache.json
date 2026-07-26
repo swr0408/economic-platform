@@ -3486,17 +3486,28 @@
       "nonfood_mom": -0.1,
       "core_yoy": 1.1,
       "core_mom": -0.1
+    },
+    {
+      "date": "2026-06-01",
+      "yoy": 1.0,
+      "mom": -0.3,
+      "food_yoy": -1.6,
+      "food_mom": -0.4,
+      "nonfood_yoy": 1.5,
+      "nonfood_mom": -0.3,
+      "core_yoy": 1.0,
+      "core_mom": -0.1
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "yoy": 1.2,
-    "mom": -0.1,
-    "food_yoy": -1.7,
+    "date": "2026-06-01",
+    "yoy": 1.0,
+    "mom": -0.3,
+    "food_yoy": -1.6,
     "food_mom": -0.4,
-    "nonfood_yoy": 1.9,
-    "nonfood_mom": -0.1,
-    "core_yoy": 1.1,
+    "nonfood_yoy": 1.5,
+    "nonfood_mom": -0.3,
+    "core_yoy": 1.0,
     "core_mom": -0.1
   },
   "metadata": {
@@ -3512,15 +3523,15 @@
       "core_yoy": "コアCPI（食品・エネルギー除く）前年比 (%)",
       "core_mom": "コアCPI（食品・エネルギー除く）前月比 (%)"
     },
-    "total_records": 317,
-    "last_fetched": "2026-06-27T11:46:38.587185+09:00"
+    "total_records": 318,
+    "last_fetched": "2026-07-23T17:15:53.292803+09:00"
   },
   "next_release": {
-    "date": "2026-07-09",
-    "datetime_utc": "2026-07-09T01:30:00+00:00",
-    "datetime_jst": "2026-07-09T10:30:00+09:00",
+    "date": "2026-08-09",
+    "datetime_utc": "2026-08-09T01:30:00+00:00",
+    "datetime_jst": "2026-08-09T10:30:00+09:00",
     "time_jst": "10:30",
-    "label": "Inflation Rate YoY (Jun)",
-    "estimate": 1.2
+    "label": "CPI MoM (Jul)",
+    "estimate": null
   }
 }

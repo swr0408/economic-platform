@@ -100,6 +100,12 @@ class ONSPublicSectorNetBorrowingService:
             latest_psnd_ex = api_result["psnd_ex"][-1] if api_result["psnd_ex"] else None
             latest_psnd_gdp = api_result["psnd_gdp"][-1] if api_result["psnd_gdp"] else None
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated_keys, _max_date_of
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated_keys(
+                self.DATA_CACHE_KEY, ("psnb_ex", "cgnb", "psnd_ex", "psnd_gdp"),
+                _max_date_of(api_result["psnb_ex"], api_result["cgnb"], api_result["psnd_ex"], api_result["psnd_gdp"]), now_str
+            )
             cache_payload = {
                 "psnb_ex": api_result["psnb_ex"],
                 "cgnb": api_result["cgnb"],
@@ -116,7 +122,7 @@ class ONSPublicSectorNetBorrowingService:
                     "unit_debt_gdp": "%",
                     "frequency": "Monthly",
                 },
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -134,7 +140,7 @@ class ONSPublicSectorNetBorrowingService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "ons_api",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

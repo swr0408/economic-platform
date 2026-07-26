@@ -140,6 +140,13 @@ class GermanyPPIService:
                 country=self.FMP_COUNTRY
             )
 
+            from services.usa.fmp_next_release_utils import guarded_last_updated
+            now_str = datetime.now(JST).isoformat()
+            last_updated = guarded_last_updated(
+                self.DATA_CACHE_KEY,
+                merged_data[-1].get("date") if merged_data else None,
+                now_str,
+            )
             cache_payload = {
                 "data": merged_data,
                 "metadata": {
@@ -150,7 +157,7 @@ class GermanyPPIService:
                     "description": "ドイツ生産者物価指数（PPI）",
                 },
                 "next_release": next_release,
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
             redis_client.set(self.DATA_CACHE_KEY, cache_payload, expire=0)
             self._save_file_cache(cache_payload)
@@ -161,7 +168,7 @@ class GermanyPPIService:
                 "next_release": next_release,
                 "cached": False,
                 "source": "history_db + destatis + fmp",
-                "last_updated": datetime.now(JST).isoformat(),
+                "last_updated": last_updated,
             }
 
         # ファイルキャッシュフォールバック

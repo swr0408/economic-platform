@@ -1187,13 +1187,19 @@
       "value": -23.0,
       "forecast": -24.0,
       "previous": -23.0
+    },
+    {
+      "date": "2026-07-01",
+      "value": -17.0,
+      "forecast": -21.0,
+      "previous": -23.0
     }
   ],
   "latest": {
-    "date": "2026-06-01",
-    "value": -23.0,
-    "forecast": -24.0,
+    "date": "2026-07-01",
+    "value": -17.0,
+    "forecast": -21.0,
     "previous": -23.0
   },
-  "last_updated": "2026-06-28T00:31:20.969182+09:00"
+  "last_updated": "2026-07-24T11:33:23.630153+09:00"
 }

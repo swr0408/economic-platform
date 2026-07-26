@@ -969,12 +969,17 @@
       "date": "2026-05-01",
       "yoy": 3.9,
       "mom": 0.5
+    },
+    {
+      "date": "2026-06-01",
+      "yoy": 4.1,
+      "mom": -0.3
     }
   ],
   "latest": {
-    "date": "2026-05-01",
-    "yoy": 3.9,
-    "mom": 0.5
+    "date": "2026-06-01",
+    "yoy": 4.1,
+    "mom": -0.3
   },
   "metadata": {
     "indicator": "Producer Price Index",
@@ -983,15 +988,15 @@
       "yoy": "PPI 前年比 (%)",
       "mom": "PPI 前月比 (%)"
     },
-    "total_records": 194,
-    "last_fetched": "2026-06-27T11:46:41.013556+09:00"
+    "total_records": 195,
+    "last_fetched": "2026-07-23T17:15:56.183171+09:00"
   },
   "next_release": {
-    "date": "2026-07-09",
-    "datetime_utc": "2026-07-09T01:30:00+00:00",
-    "datetime_jst": "2026-07-09T10:30:00+09:00",
+    "date": "2026-08-09",
+    "datetime_utc": "2026-08-09T01:30:00+00:00",
+    "datetime_jst": "2026-08-09T10:30:00+09:00",
     "time_jst": "10:30",
-    "label": "Producer Price Index YoY (Jun)",
-    "estimate": 3.5
+    "label": "Producer Price Index YoY (Jul)",
+    "estimate": 4.3
   }
 }
